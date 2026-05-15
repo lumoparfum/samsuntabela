@@ -10,46 +10,55 @@
         :root { --neon-sari: #ccff00; --koyu-bg: #050505; --card-bg: #0f0f0f; }
         body { margin: 0; padding: 0; background-color: var(--koyu-bg); color: #fff; font-family: 'Inter', sans-serif; overflow-x: hidden; scroll-behavior: smooth; }
         
-        /* Navigasyon Alanı */
+/* Navigasyon Ana Çatı */
 nav { 
     display: flex; 
     justify-content: space-between; 
     align-items: center; 
-    padding: 20px 5%; /* Biraz daha genişlettik */
+    padding: 15px 5%; 
     background: rgba(0,0,0,0.95); 
     position: fixed; 
     width: 90%; 
     top: 0; 
     z-index: 1000; 
     border-bottom: 1px solid #222; 
-    backdrop-filter: blur(10px); 
+    backdrop-filter: blur(10px);
 }
 
-/* Logo ve Slogan Grubu */
+/* Logo ve Slogan Yan Yana (Aynı Satırda) */
 .logo-area {
     display: flex;
-    flex-direction: column; /* Alt alta gelsinler diye */
-    align-items: flex-start;
+    align-items: center; /* Dikeyde tam ortalar */
+    gap: 15px;
 }
 
 .logo { 
     font-weight: 900; 
-    font-size: 28px; /* Logoyu büyüttük */
+    font-size: 28px; /* Logoyu belirginleştirdik */
     letter-spacing: -1px; 
     text-transform: uppercase; 
     line-height: 1;
+    white-space: nowrap;
 }
 
 .logo span { color: var(--neon-sari); }
 
-/* El Yazısı Slogan */
+/* Yanındaki El Yazısı Slogan */
 .logo-slogan {
-    font-family: 'Dancing Script', crossorigin; /* El yazısı fontu */
-    color: #eee;
+    font-family: 'Dancing Script', cursive;
+    color: #888; /* Biraz daha soft bir gri, logoyu boğmasın */
     font-size: 16px;
-    margin-top: 5px;
-    letter-spacing: 1px;
-    font-weight: 700;
+    border-left: 1px solid #333; /* Araya ince dikey çizgi */
+    padding-left: 15px;
+    font-weight: 400;
+    line-height: 1;
+    white-space: nowrap;
+}
+
+/* MOBİLDE SLOGANI GİZLE (Yazılar iç içe girmesin diye) */
+@media (max-width: 992px) {
+    .logo-slogan { display: none; }
+    .logo { font-size: 22px; }
 }
 
         /* Slayt Arka Planlı Hero */
@@ -109,7 +118,7 @@ nav {
 </head>
 <body>
 
-    <nav>
+   <nav>
     <div class="logo-area">
         <div class="logo">UZMAN<span>REKLAM</span></div>
         <div class="logo-slogan">Karadeniz bayi tabelaları çözüm ortağınız...</div>
@@ -118,7 +127,6 @@ nav {
         <a href="#islerimiz">PROJELER</a>
         <a href="#iletisim">KONUM</a>
         <a href="https://wa.me/905079605049">TEKLİF AL</a>
-        <a href="https://www.instagram.com/uzmanreklam/" target="_blank"><i class="fab fa-instagram"></i></a>
     </div>
 </nav>
     </nav>
