@@ -3,112 +3,133 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Uzman Reklam | Samsun Kurumsal Tabela & Reklam Sistemleri</title>
+    <title>Uzman Tabela & Toraman Matbaa | Profesyonel Reklam Çözümleri</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --neon-sari: #ccff00; --koyu-gri: #0a0a0a; --soft-gri: #1a1a1a; }
-        body { margin: 0; padding: 0; background-color: #000; color: #fff; font-family: 'Inter', sans-serif; overflow-x: hidden; scroll-behavior: smooth; }
+        :root { --neon-sari: #ccff00; --koyu-bg: #050505; --card-bg: #0f0f0f; }
+        body { margin: 0; padding: 0; background-color: var(--koyu-bg); color: #fff; font-family: 'Inter', sans-serif; overflow-x: hidden; scroll-behavior: smooth; }
         
-        /* Arka Plan Efekti */
-        .bg-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 20% 30%, #111 0%, #000 100%); z-index: -1; }
-
-        /* Header / Navigasyon */
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 25px 8%; background: rgba(0,0,0,0.95); position: fixed; width: 84%; top: 0; z-index: 1000; border-bottom: 1px solid #222; backdrop-filter: blur(10px); }
-        .logo { font-weight: 900; font-size: 28px; letter-spacing: -1.5px; text-transform: uppercase; cursor: pointer; }
+        /* Navigasyon */
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 8%; background: rgba(0,0,0,0.95); position: fixed; width: 84%; top: 0; z-index: 1000; border-bottom: 1px solid #222; backdrop-filter: blur(10px); }
+        .logo { font-weight: 900; font-size: 24px; letter-spacing: -1px; }
         .logo span { color: var(--neon-sari); }
-        .nav-links a { color: #888; text-decoration: none; margin-left: 25px; font-size: 0.9rem; font-weight: 600; transition: 0.3s; }
+        .nav-links a { color: #888; text-decoration: none; margin-left: 20px; font-size: 0.85rem; font-weight: 600; transition: 0.3s; }
         .nav-links a:hover { color: var(--neon-sari); }
 
-        /* Hero / Ana Başlık Alanı */
-        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 10%; border-bottom: 1px solid var(--soft-gri); }
-        .hero h1 { font-size: clamp(2.5rem, 8vw, 5rem); margin-bottom: 20px; font-weight: 900; line-height: 1.1; letter-spacing: -2px; }
-        .hero h1 span { color: var(--neon-sari); text-shadow: 0 0 20px rgba(204, 255, 0, 0.4); }
-        .hero p { font-size: 1.25rem; color: #aaa; max-width: 700px; margin-bottom: 40px; line-height: 1.6; }
+        /* Hero */
+        .hero { height: 80vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 10%; background: radial-gradient(circle at center, #111 0%, #000 100%); }
+        .hero h1 { font-size: clamp(2rem, 6vw, 4rem); font-weight: 900; margin-bottom: 20px; }
+        .hero h1 span { color: var(--neon-sari); }
 
-        /* Butonlar */
-        .btn-group { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
-        .btn { padding: 20px 45px; background: var(--neon-sari); color: #000; text-decoration: none; font-weight: 800; border-radius: 12px; transition: 0.4s; text-transform: uppercase; font-size: 1rem; display: flex; align-items: center; gap: 10px; }
-        .btn:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(204, 255, 0, 0.4); }
-        .btn-insta { background: transparent; color: #fff; border: 2px solid #333; }
-        .btn-insta:hover { border-color: #e4405f; color: #e4405f; }
+        /* Hakkımızda Bölümü (Yeni) */
+        .about-section { padding: 100px 10%; line-height: 1.8; background: #080808; }
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: start; }
+        .about-content h2 { color: var(--neon-sari); font-size: 2.5rem; margin-bottom: 30px; border-left: 5px solid var(--neon-sari); padding-left: 20px; }
+        .about-content p { color: #ccc; margin-bottom: 20px; font-size: 1.05rem; }
 
-        /* Hakkımızda Bölümü */
-        .about { padding: 120px 10%; background: var(--koyu-gri); display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
-        .about-text h2 { font-size: 3rem; color: var(--neon-sari); margin-bottom: 20px; }
-        .about-text p { color: #888; font-size: 1.1rem; line-height: 1.8; }
+        /* Kartlar ve Hizmetler */
+        .grid-container { padding: 80px 8%; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .info-card { background: var(--card-bg); padding: 40px; border-radius: 20px; border: 1px solid #1a1a1a; transition: 0.3s; }
+        .info-card:hover { border-color: var(--neon-sari); transform: translateY(-5px); }
+        .info-card i { font-size: 40px; color: var(--neon-sari); margin-bottom: 20px; }
+        .info-card h3 { margin-bottom: 15px; font-size: 1.5rem; }
+        .info-card p, .info-card li { color: #888; font-size: 0.95rem; list-style: none; padding: 0; }
 
-        /* Hizmetler / Galeri */
-        .section-title { text-align: center; padding: 100px 0 50px; font-size: 2.5rem; text-transform: uppercase; }
-        .gallery { padding: 0 8% 120px; display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; }
-        .card { background: #080808; border: 1px solid #111; border-radius: 30px; overflow: hidden; transition: 0.5s; position: relative; }
-        .card:hover { border-color: var(--neon-sari); transform: scale(1.02); }
-        .card img { width: 100%; height: 400px; object-fit: cover; opacity: 0.6; transition: 0.6s; }
-        .card:hover img { opacity: 1; }
-        .card-content { padding: 30px; background: linear-gradient(to top, #000, transparent); position: absolute; bottom: 0; width: 100%; }
-        .card-content h3 { font-size: 1.8rem; margin: 0; color: var(--neon-sari); }
+        /* Banka ve Vergi Bilgileri */
+        .finance-box { background: #111; padding: 30px; border-radius: 15px; border-left: 4px solid #25d366; margin-top: 20px; }
+        .finance-box h4 { margin-top: 0; color: #fff; }
+        .finance-box code { color: var(--neon-sari); display: block; margin: 5px 0; font-size: 1rem; }
 
-        /* WhatsApp Butonu */
-        .whatsapp-btn { position: fixed; bottom: 30px; right: 30px; background: #25d366; color: #fff; width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 35px; text-decoration: none; z-index: 9999; box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4); animation: pulse 2s infinite; }
-        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+        /* İletişim Footer */
+        footer { padding: 80px 8%; background: #000; border-top: 1px solid #222; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; }
+        .footer-col h4 { color: var(--neon-sari); margin-bottom: 20px; text-transform: uppercase; }
+        .footer-col p { color: #666; font-size: 0.9rem; margin-bottom: 10px; }
+        .footer-col a { color: #aaa; text-decoration: none; transition: 0.3s; }
+        .footer-col a:hover { color: #fff; }
 
-        footer { padding: 60px 8%; text-align: center; border-top: 1px solid #111; color: #555; }
+        .whatsapp-float { position: fixed; bottom: 30px; right: 30px; background: #25d366; color: #fff; width: 65px; height: 65px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; z-index: 1000; box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
 
-        @media (max-width: 900px) { .about { grid-template-columns: 1fr; text-align: center; } nav { width: 100%; padding: 20px 5%; justify-content: center; } .nav-links { display: none; } }
+        @media (max-width: 800px) { .about-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
-    <div class="bg-overlay"></div>
 
-    <nav>
-        <div class="logo">UZMAN<span>REKLAM</span></div>
-        <div class="nav-links">
-            <a href="#hizmetler">HİZMETLER</a>
-            <a href="#hakkimizda">HAKKIMIZDA</a>
-            <a href="https://wa.me/905079605049">İLETİŞİM</a>
-        </div>
-    </nav>
+<nav>
+    <div class="logo">UZMAN<span>TABELA</span></div>
+    <div class="nav-links">
+        <a href="#hakkimizda">TARİHÇE</a>
+        <a href="#uretim">ÜRETİM</a>
+        <a href="#matbaa">MATBAA</a>
+        <a href="#iletisim">İLETİŞİM</a>
+    </div>
+</nav>
 
-    <section class="hero">
-        <h1>SAMSUN'UN EN <span>JİLET</span><br>TABELALARI BURADA.</h1>
-        <p>15 yıllık tecrübemizle markanızı sokağın en parlayan yıldızı yapıyoruz. Kalite tesadüf değildir, Uzman işidir.</p>
-        <div class="btn-group">
-            <a href="https://wa.me/905079605049" class="btn"><i class="fab fa-whatsapp"></i> FİYAT ALALIM</a>
-            <a href="https://instagram.com/uzman.reklamm" target="_blank" class="btn btn-insta"><i class="fab fa-instagram"></i> INSTAGRAM</a>
-        </div>
-    </section>
+<section class="hero">
+    <h1>YARIM ASIRLIK <span>TECRÜBE</span><br>MODERN ÜRETİM GÜCÜ.</h1>
+    <p>1973'ten beri reklam ve baskı dünyasında iz bırakıyoruz.</p>
+</section>
 
-    <section class="about" id="hakkimizda">
-        <div class="about-text">
-            <h2>BİZ KİMİZ?</h2>
-            <p>Samsun'un kalbinde, reklamcılık sektörüne yıllarını vermiş bir ekip olarak; sadece tabela üretmiyor, markanızın karakterini inşa ediyoruz. Işıklı kutu harften cephe giydirmeye kadar her projede "sıfır hata" ve "maksimum estetik" mottosuyla çalışıyoruz.</p>
+<section class="about-section" id="hakkimizda">
+    <div class="about-grid">
+        <div class="about-content">
+            <h2>HAKKIMIZDA</h2>
+            <p><strong>Uzman Tabela</strong>, 1973 yılında Remzi Toraman tarafından Samsun’da kurulan küçük bir tabela atölyesinin bugün modern bir üretim merkezine dönüşmüş hâlidir. Kurucumuzun el işçiliğine dayalı geleneksel tabela ustalığı, markamızın temelini oluşturmuştur.</p>
+            <p>İkinci neslin temsilcisi <strong>Abdurrahman Toraman</strong> yönetiminde, 2000’li yıllardan itibaren yapılan yatırımlarla bölgesel bir atölyeden profesyonel bir üretim tesisine dönüştük.</p>
         </div>
-        <div style="background: var(--soft-gri); height: 300px; border-radius: 20px; display: flex; align-items: center; justify-content: center; color: #444; border: 1px dashed #333;">
-            <i class="fas fa-tools style" style="font-size: 80px;"></i>
-        </div>
-    </section>
-
-    <h2 class="section-title" id="hizmetler">Neler Yapıyoruz?</h2>
-    <div class="gallery">
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1582139329536-e7284fece509?w=800" alt="Işıklı Kutu Harf">
-            <div class="card-content"><h3>Işıklı Kutu Harf</h3></div>
-        </div>
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800" alt="Cephe Giydirme">
-            <div class="card-content"><h3>Kurumsal Cephe</h3></div>
-        </div>
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?w=800" alt="Totem">
-            <div class="card-content"><h3>Totem & Pylon</h3></div>
+        <div class="about-content">
+            <p>Bugün tasarım, üretim ve montaj süreçlerini kendi bünyesinde gerçekleştiren entegre bir merkeziz. LED tabela, kompozit kaplama, totem ve dijital baskı gibi geniş bir yelpazede devlet kurumlarına ve kurumsal işletmelere hizmet sunuyoruz.</p>
+            <div class="finance-box">
+                <h4>Kurumsal Bilgiler</h4>
+                <p>Abdurrahman TORAMAN<br>Bafra V.D. No: 214 7659 4794</p>
+            </div>
         </div>
     </div>
+</section>
 
-    <footer>
-        <p>&copy; 2026 Uzman Reklam & Tabela - Samsun | Tüm Hakları Saklıdır.</p>
-    </footer>
+<section id="uretim" class="grid-container">
+    <div class="info-card">
+        <i class="fas fa-industry"></i>
+        <h3>Üretim Kapasitesi</h3>
+        <p>LED ve Kutu Harf, Totem Tabela, Yönlendirme Sistemleri, Dijital Baskı, CNC–Lazer Kesim ve Araç Giydirme çözümleriyle entegre üretim yapıyoruz.</p>
+    </div>
+    <div class="info-card" id="matbaa">
+        <i class="fas fa-print"></i>
+        <h3>Toraman Matbaa</h3>
+        <p>İstanbul Topkapı'daki tesisimizde; etiket, ambalaj, katalog ve kurumsal baskı ürünlerinde yurt içine ve yurt dışına profesyonel çözümler sunuyoruz.</p>
+        <a href="http://www.toramanmatbaa.com" target="_blank" style="color:var(--neon-sari); font-size:0.8rem; text-decoration:none;">www.toramanmatbaa.com</a>
+    </div>
+    <div class="info-card">
+        <i class="fas fa-university"></i>
+        <h3>Ödeme Bilgileri</h3>
+        <p>Garanti Bankası (Şube: 520)<br>Hesap No: 6297473</p>
+        <code>TR12 0006 2000 5200 0006 2974 73</code>
+    </div>
+</section>
 
-    <a href="https://wa.me/905079605049" class="whatsapp-btn" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-    </a>
+<footer id="iletisim">
+    <div class="footer-col">
+        <h4>Uzman Tabela Fabrika</h4>
+        <p><i class="fas fa-map-marker-alt"></i> Altınyaprak Mh. Çizmeli 2.Sk. No:33 Bafra - SAMSUN</p>
+        <p><i class="fas fa-phone"></i> 0532 220 46 49</p>
+        <p><i class="fas fa-envelope"></i> uzmanreklam@live.com</p>
+        <p><i class="fas fa-envelope"></i> uzmandosya@hotmail.com</p>
+    </div>
+    <div class="footer-col">
+        <h4>Toraman Matbaa İstanbul</h4>
+        <p><i class="fas fa-map-marker-alt"></i> 2.Matbaacılar Sitesi 5.Kat E Blok 3NE19 Topkapı - İST</p>
+        <p><i class="fas fa-phone"></i> 444 5 340</p>
+        <p><i class="fas fa-envelope"></i> toramanmatbaa@gmail.com</p>
+    </div>
+    <div class="footer-col">
+        <h4>Sosyal Medya</h4>
+        <p><a href="https://instagram.com/uzman.reklamm" target="_blank"><i class="fab fa-instagram"></i> @uzman.reklamm</a></p>
+        <p><a href="https://wa.me/905079605049"><i class="fab fa-whatsapp"></i> WhatsApp Destek</a></p>
+    </div>
+</footer>
+
+<a href="https://wa.me/905079605049" class="whatsapp-float" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
 </body>
 </html>
