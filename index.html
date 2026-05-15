@@ -6,85 +6,78 @@
     <title>Uzman Reklam | Samsun Kurumsal Tabela & Reklam Sistemleri</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --neon-sari: #ccff00; --koyu-bg: #050505; --card-bg: #0f0f0f; --soft-gri: #1a1a1a; }
+        :root { --neon-sari: #ccff00; --koyu-bg: #050505; --card-bg: #0f0f0f; }
         body { margin: 0; padding: 0; background-color: var(--koyu-bg); color: #fff; font-family: 'Inter', sans-serif; overflow-x: hidden; scroll-behavior: smooth; }
         
         /* Navigasyon */
         nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; background: rgba(0,0,0,0.95); position: fixed; width: 90%; top: 0; z-index: 1000; border-bottom: 1px solid #222; backdrop-filter: blur(10px); }
-        .logo { font-weight: 900; font-size: 24px; letter-spacing: -1.5px; }
+        .logo { font-weight: 900; font-size: 24px; letter-spacing: -1px; text-transform: uppercase; }
         .logo span { color: var(--neon-sari); }
-        .nav-links a { color: #fff; text-decoration: none; margin-left: 20px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; }
+        .nav-links a { color: #fff; text-decoration: none; margin-left: 20px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; transition: 0.3s; }
+        .nav-links a:hover { color: var(--neon-sari); }
 
-        /* Slayt Arka Planlı Hero */
-        .hero { 
-            height: 100vh; 
-            position: relative; 
-            display: flex; 
-            flex-direction: column; 
-            justify-content: center; 
-            align-items: center; 
-            text-align: center; 
-            overflow: hidden;
+        /* Yavaş Geçişli ve Sabit Slider (Siyah Ekran Sorunu Çözüldü) */
+        .hero { position: relative; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; overflow: hidden; }
+        .hero-slider { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background-color: #000; }
+        .slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; filter: brightness(0.4); opacity: 0; animation: fadeSlide 15s infinite; }
+        
+        /* 3 Resim için animasyon zamanlaması */
+        .slide:nth-child(1) { background-image: url('mediana.jpg'); animation-delay: 0s; }
+        .slide:nth-child(2) { background-image: url('livhospitl.jpg'); animation-delay: 5s; }
+        .slide:nth-child(3) { background-image: url('piazzatorem.jpg'); animation-delay: 10s; }
+
+        @keyframes fadeSlide {
+            0% { opacity: 0; transform: scale(1.05); }
+            10% { opacity: 1; transform: scale(1); }
+            33% { opacity: 1; transform: scale(1); }
+            43% { opacity: 0; transform: scale(1.05); }
+            100% { opacity: 0; }
         }
-        .hero-slide {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-size: cover;
-            background-position: center;
-            animation: slideAnimation 15s infinite;
-            z-index: -1;
-            filter: brightness(0.4);
-        }
-        @keyframes slideAnimation {
-            0%, 100% { background-image: url('mediana.jpg'); }
-            33% { background-image: url('livhospit.jpg'); }
-            66% { background-image: url('piazzatorem.jpg'); }
-        }
+
         .hero-content { z-index: 1; padding: 0 5%; }
-        .hero h1 { font-size: clamp(2.5rem, 8vw, 5rem); font-weight: 900; margin-bottom: 20px; line-height: 1.1; }
+        .hero h1 { font-size: clamp(2.5rem, 8vw, 5rem); font-weight: 900; margin-bottom: 20px; line-height: 1.1; letter-spacing: -1px; }
         .hero h1 span { color: var(--neon-sari); }
-        .hero p { font-size: 1.3rem; max-width: 800px; color: #eee; margin-bottom: 40px; }
-
-        /* Butonlar */
-        .btn-main { background: var(--neon-sari); color: #000; padding: 20px 45px; border-radius: 50px; text-decoration: none; font-weight: 900; text-transform: uppercase; transition: 0.3s; display: inline-block; }
+        .hero p { font-size: 1.2rem; max-width: 800px; color: #ddd; margin-bottom: 40px; }
+        .btn-main { background: var(--neon-sari); color: #000; padding: 18px 45px; border-radius: 50px; text-decoration: none; font-weight: 900; text-transform: uppercase; transition: 0.3s; display: inline-block; }
         .btn-main:hover { transform: scale(1.05); box-shadow: 0 0 30px rgba(204,255,0,0.5); }
 
-        /* Ustalık Eserlerimiz Grid */
-        .section-title { padding: 80px 5% 40px; text-align: center; }
-        .section-title h2 { font-size: 2.5rem; text-transform: uppercase; color: var(--neon-sari); letter-spacing: 2px; }
-        .work-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; padding: 0 5% 80px; }
-        .work-card { background: var(--card-bg); border-radius: 20px; overflow: hidden; border: 1px solid #222; transition: 0.4s; }
-        .work-card:hover { border-color: var(--neon-sari); transform: translateY(-10px); }
-        .work-card img { width: 100%; height: 350px; object-fit: cover; opacity: 0.8; }
+        /* Tüm Eserler Grid Yapısı */
+        .section-title { padding: 80px 5% 40px; text-align: center; border-top: 1px solid #111; }
+        .section-title h2 { font-size: 2.2rem; text-transform: uppercase; color: #fff; letter-spacing: 2px; }
+        .section-title div { width: 50px; height: 3px; background: var(--neon-sari); margin: 10px auto 0; }
+        
+        .work-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; padding: 0 5% 80px; }
+        .work-card { background: var(--card-bg); border-radius: 12px; overflow: hidden; border: 1px solid #222; transition: 0.4s; }
+        .work-card:hover { border-color: var(--neon-sari); transform: translateY(-5px); }
+        .work-card img { width: 100%; height: 250px; object-fit: cover; opacity: 0.8; transition: 0.5s; }
         .work-card:hover img { opacity: 1; }
-        .work-info { padding: 25px; border-top: 1px solid #111; }
-        .work-info h3 { margin: 0 0 10px; font-size: 1.4rem; color: var(--neon-sari); }
-        .work-info p { color: #888; font-size: 0.95rem; }
+        .work-info { padding: 15px; text-align: center; border-top: 1px solid #111; }
+        .work-info h3 { margin: 0; font-size: 1.1rem; color: var(--neon-sari); }
 
-        /* Hakkımızda / Hikaye */
-        .story { padding: 100px 10%; background: #080808; border-top: 1px solid #111; }
-        .story-box { border-left: 5px solid var(--neon-sari); padding-left: 35px; }
-        .story h2 { font-size: 2.5rem; margin-bottom: 25px; }
-        .story p { line-height: 1.8; color: #ccc; font-size: 1.1rem; }
+        /* Kurumsal Kimlik */
+        .corporate { padding: 100px 10%; background: #080808; border-top: 1px solid #111; border-bottom: 1px solid #111; }
+        .corporate-box { border-left: 4px solid var(--neon-sari); padding-left: 30px; }
+        .corporate h2 { font-size: 2.2rem; margin-bottom: 20px; text-transform: uppercase; }
+        .corporate p { line-height: 1.8; color: #ccc; font-size: 1.05rem; }
 
-        /* İletişim / Harita / Toraman Matbaa */
+        /* İletişim & Harita & Matbaa */
         .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; padding: 80px 5%; background: #000; }
-        .footer-box { background: #0a0a0a; padding: 35px; border-radius: 20px; border: 1px solid #1a1a1a; }
+        .footer-box { background: #0a0a0a; padding: 35px; border-radius: 15px; border: 1px solid #1a1a1a; }
         .footer-box h3 { color: var(--neon-sari); margin-bottom: 25px; border-bottom: 1px solid #222; padding-bottom: 10px; }
         .footer-box p { font-size: 0.95rem; margin-bottom: 12px; color: #aaa; }
         
-        .map-container { width: 100%; height: 250px; border-radius: 15px; overflow: hidden; margin-top: 20px; border: 1px solid #333; }
+        .map-container { width: 100%; height: 250px; border-radius: 12px; overflow: hidden; margin-top: 20px; border: 1px solid #333; }
         
-        .matbaa-box { background: #111; border: 1px solid #222; padding: 25px; border-radius: 15px; margin-top: 30px; }
-        .matbaa-box h4 { margin-top: 0; color: #fff; border-left: 3px solid var(--neon-sari); padding-left: 10px; }
+        .matbaa-box { background: #111; border: 1px solid #222; padding: 20px; border-radius: 12px; margin-top: 30px; border-left: 3px solid var(--neon-sari); }
+        .matbaa-box h4 { margin-top: 0; color: #fff; margin-bottom: 10px; }
 
-        /* WhatsApp */
-        .wp-float { position: fixed; bottom: 30px; right: 30px; display: flex; align-items: center; gap: 15px; z-index: 9999; }
-        .wp-balon { background: #fff; color: #000; padding: 10px 20px; border-radius: 12px; font-weight: 800; font-size: 0.9rem; box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
-        .wp-btn { width: 65px; height: 65px; background: #25d366; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 35px; color: #fff; text-decoration: none; box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4); animation: pulse 2s infinite; }
-        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+        /* WhatsApp Sabit */
+        .wp-float { position: fixed; bottom: 30px; right: 30px; display: flex; align-items: center; gap: 10px; z-index: 9999; }
+        .wp-balon { background: #fff; color: #000; padding: 10px 15px; border-radius: 10px; font-weight: 800; font-size: 0.85rem; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+        .wp-btn { width: 60px; height: 60px; background: #25d366; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; color: #fff; text-decoration: none; box-shadow: 0 10px 20px rgba(37, 211, 102, 0.4); transition: 0.3s; }
+        .wp-btn:hover { transform: scale(1.1); }
 
-        @media (max-width: 768px) { .nav-links { display: none; } .hero h1 { font-size: 2.2rem; } .footer-grid { grid-template-columns: 1fr; } }
+        @media (max-width: 768px) { .nav-links { display: none; } .hero h1 { font-size: 2rem; } .footer-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -92,74 +85,62 @@
     <nav>
         <div class="logo">UZMAN<span>REKLAM</span></div>
         <div class="nav-links">
-            <a href="#islerimiz">ESERLERİMİZ</a>
-            <a href="#hakkimizda">HİKAYEMİZ</a>
+            <a href="#islerimiz">PROJELERİMİZ</a>
+            <a href="#kurumsal">KURUMSAL</a>
             <a href="#iletisim">İLETİŞİM & KONUM</a>
         </div>
     </nav>
 
     <section class="hero">
-        <div class="hero-slide"></div>
+        <div class="hero-slider">
+            <div class="slide"></div>
+            <div class="slide"></div>
+            <div class="slide"></div>
+        </div>
         <div class="hero-content">
             <h1>SAMSUN'DA <span>TABELA</span><br>BİZİM İŞİMİZ.</h1>
-            <p>1973'ten beri ustalığı teknolojiyle birleştiriyoruz. Işıklı tabela, kutu harf ve reklam çözümlerinde yarım asırlık Uzman tecrübesi.</p>
+            <p>1973'ten beri ustalığı teknolojiyle birleştiriyoruz. Işıklı tabela, kutu harf ve reklam çözümlerinde yarım asırlık kurumsal tecrübe.</p>
             <a href="https://wa.me/905079605049" class="btn-main">FİYAT ALALIM</a>
         </div>
     </section>
 
     <div class="section-title" id="islerimiz">
-        <h2>Ustalık Eserlerimiz</h2>
+        <h2>Referans Projelerimiz & Üretimimiz</h2>
+        <div></div>
     </div>
 
     <section class="work-grid">
-        <div class="work-card">
-            <img src="livhospit.jpg" alt="Liv Hospital Işıklı Tabela">
-            <div class="work-info">
-                <h3>Liv Hospital | Kutu Harf</h3>
-                <p>Paslanmaz çelikten üretilen, yüksek prestijli LED ışıklı harf sistemleri.</p>
-            </div>
-        </div>
-        <div class="work-card">
-            <img src="piazzatorem.jpg" alt="Piazza Totem">
-            <div class="work-info">
-                <h3>Piazza | Totem Tabela</h3>
-                <p>Uzak mesafeden fark edilen, rüzgara ve hava şartlarına dayanıklı güçlü yapılar.</p>
-            </div>
-        </div>
-        <div class="work-card">
-            <img src="mediana.jpg" alt="Medibafra Cephe Kaplama">
-            <div class="work-info">
-                <h3>Medibafra | Kompozit Cephe</h3>
-                <p>Binanın çehresini değiştiren modern cephe giydirme ve kurumsal kimlik uygulaması.</p>
-            </div>
-        </div>
-        <div class="work-card">
-            <img src="umre.jpg" alt="Umre Reklam">
-            <div class="work-info">
-                <h3>Neon & LED Aydınlatma</h3>
-                <p>Gece parlayan, dikkat çekici ve estetik iç/dış mekan reklam çözümleri.</p>
-            </div>
-        </div>
-        <div class="work-card">
-            <img src="cnc.jpg" alt="CNC Kesim">
-            <div class="work-info">
-                <h3>CNC & Lazer Kesim</h3>
-                <p>Pleksi, dekupe ve metal malzemelerde sıfır hata ile hassas kesim parkuru.</p>
-            </div>
-        </div>
-        <div class="work-card">
-            <img src="yonlendirme.jpg" alt="Yönlendirme Sistemleri">
-            <div class="work-info">
-                <h3>Yönlendirme & Ofis</h3>
-                <p>Kurumsal iç mekan yönlendirme, kapı isimlikleri ve dijital baskı işleri.</p>
-            </div>
-        </div>
+        <div class="work-card"><img src="livhospitl.jpg" alt="Liv Hospital"><div class="work-info"><h3>Liv Hospital</h3></div></div>
+        <div class="work-card"><img src="mediana.jpg" alt="Medibafra Hastanesi"><div class="work-info"><h3>Medibafra Hastanesi</h3></div></div>
+        <div class="work-card"><img src="sinopdevlet.jpg" alt="Sinop Devlet Hastanesi"><div class="work-info"><h3>Sinop Devlet Hastanesi</h3></div></div>
+        <div class="work-card"><img src="piazzatorem.jpg" alt="Piazza Totem"><div class="work-info"><h3>Piazza AVM Totem</h3></div></div>
+        <div class="work-card"><img src="meditotem.jpg" alt="Medibafra Totem"><div class="work-info"><h3>Medibafra Totem</h3></div></div>
+        <div class="work-card"><img src="medikompozit.jpg" alt="Medibafra Kompozit"><div class="work-info"><h3>Medibafra Cephe Kaplama</h3></div></div>
+        <div class="work-card"><img src="asarcıksalon.jpg" alt="Asarcık Spor Salonu"><div class="work-info"><h3>Asarcık Spor Salonu</h3></div></div>
+        <div class="work-card"><img src="olimpik.jpg" alt="Olimpik Yüzme Havuzu"><div class="work-info"><h3>Olimpik Yüzme Havuzu</h3></div></div>
+        <div class="work-card"><img src="dünyagöztotem.jpg" alt="Dünya Göz Totem"><div class="work-info"><h3>Dünya Göz / Karavan Totem</h3></div></div>
+        <div class="work-card"><img src="toki.jpg" alt="TOKİ Şantiye Tabelası"><div class="work-info"><h3>TOKİ Şantiye Tabelası</h3></div></div>
+        <div class="work-card"><img src="piazzakapi.jpg" alt="Piazza İç Mekan"><div class="work-info"><h3>Piazza İç Mekan</h3></div></div>
+        <div class="work-card"><img src="part totem.jpg" alt="Özel Tasarım Totem"><div class="work-info"><h3>Özel Tasarım Totem</h3></div></div>
+        <div class="work-card"><img src="arac.jpg" alt="Araç Giydirme 1"><div class="work-info"><h3>Araç Kaplama & Giydirme</h3></div></div>
+        <div class="work-card"><img src="arac2.jpg" alt="Otobüs Giydirme"><div class="work-info"><h3>Otobüs & Filo Giydirme</h3></div></div>
+        <div class="work-card"><img src="arac3.jpg" alt="Araç Giydirme 2"><div class="work-info"><h3>Ticari Araç Kaplama</h3></div></div>
+        <div class="work-card"><img src="baski.jpg" alt="Dijital Baskı"><div class="work-info"><h3>Endüstriyel Dijital Baskı</h3></div></div>
+        <div class="work-card"><img src="cnc.jpg" alt="CNC Kesim"><div class="work-info"><h3>CNC Kesim Parkuru</h3></div></div>
+        <div class="work-card"><img src="folyo.jpg" alt="Dış Cephe Folyo"><div class="work-info"><h3>Cephe & Vitrin Kaplama</h3></div></div>
+        <div class="work-card"><img src="hoşgeldiniz.jpg" alt="Işıklı Tabela"><div class="work-info"><h3>Işıklı Kutu Harf Tabela</h3></div></div>
+        <div class="work-card"><img src="imalatkompozit.jpg" alt="Kompozit İmalat"><div class="work-info"><h3>Atölye Üretim & İmalat</h3></div></div>
+        <div class="work-card"><img src="kompozitgiydirme.jpg" alt="Kompozit Cephe"><div class="work-info"><h3>Kompozit Dış Cephe</h3></div></div>
+        <div class="work-card"><img src="montaj.jpg" alt="Yüksek İrtifa Montaj"><div class="work-info"><h3>Vinçli Profesyonel Montaj</h3></div></div>
+        <div class="work-card"><img src="pleksikompozit.jpg" alt="Market Cephe"><div class="work-info"><h3>Kurumsal Dükkan Cephesi</h3></div></div>
+        <div class="work-card"><img src="tozlutabela.jpg" alt="M.B.T Kurumsal"><div class="work-info"><h3>Kurumsal Şube Tabelaları</h3></div></div>
     </section>
 
-    <section class="story" id="hakkimizda">
-        <div class="story-box">
-            <h2>Remzi Toraman'dan Abdurrahman Toraman'a...</h2>
-            <p>1973 yılında Samsun Bafra'da bir el çantası aletiyle temelleri atılan Uzman Reklam, yarım asırlık yolculuğunda ustalığı aile kültürüyle harmanladı. İkinci nesil temsilcimiz Abdurrahman Toraman ile modern üretim tesisine dönüşen firmamız, bugün Samsun'un en prestijli projelerine imza atmaya devam ediyor.</p>
+    <section class="corporate" id="kurumsal">
+        <div class="corporate-box">
+            <h2>KURUMSAL KİMLİĞİMİZ</h2>
+            <p>1973 yılında temelleri atılan Uzman Reklam, yarım asırlık yolculuğunda geleneksel kalite anlayışını modern teknolojiyle birleştirerek bölgesinin lider reklam ve tabela üreticisi konumuna ulaşmıştır.</p>
+            <p>Tasarımdan üretime, montajdan satış sonrası desteğe kadar tüm süreçleri kendi bünyesindeki entegre tesislerinde yürüten firmamız; kurumsal markalara, kamu kurumlarına (Hastaneler, AVM'ler) ve özel sektöre yüksek standartlarda sıfır hata prensibiyle hizmet sunmaya devam etmektedir.</p>
         </div>
     </section>
 
@@ -171,23 +152,26 @@
             <p><i class="fas fa-envelope" style="color:var(--neon-sari)"></i> uzmanreklam@live.com</p>
             
             <div class="map-container">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2979.799793574681!2d35.90858177656685!3d41.56274488507851!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40889f417f7d9a8b%3A0x6b240176d6c29b6!2sAlt%C4%B1nyaprak%2C%20%C3%87izmeli%202.%20Sk.%20No%3A33%2C%2055400%20Bafra%2FSamsun!5e0!3m2!1str!2str!4v1716382000000!5m2!1str!2str" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                <iframe src="https://maps.app.goo.gl/PSWQdjwVVV7xzyCM9" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
             </div>
-            <a href="https://maps.app.goo.gl/PSWQdjwVVV7xzyCM9" target="_blank" class="btn-main" style="width:100%; text-align:center; padding:15px 0; margin-top:15px; font-size:0.9rem;">YOL TARİFİ AL</a>
-        </div>
-
-        <div class="footer-box">
-            <h3>KURUMSAL & ÖDEME</h3>
-            <p><strong>Bafra V.D:</strong> 214 7659 4794</p>
-            <p><strong>Garanti Bankası:</strong> (520) 6297473</p>
-            <p style="color:var(--neon-sari); word-break:break-all; font-weight:800; background:#111; padding:10px; border-radius:8px;">IBAN: TR12 0006 2000 5200 0006 2974 73</p>
             
             <div class="matbaa-box">
                 <h4>TORAMAN MATBAA İSTANBUL</h4>
-                <p>2. Matbaacılar Sitesi 5. Kat E Blok Topkapı</p>
-                <p>Müşteri Hizmetleri: 444 5 340</p>
+                <p style="margin:0; font-size:0.85rem;">2. Matbaacılar Sitesi 5. Kat E Blok Topkapı<br>Müşteri Hizmetleri: 444 5 340</p>
                 <a href="http://www.toramanmatbaa.com" target="_blank" style="color:var(--neon-sari); font-size:0.8rem; text-decoration:none;">www.toramanmatbaa.com</a>
             </div>
+        </div>
+
+        <div class="footer-box">
+            <h3>KURUMSAL & FATURA BİLGİLERİ</h3>
+            <p><strong>Firma Unvanı:</strong> Abdurrahman TORAMAN</p>
+            <p><strong>Vergi Dairesi:</strong> Bafra V.D.</p>
+            <p><strong>Vergi No:</strong> 214 7659 4794</p>
+            <br>
+            <h4 style="color:#fff; border-bottom:1px solid #222; padding-bottom:10px;">Banka Hesap Bilgileri</h4>
+            <p><strong>Garanti Bankası:</strong> Şube Kodu: 520</p>
+            <p><strong>Hesap No:</strong> 6297473</p>
+            <p style="color:var(--neon-sari); word-break:break-all; font-weight:800; background:#111; padding:15px; border-radius:8px; border: 1px dashed #333;">IBAN: TR12 0006 2000 5200 0006 2974 73</p>
         </div>
     </section>
 
