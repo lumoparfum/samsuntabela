@@ -3,208 +3,177 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Uzman Reklam | Karadeniz Kurumsal Tabela & Reklam Çözüm Ortağı</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Uzman Reklam | Samsun Tabela ve Kurumsal Reklam Çözümleri</title>
+    <meta name="description" content="Samsun ve Karadeniz genelinde uzman tabela, ışıklı kutu harf, totem ve araç giydirme hizmetleri. 1973'ten beri süregelen tecrübe.">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
-        :root { --neon-sari: #ccff00; --koyu-bg: #050505; --card-bg: #0f0f0f; }
-        body { margin: 0; padding: 0; background-color: var(--koyu-bg); color: #fff; font-family: 'Inter', sans-serif; overflow-x: hidden; scroll-behavior: smooth; }
-        
-        /* Navigasyon */
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; background: rgba(0,0,0,0.95); position: fixed; width: 90%; top: 0; z-index: 1000; border-bottom: 1px solid #222; backdrop-filter: blur(10px); }
-        .logo { font-weight: 900; font-size: 22px; letter-spacing: -1px; text-transform: uppercase; }
-        .logo span { color: var(--neon-sari); }
-        .nav-links a { color: #fff; text-decoration: none; margin-left: 15px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; }
+        :root { --primary: #ccff00; --dark: #0a0a0a; --gray: #1a1a1a; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background-color: var(--dark); color: white; overflow-x: hidden; }
 
-        /* Slayt Arka Planlı Hero */
-        .hero { position: relative; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; overflow: hidden; }
-        .hero-slider { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background-color: #000; }
-        .slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; filter: brightness(0.3); opacity: 0; animation: fadeSlide 15s infinite; }
-        .slide:nth-child(1) { background-image: url('mediana.jpg'); animation-delay: 0s; }
-        .slide:nth-child(2) { background-image: url('liwhospitl.jpg'); animation-delay: 5s; }
-        .slide:nth-child(3) { background-image: url('piazzatorem.jpg'); animation-delay: 10s; }
+        /* Navbar */
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; background: rgba(0,0,0,0.9); position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid #333; }
+        .logo { font-weight: 800; font-size: 1.5rem; color: white; text-decoration: none; }
+        .logo span { color: var(--primary); }
+        .nav-links { display: flex; gap: 20px; }
+        .nav-links a { color: white; text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: 0.3s; }
+        .nav-links a:hover { color: var(--primary); }
 
-        @keyframes fadeSlide {
-            0%, 100% { opacity: 0; }
-            10%, 33% { opacity: 1; }
-            43% { opacity: 0; }
+        /* Hero Section */
+        .hero { height: 80vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('image_edb39c.jpg'); background-size: cover; background-position: center; padding: 20px; }
+        .hero h1 { font-size: 3.5rem; line-height: 1.1; margin-bottom: 20px; text-transform: uppercase; }
+        .hero h1 span { color: var(--primary); }
+        .hero p { max-width: 700px; font-size: 1.1rem; color: #ccc; margin-bottom: 30px; line-height: 1.6; }
+        .btn { padding: 15px 40px; border-radius: 50px; font-weight: 700; text-decoration: none; transition: 0.4s; cursor: pointer; border: none; }
+        .btn-primary { background: var(--primary); color: black; }
+        .btn-primary:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(204,255,0,0.4); }
+
+        /* Projects Gallery */
+        .section-title { text-align: center; margin: 60px 0 40px; font-size: 2.5rem; text-transform: uppercase; }
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; padding: 0 5% 60px; }
+        .project-card { background: var(--gray); border-radius: 15px; overflow: hidden; border: 1px solid #333; transition: 0.4s; }
+        .project-card:hover { border-color: var(--primary); transform: translateY(-10px); }
+        .project-card img { width: 100%; height: 250px; object-fit: cover; opacity: 0.8; transition: 0.4s; }
+        .project-card:hover img { opacity: 1; }
+        .project-info { padding: 20px; text-align: center; } /* YAZILAR BURADA ORTALANDI */
+        .project-info h3 { color: var(--primary); margin-bottom: 10px; font-size: 1.2rem; }
+        .project-info p { font-size: 0.9rem; color: #bbb; line-height: 1.5; }
+
+        /* Hidden SEO Content Section */
+        .seo-footer { padding: 40px 5%; background: #050505; border-top: 1px solid #222; text-align: center; }
+        .seo-text { font-size: 0.85rem; color: #444; line-height: 1.8; text-align: justify; max-width: 1200px; margin: 0 auto; }
+        .keywords-cloud { margin-top: 20px; color: #333; font-size: 0.7rem; }
+
+        /* Footer */
+        footer { padding: 50px 5%; background: var(--gray); display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; border-top: 2px solid var(--primary); }
+        .footer-box { text-align: center; } /* BURADA DA TÜM ALT YAZILAR ORTALANDI */
+        .footer-box h4 { margin-bottom: 20px; color: var(--primary); }
+        .footer-box p, .footer-box a { color: #999; text-decoration: none; font-size: 0.9rem; display: block; margin-bottom: 10px; }
+
+        /* Mobile Fixes */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .nav-links { display: none; }
+            .projects-grid { grid-template-columns: 1fr; }
         }
 
-        .hero-content { z-index: 1; padding: 0 5%; }
-        .hero h1 { font-size: clamp(1.8rem, 6vw, 4.5rem); font-weight: 900; margin-bottom: 20px; line-height: 1.1; }
-        .hero h1 span { color: var(--neon-sari); }
-        .hero p { font-size: clamp(1rem, 2vw, 1.3rem); max-width: 900px; color: #ddd; margin-bottom: 40px; line-height: 1.6; }
-        .btn-main { background: var(--neon-sari); color: #000; padding: 18px 45px; border-radius: 50px; text-decoration: none; font-weight: 900; text-transform: uppercase; transition: 0.3s; display: inline-block; cursor: pointer; }
-
-        /* Galeri Grid */
-        .section-title { padding: 80px 5% 30px; text-align: center; }
-        .section-title h2 { font-size: 2rem; text-transform: uppercase; color: var(--neon-sari); }
-        .work-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; padding: 0 5% 80px; }
-        .work-card { background: var(--card-bg); border-radius: 10px; overflow: hidden; border: 1px solid #222; cursor: pointer; position: relative; }
-        .work-card img { width: 100%; height: 250px; object-fit: cover; transition: 0.4s; }
-        .work-card:hover img { transform: scale(1.05); filter: brightness(1.1); }
-        .work-info { padding: 15px; background: #0c0c0c; border-top: 1px solid #1a1a1a; }
-        .work-info h3 { margin: 0; font-size: 0.95rem; color: #fff; text-transform: uppercase; }
-        .work-info p { margin: 5px 0 0; font-size: 0.75rem; color: #666; }
-
-        /* Lightbox (Resim Büyütme Paneli) */
-        #lightbox { position: fixed; z-index: 9999; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); display: none; justify-content: center; align-items: center; }
-        #lightbox img { max-width: 90%; max-height: 80%; border: 3px solid #333; border-radius: 5px; }
-        #lb-close { position: absolute; top: 30px; right: 30px; font-size: 40px; color: #fff; cursor: pointer; }
-        #lb-prev, #lb-next { position: absolute; top: 50%; transform: translateY(-50%); font-size: 40px; color: var(--neon-sari); cursor: pointer; padding: 20px; }
-        #lb-prev { left: 10px; } #lb-next { right: 10px; }
-        #lb-caption { position: absolute; bottom: 40px; color: #fff; font-size: 1.1rem; text-align: center; width: 80%; background: rgba(0,0,0,0.5); padding: 10px; }
-
-        /* Footer & Kurumsal */
-        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; padding: 60px 5%; background: #000; border-top: 1px solid #111; }
-        .footer-box { background: #080808; padding: 30px; border-radius: 15px; border: 1px solid #1a1a1a; }
-        .map-container { width: 100%; height: 250px; border-radius: 10px; overflow: hidden; margin: 20px 0; border: 1px solid #333; }
-        
-        /* WhatsApp */
-        .wp-float { position: fixed; bottom: 25px; right: 25px; display: flex; align-items: center; gap: 10px; z-index: 5000; }
-        .wp-btn { width: 60px; height: 60px; background: #25d366; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; color: #fff; text-decoration: none; box-shadow: 0 10px 20px rgba(37,211,102,0.4); }
-
-        @media (max-width: 768px) { .nav-links { display: none; } .hero h1 { font-size: 1.8rem; } #lb-prev, #lb-next { font-size: 30px; } }
+        /* WhatsApp Button */
+        .whatsapp-float { position: fixed; bottom: 20px; right: 20px; background: #25d366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; box-shadow: 2px 2px 10px rgba(0,0,0,0.5); z-index: 10000; text-decoration: none; }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="logo">UZMAN<span>REKLAM</span></div>
+        <a href="#" class="logo">UZMAN<span>REKLAM</span></a>
         <div class="nav-links">
-            <a href="#islerimiz">PROJELER</a>
-            <a href="#iletisim">KONUM</a>
-            <a href="https://wa.me/905079605049">TEKLİF AL</a>
+            <a href="#projeler">PROJELER</a>
+            <a href="#hakkimizda">HİKAYEMİZ</a>
+            <a href="#iletisim">İLETİŞİM</a>
         </div>
     </nav>
 
     <section class="hero">
-        <div class="hero-slider">
-            <div class="slide"></div>
-            <div class="slide"></div>
-            <div class="slide"></div>
-        </div>
-        <div class="hero-content">
-            <h1>KARADENİZ'İN KURUMSAL<br><span>REKLAM ÇÖZÜM ORTAĞI.</span></h1>
-            <p>1973'ten beri Karadeniz genelinde kurumsal bayi tabelaları, endüstriyel reklam çözümleri ve yarım asırlık tecrübemizle hizmetinizdeyiz. Samsun'dan tüm bölgeye güven ve kalite taşıyoruz.</p>
-            <a href="https://wa.me/905079605049" class="btn-main">WHATSAPP İLE FİYAT AL</a>
-        </div>
+        <h1>SAMSUN'DA <span>TABELA</span><br>BİZİM İŞİMİZ.</h1>
+        <p>1973'ten beri ustalığı teknolojiyle birleştiriyoruz. Işıklı tabela, kutu harf ve profesyonel reklam çözümlerinde yarım asırlık Uzman tecrübesiyle markanızı zirveye taşıyın.</p>
+        <a href="https://wa.me/905322204649" class="btn btn-primary">HEMEN TEKLİF AL</a>
     </section>
 
-    <div class="section-title" id="islerimiz">
-        <h2>USTALIK ESERLERİMİZ</h2>
-        <p style="color:#666">Resimlere tıklayarak detaylı inceleyebilirsiniz</p>
-    </div>
-
-    <section class="work-grid" id="gallery">
-        <div class="work-card" onclick="openLightbox(0)">
-            <img src="liwhospitl.jpg" alt="Liw Hospital Samsun Işıklı Tabela ve Kutu Harf Uygulaması">
-            <div class="work-info"><h3>Liw Hospital</h3><p>Paslanmaz Kutu Harf</p></div>
-        </div>
-        <div class="work-card" onclick="openLightbox(1)">
-            <img src="mediana.jpg" alt="Medibafra Hastanesi Kompozit Cephe Giydirme ve Tabela">
-            <div class="work-info"><h3>Medibafra Hastanesi</h3><p>Cephe & Tabela</p></div>
-        </div>
-        <div class="work-card" onclick="openLightbox(2)">
-            <img src="piazzatorem.jpg" alt="Piazza AVM Büyük Boy Totem Tabela Karadeniz">
-            <div class="work-info"><h3>Piazza AVM</h3><p>Dev Totem Tabela</p></div>
-        </div>
-        <div class="work-card" onclick="openLightbox(3)">
-            <img src="sinopdevlet.jpg" alt="Sinop Devlet Hastanesi Kurumsal Reklam İşleri">
-            <div class="work-info"><h3>Sinop Devlet Hastanesi</h3><p>Kurumsal Kimlik</p></div>
-        </div>
-        <div class="work-card" onclick="openLightbox(4)">
-            <img src="asarcıksalon.jpg" alt="Asarcık Spor Salonu Dış Cephe Reklam Uygulaması">
-            <div class="work-info"><h3>Asarcık Spor Salonu</h3><p>Çatı Tabelası</p></div>
-        </div>
-        <div class="work-card" onclick="openLightbox(5)">
-            <img src="olimpik.jpg" alt="Samsun Olimpik Havuz Işıklı Reklam Panoları">
-            <div class="work-info"><h3>Olimpik Havuz</h3><p>Işıklı Pano</p></div>
-        </div>
-        <div class="work-card" onclick="openLightbox(6)">
-            <img src="meditotem.jpg" alt="Hane Totem Tabela ve Yol Kenarı Reklamları">
-            <div class="work-info"><h3>Hane Totem</h3><p>Totem Uygulaması</p></div>
-        </div>
-        <div class="work-card" onclick="openLightbox(7)">
-            <img src="arac.jpg" alt="Samsun Ticari Araç Giydirme ve Folyo Kaplama">
-            <div class="work-info"><h3>Araç Giydirme</h3><p>Filo Reklamları</p></div>
-        </div>
-        <div class="work-card" onclick="openLightbox(8)">
-            <img src="cnc.jpg" alt="Samsun CNC Lazer Kesim ve Pleksi İşleme">
-            <div class="work-info"><h3>CNC Üretim</h3><p>Lazer Kesim İşleri</p></div>
-        </div>
-        </section>
-
-    <div id="lightbox">
-        <span id="lb-close" onclick="closeLightbox()">&times;</span>
-        <span id="lb-prev" onclick="changeSlide(-1)">&#10094;</span>
-        <span id="lb-next" onclick="changeSlide(1)">&#10095;</span>
-        <img id="lb-img" src="">
-        <div id="lb-caption"></div>
-    </div>
-
-    <section class="footer-grid" id="iletisim">
-        <div class="footer-box">
-            <h3>FABRİKA & ATÖLYE</h3>
-            <p><strong>Bafra Merkez:</strong> Altınyaprak Mh. Çizmeli 2.Sk. No:33</p>
-            <p><strong>Telefon:</strong> 0532 220 46 49</p>
-            <div class="map-container">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2975.345!2d35.9185!3d41.5651!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDHCsDMzJzU0LjQiTiAzNcKwNTUnMDYuNiJF!5e0!3m2!1str!2str!4v1621234567890" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    <h2 id="projeler" class="section-title">USTALIK ESERLERİMİZ</h2>
+    
+    <div class="projects-grid">
+        <div class="project-card">
+            <img src="liwhospitl.jpg" alt="Liv Hospital Kurumsal Işıklı Tabela ve Hastane Yönlendirme">
+            <div class="project-info">
+                <h3>Kurumsal Hastane Tabelası</h3>
+                <p>Liv Hospital gibi prestijli projeler için ürettiğimiz paslanmaz çelik ve yüksek kaliteli LED tabela sistemleri.</p>
             </div>
-            <a href="https://maps.app.goo.gl/PSWQdjwVVV7xzyCM9" target="_blank" class="btn-main" style="width:100%; text-align:center; padding:15px 0;">YOL TARİFİ AL</a>
         </div>
 
-        <div class="footer-box">
-            <h3>KURUMSAL BİLGİLER</h3>
-            <p><strong>Vergi Dairesi:</strong> Bafra V.D.</p>
-            <p><strong>Vergi No:</strong> 214 7659 4794</p>
-            <p style="background:#111; padding:15px; border-radius:10px; border:1px dashed var(--neon-sari);">
-                <strong>IBAN (Garanti):</strong><br>TR12 0006 2000 5200 0006 2974 73
-            </p>
-            <hr style="border:0; border-top:1px solid #222; margin:20px 0;">
-            <h4>TORAMAN MATBAA (İSTANBUL)</h4>
-            <p>Topkapı 2. Matbaacılar Sitesi E Blok<br>Destek Hat: 444 5 340</p>
+        <div class="project-card">
+            <img src="piazzatorem.jpg" alt="Piazza AVM Dev Totem Tabela Reklam">
+            <div class="project-info">
+                <h3>Dev Totem & Pylon</h3>
+                <p>Piazza projesindeki gibi uzak mesafeden fark edilmeyi sağlayan, rüzgara dayanıklı devasa totem yapıları.</p>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <img src="medikompozit.jpg" alt="Medibafra Hastanesi Kompozit Cephe Kaplama">
+            <div class="project-info">
+                <h3>Kompozit Cephe Giydirme</h3>
+                <p>Modern estetiği dayanıklılıkla buluşturan, binanızın çehresini değiştiren profesyonel dış cephe uygulamaları.</p>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <img src="arac.jpg" alt="Araç Giydirme Reklam Uygulaması">
+            <div class="project-info"><h3>Profesyonel Araç Giydirme</h3><p>Mobil reklamcılığın gücünü araçlarınızla yansıtın.</p></div>
+        </div>
+
+        <div class="project-card">
+            <img src="sinopdevlet.jpg" alt="Sinop Devlet Hastanesi Işıklı Tabela">
+            <div class="project-info"><h3>Kamu Kurum Çözümleri</h3><p>Sinop ve çevresindeki devlet kurumları için dayanıklı tabela sistemleri.</p></div>
+        </div>
+
+        <div class="project-card">
+            <img src="cnc.jpg" alt="CNC ve Lazer Kesim İşlemleri">
+            <div class="project-info"><h3>Endüstriyel Üretim</h3><p>CNC ve Lazer kesim teknolojisiyle milimetrik hassasiyette üretim.</p></div>
+        </div>
+
+        <div class="project-card"><img src="arac2.jpg" alt="Ticari Araç Reklam Kaplama"><div class="project-info"><h3>Filo Reklam Çözümleri</h3><p>Otobüs ve ticari araçlar için uzun ömürlü folyo kaplama.</p></div></div>
+        <div class="project-card"><img src="arac3.jpg" alt="Off-road Araç Giydirme"><div class="project-info"><h3>Özel Tasarım Kaplama</h3><p>Her türlü araç tipi için kişiselleştirilmiş grafik uygulamaları.</p></div></div>
+        <div class="project-card"><img src="asarciksalon.jpg" alt="Spor Salonu Tabela Sistemi"><div class="project-info"><h3>Spor Kompleksi Tabelaları</h3><p>Geniş alanlar için dikkat çekici dış mekan tabela sistemleri.</p></div></div>
+        <div class="project-card"><img src="baski.jpg" alt="Dijital Baskı ve Folyo Uygulama"><div class="project-info"><h3>Yüksek Çözünürlüklü Baskı</h3><p>Canlı renkler ve dayanıklı materyallerle iç ve dış mekan baskıları.</p></div></div>
+        <div class="project-card"><img src="dunyagoztotem.jpg" alt="Dünyagöz Totem Tabela"><div class="project-info"><h3>Kurumsal Marka Kimliği</h3><p>Uluslararası markaların bölgesel reklam montaj ve üretimleri.</p></div></div>
+        <div class="project-card"><img src="folyo.jpg" alt="Cam ve Cephe Folyo Uygulama"><div class="project-info"><h3>Vitrin Tasarımı</h3><p>Mağaza vitrinleri için estetik folyo ve grafik çözümleri.</p></div></div>
+        <div class="project-card"><img src="hosgeldiniz.jpg" alt="Işıklı Karşılama Tabelası"><div class="project-info"><h3>İç Mekan Tasarımları</h3><p>Ofis ve lobi alanları için prestijli ışıklı logolar.</p></div></div>
+        <div class="project-card"><img src="imalatkompozit.jpg" alt="Kompozit Panel İmalat"><div class="project-info"><h3>İmalat Süreci</h3><p>Kendi atölyemizde titizlikle hazırlanan kompozit paneller.</p></div></div>
+        <div class="project-card"><img src="kompozitgiydirme.jpg" alt="Bina Dış Cephe Kaplama"><div class="project-info"><h3>Mimari Reklam</h3><p>Binalara kurumsal kimlik kazandıran cephe giydirme projeleri.</p></div></div>
+        <div class="project-card"><img src="mediana.jpg" alt="Medicana Reklam Uygulaması"><div class="project-info"><h3>Büyük Ölçekli Montaj</h3><p>Vinç yardımıyla gerçekleştirilen yüksek irtifa reklam montajları.</p></div></div>
+        <div class="project-card"><img src="meditotem.jpg" alt="Hastane Totem Tabela"><div class="project-info"><h3>Yönlendirme Sistemleri</h3><p>Sağlık kuruluşları için karmaşık yönlendirme ve ana giriş tabelaları.</p></div></div>
+        <div class="project-card"><img src="montaj.jpg" alt="Tabela Montaj Ekibi"><div class="project-info"><h3>Uzman Montaj Kadrosu</h3><p>Deneyimli ekibimizle her noktada güvenli kurulum hizmeti.</p></div></div>
+        <div class="project-card"><img src="olimpik.jpg" alt="Olimpik Havuz Tabela Uygulaması"><div class="project-info"><h3>Kamu Tesis Reklamları</h3><p>Belediye ve spor tesisleri için entegre tabela çözümleri.</p></div></div>
+        <div class="project-card"><img src="part_totem.jpg" alt="Modern Totem Tasarımı"><div class="project-info"><h3>Özgün Tasarımlar</h3><p>Sıradanlıktan uzak, markanıza özel formlarda totem tabelalar.</p></div></div>
+        <div class="project-card"><img src="piazzakapi.jpg" alt="AVM Giriş Reklamları"><div class="project-info"><h3>Giriş ve Karşılama</h3><p>Müşterilerinizin ilk izlenimini güçlendiren giriş tasarımları.</p></div></div>
+        <div class="project-card"><img src="pleksikompozit.jpg" alt="Pleksi Kutu Harf Tabela"><div class="project-info"><h3>Işıklı Kutu Harf</h3><p>Gece parlayan, derinlik algısı yüksek pleksi harf sistemleri.</p></div></div>
+        <div class="project-card"><img src="toki.jpg" alt="İnşaat Şantiyesi Bilgi Tabelası"><div class="project-info"><h3>Şantiye ve Proje Tabelaları</h3><p>TOKİ ve büyük inşaat projeleri için bilgilendirme panoları.</p></div></div>
+        <div class="project-card"><img src="tozlutabela.jpg" alt="Mağaza Önü Tabela"><div class="project-info"><h3>Perakende Reklam</h3><p>Cadde mağazaları için yüksek görünürlüklü tabela uygulamaları.</p></div></div>
+    </div>
+
+    <section class="seo-footer">
+        <div class="seo-text" id="hakkimizda">
+            <h3>Samsun'un Yarım Asırlık Reklam Tecrübesi: Uzman Reklam</h3>
+            <p>1973 yılında <strong>Remzi Toraman</strong> tarafından temelleri atılan Uzman Reklam, Samsun Bafra'dan tüm Karadeniz'e yayılan bir başarı hikayesidir. Bugün ikinci nesil temsilcimiz <strong>Abdurrahman Toraman</strong> yönetiminde, geleneksel ustalığı CNC, lazer kesim ve dijital baskı teknolojileriyle harmanlıyoruz. Tabela sadece bir isim levhası değil, markanızın imzasıdır. Biz bu imzayı en kaliteli malzemelerle, estetik ve dayanıklılığı ön planda tutarak atıyoruz.</p>
+            <p><strong>Neden Biz?</strong> Samsun Atakum tabela, İlkadım reklamcı, Bafra tabelacı aramalarında en çok tercih edilen firma olmamızın sebebi; Liv Hospital, Piazza AVM ve devlet kurumları gibi dev projelerde gösterdiğimiz titizliktir. Sadece tabela üretmiyoruz; araç giydirme, cephe kaplama ve kurumsal matbaa hizmetlerimizle markanızın tüm görsel ihtiyaçlarını tek çatı altında çözüyoruz.</p>
+        </div>
+        <div class="keywords-cloud">
+            Atakum tabela reklam, Samsun tabelacı, Sinop tabela firmaları, Amasya reklam ajansı, Ordu tabela montaj, Bafra ışıklı harf, Karadeniz araç kaplama, totem tabela fiyatları, cephe giydirme Samsun, Uzman Reklam Bafra, Remzi Toraman, Abdurrahman Toraman, kurumsal reklam çözümleri.
         </div>
     </section>
 
-    <div class="wp-float">
-        <a href="https://wa.me/905079605049" class="wp-btn" target="_blank"><i class="fab fa-whatsapp"></i></a>
-    </div>
+    <footer id="iletisim">
+        <div class="footer-box">
+            <h4>FABRİKA & ATÖLYE</h4>
+            <p>Altınyaprak Mh. Çizmeli 2.Sk. No:33 Bafra</p>
+            <p>0532 220 46 49</p>
+            <p>uzmanreklam@live.com</p>
+        </div>
+        <div class="footer-box">
+            <h4>KURUMSAL</h4>
+            <p>Samsun Vergi Dairesi: 214 7659 4794</p>
+            <p>1973'ten Beri Güvenle.</p>
+        </div>
+        <div class="footer-box">
+            <h4>HIZLI ERİŞİM</h4>
+            <a href="#projeler">Projelerimizi İncele</a>
+            <a href="https://wa.me/905322204649">WhatsApp Destek</a>
+            <a href="https://www.toramanmatbaa.com">İstanbul Matbaa Şubemiz</a>
+        </div>
+    </footer>
 
-    <script>
-        let currentImgIdx = 0;
-        const images = document.querySelectorAll('#gallery img');
-        const lightbox = document.getElementById('lightbox');
-        const lbImg = document.getElementById('lb-img');
-        const lbCaption = document.getElementById('lb-caption');
-
-        function openLightbox(idx) {
-            currentImgIdx = idx;
-            lightbox.style.display = 'flex';
-            updateLightbox();
-        }
-
-        function closeLightbox() {
-            lightbox.style.display = 'none';
-        }
-
-        function changeSlide(n) {
-            currentImgIdx += n;
-            if (currentImgIdx >= images.length) currentImgIdx = 0;
-            if (currentImgIdx < 0) currentImgIdx = images.length - 1;
-            updateLightbox();
-        }
-
-        function updateLightbox() {
-            const img = images[currentImgIdx];
-            lbImg.src = img.src;
-            lbCaption.innerText = img.alt;
-        }
-
-        // Dışarı tıklayınca kapatma
-        lightbox.onclick = function(e) {
-            if (e.target == lightbox) closeLightbox();
-        }
-    </script>
+    <a href="https://wa.me/905322204649" class="whatsapp-float" target="_blank">
+        <svg style="width:35px;height:35px" viewBox="0 0 24 24"><path fill="currentColor" d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21c5.46 0 9.91-4.45 9.91-9.91c0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.225 8.225 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23c-1.48 0-2.93-.39-4.19-1.15l-.3-.17l-3.12.82l.83-3.04l-.2-.32a8.188 8.188 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24M8.53 7.33c-.16 0-.43.06-.66.31c-.22.25-.87.86-.87 2.07c0 1.22.89 2.39 1.01 2.56c.12.17 1.75 2.67 4.23 3.74c.59.26 1.05.41 1.41.52c.59.19 1.13.16 1.56.1c.48-.07 1.47-.6 1.67-1.18c.21-.58.21-1.07.14-1.18s-.22-.16-.47-.28c-.25-.12-1.47-.73-1.69-.81c-.23-.08-.39-.12-.56.12c-.17.25-.64.81-.78.97c-.14.17-.29.19-.54.06c-.25-.12-1.05-.39-1.99-1.23c-.74-.66-1.23-1.47-1.38-1.72c-.14-.25-.02-.38.11-.51c.11-.11.25-.29.37-.43s.17-.25.25-.41c.08-.17.04-.31-.02-.43c-.06-.11-.56-1.35-.77-1.84c-.2-.48-.4-.42-.56-.43c-.14 0-.3-.01-.47-.01Z"/></svg>
+    </a>
 
 </body>
 </html>
