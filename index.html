@@ -3,78 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Uzman Reklam | Samsun Tabela & Kurumsal Reklam</title>
+    <title>Uzman Reklam | Samsun Kurumsal Tabela & Reklam Sistemleri</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body { margin: 0; padding: 0; background-color: #000; color: #fff; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; overflow-x: hidden; }
-        .bg-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center, #111 0%, #000 100%); z-index: -1; }
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; background: rgba(0,0,0,0.9); position: fixed; width: 90%; top: 0; z-index: 100; border-bottom: 1px solid #222; }
-        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 10%; }
-        h1 { font-size: 3.5rem; margin-bottom: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: -1px; }
-        h1 span { color: #ccff00; text-shadow: 0 0 15px rgba(204, 255, 0, 0.3); }
-        p { font-size: 1.2rem; color: #888; max-width: 600px; margin-bottom: 30px; }
-        .btn-group { display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; }
-        .btn { padding: 18px 35px; background: #ccff00; color: #000; text-decoration: none; font-weight: 800; border-radius: 50px; transition: 0.3s; text-transform: uppercase; font-size: 0.9rem; }
-        .btn:hover { transform: scale(1.05); box-shadow: 0 0 30px rgba(204, 255, 0, 0.5); }
-        .btn-insta { background: transparent; color: #fff; border: 2px solid #fff; }
-        .btn-insta:hover { background: #fff; color: #000; }
-        .gallery { padding: 100px 5%; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .card { background: #0a0a0a; border: 1px solid #1a1a1a; border-radius: 24px; overflow: hidden; transition: 0.4s; position: relative; }
-        .card img { width: 100%; height: 350px; object-fit: cover; opacity: 0.5; transition: 0.5s; }
-        .card:hover { border-color: #ccff00; transform: translateY(-10px); }
-        .card:hover img { opacity: 1; transform: scale(1.05); }
-        .card-info { padding: 25px; border-top: 1px solid #1a1a1a; }
-        .card-info h3 { margin: 0; font-size: 1.5rem; color: #ccff00; }
-        .card-info p { margin: 10px 0 0; font-size: 0.9rem; color: #666; }
-        .whatsapp-float { position: fixed; bottom: 30px; right: 30px; background: #25d366; color: white; padding: 15px 30px; border-radius: 50px; text-decoration: none; font-weight: 800; z-index: 1000; box-shadow: 0 10px 20px rgba(0,0,0,0.3); transition: 0.3s; }
-        .whatsapp-float:hover { transform: scale(1.1); }
-        footer { padding: 50px 5%; text-align: center; border-top: 1px solid #111; color: #444; font-size: 0.8rem; }
-        @media (max-width: 768px) { h1 { font-size: 2.2rem; } }
+        :root { --neon-sari: #ccff00; --koyu-gri: #0a0a0a; --soft-gri: #1a1a1a; }
+        body { margin: 0; padding: 0; background-color: #000; color: #fff; font-family: 'Inter', sans-serif; overflow-x: hidden; scroll-behavior: smooth; }
+        
+        /* Arka Plan Efekti */
+        .bg-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 20% 30%, #111 0%, #000 100%); z-index: -1; }
+
+        /* Header / Navigasyon */
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 25px 8%; background: rgba(0,0,0,0.95); position: fixed; width: 84%; top: 0; z-index: 1000; border-bottom: 1px solid #222; backdrop-filter: blur(10px); }
+        .logo { font-weight: 900; font-size: 28px; letter-spacing: -1.5px; text-transform: uppercase; cursor: pointer; }
+        .logo span { color: var(--neon-sari); }
+        .nav-links a { color: #888; text-decoration: none; margin-left: 25px; font-size: 0.9rem; font-weight: 600; transition: 0.3s; }
+        .nav-links a:hover { color: var(--neon-sari); }
+
+        /* Hero / Ana Başlık Alanı */
+        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 10%; border-bottom: 1px solid var(--soft-gri); }
+        .hero h1 { font-size: clamp(2.5rem, 8vw, 5rem); margin-bottom: 20px; font-weight: 900; line-height: 1.1; letter-spacing: -2px; }
+        .hero h1 span { color: var(--neon-sari); text-shadow: 0 0 20px rgba(204, 255, 0, 0.4); }
+        .hero p { font-size: 1.25rem; color: #aaa; max-width: 700px; margin-bottom: 40px; line-height: 1.6; }
+
+        /* Butonlar */
+        .btn-group { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
+        .btn { padding: 20px 45px; background: var(--neon-sari); color: #000; text-decoration: none; font-weight: 800; border-radius: 12px; transition: 0.4s; text-transform: uppercase; font-size: 1rem; display: flex; align-items: center; gap: 10px; }
+        .btn:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(204, 255, 0, 0.4); }
+        .btn-insta { background: transparent; color: #fff; border: 2px solid #333; }
+        .btn-insta:hover { border-color: #e4405f; color: #e4405f; }
+
+        /* Hakkımızda Bölümü */
+        .about { padding: 120px 10%; background: var(--koyu-gri); display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .about-text h2 { font-size: 3rem; color: var(--neon-sari); margin-bottom: 20px; }
+        .about-text p { color: #888; font-size: 1.1rem; line-height: 1.8; }
+
+        /* Hizmetler / Galeri */
+        .section-title { text-align: center; padding: 100px 0 50px; font-size: 2.5rem; text-transform: uppercase; }
+        .gallery { padding: 0 8% 120px; display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; }
+        .card { background: #080808; border: 1px solid #111; border-radius: 30px; overflow: hidden; transition: 0.5s; position: relative; }
+        .card:hover { border-color: var(--neon-sari); transform: scale(1.02); }
+        .card img { width: 100%; height: 400px; object-fit: cover; opacity: 0.6; transition: 0.6s; }
+        .card:hover img { opacity: 1; }
+        .card-content { padding: 30px; background: linear-gradient(to top, #000, transparent); position: absolute; bottom: 0; width: 100%; }
+        .card-content h3 { font-size: 1.8rem; margin: 0; color: var(--neon-sari); }
+
+        /* WhatsApp Butonu */
+        .whatsapp-btn { position: fixed; bottom: 30px; right: 30px; background: #25d366; color: #fff; width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 35px; text-decoration: none; z-index: 9999; box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4); animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+
+        footer { padding: 60px 8%; text-align: center; border-top: 1px solid #111; color: #555; }
+
+        @media (max-width: 900px) { .about { grid-template-columns: 1fr; text-align: center; } nav { width: 100%; padding: 20px 5%; justify-content: center; } .nav-links { display: none; } }
     </style>
 </head>
 <body>
     <div class="bg-overlay"></div>
+
     <nav>
-        <div style="font-weight:900; font-size:24px; letter-spacing:-1px;">UZMAN<span style="color:#ccff00">REKLAM</span></div>
-        <div style="color: #666; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px;">Samsun / Tabela Sistemleri</div>
+        <div class="logo">UZMAN<span>REKLAM</span></div>
+        <div class="nav-links">
+            <a href="#hizmetler">HİZMETLER</a>
+            <a href="#hakkimizda">HAKKIMIZDA</a>
+            <a href="https://wa.me/905079605049">İLETİŞİM</a>
+        </div>
     </nav>
 
     <section class="hero">
-        <h1>Samsun'un En <span>Jilet</span><br>Tabelalarını Yapıyoruz.</h1>
-        <p>Uzman Reklam güvencesiyle kurumsal kimliğinizi zirveye taşıyın. Işıklı tabela, kutu harf ve cephe giydirmede profesyonel çözümler.</p>
+        <h1>SAMSUN'UN EN <span>JİLET</span><br>TABELALARI BURADA.</h1>
+        <p>15 yıllık tecrübemizle markanızı sokağın en parlayan yıldızı yapıyoruz. Kalite tesadüf değildir, Uzman işidir.</p>
         <div class="btn-group">
-            <a href="https://wa.me/905079605049" class="btn">Hemen Fiyat Al</a>
-            <a href="https://instagram.com/uzman.reklamm" target="_blank" class="btn btn-insta">Projelerimizi İncele</a>
+            <a href="https://wa.me/905079605049" class="btn"><i class="fab fa-whatsapp"></i> FİYAT ALALIM</a>
+            <a href="https://instagram.com/uzman.reklamm" target="_blank" class="btn btn-insta"><i class="fab fa-instagram"></i> INSTAGRAM</a>
         </div>
     </section>
 
+    <section class="about" id="hakkimizda">
+        <div class="about-text">
+            <h2>BİZ KİMİZ?</h2>
+            <p>Samsun'un kalbinde, reklamcılık sektörüne yıllarını vermiş bir ekip olarak; sadece tabela üretmiyor, markanızın karakterini inşa ediyoruz. Işıklı kutu harften cephe giydirmeye kadar her projede "sıfır hata" ve "maksimum estetik" mottosuyla çalışıyoruz.</p>
+        </div>
+        <div style="background: var(--soft-gri); height: 300px; border-radius: 20px; display: flex; align-items: center; justify-content: center; color: #444; border: 1px dashed #333;">
+            <i class="fas fa-tools style" style="font-size: 80px;"></i>
+        </div>
+    </section>
+
+    <h2 class="section-title" id="hizmetler">Neler Yapıyoruz?</h2>
     <div class="gallery">
         <div class="card">
-            <img src="https://images.unsplash.com/photo-1563906267088-b029e7101114?w=800" alt="Işıklı Tabela">
-            <div class="card-info">
-                <h3>Işıklı Kutu Harf</h3>
-                <p>Gece parlayan, yüksek kaliteli malzemeden üretilen prestijli tabela çözümleri.</p>
-            </div>
+            <img src="https://images.unsplash.com/photo-1582139329536-e7284fece509?w=800" alt="Işıklı Kutu Harf">
+            <div class="card-content"><h3>Işıklı Kutu Harf</h3></div>
         </div>
         <div class="card">
-            <img src="https://images.unsplash.com/photo-1542744094-24638eff58bb?w=800" alt="Kurumsal Reklam">
-            <div class="card-info">
-                <h3>Cephe Giydirme</h3>
-                <p>Binanızın çehresini değiştiren, dikkat çekici ve dayanıklı reklam uygulamaları.</p>
-            </div>
+            <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800" alt="Cephe Giydirme">
+            <div class="card-content"><h3>Kurumsal Cephe</h3></div>
         </div>
         <div class="card">
-            <img src="https://images.unsplash.com/photo-1572021335469-3171624c1c5c?w=800" alt="Totem Tabela">
-            <div class="card-info">
-                <h3>Totem & Pylon</h3>
-                <p>Uzak mesafeden fark edilmenizi sağlayan devasa ve sağlam yapılar.</p>
-            </div>
+            <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?w=800" alt="Totem">
+            <div class="card-content"><h3>Totem & Pylon</h3></div>
         </div>
     </div>
 
     <footer>
-        &copy; 2026 Uzman Reklam & Tabela - Tüm Hakları Saklıdır. <br> Tasarım: Samsun Dijital
+        <p>&copy; 2026 Uzman Reklam & Tabela - Samsun | Tüm Hakları Saklıdır.</p>
     </footer>
 
-    <a href="https://wa.me/905079605049" class="whatsapp-float">WhatsApp Destek</a>
+    <a href="https://wa.me/905079605049" class="whatsapp-btn" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 </body>
 </html>
