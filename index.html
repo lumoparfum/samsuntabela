@@ -2,6 +2,7 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Uzman Reklam | Karadeniz Kurumsal Tabela & Reklam Çözüm Ortağı</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -9,11 +10,47 @@
         :root { --neon-sari: #ccff00; --koyu-bg: #050505; --card-bg: #0f0f0f; }
         body { margin: 0; padding: 0; background-color: var(--koyu-bg); color: #fff; font-family: 'Inter', sans-serif; overflow-x: hidden; scroll-behavior: smooth; }
         
-        /* Navigasyon */
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; background: rgba(0,0,0,0.95); position: fixed; width: 90%; top: 0; z-index: 1000; border-bottom: 1px solid #222; backdrop-filter: blur(10px); }
-        .logo { font-weight: 900; font-size: 22px; letter-spacing: -1px; text-transform: uppercase; }
-        .logo span { color: var(--neon-sari); }
-        .nav-links a { color: #fff; text-decoration: none; margin-left: 15px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; }
+        /* Navigasyon Alanı */
+nav { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 20px 5%; /* Biraz daha genişlettik */
+    background: rgba(0,0,0,0.95); 
+    position: fixed; 
+    width: 90%; 
+    top: 0; 
+    z-index: 1000; 
+    border-bottom: 1px solid #222; 
+    backdrop-filter: blur(10px); 
+}
+
+/* Logo ve Slogan Grubu */
+.logo-area {
+    display: flex;
+    flex-direction: column; /* Alt alta gelsinler diye */
+    align-items: flex-start;
+}
+
+.logo { 
+    font-weight: 900; 
+    font-size: 28px; /* Logoyu büyüttük */
+    letter-spacing: -1px; 
+    text-transform: uppercase; 
+    line-height: 1;
+}
+
+.logo span { color: var(--neon-sari); }
+
+/* El Yazısı Slogan */
+.logo-slogan {
+    font-family: 'Dancing Script', crossorigin; /* El yazısı fontu */
+    color: #eee;
+    font-size: 16px;
+    margin-top: 5px;
+    letter-spacing: 1px;
+    font-weight: 700;
+}
 
         /* Slayt Arka Planlı Hero */
         .hero { position: relative; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; overflow: hidden; }
@@ -73,12 +110,17 @@
 <body>
 
     <nav>
+    <div class="logo-area">
         <div class="logo">UZMAN<span>REKLAM</span></div>
-        <div class="nav-links">
-            <a href="#islerimiz">PROJELER</a>
-            <a href="#iletisim">KONUM</a>
-            <a href="https://wa.me/905079605049">TEKLİF AL</a>
-        </div>
+        <div class="logo-slogan">Karadeniz bayi tabelaları çözüm ortağınız...</div>
+    </div>
+    <div class="nav-links">
+        <a href="#islerimiz">PROJELER</a>
+        <a href="#iletisim">KONUM</a>
+        <a href="https://wa.me/905079605049">TEKLİF AL</a>
+        <a href="https://www.instagram.com/uzmanreklam/" target="_blank"><i class="fab fa-instagram"></i></a>
+    </div>
+</nav>
     </nav>
 
     <section class="hero">
