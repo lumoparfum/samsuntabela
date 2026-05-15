@@ -10,32 +10,31 @@
         :root { --neon-sari: #ccff00; --koyu-bg: #050505; --card-bg: #0f0f0f; }
         body { margin: 0; padding: 0; background-color: var(--koyu-bg); color: #fff; font-family: 'Inter', sans-serif; overflow-x: hidden; scroll-behavior: smooth; }
         
-/* Navigasyon Ana Çatı */
+/* Ana Navigasyon */
 nav { 
     display: flex; 
     justify-content: space-between; 
     align-items: center; 
-    padding: 15px 5%; 
+    padding: 25px 5%; /* Yukarıdan aşağıdan genişlettik */
     background: rgba(0,0,0,0.95); 
     position: fixed; 
     width: 90%; 
     top: 0; 
     z-index: 1000; 
-    border-bottom: 1px solid #222; 
-    backdrop-filter: blur(10px);
+    border-bottom: 1px solid #222;
 }
 
-/* Logo ve Slogan Yan Yana (Aynı Satırda) */
+/* Sol Taraf: Logo ve Slogan */
 .logo-area {
     display: flex;
-    align-items: center; /* Dikeyde tam ortalar */
-    gap: 15px;
+    align-items: center;
+    gap: 25px;
 }
 
 .logo { 
     font-weight: 900; 
-    font-size: 28px; /* Logoyu belirginleştirdik */
-    letter-spacing: -1px; 
+    font-size: 42px; /* Logoyu iyice büyüttük */
+    letter-spacing: -2px; 
     text-transform: uppercase; 
     line-height: 1;
     white-space: nowrap;
@@ -43,16 +42,31 @@ nav {
 
 .logo span { color: var(--neon-sari); }
 
-/* Yanındaki El Yazısı Slogan */
+/* Dev El Yazısı Slogan */
 .logo-slogan {
     font-family: 'Dancing Script', cursive;
-    color: #888; /* Biraz daha soft bir gri, logoyu boğmasın */
-    font-size: 16px;
-    border-left: 1px solid #333; /* Araya ince dikey çizgi */
-    padding-left: 15px;
-    font-weight: 400;
+    color: #fff; /* Daha parlak beyaz yaptık */
+    font-size: 24px; /* Yazıyı hissedilir derecede büyüttük */
+    border-left: 2px solid var(--neon-sari); /* Çizgiyi kalınlaştırdık ve sarı yaptık */
+    padding-left: 25px;
+    font-weight: 700;
     line-height: 1;
     white-space: nowrap;
+}
+
+/* Sağ Taraf: Linkler (Bozulmayı önlemek için) */
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 30px; /* Linklerin arasını açtık */
+}
+
+.nav-links a { 
+    color: #fff; 
+    text-decoration: none; 
+    font-size: 16px; /* Yazı fontunu okunur yaptık */
+    font-weight: 800; 
+    text-transform: uppercase;
 }
 
 /* MOBİLDE SLOGANI GİZLE (Yazılar iç içe girmesin diye) */
