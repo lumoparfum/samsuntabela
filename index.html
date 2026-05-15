@@ -3,152 +3,197 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Uzman Reklam | Samsun Tabela & Kurumsal Reklam Sistemleri</title>
+    <title>Uzman Reklam | Samsun Kurumsal Tabela & Reklam Sistemleri</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --neon-sari: #ccff00; --koyu-bg: #050505; --card-bg: #0f0f0f; --text-gray: #ccc; }
-        body { margin: 0; padding: 0; background-color: var(--koyu-bg); color: #fff; font-family: 'Inter', sans-serif; overflow-x: hidden; scroll-behavior: smooth; padding-top: 70px; }
+        :root { --neon-sari: #ccff00; --koyu-bg: #050505; --card-bg: #0f0f0f; --soft-gri: #1a1a1a; }
+        body { margin: 0; padding: 0; background-color: var(--koyu-bg); color: #fff; font-family: 'Inter', sans-serif; overflow-x: hidden; scroll-behavior: smooth; }
         
         /* Navigasyon */
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; background: rgba(0,0,0,0.95); position: fixed; width: 90%; top: 0; z-index: 1000; border-bottom: 1px solid #222; backdrop-filter: blur(8px); }
-        .logo { font-weight: 900; font-size: 24px; letter-spacing: -1px; }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; background: rgba(0,0,0,0.95); position: fixed; width: 90%; top: 0; z-index: 1000; border-bottom: 1px solid #222; backdrop-filter: blur(10px); }
+        .logo { font-weight: 900; font-size: 24px; letter-spacing: -1.5px; }
         .logo span { color: var(--neon-sari); }
-        .nav-links a { color: #fff; text-decoration: none; margin-left: 20px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; transition: 0.3s; }
-        .nav-links a:hover { color: var(--neon-sari); }
+        .nav-links a { color: #fff; text-decoration: none; margin-left: 20px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; }
 
-        /* Hero Alanı */
-        .hero { height: 80vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 5%; background: radial-gradient(circle at center, #111 0%, #000 100%); border-bottom: 1px solid #1a1a1a; }
-        .hero h1 { font-size: clamp(2rem, 7vw, 4rem); font-weight: 900; margin-bottom: 15px; line-height: 1.1; text-transform: uppercase; }
+        /* Slayt Arka Planlı Hero */
+        .hero { 
+            height: 100vh; 
+            position: relative; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+            text-align: center; 
+            overflow: hidden;
+        }
+        .hero-slide {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-size: cover;
+            background-position: center;
+            animation: slideAnimation 15s infinite;
+            z-index: -1;
+            filter: brightness(0.4);
+        }
+        @keyframes slideAnimation {
+            0%, 100% { background-image: url('mediana.jpg'); }
+            33% { background-image: url('livhospit.jpg'); }
+            66% { background-image: url('piazzatorem.jpg'); }
+        }
+        .hero-content { z-index: 1; padding: 0 5%; }
+        .hero h1 { font-size: clamp(2.5rem, 8vw, 5rem); font-weight: 900; margin-bottom: 20px; line-height: 1.1; }
         .hero h1 span { color: var(--neon-sari); }
-        .hero p { font-size: 1.2rem; max-width: 800px; color: #aaa; margin-bottom: 30px; }
-        .btn-main { background: var(--neon-sari); color: #000; padding: 18px 40px; border-radius: 50px; text-decoration: none; font-weight: 900; text-transform: uppercase; transition: 0.3s; display: inline-block; }
+        .hero p { font-size: 1.3rem; max-width: 800px; color: #eee; margin-bottom: 40px; }
+
+        /* Butonlar */
+        .btn-main { background: var(--neon-sari); color: #000; padding: 20px 45px; border-radius: 50px; text-decoration: none; font-weight: 900; text-transform: uppercase; transition: 0.3s; display: inline-block; }
         .btn-main:hover { transform: scale(1.05); box-shadow: 0 0 30px rgba(204,255,0,0.5); }
 
-        /* İşlerimiz (Resimli) */
+        /* Ustalık Eserlerimiz Grid */
         .section-title { padding: 80px 5% 40px; text-align: center; }
-        .section-title h2 { font-size: 2.2rem; text-transform: uppercase; letter-spacing: 2px; }
-        .section-title div { width: 50px; height: 3px; background: var(--neon-sari); margin: 10px auto 0; }
-        
-        .work-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; padding: 0 5% 80px; }
-        .work-card { background: var(--card-bg); border-radius: 15px; overflow: hidden; border: 1px solid #222; transition: 0.3s; }
-        .work-card:hover { border-color: var(--neon-sari); transform: translateY(-5px); }
-        
-        .work-card img { width: 100%; height: 300px; object-fit: cover; opacity: 0.7; transition: 0.5s; }
+        .section-title h2 { font-size: 2.5rem; text-transform: uppercase; color: var(--neon-sari); letter-spacing: 2px; }
+        .work-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; padding: 0 5% 80px; }
+        .work-card { background: var(--card-bg); border-radius: 20px; overflow: hidden; border: 1px solid #222; transition: 0.4s; }
+        .work-card:hover { border-color: var(--neon-sari); transform: translateY(-10px); }
+        .work-card img { width: 100%; height: 350px; object-fit: cover; opacity: 0.8; }
         .work-card:hover img { opacity: 1; }
-        
-        .work-content { padding: 25px; }
-        .work-content h3 { margin: 0 0 10px; font-size: 1.3rem; color: var(--neon-sari); }
-        .work-content p { color: #888; font-size: 0.9rem; line-height: 1.5; }
+        .work-info { padding: 25px; border-top: 1px solid #111; }
+        .work-info h3 { margin: 0 0 10px; font-size: 1.4rem; color: var(--neon-sari); }
+        .work-info p { color: #888; font-size: 0.95rem; }
 
         /* Hakkımızda / Hikaye */
-        .story { padding: 80px 10%; background: #080808; border-top: 1px solid #111; border-bottom: 1px solid #111; }
-        .story-box { border-left: 3px solid var(--neon-sari); padding-left: 25px; }
-        .story h2 { font-size: 1.8rem; margin-bottom: 15px; color: #fff; }
-        .story p { line-height: 1.7; color: #999; font-size: 0.95rem; }
+        .story { padding: 100px 10%; background: #080808; border-top: 1px solid #111; }
+        .story-box { border-left: 5px solid var(--neon-sari); padding-left: 35px; }
+        .story h2 { font-size: 2.5rem; margin-bottom: 25px; }
+        .story p { line-height: 1.8; color: #ccc; font-size: 1.1rem; }
 
-        /* İletişim & Ödeme */
-        .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; padding: 80px 5%; background: #000; }
-        .contact-box { background: #111; padding: 30px; border-radius: 15px; border: 1px solid #222; }
-        .contact-box h3 { color: var(--neon-sari); margin-bottom: 20px; border-bottom: 1px solid #222; padding-bottom: 10px; font-size: 1.2rem; }
-        .contact-box p { font-size: 0.9rem; margin-bottom: 10px; color: #aaa; line-height: 1.5; }
+        /* İletişim / Harita / Toraman Matbaa */
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; padding: 80px 5%; background: #000; }
+        .footer-box { background: #0a0a0a; padding: 35px; border-radius: 20px; border: 1px solid #1a1a1a; }
+        .footer-box h3 { color: var(--neon-sari); margin-bottom: 25px; border-bottom: 1px solid #222; padding-bottom: 10px; }
+        .footer-box p { font-size: 0.95rem; margin-bottom: 12px; color: #aaa; }
         
-        .btn-map { display: inline-flex; align-items: center; gap: 8px; background: #fff; color: #000; padding: 12px 25px; border-radius: 50px; text-decoration: none; font-weight: 800; margin-top: 15px; font-size: 0.85rem; transition: 0.3s; }
-        .btn-map:hover { background: var(--neon-sari); }
-
-        /* Matbaa Alt Plan */
-        .matbaa-footer { padding: 30px 5%; text-align: center; border-top: 1px solid #111; background: #050505; color: #444; font-size: 0.8rem; }
-        .matbaa-footer a { color: #666; text-decoration: none; font-weight: 600; }
+        .map-container { width: 100%; height: 250px; border-radius: 15px; overflow: hidden; margin-top: 20px; border: 1px solid #333; }
+        
+        .matbaa-box { background: #111; border: 1px solid #222; padding: 25px; border-radius: 15px; margin-top: 30px; }
+        .matbaa-box h4 { margin-top: 0; color: #fff; border-left: 3px solid var(--neon-sari); padding-left: 10px; }
 
         /* WhatsApp */
-        .wp-float { position: fixed; bottom: 30px; right: 30px; display: flex; align-items: center; gap: 10px; z-index: 1000; }
-        .wp-label { background: #fff; color: #000; padding: 8px 15px; border-radius: 10px; font-weight: 800; font-size: 0.8rem; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
-        .wp-icon { width: 60px; height: 60px; background: #25d366; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; color: #fff; text-decoration: none; box-shadow: 0 5px 15px rgba(0,0,0,0.2); transition: 0.3s; }
-        .wp-icon:hover { transform: scale(1.1); }
+        .wp-float { position: fixed; bottom: 30px; right: 30px; display: flex; align-items: center; gap: 15px; z-index: 9999; }
+        .wp-balon { background: #fff; color: #000; padding: 10px 20px; border-radius: 12px; font-weight: 800; font-size: 0.9rem; box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
+        .wp-btn { width: 65px; height: 65px; background: #25d366; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 35px; color: #fff; text-decoration: none; box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4); animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
 
-        @media (max-width: 768px) { .nav-links { display: none; } .hero h1 { font-size: 1.8rem; } .work-grid { grid-template-columns: 1fr; } }
+        @media (max-width: 768px) { .nav-links { display: none; } .hero h1 { font-size: 2.2rem; } .footer-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="logo">UZMAN<span>TABELA</span></div>
+        <div class="logo">UZMAN<span>REKLAM</span></div>
         <div class="nav-links">
-            <a href="#islerimiz">NELER YAPIYORUZ?</a>
+            <a href="#islerimiz">ESERLERİMİZ</a>
             <a href="#hakkimizda">HİKAYEMİZ</a>
             <a href="#iletisim">İLETİŞİM & KONUM</a>
         </div>
     </nav>
 
     <section class="hero">
-        <h1>SAMSUN'DA <span>TABELA</span><br>BİZİM İŞİMİZ.</h1>
-        <p>1973'ten beri ustalığı teknolojiyle birleştiriyoruz. Işıklı tabela, kutu harf ve reklam çözümlerinde yarım asırlık Uzman tecrübesi.</p>
-        <a href="https://wa.me/905079605049" class="btn-main">FİYAT ALALIM</a>
+        <div class="hero-slide"></div>
+        <div class="hero-content">
+            <h1>SAMSUN'DA <span>TABELA</span><br>BİZİM İŞİMİZ.</h1>
+            <p>1973'ten beri ustalığı teknolojiyle birleştiriyoruz. Işıklı tabela, kutu harf ve reklam çözümlerinde yarım asırlık Uzman tecrübesi.</p>
+            <a href="https://wa.me/905079605049" class="btn-main">FİYAT ALALIM</a>
+        </div>
     </section>
 
     <div class="section-title" id="islerimiz">
         <h2>Ustalık Eserlerimiz</h2>
-        <div></div>
     </div>
 
     <section class="work-grid">
         <div class="work-card">
             <img src="livhospit.jpg" alt="Liv Hospital Işıklı Tabela">
-            <div class="work-content">
-                <h3>Kurumsal Paslanmaz Harf</h3>
-                <p>Liv Hospital projesi gibi yüksek prestijli, paslanmaz çelikten üretilen uzun ömürlü LED tabela sistemleri.</p>
+            <div class="work-info">
+                <h3>Liv Hospital | Kutu Harf</h3>
+                <p>Paslanmaz çelikten üretilen, yüksek prestijli LED ışıklı harf sistemleri.</p>
             </div>
         </div>
         <div class="work-card">
-            <img src="piazzatorem.jpg" alt="Piazza Totem Tabela">
-            <div class="work-content">
-                <h3>Devesa Totem & Pylon</h3>
-                <p>Piazza projesindeki gibi uzaklardan fark edilmenizi sağlayan, rüzgara dayanıklı güçlü totem yapıları.</p>
+            <img src="piazzatorem.jpg" alt="Piazza Totem">
+            <div class="work-info">
+                <h3>Piazza | Totem Tabela</h3>
+                <p>Uzak mesafeden fark edilen, rüzgara ve hava şartlarına dayanıklı güçlü yapılar.</p>
             </div>
         </div>
         <div class="work-card">
-            <img src="medianaa.jpg" alt="Medibafra Hastanesi Cephe Kaplama">
-            <div class="work-content">
-                <h3>Kompozit Cephe Giydirme</h3>
-                <p>Medibafra Hastanesi gibi büyük yapılar için modern, estetik ve dayanıklı cephe kaplama çözümleri.</p>
+            <img src="mediana.jpg" alt="Medibafra Cephe Kaplama">
+            <div class="work-info">
+                <h3>Medibafra | Kompozit Cephe</h3>
+                <p>Binanın çehresini değiştiren modern cephe giydirme ve kurumsal kimlik uygulaması.</p>
+            </div>
+        </div>
+        <div class="work-card">
+            <img src="umre.jpg" alt="Umre Reklam">
+            <div class="work-info">
+                <h3>Neon & LED Aydınlatma</h3>
+                <p>Gece parlayan, dikkat çekici ve estetik iç/dış mekan reklam çözümleri.</p>
+            </div>
+        </div>
+        <div class="work-card">
+            <img src="cnc.jpg" alt="CNC Kesim">
+            <div class="work-info">
+                <h3>CNC & Lazer Kesim</h3>
+                <p>Pleksi, dekupe ve metal malzemelerde sıfır hata ile hassas kesim parkuru.</p>
+            </div>
+        </div>
+        <div class="work-card">
+            <img src="yonlendirme.jpg" alt="Yönlendirme Sistemleri">
+            <div class="work-info">
+                <h3>Yönlendirme & Ofis</h3>
+                <p>Kurumsal iç mekan yönlendirme, kapı isimlikleri ve dijital baskı işleri.</p>
             </div>
         </div>
     </section>
 
     <section class="story" id="hakkimizda">
         <div class="story-box">
-            <h2>1973'ten Bugüne...</h2>
-            <p>Remzi Toraman'ın Samsun Bafra'da bir el çantası aletiyle başlattığı bu hikaye, bugün Abdurrahman Toraman liderliğinde modern bir tesise dönüştü. Biz sadece tabela yapmıyoruz; 50 yıllık birikimle markanızın imajını inşa ediyoruz.</p>
+            <h2>Remzi Toraman'dan Abdurrahman Toraman'a...</h2>
+            <p>1973 yılında Samsun Bafra'da bir el çantası aletiyle temelleri atılan Uzman Reklam, yarım asırlık yolculuğunda ustalığı aile kültürüyle harmanladı. İkinci nesil temsilcimiz Abdurrahman Toraman ile modern üretim tesisine dönüşen firmamız, bugün Samsun'un en prestijli projelerine imza atmaya devam ediyor.</p>
         </div>
     </section>
 
-    <section class="contact-grid" id="iletisim">
-        <div class="contact-box">
+    <section class="footer-grid" id="iletisim">
+        <div class="footer-box">
             <h3>FABRİKA & ATÖLYE</h3>
-            <p><strong>Adres:</strong> Altınyaprak Mh. Çizmeli 2.Sk. No:33 Bafra - SAMSUN</p>
-            <p><strong>Telefon:</strong> 0532 220 46 49</p>
-            <p><strong>E-posta:</strong> uzmanreklam@live.com</p>
+            <p><i class="fas fa-map-marker-alt" style="color:var(--neon-sari)"></i> Altınyaprak Mh. Çizmeli 2.Sk. No:33 Bafra</p>
+            <p><i class="fas fa-phone" style="color:var(--neon-sari)"></i> 0532 220 46 49</p>
+            <p><i class="fas fa-envelope" style="color:var(--neon-sari)"></i> uzmanreklam@live.com</p>
             
-            <a href="https://maps.app.goo.gl/PSWQdjwVVV7xzyCM9" target="_blank" class="btn-map">
-                <i class="fas fa-location-arrow"></i> YOL TARİFİ AL
-            </a>
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2979.799793574681!2d35.90858177656685!3d41.56274488507851!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40889f417f7d9a8b%3A0x6b240176d6c29b6!2sAlt%C4%B1nyaprak%2C%20%C3%87izmeli%202.%20Sk.%20No%3A33%2C%2055400%20Bafra%2FSamsun!5e0!3m2!1str!2str!4v1716382000000!5m2!1str!2str" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+            <a href="https://maps.app.goo.gl/PSWQdjwVVV7xzyCM9" target="_blank" class="btn-main" style="width:100%; text-align:center; padding:15px 0; margin-top:15px; font-size:0.9rem;">YOL TARİFİ AL</a>
         </div>
-        <div class="contact-box">
-            <h3>ÖDEME BİLGİLERİ</h3>
-            <p><strong>Vergi Dairesi:</strong> Bafra V.D. 214 7659 4794</p>
-            <p><strong>Garanti Bankası:</strong> (Şube Kodu: 520)</p>
-            <p><strong>Hesap No:</strong> 6297473</p>
-            <p style="color:var(--neon-sari); word-break:break-all; font-weight:bold;">TR12 0006 2000 5200 0006 2974 73</p>
+
+        <div class="footer-box">
+            <h3>KURUMSAL & ÖDEME</h3>
+            <p><strong>Bafra V.D:</strong> 214 7659 4794</p>
+            <p><strong>Garanti Bankası:</strong> (520) 6297473</p>
+            <p style="color:var(--neon-sari); word-break:break-all; font-weight:800; background:#111; padding:10px; border-radius:8px;">IBAN: TR12 0006 2000 5200 0006 2974 73</p>
+            
+            <div class="matbaa-box">
+                <h4>TORAMAN MATBAA İSTANBUL</h4>
+                <p>2. Matbaacılar Sitesi 5. Kat E Blok Topkapı</p>
+                <p>Müşteri Hizmetleri: 444 5 340</p>
+                <a href="http://www.toramanmatbaa.com" target="_blank" style="color:var(--neon-sari); font-size:0.8rem; text-decoration:none;">www.toramanmatbaa.com</a>
+            </div>
         </div>
     </section>
-
-    <div class="matbaa-footer">
-        <p>Ayrıca İstanbul Topkapı'da <strong>Toraman Matbaa</strong> tesisimizle endüstriyel baskı çözümleri sunmaktayız.</p>
-        <a href="http://www.toramanmatbaa.com" target="_blank">www.toramanmatbaa.com | 444 5 340</a>
-    </div>
 
     <div class="wp-float">
-        <div class="wp-label">FİYAT VE İLETİŞİM</div>
-        <a href="https://wa.me/905079605049" class="wp-icon" target="_blank">
+        <div class="wp-balon">FİYAT VE İLETİŞİM</div>
+        <a href="https://wa.me/905079605049" class="wp-btn" target="_blank">
             <i class="fab fa-whatsapp"></i>
         </a>
     </div>
