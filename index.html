@@ -3,133 +3,176 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Uzman Tabela & Toraman Matbaa | Profesyonel Reklam Çözümleri</title>
+    <title>Uzman Tabela | Toraman Şirketler Grubu - Samsun & İstanbul</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --neon-sari: #ccff00; --koyu-bg: #050505; --card-bg: #0f0f0f; }
+        :root { --neon-sari: #ccff00; --koyu-bg: #050505; --card-bg: #111; --text-gray: #aaa; }
         body { margin: 0; padding: 0; background-color: var(--koyu-bg); color: #fff; font-family: 'Inter', sans-serif; overflow-x: hidden; scroll-behavior: smooth; }
         
-        /* Navigasyon */
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 8%; background: rgba(0,0,0,0.95); position: fixed; width: 84%; top: 0; z-index: 1000; border-bottom: 1px solid #222; backdrop-filter: blur(10px); }
-        .logo { font-weight: 900; font-size: 24px; letter-spacing: -1px; }
+        /* Navigasyon (Yeni Yapı) */
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; background: rgba(0,0,0,0.98); position: fixed; width: 90%; top: 0; z-index: 1000; border-bottom: 1px solid #222; }
+        .logo { font-weight: 900; font-size: 22px; letter-spacing: -1px; text-transform: uppercase; }
         .logo span { color: var(--neon-sari); }
-        .nav-links a { color: #888; text-decoration: none; margin-left: 20px; font-size: 0.85rem; font-weight: 600; transition: 0.3s; }
+        .nav-links { display: flex; gap: 20px; }
+        .nav-links a { color: #fff; text-decoration: none; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; transition: 0.3s; }
         .nav-links a:hover { color: var(--neon-sari); }
 
-        /* Hero */
-        .hero { height: 80vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 10%; background: radial-gradient(circle at center, #111 0%, #000 100%); }
-        .hero h1 { font-size: clamp(2rem, 6vw, 4rem); font-weight: 900; margin-bottom: 20px; }
-        .hero h1 span { color: var(--neon-sari); }
+        /* Hero Alanı */
+        .hero { height: 85vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: radial-gradient(circle at center, #151515 0%, #000 100%); padding: 0 5%; }
+        .hero h1 { font-size: clamp(2rem, 8vw, 4.5rem); font-weight: 900; margin-bottom: 20px; line-height: 1; }
+        .hero h1 span { color: var(--neon-sari); text-shadow: 0 0 30px rgba(204,255,0,0.3); }
+        .hero p { color: var(--text-gray); font-size: 1.2rem; max-width: 800px; margin-bottom: 40px; }
 
-        /* Hakkımızda Bölümü (Yeni) */
-        .about-section { padding: 100px 10%; line-height: 1.8; background: #080808; }
-        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: start; }
-        .about-content h2 { color: var(--neon-sari); font-size: 2.5rem; margin-bottom: 30px; border-left: 5px solid var(--neon-sari); padding-left: 20px; }
-        .about-content p { color: #ccc; margin-bottom: 20px; font-size: 1.05rem; }
+        /* Bölüm Başlıkları */
+        .section-title { text-align: center; padding: 80px 5% 40px; }
+        .section-title h2 { font-size: 2.5rem; text-transform: uppercase; letter-spacing: 2px; }
+        .section-title div { width: 60px; height: 4px; background: var(--neon-sari); margin: 10px auto; }
 
-        /* Kartlar ve Hizmetler */
-        .grid-container { padding: 80px 8%; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .info-card { background: var(--card-bg); padding: 40px; border-radius: 20px; border: 1px solid #1a1a1a; transition: 0.3s; }
-        .info-card:hover { border-color: var(--neon-sari); transform: translateY(-5px); }
-        .info-card i { font-size: 40px; color: var(--neon-sari); margin-bottom: 20px; }
-        .info-card h3 { margin-bottom: 15px; font-size: 1.5rem; }
-        .info-card p, .info-card li { color: #888; font-size: 0.95rem; list-style: none; padding: 0; }
+        /* Üretim Parkuru (CNC, Lazer, Baskı) */
+        .tech-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; padding: 0 8% 80px; }
+        .tech-card { background: var(--card-bg); border-radius: 20px; overflow: hidden; border: 1px solid #222; transition: 0.4s; }
+        .tech-card:hover { border-color: var(--neon-sari); transform: translateY(-10px); }
+        .tech-card img { width: 100%; height: 200px; object-fit: cover; filter: grayscale(40%); }
+        .tech-card:hover img { filter: grayscale(0%); }
+        .tech-info { padding: 25px; }
+        .tech-info h3 { margin: 0 0 10px; color: var(--neon-sari); font-size: 1.3rem; }
+        .tech-info p { color: #888; font-size: 0.9rem; line-height: 1.5; }
 
-        /* Banka ve Vergi Bilgileri */
-        .finance-box { background: #111; padding: 30px; border-radius: 15px; border-left: 4px solid #25d366; margin-top: 20px; }
-        .finance-box h4 { margin-top: 0; color: #fff; }
-        .finance-box code { color: var(--neon-sari); display: block; margin: 5px 0; font-size: 1rem; }
+        /* Hakkımızda / Tarihçe */
+        .history { padding: 100px 10%; background: #080808; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .history-text h2 { color: var(--neon-sari); font-size: 2.5rem; margin-bottom: 25px; }
+        .history-text p { color: #ccc; line-height: 1.8; margin-bottom: 20px; }
 
-        /* İletişim Footer */
+        /* Matbaa Bölümü */
+        .matbaa-box { background: linear-gradient(135deg, #111 0%, #000 100%); padding: 60px 10%; border-top: 1px solid #222; border-bottom: 1px solid #222; text-align: center; }
+        .matbaa-box i { font-size: 50px; color: var(--neon-sari); margin-bottom: 20px; }
+
+        /* WhatsApp Sabit Bölüm (Gelişmiş) */
+        .whatsapp-container { position: fixed; bottom: 30px; right: 30px; display: flex; align-items: center; gap: 15px; z-index: 9999; }
+        .whatsapp-msg { background: #fff; color: #000; padding: 10px 20px; border-radius: 12px; font-weight: 700; font-size: 0.9rem; box-shadow: 0 5px 15px rgba(0,0,0,0.3); position: relative; }
+        .whatsapp-msg::after { content: ''; position: absolute; right: -8px; top: 50%; transform: translateY(-50%); border-top: 8px solid transparent; border-bottom: 8px solid transparent; border-left: 8px solid #fff; }
+        .whatsapp-btn { background: #25d366; color: #fff; width: 65px; height: 65px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 35px; text-decoration: none; box-shadow: 0 10px 25px rgba(37,211,102,0.3); animation: pulse 2s infinite; }
+
+        /* Footer */
         footer { padding: 80px 8%; background: #000; border-top: 1px solid #222; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; }
-        .footer-col h4 { color: var(--neon-sari); margin-bottom: 20px; text-transform: uppercase; }
-        .footer-col p { color: #666; font-size: 0.9rem; margin-bottom: 10px; }
-        .footer-col a { color: #aaa; text-decoration: none; transition: 0.3s; }
-        .footer-col a:hover { color: #fff; }
+        .footer-col h4 { color: var(--neon-sari); margin-bottom: 20px; text-transform: uppercase; font-size: 1.1rem; }
+        .footer-col p { color: #666; font-size: 0.85rem; margin-bottom: 10px; line-height: 1.6; }
+        .finance-info { background: #111; padding: 20px; border-radius: 10px; border: 1px solid #222; margin-top: 10px; }
+        .finance-info code { color: var(--neon-sari); font-size: 0.85rem; display: block; margin-top: 5px; }
 
-        .whatsapp-float { position: fixed; bottom: 30px; right: 30px; background: #25d366; color: #fff; width: 65px; height: 65px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; z-index: 1000; box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
-
-        @media (max-width: 800px) { .about-grid { grid-template-columns: 1fr; } }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.08); } 100% { transform: scale(1); } }
+        @media (max-width: 1000px) { .history { grid-template-columns: 1fr; } .nav-links { display: none; } }
     </style>
 </head>
 <body>
 
-<nav>
-    <div class="logo">UZMAN<span>TABELA</span></div>
-    <div class="nav-links">
-        <a href="#hakkimizda">TARİHÇE</a>
-        <a href="#uretim">ÜRETİM</a>
-        <a href="#matbaa">MATBAA</a>
-        <a href="#iletisim">İLETİŞİM</a>
-    </div>
-</nav>
-
-<section class="hero">
-    <h1>YARIM ASIRLIK <span>TECRÜBE</span><br>MODERN ÜRETİM GÜCÜ.</h1>
-    <p>1973'ten beri reklam ve baskı dünyasında iz bırakıyoruz.</p>
-</section>
-
-<section class="about-section" id="hakkimizda">
-    <div class="about-grid">
-        <div class="about-content">
-            <h2>HAKKIMIZDA</h2>
-            <p><strong>Uzman Tabela</strong>, 1973 yılında Remzi Toraman tarafından Samsun’da kurulan küçük bir tabela atölyesinin bugün modern bir üretim merkezine dönüşmüş hâlidir. Kurucumuzun el işçiliğine dayalı geleneksel tabela ustalığı, markamızın temelini oluşturmuştur.</p>
-            <p>İkinci neslin temsilcisi <strong>Abdurrahman Toraman</strong> yönetiminde, 2000’li yıllardan itibaren yapılan yatırımlarla bölgesel bir atölyeden profesyonel bir üretim tesisine dönüştük.</p>
+    <nav>
+        <div class="logo">UZMAN<span>REKLAM</span></div>
+        <div class="nav-links">
+            <a href="#hakkimizda">KURUMSAL</a>
+            <a href="#uretim">ÜRETİM PARKURU</a>
+            <a href="#matbaa">MATBAA</a>
+            <a href="#iletisim">BİZE ULAŞIN</a>
         </div>
-        <div class="about-content">
-            <p>Bugün tasarım, üretim ve montaj süreçlerini kendi bünyesinde gerçekleştiren entegre bir merkeziz. LED tabela, kompozit kaplama, totem ve dijital baskı gibi geniş bir yelpazede devlet kurumlarına ve kurumsal işletmelere hizmet sunuyoruz.</p>
-            <div class="finance-box">
-                <h4>Kurumsal Bilgiler</h4>
-                <p>Abdurrahman TORAMAN<br>Bafra V.D. No: 214 7659 4794</p>
+    </nav>
+
+    <section class="hero">
+        <h1>GELECEĞİN <span>TEKNOLOJİSİ</span><br>USTALIĞIN İZİ.</h1>
+        <p>1973'ten beri Samsun'da tabelaya, İstanbul'da matbaaya hayat veriyoruz. CNC, Lazer ve Dijital Baskı sistemlerimizle projenizi sıfır hata ile üretiyoruz.</p>
+        <div style="display: flex; gap: 20px;">
+            <a href="https://wa.me/905079605049" style="background:var(--neon-sari); color:#000; padding:15px 35px; border-radius:50px; text-decoration:none; font-weight:800;">HEMEN TEKLİF AL</a>
+        </div>
+    </section>
+
+    <section id="hakkimizda" class="history">
+        <div class="history-text">
+            <h2>Yarım Asırlık Bir Miras</h2>
+            <p><strong>Uzman Tabela</strong>, 1973 yılında Remzi Toraman tarafından kurulmuş; bugün Abdurrahman Toraman liderliğinde modern bir üretim devine dönüşmüştür.</p>
+            <p>Samsun Bafra'daki fabrikamızda tasarım, üretim ve montaj süreçlerini entegre bir şekilde yönetiyor; devlet kurumlarından kurumsal devlere kadar her sektöre imzamızı atıyoruz.</p>
+        </div>
+        <div>
+            <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800" alt="Üretim" style="width:100%; border-radius:30px; border: 1px solid var(--neon-sari);">
+        </div>
+    </section>
+
+    <div class="section-title" id="uretim">
+        <h2>Üretim Parkurumuz</h2>
+        <div></div>
+    </div>
+
+    <section class="tech-grid">
+        <div class="tech-card">
+            <img src="https://images.unsplash.com/photo-1537462715879-360eeb61a0ad?w=600" alt="CNC Kesim">
+            <div class="tech-info">
+                <h3>CNC Kesim Sistemi</h3>
+                <p>Kompozit, pleksi ve ahşap malzemelerde mikron hassasiyetinde kesim ve dekupe işlemleri.</p>
             </div>
         </div>
-    </div>
-</section>
+        <div class="tech-card">
+            <img src="https://images.unsplash.com/photo-1531287333317-18f1060f44ec?w=600" alt="Lazer Kesim">
+            <div class="tech-info">
+                <h3>Lazer Kesim Parkuru</h3>
+                <p>Metal ve pleksi harf üretiminde kusursuz kenar kalitesi ve hızlı üretim kapasitesi.</p>
+            </div>
+        </div>
+        <div class="tech-card">
+            <img src="https://images.unsplash.com/photo-1610492314604-368239364ee7?w=600" alt="Dijital Baskı">
+            <div class="tech-info">
+                <h3>Geniş Format Baskı</h3>
+                <p>Branda, folyo ve One Way Vision baskılarda yüksek çözünürlüklü ve dış mekana dayanıklı sonuçlar.</p>
+            </div>
+        </div>
+        <div class="tech-card">
+            <img src="https://images.unsplash.com/photo-1621360841013-c7683c659ec6?w=600" alt="Matbaa">
+            <div class="tech-info">
+                <h3>Ofset & Endüstriyel Baskı</h3>
+                <p>Topkapı tesisimizde yüksek hacimli katalog, kutu ve kurumsal matbaa çözümleri.</p>
+            </div>
+        </div>
+    </section>
 
-<section id="uretim" class="grid-container">
-    <div class="info-card">
-        <i class="fas fa-industry"></i>
-        <h3>Üretim Kapasitesi</h3>
-        <p>LED ve Kutu Harf, Totem Tabela, Yönlendirme Sistemleri, Dijital Baskı, CNC–Lazer Kesim ve Araç Giydirme çözümleriyle entegre üretim yapıyoruz.</p>
-    </div>
-    <div class="info-card" id="matbaa">
+    <section id="matbaa" class="matbaa-box">
         <i class="fas fa-print"></i>
-        <h3>Toraman Matbaa</h3>
-        <p>İstanbul Topkapı'daki tesisimizde; etiket, ambalaj, katalog ve kurumsal baskı ürünlerinde yurt içine ve yurt dışına profesyonel çözümler sunuyoruz.</p>
-        <a href="http://www.toramanmatbaa.com" target="_blank" style="color:var(--neon-sari); font-size:0.8rem; text-decoration:none;">www.toramanmatbaa.com</a>
-    </div>
-    <div class="info-card">
-        <i class="fas fa-university"></i>
-        <h3>Ödeme Bilgileri</h3>
-        <p>Garanti Bankası (Şube: 520)<br>Hesap No: 6297473</p>
-        <code>TR12 0006 2000 5200 0006 2974 73</code>
-    </div>
-</section>
+        <h2 style="font-size: 2.5rem; margin-bottom: 20px;">TORAMAN MATBAA <span style="color:var(--neon-sari)">İSTANBUL</span></h2>
+        <p style="max-width: 800px; margin: 0 auto 30px; color: #888;">İstanbul Topkapı 2. Matbaacılar Sitesi'nde yer alan tesisimizle, Türkiye genelindeki ajanslara ve matbaalara endüstriyel baskı ve ihracat desteği sağlıyoruz.</p>
+        <a href="http://www.toramanmatbaa.com" target="_blank" style="color:var(--neon-sari); text-decoration:none; font-weight:700;">Daha Fazla Bilgi: www.toramanmatbaa.com</a>
+    </section>
 
-<footer id="iletisim">
-    <div class="footer-col">
-        <h4>Uzman Tabela Fabrika</h4>
-        <p><i class="fas fa-map-marker-alt"></i> Altınyaprak Mh. Çizmeli 2.Sk. No:33 Bafra - SAMSUN</p>
-        <p><i class="fas fa-phone"></i> 0532 220 46 49</p>
-        <p><i class="fas fa-envelope"></i> uzmanreklam@live.com</p>
-        <p><i class="fas fa-envelope"></i> uzmandosya@hotmail.com</p>
-    </div>
-    <div class="footer-col">
-        <h4>Toraman Matbaa İstanbul</h4>
-        <p><i class="fas fa-map-marker-alt"></i> 2.Matbaacılar Sitesi 5.Kat E Blok 3NE19 Topkapı - İST</p>
-        <p><i class="fas fa-phone"></i> 444 5 340</p>
-        <p><i class="fas fa-envelope"></i> toramanmatbaa@gmail.com</p>
-    </div>
-    <div class="footer-col">
-        <h4>Sosyal Medya</h4>
-        <p><a href="https://instagram.com/uzman.reklamm" target="_blank"><i class="fab fa-instagram"></i> @uzman.reklamm</a></p>
-        <p><a href="https://wa.me/905079605049"><i class="fab fa-whatsapp"></i> WhatsApp Destek</a></p>
-    </div>
-</footer>
+    <footer id="iletisim">
+        <div class="footer-col">
+            <h4>SAMSUN FABRİKA</h4>
+            <p>Altınyaprak Mh. Çizmeli 2.Sk. No:33 Bafra</p>
+            <p>Tel: 0532 220 46 49</p>
+            <p>uzmanreklam@live.com</p>
+            <div class="finance-info">
+                <strong>Vergi Bilgileri:</strong><br>
+                Abdurrahman TORAMAN<br>Bafra V.D. 214 7659 4794
+            </div>
+        </div>
+        <div class="footer-col">
+            <h4>İSTANBUL MERKEZ</h4>
+            <p>2. Matbaacılar Sitesi 5. Kat E Blok Topkapı</p>
+            <p>Müşteri Hizmetleri: 444 5 340</p>
+            <p>toramanmatbaa@gmail.com</p>
+            <div class="finance-info">
+                <strong>Garanti Bankası (520):</strong>
+                <code>IBAN: TR12 0006 2000 5200 0006 2974 73</code>
+            </div>
+        </div>
+        <div class="footer-col">
+            <h4>TAKİPTE KALIN</h4>
+            <p><a href="https://instagram.com/uzman.reklamm" style="color:var(--neon-sari);"><i class="fab fa-instagram"></i> @uzman.reklamm</a></p>
+            <p>Hafta İçi: 08:30 - 19:00</p>
+            <p>Cumartesi: 09:00 - 15:00</p>
+        </div>
+    </footer>
 
-<a href="https://wa.me/905079605049" class="whatsapp-float" target="_blank">
-    <i class="fab fa-whatsapp"></i>
-</a>
+    <div class="whatsapp-container">
+        <div class="whatsapp-msg">Fiyat & İletişim Hattı</div>
+        <a href="https://wa.me/905079605049" class="whatsapp-btn" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
 
 </body>
 </html>
