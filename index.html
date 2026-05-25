@@ -10,107 +10,99 @@
         :root { --neon-sari: #ccff00; --koyu-bg: #050505; --card-bg: #0f0f0f; }
         body { margin: 0; padding: 0; background-color: var(--koyu-bg); color: #fff; font-family: 'Inter', sans-serif; overflow-x: hidden; scroll-behavior: smooth; }
         
-/* Ana Navigasyon */
-nav { 
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center; 
-    padding: 25px 5%; /* Yukarıdan aşağıdan genişlettik */
-    background: rgba(0,0,0,0.95); 
-    position: fixed; 
-    width: 90%; 
-    top: 0; 
-    z-index: 1000; 
-    border-bottom: 1px solid #222;
-}
+        /* Ana Navigasyon */
+        nav { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 25px 5%; 
+            background: rgba(0,0,0,0.95); 
+            position: fixed; 
+            width: 90%; 
+            top: 0; 
+            z-index: 1000; 
+            border-bottom: 1px solid #222;
+        }
 
-/* Sol Taraf: Logo ve Slogan */
-.logo-area {
-    display: flex;
-    align-items: center;
-    gap: 25px;
-}
+        /* Sol Taraf: Logo ve Slogan */
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
 
-.logo { 
-    font-weight: 900; 
-    font-size: 42px; /* Logoyu iyice büyüttük */
-    letter-spacing: -2px; 
-    text-transform: uppercase; 
-    line-height: 1;
-    white-space: nowrap;
-}
+        .logo { 
+            font-weight: 900; 
+            font-size: 42px; 
+            letter-spacing: -2px; 
+            text-transform: uppercase; 
+            line-height: 1;
+            white-space: nowrap;
+        }
 
-.logo span { color: var(--neon-sari); }
+        .logo span { color: var(--neon-sari); }
 
-/* Hafif El Yazısı Slogan */
-.logo-slogan {
-    font-family: 'Caveat', cursive; /* Yeni hafif el yazısı fontumuz */
-    color: #fff; 
-    font-size: 28px; /* Fontun yapısı gereği biraz büyük olması daha okunaklı yapıyor */
-    border-left: 2px solid var(--neon-sari); 
-    padding-left: 25px;
-    font-weight: 600;
-    line-height: 1;
-    white-space: nowrap;
-    letter-spacing: 0.5px; /* Harflerin arası çok sıkışmasın */
-}
+        /* Hafif El Yazısı Slogan */
+        .logo-slogan {
+            font-family: 'Caveat', cursive; 
+            color: #fff; 
+            font-size: 28px; 
+            border-left: 2px solid var(--neon-sari); 
+            padding-left: 25px;
+            font-weight: 600;
+            line-height: 1;
+            white-space: nowrap;
+            letter-spacing: 0.5px; 
+        }
 
-/* Sağ Taraf: Linkler (Bozulmayı önlemek için) */
-.nav-links {
-    display: flex;
-    align-items: center;
-    gap: 30px; /* Linklerin arasını açtık */
-}
+        /* Sağ Taraf: Linkler */
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 30px; 
+        }
 
-.nav-links a { 
-    color: #fff; 
-    text-decoration: none; 
-    font-size: 16px; /* Yazı fontunu okunur yaptık */
-    font-weight: 800; 
-    text-transform: uppercase;
-}
+        .nav-links a { 
+            color: #fff; 
+            text-decoration: none; 
+            font-size: 16px; 
+            font-weight: 800; 
+            text-transform: uppercase;
+        }
 
-/* MOBİL UYUMLULUK DÜZENLEMESİ */
-@media (max-width: 768px) {
-    /* Navigasyon alanını mobilde dikey değil yine yan yana tutuyoruz */
-    nav {
-        padding: 10px 3%;
-        width: 94%;
-    }
+        /* MOBİL UYUMLULUK DÜZENLEMESİ */
+        @media (max-width: 768px) {
+            nav {
+                padding: 10px 3%;
+                width: 94%;
+            }
 
-    .logo-area {
-        gap: 10px; /* Aradaki boşluğu mobilde daralttık */
-    }
+            .logo-area {
+                gap: 10px; 
+            }
 
-    /* Logoyu mobilde biraz küçülttük ki sığsın */
-    .logo { 
-        font-size: 20px; 
-    }
+            .logo { 
+                font-size: 20px; 
+            }
 
-    /* Hafif el yazısı slogan artık mobilde de GÖRÜNÜR ve boyutu ekrana tam sığıyor */
-    .logo-slogan { 
-        display: block; /* Gizlemeyi kaldırdık */
-        font-size: 13px; /* Yazıyı mobilde kibar bir boyuta çektik */
-        padding-left: 10px;
-        border-left: 1px solid var(--neon-sari); /* Çizgiyi mobilde incelttik */
-    }
+            .logo-slogan { 
+                display: block; 
+                font-size: 13px; 
+                padding-left: 10px;
+                border-left: 1px solid var(--neon-sari); 
+            }
 
-    /* Sağ taraftaki menü linkleri zaten mobilde gizli kalabilir ya da alta kaymaz */
-    .nav-links {
-        gap: 10px;
-    }
-    
-    .nav-links a {
-        font-size: 11px;
-    }
-}
+            .nav-links {
+                display: none; /* Mobilde çakışmayı önlemek için sağ linkler gizli kalır */
+            }
+        }
 
         /* Slayt Arka Planlı Hero */
         .hero { position: relative; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; overflow: hidden; }
         .hero-slider { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background-color: #000; }
         .slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; filter: brightness(0.3); opacity: 0; animation: fadeSlide 15s infinite; }
         .slide:nth-child(1) { background-image: url('mediana.jpg'); animation-delay: 0s; }
-        .slide:nth-child(2) { background-image: url('liwhospitl.jpg'); animation-delay: 5s; }
+        .slide:nth-child(2) { background-image: url('livhospitl.jpg'); animation-delay: 5s; } /* Yazım hatası düzeltildi */
         .slide:nth-child(3) { background-image: url('piazzatorem.jpg'); animation-delay: 10s; }
 
         @keyframes fadeSlide {
@@ -132,7 +124,7 @@ nav {
         .work-card { background: var(--card-bg); border-radius: 10px; overflow: hidden; border: 1px solid #222; cursor: pointer; position: relative; }
         .work-card img { width: 100%; height: 250px; object-fit: cover; transition: 0.4s; }
         .work-card:hover img { transform: scale(1.05); filter: brightness(1.1); }
-        .work-info { padding: 15px; background: #0c0c0c; border-top: 1px solid #1a1a1a; text-align: center; } /* YAZILAR BURADA ORTALANDI */
+        .work-info { padding: 15px; background: #0c0c0c; border-top: 1px solid #1a1a1a; text-align: center; } 
         .work-info h3 { margin: 0; font-size: 0.95rem; color: #fff; text-transform: uppercase; }
         .work-info p { margin: 5px 0 0; font-size: 0.75rem; color: #666; }
 
@@ -146,33 +138,28 @@ nav {
 
         /* Footer & Kurumsal */
         .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; padding: 60px 5%; background: #000; border-top: 1px solid #111; }
-        .footer-box { background: #080808; padding: 30px; border-radius: 15px; border: 1px solid #1a1a1a; text-align: center; } /* FOOTER YAZILAR ORTALANDI */
+        .footer-box { background: #080808; padding: 30px; border-radius: 15px; border: 1px solid #1a1a1a; text-align: center; } 
         .map-container { width: 100%; height: 250px; border-radius: 10px; overflow: hidden; margin: 20px 0; border: 1px solid #333; }
-        
-        /* Gizli SEO Bölümü */
-        .seo-hidden { padding: 20px 5%; background: #000; color: #111; font-size: 1px; text-align: center; border-top: 1px solid #050505; }
-        .seo-hidden:hover { color: #222; font-size: 10px; } /* Sadece üstüne gelince çok hafif belirir */
 
-        /* WhatsApp */
+        /* WhatsApp & Instagram Float */
         .wp-float { position: fixed; bottom: 25px; right: 25px; display: flex; align-items: center; gap: 10px; z-index: 5000; }
         .wp-btn { width: 60px; height: 60px; background: #25d366; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; color: #fff; text-decoration: none; box-shadow: 0 10px 20px rgba(37,211,102,0.4); }
 
-        @media (max-width: 768px) { .nav-links { display: none; } .hero h1 { font-size: 1.8rem; } #lb-prev, #lb-next { font-size: 30px; } }
+        @media (max-width: 768px) { .hero h1 { font-size: 1.8rem; } #lb-prev, #lb-next { font-size: 30px; } }
     </style>
 </head>
 <body>
 
-   <nav>
-    <div class="logo-area">
-        <div class="logo">UZMAN<span>REKLAM</span></div>
-        <div class="logo-slogan">Karadeniz bayi tabelaları çözüm ortağınız...</div>
-    </div>
-    <div class="nav-links">
-        <a href="#islerimiz">PROJELER</a>
-        <a href="#iletisim">KONUM</a>
-        <a href="https://wa.me/905079605049">TEKLİF AL</a>
-    </div>
-</nav>
+    <nav>
+        <div class="logo-area">
+            <div class="logo">UZMAN<span>REKLAM</span></div>
+            <div class="logo-slogan">Karadeniz bayi tabelaları çözüm ortağınız...</div>
+        </div>
+        <div class="nav-links">
+            <a href="#islerimiz">PROJELER</a>
+            <a href="#iletisim">KONUM</a>
+            <a href="https://wa.me/905079605049">TEKLİF AL</a>
+        </div>
     </nav>
 
     <section class="hero">
@@ -195,7 +182,7 @@ nav {
 
     <section class="work-grid" id="gallery">
         <div class="work-card" onclick="openLightbox(0)">
-            <img src="liwhospitl.jpg" alt="Liv Hospital Samsun Işıklı Tabela ve Kutu Harf Uzman Reklam">
+            <img src="livhospitl.jpg" alt="Liv Hospital Samsun Işıklı Tabela ve Kutu Harf Uzman Reklam">
             <div class="work-info"><h3>Liv Hospital</h3><p>Paslanmaz Kutu Harf</p></div>
         </div>
         <div class="work-card" onclick="openLightbox(1)">
@@ -219,7 +206,7 @@ nav {
             <div class="work-info"><h3>Olimpik Havuz</h3><p>Işıklı Pano</p></div>
         </div>
         <div class="work-card" onclick="openLightbox(6)">
-            <img src="meditotem.jpg" alt=" MEdiBafra Hastanesi Totem Tabela Yol Kenarı Reklamları">
+            <img src="meditotem.jpg" alt=" MediBafra Hastanesi Totem Tabela Yol Kenarı Reklamları">
             <div class="work-info"><h3>MediBafra Hastanesi Totem</h3><p>Totem Uygulaması</p></div>
         </div>
         <div class="work-card" onclick="openLightbox(7)">
@@ -282,55 +269,47 @@ nav {
             <img src="tozlutabela.jpg" alt="Tozlu Tabela ve Mağaza Reklamı İlkadım">
             <div class="work-info"><h3>Mağaza Tabelası</h3><p>Kutu Harf Uygulama</p></div>
         </div>
+
         <div class="work-card" onclick="openLightbox(22)">
-    <img src="fuarstand.jpg" alt="Yunus Yapı Kurumsal Fuar Standı Tasarım ve Uygulama Uzman Reklam">
-    <div class="work-info"><h3>Yunus Yapı</h3><p>Fuar Standı Uygulama</p></div>
-</div>
-
-<div class="work-card" onclick="openLightbox(23)">
-    <img src="entek.jpg" alt="Entek Elektrik Işıklı Kutu Harf Tabela Samsun Tabela">
-    <div class="work-info"><h3>Entek Elektrik</h3><p>Işıklı Kutu Harf</p></div>
-</div>
-
-<div class="work-card" onclick="openLightbox(24)">
-    <img src="aciltabela.jpg" alt="Hastane Acil Giriş Totem Tabela ve Yönlendirme Sistemleri Karadeniz">
-    <div class="work-info"><h3>Acil Giriş</h3><p>Yönlendirme Totemi</p></div>
-</div>
-
-<div class="work-card" onclick="openLightbox(25)">
-    <img src="yunusevler.jpg" alt="Yunus Evler Çınar Çatı Tabelası ve Yüksek İrtifa Montaj Samsun">
-    <div class="work-info"><h3>Yunus Evler Çınar</h3><p>Çatı Tabelası</p></div>
-</div>
-
-<div class="work-card" onclick="openLightbox(26)">
-    <img src="özkaymak.jpg" alt="Özkaymak Özel Tasarım Satış Standı ve Reklam Kaplama">
-    <div class="work-info"><h3>Özkaymak</h3><p>Özel Tasarım Stand</p></div>
-</div>
-
-<div class="work-card" onclick="openLightbox(27)">
-    <img src="gerzedevlethastenesi.jpg" alt="Gerze Devlet Hastanesi Kurumsal Giriş Tabelası Karadeniz Reklam">
-    <div class="work-info"><h3>Gerze Devlet Hastanesi</h3><p>Kurumsal Giriş</p></div>
-</div>
-
-<div class="work-card" onclick="openLightbox(28)">
-    <img src="ramsey.jpg" alt="Ramsey Mağaza Cephe Giydirme ve Işıklı Tabela Tasarımı">
-    <div class="work-info"><h3>Ramsey</h3><p>Cephe Tasarımı</p></div>
-</div>
-
-<div class="work-card" onclick="openLightbox(29)">
-    <img src="recepoglu.jpg" alt="Recepoğlu Tabela İmalatı ve Montaj Süreci Uzman Reklam">
-    <div class="work-info"><h3>Recepoğlu</h3><p>Tabela İmalat</p></div>
-</div>
-
-<div class="work-card" onclick="openLightbox(30)">
-    <img src="burgerking.jpg" alt="Burger King İç Mekan Dijital Baskı ve Yönlendirme Samsun">
-    <div class="work-info"><h3>Burger King</h3><p>İç Mekan Baskı</p></div>
-</div>
-
-<div class="work-card" onclick="openLightbox(31)">
-    <img src="medicalpark.jpg" alt="Medical Park Çocuk Bölümü Işıklı Tabela ve Dekorasyon">
-    <div class="work-info"><h3>Medical Park</h3><p>Işıklı Logo</p></div>
-</div>
+            <img src="fuarstand.jpg" alt="Yunus Yapı Kurumsal Fuar Standı Tasarım ve Uygulama Uzman Reklam">
+            <div class="work-info"><h3>Yunus Yapı</h3><p>Fuar Standı Uygulama</p></div>
+        </div>
+        <div class="work-card" onclick="openLightbox(23)">
+            <img src="entek.jpg" alt="Entek Elektrik Işıklı Kutu Harf Tabela Samsun Tabela">
+            <div class="work-info"><h3>Entek Elektrik</h3><p>Işıklı Kutu Harf</p></div>
+        </div>
+        <div class="work-card" onclick="openLightbox(24)">
+            <img src="aciltabela.jpg" alt="Hastane Acil Giriş Totem Tabela ve Yönlendirme Sistemleri Karadeniz">
+            <div class="work-info"><h3>Acil Giriş</h3><p>Yönlendirme Totemi</p></div>
+        </div>
+        <div class="work-card" onclick="openLightbox(25)">
+            <img src="yunusevler.jpg" alt="Yunus Evler Çınar Çatı Tabelası ve Yüksek İrtifa Montaj Samsun">
+            <div class="work-info"><h3>Yunus Evler Çınar</h3><p>Çatı Tabelası</p></div>
+        </div>
+        <div class="work-card" onclick="openLightbox(26)">
+            <img src="özkaymak.jpg" alt="Özkaymak Özel Tasarım Satış Standı ve Reklam Kaplama">
+            <div class="work-info"><h3>Özkaymak</h3><p>Özel Tasarım Stand</p></div>
+        </div>
+        <div class="work-card" onclick="openLightbox(27)">
+            <img src="gerzedevlethastenesi.jpg" alt="Gerze Devlet Hospital Giriş Tabelası Karadeniz Reklam">
+            <div class="work-info"><h3>Gerze Devlet Hastanesi</h3><p>Kurumsal Giriş</p></div>
+        </div>
+        <div class="work-card" onclick="openLightbox(28)">
+            <img src="ramsey.jpg" alt="Ramsey Mağaza Cephe Giydirme ve Işıklı Tabela Tasarımı">
+            <div class="work-info"><h3>Ramsey</h3><p>Cephe Tasarımı</p></div>
+        </div>
+        <div class="work-card" onclick="openLightbox(29)">
+            <img src="recepoglu.jpg" alt="Recepoğlu Tabela İmalatı ve Montaj Süreci Uzman Reklam">
+            <div class="work-info"><h3>Recepoğlu</h3><p>Tabela İmalat</p></div>
+        </div>
+        <div class="work-card" onclick="openLightbox(30)">
+            <img src="burgerking.jpg" alt="Burger King İç Mekan Dijital Baskı ve Yönlendirme Samsun">
+            <div class="work-info"><h3>Burger King</h3><p>İç Mekan Baskı</p></div>
+        </div>
+        <div class="work-card" onclick="openLightbox(31)">
+            <img src="medicalpark.jpg" alt="Medical Park Çocuk Bölümü Işıklı Tabela ve Dekorasyon">
+            <div class="work-info"><h3>Medical Park</h3><p>Işıklı Logo</p></div>
+        </div>
     </section>
 
     <div id="lightbox">
@@ -365,23 +344,14 @@ nav {
         </div>
     </section>
 
-  <div class="seo-hidden" style="position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden;">
-    <h3>Samsun ve Tüm Karadeniz Bölgesi Kurumsal Reklam Çözüm Ortağınız: Uzman Reklam</h3>
-    <p>1973 yılında kurucumuz <strong>Remzi Toraman</strong> tarafından temelleri atılan Uzman Reklam, yarım asrı aşan tecrübesiyle <strong>Samsun tabela reklam firmaları</strong> arasında liderdir. <strong>Samsun en iyi tabelacı</strong> arayışında <strong>reklam tabela tasarımları 2026</strong> vizyonuyla hizmet veriyoruz. <strong>Atakum tabelacı</strong>, <strong>İlkadım kutu harf tabela</strong>, <strong>Bafra reklam ajansları</strong> ve <strong>paslanmaz harf Samsun</strong> projelerimizle bölgedeyiz.</p>
-    
-    <p><strong>Karadeniz bayi tabelaları çözüm ortağı</strong> olarak <strong>Ordu totem tabela imalatı</strong>, <strong>Sinop tabela montaj</strong>, <strong>Amasya ışıklı tabela fiyatları</strong> ve <strong>dijital baskı ve araç giydirme Samsun</strong> hizmetlerimizle tüm Karadeniz şeridindeyiz. Giresun, Trabzon, Rize ve Artvin illerinde profesyonel reklam çözümleri sunuyoruz.</p>
-
-    <span>Hızlı Erişim: Samsun tabela reklamcı, Atakum reklamcılar, İlkadım tabelacı, Bafra tabela imalatı, Çarşamba reklam tabela, Tekkeköy araç giydirme, Terme ışıklı tabela, Sinop tabela firmaları, Amasya reklam şirketleri, Ordu totem tabela fiyatları, Giresun kutu harf, Trabzon reklam ajansı, Rize tabela montaj, Karadeniz bölge bayi tabelası, Samsun dijital baskı merkezi, Samsun paslanmaz harf fiyatları, 2026 tabela modelleri, Uzman Reklam Samsun, Samsun fuar standı kiralama, fuar stand tasarımı Karadeniz, hastane acil yönlendirme tabelası, Gerze devlet hastanesi tabela, AVM totem tabela fiyatları, Entek elektrik kutu harf, Recepoglu tabela imalatı Samsun.</span>
-</div>
-
     <div class="wp-float">
-    <a href="https://www.instagram.com/uzman.reklamm/" class="wp-btn" target="_blank" style="background: #e4405f; margin-right: 10px;">
-        <i class="fab fa-instagram"></i>
-    </a>
-    <a href="https://wa.me/905079605049" class="wp-btn" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-</div>
+        <a href="https://www.instagram.com/uzman.reklamm/" class="wp-btn" target="_blank" style="background: #e4405f; margin-right: 10px;">
+            <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://wa.me/905079605049" class="wp-btn" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
 
     <script>
         let currentImgIdx = 0;
@@ -417,6 +387,15 @@ nav {
             if (e.target == lightbox) closeLightbox();
         }
     </script>
+
+    <div class="seo-hidden" style="position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden;">
+        <h3>Samsun ve Tüm Karadeniz Bölgesi Kurumsal Reklam Çözüm Ortağınız: Uzman Reklam</h3>
+        <p>1973 yılında kurucumuz <strong>Remzi Toraman</strong> tarafından temelleri atılan Uzman Reklam, yarım asrı aşan tecrübesiyle <strong>Samsun tabela reklam firmaları</strong> arasında liderdir. <strong>Samsun en iyi tabelacı</strong> arayışında <strong>reklam tabela tasarımları 2026</strong> vizyonuyla hizmet veriyoruz. <strong>Atakum tabelacı</strong>, <strong>İlkadım kutu harf tabela</strong>, <strong>Bafra reklam ajansları</strong> ve <strong>paslanmaz harf Samsun</strong> projelerimizle bölgedeyiz.</p>
+        
+        <p><strong>Karadeniz bayi tabelaları çözüm ortağı</strong> olarak <strong>Ordu totem tabela imalatı</strong>, <strong>Sinop tabela montaj</strong>, <strong>Amasya ışıklı tabela fiyatları</strong> ve <strong>dijital baskı ve araç giydirme Samsun</strong> hizmetlerimizle tüm Karadeniz şeridindeyiz. Giresun, Trabzon, Rize ve Artvin illerinde profesyonel reklam çözümleri sunuyoruz.</p>
+
+        <span>Hızlı Erişim: Samsun tabela reklamcı, Atakum reklamcılar, İlkadım tabelacı, Bafra tabela imalatı, Çarşamba reklam tabela, Tekkeköy araç giydirme, Terme ışıklı tabela, Sinop tabela firmaları, Amasya reklam şirketleri, Ordu totem tabela fiyatları, Giresun kutu harf, Trabzon reklam ajansı, Rize tabela montaj, Karadeniz bölge bayi tabelası, Samsun dijital baskı merkezi, Samsun paslanmaz harf fiyatları, 2026 tabela modelleri, Uzman Reklam Samsun, Samsun fuar standı kiralama, fuar stand tasarımı Karadeniz, hastane acil yönlendirme tabelası, Gerze devlet hastanesi tabela, AVM totem tabela fiyatları, Entek elektrik kutu harf, Recepoglu tabela imalatı Samsun.</span>
+    </div>
 
 </body>
 </html>
