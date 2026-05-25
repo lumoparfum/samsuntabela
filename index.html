@@ -70,10 +70,39 @@ nav {
     text-transform: uppercase;
 }
 
-/* MOBİLDE SLOGANI GİZLE (Yazılar iç içe girmesin diye) */
-@media (max-width: 992px) {
-    .logo-slogan { display: none; }
-    .logo { font-size: 22px; }
+/* MOBİL UYUMLULUK DÜZENLEMESİ */
+@media (max-width: 768px) {
+    /* Navigasyon alanını mobilde dikey değil yine yan yana tutuyoruz */
+    nav {
+        padding: 10px 3%;
+        width: 94%;
+    }
+
+    .logo-area {
+        gap: 10px; /* Aradaki boşluğu mobilde daralttık */
+    }
+
+    /* Logoyu mobilde biraz küçülttük ki sığsın */
+    .logo { 
+        font-size: 20px; 
+    }
+
+    /* Hafif el yazısı slogan artık mobilde de GÖRÜNÜR ve boyutu ekrana tam sığıyor */
+    .logo-slogan { 
+        display: block; /* Gizlemeyi kaldırdık */
+        font-size: 13px; /* Yazıyı mobilde kibar bir boyuta çektik */
+        padding-left: 10px;
+        border-left: 1px solid var(--neon-sari); /* Çizgiyi mobilde incelttik */
+    }
+
+    /* Sağ taraftaki menü linkleri zaten mobilde gizli kalabilir ya da alta kaymaz */
+    .nav-links {
+        gap: 10px;
+    }
+    
+    .nav-links a {
+        font-size: 11px;
+    }
 }
 
         /* Slayt Arka Planlı Hero */
