@@ -71,30 +71,33 @@
             text-transform: uppercase;
         }
 
-        /* MOBİL UYUMLULUK DÜZENLEMESİ (Genişletildi ve Rahatlatıldı) */
+        /* MOBİL UYUMLULUK DÜZENLEMESİ - TAŞMA SORUNU ÇÖZÜLDÜ */
         @media (max-width: 768px) {
             nav {
-                padding: 15px 2%; /* Üstten/alttan biraz daha boşluk, yanlara daha çok yayıldı */
-                width: 96%;
+                padding: 20px 5%; /* Yukarıdan aşağıya genişletildi */
+                width: 90%;
             }
 
             .logo-area {
-                gap: 15px; /* Logo ile slogan arası %15 açıldı */
+                gap: 12px; 
+                align-items: center;
             }
 
             .logo { 
-                font-size: 23px; /* Logo fontu %15 daha belirgin */
+                font-size: 24px; 
             }
 
             .logo-slogan { 
                 display: block; 
-                font-size: 14.5px; /* Yazı fontu daha okunaklı yapıldı */
-                padding-left: 15px; /* Çizgi ile yazı arası ferahlatıldı */
-                border-left: 1px solid var(--neon-sari); 
+                font-size: 16px; 
+                padding-left: 12px;
+                border-left: 2px solid var(--neon-sari); 
+                white-space: normal; /* İŞTE KRİTİK KOD: Yazı artık sağa taşmaz, sığmayınca alt satıra iner! */
+                line-height: 1.1;
             }
 
             .nav-links {
-                display: none; /* Mobilde çakışmayı önlemek için sağ linkler gizli kalır */
+                display: none; 
             }
         }
 
