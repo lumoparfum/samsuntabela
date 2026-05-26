@@ -147,6 +147,69 @@
         .wp-btn { width: 60px; height: 60px; background: #25d366; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; color: #fff; text-decoration: none; box-shadow: 0 10px 20px rgba(37,211,102,0.4); }
 
         @media (max-width: 768px) { .hero h1 { font-size: 1.8rem; } #lb-prev, #lb-next { font-size: 30px; } }
+        /* Mobil Alt Menü Tasarımı */
+.mobile-bottom-nav {
+    display: none; /* Bilgisayarda gizle */
+}
+
+@media (max-width: 768px) {
+    .mobile-bottom-nav {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: #050505; /* Sitenin orijinal koyu arka planı */
+        border-top: 2px solid #ccff00; /* Üstten geçen neon sarı çizgi */
+        box-shadow: 0 -5px 20px rgba(204, 255, 0, 0.15);
+        z-index: 9999;
+        justify-content: space-around;
+        align-items: center;
+        padding: 8px 0;
+    }
+
+    .nav-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-decoration: none;
+        color: #ffffff;
+        font-size: 10px;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 700;
+        gap: 4px;
+        flex: 1;
+        transition: transform 0.2s;
+    }
+
+    .nav-item i {
+        font-size: 18px;
+        color: #ffffff;
+    }
+
+    /* Teklif Al Butonu - Sitenin Neon Sarısıyla Patlasın */
+    .nav-item.highlight i, .nav-item.highlight span {
+        color: #ccff00 !important;
+    }
+
+    /* Sosyal Medya Renkleri */
+    .nav-item.instagram i {
+        color: #e1306c;
+    }
+    .nav-item.whatsapp i {
+        color: #25d366;
+    }
+
+    /* Tıklayınca hafif büyüme efekti */
+    .nav-item:active {
+        transform: scale(0.9);
+    }
+
+    /* Alttaki menü içeriği kapatmasın diye site gövdesine boşluk bırakıyoruz */
+    body {
+        padding-bottom: 70px !important;
+    }
+}
     </style>
 </head>
 <body>
@@ -397,6 +460,27 @@
 
         <span>Hızlı Erişim: Samsun tabela reklamcı, Atakum reklamcılar, İlkadım tabelacı, Bafra tabela imalatı, Çarşamba reklam tabela, Tekkeköy araç giydirme, Terme ışıklı tabela, Sinop tabela firmaları, Amasya reklam şirketleri, Ordu totem tabela fiyatları, Giresun kutu harf, Trabzon reklam ajansı, Rize tabela montaj, Karadeniz bölge bayi tabelası, Samsun dijital baskı merkezi, Samsun paslanmaz harf fiyatları, 2026 tabela modelleri, Uzman Reklam Samsun, Samsun fuar standı kiralama, fuar stand tasarımı Karadeniz, hastane acil yönlendirme tabelası, Gerze devlet hastanesi tabela, AVM totem tabela fiyatları, Entek elektrik kutu harf, Recepoglu tabela imalatı Samsun.</span>
     </div>
-
+<div class="mobile-bottom-nav">
+    <a href="#projects" class="nav-item">
+        <i class="fas fa-images"></i>
+        <span>PROJELER</span>
+    </a>
+    <a href="#location" class="nav-item">
+        <i class="fas fa-map-marker-alt"></i>
+        <span>KONUM</span>
+    </a>
+    <a href="https://wa.me/905079605049?text=Merhaba,%20tabela%20fiyatı%20hakkında%20bilgi%20alabilir%20miyim?" target="_blank" class="nav-item highlight">
+        <i class="fas fa-file-invoice-dollar"></i>
+        <span>TEKLİF AL</span>
+    </a>
+    <a href="https://www.instagram.com/uzman.reklamm" target="_blank" class="nav-item instagram">
+        <i class="fab fa-instagram"></i>
+        <span>INSTAGRAM</span>
+    </a>
+    <a href="https://wa.me/905079605049" target="_blank" class="nav-item whatsapp">
+        <i class="fab fa-whatsapp"></i>
+        <span>WHATSAPP</span>
+    </a>
+</div>
 </body>
 </html>
