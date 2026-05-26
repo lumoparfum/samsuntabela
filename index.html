@@ -3,7 +3,7 @@
 <head>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <meta charset="UTF-8">
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Uzman Reklam | Karadeniz Kurumsal Tabela & Reklam Çözüm Ortağı</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -77,24 +77,20 @@
                 padding: 10px 3%;
                 width: 94%;
             }
-
             .logo-area {
                 gap: 10px; 
             }
-
             .logo { 
                 font-size: 20px; 
             }
-
             .logo-slogan { 
                 display: block; 
                 font-size: 13px; 
                 padding-left: 10px;
                 border-left: 1px solid var(--neon-sari); 
             }
-
             .nav-links {
-                display: none; /* Mobilde çakışmayı önlemek için sağ linkler gizli kalır */
+                display: none; 
             }
         }
 
@@ -103,7 +99,7 @@
         .hero-slider { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background-color: #000; }
         .slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; filter: brightness(0.3); opacity: 0; animation: fadeSlide 15s infinite; }
         .slide:nth-child(1) { background-image: url('mediana.jpg'); animation-delay: 0s; }
-        .slide:nth-child(2) { background-image: url('liwhospitl.jpg'); animation-delay: 5s; } /* Yazım hatası düzeltildi */
+        .slide:nth-child(2) { background-image: url('liwhospitl.jpg'); animation-delay: 5s; } 
         .slide:nth-child(3) { background-image: url('piazzatorem.jpg'); animation-delay: 10s; }
 
         @keyframes fadeSlide {
@@ -142,74 +138,62 @@
         .footer-box { background: #080808; padding: 30px; border-radius: 15px; border: 1px solid #1a1a1a; text-align: center; } 
         .map-container { width: 100%; height: 250px; border-radius: 10px; overflow: hidden; margin: 20px 0; border: 1px solid #333; }
 
-        /* WhatsApp & Instagram Float */
-        .wp-float { position: fixed; bottom: 25px; right: 25px; display: flex; align-items: center; gap: 10px; z-index: 5000; }
-        .wp-btn { width: 60px; height: 60px; background: #25d366; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; color: #fff; text-decoration: none; box-shadow: 0 10px 20px rgba(37,211,102,0.4); }
-
         @media (max-width: 768px) { .hero h1 { font-size: 1.8rem; } #lb-prev, #lb-next { font-size: 30px; } }
-        /* Mobil Alt Menü Tasarımı */
-.mobile-bottom-nav {
-    display: none; /* Bilgisayarda gizle */
-}
 
-@media (max-width: 768px) {
-    .mobile-bottom-nav {
-        display: flex;
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        background-color: #050505; /* Sitenin orijinal koyu arka planı */
-        border-top: 2px solid #ccff00; /* Üstten geçen neon sarı çizgi */
-        box-shadow: 0 -5px 20px rgba(204, 255, 0, 0.15);
-        z-index: 9999;
-        justify-content: space-around;
-        align-items: center;
-        padding: 8px 0;
-    }
+        /* YÜZEN AKSİYON MENÜSÜ (Daire Butonlar) */
+        .floating-menu {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 5000;
+        }
 
-    .nav-item {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-decoration: none;
-        color: #ffffff;
-        font-size: 10px;
-        font-family: 'Poppins', sans-serif;
-        font-weight: 700;
-        gap: 4px;
-        flex: 1;
-        transition: transform 0.2s;
-    }
+        .float-btn {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: #fff;
+            text-decoration: none;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+            transition: transform 0.2s;
+        }
 
-    .nav-item i {
-        font-size: 18px;
-        color: #ffffff;
-    }
+        .float-btn:hover, .float-btn:active {
+            transform: scale(0.9);
+        }
 
-    /* Teklif Al Butonu - Sitenin Neon Sarısıyla Patlasın */
-    .nav-item.highlight i, .nav-item.highlight span {
-        color: #ccff00 !important;
-    }
+        /* Renkler ve Vurgular */
+        .float-wp { background: #25d366; }
+        .float-ig { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%); }
+        .float-offer { background: var(--neon-sari); color: #000; }
+        .float-location, .float-projects { background: #222; }
+        .float-offer i { color: #000; } /* Neon sarı üstüne siyah ikon */
 
-    /* Sosyal Medya Renkleri */
-    .nav-item.instagram i {
-        color: #e1306c;
-    }
-    .nav-item.whatsapp i {
-        color: #25d366;
-    }
+        /* Masaüstünde ekstra butonları gizle, sadece wp ve ig kalsın */
+        @media (min-width: 769px) {
+            .mobile-only-float { display: none; }
+        }
 
-    /* Tıklayınca hafif büyüme efekti */
-    .nav-item:active {
-        transform: scale(0.9);
-    }
-
-    /* Alttaki menü içeriği kapatmasın diye site gövdesine boşluk bırakıyoruz */
-    body {
-        padding-bottom: 70px !important;
-    }
-}
+        /* Mobilde yan yana tertemiz dizilimi */
+        @media (max-width: 768px) {
+            .floating-menu {
+                bottom: 15px;
+                right: 15px;
+                gap: 10px;
+            }
+            .float-btn {
+                width: 45px;
+                height: 45px;
+                font-size: 20px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -333,7 +317,6 @@
             <img src="tozlutabela.jpg" alt="Tozlu Tabela ve Mağaza Reklamı İlkadım">
             <div class="work-info"><h3>Mağaza Tabelası</h3><p>Kutu Harf Uygulama</p></div>
         </div>
-
         <div class="work-card" onclick="openLightbox(22)">
             <img src="fuarstand.jpg" alt="Yunus Yapı Kurumsal Fuar Standı Tasarım ve Uygulama Uzman Reklam">
             <div class="work-info"><h3>Yunus Yapı</h3><p>Fuar Standı Uygulama</p></div>
@@ -408,15 +391,6 @@
         </div>
     </section>
 
-    <div class="wp-float">
-        <a href="https://www.instagram.com/uzman.reklamm/" class="wp-btn" target="_blank" style="background: #e4405f; margin-right: 10px;">
-            <i class="fab fa-instagram"></i>
-        </a>
-        <a href="https://wa.me/905079605049" class="wp-btn" target="_blank">
-            <i class="fab fa-whatsapp"></i>
-        </a>
-    </div>
-
     <script>
         let currentImgIdx = 0;
         const images = document.querySelectorAll('#gallery img');
@@ -460,27 +434,24 @@
 
         <span>Hızlı Erişim: Samsun tabela reklamcı, Atakum reklamcılar, İlkadım tabelacı, Bafra tabela imalatı, Çarşamba reklam tabela, Tekkeköy araç giydirme, Terme ışıklı tabela, Sinop tabela firmaları, Amasya reklam şirketleri, Ordu totem tabela fiyatları, Giresun kutu harf, Trabzon reklam ajansı, Rize tabela montaj, Karadeniz bölge bayi tabelası, Samsun dijital baskı merkezi, Samsun paslanmaz harf fiyatları, 2026 tabela modelleri, Uzman Reklam Samsun, Samsun fuar standı kiralama, fuar stand tasarımı Karadeniz, hastane acil yönlendirme tabelası, Gerze devlet hastanesi tabela, AVM totem tabela fiyatları, Entek elektrik kutu harf, Recepoglu tabela imalatı Samsun.</span>
     </div>
-<div class="mobile-bottom-nav">
-    <a href="#projects" class="nav-item">
-        <i class="fas fa-images"></i>
-        <span>PROJELER</span>
-    </a>
-    <a href="#location" class="nav-item">
-        <i class="fas fa-map-marker-alt"></i>
-        <span>KONUM</span>
-    </a>
-    <a href="https://wa.me/905079605049?text=Merhaba,%20tabela%20fiyatı%20hakkında%20bilgi%20alabilir%20miyim?" target="_blank" class="nav-item highlight">
-        <i class="fas fa-file-invoice-dollar"></i>
-        <span>TEKLİF AL</span>
-    </a>
-    <a href="https://www.instagram.com/uzman.reklamm" target="_blank" class="nav-item instagram">
-        <i class="fab fa-instagram"></i>
-        <span>INSTAGRAM</span>
-    </a>
-    <a href="https://wa.me/905079605049" target="_blank" class="nav-item whatsapp">
-        <i class="fab fa-whatsapp"></i>
-        <span>WHATSAPP</span>
-    </a>
-</div>
+
+    <div class="floating-menu">
+        <a href="#islerimiz" class="float-btn float-projects mobile-only-float" title="Projeler">
+            <i class="fas fa-images"></i>
+        </a>
+        <a href="#iletisim" class="float-btn float-location mobile-only-float" title="Konum">
+            <i class="fas fa-map-marker-alt"></i>
+        </a>
+        <a href="https://wa.me/905079605049?text=Merhaba,%20tabela%20fiyatı%20hakkında%20bilgi%20alabilir%20miyim?" target="_blank" class="float-btn float-offer mobile-only-float" title="Teklif Al">
+            <i class="fas fa-file-invoice-dollar"></i>
+        </a>
+        <a href="https://www.instagram.com/uzman.reklamm/" target="_blank" class="float-btn float-ig" title="Instagram">
+            <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://wa.me/905079605049" target="_blank" class="float-btn float-wp" title="WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
 </body>
 </html>
