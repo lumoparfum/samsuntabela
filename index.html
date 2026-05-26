@@ -3,7 +3,7 @@
 <head>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <meta charset="UTF-8">
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Uzman Reklam | Karadeniz Kurumsal Tabela & Reklam Çözüm Ortağı</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -77,20 +77,24 @@
                 padding: 10px 3%;
                 width: 94%;
             }
+
             .logo-area {
                 gap: 10px; 
             }
+
             .logo { 
                 font-size: 20px; 
             }
+
             .logo-slogan { 
                 display: block; 
                 font-size: 13px; 
                 padding-left: 10px;
                 border-left: 1px solid var(--neon-sari); 
             }
+
             .nav-links {
-                display: none; 
+                display: none; /* Mobilde çakışmayı önlemek için sağ linkler gizli kalır */
             }
         }
 
@@ -138,51 +142,58 @@
         .footer-box { background: #080808; padding: 30px; border-radius: 15px; border: 1px solid #1a1a1a; text-align: center; } 
         .map-container { width: 100%; height: 250px; border-radius: 10px; overflow: hidden; margin: 20px 0; border: 1px solid #333; }
 
-        @media (max-width: 768px) { .hero h1 { font-size: 1.8rem; } #lb-prev, #lb-next { font-size: 30px; } }
+        /* WhatsApp & Instagram Float (Genel Kapsayıcı) */
+        .wp-float { position: fixed; bottom: 25px; right: 25px; display: flex; align-items: center; gap: 10px; z-index: 5000; }
+        .wp-btn { width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; color: #fff; text-decoration: none; box-shadow: 0 10px 20px rgba(0,0,0,0.4); }
 
-        /* YÜZEN AKSİYON MENÜSÜ (Mevcutların Yanına Daire Butonlar) */
-        .wp-float {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            z-index: 5000;
-        }
+        @media (max-width: 768px) { 
+            .hero h1 { font-size: 1.8rem; } 
+            #lb-prev, #lb-next { font-size: 30px; } 
 
-        .wp-btn {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 30px;
-            color: #fff;
-            text-decoration: none;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
-            transition: transform 0.2s;
-        }
-
-        /* Renkler */
-        .wp-main { background: #25d366; }
-        .wp-instagram { background: #e4405f; }
-        .wp-offer { background: var(--neon-sari); color: #000; }
-        .wp-location, .wp-projects { background: #333; }
-        .wp-offer i { color: #000; } /* Neon sarı üstüne siyah ikon */
-
-        /* Mobilde yan yana tertemiz dizilimi */
-        @media (max-width: 768px) {
+            /* Mobilde Butonları Biraz Küçültelim ki Yazılara Yer Kalsın */
             .wp-float {
                 bottom: 20px;
-                right: 20px;
-                gap: 10px;
+                right: 15px;
+                gap: 8px;
             }
             .wp-btn {
-                width: 50px;
-                height: 50px;
-                font-size: 24px;
+                width: 45px;
+                height: 45px;
+                font-size: 22px;
+            }
+        }
+
+        /* MOBİL İÇİN YÜZEN METİN LİNKLERİ (Instagram ve WP Yanında) */
+        .mobile-nav-texts {
+            display: none; /* PC'de gizli */
+        }
+
+        @media (max-width: 768px) {
+            .mobile-nav-texts {
+                display: flex;
+                align-items: center;
+                background: rgba(0, 0, 0, 0.75); /* Okunması için saydam siyah arka plan */
+                padding: 0 15px;
+                height: 45px;
+                border-radius: 30px;
+                gap: 12px;
+                margin-right: 5px;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                backdrop-filter: blur(4px);
+            }
+            
+            .mobile-nav-texts a {
+                color: #fff;
+                text-decoration: none;
+                font-size: 11px;
+                font-family: 'Inter', sans-serif;
+                font-weight: 800;
+                text-transform: uppercase;
+                white-space: nowrap;
+            }
+
+            .mobile-nav-texts a:last-child {
+                color: var(--neon-sari); /* TEKLİF AL yazısı neon sarı olsun */
             }
         }
     </style>
@@ -427,21 +438,20 @@
     </div>
 
     <div class="wp-float">
-        <a href="#islerimiz" class="wp-btn wp-projects" title="Projeler">
-            <i class="fas fa-images"></i>
-        </a>
-        <a href="#iletisim" class="wp-btn wp-location" title="Konum">
-            <i class="fas fa-map-marker-alt"></i>
-        </a>
-        <a href="https://wa.me/905079605049?text=Merhaba,%20tabela%20fiyatı%20hakkında%20bilgi%20alabilir%20miyim?" target="_blank" class="wp-btn wp-offer" title="Teklif Al">
-            <i class="fas fa-file-invoice-dollar"></i>
-        </a>
-        <a href="https://www.instagram.com/uzman.reklamm/" class="wp-btn wp-instagram" target="_blank" title="Instagram">
+        
+        <div class="mobile-nav-texts">
+            <a href="#islerimiz">PROJELER</a>
+            <a href="#iletisim">KONUM</a>
+            <a href="https://wa.me/905079605049">TEKLİF AL</a>
+        </div>
+
+        <a href="https://www.instagram.com/uzman.reklamm/" class="wp-btn" target="_blank" style="background: #e4405f;">
             <i class="fab fa-instagram"></i>
         </a>
-        <a href="https://wa.me/905079605049" class="wp-btn wp-main" target="_blank" title="WhatsApp">
+        <a href="https://wa.me/905079605049" class="wp-btn" target="_blank" style="background: #25d366;">
             <i class="fab fa-whatsapp"></i>
         </a>
+
     </div>
 
 </body>
