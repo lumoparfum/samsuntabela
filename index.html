@@ -140,58 +140,49 @@
 
         @media (max-width: 768px) { .hero h1 { font-size: 1.8rem; } #lb-prev, #lb-next { font-size: 30px; } }
 
-        /* YÜZEN AKSİYON MENÜSÜ (Daire Butonlar) */
-        .floating-menu {
+        /* YÜZEN AKSİYON MENÜSÜ (Mevcutların Yanına Daire Butonlar) */
+        .wp-float {
             position: fixed;
             bottom: 25px;
             right: 25px;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 15px;
             z-index: 5000;
         }
 
-        .float-btn {
-            width: 55px;
-            height: 55px;
+        .wp-btn {
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
+            font-size: 30px;
             color: #fff;
             text-decoration: none;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
             transition: transform 0.2s;
         }
 
-        .float-btn:hover, .float-btn:active {
-            transform: scale(0.9);
-        }
-
-        /* Renkler ve Vurgular */
-        .float-wp { background: #25d366; }
-        .float-ig { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%); }
-        .float-offer { background: var(--neon-sari); color: #000; }
-        .float-location, .float-projects { background: #222; }
-        .float-offer i { color: #000; } /* Neon sarı üstüne siyah ikon */
-
-        /* Masaüstünde ekstra butonları gizle, sadece wp ve ig kalsın */
-        @media (min-width: 769px) {
-            .mobile-only-float { display: none; }
-        }
+        /* Renkler */
+        .wp-main { background: #25d366; }
+        .wp-instagram { background: #e4405f; }
+        .wp-offer { background: var(--neon-sari); color: #000; }
+        .wp-location, .wp-projects { background: #333; }
+        .wp-offer i { color: #000; } /* Neon sarı üstüne siyah ikon */
 
         /* Mobilde yan yana tertemiz dizilimi */
         @media (max-width: 768px) {
-            .floating-menu {
-                bottom: 15px;
-                right: 15px;
+            .wp-float {
+                bottom: 20px;
+                right: 20px;
                 gap: 10px;
             }
-            .float-btn {
-                width: 45px;
-                height: 45px;
-                font-size: 20px;
+            .wp-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 24px;
             }
         }
     </style>
@@ -370,7 +361,7 @@
     <section class="footer-grid" id="iletisim">
         <div class="footer-box">
             <h3>FABRİKA & ATÖLYE</h3>
-            <p><strong>Bafra Merkez:</strong> Altınyaprak Mh. Çizmeli 2.Sk. No:33</p>
+            <p><strong>Bafra Merkez:</strong> Emirefendi Mh. Çizmeli 2.Sk. No:33</p>
             <p><strong>Telefon:</strong> 0532 220 46 49</p>
             <div class="map-container">
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2975.345!2d35.9185!3d41.5651!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDHCsDMzJzU0LjQiTiAzNcKwNTUnMDYuNiJF!5e0!3m2!1str!2str!4v1621234567890" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
@@ -435,20 +426,20 @@
         <span>Hızlı Erişim: Samsun tabela reklamcı, Atakum reklamcılar, İlkadım tabelacı, Bafra tabela imalatı, Çarşamba reklam tabela, Tekkeköy araç giydirme, Terme ışıklı tabela, Sinop tabela firmaları, Amasya reklam şirketleri, Ordu totem tabela fiyatları, Giresun kutu harf, Trabzon reklam ajansı, Rize tabela montaj, Karadeniz bölge bayi tabelası, Samsun dijital baskı merkezi, Samsun paslanmaz harf fiyatları, 2026 tabela modelleri, Uzman Reklam Samsun, Samsun fuar standı kiralama, fuar stand tasarımı Karadeniz, hastane acil yönlendirme tabelası, Gerze devlet hastanesi tabela, AVM totem tabela fiyatları, Entek elektrik kutu harf, Recepoglu tabela imalatı Samsun.</span>
     </div>
 
-    <div class="floating-menu">
-        <a href="#islerimiz" class="float-btn float-projects mobile-only-float" title="Projeler">
+    <div class="wp-float">
+        <a href="#islerimiz" class="wp-btn wp-projects" title="Projeler">
             <i class="fas fa-images"></i>
         </a>
-        <a href="#iletisim" class="float-btn float-location mobile-only-float" title="Konum">
+        <a href="#iletisim" class="wp-btn wp-location" title="Konum">
             <i class="fas fa-map-marker-alt"></i>
         </a>
-        <a href="https://wa.me/905079605049?text=Merhaba,%20tabela%20fiyatı%20hakkında%20bilgi%20alabilir%20miyim?" target="_blank" class="float-btn float-offer mobile-only-float" title="Teklif Al">
+        <a href="https://wa.me/905079605049?text=Merhaba,%20tabela%20fiyatı%20hakkında%20bilgi%20alabilir%20miyim?" target="_blank" class="wp-btn wp-offer" title="Teklif Al">
             <i class="fas fa-file-invoice-dollar"></i>
         </a>
-        <a href="https://www.instagram.com/uzman.reklamm/" target="_blank" class="float-btn float-ig" title="Instagram">
+        <a href="https://www.instagram.com/uzman.reklamm/" class="wp-btn wp-instagram" target="_blank" title="Instagram">
             <i class="fab fa-instagram"></i>
         </a>
-        <a href="https://wa.me/905079605049" target="_blank" class="float-btn float-wp" title="WhatsApp">
+        <a href="https://wa.me/905079605049" class="wp-btn wp-main" target="_blank" title="WhatsApp">
             <i class="fab fa-whatsapp"></i>
         </a>
     </div>
