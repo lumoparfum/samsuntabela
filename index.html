@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg?v=3">
     <meta charset="UTF-8">
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -69,36 +69,27 @@
             font-size: 16px; 
             font-weight: 800; 
             text-transform: uppercase;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--neon-sari);
         }
 
-        /* MOBİL UYUMLULUK DÜZENLEMESİ - TAŞMA SORUNU ÇÖZÜLDÜ */
+        /* MOBİL UYUMLULUK DÜZENLEMESİ */
         @media (max-width: 768px) {
-            nav {
-                padding: 20px 5%; /* Yukarıdan aşağıya genişletildi */
-                width: 90%;
-            }
-
-            .logo-area {
-                gap: 12px; 
-                align-items: center;
-            }
-
-            .logo { 
-                font-size: 24px; 
-            }
-
+            nav { padding: 20px 5%; width: 90%; }
+            .logo-area { gap: 12px; align-items: center; }
+            .logo { font-size: 24px; }
             .logo-slogan { 
                 display: block; 
                 font-size: 16px; 
                 padding-left: 12px;
                 border-left: 2px solid var(--neon-sari); 
-                white-space: normal; /* İŞTE KRİTİK KOD: Yazı artık sağa taşmaz, sığmayınca alt satıra iner! */
+                white-space: normal; 
                 line-height: 1.1;
             }
-
-            .nav-links {
-                display: none; 
-            }
+            .nav-links { display: none; }
         }
 
         /* Slayt Arka Planlı Hero */
@@ -120,6 +111,50 @@
         .hero h1 span { color: var(--neon-sari); }
         .hero p { font-size: clamp(1rem, 2vw, 1.3rem); max-width: 900px; color: #ddd; margin-bottom: 40px; line-height: 1.6; }
         .btn-main { background: var(--neon-sari); color: #000; padding: 18px 45px; border-radius: 50px; text-decoration: none; font-weight: 900; text-transform: uppercase; transition: 0.3s; display: inline-block; cursor: pointer; }
+
+        /* YENİ EKLENEN: HAKKIMIZDA & SEO BÖLÜMÜ */
+        .about-section {
+            padding: 100px 5%;
+            background: #0a0a0a;
+            border-top: 1px solid #1a1a1a;
+            border-bottom: 1px solid #1a1a1a;
+        }
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        .about-text h2 { color: var(--neon-sari); font-size: 2.2rem; margin-top: 0; text-transform: uppercase; letter-spacing: -1px;}
+        .about-text p { color: #bbb; line-height: 1.8; font-size: 1.05rem; margin-bottom: 20px; }
+        .about-text strong { color: #fff; }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .feature-box {
+            background: var(--card-bg);
+            padding: 25px 20px;
+            border-radius: 12px;
+            border: 1px solid #222;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        .feature-box:hover { transform: translateY(-5px); border-color: var(--neon-sari); }
+        .feature-box i { font-size: 32px; color: var(--neon-sari); margin-bottom: 15px; }
+        .feature-box h4 { margin: 0 0 10px; color: #fff; font-size: 1.1rem; }
+        .feature-box p { margin: 0; font-size: 0.85rem; color: #888; line-height: 1.5; }
+
+        @media (max-width: 900px) {
+            .about-container { grid-template-columns: 1fr; gap: 40px; }
+        }
+        @media (max-width: 500px) {
+            .features-grid { grid-template-columns: 1fr; }
+        }
 
         /* Galeri Grid */
         .section-title { padding: 80px 5% 30px; text-align: center; }
@@ -152,30 +187,18 @@
         @media (max-width: 768px) { 
             .hero h1 { font-size: 1.8rem; } 
             #lb-prev, #lb-next { font-size: 30px; } 
-
-            /* Mobilde Butonları Biraz Küçültelim ki Yazılara Yer Kalsın */
-            .wp-float {
-                bottom: 20px;
-                right: 15px;
-                gap: 8px;
-            }
-            .wp-btn {
-                width: 45px;
-                height: 45px;
-                font-size: 22px;
-            }
+            .wp-float { bottom: 20px; right: 15px; gap: 8px; }
+            .wp-btn { width: 45px; height: 45px; font-size: 22px; }
         }
 
         /* MOBİL İÇİN YÜZEN METİN LİNKLERİ (Instagram ve WP Yanında) */
-        .mobile-nav-texts {
-            display: none; /* PC'de gizli */
-        }
+        .mobile-nav-texts { display: none; }
 
         @media (max-width: 768px) {
             .mobile-nav-texts {
                 display: flex;
                 align-items: center;
-                background: rgba(0, 0, 0, 0.75); /* Okunması için saydam siyah arka plan */
+                background: rgba(0, 0, 0, 0.75);
                 padding: 0 15px;
                 height: 45px;
                 border-radius: 30px;
@@ -184,7 +207,6 @@
                 border: 1px solid rgba(255, 255, 255, 0.1);
                 backdrop-filter: blur(4px);
             }
-            
             .mobile-nav-texts a {
                 color: #fff;
                 text-decoration: none;
@@ -194,10 +216,7 @@
                 text-transform: uppercase;
                 white-space: nowrap;
             }
-
-            .mobile-nav-texts a:last-child {
-                color: var(--neon-sari); /* TEKLİF AL yazısı neon sarı olsun */
-            }
+            .mobile-nav-texts a:last-child { color: var(--neon-sari); }
         }
     </style>
 </head>
@@ -209,6 +228,7 @@
             <div class="logo-slogan">Karadeniz bayi tabelaları çözüm ortağınız...</div>
         </div>
         <div class="nav-links">
+            <a href="#hakkimizda">HAKKIMIZDA</a>
             <a href="#islerimiz">PROJELER</a>
             <a href="#iletisim">KONUM</a>
             <a href="https://wa.me/905079605049">TEKLİF AL</a>
@@ -225,6 +245,38 @@
             <h1>SAMSUN'DA TABELA<br><span>BİZİM İŞİMİZ.</span></h1>
             <p>Karadeniz genelinde bayi tabelaları ve kurumsal reklam çözümleri sunuyoruz. Yarım asırlık tecrübemizle Samsun'dan tüm bölgeye hizmet taşıyoruz.</p>
             <a href="https://wa.me/905079605049" class="btn-main">WHATSAPP İLE FİYAT AL</a>
+        </div>
+    </section>
+
+    <section class="about-section" id="hakkimizda">
+        <div class="about-container">
+            <div class="about-text">
+                <h2>Bölgenin En Güçlü Tabela Üreticisi</h2>
+                <p>1973 yılında kurucumuz <strong>Remzi Toraman</strong> tarafından temelleri atılan Uzman Reklam, yarım asrı aşan tecrübesiyle Samsun ve tüm Karadeniz bölgesine hizmet veren kurumsal bir reklam çözüm ortağıdır.</p>
+                <p>Samsun tabelacı arayışınızda; <strong>Bafra'dan İlkadım'a, Atakum'dan Tekkeköy'e</strong> kadar her noktada kutu harf, ışıklı totem, cephe giydirme ve dijital baskı projelerinde sektör lideriyiz. Biz sadece tabela üretmiyoruz; markanızın Karadeniz'deki vizyonunu ve prestijini inşa ediyoruz.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-box">
+                    <i class="fas fa-hammer"></i>
+                    <h4>Yarım Asırlık Tecrübe</h4>
+                    <p>1973'ten bugüne, kaliteden asla ödün vermeyen ustalık ve esnaf ahlakı.</p>
+                </div>
+                <div class="feature-box">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <h4>Tüm Karadeniz'e Hizmet</h4>
+                    <p>Samsun merkezli üretim tesisimizden bölgenin her iline garantili montaj ağı.</p>
+                </div>
+                <div class="feature-box">
+                    <i class="fas fa-industry"></i>
+                    <h4>Kendi Üretimimiz</h4>
+                    <p>Aracı yok! Kendi fabrikamızda sıfırdan CNC, lazer kesim ve imalat.</p>
+                </div>
+                <div class="feature-box">
+                    <i class="fas fa-bolt"></i>
+                    <h4>Zamanında Teslimat</h4>
+                    <p>Söz verdiğimiz gün, eksiksiz, jilet gibi işçilik ve anahtar teslim kurulum.</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -443,6 +495,7 @@
     <div class="wp-float">
         
         <div class="mobile-nav-texts">
+            <a href="#hakkimizda">HAKKIMIZDA</a>
             <a href="#islerimiz">PROJELER</a>
             <a href="#iletisim">KONUM</a>
             <a href="https://wa.me/905079605049">TEKLİF AL</a>
