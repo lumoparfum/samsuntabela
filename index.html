@@ -106,22 +106,22 @@
             color: var(--neon-sari);
         }
 
-        /* MOBİL UYUMLULUK DÜZENLEMESİ (ÜST TARAF DÜZELTİLDİ) */
+        /* MOBİL UYUMLULUK DÜZENLEMESİ (ÜST TARAF TEKRAR YAN YANA) */
         @media (max-width: 768px) {
             nav { padding: 15px 5%; width: 90%; }
             .logo-area { 
-                gap: 5px; 
-                align-items: flex-start; 
-                flex-direction: column; /* Mobilde alt alta gelecek, taşma yapmayacak */
+                gap: 12px; 
+                align-items: center; 
+                flex-direction: row; /* Yan yana geri getirdik */
             }
-            .logo { font-size: 26px; }
+            .logo { font-size: 24px; }
             .logo-slogan { 
                 display: block; 
-                font-size: 15px; 
-                padding-left: 0;
-                border-left: none; 
+                font-size: 14px; /* Ekrana tam sığsın diye 1 tık küçüldü */
+                padding-left: 12px;
+                border-left: 2px solid var(--neon-sari); /* Sarı çizgi geri geldi */
                 white-space: normal; 
-                line-height: 1.2;
+                line-height: 1.1;
                 color: #ccc;
             }
             .nav-links { display: none; }
@@ -215,7 +215,7 @@
         .footer-box { background: #080808; padding: 30px; border-radius: 15px; border: 1px solid #1a1a1a; text-align: center; } 
         .map-container { width: 100%; height: 250px; border-radius: 10px; overflow: hidden; margin: 20px 0; border: 1px solid #333; }
 
-        /* WhatsApp & Instagram Float */
+        /* WhatsApp & Instagram Float (Genel Kapsayıcı) */
         .wp-float { position: fixed; bottom: 25px; right: 25px; display: flex; align-items: center; gap: 10px; z-index: 5000; }
         .wp-btn { width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; color: #fff; text-decoration: none; box-shadow: 0 10px 20px rgba(0,0,0,0.4); }
 
