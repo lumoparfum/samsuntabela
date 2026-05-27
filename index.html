@@ -3,10 +3,40 @@
 <head>
     <link rel="icon" type="image/svg+xml" href="favicon.svg?v=3">
     <meta charset="UTF-8">
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Uzman Reklam | Karadeniz Kurumsal Tabela & Reklam Çözüm Ortağı</title>
+    
+    <title>Samsun Reklamcı & Tabela İmalatı | Uzman Reklam</title>
+    <meta name="description" content="Samsun tabela, Samsun reklamcı ve Karadeniz bölgesi kurumsal reklam çözüm ortağınız Uzman Reklam. Kutu harf, totem, cephe giydirme ve dijital baskı imalatı.">
+    <meta name="keywords" content="Samsun reklamcı, Samsun tabela, Samsun tabelacı, Atakum tabela, Bafra reklamcı, İlkadım tabela, Karadeniz reklam, kutu harf, totem tabela">
+    <link rel="canonical" href="https://samsuntabela.tr" />
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Uzman Reklam",
+      "image": "https://samsuntabela.tr/favicon.svg",
+      "url": "https://samsuntabela.tr",
+      "telephone": "+905322204649",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Emirefendi Mh. Çizmeli 2.Sk. No:33",
+        "addressLocality": "Bafra",
+        "addressRegion": "Samsun",
+        "addressCountry": "TR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 41.5684,
+        "longitude": 35.9069
+      },
+      "priceRange": "$$"
+    }
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <style>
         :root { --neon-sari: #ccff00; --koyu-bg: #050505; --card-bg: #0f0f0f; }
         body { margin: 0; padding: 0; background-color: var(--koyu-bg); color: #fff; font-family: 'Inter', sans-serif; overflow-x: hidden; scroll-behavior: smooth; }
@@ -76,18 +106,23 @@
             color: var(--neon-sari);
         }
 
-        /* MOBİL UYUMLULUK DÜZENLEMESİ */
+        /* MOBİL UYUMLULUK DÜZENLEMESİ (ÜST TARAF DÜZELTİLDİ) */
         @media (max-width: 768px) {
-            nav { padding: 20px 5%; width: 90%; }
-            .logo-area { gap: 12px; align-items: center; }
-            .logo { font-size: 24px; }
+            nav { padding: 15px 5%; width: 90%; }
+            .logo-area { 
+                gap: 5px; 
+                align-items: flex-start; 
+                flex-direction: column; /* Mobilde alt alta gelecek, taşma yapmayacak */
+            }
+            .logo { font-size: 26px; }
             .logo-slogan { 
                 display: block; 
-                font-size: 16px; 
-                padding-left: 12px;
-                border-left: 2px solid var(--neon-sari); 
+                font-size: 15px; 
+                padding-left: 0;
+                border-left: none; 
                 white-space: normal; 
-                line-height: 1.1;
+                line-height: 1.2;
+                color: #ccc;
             }
             .nav-links { display: none; }
         }
@@ -112,7 +147,7 @@
         .hero p { font-size: clamp(1rem, 2vw, 1.3rem); max-width: 900px; color: #ddd; margin-bottom: 40px; line-height: 1.6; }
         .btn-main { background: var(--neon-sari); color: #000; padding: 18px 45px; border-radius: 50px; text-decoration: none; font-weight: 900; text-transform: uppercase; transition: 0.3s; display: inline-block; cursor: pointer; }
 
-        /* YENİ EKLENEN: HAKKIMIZDA & SEO BÖLÜMÜ */
+        /* HAKKIMIZDA & SEO BÖLÜMÜ */
         .about-section {
             padding: 100px 5%;
             background: #0a0a0a;
@@ -180,7 +215,7 @@
         .footer-box { background: #080808; padding: 30px; border-radius: 15px; border: 1px solid #1a1a1a; text-align: center; } 
         .map-container { width: 100%; height: 250px; border-radius: 10px; overflow: hidden; margin: 20px 0; border: 1px solid #333; }
 
-        /* WhatsApp & Instagram Float (Genel Kapsayıcı) */
+        /* WhatsApp & Instagram Float */
         .wp-float { position: fixed; bottom: 25px; right: 25px; display: flex; align-items: center; gap: 10px; z-index: 5000; }
         .wp-btn { width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; color: #fff; text-decoration: none; box-shadow: 0 10px 20px rgba(0,0,0,0.4); }
 
@@ -191,7 +226,7 @@
             .wp-btn { width: 45px; height: 45px; font-size: 22px; }
         }
 
-        /* MOBİL İÇİN YÜZEN METİN LİNKLERİ (Instagram ve WP Yanında) */
+        /* MOBİL İÇİN YÜZEN METİN LİNKLERİ */
         .mobile-nav-texts { display: none; }
 
         @media (max-width: 768px) {
@@ -216,7 +251,6 @@
                 text-transform: uppercase;
                 white-space: nowrap;
             }
-            .mobile-nav-texts a:last-child { color: var(--neon-sari); }
         }
     </style>
 </head>
@@ -230,8 +264,7 @@
         <div class="nav-links">
             <a href="#hakkimizda">HAKKIMIZDA</a>
             <a href="#islerimiz">PROJELER</a>
-            <a href="#iletisim">KONUM</a>
-            <a href="https://wa.me/905079605049">TEKLİF AL</a>
+            <a href="#iletisim">İLETİŞİM</a>
         </div>
     </nav>
 
@@ -253,7 +286,7 @@
             <div class="about-text">
                 <h2>Bölgenin En Güçlü Tabela Üreticisi</h2>
                 <p>1973 yılında kurucumuz <strong>Remzi Toraman</strong> tarafından temelleri atılan Uzman Reklam, yarım asrı aşan tecrübesiyle Samsun ve tüm Karadeniz bölgesine hizmet veren kurumsal bir reklam çözüm ortağıdır.</p>
-                <p>Samsun tabelacı arayışınızda; <strong>Bafra'dan İlkadım'a, Atakum'dan Tekkeköy'e</strong> kadar her noktada kutu harf, ışıklı totem, cephe giydirme ve dijital baskı projelerinde sektör lideriyiz. Biz sadece tabela üretmiyoruz; markanızın Karadeniz'deki vizyonunu ve prestijini inşa ediyoruz.</p>
+                <p>Samsun reklamcı ve tabelacı arayışınızda; <strong>Bafra'dan İlkadım'a, Atakum'dan Tekkeköy'e</strong> kadar her noktada kutu harf, ışıklı totem, cephe giydirme ve dijital baskı projelerinde sektör lideriyiz. Biz sadece tabela üretmiyoruz; markanızın Karadeniz'deki vizyonunu ve prestijini inşa ediyoruz.</p>
             </div>
             <div class="features-grid">
                 <div class="feature-box">
@@ -484,12 +517,12 @@
     </script>
 
     <div class="seo-hidden" style="position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden;">
-        <h3>Samsun ve Tüm Karadeniz Bölgesi Kurumsal Reklam Çözüm Ortağınız: Uzman Reklam</h3>
-        <p>1973 yılında kurucumuz <strong>Remzi Toraman</strong> tarafından temelleri atılan Uzman Reklam, yarım asrı aşan tecrübesiyle <strong>Samsun tabela reklam firmaları</strong> arasında liderdir. <strong>Samsun en iyi tabelacı</strong> arayışında <strong>reklam tabela tasarımları 2026</strong> vizyonuyla hizmet veriyoruz. <strong>Atakum tabelacı</strong>, <strong>İlkadım kutu harf tabela</strong>, <strong>Bafra reklam ajansları</strong> ve <strong>paslanmaz harf Samsun</strong> projelerimizle bölgedeyiz.</p>
+        <h3>Samsun Reklamcı ve Tüm Karadeniz Bölgesi Kurumsal Reklam Çözüm Ortağınız: Uzman Reklam</h3>
+        <p>1973 yılında kurucumuz <strong>Remzi Toraman</strong> tarafından temelleri atılan Uzman Reklam, yarım asrı aşan tecrübesiyle <strong>Samsun tabela reklam firmaları</strong> arasında liderdir. <strong>Samsun en iyi tabelacı</strong> arayışında <strong>Samsun reklamcı</strong> vizyonuyla hizmet veriyoruz. <strong>Atakum tabelacı</strong>, <strong>İlkadım kutu harf tabela</strong>, <strong>Bafra reklam ajansları</strong> ve <strong>paslanmaz harf Samsun</strong> projelerimizle bölgedeyiz.</p>
         
         <p><strong>Karadeniz bayi tabelaları çözüm ortağı</strong> olarak <strong>Ordu totem tabela imalatı</strong>, <strong>Sinop tabela montaj</strong>, <strong>Amasya ışıklı tabela fiyatları</strong> ve <strong>dijital baskı ve araç giydirme Samsun</strong> hizmetlerimizle tüm Karadeniz şeridindeyiz. Giresun, Trabzon, Rize ve Artvin illerinde profesyonel reklam çözümleri sunuyoruz.</p>
 
-        <span>Hızlı Erişim: Samsun tabela reklamcı, Atakum reklamcılar, İlkadım tabelacı, Bafra tabela imalatı, Çarşamba reklam tabela, Tekkeköy araç giydirme, Terme ışıklı tabela, Sinop tabela firmaları, Amasya reklam şirketleri, Ordu totem tabela fiyatları, Giresun kutu harf, Trabzon reklam ajansı, Rize tabela montaj, Karadeniz bölge bayi tabelası, Samsun dijital baskı merkezi, Samsun paslanmaz harf fiyatları, 2026 tabela modelleri, Uzman Reklam Samsun, Samsun fuar standı kiralama, fuar stand tasarımı Karadeniz, hastane acil yönlendirme tabelası, Gerze devlet hastanesi tabela, AVM totem tabela fiyatları, Entek elektrik kutu harf, Recepoglu tabela imalatı Samsun.</span>
+        <span>Hızlı Erişim: Samsun tabela reklamcı, Atakum reklamcılar, İlkadım tabelacı, Bafra tabela imalatı, Çarşamba reklam tabela, Tekkeköy araç giydirme, Terme ışıklı tabela, Sinop tabela firmaları, Amasya reklam şirketleri, Ordu totem tabela fiyatları, Giresun kutu harf, Trabzon reklam ajansı, Rize tabela montaj, Karadeniz bölge bayi tabelası, Samsun dijital baskı merkezi, Samsun paslanmaz harf fiyatları, 2026 tabela modelleri, Uzman Reklam Samsun, Samsun fuar standı kiralama, fuar stand tasarımı Karadeniz, hastane acil yönlendirme tabelası, Gerze devlet hastanesi tabela, AVM totem tabela fiyatları, Entek elektrik kutu harf, Recepoglu tabela imalatı Samsun, Samsun reklamcı, Samsun tabelacı.</span>
     </div>
 
     <div class="wp-float">
@@ -497,8 +530,7 @@
         <div class="mobile-nav-texts">
             <a href="#hakkimizda">HAKKIMIZDA</a>
             <a href="#islerimiz">PROJELER</a>
-            <a href="#iletisim">KONUM</a>
-            <a href="https://wa.me/905079605049">TEKLİF AL</a>
+            <a href="#iletisim">İLETİŞİM</a>
         </div>
 
         <a href="https://www.instagram.com/uzman.reklamm/" class="wp-btn" target="_blank" style="background: #e4405f;">
