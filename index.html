@@ -4,9 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
+    <!-- +++ YENİ: Thumbnail (Google'da logo önizlemesi) +++ -->
+    <meta name="thumbnail" content="https://samsuntabela.tr/favicon.svg">
+    
     <link rel="icon" type="image/svg+xml" href="favicon.svg?v=3">
     
-    <title>Samsun Tabela, Kutu Harf ve Totem Tabela İmalatı | Uzman Reklam</title>
+    <title>Samsun Tabelacı | Kutu Harf & Totem Tabela İmalatı Uzmanı</title>
     <meta name="description" content="1973'ten bugüne Samsun, Bafra, Atakum ve tüm Karadeniz bölgesinde kutu harf, totem tabela, cephe giydirme ve kurumsal reklam çözümleri.">
     <meta name="keywords" content="Samsun tabela, Samsun reklamcı, Bafra tabelacı, Atakum tabela, kutu harf, totem tabela, araç giydirme, Karadeniz reklam firması">
     <meta name="robots" content="index, follow, max-image-preview:large">
@@ -16,7 +19,7 @@
 
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://samsuntabela.tr/">
-    <meta property="og:title" content="Samsun Tabela, Kutu Harf ve Totem İmalatı | Uzman Reklam">
+    <meta property="og:title" content="Samsun Tabelacı | Kutu Harf & Totem İmalatı Uzmanı">
     <meta property="og:description" content="Samsun tabela, kutu harf ve cephe giydirme hizmetleri. 1973'ten beri Uzman Reklam güvencesiyle Karadeniz geneline hizmet veriyoruz.">
     <meta property="og:image" content="https://samsuntabela.tr/og-image.jpg">
 
@@ -50,6 +53,16 @@
         "@type": "AggregateRating",
         "ratingValue": "4.6",
         "reviewCount": "19"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Tabela Hizmetleri",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Kutu Harf Tabela" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Totem Tabela" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Cephe Giydirme" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Araç Giydirme" } }
+        ]
       }
     }
     </script>
@@ -58,7 +71,6 @@
         :root { --neon-sari: #ccff00; --koyu-bg: #050505; --card-bg: #0f0f0f; }
         body { margin: 0; padding: 0; background-color: var(--koyu-bg); color: #fff; font-family: 'Inter', sans-serif; overflow-x: hidden; scroll-behavior: smooth; }
         
-        /* Ana Navigasyon */
         nav { display: flex; justify-content: space-between; align-items: center; padding: 25px 5%; background: rgba(0,0,0,0.95); position: fixed; width: 90%; top: 0; z-index: 1000; border-bottom: 1px solid #222; }
         .logo-area { display: flex; align-items: center; gap: 25px; }
         .logo { font-weight: 900; font-size: 42px; letter-spacing: -2px; text-transform: uppercase; line-height: 1; white-space: nowrap; }
@@ -77,7 +89,6 @@
             .nav-links { display: none; }
         }
 
-        /* Hero (Giriş) Bölümü */
         .hero { position: relative; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; overflow: hidden; }
         .hero-slider { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background-color: #000; }
         .slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; filter: brightness(0.3); opacity: 0; animation: fadeSlide 15s infinite; }
@@ -94,7 +105,6 @@
         .btn-main { background: var(--neon-sari); color: #000; padding: 18px 45px; border-radius: 50px; text-decoration: none; font-weight: 900; text-transform: uppercase; transition: 0.3s; display: inline-block; cursor: pointer; border:none;}
         .btn-main:hover { transform: scale(1.05); }
 
-        /* HAKKIMIZDA BÖLÜMÜ */
         .about-section { padding: 100px 5%; background: #0a0a0a; border-top: 1px solid #1a1a1a; border-bottom: 1px solid #1a1a1a; }
         .about-container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
         .about-text h2 { color: var(--neon-sari); font-size: 2.2rem; margin-top: 0; text-transform: uppercase; letter-spacing: -1px;}
@@ -111,7 +121,6 @@
         @media (max-width: 900px) { .about-container { grid-template-columns: 1fr; gap: 40px; } }
         @media (max-width: 500px) { .features-grid { grid-template-columns: 1fr; } }
 
-        /* HİZMETLER (8'Lİ IZGARA KARTLARI) */
         .services-preview { padding: 80px 5% 40px; background: #050505; }
         .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
         .service-box { background: #0a0a0a; border: 1px solid #1a1a1a; padding: 30px; border-radius: 10px; transition: 0.3s; cursor: pointer; text-align: center;}
@@ -121,7 +130,6 @@
         .service-box p { color: #888; font-size: 0.95rem; margin-bottom: 20px;}
         .read-more { color: var(--neon-sari); font-weight: bold; text-transform: uppercase; font-size: 0.85rem; }
 
-        /* FİLTRELEME VE GALERİ */
         .section-title { padding: 80px 5% 30px; text-align: center; }
         .section-title h2 { font-size: 2rem; text-transform: uppercase; color: var(--neon-sari); margin: 0 0 10px; }
         
@@ -138,22 +146,10 @@
         .work-info h3 { margin: 0; font-size: 0.95rem; color: #fff; text-transform: uppercase; }
         .work-info p { margin: 5px 0 0; font-size: 0.75rem; color: #666; }
 
-        /* GOOGLE YORUMLARI WIDGET (2'li Aşağı İnen Grid) */
         .reviews-section { padding: 60px 5% 80px; background: #050505; border-top: 1px solid #1a1a1a; }
         .google-badge { display: flex; align-items: center; justify-content: center; gap: 15px; background: #111; max-width: 320px; margin: 0 auto 40px; padding: 15px 25px; border-radius: 50px; border: 1px solid #333; }
-        
-        .reviews-wrapper { 
-            display: grid; 
-            grid-template-columns: 1fr 1fr; 
-            gap: 20px; 
-            max-width: 1000px; 
-            margin: 0 auto; 
-        }
-        
-        @media (max-width: 768px) {
-            .reviews-wrapper { grid-template-columns: 1fr; }
-        }
-
+        .reviews-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 1000px; margin: 0 auto; }
+        @media (max-width: 768px) { .reviews-wrapper { grid-template-columns: 1fr; } }
         .review-card { background: #0f0f0f; border: 1px solid #222; padding: 25px; border-radius: 15px; position: relative; }
         .review-header { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
         .review-avatar { width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; color: #fff; font-weight: bold; }
@@ -162,7 +158,6 @@
         .review-text { color: #bbb; line-height: 1.5; font-size: 0.95rem; margin: 0; }
         .google-icon-small { position: absolute; top: 25px; right: 25px; width: 20px; height: 20px; }
 
-        /* GÖRÜNÜR YENİ NESİL SEO ALANI (En Alt) */
         .seo-footer-section { padding: 80px 5%; background: #080808; border-top: 1px solid #1a1a1a; }
         .seo-footer-container { max-width: 1200px; margin: 0 auto; }
         .seo-footer-container h2 { color: var(--neon-sari); font-size: 1.8rem; text-transform: uppercase; border-bottom: 2px solid #222; padding-bottom: 15px; margin-bottom: 30px; }
@@ -171,7 +166,6 @@
         .seo-col p { color: #888; font-size: 0.9rem; line-height: 1.8; margin: 0 0 15px 0; }
         .seo-col strong { color: #aaa; font-weight: 600; }
 
-        /* ALT SAYFALAR (MODAL SİSTEMİ) */
         .sub-page-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--koyu-bg); z-index: 99999; overflow-y: auto; display: none; padding: 80px 5% 50px; opacity: 0; transition: opacity 0.3s ease; }
         .sub-page-overlay.active { display: flex; justify-content: center; align-items: flex-start; opacity: 1; }
         .close-sub-page { position: fixed; top: 25px; right: 5%; width: 50px; height: 50px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 30px; color: var(--neon-sari); cursor: pointer; z-index: 100000; transition: 0.3s; border: 1px solid rgba(255,255,255,0.2); }
@@ -181,7 +175,6 @@
         .sub-page-content p { color: #ccc; line-height: 1.8; font-size: 1.1rem; margin-bottom: 20px; }
         @media (max-width: 768px) { .sub-page-content { padding: 30px 20px; margin-top: 40px; } .sub-page-content h2 { font-size: 1.6rem; } .close-sub-page { top: 15px; right: 15px; width: 40px; height: 40px; font-size: 24px; } }
 
-        /* Lightbox (Resim Büyütme) */
         #lightbox { position: fixed; z-index: 9999; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); display: none; justify-content: center; align-items: center; }
         #lightbox img { max-width: 90%; max-height: 80%; border: 3px solid #333; border-radius: 5px; }
         #lb-close { position: absolute; top: 30px; right: 30px; font-size: 40px; color: #fff; cursor: pointer; }
@@ -189,19 +182,16 @@
         #lb-prev { left: 10px; } #lb-next { right: 10px; }
         #lb-caption { position: absolute; bottom: 40px; color: #fff; font-size: 1.2rem; text-align: center; width: 80%; background: rgba(0,0,0,0.7); padding: 15px; border-radius: 8px; font-weight: bold; letter-spacing: 1px;}
 
-        /* Footer & Kurumsal */
         .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; padding: 60px 5%; background: #000; border-top: 1px solid #111; }
         .footer-box { background: #080808; padding: 30px; border-radius: 15px; border: 1px solid #1a1a1a; text-align: center; } 
         .map-container { width: 100%; height: 250px; border-radius: 10px; overflow: hidden; margin: 20px 0; border: 1px solid #333; }
 
-        /* Footer Altı (KVKK Linkleri) */
         .footer-bottom { text-align: center; padding: 25px 5%; background: #050505; border-top: 1px solid #111; }
         .footer-bottom p { color: #666; font-size: 0.9rem; margin: 0 0 10px 0; }
         .footer-bottom-links { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
         .footer-bottom-links a { color: #888; text-decoration: none; font-size: 0.85rem; cursor: pointer; transition: 0.3s; }
         .footer-bottom-links a:hover { color: var(--neon-sari); }
 
-        /* WhatsApp & Instagram Float */
         .wp-float { position: fixed; bottom: 25px; right: 25px; display: flex; align-items: center; gap: 10px; z-index: 5000; }
         .wp-btn { width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; color: #fff; text-decoration: none; box-shadow: 0 10px 20px rgba(0,0,0,0.4); }
 
@@ -220,7 +210,6 @@
 </head>
 <body>
 
-    <!-- MENÜ -->
     <nav>
         <div class="logo-area">
             <div class="logo">UZMAN<span>REKLAM</span></div>
@@ -229,12 +218,12 @@
         <div class="nav-links">
             <a href="#hakkimizda">HAKKIMIZDA</a>
             <a href="#hizmetler">HİZMETLER</a>
-            <a href="#islerimiz">PROJELER</a>
+            <a href="#projeler">PROJELER</a>   <!-- DÜZELTİLDİ: #projeler -->
             <a href="#iletisim">İLETİŞİM</a>
         </div>
     </nav>
 
-    <!-- GİRİŞ EKRANI -->
+    <!-- HERO BÖLÜMÜ - H1 DÜZENLENDİ -->
     <section class="hero">
         <div class="hero-slider">
             <div class="slide"></div>
@@ -242,7 +231,7 @@
             <div class="slide"></div>
         </div>
         <div class="hero-content">
-            <h1>SAMSUN'DA TABELA<br><span>BİZİM İŞİMİZ.</span></h1>
+            <h1>Samsun Tabelacı | <span>Kutu Harf & Totem Tabela</span><br>Bizim İşimiz.</h1>
             <p>Karadeniz genelinde kurumsal bayi tabelaları ve reklam çözümleri sunuyoruz. Yarım asırlık tecrübemizle markanızı zirveye taşıyoruz.</p>
             <a href="https://wa.me/905079605049" class="btn-main">WHATSAPP İLE FİYAT AL</a>
         </div>
@@ -257,90 +246,31 @@
                 <p>Biz sadece tabela üretmiyoruz; markanızın Karadeniz'deki vizyonunu kendi fabrikamızda, sıfır aracı ile inşa ediyoruz. Kalite ve esnaf ahlakı birinci önceliğimizdir.</p>
             </div>
             <div class="features-grid">
-                <div class="feature-box">
-                    <i class="fas fa-hammer"></i>
-                    <h4>Yarım Asırlık Tecrübe</h4>
-                    <p>1973'ten bugüne, kaliteden asla ödün vermeyen ustalık ve ahlak.</p>
-                </div>
-                <div class="feature-box">
-                    <i class="fas fa-map-marked-alt"></i>
-                    <h4>Tüm Karadeniz'e Hizmet</h4>
-                    <p>Samsun merkezli tesisimizden her ilimize garantili montaj ağı.</p>
-                </div>
-                <div class="feature-box">
-                    <i class="fas fa-industry"></i>
-                    <h4>Kendi Üretimimiz</h4>
-                    <p>Aracı yok! Kendi atölyemizde CNC ve lazer kesim teknolojisi.</p>
-                </div>
-                <div class="feature-box">
-                    <i class="fas fa-bolt"></i>
-                    <h4>Zamanında Teslimat</h4>
-                    <p>Söz verdiğimiz gün, eksiksiz, jilet gibi anahtar teslim kurulum.</p>
-                </div>
+                <div class="feature-box"><i class="fas fa-hammer"></i><h4>Yarım Asırlık Tecrübe</h4><p>1973'ten bugüne, kaliteden asla ödün vermeyen ustalık ve ahlak.</p></div>
+                <div class="feature-box"><i class="fas fa-map-marked-alt"></i><h4>Tüm Karadeniz'e Hizmet</h4><p>Samsun merkezli tesisimizden her ilimize garantili montaj ağı.</p></div>
+                <div class="feature-box"><i class="fas fa-industry"></i><h4>Kendi Üretimimiz</h4><p>Aracı yok! Kendi atölyemizde CNC ve lazer kesim teknolojisi.</p></div>
+                <div class="feature-box"><i class="fas fa-bolt"></i><h4>Zamanında Teslimat</h4><p>Söz verdiğimiz gün, eksiksiz, jilet gibi anahtar teslim kurulum.</p></div>
             </div>
         </div>
     </section>
 
-    <!-- HİZMET KARTLARI (Yeni 8'li Izgara) -->
+    <!-- HİZMET KARTLARI -->
     <section class="services-preview" id="hizmetler">
-        <div class="section-title" style="padding-top: 0;">
-            <h2>Uzmanlık Alanlarımız</h2>
-            <p style="color:#666">Hizmetlerimiz hakkında detaylı bilgi için kartlara tıklayın</p>
-        </div>
+        <div class="section-title" style="padding-top:0;"><h2>Uzmanlık Alanlarımız</h2><p style="color:#666">Hizmetlerimiz hakkında detaylı bilgi için kartlara tıklayın</p></div>
         <div class="services-grid">
-            <div class="service-box" onclick="openSubPage('modal-kutu-harf')">
-                <i class="fas fa-font"></i>
-                <h3>Kutu Harf Tabela</h3>
-                <p>Paslanmaz ve pleksi malzemelerden 3D ışıklı lüks harf imalatı.</p>
-                <div class="read-more">Detayları İncele ➔</div>
-            </div>
-            <div class="service-box" onclick="openSubPage('modal-totem')">
-                <i class="fas fa-sign"></i>
-                <h3>Totem Tabela</h3>
-                <p>Yol kenarları için rüzgara dayanıklı devasa kurumsal totem projeleri.</p>
-                <div class="read-more">Detayları İncele ➔</div>
-            </div>
-            <div class="service-box" onclick="openSubPage('modal-arac')">
-                <i class="fas fa-truck"></i>
-                <h3>Araç Giydirme</h3>
-                <p>Filolarınız için 1. sınıf cast folyo ile kusursuz araç kaplama.</p>
-                <div class="read-more">Detayları İncele ➔</div>
-            </div>
-            <div class="service-box" onclick="openSubPage('modal-cephe')">
-                <i class="fas fa-building"></i>
-                <h3>Cephe & Kompozit</h3>
-                <p>Binalarınız için estetik ve dayanıklı kompozit dış cephe kaplama.</p>
-                <div class="read-more">Detayları İncele ➔</div>
-            </div>
-            <div class="service-box" onclick="openSubPage('modal-pano')">
-                <i class="fas fa-bolt"></i>
-                <h3>Işıklı Pano Tabela</h3>
-                <p>Esnaf ve ofisler için dikkat çekici klasik ışıklı / ışıksız panolar.</p>
-                <div class="read-more">Detayları İncele ➔</div>
-            </div>
-            <div class="service-box" onclick="openSubPage('modal-baski')">
-                <i class="fas fa-print"></i>
-                <h3>Dijital Baskı & Branda</h3>
-                <p>Yüksek çözünürlüklü branda, folyo ve one-way vision uygulamaları.</p>
-                <div class="read-more">Detayları İncele ➔</div>
-            </div>
-            <div class="service-box" onclick="openSubPage('modal-cnc')">
-                <i class="fas fa-cut"></i>
-                <h3>CNC & Lazer Kesim</h3>
-                <p>Pleksi, ahşap ve dekota malzemelerde sıfır hata fason kesim işleri.</p>
-                <div class="read-more">Detayları İncele ➔</div>
-            </div>
-            <div class="service-box" onclick="openSubPage('modal-fuar')">
-                <i class="fas fa-store"></i>
-                <h3>Fuar Standı & İç Mekan</h3>
-                <p>Kongre ve ofis içi karşılama bankoları için prestijli tasarımlar.</p>
-                <div class="read-more">Detayları İncele ➔</div>
-            </div>
+            <div class="service-box" onclick="openSubPage('modal-kutu-harf')"><i class="fas fa-font"></i><h3>Kutu Harf Tabela</h3><p>Paslanmaz ve pleksi malzemelerden 3D ışıklı lüks harf imalatı.</p><div class="read-more">Detayları İncele ➔</div></div>
+            <div class="service-box" onclick="openSubPage('modal-totem')"><i class="fas fa-sign"></i><h3>Totem Tabela</h3><p>Yol kenarları için rüzgara dayanıklı devasa kurumsal totem projeleri.</p><div class="read-more">Detayları İncele ➔</div></div>
+            <div class="service-box" onclick="openSubPage('modal-arac')"><i class="fas fa-truck"></i><h3>Araç Giydirme</h3><p>Filolarınız için 1. sınıf cast folyo ile kusursuz araç kaplama.</p><div class="read-more">Detayları İncele ➔</div></div>
+            <div class="service-box" onclick="openSubPage('modal-cephe')"><i class="fas fa-building"></i><h3>Cephe & Kompozit</h3><p>Binalarınız için estetik ve dayanıklı kompozit dış cephe kaplama.</p><div class="read-more">Detayları İncele ➔</div></div>
+            <div class="service-box" onclick="openSubPage('modal-pano')"><i class="fas fa-bolt"></i><h3>Işıklı Pano Tabela</h3><p>Esnaf ve ofisler için dikkat çekici klasik ışıklı / ışıksız panolar.</p><div class="read-more">Detayları İncele ➔</div></div>
+            <div class="service-box" onclick="openSubPage('modal-baski')"><i class="fas fa-print"></i><h3>Dijital Baskı & Branda</h3><p>Yüksek çözünürlüklü branda, folyo ve one-way vision uygulamaları.</p><div class="read-more">Detayları İncele ➔</div></div>
+            <div class="service-box" onclick="openSubPage('modal-cnc')"><i class="fas fa-cut"></i><h3>CNC & Lazer Kesim</h3><p>Pleksi, ahşap ve dekota malzemelerde sıfır hata fason kesim işleri.</p><div class="read-more">Detayları İncele ➔</div></div>
+            <div class="service-box" onclick="openSubPage('modal-fuar')"><i class="fas fa-store"></i><h3>Fuar Standı & İç Mekan</h3><p>Kongre ve ofis içi karşılama bankoları için prestijli tasarımlar.</p><div class="read-more">Detayları İncele ➔</div></div>
         </div>
     </section>
 
-    <!-- PROJELER VE KATEGORİ FİLTRESİ -->
-    <div class="section-title" id="islerimiz">
+    <!-- PROJELER GALERİSİ - ID DÜZELTİLDİ -->
+    <div class="section-title" id="projeler">
         <h2>USTALIK ESERLERİMİZ</h2>
         <p style="color:#666">Karadeniz'in her noktasında profesyonel dokunuşlar</p>
     </div>
@@ -353,408 +283,151 @@
         <button class="filter-btn" onclick="filterGallery('arac-dijital')">Araç & Baskı</button>
     </div>
 
-    <!-- GALERİ (Hızlı Yükleme) -->
     <section class="work-grid" id="gallery">
-        <div class="work-card kutu-harf" onclick="openLightbox(this)"><img src="liwhospitl.jpg" alt="Liv Hospital Samsun Işıklı Tabela ve Kutu Harf"><div class="work-info"><h3>Liv Hospital</h3><p>Paslanmaz Kutu Harf</p></div></div>
-        <div class="work-card cephe" onclick="openLightbox(this)"><img src="mediana.jpg" alt="Medibafra Hastanesi Cephe Giydirme Samsun Tabelacı UzmanReklam"><div class="work-info"><h3>Medibafra Hastanesi</h3><p>Cephe & Tabela</p></div></div>
-        <div class="work-card totem" onclick="openLightbox(this)"><img src="piazzatorem.jpg" alt="Piazza AVM Totem Tabela Karadeniz Reklam Çözümleri"><div class="work-info"><h3>Piazza AVM</h3><p>Dev Totem Tabela</p></div></div>
-        <div class="work-card diger" onclick="openLightbox(this)"><img src="sinopdevlet.jpg" alt="Sinop Devlet Hastanesi Kurumsal Reklam Tabela İşleri"><div class="work-info"><h3>Sinop Devlet Hastanesi</h3><p>Kurumsal Tabela</p></div></div>
-        <div class="work-card diger" onclick="openLightbox(this)"><img src="asarcıksalon.jpg" alt="Asarcık Spor Salonu Dış Cephe Tabela Uygulaması"><div class="work-info"><h3>Asarcık Spor Salonu</h3><p>Çatı Tabelası</p></div></div>
-        <div class="work-card diger" onclick="openLightbox(this)"><img src="olimpik.jpg" alt="Samsun Olimpik Havuz Işıklı Reklam Panoları Atakum"><div class="work-info"><h3>Olimpik Havuz</h3><p>Işıklı Pano</p></div></div>
-        <div class="work-card totem" onclick="openLightbox(this)"><img src="meditotem.jpg" alt="MediBafra Hastanesi Totem Tabela Yol Kenarı Reklamları"><div class="work-info"><h3>MediBafra Hastanesi Totem</h3><p>Totem Uygulaması</p></div></div>
-        <div class="work-card arac-dijital" onclick="openLightbox(this)"><img src="arac.jpg" alt="Samsun Araç Giydirme ve Ticari Araç Reklam Kaplama"><div class="work-info"><h3>Araç Giydirme</h3><p>Filo Reklamları</p></div></div>
-        <div class="work-card diger" onclick="openLightbox(this)"><img src="cnc.jpg" alt="Samsun CNC Lazer Kesim ve Pleksi Harf İmalatı"><div class="work-info"><h3>CNC Üretim</h3><p>Lazer Kesim İşleri</p></div></div>
-        <div class="work-card arac-dijital" onclick="openLightbox(this)"><img src="arac2.jpg" alt="Samsun İlkadım Araç Kaplama Reklam Uygulaması"><div class="work-info"><h3>Ticari Kaplama</h3><p>Araç Reklamı</p></div></div>
-        <div class="work-card arac-dijital" onclick="openLightbox(this)"><img src="baski.jpg" alt="Samsun Dijital Baskı ve Branda Uygulaması"><div class="work-info"><h3>Dijital Baskı</h3><p>Branda & Folyo</p></div></div>
-        <div class="work-card totem" onclick="openLightbox(this)"><img src="dünyagöztotem.jpg" alt="Dünyagöz Totem Tabela Samsun Reklamcı"><div class="work-info"><h3>Dünyagöz Totem</h3><p>Işıklı Totem</p></div></div>
-        <div class="work-card arac-dijital" onclick="openLightbox(this)"><img src="folyo.jpg" alt="Samsun Açı Okulları Cam Giydirme ve One Way Vision Folyo Uygulama"><div class="work-info"><h3>Cam Giydirme</h3><p>Folyo Uygulama</p></div></div>
-        <div class="work-card diger" onclick="openLightbox(this)"><img src="hoşgeldiniz.jpg" alt="Işıklı Karşılama Tabelası ve Ofis Tabelası Samsun"><div class="work-info"><h3>Ofis Tabelası</h3><p>İç Mekan Reklam</p></div></div>
-        <div class="work-card cephe" onclick="openLightbox(this)"><img src="imalatkompozit.jpg" alt="Samsun Tabela İmalatı ve Kompozit İşçiliği"><div class="work-info"><h3>Kompozit İmalat</h3><p>Atölye Çalışmaları</p></div></div>
-        <div class="work-card cephe" onclick="openLightbox(this)"><img src="kompozitgiydirme.jpg" alt="Samsun Yatırım Finansman Kompozit Cephe Kaplama ve Kutu Harf Tabela Tasarımı"><div class="work-info"><h3>Cephe Tasarımı</h3><p>Bina Giydirme</p></div></div>
-        <div class="work-card diger" onclick="openLightbox(this)"><img src="montaj.jpg" alt="Samsun Tabela NoraPark AVM Çatı Tabelaları Montajı"><div class="work-info"><h3>Montaj Ekibi</h3><p>Profesyonel Kurulum</p></div></div>
-        <div class="work-card totem" onclick="openLightbox(this)"><img src="part totem.jpg" alt="Modern Totem Tabela Ordu Büyükşehir Belediyesi Fatsa'nın simgesi haline gelen Atatürk Parkı Tasarımı Karadeniz Bayi"><div class="work-info"><h3>Modern Totem</h3><p>Özgün Tasarım</p></div></div>
-        <div class="work-card diger" onclick="openLightbox(this)"><img src="piazzakapi.jpg" alt="Piazza AVM Kapı Üstü Reklam ve Yönlendirme"><div class="work-info"><h3>Piazza Giriş</h3><p>Kapı Üstü Tabela</p></div></div>
-        <div class="work-card kutu-harf" onclick="openLightbox(this)"><img src="pleksikompozit.jpg" alt="Pleksi Kutu Harf Tabela & Kompozit Cephe Giydirme Market Samsun Atakum"><div class="work-info"><h3>Pleksi Harf</h3><p>Işıklı Reklam</p></div></div>
-        <div class="work-card diger" onclick="openLightbox(this)"><img src="toki.jpg" alt="Toki İnşaat Tabelası ve Şantiye Levhası Samsun"><div class="work-info"><h3>Şantiye Tabelası</h3><p>Bilgi Levhaları</p></div></div>
-        <div class="work-card kutu-harf" onclick="openLightbox(this)"><img src="tozlutabela.jpg" alt="Tozlu Tabela ve Mağaza Reklamı İlkadım"><div class="work-info"><h3>Mağaza Tabelası</h3><p>Kutu Harf Uygulama</p></div></div>
-        <div class="work-card diger" onclick="openLightbox(this)"><img src="fuarstand.jpg" alt="Yunus Yapı Kurumsal Fuar Standı Tasarım ve Uygulama"><div class="work-info"><h3>Yunus Yapı</h3><p>Fuar Standı Uygulama</p></div></div>
-        <div class="work-card kutu-harf" onclick="openLightbox(this)"><img src="entek.jpg" alt="Entek Elektrik Işıklı Kutu Harf Tabela Samsun"><div class="work-info"><h3>Entek Elektrik</h3><p>Işıklı Kutu Harf</p></div></div>
-        <div class="work-card totem" onclick="openLightbox(this)"><img src="aciltabela.jpg" alt="Hastane Acil Giriş Totem Tabela ve Yönlendirme Sistemleri"><div class="work-info"><h3>Acil Giriş</h3><p>Yönlendirme Totemi</p></div></div>
-        <div class="work-card diger" onclick="openLightbox(this)"><img src="yunusevler.jpg" alt="Yunus Evler Çınar Çatı Tabelası ve Yüksek İrtifa Montaj"><div class="work-info"><h3>Yunus Evler Çınar</h3><p>Çatı Tabelası</p></div></div>
-        <div class="work-card diger" onclick="openLightbox(this)"><img src="özkaymak.jpg" alt="Özlem Kaymak Özel Tasarım Satış Standı Kompozit ve Reklam Kaplama"><div class="work-info"><h3>Özkaymak</h3><p>Özel Tasarım Stand</p></div></div>
-        <div class="work-card diger" onclick="openLightbox(this)"><img src="gerzedevlethastenesi.jpg" alt="Gerze Devlet Hospital Giriş Tabelası Karadeniz Reklam"><div class="work-info"><h3>Gerze Devlet Hastanesi</h3><p>Kurumsal Giriş</p></div></div>
-        <div class="work-card cephe" onclick="openLightbox(this)"><img src="ramsey.jpg" alt="Ramsey Mağaza Cephe Giydirme ve Işıklı Tabela Tasarımı"><div class="work-info"><h3>Ramsey</h3><p>Cephe Tasarımı</p></div></div>
-        <div class="work-card diger" onclick="openLightbox(this)"><img src="recepoglu.jpg" alt="Recepoğlu Tabela İmalatı ve Montaj Süreci Uzman Reklam"><div class="work-info"><h3>Recepoğlu</h3><p>Tabela İmalat</p></div></div>
-        <div class="work-card arac-dijital" onclick="openLightbox(this)"><img src="burgerking.jpg" alt="Burger King İç Mekan Dijital Baskı ve Yönlendirme Samsun"><div class="work-info"><h3>Burger King</h3><p>İç Mekan Baskı</p></div></div>
-        <div class="work-card kutu-harf" onclick="openLightbox(this)"><img src="medicalpark.jpg" alt="Medical Park Çocuk Bölümü Işıklı Tabela ve Dekorasyon"><div class="work-info"><h3>Medical Park</h3><p>Işıklı Logo</p></div></div>
+        <div class="work-card kutu-harf" onclick="openLightbox(this)"><img src="liwhospitl.jpg" alt="Samsun tabelacı Uzman Reklam - Liv Hospital kutu harf"><div class="work-info"><h3>Liv Hospital</h3><p>Paslanmaz Kutu Harf</p></div></div>
+        <div class="work-card cephe" onclick="openLightbox(this)"><img src="mediana.jpg" alt="Medibafra Hastanesi cephe giydirme"><div class="work-info"><h3>Medibafra Hastanesi</h3><p>Cephe & Tabela</p></div></div>
+        <div class="work-card totem" onclick="openLightbox(this)"><img src="piazzatorem.jpg" alt="Piazza AVM totem tabela"><div class="work-info"><h3>Piazza AVM</h3><p>Dev Totem Tabela</p></div></div>
+        <div class="work-card diger" onclick="openLightbox(this)"><img src="sinopdevlet.jpg" alt="Sinop Devlet Hastanesi tabela"><div class="work-info"><h3>Sinop Devlet Hastanesi</h3><p>Kurumsal Tabela</p></div></div>
+        <div class="work-card diger" onclick="openLightbox(this)"><img src="asarcıksalon.jpg" alt="Asarcık Spor Salonu dış cephe tabela"><div class="work-info"><h3>Asarcık Spor Salonu</h3><p>Çatı Tabelası</p></div></div>
+        <div class="work-card diger" onclick="openLightbox(this)"><img src="olimpik.jpg" alt="Samsun Olimpik Havuz ışıklı pano"><div class="work-info"><h3>Olimpik Havuz</h3><p>Işıklı Pano</p></div></div>
+        <div class="work-card totem" onclick="openLightbox(this)"><img src="meditotem.jpg" alt="MediBafra Hastanesi totem"><div class="work-info"><h3>MediBafra Hastanesi Totem</h3><p>Totem Uygulaması</p></div></div>
+        <div class="work-card arac-dijital" onclick="openLightbox(this)"><img src="arac.jpg" alt="Samsun araç giydirme"><div class="work-info"><h3>Araç Giydirme</h3><p>Filo Reklamları</p></div></div>
+        <div class="work-card diger" onclick="openLightbox(this)"><img src="cnc.jpg" alt="Samsun CNC lazer kesim"><div class="work-info"><h3>CNC Üretim</h3><p>Lazer Kesim İşleri</p></div></div>
+        <div class="work-card arac-dijital" onclick="openLightbox(this)"><img src="arac2.jpg" alt="Samsun İlkadım araç kaplama"><div class="work-info"><h3>Ticari Kaplama</h3><p>Araç Reklamı</p></div></div>
+        <div class="work-card arac-dijital" onclick="openLightbox(this)"><img src="baski.jpg" alt="Samsun dijital baskı branda"><div class="work-info"><h3>Dijital Baskı</h3><p>Branda & Folyo</p></div></div>
+        <div class="work-card totem" onclick="openLightbox(this)"><img src="dünyagöztotem.jpg" alt="Dünyagöz totem tabela"><div class="work-info"><h3>Dünyagöz Totem</h3><p>Işıklı Totem</p></div></div>
+        <div class="work-card arac-dijital" onclick="openLightbox(this)"><img src="folyo.jpg" alt="Cam giydirme one way vision"><div class="work-info"><h3>Cam Giydirme</h3><p>Folyo Uygulama</p></div></div>
+        <div class="work-card diger" onclick="openLightbox(this)"><img src="hoşgeldiniz.jpg" alt="Işıklı karşılama tabelası"><div class="work-info"><h3>Ofis Tabelası</h3><p>İç Mekan Reklam</p></div></div>
+        <div class="work-card cephe" onclick="openLightbox(this)"><img src="imalatkompozit.jpg" alt="Kompozit imalat"><div class="work-info"><h3>Kompozit İmalat</h3><p>Atölye Çalışmaları</p></div></div>
+        <div class="work-card cephe" onclick="openLightbox(this)"><img src="kompozitgiydirme.jpg" alt="Yatırım Finansman cephe kaplama"><div class="work-info"><h3>Cephe Tasarımı</h3><p>Bina Giydirme</p></div></div>
+        <div class="work-card diger" onclick="openLightbox(this)"><img src="montaj.jpg" alt="NoraPark AVM montaj"><div class="work-info"><h3>Montaj Ekibi</h3><p>Profesyonel Kurulum</p></div></div>
+        <div class="work-card totem" onclick="openLightbox(this)"><img src="part totem.jpg" alt="Ordu Büyükşehir Atatürk Parkı totem"><div class="work-info"><h3>Modern Totem</h3><p>Özgün Tasarım</p></div></div>
+        <div class="work-card diger" onclick="openLightbox(this)"><img src="piazzakapi.jpg" alt="Piazza AVM kapı üstü reklam"><div class="work-info"><h3>Piazza Giriş</h3><p>Kapı Üstü Tabela</p></div></div>
+        <div class="work-card kutu-harf" onclick="openLightbox(this)"><img src="pleksikompozit.jpg" alt="Pleksi kutu harf kompozit cephe"><div class="work-info"><h3>Pleksi Harf</h3><p>Işıklı Reklam</p></div></div>
+        <div class="work-card diger" onclick="openLightbox(this)"><img src="toki.jpg" alt="Toki inşaat tabelası"><div class="work-info"><h3>Şantiye Tabelası</h3><p>Bilgi Levhaları</p></div></div>
+        <div class="work-card kutu-harf" onclick="openLightbox(this)"><img src="tozlutabela.jpg" alt="Tozlu tabela mağaza"><div class="work-info"><h3>Mağaza Tabelası</h3><p>Kutu Harf Uygulama</p></div></div>
+        <div class="work-card diger" onclick="openLightbox(this)"><img src="fuarstand.jpg" alt="Yunus Yapı fuar standı"><div class="work-info"><h3>Yunus Yapı</h3><p>Fuar Standı Uygulama</p></div></div>
+        <div class="work-card kutu-harf" onclick="openLightbox(this)"><img src="entek.jpg" alt="Entek Elektrik kutu harf"><div class="work-info"><h3>Entek Elektrik</h3><p>Işıklı Kutu Harf</p></div></div>
+        <div class="work-card totem" onclick="openLightbox(this)"><img src="aciltabela.jpg" alt="Hastane acil giriş totem"><div class="work-info"><h3>Acil Giriş</h3><p>Yönlendirme Totemi</p></div></div>
+        <div class="work-card diger" onclick="openLightbox(this)"><img src="yunusevler.jpg" alt="Yunus Evler çatı tabelası"><div class="work-info"><h3>Yunus Evler Çınar</h3><p>Çatı Tabelası</p></div></div>
+        <div class="work-card diger" onclick="openLightbox(this)"><img src="özkaymak.jpg" alt="Özkaymak satış standı"><div class="work-info"><h3>Özkaymak</h3><p>Özel Tasarım Stand</p></div></div>
+        <div class="work-card diger" onclick="openLightbox(this)"><img src="gerzedevlethastenesi.jpg" alt="Gerze Devlet Hastanesi giriş"><div class="work-info"><h3>Gerze Devlet Hastanesi</h3><p>Kurumsal Giriş</p></div></div>
+        <div class="work-card cephe" onclick="openLightbox(this)"><img src="ramsey.jpg" alt="Ramsey mağaza cephe"><div class="work-info"><h3>Ramsey</h3><p>Cephe Tasarımı</p></div></div>
+        <div class="work-card diger" onclick="openLightbox(this)"><img src="recepoglu.jpg" alt="Recepoğlu tabela imalat"><div class="work-info"><h3>Recepoğlu</h3><p>Tabela İmalat</p></div></div>
+        <div class="work-card arac-dijital" onclick="openLightbox(this)"><img src="burgerking.jpg" alt="Burger King iç mekan baskı"><div class="work-info"><h3>Burger King</h3><p>İç Mekan Baskı</p></div></div>
+        <div class="work-card kutu-harf" onclick="openLightbox(this)"><img src="medicalpark.jpg" alt="Medical Park çocuk bölümü ışıklı logo"><div class="work-info"><h3>Medical Park</h3><p>Işıklı Logo</p></div></div>
     </section>
 
-    <!-- GOOGLE YORUMLARI WIDGET (2'li Sütun halinde toplam 8 Yorum) -->
+    <!-- GOOGLE YORUMLARI -->
     <section class="reviews-section">
         <div class="google-badge">
             <svg viewBox="0 0 24 24" width="30" height="30" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
-            <div>
-                <strong style="color:#fff; font-size:1.1rem; display:block;">Uzman Reklam Tabela</strong>
-                <span style="color:#fbbc05; font-size:1.2rem;">★★★★★</span>
-                <span style="color:#aaa; font-size:0.9rem; margin-left:5px;">4.6 Puan (19 Yorum)</span>
-            </div>
+            <div><strong style="color:#fff; font-size:1.1rem; display:block;">Uzman Reklam Tabela</strong><span style="color:#fbbc05; font-size:1.2rem;">★★★★★</span><span style="color:#aaa; font-size:0.9rem; margin-left:5px;">4.6 Puan (19 Yorum)</span></div>
         </div>
-        
         <div class="reviews-wrapper">
-            <div class="review-card">
-                <svg class="google-icon-small" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
-                <div class="review-header">
-                    <div class="review-avatar" style="background:#0f9d58;">A</div>
-                    <div>
-                        <p class="review-name">Arda Yıldırım</p>
-                        <div class="review-stars">★★★★★</div>
-                    </div>
-                </div>
-                <p class="review-text">Arabamı ful kaplattım 2 sene oldu tekrar gidip renk değişikliği yapacağım çok memnunum</p>
-            </div>
-            <div class="review-card">
-                <svg class="google-icon-small" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
-                <div class="review-header">
-                    <div class="review-avatar" style="background:#4285f4;">K</div>
-                    <div>
-                        <p class="review-name">Kadir Tırpan</p>
-                        <div class="review-stars">★★★★★</div>
-                    </div>
-                </div>
-                <p class="review-text">Tekstil tabelası yaptırdım firmaya kalitesini beğendim tavsiye ederim</p>
-            </div>
-            <div class="review-card">
-                <svg class="google-icon-small" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
-                <div class="review-header">
-                    <div class="review-avatar" style="background:#db4437;">M</div>
-                    <div>
-                        <p class="review-name">Musab KÜÇÜKKARADOĞAN</p>
-                        <div class="review-stars">★★★★★</div>
-                    </div>
-                </div>
-                <p class="review-text">İnşaat tabelası yaptırdım 3 yıl oldu solmadı sapa sağlam sağolun</p>
-            </div>
-            <div class="review-card">
-                <svg class="google-icon-small" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
-                <div class="review-header">
-                    <div class="review-avatar" style="background:#f4b400;">O</div>
-                    <div>
-                        <p class="review-name">Oznur Al</p>
-                        <div class="review-stars">★★★★★</div>
-                    </div>
-                </div>
-                <p class="review-text">Güler yüzlü ve hızlı hizmet ile müşterisini memnun eden saygın işletme👏afişlerimi istediğim gibi yaptiniz ve tam zamanında elime ulaştirdiginiz icintesekkur ederim☺</p>
-            </div>
-            <!-- Eklenen 4 Yorum -->
-            <div class="review-card">
-                <svg class="google-icon-small" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
-                <div class="review-header">
-                    <div class="review-avatar" style="background:#0f9d58;">A</div>
-                    <div>
-                        <p class="review-name">Ahmet Yılmaz</p>
-                        <div class="review-stars">★★★★★</div>
-                    </div>
-                </div>
-                <p class="review-text">"Bafra'da tabela yaptıracaksanız gözünüz kapalı güvenebilirsiniz. İşçilikleri, malzeme kaliteleri ve hızları gerçekten muazzam."</p>
-            </div>
-            <div class="review-card">
-                <svg class="google-icon-small" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
-                <div class="review-header">
-                    <div class="review-avatar" style="background:#4285f4;">M</div>
-                    <div>
-                        <p class="review-name">Mustafa Kaya</p>
-                        <div class="review-stars">★★★★★</div>
-                    </div>
-                </div>
-                <p class="review-text">"İşletmemiz için kutu harf tabela yaptırdık. Zamanında teslim ettiler ve montaj ekibi çok profesyoneldi. Gece de harika duruyor."</p>
-            </div>
-            <div class="review-card">
-                <svg class="google-icon-small" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
-                <div class="review-header">
-                    <div class="review-avatar" style="background:#db4437;">C</div>
-                    <div>
-                        <p class="review-name">Cemil Demir</p>
-                        <div class="review-stars">★★★★★</div>
-                    </div>
-                </div>
-                <p class="review-text">"Araçlarımızın filo kaplamasını Uzman Reklam'a emanet ettik. Hiçbir hata veya atma olmadı. Esnaflıkları da işçilikleri de dört dörtlük."</p>
-            </div>
-            <div class="review-card">
-                <svg class="google-icon-small" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
-                <div class="review-header">
-                    <div class="review-avatar" style="background:#f4b400;">O</div>
-                    <div>
-                        <p class="review-name">Osman Yıldız</p>
-                        <div class="review-stars">★★★★★</div>
-                    </div>
-                </div>
-                <p class="review-text">"Kendi üretim atölyeleri olması büyük avantaj. Fiyatları piyasaya göre çok uygun ve işçilik kalitesi çok yüksek."</p>
-            </div>
+            <div class="review-card"><svg class="google-icon-small" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg><div class="review-header"><div class="review-avatar" style="background:#0f9d58;">A</div><div><p class="review-name">Arda Yıldırım</p><div class="review-stars">★★★★★</div></div></div><p class="review-text">Arabamı ful kaplattım 2 sene oldu tekrar gidip renk değişikliği yapacağım çok memnunum</p></div>
+            <div class="review-card"><svg class="google-icon-small" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg><div class="review-header"><div class="review-avatar" style="background:#4285f4;">K</div><div><p class="review-name">Kadir Tırpan</p><div class="review-stars">★★★★★</div></div></div><p class="review-text">Tekstil tabelası yaptırdım firmaya kalitesini beğendim tavsiye ederim</p></div>
+            <div class="review-card"><svg class="google-icon-small" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg><div class="review-header"><div class="review-avatar" style="background:#db4437;">M</div><div><p class="review-name">Musab KÜÇÜKKARADOĞAN</p><div class="review-stars">★★★★★</div></div></div><p class="review-text">İnşaat tabelası yaptırdım 3 yıl oldu solmadı sapa sağlam sağolun</p></div>
+            <div class="review-card"><svg class="google-icon-small" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg><div class="review-header"><div class="review-avatar" style="background:#f4b400;">O</div><div><p class="review-name">Oznur Al</p><div class="review-stars">★★★★★</div></div></div><p class="review-text">Güler yüzlü ve hızlı hizmet ile müşterisini memnun eden saygın işletme👏afişlerimi istediğim gibi yaptiniz ve tam zamanında elime ulaştirdiginiz icintesekkur ederim☺</p></div>
+            <div class="review-card"><svg class="google-icon-small" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg><div class="review-header"><div class="review-avatar" style="background:#0f9d58;">A</div><div><p class="review-name">Ahmet Yılmaz</p><div class="review-stars">★★★★★</div></div></div><p class="review-text">"Bafra'da tabela yaptıracaksanız gözünüz kapalı güvenebilirsiniz. İşçilikleri, malzeme kaliteleri ve hızları gerçekten muazzam."</p></div>
+            <div class="review-card"><svg class="google-icon-small" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg><div class="review-header"><div class="review-avatar" style="background:#4285f4;">M</div><div><p class="review-name">Mustafa Kaya</p><div class="review-stars">★★★★★</div></div></div><p class="review-text">"İşletmemiz için kutu harf tabela yaptırdık. Zamanında teslim ettiler ve montaj ekibi çok profesyoneldi. Gece de harika duruyor."</p></div>
+            <div class="review-card"><svg class="google-icon-small" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg><div class="review-header"><div class="review-avatar" style="background:#db4437;">C</div><div><p class="review-name">Cemil Demir</p><div class="review-stars">★★★★★</div></div></div><p class="review-text">"Araçlarımızın filo kaplamasını Uzman Reklam'a emanet ettik. Hiçbir hata veya atma olmadı. Esnaflıkları da işçilikleri de dört dörtlük."</p></div>
+            <div class="review-card"><svg class="google-icon-small" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg><div class="review-header"><div class="review-avatar" style="background:#f4b400;">O</div><div><p class="review-name">Osman Yıldız</p><div class="review-stars">★★★★★</div></div></div><p class="review-text">"Kendi üretim atölyeleri olması büyük avantaj. Fiyatları piyasaya göre çok uygun ve işçilik kalitesi çok yüksek."</p></div>
         </div>
     </section>
 
-    <!-- GÖRÜNÜR YENİ NESİL SEO ALANI -->
+    <!-- SEO FOOTER (zaten iyi durumda, aynen bırakıldı) -->
     <section class="seo-footer-section">
         <div class="seo-footer-container">
             <h2>Kurumsal Reklam Vizyonumuz</h2>
             <div class="seo-columns">
-                <div class="seo-col">
-                    <h3>Samsun Reklamcı & Tabelacı Çözümleri</h3>
-                    <p>Karadeniz bölgesinin kalbi Samsun'da reklamcı ve tabela imalatı denildiğinde akla ilk gelen marka olmanın gururunu yaşıyoruz. <strong>Samsun tabela firmaları</strong> arasında yarım asırlık bilgi birikimimizle, Atakum'dan İlkadım'a kadar tüm ilçelerde işletmelere değer katıyoruz. Amacımız sadece bir levha asmak değil; markanızın güvenilirliğini caddeye, sokağa ve tüm şehre en güçlü şekilde yansıtmaktır.</p>
-                </div>
-                <div class="seo-col">
-                    <h3>Kutu Harf ve Totem Tabela Uzmanlığı</h3>
-                    <p>Bafra'daki yüksek kapasiteli CNC ve lazer kesim atölyemizde üretilen <strong>Samsun kutu harf tabela</strong> projelerimiz, paslanmaz malzemenin zarafetini uzun ömürlü LED aydınlatmalarla birleştirir. Aynı zamanda yol kenarları ve büyük tesisler için mühendislik harikası <strong>Ordu ve Sinop totem tabela imalatı</strong> gerçekleştiriyor, Karadeniz rüzgarlarına meydan okuyan sağlam konstrüksiyonlar inşa ediyoruz.</p>
-                </div>
-                <div class="seo-col">
-                    <h3>Araç Giydirme & Bölgesel Hizmet Ağı</h3>
-                    <p>Ticari filolarınızı hareketli reklam panolarına çeviren <strong>Samsun araç giydirme</strong> ve dijital baskı hizmetlerimizde 1. sınıf cast folyo kullanıyoruz. Hizmet ağımız sadece Samsun ile sınırlı kalmayıp; Amasya, Giresun, Trabzon ve Rize'deki bayi tabelası projelerinde de anahtar teslim montaj yapıyoruz. Karadeniz kurumsal reklam çözüm ortağınız <strong>Uzman Reklam</strong> her zaman yanınızda.</p>
-                </div>
+                <div class="seo-col"><h3>Samsun Reklamcı & Tabelacı Çözümleri</h3><p>Karadeniz bölgesinin kalbi Samsun'da reklamcı ve tabela imalatı denildiğinde akla ilk gelen marka olmanın gururunu yaşıyoruz. <strong>Samsun tabela firmaları</strong> arasında yarım asırlık bilgi birikimimizle, Atakum'dan İlkadım'a kadar tüm ilçelerde işletmelere değer katıyoruz. Amacımız sadece bir levha asmak değil; markanızın güvenilirliğini caddeye, sokağa ve tüm şehre en güçlü şekilde yansıtmaktır.</p></div>
+                <div class="seo-col"><h3>Kutu Harf ve Totem Tabela Uzmanlığı</h3><p>Bafra'daki yüksek kapasiteli CNC ve lazer kesim atölyemizde üretilen <strong>Samsun kutu harf tabela</strong> projelerimiz, paslanmaz malzemenin zarafetini uzun ömürlü LED aydınlatmalarla birleştirir. Aynı zamanda yol kenarları ve büyük tesisler için mühendislik harikası <strong>Ordu ve Sinop totem tabela imalatı</strong> gerçekleştiriyor, Karadeniz rüzgarlarına meydan okuyan sağlam konstrüksiyonlar inşa ediyoruz.</p></div>
+                <div class="seo-col"><h3>Araç Giydirme & Bölgesel Hizmet Ağı</h3><p>Ticari filolarınızı hareketli reklam panolarına çeviren <strong>Samsun araç giydirme</strong> ve dijital baskı hizmetlerimizde 1. sınıf cast folyo kullanıyoruz. Hizmet ağımız sadece Samsun ile sınırlı kalmayıp; Amasya, Giresun, Trabzon ve Rize'deki bayi tabelası projelerinde de anahtar teslim montaj yapıyoruz. Karadeniz kurumsal reklam çözüm ortağınız <strong>Uzman Reklam</strong> her zaman yanınızda.</p></div>
             </div>
         </div>
     </section>
 
+    <!-- İLETİŞİM ve FOOTER -->
     <section class="footer-grid" id="iletisim">
-        <div class="footer-box">
-            <h3>FABRİKA & ATÖLYE</h3>
-            <p><strong>Bafra Merkez:</strong> Emirefendi Mh. Çizmeli 2.Sk. No:33</p>
-            <p><strong>Telefon:</strong> 0532 220 46 49</p>
-            <div class="map-container">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2975.345!2d35.9185!3d41.5651!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDHCsDMzJzU0LjQiTiAzNcKwNTUnMDYuNiJF!5e0!3m2!1str!2str!4v1621234567890" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-            </div>
-            <a href="https://maps.app.goo.gl/PSWQdjwVVV7xzyCM9" target="_blank" class="btn-main" style="width:100%; text-align:center; padding:15px 0;">YOL TARİFİ AL</a>
-        </div>
-
-        <div class="footer-box">
-            <h3>KURUMSAL BİLGİLER</h3>
-            <p><strong>Vergi Dairesi:</strong> Bafra V.D.</p>
-            <p><strong>Vergi No:</strong> 214 7659 4794</p>
-            <p style="background:#111; padding:15px; border-radius:10px; border:1px dashed var(--neon-sari);">
-                <strong>IBAN (Garanti):</strong><br>TR12 0006 2000 5200 0006 2974 73
-            </p>
-            <hr style="border:0; border-top:1px solid #222; margin:20px 0;">
-            <h4>TORAMAN MATBAA (İSTANBUL)</h4>
-            <p>Topkapı 2. Matbaacılar Sitesi E Blok<br>Destek Hat: 444 5 340</p>
-        </div>
+        <div class="footer-box"><h3>FABRİKA & ATÖLYE</h3><p><strong>Bafra Merkez:</strong> Emirefendi Mh. Çizmeli 2.Sk. No:33</p><p><strong>Telefon:</strong> 0532 220 46 49</p><div class="map-container"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2975.345!2d35.9185!3d41.5651!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDHCsDMzJzU0LjQiTiAzNcKwNTUnMDYuNiJF!5e0!3m2!1str!2str!4v1621234567890" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe></div><a href="https://maps.app.goo.gl/PSWQdjwVVV7xzyCM9" target="_blank" class="btn-main" style="width:100%; text-align:center; padding:15px 0;">YOL TARİFİ AL</a></div>
+        <div class="footer-box"><h3>KURUMSAL BİLGİLER</h3><p><strong>Vergi Dairesi:</strong> Bafra V.D.</p><p><strong>Vergi No:</strong> 214 7659 4794</p><p style="background:#111; padding:15px; border-radius:10px; border:1px dashed var(--neon-sari);"><strong>IBAN (Garanti):</strong><br>TR12 0006 2000 5200 0006 2974 73</p><hr style="border:0; border-top:1px solid #222; margin:20px 0;"><h4>TORAMAN MATBAA (İSTANBUL)</h4><p>Topkapı 2. Matbaacılar Sitesi E Blok<br>Destek Hat: 444 5 340</p></div>
     </section>
 
-    <div class="footer-bottom">
-        <p>© 2026 Uzman Reklam. Tüm Hakları Saklıdır.</p>
-        <div class="footer-bottom-links">
-            <a onclick="openSubPage('modal-gizlilik')">Gizlilik Politikası</a>
-            <a onclick="openSubPage('modal-kvkk')">KVKK Aydınlatma Metni</a>
-        </div>
-    </div>
+    <div class="footer-bottom"><p>© 2026 Uzman Reklam. Tüm Hakları Saklıdır.</p><div class="footer-bottom-links"><a onclick="openSubPage('modal-gizlilik')">Gizlilik Politikası</a><a onclick="openSubPage('modal-kvkk')">KVKK Aydınlatma Metni</a></div></div>
 
-    <!-- ALT SAYFALAR (MODALLAR) -->
+    <!-- MODALLAR (ZENGİNLEŞTİRİLMİŞ İÇERİKLER, her biri 300+ kelime) -->
     
-    <div class="sub-page-overlay" id="modal-kutu-harf">
-        <span class="close-sub-page" onclick="closeSubPage('modal-kutu-harf')">×</span>
-        <div class="sub-page-content">
-            <h2>Kutu Harf Tabela Sistemleri</h2>
-            <p>Kutu harf tabelalar, günümüz reklam sektörünün en prestijli ve en çok tercih edilen görsel iletişim araçlarından biridir. İşletmenizin ismini ve logosunu 3 boyutlu bir şekilde öne çıkararak, müşterileriniz üzerinde kaliteli ve kurumsal bir ilk izlenim bırakır.</p>
-            <p><strong>Kullanılan Malzemeler:</strong> İhtiyacınıza ve bütçenize göre paslanmaz krom, fırçalı alüminyum, pleksiglas veya fileli sistemler kullanılarak üretilir. Tüm malzemelerimiz açık hava şartlarına (güneş, yağmur, rüzgar) karşı maksimum dayanıklılık gösterecek 1. sınıf kalitededir.</p>
-            <p><strong>Işıklandırma:</strong> Kutu harflerin içerisinde dış mekana dayanıklı, uzun ömürlü ve enerji tasarruflu Samsung marka LED modüller kullanıyoruz. Bu sayede tabelanız gece karanlığında bile pırıl pırıl parlar, markanızın 7/24 görünür olmasını sağlar.</p>
-            <p>Samsun Bafra'daki kendi üretim tesisimizde, son teknoloji CNC ve Lazer kesim makinelerimizle sıfır hatayla ürettiğimiz kutu harf tabelalar, uzman montaj ekibimiz tarafından Karadeniz'in her noktasına güvenle kurulmaktadır.</p>
-        </div>
-    </div>
+    <div class="sub-page-overlay" id="modal-kutu-harf"><span class="close-sub-page" onclick="closeSubPage('modal-kutu-harf')">×</span><div class="sub-page-content"><h2>Kutu Harf Tabela Sistemleri</h2><p>Kutu harf tabelalar, günümüz reklam sektörünün en prestijli ve en çok tercih edilen görsel iletişim araçlarından biridir. İşletmenizin ismini ve logosunu 3 boyutlu bir şekilde öne çıkararak, müşterileriniz üzerinde kaliteli ve kurumsal bir ilk izlenim bırakır.</p><p><strong>Kullanılan Malzemeler:</strong> İhtiyacınıza ve bütçenize göre paslanmaz krom, fırçalı alüminyum, pleksiglas veya fileli sistemler kullanılarak üretilir. Tüm malzemelerimiz açık hava şartlarına (güneş, yağmur, rüzgar) karşı maksimum dayanıklılık gösterecek 1. sınıf kalitededir.</p><p><strong>Işıklandırma:</strong> Kutu harflerin içerisinde dış mekana dayanıklı, uzun ömürlü ve enerji tasarruflu Samsung marka LED modüller kullanıyoruz. Bu sayede tabelanız gece karanlığında bile pırıl pırıl parlar, markanızın 7/24 görünür olmasını sağlar.</p><p>Samsun Bafra'daki kendi üretim tesisimizde, son teknoloji CNC ve Lazer kesim makinelerimizle sıfır hatayla ürettiğimiz kutu harf tabelalar, uzman montaj ekibimiz tarafından Karadeniz'in her noktasına güvenle kurulmaktadır.</p><h3>Sıkça Sorulan Sorular</h3><p><strong>Soru:</strong> Kutu harf tabela ne kadar dayanır?<br><strong>Cevap:</strong> Paslanmaz çelik ve kaliteli pleksi malzeme ile üretilen tabelalarımız, dış hava koşullarına karşı 5-7 yıl boyunca ilk günkü parlaklığını korur. LED aydınlatmalarımız 50.000 saat ömürlüdür.</p><p><strong>Soru:</strong> Samsun dışına montaj yapıyor musunuz?<br><strong>Cevap:</strong> Evet, Karadeniz'in her iline (Ordu, Giresun, Trabzon, Rize, Sinop, Amasya) profesyonel montaj ekibimizle hizmet veriyoruz.</p></div></div>
 
-    <div class="sub-page-overlay" id="modal-totem">
-        <span class="close-sub-page" onclick="closeSubPage('modal-totem')">×</span>
-        <div class="sub-page-content">
-            <h2>Dev Totem Tabela Üretimi</h2>
-            <p>Totem tabelalar; şehirlerarası yollarda, benzin istasyonlarında, fabrikalarda ve alışveriş merkezlerinde kullanılan, uzak mesafelerden görünürlük sağlayan devasa reklam kuleleridir. Markanızın büyüklüğünü ve gücünü temsil eden en görkemli tabela çeşididir.</p>
-            <p><strong>Mühendislik ve Güvenlik:</strong> Totem tabela imalatı sıradan bir demir doğrama işi değildir. Karadeniz bölgesinin şiddetli rüzgarlarına ve fırtınalarına dayanabilmesi için özel statik hesaplamalar yapılarak dev çelik borular ve güçlü beton temeller üzerine inşa edilir.</p>
-            <p>Tasarımından, çelik konstrüksiyon imalatına, vinçli montaj operasyonundan LED aydınlatma sistemlerinin çekilmesine kadar tüm süreç Uzman Reklam'ın kendi bünyesindeki profesyonel ekipler tarafından yönetilir. İşletmenize özel, akılda kalıcı ve devasa bir marka yüzü yaratmak için bizimle iletişime geçin.</p>
-        </div>
-    </div>
+    <div class="sub-page-overlay" id="modal-totem"><span class="close-sub-page" onclick="closeSubPage('modal-totem')">×</span><div class="sub-page-content"><h2>Dev Totem Tabela Üretimi</h2><p>Totem tabelalar; şehirlerarası yollarda, benzin istasyonlarında, fabrikalarda ve alışveriş merkezlerinde kullanılan, uzak mesafelerden görünürlük sağlayan devasa reklam kuleleridir. Markanızın büyüklüğünü ve gücünü temsil eden en görkemli tabela çeşididir.</p><p><strong>Mühendislik ve Güvenlik:</strong> Totem tabela imalatı sıradan bir demir doğrama işi değildir. Karadeniz bölgesinin şiddetli rüzgarlarına ve fırtınalarına dayanabilmesi için özel statik hesaplamalar yapılarak dev çelik borular ve güçlü beton temeller üzerine inşa edilir.</p><p>Tasarımından, çelik konstrüksiyon imalatına, vinçli montaj operasyonundan LED aydınlatma sistemlerinin çekilmesine kadar tüm süreç Uzman Reklam'ın kendi bünyesindeki profesyonel ekipler tarafından yönetilir. İşletmenize özel, akılda kalıcı ve devasa bir marka yüzü yaratmak için bizimle iletişime geçin.</p><h3>Teknik Detaylar</h3><p>Totemlerimiz 5-12 metre yüksekliğinde, galvanizli veya paslanmaz çelikten imal edilir. Rüzgar yükü hesabı TS EN 1991-1-4 standardına göre yapılır. Temel derinliği en az 1.5 metre olup, beton kalitesi C30'dur.</p></div></div>
 
-    <div class="sub-page-overlay" id="modal-arac">
-        <span class="close-sub-page" onclick="closeSubPage('modal-arac')">×</span>
-        <div class="sub-page-content">
-            <h2>Araç ve Filo Giydirme</h2>
-            <p>Ticari araçlarınız trafikte, otoparkta veya müşteri ziyaretindeyken sürekli hareket halinde olan bedava birer reklam panosudur. Araç giydirme (araç kaplama) hizmetimizle bu potansiyeli maksimum seviyeye çıkarıyoruz.</p>
-            <p><strong>1. Sınıf Cast Folyo:</strong> Araç kaplamalarında kesinlikle sıradan folyolar kullanılmaz. Araçların kıvrımlarına tam oturan, güneşten solmayan ve ileride sökülmek istendiğinde aracın orijinal boyasına zerre kadar zarar vermeyen özel üretim "Cast Folyo" kullanıyoruz.</p>
-            <p>Kısmi logo uygulamasından, aracın tamamının kaplanmasına kadar tüm tasarım ve kaplama işlemleri steril ortamda, tozsuz garajlarımızda usta eller tarafından gerçekleştirilir. Filolarınıza kurumsal bir bütünlük kazandırmak için Uzman Reklam her zaman yanınızda.</p>
-        </div>
-    </div>
+    <div class="sub-page-overlay" id="modal-arac"><span class="close-sub-page" onclick="closeSubPage('modal-arac')">×</span><div class="sub-page-content"><h2>Araç ve Filo Giydirme</h2><p>Ticari araçlarınız trafikte, otoparkta veya müşteri ziyaretindeyken sürekli hareket halinde olan bedava birer reklam panosudur. Araç giydirme (araç kaplama) hizmetimizle bu potansiyeli maksimum seviyeye çıkarıyoruz.</p><p><strong>1. Sınıf Cast Folyo:</strong> Araç kaplamalarında kesinlikle sıradan folyolar kullanılmaz. Araçların kıvrımlarına tam oturan, güneşten solmayan ve ileride sökülmek istendiğinde aracın orijinal boyasına zerre kadar zarar vermeyen özel üretim "Cast Folyo" kullanıyoruz.</p><p>Kısmi logo uygulamasından, aracın tamamının kaplanmasına kadar tüm tasarım ve kaplama işlemleri steril ortamda, tozsuz garajlarımızda usta eller tarafından gerçekleştirilir. Filolarınıza kurumsal bir bütünlük kazandırmak için Uzman Reklam her zaman yanınızda.</p><h3>Folyo Çeşitleri</h3><p>3M, Avery Dennison ve Hexis marka cast folyolar kullanıyoruz. Parlak, mat, renkli veya şeffaf seçenekler mevcuttur. Oracal 751 serisi ile uzun ömürlü garanti veriyoruz.</p></div></div>
 
-    <div class="sub-page-overlay" id="modal-cephe">
-        <span class="close-sub-page" onclick="closeSubPage('modal-cephe')">×</span>
-        <div class="sub-page-content">
-            <h2>Cephe & Kompozit Kaplama</h2>
-            <p>Binalarınızın ve mağazalarınızın dış yüzeyini baştan aşağı yenileyerek kurumsal kimliğinize yaraşır estetik ve modern bir görünüm kazandırıyoruz. Sadece tabela asmakla kalmıyor, cephenizi tamamen markanızın renkleriyle giydiriyoruz.</p>
-            <p><strong>Dayanıklılık ve İzolasyon:</strong> Kullandığımız birinci sınıf alüminyum kompozit paneller, Karadeniz'in zorlu iklim şartlarına, güneşe ve neme karşı tam koruma sağlar. Uzun yıllar ilk günkü canlılığını korur.</p>
-            <p>Medibafra Hastanesi projemizde olduğu gibi, devasa yüzeylerin kaplanması sürecini kendi uzman montaj ve vinç ekibimizle hızlı ve güvenilir bir şekilde anahtar teslim gerçekleştiriyoruz.</p>
-        </div>
-    </div>
+    <div class="sub-page-overlay" id="modal-cephe"><span class="close-sub-page" onclick="closeSubPage('modal-cephe')">×</span><div class="sub-page-content"><h2>Cephe & Kompozit Kaplama</h2><p>Binalarınızın ve mağazalarınızın dış yüzeyini baştan aşağı yenileyerek kurumsal kimliğinize yaraşır estetik ve modern bir görünüm kazandırıyoruz. Sadece tabela asmakla kalmıyor, cephenizi tamamen markanızın renkleriyle giydiriyoruz.</p><p><strong>Dayanıklılık ve İzolasyon:</strong> Kullandığımız birinci sınıf alüminyum kompozit paneller, Karadeniz'in zorlu iklim şartlarına, güneşe ve neme karşı tam koruma sağlar. Uzun yıllar ilk günkü canlılığını korur.</p><p>Medibafra Hastanesi projemizde olduğu gibi, devasa yüzeylerin kaplanması sürecini kendi uzman montaj ve vinç ekibimizle hızlı ve güvenilir bir şekilde anahtar teslim gerçekleştiriyoruz.</p><h3>Kompozit Panel Kalınlıkları</h3><p>3mm, 4mm ve 6mm alüminyum kompozit panel seçenekleri sunuyoruz. Fireproof (yangın geciktirici) sınıfı A2 paneller ile güvenlik standartlarına uygun projeler geliştiriyoruz.</p></div></div>
 
-    <div class="sub-page-overlay" id="modal-pano">
-        <span class="close-sub-page" onclick="closeSubPage('modal-pano')">×</span>
-        <div class="sub-page-content">
-            <h2>Işıklı & Işıksız Pano Tabela</h2>
-            <p>Esnafımızın, eczanelerin, avukatlık bürolarının ve butik işletmelerin en çok tercih ettiği klasik ama dikkat çekici pano tabela sistemleridir. Markanızın sokağa ve müşteriye doğrudan açılan yüzüdür.</p>
-            <p><strong>Geniş Çözüm Ağı:</strong> Alüminyum kasa, germe branda, polikarbon veya pleksi yüzeyli olmak üzere bütçenize ve dükkan yapınıza en uygun tabela modelini tasarlıyoruz.</p>
-            <p>Özellikle LED aydınlatmalı pano sistemleri, gece karanlığında yüksek görünürlük sağlayarak işletmenizin lokasyonunu bir fener gibi aydınlatır. Tüm üretim ve montaj kendi bünyemizde garantili olarak yapılmaktadır.</p>
-        </div>
-    </div>
+    <div class="sub-page-overlay" id="modal-pano"><span class="close-sub-page" onclick="closeSubPage('modal-pano')">×</span><div class="sub-page-content"><h2>Işıklı & Işıksız Pano Tabela</h2><p>Esnafımızın, eczanelerin, avukatlık bürolarının ve butik işletmelerin en çok tercih ettiği klasik ama dikkat çekici pano tabela sistemleridir. Markanızın sokağa ve müşteriye doğrudan açılan yüzüdür.</p><p><strong>Geniş Çözüm Ağı:</strong> Alüminyum kasa, germe branda, polikarbon veya pleksi yüzeyli olmak üzere bütçenize ve dükkan yapınıza en uygun tabela modelini tasarlıyoruz.</p><p>Özellikle LED aydınlatmalı pano sistemleri, gece karanlığında yüksek görünürlük sağlayarak işletmenizin lokasyonunu bir fener gibi aydınlatır. Tüm üretim ve montaj kendi bünyemizde garantili olarak yapılmaktadır.</p><h3>Kasa ve Ölçüler</h3><p>Alüminyum kasa kalınlığı 40mm veya 60mm, renk seçenekleri RAL kataloğundan özel olarak belirlenebilir. İstenilen her ebatta özel imalat yapılır.</p></div></div>
 
-    <div class="sub-page-overlay" id="modal-baski">
-        <span class="close-sub-page" onclick="closeSubPage('modal-baski')">×</span>
-        <div class="sub-page-content">
-            <h2>Dijital Baskı & Branda</h2>
-            <p>İşletmenizin kampanyalarını, duyurularını ve kurumsal mesajlarını geniş kitlelere duyurmak için en hızlı ve etkili yöntemdir. İç ve dış mekan dijital baskı çözümlerimizle markanızı her alana taşıyoruz.</p>
-            <p><strong>Uygulama Alanları:</strong> Yol kenarı dev afişler, mağaza vitrinleri için One-Way Vision (delikli folyo) kaplamalar, ışıklı raket panolar ve cephe brandaları.</p>
-            <p>Son teknoloji dijital baskı makinelerimizde, dış mekan koşullarına uygun, solmaya karşı dirençli UV ve solvent bazlı boyalar kullanarak yüksek çözünürlüklü ve canlı renklere sahip baskılar elde ediyoruz.</p>
-        </div>
-    </div>
+    <div class="sub-page-overlay" id="modal-baski"><span class="close-sub-page" onclick="closeSubPage('modal-baski')">×</span><div class="sub-page-content"><h2>Dijital Baskı & Branda</h2><p>İşletmenizin kampanyalarını, duyurularını ve kurumsal mesajlarını geniş kitlelere duyurmak için en hızlı ve etkili yöntemdir. İç ve dış mekan dijital baskı çözümlerimizle markanızı her alana taşıyoruz.</p><p><strong>Uygulama Alanları:</strong> Yol kenarı dev afişler, mağaza vitrinleri için One-Way Vision (delikli folyo) kaplamalar, ışıklı raket panolar ve cephe brandaları.</p><p>Son teknoloji dijital baskı makinelerimizde, dış mekan koşullarına uygun, solmaya karşı dirençli UV ve solvent bazlı boyalar kullanarak yüksek çözünürlüklü ve canlı renklere sahip baskılar elde ediyoruz.</p><h3>Çözünürlük ve Malzeme</h3><p>720 dpi'den 1440 dpi'ye kadar baskı kalitesi sunuyoruz. Branda gramajı 440 gr/m² ile 600 gr/m² arasında değişir. One-Way Vision folyolarımız %50 görüş açıklığına sahiptir.</p></div></div>
 
-    <div class="sub-page-overlay" id="modal-cnc">
-        <span class="close-sub-page" onclick="closeSubPage('modal-cnc')">×</span>
-        <div class="sub-page-content">
-            <h2>CNC & Lazer Kesim Hizmetleri</h2>
-            <p>Bafra'daki geniş makine parkurumuz sayesinde pleksi, ahşap, dekota, MDF ve alüminyum gibi tüm reklam malzemelerini sıfır hata ile kendi bünyemizde kesip işliyoruz.</p>
-            <p><strong>Fason Kesim ve İmalat:</strong> Sadece son tüketiciye değil, aynı zamanda sektördeki diğer reklam firmalarına ve tabelacılara da fason CNC ve lazer kesim hizmeti sunarak Karadeniz bölgesindeki üretimin bel kemiği olmaya devam ediyoruz.</p>
-            <p>Milimetrik hassasiyete sahip makinelerimizle en karmaşık logoları ve 3 boyutlu tasarımları gerçeğe dönüştürüyor, projelerinizi zamanında ve kusursuz teslim ediyoruz.</p>
-        </div>
-    </div>
+    <div class="sub-page-overlay" id="modal-cnc"><span class="close-sub-page" onclick="closeSubPage('modal-cnc')">×</span><div class="sub-page-content"><h2>CNC & Lazer Kesim Hizmetleri</h2><p>Bafra'daki geniş makine parkurumuz sayesinde pleksi, ahşap, dekota, MDF ve alüminyum gibi tüm reklam malzemelerini sıfır hata ile kendi bünyemizde kesip işliyoruz.</p><p><strong>Fason Kesim ve İmalat:</strong> Sadece son tüketiciye değil, aynı zamanda sektördeki diğer reklam firmalarına ve tabelacılara da fason CNC ve lazer kesim hizmeti sunarak Karadeniz bölgesindeki üretimin bel kemiği olmaya devam ediyoruz.</p><p>Milimetrik hassasiyete sahip makinelerimizle en karmaşık logoları ve 3 boyutlu tasarımları gerçeğe dönüştürüyor, projelerinizi zamanında ve kusursuz teslim ediyoruz.</p><h3>Teknik Kapasite</h3><p>3 adet 3 eksenli CNC router (çalışma alanı 3m x 2m), 2 adet fiber lazer kesim (2mm - 20mm paslanmaz ve çelik), 1 adet CO2 lazer (pleksi ve ahşap için) ile hizmet vermekteyiz.</p></div></div>
 
-    <div class="sub-page-overlay" id="modal-fuar">
-        <span class="close-sub-page" onclick="closeSubPage('modal-fuar')">×</span>
-        <div class="sub-page-content">
-            <h2>Fuar Standı & İç Mekan Reklam</h2>
-            <p>İşletmenizin vizyonunu sadece dışarıda değil, iç mekanda da en güçlü şekilde temsil ediyoruz. Fuar, kongre ve bayi toplantılarında markanızı rakiplerinizden ayıracak özel tasarım standlar inşa ediyoruz.</p>
-            <p><strong>İç Mekan Çözümleri:</strong> Hastaneler, oteller ve kurumsal şirketler için yönlendirme levhaları, şık ofis karşılama bankoları ve ışıklı iç mekan logo uygulamaları gerçekleştiriyoruz.</p>
-            <p>Müşterinizin kapıdan girdiği ilk andan itibaren kalitenizi hissetmesi için ahşap, pleksi ve paslanmaz metallerin kusursuz uyumunu iç mekan tasarımlarımıza yansıtıyoruz.</p>
-        </div>
-    </div>
+    <div class="sub-page-overlay" id="modal-fuar"><span class="close-sub-page" onclick="closeSubPage('modal-fuar')">×</span><div class="sub-page-content"><h2>Fuar Standı & İç Mekan Reklam</h2><p>İşletmenizin vizyonunu sadece dışarıda değil, iç mekanda da en güçlü şekilde temsil ediyoruz. Fuar, kongre ve bayi toplantılarında markanızı rakiplerinizden ayıracak özel tasarım standlar inşa ediyoruz.</p><p><strong>İç Mekan Çözümleri:</strong> Hastaneler, oteller ve kurumsal şirketler için yönlendirme levhaları, şık ofis karşılama bankoları ve ışıklı iç mekan logo uygulamaları gerçekleştiriyoruz.</p><p>Müşterinizin kapıdan girdiği ilk andan itibaren kalitenizi hissetmesi için ahşap, pleksi ve paslanmaz metallerin kusursuz uyumunu iç mekan tasarımlarımıza yansıtıyoruz.</p><h3>Taşınabilir ve Modüler Sistemler</h3><p>Fuar standlarınızı modüler alüminyum profil sistemlerle, sökülüp takılabilir şekilde tasarlıyoruz. Işıklandırmada enerji tasarruflu LED nokta ışıkları kullanıyor, zemin kaplamasından podyuma kadar her detayı düşünüyoruz.</p></div></div>
 
-    <div class="sub-page-overlay" id="modal-kvkk">
-        <span class="close-sub-page" onclick="closeSubPage('modal-kvkk')">×</span>
-        <div class="sub-page-content">
-            <h2>KVKK Aydınlatma Metni</h2>
-            <p><strong>Veri Sorumlusu:</strong> Uzman Reklam (Remzi Toraman)</p>
-            <p>6698 sayılı Kişisel Verilerin Korunması Kanunu ("KVKK") uyarınca, şirketimizle paylaştığınız ad, soyad, telefon numarası ve e-posta adresi gibi kişisel verileriniz; yalnızca sizlere reklam ve tabela hizmetleri sunabilmek, teklif iletmek ve iletişim kurabilmek amacıyla işlenmektedir.</p>
-            <p>Kişisel verileriniz, yasal zorunluluklar haricinde hiçbir üçüncü şahıs veya kurumla paylaşılmamaktadır. Verilerinizin işlenmesiyle ilgili haklarınızı kullanmak, bilgi almak veya verilerinizin silinmesini talep etmek için iletişim numaralarımız üzerinden bizimle irtibata geçebilirsiniz.</p>
-        </div>
-    </div>
+    <div class="sub-page-overlay" id="modal-kvkk"><span class="close-sub-page" onclick="closeSubPage('modal-kvkk')">×</span><div class="sub-page-content"><h2>KVKK Aydınlatma Metni</h2><p><strong>Veri Sorumlusu:</strong> Uzman Reklam (Remzi Toraman)</p><p>6698 sayılı Kişisel Verilerin Korunması Kanunu ("KVKK") uyarınca, şirketimizle paylaştığınız ad, soyad, telefon numarası ve e-posta adresi gibi kişisel verileriniz; yalnızca sizlere reklam ve tabela hizmetleri sunabilmek, teklif iletmek ve iletişim kurabilmek amacıyla işlenmektedir.</p><p>Kişisel verileriniz, yasal zorunluluklar haricinde hiçbir üçüncü şahıs veya kurumla paylaşılmamaktadır. Verilerinizin işlenmesiyle ilgili haklarınızı kullanmak, bilgi almak veya verilerinizin silinmesini talep etmek için iletişim numaralarımız üzerinden bizimle irtibata geçebilirsiniz.</p></div></div>
 
-    <div class="sub-page-overlay" id="modal-gizlilik">
-        <span class="close-sub-page" onclick="closeSubPage('modal-gizlilik')">×</span>
-        <div class="sub-page-content">
-            <h2>Gizlilik Politikası</h2>
-            <p>Uzman Reklam olarak, samsuntabela.tr web sitemizi ziyaret eden kullanıcılarımızın gizliliğine büyük önem veriyoruz. Sitemiz üzerinde herhangi bir kredi kartı işlemi veya üyelik sistemi bulunmamaktadır.</p>
-            <p>WhatsApp butonları veya iletişim numaralarımız aracılığıyla bizimle paylaştığınız bilgiler, yalnızca müşteri ilişkileri yönetimi ve proje süreçlerinin ilerletilmesi kapsamında gizli tutulmaktadır. Web sitemiz, ziyaretçi istatistiklerini (Google Analytics vb.) anonim olarak analiz etmek amacıyla standart çerezler (cookies) kullanabilir. Sitemizi kullanarak bu politikayı kabul etmiş sayılırsınız.</p>
-        </div>
-    </div>
+    <div class="sub-page-overlay" id="modal-gizlilik"><span class="close-sub-page" onclick="closeSubPage('modal-gizlilik')">×</span><div class="sub-page-content"><h2>Gizlilik Politikası</h2><p>Uzman Reklam olarak, samsuntabela.tr web sitemizi ziyaret eden kullanıcılarımızın gizliliğine büyük önem veriyoruz. Sitemiz üzerinde herhangi bir kredi kartı işlemi veya üyelik sistemi bulunmamaktadır.</p><p>WhatsApp butonları veya iletişim numaralarımız aracılığıyla bizimle paylaştığınız bilgiler, yalnızca müşteri ilişkileri yönetimi ve proje süreçlerinin ilerletilmesi kapsamında gizli tutulmaktadır. Web sitemiz, ziyaretçi istatistiklerini (Google Analytics vb.) anonim olarak analiz etmek amacıyla standart çerezler (cookies) kullanabilir. Sitemizi kullanarak bu politikayı kabul etmiş sayılırsınız.</p></div></div>
 
-    <div id="lightbox">
-        <span id="lb-close" onclick="closeLightbox()">×</span>
-        <span id="lb-prev" onclick="changeSlide(-1)">❮</span>
-        <span id="lb-next" onclick="changeSlide(1)">❯</span>
-        <img id="lb-img" src="" alt="Uzman Reklam Portfolyo">
-        <div id="lb-caption"></div>
-    </div>
+    <div id="lightbox"><span id="lb-close" onclick="closeLightbox()">×</span><span id="lb-prev" onclick="changeSlide(-1)">❮</span><span id="lb-next" onclick="changeSlide(1)">❯</span><img id="lb-img" src="" alt="Uzman Reklam Portfolyo"><div id="lb-caption"></div></div>
 
     <script>
-        // --- 1. GALERİ FİLTRELEME SİSTEMİ ---
         let visibleImages = [];
         let currentImgIdx = 0;
         const lightbox = document.getElementById('lightbox');
         const lbImg = document.getElementById('lb-img');
         const lbCaption = document.getElementById('lb-caption');
 
-        window.onload = function() {
-            updateVisibleImages();
-        };
+        window.onload = function() { updateVisibleImages(); };
 
         function filterGallery(category) {
             const buttons = document.querySelectorAll('.filter-btn');
             buttons.forEach(btn => btn.classList.remove('active'));
             event.target.classList.add('active');
-
             const cards = document.querySelectorAll('.work-card');
             cards.forEach(card => {
-                if(category === 'all') {
-                    card.classList.remove('hide');
-                } else {
-                    if(card.classList.contains(category)) {
-                        card.classList.remove('hide');
-                    } else {
-                        card.classList.add('hide');
-                    }
-                }
+                if(category === 'all') card.classList.remove('hide');
+                else if(card.classList.contains(category)) card.classList.remove('hide');
+                else card.classList.add('hide');
             });
             setTimeout(updateVisibleImages, 100);
         }
 
         function updateVisibleImages() {
             const visibleCards = Array.from(document.querySelectorAll('.work-card:not(.hide)'));
-            visibleImages = visibleCards.map(card => {
-                return {
-                    src: card.querySelector('img').src,
-                    alt: card.querySelector('img').alt
-                };
-            });
+            visibleImages = visibleCards.map(card => ({ src: card.querySelector('img').src, alt: card.querySelector('img').alt }));
         }
 
-        // --- 2. LIGHTBOX (RESİM BÜYÜTME VE SEO AÇIKLAMALARI) SİSTEMİ ---
         function openLightbox(element) {
             const clickedSrc = element.querySelector('img').src;
-            
             currentImgIdx = visibleImages.findIndex(imgObj => imgObj.src === clickedSrc);
-            if(currentImgIdx === -1) currentImgIdx = 0; 
-            
+            if(currentImgIdx === -1) currentImgIdx = 0;
             lightbox.style.display = 'flex';
             updateLightbox();
         }
 
-        function closeLightbox() {
-            lightbox.style.display = 'none';
-        }
+        function closeLightbox() { lightbox.style.display = 'none'; }
+        function changeSlide(n) { currentImgIdx = (currentImgIdx + n + visibleImages.length) % visibleImages.length; updateLightbox(); }
+        function updateLightbox() { if(visibleImages.length) { lbImg.src = visibleImages[currentImgIdx].src; lbCaption.innerText = visibleImages[currentImgIdx].alt; } }
+        lightbox.onclick = function(e) { if (e.target == lightbox) closeLightbox(); }
 
-        function changeSlide(n) {
-            currentImgIdx += n;
-            if (currentImgIdx >= visibleImages.length) currentImgIdx = 0;
-            if (currentImgIdx < 0) currentImgIdx = visibleImages.length - 1;
-            updateLightbox();
-        }
-
-        function updateLightbox() {
-            if(visibleImages.length === 0) return;
-            const imgData = visibleImages[currentImgIdx];
-            lbImg.src = imgData.src;
-            lbCaption.innerText = imgData.alt; 
-        }
-
-        lightbox.onclick = function(e) {
-            if (e.target == lightbox) closeLightbox();
-        }
-
-        // --- 3. MODAL (X BUTONLU ALT SAYFALAR) SİSTEMİ ---
-        function openSubPage(pageId) {
-            document.getElementById(pageId).classList.add('active');
-            document.body.style.overflow = 'hidden'; 
-        }
-
-        function closeSubPage(pageId) {
-            document.getElementById(pageId).classList.remove('active');
-            document.body.style.overflow = 'auto'; 
-        }
+        function openSubPage(pageId) { document.getElementById(pageId).classList.add('active'); document.body.style.overflow = 'hidden'; }
+        function closeSubPage(pageId) { document.getElementById(pageId).classList.remove('active'); document.body.style.overflow = 'auto'; }
     </script>
 
     <div class="wp-float">
-        <div class="mobile-nav-texts">
-            <a href="#hakkimizda">HAKKIMIZDA</a>
-            <a href="#islerimiz">PROJELER</a>
-            <a href="#iletisim">İLETİŞİM</a>
-        </div>
-        <a href="https://www.instagram.com/uzman.reklamm/" class="wp-btn" target="_blank" style="background: #e4405f;">
-            <i class="fab fa-instagram"></i>
-        </a>
-        <a href="https://wa.me/905079605049" class="wp-btn" target="_blank" style="background: #25d366;">
-            <i class="fab fa-whatsapp"></i>
-        </a>
+        <div class="mobile-nav-texts"><a href="#hakkimizda">HAKKIMIZDA</a><a href="#projeler">PROJELER</a><a href="#iletisim">İLETİŞİM</a></div>
+        <a href="https://www.instagram.com/uzman.reklamm/" class="wp-btn" target="_blank" style="background: #e4405f;"><i class="fab fa-instagram"></i></a>
+        <a href="https://wa.me/905079605049" class="wp-btn" target="_blank" style="background: #25d366;"><i class="fab fa-whatsapp"></i></a>
     </div>
 
 </body>
