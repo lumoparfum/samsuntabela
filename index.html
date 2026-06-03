@@ -79,19 +79,28 @@
         ::-webkit-scrollbar-thumb:hover { background: #444; }
         * { scrollbar-color: #2a2a2a #0a0a0a; scrollbar-width: thin; }
         
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 25px 5%; background: rgba(0,0,0,0.95); position: fixed; width: 90%; top: 0; z-index: 1000; border-bottom: 1px solid #222; }
-        .logo-area { display: flex; align-items: center; gap: 25px; flex-wrap: wrap; }
-        .logo a { font-weight: 900; font-size: 42px; letter-spacing: -2px; text-transform: uppercase; line-height: 1; white-space: nowrap; text-decoration: none; color: #fff; }
+        /* NAV - TAM GENİŞLİK VE HİZALAMA DÜZELTİLDİ */
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; background: rgba(0,0,0,0.95); position: fixed; width: 100%; top: 0; left: 0; z-index: 1000; border-bottom: 1px solid #222; }
+        .logo-area { display: flex; align-items: center; gap: 20px; }
+        .logo a { font-weight: 900; font-size: 36px; letter-spacing: -2px; text-transform: uppercase; line-height: 1; white-space: nowrap; text-decoration: none; color: #fff; }
         .logo span { color: var(--neon-sari); }
-        .logo-slogan { font-family: 'Caveat', cursive; color: #fff; font-size: 28px; border-left: 2px solid var(--neon-sari); padding-left: 25px; font-weight: 600; line-height: 1; white-space: nowrap; letter-spacing: 0.5px; }
+        .logo-slogan { font-family: 'Caveat', cursive; color: #fff; font-size: 24px; border-left: 2px solid var(--neon-sari); padding-left: 20px; font-weight: 600; line-height: 1; white-space: nowrap; letter-spacing: 0.5px; }
+        
         .nav-links { display: flex; align-items: center; gap: 30px; }
         .nav-links a { color: #fff; text-decoration: none; font-size: 16px; font-weight: 800; text-transform: uppercase; transition: color 0.3s; cursor: pointer; }
         .nav-links a:hover { color: var(--neon-sari); }
 
+        /* LAPTOP VE TABLET İÇİN (Menü sıkışmasın diye sloganı gizliyoruz) */
+        @media (max-width: 1100px) {
+            .logo-slogan { display: none; }
+        }
+
+        /* MOBİL İÇİN KUSURSUZ HİZALAMA */
         @media (max-width: 768px) {
-            nav { padding: 15px 5%; width: 90%; }
-            .logo a { font-size: 24px; white-space: normal; }
-            .logo-slogan { font-size: 14px; padding-left: 12px; white-space: normal; border-left: 2px solid var(--neon-sari); }
+            nav { padding: 15px 5%; }
+            .logo-area { flex-direction: column; align-items: flex-start; gap: 5px; }
+            .logo a { font-size: 28px; }
+            .logo-slogan { display: block; font-size: 15px; padding-left: 0; border-left: none; white-space: normal; margin-top: 2px; color: #bbb; }
             .nav-links { display: none; }
         }
 
@@ -104,7 +113,7 @@
         @keyframes fadeSlide { 0%, 100% { opacity: 0; } 10%, 33% { opacity: 1; } 43% { opacity: 0; } }
 
         .hero-content { z-index: 1; padding: 0 5%; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-        .hero h1 { font-size: clamp(2rem, 7vw, 5rem); font-weight: 900; margin-bottom: 20px; line-height: 1.2; letter-spacing: -1px; color: #fff; text-shadow: 0 2px 10px rgba(0,0,0,0.5); text-align: center; }
+        .hero h1 { font-size: clamp(2.5rem, 7vw, 5rem); font-weight: 900; margin-bottom: 20px; line-height: 1.1; letter-spacing: -1px; color: #fff; text-shadow: 0 2px 10px rgba(0,0,0,0.5); text-align: center; }
         .hero h1 span { color: var(--neon-sari); }
         .hero p { font-size: clamp(1rem, 2vw, 1.3rem); max-width: 800px; color: #ddd; margin-bottom: 40px; line-height: 1.6; text-align: center; }
         .btn-main { background: var(--neon-sari); color: #000; padding: 18px 45px; border-radius: 50px; text-decoration: none; font-weight: 900; text-transform: uppercase; transition: 0.3s; display: inline-block; border: none; cursor: pointer; }
@@ -161,7 +170,6 @@
         .review-text { color: #bbb; line-height: 1.5; font-size: 0.95rem; margin: 0; }
         .google-icon-small { position: absolute; top: 25px; right: 25px; width: 20px; height: 20px; }
 
-        /* SSS - TEK BLOK AÇILIR KAPANIR */
         .faq-section { padding: 60px 5%; background: #080808; border-top: 1px solid #1a1a1a; }
         .faq-container { max-width: 1000px; margin: 0 auto; }
         .faq-toggle { background: #0f0f0f; border: 1px solid #222; border-radius: 16px; overflow: hidden; transition: 0.3s; }
@@ -240,7 +248,6 @@
 <section class="hero">
     <div class="hero-slider"><div class="slide"></div><div class="slide"></div><div class="slide"></div></div>
     <div class="hero-content">
-        <!-- H1 ORTALAMA VE RENK DÜZELTMESİ BURADA YAPILDI -->
         <h1>SAMSUN'DA TABELA<br><span>BİZİM İŞİMİZ.</span></h1>
         <p>Karadeniz genelinde kurumsal bayi tabelaları ve reklam çözümleri sunuyoruz. Yarım asırlık tecrübemizle markanızı zirveye taşıyoruz.</p>
         <a href="https://wa.me/905079605049" class="btn-main">WHATSAPP İLE FİYAT AL</a>
@@ -338,7 +345,6 @@
     </div>
 </section>
 
-<!-- SSS TEK BLOK AÇILIR KAPANIR -->
 <section class="faq-section">
     <div class="faq-container">
         <div class="faq-toggle" id="faqToggle">
@@ -374,7 +380,6 @@
     </div>
 </section>
 
-<!-- SEO FOOTER -->
 <section class="seo-footer-section">
     <div class="seo-footer-container">
         <h2>Kurumsal Reklam Vizyonumuz</h2>
@@ -387,29 +392,28 @@
 </section>
 
 <section class="footer-grid" id="iletisim">
-    <div class="footer-box"><h3>FABRİKA & ATÖLYE</h3><p><strong>Bafra Merkez:</strong> Emirefendi Mh. Çizmeli 2.Sk. No:33</p><p><strong>Telefon:</strong> 0532 220 46 49</p><div class="map-container"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2975.345!2d35.9185!3d41.5651!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDHCsDMzJzU0LjQiTiAzNcKwNTUnMDYuNiJF!5e0!3m2!1str!2str!4v1621234567890" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe></div><a href="https://maps.app.goo.gl/PSWQdjwVVV7xzyCM9" target="_blank" class="btn-main" style="width:100%; text-align:center; padding:15px 0;">YOL TARİFİ AL</a></div>
+    <div class="footer-box">
+        <h3>FABRİKA & ATÖLYE</h3>
+        <p><strong>Bafra Merkez:</strong> Emirefendi Mh. Çizmeli 2.Sk. No:33</p>
+        <p><strong>Telefon:</strong> 0532 220 46 49</p>
+        <p><strong>Gsm / WhatsApp:</strong> 0507 960 50 49</p> <!-- NUMARAN BURAYA EKLENDİ -->
+        <div class="map-container"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2975.345!2d35.9185!3d41.5651!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDHCsDMzJzU0LjQiTiAzNcKwNTUnMDYuNiJF!5e0!3m2!1str!2str!4v1621234567890" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe></div>
+        <a href="https://maps.app.goo.gl/PSWQdjwVVV7xzyCM9" target="_blank" class="btn-main" style="width:100%; text-align:center; padding:15px 0;">YOL TARİFİ AL</a>
+    </div>
     <div class="footer-box"><h3>KURUMSAL BİLGİLER</h3><p><strong>Vergi Dairesi:</strong> Bafra V.D.</p><p><strong>Vergi No:</strong> 214 7659 4794</p><p style="background:#111; padding:15px; border-radius:10px; border:1px dashed var(--neon-sari);"><strong>IBAN (Garanti):</strong><br>TR12 0006 2000 5200 0006 2974 73</p><hr style="border:0; border-top:1px solid #222; margin:20px 0;"><h4>TORAMAN MATBAA (İSTANBUL)</h4><p>Topkapı 2. Matbaacılar Sitesi 5.Kat E Blok 3NE19 Topkapı - İSTANBUL</p><p>toramanmatbaa@gmail.com</p><p>Tel: 444 5 340</p><p><a href="https://toramanmatbaa.com" target="_blank" style="color:var(--neon-sari); text-decoration:none;">toramanmatbaa.com</a></p></div>
 </section>
 
 <div class="footer-bottom"><p>© 2026 Uzman Reklam. Tüm Hakları Saklıdır.</p><div class="footer-bottom-links"><a onclick="openSubPage('modal-gizlilik')">Gizlilik Politikası</a><a onclick="openSubPage('modal-kvkk')">KVKK Aydınlatma Metni</a></div></div>
 
-<!-- ZENGİNLEŞTİRİLMİŞ MODALLAR -->
+<!-- MODALLAR -->
 <div class="sub-page-overlay" id="modal-kutu-harf"><span class="close-sub-page" onclick="closeSubPage('modal-kutu-harf')">×</span><div class="sub-page-content"><h2>Kutu Harf Tabela Sistemleri</h2><p>Kutu harf tabelalar, günümüz reklam sektörünün en prestijli ve en çok tercih edilen görsel iletişim araçlarından biridir. İşletmenizin ismini ve logosunu 3 boyutlu bir şekilde öne çıkararak, müşterileriniz üzerinde kaliteli ve kurumsal bir ilk izlenim bırakır.</p><p><strong>Kullanılan Malzemeler:</strong> İhtiyacınıza ve bütçenize göre paslanmaz krom, fırçalı alüminyum, pleksiglas veya fileli sistemler kullanılarak üretilir. Tüm malzemelerimiz açık hava şartlarına karşı maksimum dayanıklılık gösterecek 1. sınıf kalitededir.</p><p><strong>Işıklandırma:</strong> Kutu harflerin içerisinde dış mekana dayanıklı, uzun ömürlü ve enerji tasarruflu Samsung marka LED modüller kullanıyoruz. Bu sayede tabelanız gece karanlığında bile markanızın 7/24 görünür olmasını sağlar.</p></div></div>
-
 <div class="sub-page-overlay" id="modal-totem"><span class="close-sub-page" onclick="closeSubPage('modal-totem')">×</span><div class="sub-page-content"><h2>Dev Totem Tabela Üretimi</h2><p>Totem tabelalar; şehirlerarası yollarda, benzin istasyonlarında, fabrikalarda ve alışveriş merkezlerinde kullanılan, uzak mesafelerden görünürlük sağlayan devasa reklam kuleleridir. Markanızın büyüklüğünü ve gücünü temsil eden en görkemli tabela çeşididir.</p><p><strong>Mühendislik ve Güvenlik:</strong> Totem tabela imalatı sıradan bir demir doğrama işi değildir. Karadeniz bölgesinin şiddetli rüzgarlarına ve fırtınalarına dayanabilmesi için özel statik hesaplamalar yapılarak dev çelik borular ve güçlü beton temeller üzerine inşa edilir.</p><p>Tasarımından, çelik konstrüksiyon imalatına ve vinçli montaj operasyonuna kadar tüm süreç kendi bünyemizdeki profesyonel ekipler tarafından yönetilir.</p></div></div>
-
 <div class="sub-page-overlay" id="modal-arac"><span class="close-sub-page" onclick="closeSubPage('modal-arac')">×</span><div class="sub-page-content"><h2>Araç ve Filo Giydirme</h2><p>Ticari araçlarınız trafikte, otoparkta veya müşteri ziyaretindeyken sürekli hareket halinde olan bedava birer reklam panosudur. Araç giydirme hizmetimizle bu potansiyeli maksimum seviyeye çıkarıyoruz.</p><p><strong>1. Sınıf Cast Folyo:</strong> Araç kaplamalarında kesinlikle sıradan folyolar kullanılmaz. Araçların kıvrımlarına tam oturan, güneşten solmayan ve ileride sökülmek istendiğinde aracın orijinal boyasına zarar vermeyen özel üretim "Cast Folyo" (3M, Avery) kullanıyoruz.</p><p>Kısmi logo uygulamasından, aracın tamamının kaplanmasına kadar tüm tasarım ve kaplama işlemleri tozsuz garajlarımızda usta eller tarafından gerçekleştirilir.</p></div></div>
-
 <div class="sub-page-overlay" id="modal-cephe"><span class="close-sub-page" onclick="closeSubPage('modal-cephe')">×</span><div class="sub-page-content"><h2>Cephe & Kompozit Kaplama</h2><p>Binalarınızın ve mağazalarınızın dış yüzeyini baştan aşağı yenileyerek kurumsal kimliğinize yaraşır estetik ve modern bir görünüm kazandırıyoruz. Sadece tabela asmakla kalmıyor, cephenizi tamamen markanızın renkleriyle giydiriyoruz.</p><p><strong>Dayanıklılık ve İzolasyon:</strong> Kullandığımız birinci sınıf alüminyum kompozit paneller (A2 Fireproof vb.), Karadeniz'in zorlu iklim şartlarına, güneşe ve neme karşı tam koruma sağlar.</p><p>Devasa yüzeylerin kaplanması sürecini kendi uzman montaj ve vinç ekibimizle hızlı ve güvenilir bir şekilde anahtar teslim gerçekleştiriyoruz.</p></div></div>
-
 <div class="sub-page-overlay" id="modal-pano"><span class="close-sub-page" onclick="closeSubPage('modal-pano')">×</span><div class="sub-page-content"><h2>Işıklı & Işıksız Pano Tabela</h2><p>Esnafımızın, eczanelerin, avukatlık bürolarının ve butik işletmelerin en çok tercih ettiği klasik ama dikkat çekici pano tabela sistemleridir. Markanızın sokağa ve müşteriye doğrudan açılan yüzüdür.</p><p><strong>Geniş Çözüm Ağı:</strong> Alüminyum kasa, germe branda, polikarbon veya pleksi yüzeyli olmak üzere bütçenize ve dükkan yapınıza en uygun tabela modelini tasarlıyoruz.</p><p>LED aydınlatmalı pano sistemleri, gece karanlığında yüksek görünürlük sağlayarak işletmenizin lokasyonunu fener gibi aydınlatır. Tüm imalat atölyemizde garantili olarak yapılmaktadır.</p></div></div>
-
 <div class="sub-page-overlay" id="modal-baski"><span class="close-sub-page" onclick="closeSubPage('modal-baski')">×</span><div class="sub-page-content"><h2>Dijital Baskı & Branda</h2><p>İşletmenizin kampanyalarını, duyurularını ve kurumsal mesajlarını geniş kitlelere duyurmak için en hızlı ve etkili yöntemdir. İç ve dış mekan dijital baskı çözümlerimizle markanızı her alana taşıyoruz.</p><p><strong>Uygulama Alanları:</strong> Yol kenarı dev afişler, mağaza vitrinleri için One-Way Vision (delikli folyo) kaplamalar, ışıklı raket panolar ve cephe brandaları.</p><p>Dış mekan koşullarına uygun, solmaya karşı dirençli UV ve solvent bazlı boyalar kullanarak 720 dpi'den 1440 dpi'ye kadar yüksek çözünürlüklü baskılar elde ediyoruz.</p></div></div>
-
 <div class="sub-page-overlay" id="modal-cnc"><span class="close-sub-page" onclick="closeSubPage('modal-cnc')">×</span><div class="sub-page-content"><h2>CNC & Lazer Kesim Hizmetleri</h2><p>Bafra'daki geniş makine parkurumuz sayesinde pleksi, ahşap, dekota, MDF ve alüminyum gibi tüm reklam malzemelerini sıfır hata ile kendi bünyemizde kesip işliyoruz.</p><p><strong>Fason Kesim ve İmalat:</strong> Sadece son tüketiciye değil, aynı zamanda sektördeki diğer reklam firmalarına ve tabelacılara da fason CNC ve lazer kesim hizmeti sunarak bölgedeki üretimin bel kemiği olmaya devam ediyoruz.</p><p>Milimetrik hassasiyete sahip makinelerimizle en karmaşık logoları ve 3 boyutlu tasarımları gerçeğe dönüştürüyor, projelerinizi zamanında teslim ediyoruz.</p></div></div>
-
 <div class="sub-page-overlay" id="modal-fuar"><span class="close-sub-page" onclick="closeSubPage('modal-fuar')">×</span><div class="sub-page-content"><h2>Fuar Standı & İç Mekan Reklam</h2><p>İşletmenizin vizyonunu sadece dışarıda değil, iç mekanda da en güçlü şekilde temsil ediyoruz. Fuar, kongre ve bayi toplantılarında markanızı rakiplerinizden ayıracak özel tasarım standlar inşa ediyoruz.</p><p><strong>İç Mekan Çözümleri:</strong> Hastaneler, oteller ve kurumsal şirketler için yönlendirme levhaları, şık ofis karşılama bankoları ve ışıklı iç mekan logo uygulamaları gerçekleştiriyoruz.</p><p>Ahşap, pleksi ve paslanmaz metallerin kusursuz uyumunu iç mekan tasarımlarımıza yansıtarak, prestijli ortamlar yaratıyoruz.</p></div></div>
-
 <div class="sub-page-overlay" id="modal-kvkk"><span class="close-sub-page" onclick="closeSubPage('modal-kvkk')">×</span><div class="sub-page-content"><h2>KVKK Aydınlatma Metni</h2><p>6698 sayılı Kişisel Verilerin Korunması Kanunu ("KVKK") uyarınca, şirketimizle paylaştığınız iletişim verileriniz; yalnızca sizlere reklam ve tabela hizmetleri sunabilmek, teklif iletmek ve iletişim kurabilmek amacıyla işlenmektedir. Yasal zorunluluklar haricinde hiçbir üçüncü şahıs veya kurumla paylaşılmamaktadır.</p></div></div>
 <div class="sub-page-overlay" id="modal-gizlilik"><span class="close-sub-page" onclick="closeSubPage('modal-gizlilik')">×</span><div class="sub-page-content"><h2>Gizlilik Politikası</h2><p>Uzman Reklam olarak sitemizi ziyaret eden kullanıcılarımızın gizliliğine önem veriyoruz. Sitemiz üzerinde üyelik sistemi yoktur. Paylaştığınız bilgiler müşteri ilişkileri yönetimi kapsamında gizli tutulmaktadır. Sitemiz, ziyaretçi istatistiklerini anonim analiz etmek amacıyla standart çerezler kullanabilir.</p></div></div>
 
@@ -458,7 +462,6 @@
     function openSubPage(pageId) { document.getElementById(pageId).classList.add('active'); document.body.style.overflow = 'hidden'; }
     function closeSubPage(pageId) { document.getElementById(pageId).classList.remove('active'); document.body.style.overflow = 'auto'; }
 
-    // SSS: Tek bloğu aç/kapa
     function toggleFaq() {
         const content = document.getElementById('faqContent');
         const icon = document.getElementById('faqIcon');
@@ -470,7 +473,7 @@
             icon.textContent = '−';
         }
     }
-    // Her sorunun kendi açılır/kapanır olması için
+    
     function toggleAnswer(element) {
         const answerDiv = element.parentElement.querySelector('.faq-answer');
         const iconSpan = element.querySelector('.faq-q-icon');
@@ -482,7 +485,7 @@
             iconSpan.textContent = '−';
         }
     }
-    // Başlangıçta tüm cevaplar kapalı, tüm soru ikonları +
+    
     document.querySelectorAll('.faq-answer').forEach(ans => ans.classList.remove('show'));
     document.querySelectorAll('.faq-q-icon').forEach(icon => icon.textContent = '+');
 </script>
