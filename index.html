@@ -95,36 +95,35 @@
             .logo-slogan { display: none; }
         }
 
-        /* MOBİL İÇİN KUSURSUZ HİZALAMA */
+        /* MOBİL İÇİN KUSURSUZ HİZALAMA (SADECE MOBİL DÜZELTMESİ) */
         @media (max-width: 768px) {
             nav { 
-                padding: 15px 5%; 
+                padding: 15px 4%; 
+                justify-content: center; /* Mobilde alanı ortalar */
             }
             .logo-area { 
-                flex-direction: column; 
-                align-items: center;    /* Logoyu ve sloganı tam yatayda ortalar */
-                text-align: center; 
-                width: 100%;            /* Alanı tam genişlik yapar */
+                display: flex !important;
+                flex-direction: row !important; /* Aşağı kaymayı engeller, yan yana kilitler */
+                align-items: center !important;
+                gap: 12px; /* Logo ile şerit arasındaki mobil boşluk */
+                width: 100%;
+                justify-content: center;
             }
             .logo a { 
-                font-size: 28px; 
-                display: block;
-                margin-bottom: 8px;     /* Logo ile şerit arasına boşluk bırakır */
+                font-size: 20px; /* Mobilde taşma yapmasın diye ideal logo boyutu */
+                white-space: nowrap;
             }
             .logo-slogan { 
-                display: block; 
-                font-size: 14px; 
-                padding-left: 0; 
-                border-left: none; 
-                white-space: normal; 
-                margin-top: 10px;       /* Şerit ile yazı arasına boşluk bırakır */
-                color: #bbb; 
-                width: 100%;
-                border-top: 1px solid var(--neon-sari); /* İŞTE O BAHSETTİĞİN İNCE ŞIK ŞERİT */
-                padding-top: 10px;      /* Şeritin altına nefes aldırır */
+                display: block !important; 
+                font-size: 14px; /* Küçülen yazıyı senin istediğin gibi okunaklı boyuta büyüttük */
+                padding-left: 12px; 
+                border-left: 2px solid var(--neon-sari); /* Şerit tam logonun bittiği boyda yan yana kalır */
+                white-space: normal; /* Çok dar ekranlarda kelimeyi kibarca alt satıra kırar, dikey çizgiyi bozmaz */
+                line-height: 1.2;
+                color: #ddd; 
             }
             .nav-links { 
-                display: none; 
+                display: none; /* PC menüsünü mobilde gizli tutmaya devam eder */
             }
         }
 
