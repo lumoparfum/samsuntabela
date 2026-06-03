@@ -97,11 +97,35 @@
 
         /* MOBİL İÇİN KUSURSUZ HİZALAMA */
         @media (max-width: 768px) {
-            nav { padding: 15px 5%; }
-            .logo-area { flex-direction: column; align-items: flex-start; gap: 5px; }
-            .logo a { font-size: 28px; }
-            .logo-slogan { display: block; font-size: 15px; padding-left: 0; border-left: none; white-space: normal; margin-top: 2px; color: #bbb; }
-            .nav-links { display: none; }
+            nav { 
+                padding: 15px 5%; 
+            }
+            .logo-area { 
+                flex-direction: column; 
+                align-items: center;    /* Logoyu ve sloganı tam yatayda ortalar */
+                text-align: center; 
+                width: 100%;            /* Alanı tam genişlik yapar */
+            }
+            .logo a { 
+                font-size: 28px; 
+                display: block;
+                margin-bottom: 8px;     /* Logo ile şerit arasına boşluk bırakır */
+            }
+            .logo-slogan { 
+                display: block; 
+                font-size: 14px; 
+                padding-left: 0; 
+                border-left: none; 
+                white-space: normal; 
+                margin-top: 10px;       /* Şerit ile yazı arasına boşluk bırakır */
+                color: #bbb; 
+                width: 100%;
+                border-top: 1px solid var(--neon-sari); /* İŞTE O BAHSETTİĞİN İNCE ŞIK ŞERİT */
+                padding-top: 10px;      /* Şeritin altına nefes aldırır */
+            }
+            .nav-links { 
+                display: none; 
+            }
         }
 
         .hero { position: relative; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; overflow: hidden; width: 100%; }
