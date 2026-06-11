@@ -132,7 +132,7 @@
                 display: none; 
             }
         }
-
+        
         .hero { position: relative; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; overflow: hidden; width: 100%; }
         .hero-slider { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background-color: #000; }
         .slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; filter: brightness(0.3); opacity: 0; animation: fadeSlide 15s infinite; transform: translateZ(0); }
@@ -260,6 +260,12 @@
             .mobile-nav-texts { display: flex; align-items: center; background: rgba(0,0,0,0.75); padding: 0 15px; height: 45px; border-radius: 30px; gap: 12px; backdrop-filter: blur(4px); }
             .mobile-nav-texts a { color: #fff; text-decoration: none; font-size: 11px; font-weight: 800; text-transform: uppercase; white-space: nowrap; }
         }
+        .contact-info-list { list-style: none; padding: 0; margin: 20px 0; text-align: left; }
+.contact-info-list li { padding: 10px 0; border-bottom: 1px solid #1a1a1a; color: #bbb; display: flex; align-items: center; gap: 15px; font-size: 0.95rem; }
+.contact-info-list li:last-child { border-bottom: none; }
+.contact-info-list i { color: var(--neon-sari); font-size: 1.2rem; width: 25px; text-align: center; }
+.contact-info-list a { color: #bbb; text-decoration: none; transition: 0.3s; }
+.contact-info-list a:hover { color: var(--neon-sari); }
     </style>
 </head>
 <body>
@@ -424,37 +430,39 @@
 
 <section class="footer-grid" id="iletisim">
     <div class="footer-box">
-        <h3>FABRİKA & ATÖLYE</h3>
-        <p><strong>Bafra Merkez:</strong> Emirefendi Mh. Çizmeli 2.Sk. No:33</p>
-        <p><strong>Telefon:</strong> 0532 220 46 49 - 0507 960 50 49</p>
-        <p><strong>E-Posta:</strong> <a href="mailto:uzmandosya@hotmail.com" style="color:#bbb; text-decoration:none;">uzmandosya@hotmail.com</a></p>
-        <p><strong>E-Posta:</strong> <a href="mailto:rmtoraman@icloud.com" style="color:#bbb; text-decoration:none;">rmtoraman@icloud.com</a></p>
+        <h3 style="color:var(--neon-sari); margin-bottom: 20px;">FABRİKA & ATÖLYE</h3>
+        <ul class="contact-info-list">
+            <li><i class="fas fa-map-marker-alt"></i> <div><strong>Bafra Merkez:</strong> Emirefendi Mh. Çizmeli 2.Sk. No:33</div></li>
+            <li><i class="fas fa-phone-alt"></i> <div>0532 220 46 49 &nbsp;|&nbsp; 0507 960 50 49</div></li>
+            <li><i class="fas fa-envelope"></i> <div><a href="mailto:uzmandosya@hotmail.com">uzmandosya@hotmail.com</a><br><a href="mailto:rmtoraman@icloud.com">rmtoraman@icloud.com</a></div></li>
+        </ul>
         <div class="map-container">
-            <iframe src="https://maps.google.com/maps?q=Uzman%20Reklam%20Bafra&t=&z=15&ie=UTF8&iwloc=&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            <iframe src="https://maps.google.com/maps?q=Emirefendi%20Mh.%20%C3%87izmeli%202.Sk.%20No:33%20Bafra&t=&z=15&ie=UTF8&iwloc=&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
         </div>
-        <a href="https://www.google.com/maps/dir//Uzman+Reklam+Tabela,+Emirefendi,+Çizmeli+2.+Sk.+No:33,+55420+Bafra%2FSamsun/" target="_blank" class="btn-main" style="width:100%; text-align:center; padding:15px 0;">YOL TARİFİ AL</a>
+        <a href="https://www.google.com/maps/dir//Uzman+Reklam,+Emirefendi,+%C3%87izmeli+2.+Sk.+No:33,+55400+Bafra%2FSamsun/" target="_blank" class="btn-main" style="width:100%; text-align:center; padding:15px 0; margin-top:15px;">YOL TARİFİ AL</a>
     </div>
+    
     <div class="footer-box">
-        <h3>KURUMSAL BİLGİLER</h3>
-        <p><strong>Firma Sahibi:</strong> Abdurrahman TORAMAN</p>
-        <p><strong>Vergi Dairesi:</strong> BAFRA V.D.</p>
-        <p><strong>Vergi No:</strong> 214 7659 4794</p>
+        <h3 style="color:var(--neon-sari); margin-bottom: 20px;">KURUMSAL BİLGİLER</h3>
+        <ul class="contact-info-list">
+            <li><i class="fas fa-user-tie"></i> <div><strong>Firma Sahibi:</strong> Abdurrahman TORAMAN</div></li>
+            <li><i class="fas fa-file-invoice-dollar"></i> <div><strong>Vergi Dairesi:</strong> BAFRA V.D. &nbsp;|&nbsp; <strong>No:</strong> 214 7659 4794</div></li>
+        </ul>
         
-        <div style="background:#111; padding:15px; border-radius:10px; border:1px dashed var(--neon-sari); margin-top:15px; text-align:left;">
-            <h4 style="color:var(--neon-sari); margin-top:0; margin-bottom:10px; font-size:1rem; text-align:center;">Banka Hesap Bilgileri</h4>
-            <p style="margin:5px 0; font-size:0.9rem;"><strong>Hesap Sahibi:</strong> Abdurrahman TORAMAN</p>
-            <p style="margin:5px 0; font-size:0.9rem;"><strong>Banka:</strong> Garanti Bankası</p>
-            <p style="margin:5px 0; font-size:0.9rem;"><strong>Şube Kodu:</strong> 520</p>
-            <p style="margin:5px 0; font-size:0.9rem;"><strong>Hesap No:</strong> 6297473</p>
-            <p style="margin:5px 0; font-size:0.9rem;"><strong>IBAN:</strong> TR12 0006 2000 5200 0006 2974 73</p>
+        <div style="background:#111; padding:15px; border-radius:10px; border:1px dashed var(--neon-sari); margin-top:20px; text-align:left;">
+            <h4 style="color:var(--neon-sari); margin-top:0; margin-bottom:10px; font-size:1rem; text-align:center;"><i class="fas fa-university"></i> Banka Hesap Bilgileri</h4>
+            <p style="margin:5px 0; font-size:0.9rem; color:#bbb;"><strong>Banka:</strong> Garanti Bankası &nbsp;|&nbsp; <strong>Şube Kodu:</strong> 520</p>
+            <p style="margin:5px 0; font-size:0.9rem; color:#bbb;"><strong>Hesap No:</strong> 6297473</p>
+            <p style="margin:5px 0; font-size:0.9rem; color:#bbb;"><strong>IBAN:</strong> TR12 0006 2000 5200 0006 2974 73</p>
         </div>
 
-        <hr style="border:0; border-top:1px solid #222; margin:20px 0;">
-        <h4>TORAMAN MATBAA (İSTANBUL)</h4>
-        <p>Topkapı 2. Matbaacılar Sitesi 5.Kat E Blok 3NE19 Topkapı - İSTANBUL</p>
-        <p>toramanmatbaa@gmail.com</p>
-        <p>Tel: 444 5 340</p>
-        <p><a href="https://toramanmatbaa.com" target="_blank" style="color:var(--neon-sari); text-decoration:none;">toramanmatbaa.com</a></p>
+        <hr style="border:0; border-top:1px solid #222; margin:25px 0;">
+        <h4 style="color:#fff; margin-bottom:15px;">TORAMAN MATBAA (İSTANBUL)</h4>
+        <ul class="contact-info-list" style="margin:0;">
+            <li><i class="fas fa-map-marker-alt" style="color:#555;"></i> <div style="font-size:0.85rem;">Topkapı 2. Matbaacılar Sitesi 5.Kat E Blok 3NE19 Topkapı - İSTANBUL</div></li>
+            <li><i class="fas fa-phone-alt" style="color:#555;"></i> <div>444 5 340</div></li>
+            <li><i class="fas fa-globe" style="color:#555;"></i> <div><a href="https://toramanmatbaa.com" target="_blank" style="color:var(--neon-sari);">toramanmatbaa.com</a></div></li>
+        </ul>
     </div>
 </section>
 <div style="background: #030303; text-align: center; padding: 20px 5%; border-top: 1px solid #111; border-bottom: 1px solid #111; width: 100%; clear: both;">
