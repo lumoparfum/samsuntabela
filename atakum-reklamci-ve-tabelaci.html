@@ -339,17 +339,14 @@
 </div>
 <script>
     document.addEventListener('keydown', function(e) {
-        // F12 tuşunu engeller
         if (e.key === 'F12' || e.keyCode === 123) {
             e.preventDefault();
             return false;
         }
-        // Ctrl+U (Kaynağı Görüntüle) engeller
         if (e.ctrlKey && (e.key === 'u' || e.key === 'U')) {
             e.preventDefault();
             return false;
         }
-        // Ctrl+Shift+I / J / C (Geliştirici Araçları ve Öğeyi İncele) engeller
         if (e.ctrlKey && e.shiftKey && (e.key === 'i' || e.key === 'I' || e.key === 'j' || e.key === 'J' || e.key === 'c' || e.key === 'C')) {
             e.preventDefault();
             return false;
