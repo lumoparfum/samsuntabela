@@ -338,6 +338,21 @@
     <a href="https://www.instagram.com/uzman.reklamm/" class="wp-btn" target="_blank" style="background: #e4405f;"><i class="fab fa-instagram"></i></a>
     <a href="https://wa.me/905079605049" class="wp-btn" target="_blank" style="background: #25d366;"><i class="fab fa-whatsapp"></i></a>
 </div>
-
+<script>
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'F12' || e.keyCode === 123) {
+            e.preventDefault();
+            return false;
+        }
+        if (e.ctrlKey && (e.key === 'u' || e.key === 'U')) {
+            e.preventDefault();
+            return false;
+        }
+        if (e.ctrlKey && e.shiftKey && (e.key === 'i' || e.key === 'I' || e.key === 'j' || e.key === 'J' || e.key === 'c' || e.key === 'C')) {
+            e.preventDefault();
+            return false;
+        }
+    });
+</script>
 </body>
 </html>
