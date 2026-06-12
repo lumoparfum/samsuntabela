@@ -12,9 +12,9 @@
     <meta name="apple-mobile-web-app-title" content="Uzman Reklam" />
     <link rel="manifest" href="site.webmanifest" />
     
-    <title>Ordu Reklamcı & Tabelacı | Fatsa, Ünye Tabela İmalatı | Uzman Reklam</title>
-    <meta name="description" content="Ordu reklamcı ve tabela firması. Altınordu, Fatsa, Ünye ve Karadeniz bölgesine kutu harf, totem tabela ve araç giydirme fabrikası. Aracısız üretim.">
-    <meta name="keywords" content="Ordu reklamcı, Ordu tabelacı, Fatsa tabela, Ünye reklam, Altınordu tabelacı, Ordu araç giydirme, Ordu kutu harf, tabela imalatı Ordu, fason CNC, lazer kesim, reklamcılara özel">
+    <title>Ordu Reklamcı & Tabelacı | Fatsa, Ünye Tabela İmalatı | Uzman Reklam - Matbaa & Baskı</title>
+    <meta name="description" content="Ordu reklamcı ve tabela firması. Altınordu, Fatsa, Ünye ve Karadeniz bölgesine kutu harf, totem tabela, araç giydirme, kartvizit, broşür, magnet, etiket, afiş, fason CNC ve dijital baskı. Aracısız üretim, uygun fiyat.">
+    <meta name="keywords" content="Ordu reklamcı, Ordu tabelacı, Fatsa tabela, Ünye reklam, Altınordu tabelacı, Ordu araç giydirme, Ordu kutu harf, tabela imalatı Ordu, fason CNC, lazer kesim, reklamcılara özel, Ordu matbaa, Ordu kartvizit, Ordu broşür, Ordu magnet, Ordu etiket, Ordu afiş, ucuz kartvizit, dijital baskı Ordu">
     <meta name="robots" content="index, follow, max-image-preview:large">
     <link rel="canonical" href="https://samsuntabela.tr/ordu-reklamci-ve-tabelaci.html">
 
@@ -85,6 +85,19 @@
         .ref-item:hover img { transform: scale(1.05); filter: brightness(1.1); }
         .ref-item span { position: absolute; bottom: 15px; left: 15px; background: rgba(0,0,0,0.85); padding: 5px 15px; border-radius: 5px; font-size: 0.8rem; font-weight: 800; border-left: 2px solid var(--neon-sari); text-transform: uppercase; pointer-events: none; color:#fff; }
 
+        /* Matbaa ürünleri için kart stilleri */
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-top: 30px; }
+        .product-card { background: #0f0f0f; border: 1px solid #1a1a1a; border-radius: 16px; padding: 20px; transition: 0.3s; }
+        .product-card:hover { border-color: var(--neon-sari); transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
+        .product-title { font-size: 1.2rem; font-weight: 800; text-transform: uppercase; margin-bottom: 8px; color: #fff; }
+        .product-title span { color: var(--neon-sari); font-weight: 600; }
+        .product-desc { color: #aaa; font-size: 0.85rem; margin-bottom: 15px; line-height: 1.4; }
+        .product-price { font-size: 1.4rem; font-weight: 900; color: var(--neon-sari); margin: 15px 0; letter-spacing: -0.5px; }
+        .product-price small { font-size: 0.75rem; font-weight: 400; color: #888; }
+        .btn-wa { display: inline-block; background: #25d366; color: #000; padding: 10px 18px; border-radius: 40px; font-weight: 800; font-size: 0.8rem; text-decoration: none; transition: 0.2s; text-align: center; margin-top: 5px; width: 100%; box-sizing: border-box; }
+        .btn-wa i { margin-right: 8px; }
+        .btn-wa:hover { background: #20b859; transform: scale(1.02); color: #000; }
+
         .btn-panel { display: flex; justify-content: center; margin-top: 50px; }
         .btn-main { background: var(--neon-sari); color: #000; padding: 18px 45px; border-radius: 50px; text-decoration: none; font-weight: 900; text-transform: uppercase; transition: 0.3s; display: inline-block; border: none; cursor: pointer; text-align: center; }
         .btn-main:hover { transform: scale(1.05); background: #e0ff2e; }
@@ -134,13 +147,14 @@
     <div class="nav-links">
         <a href="index.html">ANASAYFA</a>
         <a href="#bolgeler">ORDU BÖLGELERİ</a>
+        <a href="#matbaa">MATBAA</a>
         <a href="#iletisim">İLETİŞİM</a>
     </div>
 </nav>
 
 <section class="seo-hero">
     <h1>ORDU <span>REKLAMCI & TABELACI</span> ÇÖZÜMLERİ</h1>
-    <p>Altınordu, Fatsa ve Ünye başta olmak üzere Ordu'nun tüm ilçelerine dev totem projeleri, kurumsal cephe kaplamaları ve araç giydirme hizmetlerini fabrikadan halka sunuyoruz.</p>
+    <p>Altınordu, Fatsa ve Ünye başta olmak üzere Ordu'nun tüm ilçelerine dev totem projeleri, kurumsal cephe kaplamaları, araç giydirme ve matbaa hizmetlerini fabrikadan halka sunuyoruz.</p>
 </section>
 
 <section class="map-section" id="bolgeler">
@@ -149,6 +163,7 @@
         <div class="district-card" onclick="scrollToDistrict('fatsa')"><i class="fas fa-sign"></i>Fatsa Bölgesi</div>
         <div class="district-card" onclick="scrollToDistrict('unye')"><i class="fas fa-truck"></i>Ünye Bölgesi</div>
         <div class="district-card" onclick="scrollToDistrict('uretim')"><i class="fas fa-industry"></i>CNC & Baskı</div>
+        <div class="district-card" onclick="scrollToDistrict('matbaa')"><i class="fas fa-print"></i>Matbaa Ürünleri</div>
     </div>
 </section>
 
@@ -181,15 +196,81 @@
         </div>
     </div>
 
-    <!-- FASON ÜRETİM BLOĞU – SADECE BİR PARAGRAF EKLENDİ, TASARIM BOZULMADI -->
+    <!-- FASON ÜRETİM BLOĞU (CNC & BASKI) -->
     <div class="district-block" id="uretim">
         <h2><i class="fas fa-industry"></i> Kendi Üretimimiz: CNC ve Dijital Baskı Merkezi</h2>
         <p>Ordu genelindeki tüm projelerimizi Merkez atölyemizde yer alan CNC router, lazer kesim ve geniş ebat dijital baskı makinelerimizle sıfır aracı ile üretiyoruz. Hem son tüketiciye hem de bölgedeki diğer reklam ajanslarına fason üretim yaparak Karadeniz'de kalitenin standartlarını belirliyoruz. Branda, UV baskı ve fason pleksi kesim işleriniz aynı gün kargoya verilir.</p>
-        <p>Reklamcı ve tabelacılara özel: Ordu genelindeki reklam ajansları, tabelacılar ve matbaacılar için fason CNC, lazer kesim ve dijital baskı hizmeti veriyoruz. CNC router, fiber lazer ve geniş ebat dijital baskı makinelerimizle; pleksi, ahşap, MDF, alüminyum kompozit, paslanmaz malzemelerde sıfır hata kesim, branda, one‑way vision, vinil folyo baskılarını en rekabetçi fiyatlarla ve hızlı teslimatla yapıyoruz. Toptan iş birlikleri için aşağıdaki WhatsApp butonundan iletişime geçebilirsiniz. (Kendi işleriniz için fason üretim, aracısız fabrika çözümü)</p>
+        <p><strong>Reklamcı ve tabelacılara özel fason üretim:</strong> CNC router, fiber lazer ve geniş ebat dijital baskı makinelerimizle; pleksi, ahşap, MDF, alüminyum kompozit, paslanmaz malzemelerde sıfır hata kesim, branda, one‑way vision, vinil folyo baskılarını en rekabetçi fiyatlarla ve hızlı teslimatla yapıyoruz. Toptan iş birlikleri için WhatsApp'tan iletişime geçebilirsiniz.</p>
         <div class="block-ref-grid">
             <div class="ref-item" onclick="openLightbox(this)"><img src="baski.jpg" alt="Ordu Dijital Baskı Branda Tesisleri"><span>Geniş Ebat Dijital Baskı</span></div>
             <div class="ref-item" onclick="openLightbox(this)"><img src="cnc.jpg" alt="Ordu CNC Lazer Fason Kesim"><span>Lazer & CNC İmalatı</span></div>
         </div>
+    </div>
+
+    <!-- MATBAA ÜRÜNLERİ BLOĞU (KARTVİZİT, BROŞÜR, MAGNET, ETİKET, AFİŞ) -->
+    <div class="district-block" id="matbaa">
+        <h2><i class="fas fa-print"></i> Matbaa & Dijital Baskı Ürünleri | Uygun Fiyat, Hızlı Teslimat</h2>
+        <p>Toraman Matbaa güvencesiyle kartvizit, broşür, magnet, etiket, afiş ve daha fazlası <strong>KDV dahil</strong> fiyatlarla Ordu'da sizinle. İster 100 adet ister 10.000 adet, tüm matbaa ihtiyaçlarınız için bize ulaşın. Aynı gün baskı ve kargo seçeneklerimiz mevcuttur.</p>
+
+        <div class="product-grid">
+            <!-- Kartvizit 1.000 Adet -->
+            <div class="product-card">
+                <div class="product-title">Kartvizit <span>1.000 Adet</span></div>
+                <div class="product-desc">250gr. Bristol, Tek Yön Renkli, Parlak Selefonlu, 90x50mm</div>
+                <div class="product-price">195 ₺ <small>(KDV Dahil)</small></div>
+                <a href="https://wa.me/905079605049?text=Merhaba, Ordu sayfanızdan 1.000 Adet Kartvizit (NK) için teklif almak istiyorum." target="_blank" class="btn-wa"><i class="fab fa-whatsapp"></i> Teklif Al</a>
+            </div>
+            <!-- Kartvizit Çift Yön -->
+            <div class="product-card">
+                <div class="product-title">Kartvizit <span>1.000 Adet</span></div>
+                <div class="product-desc">350gr. Çift Yön Renkli, Parlak Selefonlu, 90x50mm</div>
+                <div class="product-price">290 ₺ <small>(KDV Dahil)</small></div>
+                <a href="https://wa.me/905079605049?text=Merhaba, Ordu sayfanızdan 1.000 Adet Çift Yön Kartvizit (CYP) için teklif almak istiyorum." target="_blank" class="btn-wa"><i class="fab fa-whatsapp"></i> Teklif Al</a>
+            </div>
+            <!-- Broşür A6 1.000 Adet -->
+            <div class="product-card">
+                <div class="product-title">Broşür <span>1.000 Adet</span></div>
+                <div class="product-desc">115gr. Eko Çift Yön Parlak Kuşe, A6 (90x135mm)</div>
+                <div class="product-price">400 ₺ <small>(KDV Dahil)</small></div>
+                <a href="https://wa.me/905079605049?text=Merhaba, Ordu sayfanızdan 1.000 Adet A6 Broşür için teklif almak istiyorum." target="_blank" class="btn-wa"><i class="fab fa-whatsapp"></i> Teklif Al</a>
+            </div>
+            <!-- Broşür A5 1.000 Adet -->
+            <div class="product-card">
+                <div class="product-title">Broşür <span>1.000 Adet</span></div>
+                <div class="product-desc">115gr. Eko Çift Yön Parlak Kuşe, A5 (135x200mm)</div>
+                <div class="product-price">800 ₺ <small>(KDV Dahil)</small></div>
+                <a href="https://wa.me/905079605049?text=Merhaba, Ordu sayfanızdan 1.000 Adet A5 Broşür için teklif almak istiyorum." target="_blank" class="btn-wa"><i class="fab fa-whatsapp"></i> Teklif Al</a>
+            </div>
+            <!-- Magnet 1.000 Adet -->
+            <div class="product-card">
+                <div class="product-title">Magnet <span>1.000 Adet</span></div>
+                <div class="product-desc">46x68mm, Renkli Baskı + Parlak Selefon, Oval Kesim</div>
+                <div class="product-price">610 ₺ <small>(KDV Dahil)</small></div>
+                <a href="https://wa.me/905079605049?text=Merhaba, Ordu sayfanızdan 1.000 Adet Magnet (MAG2) için teklif almak istiyorum." target="_blank" class="btn-wa"><i class="fab fa-whatsapp"></i> Teklif Al</a>
+            </div>
+            <!-- Etiket 1.000 Adet -->
+            <div class="product-card">
+                <div class="product-title">Etiket <span>1.000 Adet</span></div>
+                <div class="product-desc">53x83mm, Kuşe Çıkartma + Parlak Selefon, Düz Kesim</div>
+                <div class="product-price">290 ₺ <small>(KDV Dahil)</small></div>
+                <a href="https://wa.me/905079605049?text=Merhaba, Ordu sayfanızdan 1.000 Adet Etiket (E) için teklif almak istiyorum." target="_blank" class="btn-wa"><i class="fab fa-whatsapp"></i> Teklif Al</a>
+            </div>
+            <!-- Afiş/Poster 34x49 cm 100 Adet -->
+            <div class="product-card">
+                <div class="product-title">Afiş / Poster <span>100 Adet</span></div>
+                <div class="product-desc">34x49 cm, 90gr. Parlak Kuşe, Tek Yön Renkli</div>
+                <div class="product-price">1.265 ₺ <small>(KDV Dahil)</small></div>
+                <a href="https://wa.me/905079605049?text=Merhaba, Ordu sayfanızdan 100 Adet 34x49 Afiş için teklif almak istiyorum." target="_blank" class="btn-wa"><i class="fab fa-whatsapp"></i> Teklif Al</a>
+            </div>
+            <!-- Afiş/Poster 49x69 cm 100 Adet -->
+            <div class="product-card">
+                <div class="product-title">Afiş / Poster <span>100 Adet</span></div>
+                <div class="product-desc">49x69 cm, 90gr. Parlak Kuşe, Tek Yön Renkli</div>
+                <div class="product-price">2.200 ₺ <small>(KDV Dahil)</small></div>
+                <a href="https://wa.me/905079605049?text=Merhaba, Ordu sayfanızdan 100 Adet 49x69 Afiş için teklif almak istiyorum." target="_blank" class="btn-wa"><i class="fab fa-whatsapp"></i> Teklif Al</a>
+            </div>
+        </div>
+        <p style="margin-top: 25px; text-align: center; font-size: 0.85rem; color: #aaa;">* Tüm fiyatlar KDV dahildir, kargo ücreti hariçtir. Toplu siparişlerde ek indirim için WhatsApp'tan yazın.</p>
     </div>
 
     <div class="btn-panel">
@@ -292,7 +373,7 @@
 </script>
 
 <div class="wp-float">
-    <div class="mobile-nav-texts"><a href="index.html">ANASAYFA</a><a href="#bolgeler">BÖLGELER</a><a href="#iletisim">İLETİŞİM</a></div>
+    <div class="mobile-nav-texts"><a href="index.html">ANASAYFA</a><a href="#bolgeler">BÖLGELER</a><a href="#matbaa">MATBAA</a><a href="#iletisim">İLETİŞİM</a></div>
     <a href="https://www.instagram.com/uzman.reklamm/" class="wp-btn" target="_blank" style="background: #e4405f;"><i class="fab fa-instagram"></i></a>
     <a href="https://wa.me/905079605049" class="wp-btn" target="_blank" style="background: #25d366;"><i class="fab fa-whatsapp"></i></a>
 </div>
