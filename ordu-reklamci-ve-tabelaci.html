@@ -62,7 +62,7 @@
         }
         .seo-hero h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 900; letter-spacing: -1px; text-transform: uppercase; margin-bottom: 15px; }
         .seo-hero h1 span { color: var(--neon-sari); }
-        .seo-hero p { color: #ccc; max-width: 700px; margin: 0 auto; font-size: 1.1rem; line-height: 1.6; }
+        .seo-hero p { color: #ddd; max-width: 700px; margin: 0 auto; font-size: 1.1rem; line-height: 1.6; }
 
         .map-section { padding: 0 5% 40px; max-width: 1200px; margin: -40px auto 0; position: relative; z-index: 10; }
         .district-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; width: 100%; }
@@ -74,9 +74,9 @@
         .seo-content-section { padding: 40px 5% 100px; max-width: 1200px; margin: 0 auto; }
         .district-block { background: #0a0a0a; border: 1px solid #111; padding: 45px; border-radius: 20px; margin-bottom: 40px; scroll-margin-top: 100px; transition: border-color 0.3s; }
         .district-block:hover { border-color: #222; }
-        .district-block h2 { color: var(--neon-sari); font-size: 1.8rem; text-transform: uppercase; font-weight: 900; margin-bottom: 20px; display: flex; align-items: center; gap: 15px; letter-spacing: -0.5px; }
+        .district-block h2 { color: var(--neon-sari); font-size: 1.8rem; text-transform: uppercase; font-weight: 900; margin-bottom: 20px; display: flex; align-items: center; gap: 15px; letter-spacing: -0.5px; flex-wrap: wrap; }
         .district-block h2 i { font-size: 1.4rem; }
-        .district-block p { color: #ccc; line-height: 1.8; font-size: 1.05rem; margin-bottom: 25px; }
+        .district-block p { color: #ddd; line-height: 1.8; font-size: 1.05rem; margin-bottom: 25px; }
         
         .block-ref-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 30px; }
         @media (max-width: 600px) { .block-ref-grid { grid-template-columns: 1fr; } }
@@ -85,15 +85,15 @@
         .ref-item:hover img { transform: scale(1.05); filter: brightness(1.1); }
         .ref-item span { position: absolute; bottom: 15px; left: 15px; background: rgba(0,0,0,0.85); padding: 5px 15px; border-radius: 5px; font-size: 0.8rem; font-weight: 800; border-left: 2px solid var(--neon-sari); text-transform: uppercase; pointer-events: none; color:#fff; }
 
-        /* Matbaa ürünleri için kart stilleri */
+        /* Matbaa ürünleri için kart stilleri (geliştirilmiş kontrast ve font) */
         .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-top: 30px; }
         .product-card { background: #0f0f0f; border: 1px solid #1a1a1a; border-radius: 16px; padding: 20px; transition: 0.3s; }
         .product-card:hover { border-color: var(--neon-sari); transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
         .product-title { font-size: 1.2rem; font-weight: 800; text-transform: uppercase; margin-bottom: 8px; color: #fff; }
         .product-title span { color: var(--neon-sari); font-weight: 600; }
-        .product-desc { color: #aaa; font-size: 0.85rem; margin-bottom: 15px; line-height: 1.4; }
+        .product-desc { color: #bbb; font-size: 0.9rem; margin-bottom: 15px; line-height: 1.4; }
         .product-price { font-size: 1.4rem; font-weight: 900; color: var(--neon-sari); margin: 15px 0; letter-spacing: -0.5px; }
-        .product-price small { font-size: 0.75rem; font-weight: 400; color: #888; }
+        .product-price small { font-size: 0.75rem; font-weight: 400; color: #aaa; }
         .btn-wa { display: inline-block; background: #25d366; color: #000; padding: 10px 18px; border-radius: 40px; font-weight: 800; font-size: 0.8rem; text-decoration: none; transition: 0.2s; text-align: center; margin-top: 5px; width: 100%; box-sizing: border-box; }
         .btn-wa i { margin-right: 8px; }
         .btn-wa:hover { background: #20b859; transform: scale(1.02); color: #000; }
@@ -101,22 +101,22 @@
         /* Şok kampanya rozeti */
         .campaign-badge {
             display: inline-block;
-            background: var(--neon-sari);
-            color: #000;
+            background: #ff3860;
+            color: #fff;
             font-size: 0.7rem;
             font-weight: 800;
-            padding: 4px 10px;
-            border-radius: 30px;
+            padding: 4px 12px;
+            border-radius: 40px;
             margin-left: 12px;
-            vertical-align: middle;
-            text-transform: uppercase;
             letter-spacing: 0.5px;
-            animation: pulse-badge 1.5s infinite;
+            animation: pulse 1.5s infinite;
+            vertical-align: middle;
+            white-space: nowrap;
         }
-        @keyframes pulse-badge {
-            0% { opacity: 0.7; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.05); background: #e0ff2e; box-shadow: 0 0 5px var(--neon-sari); }
-            100% { opacity: 0.7; transform: scale(1); }
+        @keyframes pulse {
+            0% { opacity: 0.7; box-shadow: 0 0 0 0 rgba(255,56,96,0.4); }
+            70% { opacity: 1; box-shadow: 0 0 0 6px rgba(255,56,96,0); }
+            100% { opacity: 0.7; box-shadow: 0 0 0 0 rgba(255,56,96,0); }
         }
 
         .btn-panel { display: flex; justify-content: center; margin-top: 50px; }
@@ -230,8 +230,11 @@
 
     <!-- MATBAA ÜRÜNLERİ BLOĞU (KARTVİZİT, BROŞÜR, MAGNET, ETİKET, AFİŞ) -->
     <div class="district-block" id="matbaa">
-        <h2><i class="fas fa-print"></i> Matbaa & Dijital Baskı Ürünleri <span class="campaign-badge">🔥 ŞOK KAMPANYA</span></h2>
-        <p><strong>Kartvizit, broşür, magnet, etiket, afiş</strong> gibi tüm matbaa ürünlerinde <strong>fabrikadan halka, aracısız fiyatlar!</strong> %20 KDV dahil fiyatlarımızla Ordu genelinde hızlı baskı ve kargo imkanı. Aynı gün hazır, ertesi gün kargoda.</p>
+        <h2>
+            <i class="fas fa-print"></i> Matbaa & Dijital Baskı Ürünleri 
+            <span class="campaign-badge">🔥 ŞOK KAMPANYA</span>
+        </h2>
+        <p>Uzman Reklam olarak kartvizit, broşür, magnet, etiket, afiş ve daha fazlasını <strong>KDV dahil fabrika fiyatlarıyla</strong> Ordu'da sizinle. İster 100 adet ister 10.000 adet, tüm matbaa ihtiyaçlarınız için bize ulaşın. Aynı gün baskı ve kargo seçeneklerimiz mevcuttur.</p>
 
         <div class="product-grid">
             <!-- Kartvizit 1.000 Adet -->
@@ -291,17 +294,16 @@
                 <a href="https://wa.me/905079605049?text=Merhaba, Ordu sayfanızdan 100 Adet 49x69 Afiş için teklif almak istiyorum." target="_blank" class="btn-wa"><i class="fab fa-whatsapp"></i> Teklif Al</a>
             </div>
         </div>
-        
-        <!-- SEO DESTEKLİ DETAYLI METİN (İLÇELER VE HİZMET BÖLGESİ) -->
-        <div style="margin-top: 35px; border-top: 1px solid #222; padding-top: 25px;">
-            <p style="color: #aaa; font-size: 0.9rem; line-height: 1.6; margin-bottom: 15px;">
-                <strong> Ordu'nun tüm ilçelerine hızlı kargo:</strong> Altınordu, Fatsa, Ünye, Perşembe, Kumru, Gölköy, Aybastı, Kabataş, Korgan, Akkuş, Mesudiye, İkizce, Çatalpınar, Gürgentepe ve Çaybaşı'nda <strong>Uzman Reklam</strong> kalitesiyle matbaa ve tabela hizmetleri. İster işletmeniz için kartvizit, broşür, magnet, etiket, afiş, ister dev totem, kutu harf veya araç giydirme olsun; kendi fabrikamızda üretip aracısız sizlere ulaştırıyoruz.
+
+        <!-- SEO metni + İlçe ve anahtar kelime zengini -->
+        <div style="margin-top: 35px; padding-top: 15px; border-top: 1px solid #2a2a2a;">
+            <p style="font-size: 0.9rem; line-height: 1.7; color: #bbb;">
+                <strong>Ordu’nun tüm ilçelerine hızlı matbaa ve baskı hizmeti:</strong> Altınordu, Fatsa, Ünye, Perşembe, Kumru, Gölköy, Korgan, Çaybaşı, İkizce ve çevresinde 
+                <strong>kartvizit, broşür, magnet, etiket, afiş, el ilanı, davetiye, antetli kağıt, fatura, makbuz, takvim, bloknot, kutu harf, totem, cephe giydirme</strong> gibi tüm matbaa ve reklam ihtiyaçlarınız için yanınızdayız. 
+                Kendi üretim tesisimizde aracısız fiyat avantajı ve <strong>KDV dahil</strong> net fiyatlar. Toptan siparişlerde ek indirimler için WhatsApp hattımızdan ulaşabilirsiniz.
             </p>
-            <p style="color: #aaa; font-size: 0.9rem; line-height: 1.6; margin-bottom: 15px;">
-                 <strong>Neden bu kadar uygun?</strong> Çünkü aracı yok, bayi yok, sadece üreticiden tüketiciye doğrudan satış. Yüksek adetli siparişlerinizde ek indirimler ve aynı gün baskı seçenekleri mevcuttur. Tüm fiyatlarımız <strong>%20 KDV dahil</strong> olup, kargo ücreti ayrıca hesaplanır. Toplu alımlarda kargo bedava kampanyalarımızı sormayı unutmayın!
-            </p>
-            <p style="color: #aaa; font-size: 0.9rem; line-height: 1.6;">
-                 <strong>Hemen teklif alın:</strong> WhatsApp hattımızdan ürün kodunu veya ihtiyacınızı ileterek en güncel fiyat ve teslimat bilgilerini öğrenebilirsiniz. 7/24 hizmetinizdeyiz.
+            <p style="font-size: 0.85rem; color: #888; margin-top: 15px; text-align: center;">
+                * Fiyatlarımız KDV dahildir, kargo ücreti hariçtir. Toplu siparişlerde ek indirim için WhatsApp'tan yazın.
             </p>
         </div>
     </div>
