@@ -25,7 +25,9 @@
             background: #f5f5f7;
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             color: #1c1c1e;
-            padding: 12px;
+            padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+            padding-top: max(12px, env(safe-area-inset-top));
+            padding-bottom: max(12px, env(safe-area-inset-bottom));
             transition: background 0.2s, color 0.2s;
         }
         body.light {
@@ -75,7 +77,6 @@
             border-color: #3a3a3c;
             color: #ff9f1c;
         }
-        /* kategori etiketi - karanlıkta düzeltildi */
         .trans-cat {
             background: #f2f2f5;
             padding: 2px 10px;
@@ -335,7 +336,32 @@
         .transactions-header {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 8px;
+            align-items: center;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .filter-buttons {
+            display: flex;
+            gap: 8px;
+        }
+        .filter-btn {
+            background: transparent;
+            border: 0.5px solid #e9e9ef;
+            border-radius: 30px;
+            padding: 6px 12px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            cursor: pointer;
+        }
+        body.dark .filter-btn {
+            border-color: #3a3a3c;
+            color: #fff;
+        }
+        .filter-btn.active {
+            background: #007aff;
+            color: white;
+            border-color: #007aff;
         }
         .load-more-btn {
             background: transparent;
@@ -436,6 +462,11 @@
             font-size: 0.8rem;
             color: #6c6c70;
         }
+        .spinner {
+            text-align: center;
+            padding: 20px;
+            color: #8e8e93;
+        }
     </style>
 </head>
 <body class="light">
@@ -494,15 +525,20 @@
     <div id="borcList" class="borc-list">Yükleniyor...</div>
 
     <div class="search-box"><input type="text" id="searchInput" placeholder="İşlem ara (başlık/kategori)"></div>
+    
     <div class="transactions-header">
         <div class="section-title"><i class="fas fa-history"></i> İşlem Geçmişi</div>
-        <div id="transactionCount" style="color:#8e8e93;">0</div>
+        <div class="filter-buttons" id="filterButtons">
+            <button class="filter-btn active" data-filter="all">Tümü</button>
+            <button class="filter-btn" data-filter="gelir">💰 Gelir</button>
+            <button class="filter-btn" data-filter="gider">💸 Gider</button>
+        </div>
     </div>
     <div id="transactionList" class="transaction-list"></div>
     <div id="loadMoreContainer" style="margin-top: 8px;"></div>
 </div>
 
-<!-- Modals -->
+<!-- Modals (aynı) -->
 <div id="incomeModal" class="modal"><div class="modal-card"><div class="modal-header"><span>Gelir Ekle</span><span class="modal-close" onclick="closeModal('incomeModal')">&times;</span></div>
     <div class="form-group"><label>Başlık</label><input type="text" id="incomeTitle" class="form-control" placeholder="Tag işi, maaş"></div>
     <div class="form-group"><label>Kategori</label><select id="incomeCat" class="form-control"><option>Tag İşleri</option><option>Maaş</option><option>Serbest İş</option><option>Hediye</option><option>Yatırım</option><option>Diğer</option></select></div>
@@ -552,11 +588,10 @@
     let currentYear = new Date().getFullYear(), currentMonth = new Date().getMonth();
     let chart1 = null, chart2 = null;
     let isProcessing = false;
-
-    // Sayfalama değişkenleri
+    let currentFilter = "all"; // all, gelir, gider
     let currentDisplayCount = 10;
-    let allTransactionsArray = []; // tüm işlemler (gelir+gider) sıralı
-    let filteredTransactionsArray = []; // arama sonrası filtrelenmiş dizi
+    let allTransactionsArray = [];
+    let filteredTransactionsArray = [];
 
     function formatDateWithDay(date) {
         const gunler = ["Pazar", "Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi"];
@@ -591,7 +626,7 @@
     generateAppleTouchIcon();
 
     function showToast(msg, err = false) {
-        let t = document.createElement('div'); t.className = 'toast'; t.innerText = msg; t.style.background = err ? '#ff3b30' : '#1c1c1e'; document.body.appendChild(t); setTimeout(() => t.remove(), 2500);
+        let t = document.createElement('div'); t.className = 'toast'; t.innerText = msg; t.style.background = err ? '#ff3b30' : '#1c1c1e'; document.body.appendChild(t); setTimeout(() => t.remove(), 2000);
     }
     function formatMoney(amt) { return '₺' + amt.toLocaleString('tr-TR'); }
 
@@ -605,7 +640,6 @@
         const b2 = await getDocs(collection(db, "mucahit_alacaklar"));
         allAlacaklar = b2.docs.map(d => ({ id: d.id, ...d.data(), tip: 'alacak' }));
         
-        // İşlemleri birleştir, sırala
         allTransactionsArray = [...allGelirler.map(g => ({ ...g, tip: 'gelir', tutar: g.tutar, baslik: g.baslik, kategori: g.kategori, tarih: g.tarih, docId: g.id })),
                                ...allGiderler.map(g => ({ ...g, tip: 'gider', tutar: g.tutar, baslik: g.baslik, kategori: g.kategori, tarih: g.tarih, docId: g.id }))];
         allTransactionsArray.sort((a,b) => new Date(b.tarih) - new Date(a.tarih));
@@ -624,7 +658,7 @@
         document.getElementById('monthRemaining').innerHTML = formatMoney(aylikGelir - aylikGider);
         document.getElementById('currentMonthDisplay').innerText = getMonthName(year, month);
         renderBorcList();
-        filterAndRenderTransactions();
+        applyFilterAndRender();
         updateCharts();
     }
 
@@ -672,13 +706,14 @@
         });
     }
 
-    // Arama ve sayfalama
-    function filterAndRenderTransactions() {
+    function applyFilterAndRender() {
         const searchTerm = document.getElementById('searchInput')?.value.toLowerCase() || '';
-        filteredTransactionsArray = allTransactionsArray.filter(t => 
-            t.baslik.toLowerCase().includes(searchTerm) || 
-            t.kategori.toLowerCase().includes(searchTerm)
-        );
+        filteredTransactionsArray = allTransactionsArray.filter(t => {
+            const matchesSearch = t.baslik.toLowerCase().includes(searchTerm) || t.kategori.toLowerCase().includes(searchTerm);
+            if(currentFilter === 'gelir') return matchesSearch && t.tip === 'gelir';
+            if(currentFilter === 'gider') return matchesSearch && t.tip === 'gider';
+            return matchesSearch;
+        });
         currentDisplayCount = 10;
         renderTransactionListWithPagination();
     }
@@ -714,24 +749,38 @@
                 if(diff > 30 && diff < 100) itemDiv.classList.add('swiped');
                 else if(diff < -30) itemDiv.classList.remove('swiped');
             });
-            itemDiv.querySelector('.swipe-delete').addEventListener('click', async (e) => {
+            // Silme işlemi: hemen listeden kaldır, sonra Firebase'den sil
+            const deleteBtn = itemDiv.querySelector('.swipe-delete');
+            deleteBtn.addEventListener('click', async (e) => {
                 e.stopPropagation();
                 if(isProcessing) return;
                 isProcessing = true;
                 const id = itemDiv.dataset.id;
                 const tip = itemDiv.dataset.tip;
-                if(tip === 'gelir') await deleteDoc(doc(db, "mucahit_gelirler", id));
-                else await deleteDoc(doc(db, "mucahit_giderler", id));
-                await loadAll();
+                // Önce lokal diziden kaldır
+                const index = filteredTransactionsArray.findIndex(x => x.docId === id);
+                if(index !== -1) filteredTransactionsArray.splice(index, 1);
+                // Aynı anda allTransactionsArray'den de kaldır (tutarlılık için)
+                const mainIndex = allTransactionsArray.findIndex(x => x.docId === id);
+                if(mainIndex !== -1) allTransactionsArray.splice(mainIndex, 1);
+                // UI'ı güncelle
+                renderTransactionListWithPagination();
+                // Arkada Firebase'den sil
+                try {
+                    if(tip === 'gelir') await deleteDoc(doc(db, "mucahit_gelirler", id));
+                    else await deleteDoc(doc(db, "mucahit_giderler", id));
+                    showToast("İşlem silindi");
+                } catch(err) {
+                    showToast("Silme hatası, yeniden dene", true);
+                    // Hata olursa geri ekle (basitçe yeniden yükle)
+                    await loadAll();
+                }
                 isProcessing = false;
-                showToast("İşlem silindi");
             });
             container.appendChild(itemDiv);
         });
         
         document.getElementById('transactionCount').innerHTML = filteredTransactionsArray.length + ' işlem';
-        
-        // Daha fazla yükle butonu
         loadMoreContainer.innerHTML = '';
         if(currentDisplayCount < filteredTransactionsArray.length) {
             let btn = document.createElement('button');
@@ -802,7 +851,6 @@
             <table style="width:100%; border-collapse:collapse; font-size:11px;">
                 <thead><tr style="background:#f2f2f2;"><th style="padding:8px;">Tarih</th><th>Tip</th><th>Başlık</th><th>Kategori</th><th>Tutar</th></tr></thead>
                 <tbody>${allTrans.map(t => {
-                    let d = new Date(t.tarih);
                     const rowBg = t.tip === 'Gelir' ? '#f0fff0' : '#fff0f0';
                     return `<tr style="background:${rowBg};">
                         <td style="padding:6px;">${formatDateWithDay(t.tarih)}</td>
@@ -886,13 +934,23 @@
     window.changeMonth = (delta) => { let nm = currentMonth+delta; if(nm<0){nm=11;currentYear--;} if(nm>11){nm=0;currentYear++;} currentMonth=nm; renderDashboard(); };
     document.getElementById('prevMonthBtn').onclick = () => changeMonth(-1);
     document.getElementById('nextMonthBtn').onclick = () => changeMonth(1);
-    document.getElementById('searchInput').addEventListener('keyup', () => filterAndRenderTransactions());
+    document.getElementById('searchInput').addEventListener('keyup', () => applyFilterAndRender());
     document.getElementById('openIncomeModal').onclick = () => openModal('incomeModal');
     document.getElementById('openExpenseModal').onclick = () => openModal('expenseModal');
     document.getElementById('openBorcModal').onclick = () => openModal('borcModal');
     document.getElementById('openAlacakModal').onclick = () => openModal('alacakModal');
     document.getElementById('pdfBtn').onclick = () => exportToPDF();
     document.getElementById('logoutBtn').onclick = () => { document.getElementById('loginContainer').style.display = 'flex'; document.getElementById('appContainer').style.display = 'none'; allGelirler=[]; };
+    
+    // Filtre butonları
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentFilter = btn.dataset.filter;
+            applyFilterAndRender();
+        });
+    });
     
     function setTheme(theme) {
         if(theme === 'dark') { document.body.classList.add('dark'); document.body.classList.remove('light'); }
