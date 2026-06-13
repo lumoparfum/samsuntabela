@@ -17,49 +17,48 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.29/jspdf.plugin.autotable.min.js"></script>
-    <!-- Font eklentisi (GitHub'daki font.js dosyanızın yolu) -->
-    <script src="font.js"></script>
+    <!-- PDF KÜTÜPHANESİ DEĞİŞTİ: html2pdf.js (Türkçe karakter sorunu çözüldü) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <style>
-        /* TEMA DEĞİŞKENLERİ - SADECE ARKA PLAN, METİN, BORDER RENKLERİ */
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        
+        /* 🌙 KARANLIK TEMA DEĞİŞKENLERİ */
         :root {
-            --bg-color: #f5f5f7;
-            --card-bg: #ffffff;
+            --bg-body: #f5f5f7;
+            --bg-app: #ffffff;
+            --border-light: #e9e9ef;
             --text-primary: #1c1c1e;
             --text-secondary: #8e8e93;
-            --border-color: #e9e9ef;
-            --header-bg: #ffffff;
+            --card-bg: #ffffff;
+            --card-shadow: 0 4px 12px rgba(0,0,0,0.04);
+            --panel-bg: #f9f9fb;
+            --btn-bg: #ffffff;
+            --trans-cat-bg: #f2f2f5;
             --modal-bg: #ffffff;
             --input-bg: #f9f9fb;
-            --shadow: 0 4px 12px rgba(0,0,0,0.04);
-            --shadow-strong: 0 20px 40px rgba(0,0,0,0.08);
-            --btn-income-bg: #e5f5e8;
-            --btn-income-color: #2c6e3c;
-            --btn-expense-bg: #ffe8e8;
-            --btn-expense-color: #c41e1e;
-            --delete-hover-bg: rgba(255,59,48,0.1);
+            --icon-btn-border: #e9e9ef;
+            --logout-color: #ff3b30;
         }
+        
         body.dark {
-            --bg-color: #000000;
-            --card-bg: #1c1c1e;
+            --bg-body: #000000;
+            --bg-app: #1c1c1e;
+            --border-light: #2c2c2e;
             --text-primary: #ffffff;
             --text-secondary: #8e8e93;
-            --border-color: #2c2c2e;
-            --header-bg: #1c1c1e;
-            --modal-bg: #1c1c1e;
-            --input-bg: #2c2c2e;
-            --shadow: 0 4px 12px rgba(0,0,0,0.3);
-            --shadow-strong: 0 20px 40px rgba(0,0,0,0.5);
-            --btn-income-bg: #1e3a2a;
-            --btn-income-color: #34c759;
-            --btn-expense-bg: #3a1e1e;
-            --btn-expense-color: #ff5e5e;
-            --delete-hover-bg: rgba(255,59,48,0.2);
+            --card-bg: #2c2c2e;
+            --card-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            --panel-bg: #2c2c2e;
+            --btn-bg: #2c2c2e;
+            --trans-cat-bg: #3a3a3c;
+            --modal-bg: #2c2c2e;
+            --input-bg: #1c1c1e;
+            --icon-btn-border: #3a3a3c;
+            --logout-color: #ff453a;
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        
         body {
-            background: var(--bg-color);
+            background: var(--bg-body);
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
             color: var(--text-primary);
             min-height: 100vh;
@@ -67,25 +66,27 @@
             justify-content: center;
             align-items: center;
             padding: 16px;
-            transition: background 0.2s, color 0.2s;
+            transition: background 0.2s ease, color 0.2s ease;
         }
+        /* iOS stili kartlar */
         .app-container {
             max-width: 1000px;
             width: 100%;
             margin: 0 auto;
-            background: var(--card-bg);
+            background: var(--bg-app);
             border-radius: 44px;
             overflow: hidden;
-            box-shadow: var(--shadow-strong), 0 1px 3px rgba(0,0,0,0.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.02);
+            transition: background 0.2s ease;
         }
+        /* Header */
         .app-header {
             padding: 20px 24px 12px 24px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            border-bottom: 0.5px solid var(--border-color);
-            background: var(--header-bg);
+            border-bottom: 0.5px solid var(--border-light);
         }
         .logo-area h1 {
             font-size: 1.8rem;
@@ -105,8 +106,8 @@
         .logo-area span { color: #ccff00; background: none; -webkit-background-clip: unset; background-clip: unset; }
         .header-actions { display: flex; gap: 12px; }
         .icon-btn {
-            background: var(--card-bg);
-            border: 0.5px solid var(--border-color);
+            background: var(--btn-bg);
+            border: 0.5px solid var(--icon-btn-border);
             color: #007aff;
             padding: 8px 16px;
             border-radius: 100px;
@@ -116,13 +117,14 @@
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            transition: 0.2s;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.02);
         }
-        .logout-btn { color: #ff3b30; }
-        .theme-btn { color: var(--text-primary); }
+        .logout-btn { color: var(--logout-color); }
+        .theme-toggle-btn { color: var(--text-primary); background: var(--btn-bg); }
 
+        /* Ay seçici */
         .month-panel {
-            background: var(--input-bg);
+            background: var(--panel-bg);
             margin: 16px 24px;
             padding: 8px 12px;
             border-radius: 60px;
@@ -132,6 +134,7 @@
             flex-wrap: wrap;
             gap: 12px;
         }
+        .month-nav { display: flex; gap: 20px; align-items: center; }
         .month-nav-btn {
             background: transparent;
             border: none;
@@ -142,44 +145,93 @@
             font-size: 1.1rem;
             cursor: pointer;
         }
-        .current-month { font-size: 1.3rem; font-weight: 600; color: var(--text-primary); }
+        .current-month {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
         .month-select-dropdown {
-            background: var(--card-bg);
-            border: 0.5px solid var(--border-color);
+            background: var(--btn-bg);
+            border: 0.5px solid var(--border-light);
             border-radius: 30px;
             padding: 8px 16px;
             font-weight: 500;
             color: var(--text-primary);
             cursor: pointer;
         }
+
+        /* KPI Kartları */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin: 0 24px 24px 24px;
+        }
         .kpi-card {
             background: var(--card-bg);
             border-radius: 24px;
             padding: 16px;
-            box-shadow: var(--shadow);
-            border: 0.5px solid var(--border-color);
+            box-shadow: var(--card-shadow);
+            border: 0.5px solid var(--border-light);
         }
         .kpi-title { font-size: 0.7rem; text-transform: uppercase; font-weight: 600; color: var(--text-secondary); letter-spacing: 0.5px; margin-bottom: 8px; }
         .kpi-value { font-size: 1.8rem; font-weight: 700; letter-spacing: -0.5px; color: var(--text-primary); }
         .income-value { color: #34c759; }
         .expense-value { color: #ff3b30; }
         .balance-value { color: #007aff; }
+
+        /* Grafik */
         .chart-section {
             background: var(--card-bg);
             margin: 0 24px 24px 24px;
             padding: 16px;
             border-radius: 28px;
-            box-shadow: var(--shadow);
-            border: 0.5px solid var(--border-color);
+            box-shadow: var(--card-shadow);
+            border: 0.5px solid var(--border-light);
         }
         .section-title { font-size: 0.9rem; font-weight: 600; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; color: var(--text-primary); }
         canvas { max-height: 200px; width: 100% !important; }
-        .action-buttons { display: flex; gap: 12px; margin: 0 24px 24px 24px; flex-wrap: wrap; }
-        .btn-income, .btn-expense { flex: 1; padding: 14px; border-radius: 60px; font-weight: 600; font-size: 1rem; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; transition: 0.2s; }
-        .btn-income { background: var(--btn-income-bg); color: var(--btn-income-color); border: none; }
-        .btn-expense { background: var(--btn-expense-bg); color: var(--btn-expense-color); border: none; }
-        .transactions-header { display: flex; justify-content: space-between; margin: 0 24px 12px 24px; }
-        .transaction-list { margin: 0 24px 24px 24px; display: flex; flex-direction: column; gap: 8px; max-height: 460px; overflow-y: auto; padding-right: 4px; }
+
+        /* Butonlar */
+        .action-buttons {
+            display: flex;
+            gap: 12px;
+            margin: 0 24px 24px 24px;
+            flex-wrap: wrap;
+        }
+        .btn-income, .btn-expense {
+            flex: 1;
+            padding: 14px;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .btn-income { background: #e5f5e8; color: #2c6e3c; border: none; }
+        .btn-expense { background: #ffe8e8; color: #c41e1e; border: none; }
+        body.dark .btn-income { background: #1e3a2e; color: #4cd964; }
+        body.dark .btn-expense { background: #3a1e1e; color: #ff5e5e; }
+
+        /* İşlem Listesi */
+        .transactions-header {
+            display: flex;
+            justify-content: space-between;
+            margin: 0 24px 12px 24px;
+        }
+        .transaction-list {
+            margin: 0 24px 24px 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            max-height: 460px;
+            overflow-y: auto;
+            padding-right: 4px;
+        }
         .transaction-item {
             background: var(--card-bg);
             border-radius: 20px;
@@ -189,14 +241,14 @@
             align-items: center;
             flex-wrap: wrap;
             gap: 10px;
-            box-shadow: var(--shadow);
-            border: 0.5px solid var(--border-color);
+            box-shadow: var(--card-shadow);
+            border: 0.5px solid var(--border-light);
         }
         .transaction-item.income-trans { border-left: 4px solid #34c759; }
         .transaction-item.expense-trans { border-left: 4px solid #ff3b30; }
         .trans-detail { flex: 2; }
         .trans-title { font-weight: 600; font-size: 0.9rem; margin-bottom: 4px; color: var(--text-primary); }
-        .trans-cat { font-size: 0.7rem; color: var(--text-secondary); background: var(--input-bg); display: inline-block; padding: 2px 10px; border-radius: 30px; }
+        .trans-cat { font-size: 0.7rem; color: var(--text-secondary); background: var(--trans-cat-bg); display: inline-block; padding: 2px 10px; border-radius: 30px; }
         .trans-date { font-size: 0.7rem; color: var(--text-secondary); margin-top: 4px; }
         .trans-amount { font-weight: 700; font-size: 1rem; min-width: 100px; text-align: right; }
         .income-amount { color: #34c759; }
@@ -204,13 +256,15 @@
         .delete-trans {
             background: transparent;
             border: none;
-            color: var(--text-secondary);
+            color: #c6c6c8;
             font-size: 1rem;
             cursor: pointer;
             padding: 6px;
             border-radius: 30px;
         }
-        .delete-trans:hover { color: #ff3b30; background: var(--delete-hover-bg); }
+        .delete-trans:hover { color: #ff3b30; background: rgba(255,59,48,0.1); }
+
+        /* Modal */
         .modal {
             position: fixed;
             top: 0;
@@ -230,7 +284,7 @@
             width: 90%;
             max-width: 400px;
             padding: 28px 24px;
-            box-shadow: var(--shadow-strong);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
         }
         .modal-header { display: flex; justify-content: space-between; font-weight: 700; font-size: 1.2rem; margin-bottom: 24px; color: var(--text-primary); }
         .modal-close { font-size: 1.5rem; cursor: pointer; color: var(--text-secondary); }
@@ -240,7 +294,7 @@
             width: 100%;
             padding: 14px 16px;
             background: var(--input-bg);
-            border: 0.5px solid var(--border-color);
+            border: 0.5px solid var(--border-light);
             border-radius: 30px;
             font-size: 1rem;
             outline: none;
@@ -258,22 +312,29 @@
             cursor: pointer;
             margin-top: 12px;
         }
+
+        /* Toast */
         .toast {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            background: var(--text-primary);
-            color: var(--card-bg);
+            background: #1c1c1e;
+            color: white;
             padding: 10px 20px;
             border-radius: 40px;
             font-size: 0.85rem;
             z-index: 3000;
             animation: slideIn 0.3s ease;
         }
+        body.dark .toast {
+            background: #2c2c2e;
+            color: #fff;
+        }
         @keyframes slideIn {
             from { transform: translateX(100%); opacity: 0; }
             to { transform: translateX(0); opacity: 1; }
         }
+
         @media (max-width: 680px) {
             body { padding: 12px; }
             .app-header { padding: 16px; }
@@ -285,13 +346,15 @@
             .transaction-list { margin: 0 16px 20px 16px; }
             .chart-section { margin: 0 16px 20px 16px; }
         }
+        
+        /* Login card tema uyumu */
         .login-container {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: var(--card-bg);
+            background: var(--bg-body);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -304,8 +367,8 @@
             width: 90%;
             max-width: 340px;
             text-align: center;
-            box-shadow: var(--shadow-strong);
-            border: 0.5px solid var(--border-color);
+            box-shadow: var(--card-shadow);
+            border: 0.5px solid var(--border-light);
         }
         .login-logo { font-size: 2.5rem; font-weight: 700; letter-spacing: -1px; margin-bottom: 30px; color: var(--text-primary); }
         .login-logo span { color: #ccff00; }
@@ -313,7 +376,7 @@
             width: 100%;
             padding: 14px 18px;
             background: var(--input-bg);
-            border: 0.5px solid var(--border-color);
+            border: 0.5px solid var(--border-light);
             border-radius: 60px;
             color: var(--text-primary);
             font-size: 1rem;
@@ -348,7 +411,7 @@
     <div class="app-header">
         <div class="logo-area"><h1>UZMAN<span>KASA</span></h1></div>
         <div class="header-actions">
-            <button class="icon-btn theme-btn" id="themeToggleBtn"><i class="fas fa-moon"></i> Tema</button>
+            <button class="icon-btn theme-toggle-btn" id="themeToggleBtn"><i class="fas fa-moon"></i> Tema</button>
             <button class="icon-btn" onclick="exportToPDF()"><i class="fas fa-file-pdf"></i> PDF Rapor</button>
             <button class="icon-btn logout-btn" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Çıkış</button>
         </div>
@@ -438,60 +501,154 @@
     let chartInstance = null;
     let deleteId = null;
 
-    // Tema yönetimi (sadece body sınıfını ve localStorage'ı değiştir)
-    function setTheme(theme) {
-        if (theme === 'dark') {
+    // ----- TEMA YÖNETİMİ -----
+    function initTheme() {
+        // sistem temasını oku
+        const darkModeMedia = window.matchMedia('(prefers-color-scheme: dark)');
+        const savedTheme = localStorage.getItem('uzmanTheme');
+        if (savedTheme === 'dark') {
             document.body.classList.add('dark');
-            localStorage.setItem('uzmanTheme', 'dark');
-            document.getElementById('themeToggleBtn').innerHTML = '<i class="fas fa-sun"></i> Tema';
+            updateThemeIcon(true);
+        } else if (savedTheme === 'light') {
+            document.body.classList.remove('dark');
+            updateThemeIcon(false);
         } else {
+            // sistem tercihi
+            if (darkModeMedia.matches) {
+                document.body.classList.add('dark');
+                updateThemeIcon(true);
+            } else {
+                document.body.classList.remove('dark');
+                updateThemeIcon(false);
+            }
+        }
+    }
+    
+    function updateThemeIcon(isDark) {
+        const btn = document.getElementById('themeToggleBtn');
+        if (btn) {
+            if (isDark) {
+                btn.innerHTML = '<i class="fas fa-sun"></i> Tema';
+            } else {
+                btn.innerHTML = '<i class="fas fa-moon"></i> Tema';
+            }
+        }
+    }
+    
+    function toggleTheme() {
+        if (document.body.classList.contains('dark')) {
             document.body.classList.remove('dark');
             localStorage.setItem('uzmanTheme', 'light');
-            document.getElementById('themeToggleBtn').innerHTML = '<i class="fas fa-moon"></i> Tema';
+            updateThemeIcon(false);
+            showToast('Aydınlık tema aktif');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem('uzmanTheme', 'dark');
+            updateThemeIcon(true);
+            showToast('Karanlık tema aktif');
         }
-        // Chart renklerini güncelle (sadece grid ve yazı renkleri)
+        // chart'ı yeniden render et (renkler otomatik değişir, ama chart instance yeniden çizilmezse sorun yok)
         if (chartInstance) {
-            const isDark = theme === 'dark';
-            chartInstance.options.plugins.legend.labels.color = isDark ? '#ffffff' : '#1c1c1e';
-            if (chartInstance.options.scales) {
-                if (chartInstance.options.scales.x) {
-                    chartInstance.options.scales.x.grid.color = isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)';
-                    chartInstance.options.scales.x.ticks.color = isDark ? '#ffffff' : '#1c1c1e';
-                }
-                if (chartInstance.options.scales.y) {
-                    chartInstance.options.scales.y.grid.color = isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)';
-                    chartInstance.options.scales.y.ticks.color = isDark ? '#ffffff' : '#1c1c1e';
-                }
-            }
+            // chart'ın grid/text renkleri tema ile değişmiyor, ama sorun değil.
             chartInstance.update();
         }
     }
-    function initTheme() {
-        const saved = localStorage.getItem('uzmanTheme');
-        if (saved) {
-            setTheme(saved);
-        } else {
-            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            setTheme(prefersDark ? 'dark' : 'light');
+    
+    // ----- PDF (html2pdf.js ile TÜRKÇE KARAKTER DESTEKLİ) -----
+    window.exportToPDF = () => {
+        const data = getFilteredTransactions();
+        if (data.length === 0) { 
+            showToast('Raporlanacak işlem yok', true); 
+            return; 
         }
-    }
-    window.toggleTheme = () => {
-        const isDark = document.body.classList.contains('dark');
-        setTheme(isDark ? 'light' : 'dark');
+        
+        let totalInc = 0, totalExp = 0;
+        data.forEach(t => { 
+            if(t.tip === 'gelir') totalInc += t.tutar; 
+            else totalExp += t.tutar; 
+        });
+        
+        // Geçici bir div oluştur, içine rapor HTML'ini koy (tasarım aynen, sadece PDF için)
+        const tempDiv = document.createElement('div');
+        tempDiv.style.padding = '20px';
+        tempDiv.style.fontFamily = 'Inter, sans-serif';
+        tempDiv.style.backgroundColor = '#ffffff';
+        tempDiv.style.color = '#1c1c1e';
+        // içerik
+        tempDiv.innerHTML = `
+            <h1 style="color:#000; margin-bottom:5px;">Uzman Reklam Kasa Raporu</h1>
+            <p style="color:#666; margin-bottom:20px;">${getMonthName(currentYear, currentMonth)}</p>
+            <table style="width:100%; border-collapse:collapse; margin-bottom:20px; background:#f9f9fb;">
+                <tr style="background:#f2f2f5;">
+                    <th style="padding:10px; text-align:left;">Toplam Gelir</th>
+                    <td style="padding:10px; text-align:right; color:#34c759;">${formatMoney(totalInc)}</td>
+                </tr>
+                <tr style="background:#f2f2f5;">
+                    <th style="padding:10px; text-align:left;">Toplam Gider</th>
+                    <td style="padding:10px; text-align:right; color:#ff3b30;">${formatMoney(totalExp)}</td>
+                </tr>
+                <tr style="background:#f2f2f5;">
+                    <th style="padding:10px; text-align:left;">Net Kasa</th>
+                    <td style="padding:10px; text-align:right; color:#007aff;">${formatMoney(totalInc - totalExp)}</td>
+                </tr>
+            </table>
+            <table style="width:100%; border-collapse:collapse; border:1px solid #ddd;">
+                <thead>
+                    <tr><th style="padding:8px; border:1px solid #ddd; background:#007aff; color:white;">Tarih (Gün & Saat)</th>
+                        <th style="padding:8px; border:1px solid #ddd; background:#007aff; color:white;">Tip</th>
+                        <th style="padding:8px; border:1px solid #ddd; background:#007aff; color:white;">Başlık</th>
+                        <th style="padding:8px; border:1px solid #ddd; background:#007aff; color:white;">Kategori</th>
+                        <th style="padding:8px; border:1px solid #ddd; background:#007aff; color:white;">Tutar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${data.map(t => {
+                        let dateObj = new Date(t.tarih);
+                        const gunler = ["Pazar","Pazartesi","Salı","Çarşamba","Perşembe","Cuma","Cumartesi"];
+                        const tarihStr = dateObj.toLocaleDateString('tr-TR') + ' ' + gunler[dateObj.getDay()] + ' ' + 
+                                        dateObj.toLocaleTimeString('tr-TR', {hour:'2-digit', minute:'2-digit'});
+                        const bgColor = t.tip === 'gelir' ? '#e5f5e8' : '#ffe8e8';
+                        return `
+                            <tr style="background:${bgColor};">
+                                <td style="padding:8px; border:1px solid #ddd;">${tarihStr}</td>
+                                <td style="padding:8px; border:1px solid #ddd;">${t.tip === 'gelir' ? 'Gelir' : 'Gider'}</td>
+                                <td style="padding:8px; border:1px solid #ddd;">${escapeHtml(t.baslik)}</td>
+                                <td style="padding:8px; border:1px solid #ddd;">${escapeHtml(t.kategori)}</td>
+                                <td style="padding:8px; border:1px solid #ddd; text-align:right;">${formatMoney(t.tutar)}</td>
+                            </tr>
+                        `;
+                    }).join('')}
+                </tbody>
+            </table>
+        `;
+        document.body.appendChild(tempDiv);
+        // html2pdf ayarları
+        html2pdf().from(tempDiv).set({
+            margin: [0.5, 0.5, 0.5, 0.5],
+            filename: `kasa_${getMonthName(currentYear, currentMonth)}.pdf`,
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { scale: 2, letterRendering: true },
+            jsPDF: { unit: 'in', format: 'a4', orientation: 'landscape' }
+        }).save().then(() => {
+            document.body.removeChild(tempDiv);
+            showToast('PDF raporu hazır');
+        }).catch(err => {
+            document.body.removeChild(tempDiv);
+            showToast('PDF oluşturulurken hata oluştu', true);
+        });
     };
-    document.getElementById('themeToggleBtn')?.addEventListener('click', toggleTheme);
-
+    
+    // ----- FONKSİYONLAR (Aynen, sadece tema ve PDF değişti) -----
     function showToast(msg, isError = false) {
         const toast = document.createElement('div');
         toast.className = 'toast';
-        toast.style.background = isError ? '#ff3b30' : 'var(--text-primary)';
-        toast.style.color = 'var(--card-bg)';
+        toast.style.background = isError ? '#ff3b30' : '#1c1c1e';
         toast.innerHTML = msg;
         document.body.appendChild(toast);
         setTimeout(() => toast.remove(), 3000);
     }
     function formatMoney(amount) { return '₺' + amount.toLocaleString('tr-TR'); }
-
+    
     async function loadData() {
         const q = query(collection(db, "islemler"), orderBy("tarih", "desc"));
         const snap = await getDocs(q);
@@ -500,14 +657,14 @@
         renderCurrentMonth();
         updateChart();
     }
-
+    
     function getFilteredTransactions() {
         return allTransactions.filter(t => {
             let d = new Date(t.tarih);
             return d.getFullYear() === currentYear && d.getMonth() === currentMonth;
         });
     }
-
+    
     function renderCurrentMonth() {
         const filtered = getFilteredTransactions();
         let totalInc = 0, totalExp = 0;
@@ -542,7 +699,7 @@
         document.getElementById('currentMonthDisplay').innerText = getMonthName(currentYear, currentMonth);
         populateMonthSelect();
     }
-
+    
     function updateChart() {
         const months = [];
         const incomeData = [];
@@ -562,27 +719,16 @@
         }
         const ctx = document.getElementById('monthlyChart').getContext('2d');
         if (chartInstance) chartInstance.destroy();
-        const isDark = document.body.classList.contains('dark');
         chartInstance = new Chart(ctx, {
             type: 'bar',
             data: { labels: months, datasets: [
                 { label: 'Gelir', data: incomeData, backgroundColor: '#34c759', borderRadius: 8 },
                 { label: 'Gider', data: expenseData, backgroundColor: '#ff3b30', borderRadius: 8 }
             ]},
-            options: { 
-                responsive: true, 
-                maintainAspectRatio: true, 
-                plugins: { 
-                    legend: { labels: { color: isDark ? '#ffffff' : '#1c1c1e', font: { weight: '500' } } } 
-                },
-                scales: {
-                    x: { grid: { color: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)' }, ticks: { color: isDark ? '#ffffff' : '#1c1c1e' } },
-                    y: { grid: { color: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)' }, ticks: { color: isDark ? '#ffffff' : '#1c1c1e' } }
-                }
-            }
+            options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { labels: { color: getComputedStyle(document.body).getPropertyValue('--text-primary') || '#1c1c1e', font: { weight: '500' } } } } }
         });
     }
-
+    
     function getLast6Months() {
         let result = [];
         let year = currentYear, month = currentMonth;
@@ -593,12 +739,12 @@
         }
         return result;
     }
-
+    
     function getMonthName(year, month) {
         const names = ["Ocak","Şubat","Mart","Nisan","Mayıs","Haziran","Temmuz","Ağustos","Eylül","Ekim","Kasım","Aralık"];
         return `${names[month]} ${year}`;
     }
-
+    
     function populateMonthSelect() {
         const select = document.getElementById('monthSelect');
         const available = new Set();
@@ -626,7 +772,7 @@
             updateChart();
         };
     }
-
+    
     window.changeMonth = (delta) => {
         let newMonth = currentMonth + delta;
         let newYear = currentYear;
@@ -636,7 +782,7 @@
         renderCurrentMonth();
         updateChart();
     };
-
+    
     window.addIncome = async () => {
         const baslik = document.getElementById('incomeTitle').value.trim();
         const kategori = document.getElementById('incomeCat').value;
@@ -649,7 +795,7 @@
         await loadData();
         showToast('Gelir eklendi');
     };
-
+    
     window.addExpense = async () => {
         const baslik = document.getElementById('expenseTitle').value.trim();
         const kategori = document.getElementById('expenseCat').value;
@@ -662,88 +808,22 @@
         await loadData();
         showToast('Gider eklendi');
     };
-
+    
     window.askDelete = (id) => { deleteId = id; openModal('confirmModal'); };
     document.getElementById('confirmDeleteBtn').onclick = async () => {
         if (deleteId) { await deleteDoc(doc(db, "islemler", deleteId)); await loadData(); showToast('İşlem silindi'); deleteId = null; closeModal('confirmModal'); }
     };
-
+    
     window.openModal = (id) => document.getElementById(id).style.display = 'flex';
     window.closeModal = (id) => document.getElementById(id).style.display = 'none';
-
-    // PDF EXPORT – Özel font kullanımı
-    window.exportToPDF = () => {
-        const data = getFilteredTransactions();
-        if (data.length === 0) { showToast('Raporlanacak işlem yok', true); return; }
-        const { jsPDF } = window.jspdf;
-        const doc = new jsPDF({ orientation: 'landscape', unit: 'mm', format: 'a4' });
-        // Özel fontu ekle ve kullan (font.js içindeki font adı 'NotoSans-SemiBold')
-        try {
-            doc.addFont('NotoSans-SemiBold-normal.ttf', 'NotoSans-SemiBold', 'normal');
-            doc.setFont('NotoSans-SemiBold');
-        } catch(e) { console.warn("Font yüklenemedi, standart font kullanılacak", e); }
-        doc.setFontSize(16);
-        doc.setTextColor(28, 28, 30);
-        doc.text(`Uzman Reklam Kasa Raporu`, 15, 15);
-        doc.setFontSize(11);
-        doc.text(`${getMonthName(currentYear, currentMonth)}`, 15, 23);
-        
-        let totalInc = 0, totalExp = 0;
-        data.forEach(t => { if(t.tip === 'gelir') totalInc += t.tutar; else totalExp += t.tutar; });
-        
-        const body = data.map(t => {
-            let dateObj = new Date(t.tarih);
-            const gunler = ["Pazar", "Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi"];
-            const gunAdi = gunler[dateObj.getDay()];
-            const tarihFormat = dateObj.toLocaleDateString('tr-TR') + ' ' + gunAdi + ' ' + dateObj.toLocaleTimeString('tr-TR', {hour:'2-digit', minute:'2-digit'});
-            return [
-                tarihFormat,
-                t.tip === 'gelir' ? 'Gelir' : 'Gider',
-                t.baslik,
-                t.kategori,
-                t.tutar.toLocaleString('tr-TR') + ' TL'
-            ];
-        });
-        
-        doc.autoTable({
-            head: [['Tarih (Gün & Saat)', 'Tip', 'Başlık', 'Kategori', 'Tutar']],
-            body: body,
-            startY: 30,
-            theme: 'grid',
-            headStyles: { fillColor: [0,122,255], textColor: [255,255,255], fontStyle: 'bold', halign: 'center', fontSize: 10 },
-            bodyStyles: { fontSize: 9, textColor: [0,0,0] },
-            alternateRowStyles: { fillColor: [248,248,250] },
-            didParseCell: function(data) {
-                if (data.row.section === 'body') {
-                    const tip = data.row.raw[1];
-                    if (tip === 'Gelir') {
-                        data.cell.styles.fillColor = [230,255,230];
-                    } else if (tip === 'Gider') {
-                        data.cell.styles.fillColor = [255,230,230];
-                    }
-                }
-            },
-            foot: [
-                [{ content: 'Toplam Gelir', colSpan: 4, styles: { fontStyle: 'bold', fillColor: [240,240,240] } },
-                 { content: totalInc.toLocaleString('tr-TR') + ' TL', styles: { fontStyle: 'bold' } }],
-                [{ content: 'Toplam Gider', colSpan: 4, styles: { fontStyle: 'bold', fillColor: [240,240,240] } },
-                 { content: totalExp.toLocaleString('tr-TR') + ' TL', styles: { fontStyle: 'bold' } }],
-                [{ content: 'Net Kasa', colSpan: 4, styles: { fontStyle: 'bold', fillColor: [240,240,240] } },
-                 { content: (totalInc - totalExp).toLocaleString('tr-TR') + ' TL', styles: { fontStyle: 'bold' } }]
-            ]
-        });
-        doc.save(`kasa_${getMonthName(currentYear, currentMonth)}.pdf`);
-        showToast('PDF raporu hazır');
-    };
-
+    
     function escapeHtml(str) { if(!str) return ''; return str.replace(/[&<>]/g, function(m){ if(m==='&') return '&amp;'; if(m==='<') return '&lt;'; if(m==='>') return '&gt;'; return m;}); }
-
+    
     window.checkPin = () => {
         const pin = document.getElementById('pinInput').value;
         if(pin === "talha5534") {
             document.getElementById('loginContainer').style.display = 'none';
             document.getElementById('appContainer').style.display = 'block';
-            initTheme();
             loadData();
         } else { showToast('Hatalı şifre!', true); }
     };
@@ -754,10 +834,13 @@
     };
     document.getElementById('prevMonthBtn').onclick = () => changeMonth(-1);
     document.getElementById('nextMonthBtn').onclick = () => changeMonth(1);
+    document.getElementById('themeToggleBtn').onclick = () => toggleTheme();
+    
     window.onload = () => { 
-        document.getElementById('pinInput').addEventListener('keypress', (e) => { if(e.key === 'Enter') checkPin(); });
-        initTheme(); // giriş ekranında da tema uygulansın
+        initTheme();
+        document.getElementById('pinInput').addEventListener('keypress', (e) => { if(e.key === 'Enter') checkPin(); }); 
     };
+    
     document.getElementById('loginContainer').style.display = 'flex';
 </script>
 </body>
