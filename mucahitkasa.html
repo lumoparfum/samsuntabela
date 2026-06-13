@@ -2,15 +2,12 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <meta name="robots" content="noindex, nofollow">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="MücahitKasa">
     <title>MücahitKasa | Şahsi Bütçe</title>
-    <!-- Favicon ve Apple Touch Icon (basit kasa SVG) -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%231e3a5f'%3E%3Cpath d='M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm2 3v2h10V6H7zm0 4v2h10v-2H7zm0 4v2h6v-2H7z'/%3E%3C/svg%3E">
-    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%231e3a5f'%3E%3Cpath d='M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm2 3v2h10V6H7zm0 4v2h10v-2H7zm0 4v2h6v-2H7z'/%3E%3C/svg%3E">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -39,28 +36,17 @@
         body.light .app-card {
             background: #ffffff;
             border: 0.5px solid #e9e9ef;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
         }
-        body.light .kpi-card {
+        body.light .kpi-card, body.light .transaction-item, body.light .borc-card, body.light .chart-card, body.light .modal-card {
             background: #ffffff;
+            border-color: #e9e9ef;
         }
-        body.light .transaction-item {
-            background: #ffffff;
-        }
-        body.light .borc-card {
-            background: #ffffff;
-        }
-        /* Karanlık tema - tam siyah arka plan, beyaz kartlar */
+        /* Karanlık tema - tam siyah arka plan */
         body.dark {
             background: #000000;
             color: #ffffff;
         }
-        body.dark .app-card {
-            background: #1c1c1e;
-            border: 0.5px solid #2c2c2e;
-            box-shadow: none;
-        }
-        body.dark .kpi-card, body.dark .transaction-item, body.dark .borc-card, body.dark .chart-card, body.dark .modal-card {
+        body.dark .app-card, body.dark .kpi-card, body.dark .transaction-item, body.dark .borc-card, body.dark .chart-card, body.dark .modal-card {
             background: #1c1c1e;
             border-color: #2c2c2e;
         }
@@ -83,27 +69,24 @@
             border-color: #3a3a3c;
             color: #ff9f1c;
         }
-        /* Genel mobil container - tam genişlik, padding */
+        /* Genel container - mobil full genişlik */
         .app-container {
             width: 100%;
             max-width: 100%;
             margin: 0;
-            padding: 0;
         }
         .app-card {
-            background: #ffffff;
             border-radius: 28px;
             margin-bottom: 16px;
             padding: 16px;
-            transition: all 0.2s;
         }
+        /* Header: logo ve butonlar ortalanmış */
         .app-header {
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
             align-items: center;
-            margin-bottom: 16px;
-            flex-wrap: wrap;
             gap: 12px;
+            margin-bottom: 16px;
         }
         .logo-area h1 {
             font-size: 1.8rem;
@@ -113,10 +96,12 @@
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
+            text-align: center;
         }
         .header-actions {
             display: flex;
-            gap: 8px;
+            gap: 12px;
+            justify-content: center;
         }
         .icon-btn {
             background: #ffffff;
@@ -130,18 +115,19 @@
             gap: 6px;
             cursor: pointer;
         }
+        /* Ay paneli ortalanmış */
         .month-panel {
             background: #f9f9fb;
             border-radius: 60px;
             padding: 6px 12px;
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
             margin-bottom: 16px;
         }
         .month-nav {
             display: flex;
-            gap: 16px;
+            gap: 20px;
             align-items: center;
         }
         .month-nav-btn {
@@ -157,7 +143,9 @@
         .current-month {
             font-size: 1.1rem;
             font-weight: 600;
+            text-align: center;
         }
+        /* KPI grid */
         .kpi-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -165,11 +153,10 @@
             margin-bottom: 20px;
         }
         .kpi-card {
-            background: #ffffff;
             border-radius: 24px;
             padding: 14px;
-            border: 0.5px solid #e9e9ef;
             text-align: center;
+            border: 0.5px solid;
         }
         .kpi-title {
             font-size: 0.65rem;
@@ -184,9 +171,9 @@
         }
         .income-value { color: #34c759; }
         .expense-value { color: #ff3b30; }
-        .balance-value { color: #ffffff; } /* karanlıkta beyaz, gündüzde lacivert */
-        body.light .balance-value { color: #0A2540; }
-        
+        .balance-value { color: #0A2540; }
+        body.dark .balance-value { color: #ffffff; }
+        /* Grafikler */
         .chart-row {
             display: flex;
             flex-direction: column;
@@ -194,10 +181,9 @@
             margin-bottom: 20px;
         }
         .chart-card {
-            background: #ffffff;
             border-radius: 28px;
             padding: 12px;
-            border: 0.5px solid #e9e9ef;
+            border: 0.5px solid;
         }
         .section-title {
             font-size: 0.85rem;
@@ -211,6 +197,7 @@
             max-height: 180px;
             width: 100% !important;
         }
+        /* Butonlar */
         .action-buttons {
             display: flex;
             flex-wrap: wrap;
@@ -248,10 +235,9 @@
             margin-bottom: 20px;
         }
         .borc-card {
-            background: #ffffff;
             border-radius: 20px;
             padding: 12px;
-            border: 0.5px solid #e9e9ef;
+            border: 0.5px solid;
             border-left: 4px solid #ff9f1c;
             display: flex;
             justify-content: space-between;
@@ -285,16 +271,17 @@
             font-weight: 600;
             font-size: 0.75rem;
             cursor: pointer;
+            min-width: 85px;
+            white-space: nowrap;
+            text-align: center;
         }
-        /* İşlem geçmişi - swipe silme desteği */
+        /* İşlem listesi - swipe silme */
         .transaction-item {
-            background: #ffffff;
             border-radius: 20px;
             margin-bottom: 8px;
-            border: 0.5px solid #e9e9ef;
+            border: 0.5px solid;
             position: relative;
             overflow: hidden;
-            transition: transform 0.2s;
         }
         .transaction-content {
             display: flex;
@@ -303,6 +290,7 @@
             padding: 12px;
             background: inherit;
             width: 100%;
+            transition: transform 0.2s;
         }
         .swipe-delete {
             position: absolute;
@@ -336,6 +324,12 @@
             font-size: 0.9rem;
             margin-bottom: 12px;
         }
+        .transactions-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+        /* Modal */
         .modal {
             position: fixed;
             top: 0;
@@ -350,7 +344,6 @@
             z-index: 2000;
         }
         .modal-card {
-            background: #ffffff;
             border-radius: 36px;
             width: 90%;
             max-width: 380px;
@@ -409,8 +402,17 @@
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        .hidden {
-            display: none;
+        /* Checkbox stili */
+        .remember-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+        .remember-row label {
+            font-size: 0.8rem;
+            color: #6c6c70;
         }
     </style>
 </head>
@@ -418,7 +420,11 @@
 <div id="loginContainer" style="position:fixed; top:0; left:0; width:100%; height:100%; background:#fff; display:flex; justify-content:center; align-items:center; z-index:1000;">
     <div style="background:#fff; border-radius:48px; padding:40px 30px; width:90%; max-width:340px; text-align:center; box-shadow:0 20px 40px rgba(0,0,0,0.05); border:0.5px solid #e9e9ef;">
         <div style="font-size:2rem; font-weight:800; margin-bottom:30px; background:linear-gradient(135deg,#0A2540,#F5A623); -webkit-background-clip:text; background-clip:text; color:transparent;">MÜCAHİT<span style="color:#F5A623;">KASA</span></div>
-        <input type="password" id="pinInput" style="width:100%; padding:14px; background:#f9f9fb; border:0.5px solid #e9e9ef; border-radius:60px; text-align:center; margin-bottom:20px;" placeholder="Şifre">
+        <input type="password" id="pinInput" style="width:100%; padding:14px; background:#f9f9fb; border:0.5px solid #e9e9ef; border-radius:60px; text-align:center; margin-bottom:16px;" placeholder="Şifre" autocomplete="off">
+        <div class="remember-row">
+            <input type="checkbox" id="rememberCheckbox">
+            <label>Beni hatırla</label>
+        </div>
         <button id="loginBtn" style="width:100%; padding:14px; background:#0A2540; color:white; font-weight:600; border:none; border-radius:60px;">Giriş Yap</button>
     </div>
 </div>
@@ -466,7 +472,7 @@
     <div id="borcList" class="borc-list">Yükleniyor...</div>
 
     <div class="search-box"><input type="text" id="searchInput" placeholder="İşlem ara (başlık/kategori)"></div>
-    <div class="transactions-header" style="display:flex; justify-content:space-between; margin-bottom:8px;">
+    <div class="transactions-header">
         <div class="section-title"><i class="fas fa-history"></i> İşlem Geçmişi</div>
         <div id="transactionCount" style="color:#8e8e93;">0</div>
     </div>
@@ -522,7 +528,33 @@
     let allGelirler = [], allGiderler = [], allBorclar = [], allAlacaklar = [];
     let currentYear = new Date().getFullYear(), currentMonth = new Date().getMonth();
     let chart1 = null, chart2 = null;
-    let isProcessing = false; // çift tıklama engeli
+    let isProcessing = false;
+
+    // ---------- iOS icon oluştur (canvas ile kasa ikonu) ----------
+    function generateAppleTouchIcon() {
+        const canvas = document.createElement('canvas');
+        canvas.width = 180;
+        canvas.height = 180;
+        const ctx = canvas.getContext('2d');
+        ctx.fillStyle = '#0A2540';
+        ctx.fillRect(0, 0, 180, 180);
+        ctx.fillStyle = '#F5A623';
+        ctx.font = 'bold 100px "Inter"';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('💰', 90, 90);
+        canvas.toBlob(blob => {
+            const url = URL.createObjectURL(blob);
+            let link = document.querySelector('link[rel="apple-touch-icon"]');
+            if(!link) {
+                link = document.createElement('link');
+                link.rel = 'apple-touch-icon';
+                document.head.appendChild(link);
+            }
+            link.href = url;
+        });
+    }
+    generateAppleTouchIcon();
 
     function showToast(msg, err = false) {
         let t = document.createElement('div'); t.className = 'toast'; t.innerText = msg; t.style.background = err ? '#ff3b30' : '#1c1c1e'; document.body.appendChild(t); setTimeout(() => t.remove(), 2500);
@@ -541,9 +573,7 @@
         renderDashboard();
     }
 
-    function getCurrentFilter() {
-        return { year: currentYear, month: currentMonth };
-    }
+    function getCurrentFilter() { return { year: currentYear, month: currentMonth }; }
 
     function renderDashboard() {
         const { year, month } = getCurrentFilter();
@@ -567,7 +597,7 @@
             const isBorc = item.tip === 'borc';
             const tarih = new Date(item.tarih);
             const gecikti = tarih < bugun;
-            if(gecikti && !isBorc) geciken++;
+            if(gecikti && isBorc) geciken++;
             html += `<div class="borc-card ${isBorc ? '' : 'alacak'}">
                 <div class="borc-detay">
                     <div class="borc-title">${isBorc ? '🧾 Borç' : '💰 Alacak'} - ${escapeHtml(item.kisi)}</div>
@@ -580,8 +610,7 @@
         });
         if(html === '') html = '<div style="text-align:center;padding:20px;">Borç/Alacak yok</div>';
         document.getElementById('borcList').innerHTML = html;
-        document.getElementById('borcOzet').innerHTML = `📅 ${geciken} gecikmiş alacak`;
-        // buton olaylarını bağla
+        document.getElementById('borcOzet').innerHTML = `⚠️ ${geciken} gecikmiş borç`;
         document.querySelectorAll('.borc-card .btn-ode').forEach(btn => {
             btn.addEventListener('click', async (e) => {
                 if(isProcessing) return;
@@ -630,17 +659,12 @@
                 </div>
                 <div class="swipe-delete"><i class="fas fa-trash-alt"></i> Sil</div>
             `;
-            // swipe silme
-            let startX = 0, currentX = 0;
+            let startX = 0;
             itemDiv.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; });
             itemDiv.addEventListener('touchmove', (e) => {
-                currentX = e.touches[0].clientX;
-                let diff = startX - currentX;
-                if(diff > 30 && diff < 100) {
-                    itemDiv.classList.add('swiped');
-                } else if(diff < -30) {
-                    itemDiv.classList.remove('swiped');
-                }
+                let diff = startX - e.touches[0].clientX;
+                if(diff > 30 && diff < 100) itemDiv.classList.add('swiped');
+                else if(diff < -30) itemDiv.classList.remove('swiped');
             });
             itemDiv.querySelector('.swipe-delete').addEventListener('click', async (e) => {
                 e.stopPropagation();
@@ -673,12 +697,14 @@
             gelirData.push(inc); giderData.push(exp);
             labels.push(`${month+1}/${year.toString().slice(-2)}`);
         });
+        const isDark = document.body.classList.contains('dark');
+        const fontColor = isDark ? '#ffffff' : '#1c1c1e';
         const ctx1 = document.getElementById('monthlyChart').getContext('2d');
         if(chart1) chart1.destroy();
         chart1 = new Chart(ctx1, {
             type: 'bar',
             data: { labels, datasets: [{ label: 'Gelir', data: gelirData, backgroundColor: '#34c759' }, { label: 'Gider', data: giderData, backgroundColor: '#ff3b30' }] },
-            options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { labels: { color: getComputedStyle(document.body).color === 'rgb(255, 255, 255)' ? '#fff' : '#1c1c1e' } } } }
+            options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { labels: { color: fontColor } } } }
         });
         let catMap = new Map();
         allGiderler.forEach(g => catMap.set(g.kategori, (catMap.get(g.kategori)||0) + g.tutar));
@@ -687,11 +713,11 @@
         chart2 = new Chart(ctx2, {
             type: 'pie',
             data: { labels: Array.from(catMap.keys()), datasets: [{ data: Array.from(catMap.values()), backgroundColor: ['#ff9f1c','#1e3a5f','#34c759','#ff3b30','#af52de','#ff9500'] }] },
-            options: { plugins: { legend: { labels: { color: getComputedStyle(document.body).color === 'rgb(255, 255, 255)' ? '#fff' : '#1c1c1e' } } } }
+            options: { plugins: { legend: { labels: { color: fontColor } } } }
         });
     }
 
-    // PDF Rapor - UzmanKasa tarzı
+    // PDF Rapor - düzenli, renkli footer
     window.exportToPDF = async () => {
         const { year, month } = getCurrentFilter();
         let aylikGelir=0, aylikGider=0;
@@ -705,35 +731,43 @@
         pdfDiv.style.backgroundColor = '#fff';
         pdfDiv.style.color = '#000';
         pdfDiv.innerHTML = `
-            <h1 style="font-size:24px; font-weight:800;">MÜCAHİTKASA RAPORU</h1>
-            <p style="color:#666;">${getMonthName(year, month)}</p>
+            <h1 style="font-size:24px; font-weight:800; text-align:center;">MÜCAHİTKASA RAPORU</h1>
+            <p style="text-align:center; color:#666;">${getMonthName(year, month)}</p>
             <div style="display:flex; gap:12px; margin:16px 0;">
-                <div style="flex:1; background:#f5f5f7; padding:12px; border-radius:20px;"><div>Gelir</div><div style="font-size:22px; color:#34c759;">${formatMoney(aylikGelir)}</div></div>
-                <div style="flex:1; background:#f5f5f7; padding:12px; border-radius:20px;"><div>Gider</div><div style="font-size:22px; color:#ff3b30;">${formatMoney(aylikGider)}</div></div>
-                <div style="flex:1; background:#f5f5f7; padding:12px; border-radius:20px;"><div>Kalan</div><div style="font-size:22px;">${formatMoney(aylikGelir-aylikGider)}</div></div>
+                <div style="flex:1; background:#f5f5f7; padding:12px; border-radius:20px;"><div>Gelir</div><div style="font-size:20px; color:#34c759;">${formatMoney(aylikGelir)}</div></div>
+                <div style="flex:1; background:#f5f5f7; padding:12px; border-radius:20px;"><div>Gider</div><div style="font-size:20px; color:#ff3b30;">${formatMoney(aylikGider)}</div></div>
+                <div style="flex:1; background:#f5f5f7; padding:12px; border-radius:20px;"><div>Kalan</div><div style="font-size:20px;">${formatMoney(aylikGelir-aylikGider)}</div></div>
             </div>
-            <table style="width:100%; border-collapse:collapse; font-size:12px;">
-                <thead><tr style="background:#f2f2f2;"><th>Tarih</th><th>Tip</th><th>Başlık</th><th>Kategori</th><th>Tutar</th></tr></thead>
+            <table style="width:100%; border-collapse:collapse; font-size:11px;">
+                <thead><tr style="background:#f2f2f2;"><th style="padding:8px;">Tarih</th><th>Tip</th><th>Başlık</th><th>Kategori</th><th>Tutar</th></td></thead>
                 <tbody>${allTrans.map(t => {
                     let d = new Date(t.tarih);
-                    return `<tr><td>${d.toLocaleDateString('tr-TR')} ${d.toLocaleTimeString('tr-TR',{hour:'2-digit',minute:'2-digit'})}</td>
-                    <td>${t.tip}</td><td>${escapeHtml(t.baslik)}</td><td>${escapeHtml(t.kategori)}</td>
-                    <td style="text-align:right;">${formatMoney(t.tutar)}</td></tr>`;
+                    const rowBg = t.tip === 'Gelir' ? '#f0fff0' : '#fff0f0';
+                    return `<tr style="background:${rowBg};">
+                        <td style="padding:6px;">${d.toLocaleDateString('tr-TR')} ${d.toLocaleTimeString('tr-TR',{hour:'2-digit',minute:'2-digit'})}</td>
+                        <td>${t.tip}</td><td>${escapeHtml(t.baslik)}</td><td>${escapeHtml(t.kategori)}</td>
+                        <td style="text-align:right;">${formatMoney(t.tutar)}</td>
+                    </tr>`;
                 }).join('')}</tbody>
             </table>
-            <div style="margin-top:16px; padding:12px; background:#f5f5f7; border-radius:16px; display:flex; justify-content:space-between;">
-                <span>Toplam Gelir: ${formatMoney(aylikGelir)}</span>
-                <span>Toplam Gider: ${formatMoney(aylikGider)}</span>
-                <span>Net: ${formatMoney(aylikGelir-aylikGider)}</span>
+            <div style="margin-top:16px; padding:12px; background:#f5f5f7; border-radius:16px; display:flex; justify-content:space-between; font-weight:600;">
+                <span>Toplam Gelir: <span style="color:#34c759;">${formatMoney(aylikGelir)}</span></span>
+                <span>Toplam Gider: <span style="color:#ff3b30;">${formatMoney(aylikGider)}</span></span>
+                <span>Net: <span>${formatMoney(aylikGelir-aylikGider)}</span></span>
             </div>
         `;
         document.body.appendChild(pdfDiv);
         html2pdf().from(pdfDiv).set({ margin: 0.5, filename: `mucahitkasa_${getMonthName(year, month)}.pdf`, image: { type: 'jpeg', quality: 0.98 }, html2canvas: { scale: 2 }, jsPDF: { unit: 'in', format: 'a4', orientation: 'landscape' } }).save().then(() => { document.body.removeChild(pdfDiv); showToast("PDF hazır"); });
     };
 
-    // Modal yardımcıları
     function openModal(id) { document.getElementById(id).style.display = 'flex'; }
-    window.closeModal = (id) => document.getElementById(id).style.display = 'none';
+    window.closeModal = (id) => { document.getElementById(id).style.display = 'none'; clearModalInputs(id); };
+    function clearModalInputs(modalId) {
+        if(modalId === 'incomeModal') { document.getElementById('incomeTitle').value = ''; document.getElementById('incomeAmount').value = ''; }
+        if(modalId === 'expenseModal') { document.getElementById('expenseTitle').value = ''; document.getElementById('expenseAmount').value = ''; }
+        if(modalId === 'borcModal') { document.getElementById('borcKisi').value = ''; document.getElementById('borcMiktar').value = ''; document.getElementById('borcTarih').value = ''; document.getElementById('borcAciklama').value = ''; }
+        if(modalId === 'alacakModal') { document.getElementById('alacakKisi').value = ''; document.getElementById('alacakMiktar').value = ''; document.getElementById('alacakTarih').value = ''; document.getElementById('alacakAciklama').value = ''; }
+    }
     async function addGeneric(collectionName, data, modalId, successMsg) {
         if(isProcessing) return;
         isProcessing = true;
@@ -748,14 +782,12 @@
         let tutar = parseFloat(document.getElementById('incomeAmount').value);
         if(!baslik || tutar<=0) return showToast("Geçerli bilgi", true);
         addGeneric("mucahit_gelirler", { baslik, kategori: document.getElementById('incomeCat').value, tutar }, "incomeModal", "Gelir eklendi");
-        document.getElementById('incomeTitle').value = ''; document.getElementById('incomeAmount').value = '';
     };
     document.getElementById('saveExpenseBtn').onclick = () => {
         let baslik = document.getElementById('expenseTitle').value.trim();
         let tutar = parseFloat(document.getElementById('expenseAmount').value);
         if(!baslik || tutar<=0) return showToast("Geçerli bilgi", true);
         addGeneric("mucahit_giderler", { baslik, kategori: document.getElementById('expenseCat').value, tutar }, "expenseModal", "Gider eklendi");
-        document.getElementById('expenseTitle').value = ''; document.getElementById('expenseAmount').value = '';
     };
     document.getElementById('saveBorcBtn').onclick = async () => {
         let kisi = document.getElementById('borcKisi').value.trim();
@@ -797,17 +829,21 @@
     document.getElementById('logoutBtn').onclick = () => { document.getElementById('loginContainer').style.display = 'flex'; document.getElementById('appContainer').style.display = 'none'; allGelirler=[]; };
     // Tema
     function setTheme(theme) {
-        if(theme === 'dark') document.body.classList.add('dark'), document.body.classList.remove('light');
-        else document.body.classList.add('light'), document.body.classList.remove('dark');
+        if(theme === 'dark') { document.body.classList.add('dark'); document.body.classList.remove('light'); }
+        else { document.body.classList.add('light'); document.body.classList.remove('dark'); }
         updateCharts();
     }
-    document.getElementById('themeToggleBtn').onclick = () => {
-        if(document.body.classList.contains('dark')) setTheme('light'); else setTheme('dark');
-    };
+    document.getElementById('themeToggleBtn').onclick = () => setTheme(document.body.classList.contains('dark') ? 'light' : 'dark');
     if(window.matchMedia('(prefers-color-scheme: dark)').matches) setTheme('dark'); else setTheme('light');
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => setTheme(e.matches ? 'dark' : 'light'));
+    // Giriş ve beni hatırla
+    const savedPin = localStorage.getItem('mucahit_pin');
+    if(savedPin) document.getElementById('pinInput').value = savedPin;
     document.getElementById('loginBtn').onclick = () => {
-        if(document.getElementById('pinInput').value === "mucahit2026") {
+        const pin = document.getElementById('pinInput').value;
+        if(pin === "547143614") {
+            if(document.getElementById('rememberCheckbox').checked) localStorage.setItem('mucahit_pin', pin);
+            else localStorage.removeItem('mucahit_pin');
             document.getElementById('loginContainer').style.display = 'none';
             document.getElementById('appContainer').style.display = 'block';
             loadAll();
