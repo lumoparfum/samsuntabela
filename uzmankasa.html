@@ -2,7 +2,7 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, shrink-to-fit=no">
     <meta name="robots" content="noindex, nofollow">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -17,7 +17,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-    <!-- PDF KÜTÜPHANESİ (Türkçe karakter sorunsuz) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -32,7 +31,6 @@
             padding: 16px;
             transition: background 0.2s, color 0.2s;
         }
-        /* Karanlık tema (sistem tercihi + manuel) */
         body.dark {
             background: #000000;
             color: #ffffff;
@@ -128,7 +126,6 @@
             color: white;
         }
 
-        /* iOS stili kartlar */
         .app-container {
             max-width: 1000px;
             width: 100%;
@@ -138,7 +135,6 @@
             overflow: hidden;
             box-shadow: 0 20px 40px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.02);
         }
-        /* Header */
         .app-header {
             padding: 20px 24px 12px 24px;
             display: flex;
@@ -181,7 +177,6 @@
             justify-content: center;
         }
 
-        /* Ay seçici – iOS tarzı */
         .month-panel {
             background: #f9f9fb;
             margin: 16px 24px;
@@ -219,7 +214,6 @@
             cursor: pointer;
         }
 
-        /* KPI Kartları – iOS tarzı */
         .kpi-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -242,7 +236,6 @@
         .expense-value { color: #ff3b30; }
         .balance-value { color: #007aff; }
 
-        /* Grafik */
         .chart-section {
             background: #ffffff;
             margin: 0 24px 24px 24px;
@@ -254,7 +247,6 @@
         .section-title { font-size: 0.9rem; font-weight: 600; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; color: #1c1c1e; }
         canvas { max-height: 200px; width: 100% !important; }
 
-        /* Butonlar */
         .action-buttons {
             display: flex;
             gap: 12px;
@@ -277,7 +269,6 @@
         .btn-income { background: #e5f5e8; color: #2c6e3c; border: none; }
         .btn-expense { background: #ffe8e8; color: #c41e1e; border: none; }
 
-        /* İşlem Listesi – iOS stil */
         .transactions-header {
             display: flex;
             justify-content: space-between;
@@ -324,7 +315,6 @@
         }
         .delete-trans:hover { color: #ff3b30; background: rgba(255,59,48,0.1); }
 
-        /* Modal – iOS sheet */
         .modal {
             position: fixed;
             top: 0;
@@ -372,7 +362,6 @@
             margin-top: 12px;
         }
 
-        /* Toast */
         .toast {
             position: fixed;
             bottom: 20px;
@@ -390,7 +379,6 @@
             to { transform: translateX(0); opacity: 1; }
         }
 
-        /* MOBİL DÜZELTMELER */
         @media (max-width: 680px) {
             body { padding: 12px; }
             .app-header { 
@@ -412,7 +400,7 @@
             .month-nav { gap: 12px; }
             .month-nav-btn { width: 32px; height: 32px; font-size: 0.9rem; }
             .current-month { font-size: 1rem; }
-            .month-select-dropdown { display: none; } /* mobilde dropdown gizli */
+            .month-select-dropdown { display: none; }
             .kpi-grid { gap: 10px; margin: 0 16px 20px 16px; }
             .kpi-value { font-size: 1.4rem; }
             .action-buttons { margin: 0 16px 20px 16px; }
@@ -428,6 +416,11 @@
     <div class="login-card">
         <div class="login-logo">UZMAN<span>KASA</span></div>
         <input type="password" id="pinInput" class="login-input" placeholder="Şifre" autocomplete="off">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; margin-top: 8px;">
+            <label style="font-size: 0.85rem; color: #6c6c70; display: flex; align-items: center; gap: 6px; cursor: pointer;">
+                <input type="checkbox" id="rememberMeCheckbox"> Beni hatırla
+            </label>
+        </div>
         <button class="login-btn" onclick="checkPin()">Giriş Yap</button>
     </div>
 </div>
@@ -474,7 +467,6 @@
     <div id="transactionList" class="transaction-list">Yükleniyor...</div>
 </div>
 
-<!-- Gelir Modal -->
 <div id="incomeModal" class="modal">
     <div class="modal-card">
         <div class="modal-header"><span>Gelir Ekle</span><span class="modal-close" onclick="closeModal('incomeModal')">&times;</span></div>
@@ -485,7 +477,6 @@
     </div>
 </div>
 
-<!-- Gider Modal -->
 <div id="expenseModal" class="modal">
     <div class="modal-card">
         <div class="modal-header"><span>Gider Ekle</span><span class="modal-close" onclick="closeModal('expenseModal')">&times;</span></div>
@@ -496,7 +487,6 @@
     </div>
 </div>
 
-<!-- Silme Onay Modal -->
 <div id="confirmModal" class="modal">
     <div class="modal-card" style="max-width:360px">
         <div class="modal-header"><span>İşlemi Sil</span><span class="modal-close" onclick="closeModal('confirmModal')">&times;</span></div>
@@ -526,7 +516,6 @@
     let chartInstance = null;
     let deleteId = null;
 
-    // --- KARANLIK TEMA (sistem + manuel) ---
     function setThemeBasedOnSystem() {
         const darkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
         if (darkMode) {
@@ -724,7 +713,6 @@
     window.openModal = (id) => document.getElementById(id).style.display = 'flex';
     window.closeModal = (id) => document.getElementById(id).style.display = 'none';
 
-    // ---- PDF RAPOR (html2pdf.js - modern, kurumsal, Türkçe sorunsuz) ----
     window.exportToPDF = () => {
         const data = getFilteredTransactions();
         if (data.length === 0) { showToast('Raporlanacak işlem yok', true); return; }
@@ -735,7 +723,6 @@
             else totalExp += t.tutar;
         });
 
-        // PDF için HTML içeriği oluştur (web tasarımına sadık, modern)
         const pdfContent = document.createElement('div');
         pdfContent.style.fontFamily = "'Inter', -apple-system, sans-serif";
         pdfContent.style.padding = '20px';
@@ -743,14 +730,12 @@
         pdfContent.style.backgroundColor = '#ffffff';
         pdfContent.style.color = '#000000';
 
-        // Başlık
         pdfContent.innerHTML = `
             <div style="text-align:center; margin-bottom:24px;">
                 <h1 style="font-size:28px; font-weight:700; letter-spacing:-0.5px; margin:0;">UZMAN REKLAM KASA RAPORU</h1>
                 <p style="font-size:14px; color:#6c6c70; margin-top:6px;">${getMonthName(currentYear, currentMonth)}</p>
             </div>
             
-            <!-- KPI Kartları (web'deki gibi) -->
             <div style="display:flex; gap:16px; margin-bottom:28px; flex-wrap:wrap;">
                 <div style="flex:1; background:#ffffff; border-radius:24px; padding:16px; box-shadow:0 4px 12px rgba(0,0,0,0.08); border:0.5px solid #e9e9ef;">
                     <div style="font-size:12px; font-weight:600; color:#8e8e93; letter-spacing:0.5px;">Toplam Gelir</div>
@@ -822,24 +807,56 @@
 
     function escapeHtml(str) { if(!str) return ''; return str.replace(/[&<>]/g, function(m){ if(m==='&') return '&amp;'; if(m==='<') return '&lt;'; if(m==='>') return '&gt;'; return m;}); }
 
-    window.checkPin = () => {
-        const pin = document.getElementById('pinInput').value;
-        if(pin === "talha5534") {
+    // ----- BENİ HATIRLA (Remember Me) -----
+    function checkRememberedLogin() {
+        const savedPin = localStorage.getItem('rememberedPin');
+        if (savedPin === "talha5534") {
+            // doğrudan giriş yap
             document.getElementById('loginContainer').style.display = 'none';
             document.getElementById('appContainer').style.display = 'block';
             loadData();
-        } else { showToast('Hatalı şifre!', true); }
+        } else {
+            // hatırlama yok veya şifre değişmiş, login ekranını göster
+            document.getElementById('loginContainer').style.display = 'flex';
+            document.getElementById('appContainer').style.display = 'none';
+            // çıkış yapılmış gibi, eğer yanlış kayıt varsa temizle
+            if (savedPin) localStorage.removeItem('rememberedPin');
+        }
+    }
+
+    window.checkPin = () => {
+        const pin = document.getElementById('pinInput').value;
+        const rememberMe = document.getElementById('rememberMeCheckbox').checked;
+        if(pin === "talha5534") {
+            if(rememberMe) {
+                localStorage.setItem('rememberedPin', pin);
+            } else {
+                localStorage.removeItem('rememberedPin');
+            }
+            document.getElementById('loginContainer').style.display = 'none';
+            document.getElementById('appContainer').style.display = 'block';
+            loadData();
+        } else { 
+            showToast('Hatalı şifre!', true); 
+        }
     };
+    
     window.logout = () => {
+        localStorage.removeItem('rememberedPin');
         document.getElementById('loginContainer').style.display = 'flex';
         document.getElementById('appContainer').style.display = 'none';
         allTransactions = [];
+        document.getElementById('pinInput').value = '';
+        document.getElementById('rememberMeCheckbox').checked = false;
     };
+    
     document.getElementById('prevMonthBtn').onclick = () => changeMonth(-1);
     document.getElementById('nextMonthBtn').onclick = () => changeMonth(1);
-    window.onload = () => { document.getElementById('pinInput').addEventListener('keypress', (e) => { if(e.key === 'Enter') checkPin(); }); };
     
-    document.getElementById('loginContainer').style.display = 'flex';
+    window.onload = () => {
+        document.getElementById('pinInput').addEventListener('keypress', (e) => { if(e.key === 'Enter') checkPin(); });
+        checkRememberedLogin();
+    };
 </script>
 
 <style>
@@ -876,7 +893,7 @@
         color: #000;
         font-size: 1rem;
         text-align: center;
-        margin-bottom: 20px;
+        margin-bottom: 8px;
         outline: none;
     }
     .login-btn {
