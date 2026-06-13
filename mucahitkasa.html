@@ -467,6 +467,13 @@
             padding: 20px;
             color: #8e8e93;
         }
+        .fa-spinner {
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body class="light">
@@ -508,7 +515,7 @@
 
     <div class="chart-row">
         <div class="chart-card"><div class="section-title"><i class="fas fa-chart-line"></i> Aylık Gelir/Gider</div><canvas id="monthlyChart"></canvas></div>
-        <div class="chart-card"><div class="section-title"><i class="fas fa-chart-pie"></i> Gider Dağılımı</div><canvas id="categoryChart"></canvas></div>
+        <div class="chart-card"><div class="section-title"><i class="fas fa-chart-pie"></i> Gider Dağılımı (Bu Ay)</div><canvas id="categoryChart"></canvas></div>
     </div>
 
     <div class="action-buttons">
@@ -527,7 +534,7 @@
     <div class="search-box"><input type="text" id="searchInput" placeholder="İşlem ara (başlık/kategori)"></div>
     
     <div class="transactions-header">
-        <div class="section-title"><i class="fas fa-history"></i> İşlem Geçmişi</div>
+        <div class="section-title"><i class="fas fa-history"></i> İşlem Geçmişi <span id="transactionCount" style="font-size:0.7rem; margin-left:8px;"></span></div>
         <div class="filter-buttons" id="filterButtons">
             <button class="filter-btn active" data-filter="all">Tümü</button>
             <button class="filter-btn" data-filter="gelir">💰 Gelir</button>
@@ -538,7 +545,7 @@
     <div id="loadMoreContainer" style="margin-top: 8px;"></div>
 </div>
 
-<!-- Modals (aynı) -->
+<!-- Modals aynı -->
 <div id="incomeModal" class="modal"><div class="modal-card"><div class="modal-header"><span>Gelir Ekle</span><span class="modal-close" onclick="closeModal('incomeModal')">&times;</span></div>
     <div class="form-group"><label>Başlık</label><input type="text" id="incomeTitle" class="form-control" placeholder="Tag işi, maaş"></div>
     <div class="form-group"><label>Kategori</label><select id="incomeCat" class="form-control"><option>Tag İşleri</option><option>Maaş</option><option>Serbest İş</option><option>Hediye</option><option>Yatırım</option><option>Diğer</option></select></div>
@@ -584,11 +591,14 @@
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
 
+    // Güvenlik uyarısı
+    console.warn("⚠️ Güvenlik: Firestore kurallarını kısıtlamazsan herkes verilerini okuyabilir! Authentication ve kuralları güncelle.");
+
     let allGelirler = [], allGiderler = [], allBorclar = [], allAlacaklar = [];
     let currentYear = new Date().getFullYear(), currentMonth = new Date().getMonth();
     let chart1 = null, chart2 = null;
     let isProcessing = false;
-    let currentFilter = "all"; // all, gelir, gider
+    let currentFilter = "all";
     let currentDisplayCount = 10;
     let allTransactionsArray = [];
     let filteredTransactionsArray = [];
@@ -626,30 +636,48 @@
     generateAppleTouchIcon();
 
     function showToast(msg, err = false) {
-        let t = document.createElement('div'); t.className = 'toast'; t.innerText = msg; t.style.background = err ? '#ff3b30' : '#1c1c1e'; document.body.appendChild(t); setTimeout(() => t.remove(), 2000);
+        let t = document.createElement('div'); t.className = 'toast'; t.innerText = msg; t.style.background = err ? '#ff3b30' : '#1c1c1e'; document.body.appendChild(t); setTimeout(() => t.remove(), 2500);
     }
     function formatMoney(amt) { return '₺' + amt.toLocaleString('tr-TR'); }
 
     async function loadAll() {
-        const g1 = await getDocs(query(collection(db, "mucahit_gelirler"), orderBy("tarih", "desc")));
-        allGelirler = g1.docs.map(d => ({ id: d.id, ...d.data() }));
-        const g2 = await getDocs(query(collection(db, "mucahit_giderler"), orderBy("tarih", "desc")));
-        allGiderler = g2.docs.map(d => ({ id: d.id, ...d.data() }));
-        const b1 = await getDocs(collection(db, "mucahit_borclar"));
-        allBorclar = b1.docs.map(d => ({ id: d.id, ...d.data(), tip: 'borc' }));
-        const b2 = await getDocs(collection(db, "mucahit_alacaklar"));
-        allAlacaklar = b2.docs.map(d => ({ id: d.id, ...d.data(), tip: 'alacak' }));
-        
-        allTransactionsArray = [...allGelirler.map(g => ({ ...g, tip: 'gelir', tutar: g.tutar, baslik: g.baslik, kategori: g.kategori, tarih: g.tarih, docId: g.id })),
-                               ...allGiderler.map(g => ({ ...g, tip: 'gider', tutar: g.tutar, baslik: g.baslik, kategori: g.kategori, tarih: g.tarih, docId: g.id }))];
-        allTransactionsArray.sort((a,b) => new Date(b.tarih) - new Date(a.tarih));
-        renderDashboard();
+        showLoading(true);
+        try {
+            const g1 = await getDocs(query(collection(db, "mucahit_gelirler"), orderBy("tarih", "desc")));
+            allGelirler = g1.docs.map(d => ({ id: d.id, ...d.data() }));
+            const g2 = await getDocs(query(collection(db, "mucahit_giderler"), orderBy("tarih", "desc")));
+            allGiderler = g2.docs.map(d => ({ id: d.id, ...d.data() }));
+            const b1 = await getDocs(collection(db, "mucahit_borclar"));
+            allBorclar = b1.docs.map(d => ({ id: d.id, ...d.data(), tip: 'borc' }));
+            const b2 = await getDocs(collection(db, "mucahit_alacaklar"));
+            allAlacaklar = b2.docs.map(d => ({ id: d.id, ...d.data(), tip: 'alacak' }));
+            
+            allTransactionsArray = [...allGelirler.map(g => ({ ...g, tip: 'gelir', tutar: g.tutar, baslik: g.baslik, kategori: g.kategori, tarih: g.tarih, docId: g.id })),
+                                   ...allGiderler.map(g => ({ ...g, tip: 'gider', tutar: g.tutar, baslik: g.baslik, kategori: g.kategori, tarih: g.tarih, docId: g.id }))];
+            allTransactionsArray.sort((a,b) => new Date(b.tarih) - new Date(a.tarih));
+            renderDashboard();
+        } catch(error) {
+            showToast("Veri yüklenemedi: " + error.message, true);
+        } finally {
+            showLoading(false);
+        }
     }
 
-    function getCurrentFilter() { return { year: currentYear, month: currentMonth }; }
+    function showLoading(show) {
+        const loader = document.getElementById('globalLoader');
+        if(!loader && show) {
+            let div = document.createElement('div');
+            div.id = 'globalLoader';
+            div.className = 'spinner';
+            div.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Yükleniyor...';
+            document.getElementById('appContainer').prepend(div);
+        } else if(!show && loader) loader.remove();
+    }
+
+    function getCurrentFilterObj() { return { year: currentYear, month: currentMonth }; }
 
     function renderDashboard() {
-        const { year, month } = getCurrentFilter();
+        const { year, month } = getCurrentFilterObj();
         let aylikGelir = 0, aylikGider = 0;
         allGelirler.forEach(g => { let d = new Date(g.tarih); if(d.getFullYear()===year && d.getMonth()===month) aylikGelir += g.tutar; });
         allGiderler.forEach(g => { let d = new Date(g.tarih); if(d.getFullYear()===year && d.getMonth()===month) aylikGider += g.tutar; });
@@ -691,17 +719,22 @@
                 const id = btn.dataset.id;
                 const tip = btn.dataset.tip;
                 const miktar = parseFloat(btn.dataset.miktar);
-                if(tip === 'borc') {
-                    await addDoc(collection(db, "mucahit_giderler"), { baslik: "Borç Ödemesi", kategori: "Borç Ödemesi", tutar: miktar, tarih: new Date().toISOString() });
-                    await deleteDoc(doc(db, "mucahit_borclar", id));
-                    showToast("Borç ödendi, gidere eklendi");
-                } else {
-                    await addDoc(collection(db, "mucahit_gelirler"), { baslik: "Alacak Tahsilatı", kategori: "Diğer", tutar: miktar, tarih: new Date().toISOString() });
-                    await deleteDoc(doc(db, "mucahit_alacaklar", id));
-                    showToast("Alacak tahsil edildi, gelire eklendi");
+                try {
+                    if(tip === 'borc') {
+                        await addDoc(collection(db, "mucahit_giderler"), { baslik: "Borç Ödemesi", kategori: "Borç Ödemesi", tutar: miktar, tarih: new Date().toISOString() });
+                        await deleteDoc(doc(db, "mucahit_borclar", id));
+                        showToast("Borç ödendi, gidere eklendi");
+                    } else {
+                        await addDoc(collection(db, "mucahit_gelirler"), { baslik: "Alacak Tahsilatı", kategori: "Diğer", tutar: miktar, tarih: new Date().toISOString() });
+                        await deleteDoc(doc(db, "mucahit_alacaklar", id));
+                        showToast("Alacak tahsil edildi, gelire eklendi");
+                    }
+                    await loadAll();
+                } catch(err) {
+                    showToast("İşlem başarısız: " + err.message, true);
+                } finally {
+                    isProcessing = false;
                 }
-                await loadAll();
-                isProcessing = false;
             });
         });
     }
@@ -742,14 +775,24 @@
                 </div>
                 <div class="swipe-delete"><i class="fas fa-trash-alt"></i> Sil</div>
             `;
+            // Touch ve mouse swipe
             let startX = 0;
-            itemDiv.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; });
-            itemDiv.addEventListener('touchmove', (e) => {
-                let diff = startX - e.touches[0].clientX;
+            let isSwiping = false;
+            const handleStart = (clientX) => { startX = clientX; isSwiping = true; };
+            const handleMove = (clientX) => {
+                if(!isSwiping) return;
+                let diff = startX - clientX;
                 if(diff > 30 && diff < 100) itemDiv.classList.add('swiped');
                 else if(diff < -30) itemDiv.classList.remove('swiped');
-            });
-            // Silme işlemi: hemen listeden kaldır, sonra Firebase'den sil
+            };
+            const handleEnd = () => { isSwiping = false; };
+            itemDiv.addEventListener('touchstart', (e) => handleStart(e.touches[0].clientX));
+            itemDiv.addEventListener('touchmove', (e) => handleMove(e.touches[0].clientX));
+            itemDiv.addEventListener('touchend', handleEnd);
+            itemDiv.addEventListener('mousedown', (e) => handleStart(e.clientX));
+            itemDiv.addEventListener('mousemove', (e) => handleMove(e.clientX));
+            itemDiv.addEventListener('mouseup', handleEnd);
+            
             const deleteBtn = itemDiv.querySelector('.swipe-delete');
             deleteBtn.addEventListener('click', async (e) => {
                 e.stopPropagation();
@@ -757,22 +800,18 @@
                 isProcessing = true;
                 const id = itemDiv.dataset.id;
                 const tip = itemDiv.dataset.tip;
-                // Önce lokal diziden kaldır
+                // UI'dan hemen kaldır
                 const index = filteredTransactionsArray.findIndex(x => x.docId === id);
                 if(index !== -1) filteredTransactionsArray.splice(index, 1);
-                // Aynı anda allTransactionsArray'den de kaldır (tutarlılık için)
                 const mainIndex = allTransactionsArray.findIndex(x => x.docId === id);
                 if(mainIndex !== -1) allTransactionsArray.splice(mainIndex, 1);
-                // UI'ı güncelle
                 renderTransactionListWithPagination();
-                // Arkada Firebase'den sil
                 try {
                     if(tip === 'gelir') await deleteDoc(doc(db, "mucahit_gelirler", id));
                     else await deleteDoc(doc(db, "mucahit_giderler", id));
                     showToast("İşlem silindi");
                 } catch(err) {
                     showToast("Silme hatası, yeniden dene", true);
-                    // Hata olursa geri ekle (basitçe yeniden yükle)
                     await loadAll();
                 }
                 isProcessing = false;
@@ -780,7 +819,7 @@
             container.appendChild(itemDiv);
         });
         
-        document.getElementById('transactionCount').innerHTML = filteredTransactionsArray.length + ' işlem';
+        document.getElementById('transactionCount').innerHTML = `${filteredTransactionsArray.length} işlem`;
         loadMoreContainer.innerHTML = '';
         if(currentDisplayCount < filteredTransactionsArray.length) {
             let btn = document.createElement('button');
@@ -795,6 +834,7 @@
     }
 
     function updateCharts() {
+        // Aylık grafik (son 6 ay, seçili aya göre)
         let son6 = [];
         for(let i=5; i>=0; i--) {
             let d = new Date(currentYear, currentMonth - i, 1);
@@ -817,8 +857,16 @@
             data: { labels, datasets: [{ label: 'Gelir', data: gelirData, backgroundColor: '#34c759' }, { label: 'Gider', data: giderData, backgroundColor: '#ff3b30' }] },
             options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { labels: { color: fontColor } } } }
         });
+        
+        // Kategori grafiği sadece seçili ayın giderleri
+        const { year, month } = getCurrentFilterObj();
         let catMap = new Map();
-        allGiderler.forEach(g => catMap.set(g.kategori, (catMap.get(g.kategori)||0) + g.tutar));
+        allGiderler.forEach(g => {
+            let d = new Date(g.tarih);
+            if(d.getFullYear()===year && d.getMonth()===month) {
+                catMap.set(g.kategori, (catMap.get(g.kategori)||0) + g.tutar);
+            }
+        });
         const ctx2 = document.getElementById('categoryChart').getContext('2d');
         if(chart2) chart2.destroy();
         chart2 = new Chart(ctx2, {
@@ -829,12 +877,14 @@
     }
 
     window.exportToPDF = async () => {
-        const { year, month } = getCurrentFilter();
+        const { year, month } = getCurrentFilterObj();
         let aylikGelir=0, aylikGider=0;
-        allGelirler.forEach(g => { let d=new Date(g.tarih); if(d.getFullYear()===year && d.getMonth()===month) aylikGelir+=g.tutar; });
-        allGiderler.forEach(g => { let d=new Date(g.tarih); if(d.getFullYear()===year && d.getMonth()===month) aylikGider+=g.tutar; });
-        let allTrans = [...allGelirler.map(g=>({...g, tip:'Gelir'})), ...allGiderler.map(g=>({...g, tip:'Gider'}))];
-        allTrans.sort((a,b)=>new Date(b.tarih)-new Date(a.tarih));
+        // Sadece seçili ayın işlemleri
+        let aylikIslemler = [];
+        allGelirler.forEach(g => { let d=new Date(g.tarih); if(d.getFullYear()===year && d.getMonth()===month) { aylikGelir += g.tutar; aylikIslemler.push({...g, tip:'Gelir'}); } });
+        allGiderler.forEach(g => { let d=new Date(g.tarih); if(d.getFullYear()===year && d.getMonth()===month) { aylikGider += g.tutar; aylikIslemler.push({...g, tip:'Gider'}); } });
+        aylikIslemler.sort((a,b)=>new Date(b.tarih)-new Date(a.tarih));
+        
         const pdfDiv = document.createElement('div');
         pdfDiv.style.padding = '16px';
         pdfDiv.style.fontFamily = 'Inter, sans-serif';
@@ -850,7 +900,7 @@
             </div>
             <table style="width:100%; border-collapse:collapse; font-size:11px;">
                 <thead><tr style="background:#f2f2f2;"><th style="padding:8px;">Tarih</th><th>Tip</th><th>Başlık</th><th>Kategori</th><th>Tutar</th></tr></thead>
-                <tbody>${allTrans.map(t => {
+                <tbody>${aylikIslemler.map(t => {
                     const rowBg = t.tip === 'Gelir' ? '#f0fff0' : '#fff0f0';
                     return `<tr style="background:${rowBg};">
                         <td style="padding:6px;">${formatDateWithDay(t.tarih)}</td>
@@ -885,11 +935,16 @@
     async function addGeneric(collectionName, data, modalId, successMsg) {
         if(isProcessing) return;
         isProcessing = true;
-        await addDoc(collection(db, collectionName), { ...data, tarih: new Date().toISOString() });
-        closeModal(modalId);
-        await loadAll();
-        showToast(successMsg);
-        isProcessing = false;
+        try {
+            await addDoc(collection(db, collectionName), { ...data, tarih: new Date().toISOString() });
+            closeModal(modalId);
+            await loadAll();
+            showToast(successMsg);
+        } catch(err) {
+            showToast("Hata: " + err.message, true);
+        } finally {
+            isProcessing = false;
+        }
     }
     document.getElementById('saveIncomeBtn').onclick = () => {
         let baslik = document.getElementById('incomeTitle').value.trim();
@@ -908,26 +963,14 @@
         let miktar = parseFloat(document.getElementById('borcMiktar').value);
         let tarih = document.getElementById('borcTarih').value;
         if(!kisi || miktar<=0 || !tarih) return showToast("Eksik bilgi", true);
-        if(isProcessing) return;
-        isProcessing = true;
-        await addDoc(collection(db, "mucahit_borclar"), { kisi, miktar, tarih, aciklama: document.getElementById('borcAciklama').value, eklenme: new Date().toISOString() });
-        closeModal('borcModal');
-        await loadAll();
-        showToast("Borç eklendi");
-        isProcessing = false;
+        addGeneric("mucahit_borclar", { kisi, miktar, tarih, aciklama: document.getElementById('borcAciklama').value }, "borcModal", "Borç eklendi");
     };
     document.getElementById('saveAlacakBtn').onclick = async () => {
         let kisi = document.getElementById('alacakKisi').value.trim();
         let miktar = parseFloat(document.getElementById('alacakMiktar').value);
         let tarih = document.getElementById('alacakTarih').value;
         if(!kisi || miktar<=0 || !tarih) return showToast("Eksik bilgi", true);
-        if(isProcessing) return;
-        isProcessing = true;
-        await addDoc(collection(db, "mucahit_alacaklar"), { kisi, miktar, tarih, aciklama: document.getElementById('alacakAciklama').value, eklenme: new Date().toISOString() });
-        closeModal('alacakModal');
-        await loadAll();
-        showToast("Alacak eklendi");
-        isProcessing = false;
+        addGeneric("mucahit_alacaklar", { kisi, miktar, tarih, aciklama: document.getElementById('alacakAciklama').value }, "alacakModal", "Alacak eklendi");
     };
     function getMonthName(y,m) { return ["Ocak","Şubat","Mart","Nisan","Mayıs","Haziran","Temmuz","Ağustos","Eylül","Ekim","Kasım","Aralık"][m]+" "+y; }
     function escapeHtml(s) { if(!s) return ''; return s.replace(/[&<>]/g, m => ({ '&':'&amp;','<':'&lt;','>':'&gt;' }[m])); }
@@ -942,7 +985,6 @@
     document.getElementById('pdfBtn').onclick = () => exportToPDF();
     document.getElementById('logoutBtn').onclick = () => { document.getElementById('loginContainer').style.display = 'flex'; document.getElementById('appContainer').style.display = 'none'; allGelirler=[]; };
     
-    // Filtre butonları
     document.querySelectorAll('.filter-btn').forEach(btn => {
         btn.addEventListener('click', () => {
             document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
