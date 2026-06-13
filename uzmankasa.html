@@ -4,222 +4,339 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <meta name="robots" content="noindex, nofollow">
-    <title>Uzman Kasa | Özel Yönetim Paneli</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="UzmanKasa">
+    <title>UzmanKasa</title>
     <link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-    <!-- jsPDF ve autoTable (Türkçe font eklentisi ile) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.29/jspdf.plugin.autotable.min.js"></script>
-    <!-- Türkçe font için (arialunicode) -->
-    <script src="https://cdn.jsdelivr.net/npm/jspdf-font-arialunicodetable@1.0.0/arialunicode.js"></script>
+    <!-- Font eklentisi (GitHub'daki font.js dosyanızın yolu) -->
+    <script src="font.js"></script>
     <style>
+        /* TEMA DEĞİŞKENLERİ - SADECE ARKA PLAN, METİN, BORDER RENKLERİ */
         :root {
-            --bg-primary: #050505;
-            --bg-secondary: #0c0c10;
-            --border-color: #1e1e24;
-            --neon: #ccff00;
-            --income: #00e676;
-            --expense: #ff4444;
-            --text-primary: #fff;
-            --text-secondary: #aaa;
+            --bg-color: #f5f5f7;
+            --card-bg: #ffffff;
+            --text-primary: #1c1c1e;
+            --text-secondary: #8e8e93;
+            --border-color: #e9e9ef;
+            --header-bg: #ffffff;
+            --modal-bg: #ffffff;
+            --input-bg: #f9f9fb;
+            --shadow: 0 4px 12px rgba(0,0,0,0.04);
+            --shadow-strong: 0 20px 40px rgba(0,0,0,0.08);
+            --btn-income-bg: #e5f5e8;
+            --btn-income-color: #2c6e3c;
+            --btn-expense-bg: #ffe8e8;
+            --btn-expense-color: #c41e1e;
+            --delete-hover-bg: rgba(255,59,48,0.1);
         }
-        [data-theme="light"] {
-            --bg-primary: #f5f5f7;
-            --bg-secondary: #ffffff;
-            --border-color: #e0e0e0;
-            --text-primary: #1a1a1a;
-            --text-secondary: #666;
+        body.dark {
+            --bg-color: #000000;
+            --card-bg: #1c1c1e;
+            --text-primary: #ffffff;
+            --text-secondary: #8e8e93;
+            --border-color: #2c2c2e;
+            --header-bg: #1c1c1e;
+            --modal-bg: #1c1c1e;
+            --input-bg: #2c2c2e;
+            --shadow: 0 4px 12px rgba(0,0,0,0.3);
+            --shadow-strong: 0 20px 40px rgba(0,0,0,0.5);
+            --btn-income-bg: #1e3a2a;
+            --btn-income-color: #34c759;
+            --btn-expense-bg: #3a1e1e;
+            --btn-expense-color: #ff5e5e;
+            --delete-hover-bg: rgba(255,59,48,0.2);
         }
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         body {
-            background: var(--bg-primary);
-            font-family: 'Inter', Arial, sans-serif;
+            background: var(--bg-color);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
             color: var(--text-primary);
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 12px;
-            transition: background 0.3s, color 0.3s;
+            padding: 16px;
+            transition: background 0.2s, color 0.2s;
         }
-        /* Tema butonu */
-        .theme-toggle {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-            border-radius: 40px;
+        .app-container {
+            max-width: 1000px;
+            width: 100%;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border-radius: 44px;
+            overflow: hidden;
+            box-shadow: var(--shadow-strong), 0 1px 3px rgba(0,0,0,0.02);
+        }
+        .app-header {
+            padding: 20px 24px 12px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            border-bottom: 0.5px solid var(--border-color);
+            background: var(--header-bg);
+        }
+        .logo-area h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #000, #333);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        body.dark .logo-area h1 {
+            background: linear-gradient(135deg, #fff, #aaa);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .logo-area span { color: #ccff00; background: none; -webkit-background-clip: unset; background-clip: unset; }
+        .header-actions { display: flex; gap: 12px; }
+        .icon-btn {
+            background: var(--card-bg);
+            border: 0.5px solid var(--border-color);
+            color: #007aff;
             padding: 8px 16px;
+            border-radius: 100px;
+            font-weight: 600;
+            font-size: 0.85rem;
             cursor: pointer;
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: var(--text-primary);
+            gap: 6px;
+            transition: 0.2s;
         }
-        /* Scrollbar */
-        ::-webkit-scrollbar { width: 4px; height: 4px; }
-        ::-webkit-scrollbar-track { background: #1a1a1a; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb { background: var(--neon); border-radius: 10px; }
-
-        /* Giriş Ekranı */
-        .login-container {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--bg-primary); display: flex; justify-content: center; align-items: center;
-            z-index: 1000;
-        }
-        .login-card {
-            background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 40px;
-            padding: 40px 30px; width: 90%; max-width: 340px; text-align: center;
-        }
-        .login-logo { font-size: 2.5rem; font-weight: 900; letter-spacing: -2px; margin-bottom: 30px; color: var(--text-primary); }
-        .login-logo span { color: var(--neon); }
-        .login-input {
-            width: 100%; padding: 14px 18px; background: var(--bg-primary); border: 1px solid var(--border-color);
-            border-radius: 40px; color: var(--text-primary); font-size: 1rem; text-align: center;
-            letter-spacing: 2px; margin-bottom: 20px; outline: none;
-        }
-        .login-input:focus { border-color: var(--neon); }
-        .login-btn {
-            width: 100%; padding: 12px; background: var(--neon); color: #000;
-            font-weight: 800; border: none; border-radius: 40px; font-size: 1rem; cursor: pointer;
-        }
-
-        /* Ana Uygulama */
-        .app-container { display: none; max-width: 1300px; width: 100%; margin: 0 auto; }
-        .app-header {
-            display: flex; justify-content: space-between; align-items: center;
-            flex-wrap: wrap; margin-bottom: 25px; padding-bottom: 15px;
-            border-bottom: 1px solid var(--border-color);
-        }
-        .logo-area h1 { font-size: 1.6rem; font-weight: 800; letter-spacing: -1px; color: var(--text-primary); }
-        .logo-area span { color: var(--neon); }
-        .header-actions { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
-        .icon-btn {
-            background: var(--bg-secondary); border: 1px solid var(--border-color); color: var(--text-secondary);
-            padding: 8px 14px; border-radius: 40px; font-weight: 600; font-size: 0.8rem;
-            cursor: pointer; display: inline-flex; align-items: center; gap: 6px;
-        }
-        .icon-btn:hover { border-color: var(--neon); color: var(--neon); }
-        .logout-btn:hover { border-color: #ff4444; color: #ff4444; }
+        .logout-btn { color: #ff3b30; }
+        .theme-btn { color: var(--text-primary); }
 
         .month-panel {
-            background: var(--bg-secondary); border-radius: 50px; padding: 6px 15px;
-            display: flex; justify-content: space-between; align-items: center;
-            margin-bottom: 25px; border: 1px solid var(--border-color); flex-wrap: wrap; gap: 10px;
+            background: var(--input-bg);
+            margin: 16px 24px;
+            padding: 8px 12px;
+            border-radius: 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
         }
-        .month-nav { display: flex; gap: 15px; align-items: center; }
         .month-nav-btn {
-            background: transparent; border: none; width: 36px; height: 36px;
-            border-radius: 36px; color: var(--text-primary); font-size: 1rem; cursor: pointer;
-        }
-        .month-nav-btn:hover { background: rgba(204,255,0,0.15); color: var(--neon); }
-        .current-month {
-            font-size: 1.3rem; font-weight: 800;
-            background: linear-gradient(135deg, var(--text-primary), var(--text-secondary));
-            -webkit-background-clip: text; background-clip: text; color: transparent;
-        }
-        .month-select-dropdown {
-            background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: 30px;
-            padding: 6px 16px; color: var(--text-primary); font-weight: 600; cursor: pointer;
-        }
-
-        .kpi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 30px; }
-        .kpi-card { background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 24px; padding: 18px; }
-        .kpi-title { font-size: 0.75rem; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 8px; }
-        .kpi-value { font-size: 1.8rem; font-weight: 800; letter-spacing: -1px; }
-        .income-value { color: var(--income); }
-        .expense-value { color: var(--expense); }
-        .balance-value { color: var(--neon); }
-
-        .chart-section {
-            background: var(--bg-secondary); border-radius: 24px; padding: 16px; margin-bottom: 25px;
-            border: 1px solid var(--border-color);
-        }
-        .section-title { font-size: 0.95rem; font-weight: 600; margin-bottom: 15px; display: flex; gap: 8px; align-items: center; color: var(--text-primary); }
-        canvas { max-height: 200px; width: 100% !important; }
-
-        .action-buttons { display: flex; gap: 12px; margin-bottom: 30px; flex-wrap: wrap; }
-        .btn-income, .btn-expense, .btn-pdf {
-            flex: 1; padding: 12px; border-radius: 50px; font-weight: 800;
-            display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 0.9rem;
+            background: transparent;
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 36px;
+            color: #007aff;
+            font-size: 1.1rem;
             cursor: pointer;
         }
-        .btn-income { background: rgba(0,230,118,0.15); color: var(--income); border: 1px solid var(--income); }
-        .btn-expense { background: rgba(255,68,68,0.15); color: var(--expense); border: 1px solid var(--expense); }
-        .btn-pdf { background: rgba(204,255,0,0.15); color: var(--neon); border: 1px solid var(--neon); }
-
-        .transactions-header { display: flex; justify-content: space-between; margin-bottom: 15px; flex-wrap: wrap; }
-        .transaction-list { display: flex; flex-direction: column; gap: 8px; max-height: 450px; overflow-y: auto; }
+        .current-month { font-size: 1.3rem; font-weight: 600; color: var(--text-primary); }
+        .month-select-dropdown {
+            background: var(--card-bg);
+            border: 0.5px solid var(--border-color);
+            border-radius: 30px;
+            padding: 8px 16px;
+            font-weight: 500;
+            color: var(--text-primary);
+            cursor: pointer;
+        }
+        .kpi-card {
+            background: var(--card-bg);
+            border-radius: 24px;
+            padding: 16px;
+            box-shadow: var(--shadow);
+            border: 0.5px solid var(--border-color);
+        }
+        .kpi-title { font-size: 0.7rem; text-transform: uppercase; font-weight: 600; color: var(--text-secondary); letter-spacing: 0.5px; margin-bottom: 8px; }
+        .kpi-value { font-size: 1.8rem; font-weight: 700; letter-spacing: -0.5px; color: var(--text-primary); }
+        .income-value { color: #34c759; }
+        .expense-value { color: #ff3b30; }
+        .balance-value { color: #007aff; }
+        .chart-section {
+            background: var(--card-bg);
+            margin: 0 24px 24px 24px;
+            padding: 16px;
+            border-radius: 28px;
+            box-shadow: var(--shadow);
+            border: 0.5px solid var(--border-color);
+        }
+        .section-title { font-size: 0.9rem; font-weight: 600; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; color: var(--text-primary); }
+        canvas { max-height: 200px; width: 100% !important; }
+        .action-buttons { display: flex; gap: 12px; margin: 0 24px 24px 24px; flex-wrap: wrap; }
+        .btn-income, .btn-expense { flex: 1; padding: 14px; border-radius: 60px; font-weight: 600; font-size: 1rem; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; transition: 0.2s; }
+        .btn-income { background: var(--btn-income-bg); color: var(--btn-income-color); border: none; }
+        .btn-expense { background: var(--btn-expense-bg); color: var(--btn-expense-color); border: none; }
+        .transactions-header { display: flex; justify-content: space-between; margin: 0 24px 12px 24px; }
+        .transaction-list { margin: 0 24px 24px 24px; display: flex; flex-direction: column; gap: 8px; max-height: 460px; overflow-y: auto; padding-right: 4px; }
         .transaction-item {
-            background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 20px;
-            padding: 12px 16px; display: flex; justify-content: space-between;
-            align-items: center; flex-wrap: wrap; gap: 10px;
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 14px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            box-shadow: var(--shadow);
+            border: 0.5px solid var(--border-color);
         }
-        .transaction-item.income-trans { background: rgba(0,230,118,0.05); border-left: 3px solid var(--income); }
-        .transaction-item.expense-trans { background: rgba(255,68,68,0.05); border-left: 3px solid var(--expense); }
+        .transaction-item.income-trans { border-left: 4px solid #34c759; }
+        .transaction-item.expense-trans { border-left: 4px solid #ff3b30; }
         .trans-detail { flex: 2; }
-        .trans-title { font-weight: 700; font-size: 0.9rem; margin-bottom: 4px; color: var(--text-primary); }
-        .trans-cat { font-size: 0.65rem; color: var(--text-secondary); background: var(--bg-primary); display: inline-block; padding: 2px 10px; border-radius: 20px; }
-        .trans-date { font-size: 0.65rem; color: var(--text-secondary); margin-top: 4px; }
-        .trans-amount { font-weight: 800; font-size: 1rem; min-width: 100px; text-align: right; }
-        .income-amount { color: var(--income); }
-        .expense-amount { color: var(--expense); }
+        .trans-title { font-weight: 600; font-size: 0.9rem; margin-bottom: 4px; color: var(--text-primary); }
+        .trans-cat { font-size: 0.7rem; color: var(--text-secondary); background: var(--input-bg); display: inline-block; padding: 2px 10px; border-radius: 30px; }
+        .trans-date { font-size: 0.7rem; color: var(--text-secondary); margin-top: 4px; }
+        .trans-amount { font-weight: 700; font-size: 1rem; min-width: 100px; text-align: right; }
+        .income-amount { color: #34c759; }
+        .expense-amount { color: #ff3b30; }
         .delete-trans {
-            background: transparent; border: none; color: var(--text-secondary);
-            font-size: 1rem; cursor: pointer; padding: 6px; border-radius: 30px;
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1rem;
+            cursor: pointer;
+            padding: 6px;
+            border-radius: 30px;
         }
-        .delete-trans:hover { color: var(--expense); background: rgba(255,68,68,0.1); }
-
+        .delete-trans:hover { color: #ff3b30; background: var(--delete-hover-bg); }
         .modal {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.9); backdrop-filter: blur(8px);
-            display: none; justify-content: center; align-items: center; z-index: 2000;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.4);
+            backdrop-filter: blur(12px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
         }
         .modal-card {
-            background: var(--bg-secondary); border-radius: 40px; width: 90%; max-width: 420px;
-            padding: 24px; border: 1px solid var(--border-color);
+            background: var(--modal-bg);
+            border-radius: 36px;
+            width: 90%;
+            max-width: 400px;
+            padding: 28px 24px;
+            box-shadow: var(--shadow-strong);
         }
-        .modal-header { display: flex; justify-content: space-between; margin-bottom: 20px; font-weight: 800; font-size: 1.2rem; color: var(--text-primary); }
-        .modal-close { cursor: pointer; font-size: 1.3rem; color: var(--text-secondary); }
-        .form-group { margin-bottom: 18px; }
-        .form-group label { display: block; margin-bottom: 6px; font-size: 0.8rem; color: var(--text-secondary); }
+        .modal-header { display: flex; justify-content: space-between; font-weight: 700; font-size: 1.2rem; margin-bottom: 24px; color: var(--text-primary); }
+        .modal-close { font-size: 1.5rem; cursor: pointer; color: var(--text-secondary); }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { font-size: 0.8rem; font-weight: 500; color: var(--text-secondary); margin-bottom: 6px; display: block; }
         .form-control {
-            width: 100%; padding: 12px 16px; background: var(--bg-primary); border: 1px solid var(--border-color);
-            border-radius: 30px; color: var(--text-primary); font-size: 0.9rem;
+            width: 100%;
+            padding: 14px 16px;
+            background: var(--input-bg);
+            border: 0.5px solid var(--border-color);
+            border-radius: 30px;
+            font-size: 1rem;
+            outline: none;
+            color: var(--text-primary);
         }
-        .form-control:focus { outline: none; border-color: var(--neon); }
         .modal-save {
-            width: 100%; padding: 12px; background: var(--neon); color: #000;
-            border: none; border-radius: 40px; font-weight: 800; cursor: pointer; margin-top: 10px;
+            width: 100%;
+            padding: 14px;
+            background: #007aff;
+            color: white;
+            border: none;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 12px;
         }
         .toast {
-            position: fixed; bottom: 20px; right: 20px; background: var(--bg-secondary);
-            border-left: 4px solid var(--neon); padding: 10px 20px; border-radius: 40px;
-            color: var(--text-primary); font-size: 0.85rem; z-index: 3000; animation: slideIn 0.3s ease;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--text-primary);
+            color: var(--card-bg);
+            padding: 10px 20px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            z-index: 3000;
+            animation: slideIn 0.3s ease;
         }
         @keyframes slideIn {
             from { transform: translateX(100%); opacity: 0; }
             to { transform: translateX(0); opacity: 1; }
         }
         @media (max-width: 680px) {
-            .kpi-grid { grid-template-columns: 1fr; gap: 10px; }
-            .month-panel { flex-direction: column; border-radius: 30px; align-items: stretch; }
-            .month-nav { justify-content: center; }
-            .current-month { font-size: 1.2rem; text-align: center; }
-            .action-buttons { flex-direction: column; }
-            .kpi-value { font-size: 1.5rem; }
+            body { padding: 12px; }
+            .app-header { padding: 16px; }
+            .month-panel { margin: 12px 16px; }
+            .kpi-grid { gap: 10px; margin: 0 16px 20px 16px; }
+            .kpi-value { font-size: 1.4rem; }
+            .action-buttons { margin: 0 16px 20px 16px; }
+            .transactions-header { margin: 0 16px 10px 16px; }
+            .transaction-list { margin: 0 16px 20px 16px; }
+            .chart-section { margin: 0 16px 20px 16px; }
+        }
+        .login-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--card-bg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .login-card {
+            background: var(--card-bg);
+            border-radius: 48px;
+            padding: 40px 30px;
+            width: 90%;
+            max-width: 340px;
+            text-align: center;
+            box-shadow: var(--shadow-strong);
+            border: 0.5px solid var(--border-color);
+        }
+        .login-logo { font-size: 2.5rem; font-weight: 700; letter-spacing: -1px; margin-bottom: 30px; color: var(--text-primary); }
+        .login-logo span { color: #ccff00; }
+        .login-input {
+            width: 100%;
+            padding: 14px 18px;
+            background: var(--input-bg);
+            border: 0.5px solid var(--border-color);
+            border-radius: 60px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            text-align: center;
+            margin-bottom: 20px;
+            outline: none;
+        }
+        .login-btn {
+            width: 100%;
+            padding: 14px;
+            background: #007aff;
+            color: white;
+            font-weight: 600;
+            border: none;
+            border-radius: 60px;
+            font-size: 1rem;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
 
-<div id="loginContainer" class="login-container">
+<div id="loginContainer" class="login-container" style="display:flex">
     <div class="login-card">
         <div class="login-logo">UZMAN<span>KASA</span></div>
         <input type="password" id="pinInput" class="login-input" placeholder="Şifre" autocomplete="off">
@@ -227,11 +344,11 @@
     </div>
 </div>
 
-<div id="appContainer" class="app-container">
+<div id="appContainer" class="app-container" style="display:none">
     <div class="app-header">
         <div class="logo-area"><h1>UZMAN<span>KASA</span></h1></div>
         <div class="header-actions">
-            <button class="icon-btn" id="themeToggleBtn"><i class="fas fa-moon"></i> <span>Tema</span></button>
+            <button class="icon-btn theme-btn" id="themeToggleBtn"><i class="fas fa-moon"></i> Tema</button>
             <button class="icon-btn" onclick="exportToPDF()"><i class="fas fa-file-pdf"></i> PDF Rapor</button>
             <button class="icon-btn logout-btn" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Çıkış</button>
         </div>
@@ -253,18 +370,17 @@
     </div>
 
     <div class="chart-section">
-        <div class="section-title"><i class="fas fa-chart-line" style="color:#ccff00"></i> Aylık Gelir / Gider Grafiği</div>
+        <div class="section-title"><i class="fas fa-chart-line" style="color:#007aff"></i> Aylık Gelir / Gider</div>
         <canvas id="monthlyChart" width="400" height="200"></canvas>
     </div>
 
     <div class="action-buttons">
         <button class="btn-income" onclick="openModal('incomeModal')"><i class="fas fa-plus-circle"></i> Gelir Ekle</button>
         <button class="btn-expense" onclick="openModal('expenseModal')"><i class="fas fa-minus-circle"></i> Gider Ekle</button>
-        <button class="btn-pdf" onclick="exportToPDF()"><i class="fas fa-file-pdf"></i> PDF Rapor</button>
     </div>
 
     <div class="transactions-header">
-        <div class="section-title" style="margin-bottom:0"><i class="fas fa-history"></i> İşlem Geçmişi</div>
+        <div class="section-title" style="margin:0">İşlem Geçmişi</div>
         <div id="transactionCount" style="color:var(--text-secondary)">0 işlem</div>
     </div>
     <div id="transactionList" class="transaction-list">Yükleniyor...</div>
@@ -294,10 +410,10 @@
 
 <!-- Silme Onay Modal -->
 <div id="confirmModal" class="modal">
-    <div class="modal-card" style="max-width: 380px;">
+    <div class="modal-card" style="max-width:360px">
         <div class="modal-header"><span>İşlemi Sil</span><span class="modal-close" onclick="closeModal('confirmModal')">&times;</span></div>
-        <p style="margin-bottom: 20px; color:var(--text-primary)">Bu işlem kalıcı olarak silinecek. Devam etmek istiyor musunuz?</p>
-        <button class="modal-save" id="confirmDeleteBtn" style="background:#ff4444; color:white;">Evet, Sil</button>
+        <p style="margin-bottom:24px; color:var(--text-primary)">Bu işlem kalıcı olarak silinecek. Devam etmek istiyor musunuz?</p>
+        <button class="modal-save" id="confirmDeleteBtn" style="background:#ff3b30">Evet, Sil</button>
     </div>
 </div>
 
@@ -322,36 +438,54 @@
     let chartInstance = null;
     let deleteId = null;
 
-    // Tema yönetimi
-    function initTheme() {
-        const saved = localStorage.getItem('uzman_kasa_theme');
-        const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        let theme = saved;
-        if (!theme) theme = systemDark ? 'dark' : 'light';
-        document.documentElement.setAttribute('data-theme', theme === 'dark' ? 'dark' : 'light');
-        updateThemeIcon();
-    }
-    function updateThemeIcon() {
-        const isDark = document.documentElement.getAttribute('data-theme') !== 'light';
-        const btn = document.getElementById('themeToggleBtn');
-        if (btn) {
-            btn.innerHTML = isDark ? '<i class="fas fa-sun"></i> <span>Tema</span>' : '<i class="fas fa-moon"></i> <span>Tema</span>';
+    // Tema yönetimi (sadece body sınıfını ve localStorage'ı değiştir)
+    function setTheme(theme) {
+        if (theme === 'dark') {
+            document.body.classList.add('dark');
+            localStorage.setItem('uzmanTheme', 'dark');
+            document.getElementById('themeToggleBtn').innerHTML = '<i class="fas fa-sun"></i> Tema';
+        } else {
+            document.body.classList.remove('dark');
+            localStorage.setItem('uzmanTheme', 'light');
+            document.getElementById('themeToggleBtn').innerHTML = '<i class="fas fa-moon"></i> Tema';
+        }
+        // Chart renklerini güncelle (sadece grid ve yazı renkleri)
+        if (chartInstance) {
+            const isDark = theme === 'dark';
+            chartInstance.options.plugins.legend.labels.color = isDark ? '#ffffff' : '#1c1c1e';
+            if (chartInstance.options.scales) {
+                if (chartInstance.options.scales.x) {
+                    chartInstance.options.scales.x.grid.color = isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)';
+                    chartInstance.options.scales.x.ticks.color = isDark ? '#ffffff' : '#1c1c1e';
+                }
+                if (chartInstance.options.scales.y) {
+                    chartInstance.options.scales.y.grid.color = isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)';
+                    chartInstance.options.scales.y.ticks.color = isDark ? '#ffffff' : '#1c1c1e';
+                }
+            }
+            chartInstance.update();
         }
     }
-    function toggleTheme() {
-        const current = document.documentElement.getAttribute('data-theme');
-        const newTheme = current === 'light' ? 'dark' : 'light';
-        document.documentElement.setAttribute('data-theme', newTheme);
-        localStorage.setItem('uzman_kasa_theme', newTheme);
-        updateThemeIcon();
+    function initTheme() {
+        const saved = localStorage.getItem('uzmanTheme');
+        if (saved) {
+            setTheme(saved);
+        } else {
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            setTheme(prefersDark ? 'dark' : 'light');
+        }
     }
-    window.toggleTheme = toggleTheme;
+    window.toggleTheme = () => {
+        const isDark = document.body.classList.contains('dark');
+        setTheme(isDark ? 'light' : 'dark');
+    };
     document.getElementById('themeToggleBtn')?.addEventListener('click', toggleTheme);
 
     function showToast(msg, isError = false) {
         const toast = document.createElement('div');
         toast.className = 'toast';
-        toast.style.borderLeftColor = isError ? '#ff4444' : '#ccff00';
+        toast.style.background = isError ? '#ff3b30' : 'var(--text-primary)';
+        toast.style.color = 'var(--card-bg)';
         toast.innerHTML = msg;
         document.body.appendChild(toast);
         setTimeout(() => toast.remove(), 3000);
@@ -428,13 +562,24 @@
         }
         const ctx = document.getElementById('monthlyChart').getContext('2d');
         if (chartInstance) chartInstance.destroy();
+        const isDark = document.body.classList.contains('dark');
         chartInstance = new Chart(ctx, {
             type: 'bar',
             data: { labels: months, datasets: [
-                { label: 'Gelir', data: incomeData, backgroundColor: '#00e676', borderRadius: 6 },
-                { label: 'Gider', data: expenseData, backgroundColor: '#ff4444', borderRadius: 6 }
+                { label: 'Gelir', data: incomeData, backgroundColor: '#34c759', borderRadius: 8 },
+                { label: 'Gider', data: expenseData, backgroundColor: '#ff3b30', borderRadius: 8 }
             ]},
-            options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { labels: { color: document.documentElement.getAttribute('data-theme') === 'light' ? '#333' : '#fff' } } } }
+            options: { 
+                responsive: true, 
+                maintainAspectRatio: true, 
+                plugins: { 
+                    legend: { labels: { color: isDark ? '#ffffff' : '#1c1c1e', font: { weight: '500' } } } 
+                },
+                scales: {
+                    x: { grid: { color: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)' }, ticks: { color: isDark ? '#ffffff' : '#1c1c1e' } },
+                    y: { grid: { color: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)' }, ticks: { color: isDark ? '#ffffff' : '#1c1c1e' } }
+                }
+            }
         });
     }
 
@@ -526,49 +671,48 @@
     window.openModal = (id) => document.getElementById(id).style.display = 'flex';
     window.closeModal = (id) => document.getElementById(id).style.display = 'none';
 
-    // PDF RAPOR - TÜRKÇE KARAKTER DESTEKLİ, MODERN TASARIM
-    window.exportToPDF = async () => {
+    // PDF EXPORT – Özel font kullanımı
+    window.exportToPDF = () => {
         const data = getFilteredTransactions();
         if (data.length === 0) { showToast('Raporlanacak işlem yok', true); return; }
-        
         const { jsPDF } = window.jspdf;
-        // Türkçe fontu yükle (arialunicode)
         const doc = new jsPDF({ orientation: 'landscape', unit: 'mm', format: 'a4' });
-        
-        // Başlık
-        doc.setFont('helvetica', 'bold');
-        doc.setFontSize(18);
-        doc.setTextColor(0,0,0);
-        doc.text('Uzman Reklam Kasa Raporu', 20, 20);
-        doc.setFontSize(12);
-        doc.setFont('helvetica', 'normal');
-        doc.text(`${getMonthName(currentYear, currentMonth)}`, 20, 30);
+        // Özel fontu ekle ve kullan (font.js içindeki font adı 'NotoSans-SemiBold')
+        try {
+            doc.addFont('NotoSans-SemiBold-normal.ttf', 'NotoSans-SemiBold', 'normal');
+            doc.setFont('NotoSans-SemiBold');
+        } catch(e) { console.warn("Font yüklenemedi, standart font kullanılacak", e); }
+        doc.setFontSize(16);
+        doc.setTextColor(28, 28, 30);
+        doc.text(`Uzman Reklam Kasa Raporu`, 15, 15);
+        doc.setFontSize(11);
+        doc.text(`${getMonthName(currentYear, currentMonth)}`, 15, 23);
         
         let totalInc = 0, totalExp = 0;
         data.forEach(t => { if(t.tip === 'gelir') totalInc += t.tutar; else totalExp += t.tutar; });
         
         const body = data.map(t => {
-            const dateObj = new Date(t.tarih);
-            const gunler = ['Pazar', 'Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi'];
+            let dateObj = new Date(t.tarih);
+            const gunler = ["Pazar", "Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi"];
             const gunAdi = gunler[dateObj.getDay()];
-            const formattedDate = `${dateObj.toLocaleDateString('tr-TR')} ${gunAdi} ${dateObj.toLocaleTimeString('tr-TR', {hour:'2-digit', minute:'2-digit'})}`;
+            const tarihFormat = dateObj.toLocaleDateString('tr-TR') + ' ' + gunAdi + ' ' + dateObj.toLocaleTimeString('tr-TR', {hour:'2-digit', minute:'2-digit'});
             return [
-                formattedDate,
+                tarihFormat,
                 t.tip === 'gelir' ? 'Gelir' : 'Gider',
                 t.baslik,
                 t.kategori,
-                `${t.tutar.toLocaleString('tr-TR')} TL`
+                t.tutar.toLocaleString('tr-TR') + ' TL'
             ];
         });
         
         doc.autoTable({
             head: [['Tarih (Gün & Saat)', 'Tip', 'Başlık', 'Kategori', 'Tutar']],
             body: body,
-            startY: 40,
+            startY: 30,
             theme: 'grid',
-            headStyles: { fillColor: [204,255,0], textColor: [0,0,0], fontStyle: 'bold', halign: 'center', fontSize: 9 },
-            bodyStyles: { textColor: [0,0,0], fontSize: 8, cellPadding: 3 },
-            alternateRowStyles: { fillColor: [245,245,245] },
+            headStyles: { fillColor: [0,122,255], textColor: [255,255,255], fontStyle: 'bold', halign: 'center', fontSize: 10 },
+            bodyStyles: { fontSize: 9, textColor: [0,0,0] },
+            alternateRowStyles: { fillColor: [248,248,250] },
             didParseCell: function(data) {
                 if (data.row.section === 'body') {
                     const tip = data.row.raw[1];
@@ -588,7 +732,6 @@
                  { content: (totalInc - totalExp).toLocaleString('tr-TR') + ' TL', styles: { fontStyle: 'bold' } }]
             ]
         });
-        
         doc.save(`kasa_${getMonthName(currentYear, currentMonth)}.pdf`);
         showToast('PDF raporu hazır');
     };
@@ -600,6 +743,7 @@
         if(pin === "talha5534") {
             document.getElementById('loginContainer').style.display = 'none';
             document.getElementById('appContainer').style.display = 'block';
+            initTheme();
             loadData();
         } else { showToast('Hatalı şifre!', true); }
     };
@@ -610,10 +754,11 @@
     };
     document.getElementById('prevMonthBtn').onclick = () => changeMonth(-1);
     document.getElementById('nextMonthBtn').onclick = () => changeMonth(1);
-    window.onload = () => {
-        initTheme();
+    window.onload = () => { 
         document.getElementById('pinInput').addEventListener('keypress', (e) => { if(e.key === 'Enter') checkPin(); });
+        initTheme(); // giriş ekranında da tema uygulansın
     };
+    document.getElementById('loginContainer').style.display = 'flex';
 </script>
 </body>
 </html>
