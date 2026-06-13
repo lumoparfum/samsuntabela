@@ -15,8 +15,12 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <style>
-        /* Tüm stiller aynen kaldı (önceki versiyonla birebir aynı, sadece giriş ekranı değişti) */
-        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
         body {
             background: #f5f5f7;
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -26,105 +30,465 @@
             padding-bottom: max(12px, env(safe-area-inset-bottom));
             transition: background 0.2s, color 0.2s;
         }
-        body.light { background: #f5f5f7; color: #1c1c1e; }
-        body.light .app-card, body.light .kpi-card, body.light .transaction-item, body.light .borc-card, body.light .chart-card, body.light .modal-card { background: #ffffff; border-color: #e9e9ef; }
-        body.dark { background: #000000; color: #ffffff; }
-        body.dark .app-card, body.dark .kpi-card, body.dark .transaction-item, body.dark .borc-card, body.dark .chart-card, body.dark .modal-card { background: #1c1c1e; border-color: #2c2c2e; }
-        body.dark .kpi-title, body.dark .borc-tarih, body.dark .section-title { color: #98989e; }
-        body.dark .current-month { color: #ffffff; }
-        body.dark .month-panel { background: #1c1c1e; }
-        body.dark .form-control { background: #2c2c2e; border-color: #3a3a3c; color: white; }
-        body.dark .icon-btn { background: #2c2c2e; border-color: #3a3a3c; color: #ff9f1c; }
-        .trans-cat { background: #f2f2f5; padding: 2px 10px; border-radius: 20px; font-size: 0.7rem; display: inline-block; }
-        body.dark .trans-cat { background: #2c2c2e; color: #ffffff; }
-        .app-container { width: 100%; max-width: 100%; margin: 0; }
-        .app-card { border-radius: 28px; margin-bottom: 16px; padding: 16px; }
-        .app-header { display: flex; flex-direction: column; align-items: center; gap: 12px; margin-bottom: 16px; }
-        .logo-area h1 { font-size: 1.8rem; font-weight: 800; letter-spacing: -1px; background: linear-gradient(135deg, #0A2540, #F5A623); -webkit-background-clip: text; background-clip: text; color: transparent; text-align: center; }
-        .header-actions { display: flex; gap: 12px; justify-content: center; }
-        .icon-btn { border: 0.5px solid; border-radius: 40px; padding: 8px 14px; font-size: 0.8rem; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; cursor: pointer; background: #ffffff; }
-        .month-panel { background: #f9f9fb; border-radius: 60px; padding: 6px 12px; display: flex; justify-content: center; align-items: center; margin-bottom: 16px; }
-        .month-nav { display: flex; gap: 20px; align-items: center; }
-        .month-nav-btn { background: transparent; border: none; width: 36px; height: 36px; border-radius: 36px; font-size: 1rem; cursor: pointer; color: #007aff; }
-        .current-month { font-size: 1.1rem; font-weight: 600; text-align: center; }
-        .kpi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 20px; }
-        .kpi-card { border-radius: 24px; padding: 14px; text-align: center; border: 0.5px solid; }
-        .kpi-title { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.5px; margin-bottom: 6px; }
-        .kpi-value { font-size: 1.4rem; font-weight: 700; }
+        body.light {
+            background: #f5f5f7;
+            color: #1c1c1e;
+        }
+        body.light .app-card,
+        body.light .kpi-card,
+        body.light .transaction-item,
+        body.light .borc-card,
+        body.light .chart-card,
+        body.light .modal-card {
+            background: #ffffff;
+            border-color: #e9e9ef;
+        }
+        body.dark {
+            background: #000000;
+            color: #ffffff;
+        }
+        body.dark .app-card,
+        body.dark .kpi-card,
+        body.dark .transaction-item,
+        body.dark .borc-card,
+        body.dark .chart-card,
+        body.dark .modal-card {
+            background: #1c1c1e;
+            border-color: #2c2c2e;
+        }
+        body.dark .kpi-title,
+        body.dark .borc-tarih,
+        body.dark .section-title {
+            color: #98989e;
+        }
+        body.dark .current-month {
+            color: #ffffff;
+        }
+        body.dark .month-panel {
+            background: #1c1c1e;
+        }
+        body.dark .form-control {
+            background: #2c2c2e;
+            border-color: #3a3a3c;
+            color: white;
+        }
+        body.dark .icon-btn {
+            background: #2c2c2e;
+            border-color: #3a3a3c;
+            color: #ff9f1c;
+        }
+        .trans-cat {
+            background: #f2f2f5;
+            padding: 2px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            display: inline-block;
+        }
+        body.dark .trans-cat {
+            background: #2c2c2e;
+            color: #ffffff;
+        }
+        .app-container {
+            width: 100%;
+            max-width: 100%;
+            margin: 0;
+        }
+        .app-card {
+            border-radius: 28px;
+            margin-bottom: 16px;
+            padding: 16px;
+        }
+        .app-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        .logo-area h1 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            background: linear-gradient(135deg, #0A2540, #F5A623);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-align: center;
+        }
+        .header-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+        }
+        .icon-btn {
+            border: 0.5px solid;
+            border-radius: 40px;
+            padding: 8px 14px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            background: #ffffff;
+        }
+        .month-panel {
+            background: #f9f9fb;
+            border-radius: 60px;
+            padding: 6px 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+        .month-nav {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        .month-nav-btn {
+            background: transparent;
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 36px;
+            font-size: 1rem;
+            cursor: pointer;
+            color: #007aff;
+        }
+        .current-month {
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-align: center;
+        }
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        .kpi-card {
+            border-radius: 24px;
+            padding: 14px;
+            text-align: center;
+            border: 0.5px solid;
+        }
+        .kpi-title {
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+        .kpi-value {
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
         .income-value { color: #34c759; }
         .expense-value { color: #ff3b30; }
         .balance-value { color: #0A2540; }
         body.dark .balance-value { color: #ffffff; }
-        .chart-row { display: flex; flex-direction: column; gap: 16px; margin-bottom: 20px; }
-        .chart-card { border-radius: 28px; padding: 12px; border: 0.5px solid; }
-        .section-title { font-size: 0.85rem; font-weight: 600; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
-        canvas { max-height: 180px; width: 100% !important; }
-        .action-buttons { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
-        .btn-income, .btn-expense, .btn-borc, .btn-alacak { flex: 1; padding: 12px 0; border-radius: 60px; font-weight: 600; font-size: 0.8rem; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; border: none; }
+        .chart-row {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+        .chart-card {
+            border-radius: 28px;
+            padding: 12px;
+            border: 0.5px solid;
+        }
+        .section-title {
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        canvas {
+            max-height: 180px;
+            width: 100% !important;
+        }
+        .action-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .btn-income, .btn-expense, .btn-borc, .btn-alacak {
+            flex: 1;
+            padding: 12px 0;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            cursor: pointer;
+            border: none;
+        }
         .btn-income { background: #e5f5e8; color: #2c6e3c; }
         .btn-expense { background: #ffe8e8; color: #c41e1e; }
         .btn-borc { background: #fff0e0; color: #cc7b00; }
         .btn-alacak { background: #e0f0ff; color: #0066cc; }
-        .borc-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
-        .borc-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
-        .borc-card { border-radius: 20px; padding: 12px; border: 0.5px solid; border-left: 4px solid #ff9f1c; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
-        .borc-card.alacak { border-left-color: #34c759; }
-        .borc-detay { flex: 2; }
-        .borc-title { font-weight: 600; font-size: 0.9rem; }
-        .borc-tarih { font-size: 0.7rem; color: #8e8e93; }
-        .borc-tutar { font-weight: 700; font-size: 1rem; }
-        .btn-ode { background: #ff9f1c; border: none; padding: 8px 14px; border-radius: 30px; color: white; font-weight: 600; font-size: 0.75rem; cursor: pointer; min-width: 85px; white-space: nowrap; }
-        .transaction-item { border-radius: 20px; margin-bottom: 8px; border: 0.5px solid; position: relative; overflow: hidden; }
-        .transaction-content { display: flex; justify-content: space-between; align-items: center; padding: 12px; background: inherit; width: 100%; transition: transform 0.2s; }
-        .swipe-delete { position: absolute; right: 0; top: 0; height: 100%; width: 70px; background: #ff3b30; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; transform: translateX(100%); transition: transform 0.2s; border-radius: 20px; cursor: pointer; }
-        .transaction-item.swiped .swipe-delete { transform: translateX(0); }
-        .transaction-item.swiped .transaction-content { transform: translateX(-70px); }
-        .search-box input { width: 100%; padding: 12px; border-radius: 30px; border: 0.5px solid #e9e9ef; background: #f9f9fb; font-size: 0.9rem; margin-bottom: 12px; }
-        .transactions-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 8px; }
-        .filter-buttons { display: flex; gap: 8px; }
-        .filter-btn { background: transparent; border: 0.5px solid #e9e9ef; border-radius: 30px; padding: 6px 12px; font-size: 0.7rem; font-weight: 500; cursor: pointer; }
-        body.dark .filter-btn { border-color: #3a3a3c; color: #fff; }
-        .filter-btn.active { background: #007aff; color: white; border-color: #007aff; }
-        .load-more-btn { background: transparent; border: 0.5px solid #e9e9ef; border-radius: 40px; padding: 10px; width: 100%; text-align: center; font-weight: 600; margin-top: 8px; cursor: pointer; color: #007aff; }
-        body.dark .load-more-btn { border-color: #3a3a3c; color: #ff9f1c; }
-        .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); backdrop-filter: blur(10px); display: none; justify-content: center; align-items: center; z-index: 2000; }
-        .modal-card { border-radius: 36px; width: 90%; max-width: 380px; padding: 20px; }
-        .modal-header { display: flex; justify-content: space-between; font-weight: 700; font-size: 1.2rem; margin-bottom: 16px; }
-        .form-group { margin-bottom: 16px; }
-        .form-group label { font-size: 0.75rem; font-weight: 500; color: #6c6c70; display: block; margin-bottom: 4px; }
-        .form-control { width: 100%; padding: 12px; background: #f9f9fb; border: 0.5px solid #e9e9ef; border-radius: 30px; font-size: 0.9rem; }
-        .modal-save { width: 100%; padding: 12px; background: #0A2540; color: white; border: none; border-radius: 60px; font-weight: 600; margin-top: 8px; cursor: pointer; }
-        .toast { position: fixed; bottom: 20px; left: 20px; right: 20px; background: #1c1c1e; color: white; padding: 12px; border-radius: 40px; text-align: center; z-index: 3000; animation: fadeUp 0.3s; }
-        @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        .remember-row { display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 16px; }
-        .spinner { text-align: center; padding: 20px; color: #8e8e93; }
-        .fa-spinner { animation: spin 1s linear infinite; }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        /* Login kartı (güncellendi) */
-        .login-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #fff; display: flex; justify-content: center; align-items: center; z-index: 1000; }
-        body.dark .login-container { background: #000; }
-        .login-card { background: #fff; border-radius: 48px; padding: 40px 30px; width: 90%; max-width: 340px; text-align: center; box-shadow: 0 20px 40px rgba(0,0,0,0.05); border: 0.5px solid #e9e9ef; }
-        body.dark .login-card { background: #1c1c1e; border-color: #2c2c2e; }
-        .login-logo { font-size: 2rem; font-weight: 800; margin-bottom: 30px; background: linear-gradient(135deg,#0A2540,#F5A623); -webkit-background-clip: text; background-clip: text; color: transparent; }
-        .login-input { width: 100%; padding: 14px; background: #f9f9fb; border: 0.5px solid #e9e9ef; border-radius: 60px; text-align: center; margin-bottom: 16px; font-size: 1rem; }
-        body.dark .login-input { background: #2c2c2e; border-color: #3a3a3c; color: white; }
-        .login-btn { width: 100%; padding: 14px; background: #0A2540; color: white; font-weight: 600; border: none; border-radius: 60px; font-size: 1rem; cursor: pointer; margin-bottom: 10px; }
-        .login-btn.register { background: #34c759; }
+        .borc-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        .borc-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .borc-card {
+            border-radius: 20px;
+            padding: 12px;
+            border: 0.5px solid;
+            border-left: 4px solid #ff9f1c;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .borc-card.alacak {
+            border-left-color: #34c759;
+        }
+        .borc-detay {
+            flex: 2;
+        }
+        .borc-title {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        .borc-tarih {
+            font-size: 0.7rem;
+            color: #8e8e93;
+        }
+        .borc-tutar {
+            font-weight: 700;
+            font-size: 1rem;
+        }
+        .btn-ode {
+            background: #ff9f1c;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 30px;
+            color: white;
+            font-weight: 600;
+            font-size: 0.75rem;
+            cursor: pointer;
+            min-width: 85px;
+            white-space: nowrap;
+        }
+        .transaction-item {
+            border-radius: 20px;
+            margin-bottom: 8px;
+            border: 0.5px solid;
+            position: relative;
+            overflow: hidden;
+        }
+        .transaction-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            background: inherit;
+            width: 100%;
+            transition: transform 0.2s;
+        }
+        .swipe-delete {
+            position: absolute;
+            right: 0;
+            top: 0;
+            height: 100%;
+            width: 70px;
+            background: #ff3b30;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            transform: translateX(100%);
+            transition: transform 0.2s;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+        .transaction-item.swiped .swipe-delete {
+            transform: translateX(0);
+        }
+        .transaction-item.swiped .transaction-content {
+            transform: translateX(-70px);
+        }
+        .search-box input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 30px;
+            border: 0.5px solid #e9e9ef;
+            background: #f9f9fb;
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+        }
+        .transactions-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .filter-buttons {
+            display: flex;
+            gap: 8px;
+        }
+        .filter-btn {
+            background: transparent;
+            border: 0.5px solid #e9e9ef;
+            border-radius: 30px;
+            padding: 6px 12px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            cursor: pointer;
+        }
+        body.dark .filter-btn {
+            border-color: #3a3a3c;
+            color: #fff;
+        }
+        .filter-btn.active {
+            background: #007aff;
+            color: white;
+            border-color: #007aff;
+        }
+        .load-more-btn {
+            background: transparent;
+            border: 0.5px solid #e9e9ef;
+            border-radius: 40px;
+            padding: 10px;
+            width: 100%;
+            text-align: center;
+            font-weight: 600;
+            margin-top: 8px;
+            cursor: pointer;
+            color: #007aff;
+        }
+        body.dark .load-more-btn {
+            border-color: #3a3a3c;
+            color: #ff9f1c;
+        }
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.4);
+            backdrop-filter: blur(10px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+        .modal-card {
+            border-radius: 36px;
+            width: 90%;
+            max-width: 380px;
+            padding: 20px;
+        }
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 16px;
+        }
+        .form-group {
+            margin-bottom: 16px;
+        }
+        .form-group label {
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: #6c6c70;
+            display: block;
+            margin-bottom: 4px;
+        }
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            background: #f9f9fb;
+            border: 0.5px solid #e9e9ef;
+            border-radius: 30px;
+            font-size: 0.9rem;
+        }
+        .modal-save {
+            width: 100%;
+            padding: 12px;
+            background: #0A2540;
+            color: white;
+            border: none;
+            border-radius: 60px;
+            font-weight: 600;
+            margin-top: 8px;
+            cursor: pointer;
+        }
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            background: #1c1c1e;
+            color: white;
+            padding: 12px;
+            border-radius: 40px;
+            text-align: center;
+            z-index: 3000;
+            animation: fadeUp 0.3s;
+        }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .remember-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+        .remember-row label {
+            font-size: 0.8rem;
+            color: #6c6c70;
+        }
+        .spinner {
+            text-align: center;
+            padding: 20px;
+            color: #8e8e93;
+        }
+        .fa-spinner {
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body class="light">
-<!-- GİRİŞ EKRANI (email + şifre) -->
-<div id="loginContainer" class="login-container">
-    <div class="login-card">
-        <div class="login-logo">MÜCAHİT<span style="color:#F5A623;">KASA</span></div>
-        <input type="email" id="loginEmail" class="login-input" placeholder="E-posta adresiniz" autocomplete="email">
-        <input type="password" id="loginPassword" class="login-input" placeholder="Şifreniz" autocomplete="current-password">
-        <button id="loginBtn" class="login-btn">Giriş Yap</button>
-        <button id="registerBtn" class="login-btn register">Kayıt Ol</button>
+<div id="loginContainer" style="position:fixed; top:0; left:0; width:100%; height:100%; background:#fff; display:flex; justify-content:center; align-items:center; z-index:1000;">
+    <div style="background:#fff; border-radius:48px; padding:40px 30px; width:90%; max-width:340px; text-align:center; box-shadow:0 20px 40px rgba(0,0,0,0.05); border:0.5px solid #e9e9ef;">
+        <div style="font-size:2rem; font-weight:800; margin-bottom:30px; background:linear-gradient(135deg,#0A2540,#F5A623); -webkit-background-clip:text; background-clip:text; color:transparent;">MÜCAHİT<span style="color:#F5A623;">KASA</span></div>
+        <input type="password" id="pinInput" style="width:100%; padding:14px; background:#f9f9fb; border:0.5px solid #e9e9ef; border-radius:60px; text-align:center; margin-bottom:16px;" placeholder="Şifre" autocomplete="off">
+        <div class="remember-row">
+            <input type="checkbox" id="rememberCheckbox">
+            <label>Beni hatırla</label>
+        </div>
+        <button id="loginBtn" style="width:100%; padding:14px; background:#0A2540; color:white; font-weight:600; border:none; border-radius:60px;">Giriş Yap</button>
     </div>
 </div>
 
-<!-- UYGULAMA ANA BÖLÜMÜ -->
 <div id="appContainer" class="app-container" style="display:none">
     <div class="app-card">
         <div class="app-header">
@@ -181,7 +545,7 @@
     <div id="loadMoreContainer" style="margin-top: 8px;"></div>
 </div>
 
-<!-- Modallar (öncekiyle aynı) -->
+<!-- Modals aynı -->
 <div id="incomeModal" class="modal"><div class="modal-card"><div class="modal-header"><span>Gelir Ekle</span><span class="modal-close" onclick="closeModal('incomeModal')">&times;</span></div>
     <div class="form-group"><label>Başlık</label><input type="text" id="incomeTitle" class="form-control" placeholder="Tag işi, maaş"></div>
     <div class="form-group"><label>Kategori</label><select id="incomeCat" class="form-control"><option>Tag İşleri</option><option>Maaş</option><option>Serbest İş</option><option>Hediye</option><option>Yatırım</option><option>Diğer</option></select></div>
@@ -215,7 +579,6 @@
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js";
     import { getFirestore, collection, addDoc, getDocs, query, orderBy, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-firestore.js";
-    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-auth.js";
 
     const firebaseConfig = {
         apiKey: "AIzaSyAhBlHB0kZRB-IpEIGdHrS7ntzM17YpAWM",
@@ -227,7 +590,9 @@
     };
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
-    const auth = getAuth();
+
+    // Güvenlik uyarısı
+    console.warn("⚠️ Güvenlik: Firestore kurallarını kısıtlamazsan herkes verilerini okuyabilir! Authentication ve kuralları güncelle.");
 
     let allGelirler = [], allGiderler = [], allBorclar = [], allAlacaklar = [];
     let currentYear = new Date().getFullYear(), currentMonth = new Date().getMonth();
@@ -238,13 +603,13 @@
     let allTransactionsArray = [];
     let filteredTransactionsArray = [];
 
-    // --- Helper fonksiyonlar ---
     function formatDateWithDay(date) {
         const gunler = ["Pazar", "Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi"];
         const d = new Date(date);
         const gunAdi = gunler[d.getDay()];
         return `${d.toLocaleDateString('tr-TR')} ${gunAdi} ${d.toLocaleTimeString('tr-TR', {hour:'2-digit', minute:'2-digit'})}`;
     }
+
     function generateAppleTouchIcon() {
         const canvas = document.createElement('canvas');
         canvas.width = 180;
@@ -276,6 +641,7 @@
     function formatMoney(amt) { return '₺' + amt.toLocaleString('tr-TR'); }
 
     async function loadAll() {
+        showLoading(true);
         try {
             const g1 = await getDocs(query(collection(db, "mucahit_gelirler"), orderBy("tarih", "desc")));
             allGelirler = g1.docs.map(d => ({ id: d.id, ...d.data() }));
@@ -292,7 +658,20 @@
             renderDashboard();
         } catch(error) {
             showToast("Veri yüklenemedi: " + error.message, true);
+        } finally {
+            showLoading(false);
         }
+    }
+
+    function showLoading(show) {
+        const loader = document.getElementById('globalLoader');
+        if(!loader && show) {
+            let div = document.createElement('div');
+            div.id = 'globalLoader';
+            div.className = 'spinner';
+            div.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Yükleniyor...';
+            document.getElementById('appContainer').prepend(div);
+        } else if(!show && loader) loader.remove();
     }
 
     function getCurrentFilterObj() { return { year: currentYear, month: currentMonth }; }
@@ -396,7 +775,9 @@
                 </div>
                 <div class="swipe-delete"><i class="fas fa-trash-alt"></i> Sil</div>
             `;
-            let startX = 0, isSwiping = false;
+            // Touch ve mouse swipe
+            let startX = 0;
+            let isSwiping = false;
             const handleStart = (clientX) => { startX = clientX; isSwiping = true; };
             const handleMove = (clientX) => {
                 if(!isSwiping) return;
@@ -419,6 +800,7 @@
                 isProcessing = true;
                 const id = itemDiv.dataset.id;
                 const tip = itemDiv.dataset.tip;
+                // UI'dan hemen kaldır
                 const index = filteredTransactionsArray.findIndex(x => x.docId === id);
                 if(index !== -1) filteredTransactionsArray.splice(index, 1);
                 const mainIndex = allTransactionsArray.findIndex(x => x.docId === id);
@@ -452,6 +834,7 @@
     }
 
     function updateCharts() {
+        // Aylık grafik (son 6 ay, seçili aya göre)
         let son6 = [];
         for(let i=5; i>=0; i--) {
             let d = new Date(currentYear, currentMonth - i, 1);
@@ -475,6 +858,7 @@
             options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { labels: { color: fontColor } } } }
         });
         
+        // Kategori grafiği sadece seçili ayın giderleri
         const { year, month } = getCurrentFilterObj();
         let catMap = new Map();
         allGiderler.forEach(g => {
@@ -495,6 +879,7 @@
     window.exportToPDF = async () => {
         const { year, month } = getCurrentFilterObj();
         let aylikGelir=0, aylikGider=0;
+        // Sadece seçili ayın işlemleri
         let aylikIslemler = [];
         allGelirler.forEach(g => { let d=new Date(g.tarih); if(d.getFullYear()===year && d.getMonth()===month) { aylikGelir += g.tutar; aylikIslemler.push({...g, tip:'Gelir'}); } });
         allGiderler.forEach(g => { let d=new Date(g.tarih); if(d.getFullYear()===year && d.getMonth()===month) { aylikGider += g.tutar; aylikIslemler.push({...g, tip:'Gider'}); } });
@@ -598,18 +983,8 @@
     document.getElementById('openBorcModal').onclick = () => openModal('borcModal');
     document.getElementById('openAlacakModal').onclick = () => openModal('alacakModal');
     document.getElementById('pdfBtn').onclick = () => exportToPDF();
+    document.getElementById('logoutBtn').onclick = () => { document.getElementById('loginContainer').style.display = 'flex'; document.getElementById('appContainer').style.display = 'none'; allGelirler=[]; };
     
-    // Çıkış işlemi (Authentication ile)
-    document.getElementById('logoutBtn').onclick = async () => {
-        try {
-            await signOut(auth);
-            showToast("Çıkış yapıldı.");
-        } catch(error) {
-            showToast("Çıkış hatası: " + error.message, true);
-        }
-    };
-    
-    // Filtre butonları
     document.querySelectorAll('.filter-btn').forEach(btn => {
         btn.addEventListener('click', () => {
             document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
@@ -619,7 +994,6 @@
         });
     });
     
-    // Tema ayarları
     function setTheme(theme) {
         if(theme === 'dark') { document.body.classList.add('dark'); document.body.classList.remove('light'); }
         else { document.body.classList.add('light'); document.body.classList.remove('dark'); }
@@ -629,54 +1003,18 @@
     if(window.matchMedia('(prefers-color-scheme: dark)').matches) setTheme('dark'); else setTheme('light');
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => setTheme(e.matches ? 'dark' : 'light'));
     
-    // --- AUTHENTICATION (Email/Password) ---
-    window.login = async () => {
-        const email = document.getElementById('loginEmail').value;
-        const password = document.getElementById('loginPassword').value;
-        if (!email || !password) { showToast("Lütfen e-posta ve şifre girin", true); return; }
-        try {
-            await signInWithEmailAndPassword(auth, email, password);
-            showToast("Giriş başarılı!");
-        } catch (error) {
-            let msg = error.message;
-            if (error.code === 'auth/user-not-found') msg = "Bu e-postaya ait hesap yok.";
-            if (error.code === 'auth/wrong-password') msg = "Şifre hatalı.";
-            showToast(msg, true);
-        }
-    };
-    
-    window.register = async () => {
-        const email = document.getElementById('loginEmail').value;
-        const password = document.getElementById('loginPassword').value;
-        if (!email || !password) { showToast("Lütfen e-posta ve şifre girin", true); return; }
-        try {
-            await createUserWithEmailAndPassword(auth, email, password);
-            showToast("Kayıt başarılı! Hoş geldiniz.");
-        } catch (error) {
-            let msg = error.message;
-            if (error.code === 'auth/email-already-in-use') msg = "Bu e-posta zaten kullanılıyor.";
-            if (error.code === 'auth/weak-password') msg = "Şifre en az 6 karakter olmalı.";
-            showToast(msg, true);
-        }
-    };
-    
-    document.getElementById('loginBtn').onclick = () => login();
-    document.getElementById('registerBtn').onclick = () => register();
-    
-    // Oturum durumunu dinle
-    onAuthStateChanged(auth, (user) => {
-        const loginContainer = document.getElementById('loginContainer');
-        const appContainer = document.getElementById('appContainer');
-        if (user) {
-            loginContainer.style.display = 'none';
-            appContainer.style.display = 'block';
+    const savedPin = localStorage.getItem('mucahit_pin');
+    if(savedPin) document.getElementById('pinInput').value = savedPin;
+    document.getElementById('loginBtn').onclick = () => {
+        const pin = document.getElementById('pinInput').value;
+        if(pin === "547143614") {
+            if(document.getElementById('rememberCheckbox').checked) localStorage.setItem('mucahit_pin', pin);
+            else localStorage.removeItem('mucahit_pin');
+            document.getElementById('loginContainer').style.display = 'none';
+            document.getElementById('appContainer').style.display = 'block';
             loadAll();
-        } else {
-            loginContainer.style.display = 'flex';
-            appContainer.style.display = 'none';
-            allTransactionsArray = [];
-        }
-    });
+        } else showToast("Hatalı şifre", true);
+    };
 </script>
 </body>
 </html>
