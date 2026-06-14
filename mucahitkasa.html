@@ -30,6 +30,21 @@
             padding-bottom: max(12px, env(safe-area-inset-bottom));
             transition: background 0.2s, color 0.2s;
         }
+        body.rtl {
+            direction: rtl;
+            text-align: right;
+        }
+        body.rtl .section-title,
+        body.rtl .kpi-title,
+        body.rtl .transaction-content,
+        body.rtl .borc-detay,
+        body.rtl .modal-card,
+        body.rtl .summary-card {
+            text-align: right;
+        }
+        body.rtl .action-buttons button {
+            flex-direction: row-reverse;
+        }
         body.light {
             background: #f5f5f7;
             color: #1c1c1e;
@@ -39,8 +54,7 @@
         body.light .transaction-item,
         body.light .borc-card,
         body.light .chart-card,
-        body.light .modal-card,
-        body.light .summary-card {
+        body.light .modal-card {
             background: #ffffff;
             border-color: #e9e9ef;
             box-shadow: 0 2px 8px rgba(0,0,0,0.02), 0 4px 12px rgba(0,0,0,0.03);
@@ -54,8 +68,7 @@
         body.dark .transaction-item,
         body.dark .borc-card,
         body.dark .chart-card,
-        body.dark .modal-card,
-        body.dark .summary-card {
+        body.dark .modal-card {
             background: #1c1c1e;
             border-color: #2c2c2e;
             box-shadow: 0 2px 8px rgba(0,0,0,0.4);
@@ -104,16 +117,16 @@
         }
         .app-header {
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
+            justify-content: space-between;
             align-items: center;
-            gap: 12px;
+            flex-wrap: wrap;
             margin-bottom: 16px;
         }
         .logo-area h1 {
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: 800;
             letter-spacing: -0.5px;
-            text-align: center;
             margin: 0;
         }
         .logo-area .mucahit {
@@ -130,8 +143,8 @@
         }
         .header-actions {
             display: flex;
-            gap: 12px;
-            justify-content: center;
+            gap: 10px;
+            align-items: center;
         }
         .icon-btn {
             border: 0.5px solid;
@@ -144,10 +157,49 @@
             gap: 6px;
             cursor: pointer;
             background: #ffffff;
-            transition: transform 0.1s, opacity 0.2s;
+            transition: transform 0.1s;
         }
         .icon-btn:active {
             transform: scale(0.97);
+        }
+        .lang-selector {
+            position: relative;
+        }
+        .lang-dropdown {
+            position: absolute;
+            top: 45px;
+            right: 0;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            padding: 8px;
+            z-index: 100;
+            display: none;
+            min-width: 140px;
+        }
+        body.dark .lang-dropdown {
+            background: #1c1c1e;
+            border: 0.5px solid #3a3a3c;
+        }
+        .lang-dropdown button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            text-align: left;
+            background: none;
+            border: none;
+            border-radius: 14px;
+            cursor: pointer;
+            font-size: 0.85rem;
+        }
+        body.rtl .lang-dropdown button {
+            text-align: right;
+        }
+        .lang-dropdown button:hover {
+            background: #f0f0f0;
+        }
+        body.dark .lang-dropdown button:hover {
+            background: #2c2c2e;
         }
         .month-panel {
             background: #f9f9fb;
@@ -186,7 +238,7 @@
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 12px;
-            margin-bottom: 12px;
+            margin-bottom: 20px;
         }
         .kpi-card {
             border-radius: 24px;
@@ -212,26 +264,6 @@
         .expense-value { color: #ff3b30; }
         .balance-value { color: #0A2540; }
         body.dark .balance-value { color: #ffffff; }
-
-        /* Haftalık özet kartı */
-        .summary-card {
-            border-radius: 20px;
-            padding: 10px 14px;
-            margin-bottom: 16px;
-            border: 0.5px solid;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .summary-label {
-            font-size: 0.7rem;
-            color: #8e8e93;
-        }
-        .summary-value {
-            font-weight: 700;
-            font-size: 1rem;
-        }
-
         .chart-row {
             display: flex;
             flex-direction: column;
@@ -300,7 +332,7 @@
             gap: 6px;
             cursor: pointer;
             border: none;
-            transition: transform 0.1s, opacity 0.2s;
+            transition: transform 0.1s;
         }
         .btn-income:active, .btn-expense:active, .btn-borc:active, .btn-alacak:active {
             transform: scale(0.97);
@@ -388,7 +420,6 @@
             justify-content: space-between;
             align-items: center;
             padding: 12px;
-            background: inherit;
             width: 100%;
             transition: transform 0.2s;
         }
@@ -408,6 +439,17 @@
             transition: transform 0.2s;
             border-radius: 20px;
             cursor: pointer;
+        }
+        body.rtl .swipe-delete {
+            right: auto;
+            left: 0;
+            transform: translateX(-100%);
+        }
+        body.rtl .transaction-item.swiped .swipe-delete {
+            transform: translateX(0);
+        }
+        body.rtl .transaction-item.swiped .transaction-content {
+            transform: translateX(70px);
         }
         .transaction-item.swiped .swipe-delete {
             transform: translateX(0);
@@ -648,15 +690,25 @@
         <button id="loginBtn" style="width:100%; padding:14px; color:white; font-weight:600; border:none; border-radius:60px;">Giriş Yap</button>
     </div>
 </div>
-<div class="spinner-overlay" id="globalSpinner"><div class="spinner-content"><i class="fas fa-spinner fa-spin"></i> Yükleniyor...</div></div>
+<div class="spinner-overlay" id="globalSpinner"><div class="spinner-content"><i class="fas fa-spinner fa-spin"></i> <span id="loadingText">Yükleniyor...</span></div></div>
 
 <div id="appContainer" class="app-container" style="display:none">
     <div class="app-card">
         <div class="app-header">
             <div class="logo-area"><h1><span class="mucahit">MÜCAHİT</span><span class="kasa">KASA</span></h1></div>
             <div class="header-actions">
+                <div class="lang-selector">
+                    <button class="icon-btn" id="langBtn"><i class="fas fa-globe"></i> <span id="langBtnText">Dil</span></button>
+                    <div class="lang-dropdown" id="langDropdown">
+                        <button data-lang="tr">🇹🇷 Türkçe</button>
+                        <button data-lang="en">🇬🇧 English</button>
+                        <button data-lang="ar">🇸🇦 العربية</button>
+                        <button data-lang="fr">🇫🇷 Français</button>
+                        <button data-lang="de">🇩🇪 Deutsch</button>
+                    </div>
+                </div>
                 <button class="icon-btn" id="themeToggleBtn"><i class="fas fa-moon"></i></button>
-                <button class="icon-btn" id="pdfBtn"><i class="fas fa-file-pdf"></i> PDF</button>
+                <button class="icon-btn" id="pdfBtn"><i class="fas fa-file-pdf"></i> <span id="pdfBtnText">PDF</span></button>
                 <button class="icon-btn" id="logoutBtn"><i class="fas fa-sign-out-alt"></i></button>
             </div>
         </div>
@@ -668,31 +720,31 @@
             </div>
         </div>
         <div class="kpi-grid">
-            <div class="kpi-card"><div class="kpi-title">Bu Ay Gelir</div><div class="kpi-value income-value" id="monthIncome">₺0</div></div>
-            <div class="kpi-card"><div class="kpi-title">Bu Ay Gider</div><div class="kpi-value expense-value" id="monthExpense">₺0</div></div>
-            <div class="kpi-card"><div class="kpi-title">Kalan Bütçe</div><div class="kpi-value balance-value" id="monthRemaining">₺0</div></div>
+            <div class="kpi-card"><div class="kpi-title" id="kpiIncomeTitle">Bu Ay Gelir</div><div class="kpi-value income-value" id="monthIncome">₺0</div></div>
+            <div class="kpi-card"><div class="kpi-title" id="kpiExpenseTitle">Bu Ay Gider</div><div class="kpi-value expense-value" id="monthExpense">₺0</div></div>
+            <div class="kpi-card"><div class="kpi-title" id="kpiRemainingTitle">Kalan Bütçe</div><div class="kpi-value balance-value" id="monthRemaining">₺0</div></div>
         </div>
     </div>
 
     <div class="chart-row">
         <div class="chart-card">
             <div class="section-title">
-                <span><i class="fas fa-chart-line"></i> Gelir/Gider</span>
+                <span><i class="fas fa-chart-line"></i> <span id="lineChartTitle">Gelir/Gider</span></span>
                 <div class="segment-control" id="linePeriodControl">
-                    <button class="segment-btn" data-line-period="day">Gün</button>
-                    <button class="segment-btn" data-line-period="week">Hafta</button>
-                    <button class="segment-btn active" data-line-period="month">Ay</button>
+                    <button class="segment-btn" data-line-period="day" id="lineDayBtn">Gün</button>
+                    <button class="segment-btn" data-line-period="week" id="lineWeekBtn">Hafta</button>
+                    <button class="segment-btn active" data-line-period="month" id="lineMonthBtn">Ay</button>
                 </div>
             </div>
             <canvas id="monthlyChart"></canvas>
         </div>
         <div class="chart-card">
             <div class="section-title">
-                <span><i class="fas fa-chart-pie"></i> Gider Dağılımı</span>
+                <span><i class="fas fa-chart-pie"></i> <span id="pieChartTitle">Gider Dağılımı</span></span>
                 <div class="segment-control" id="piePeriodControl">
-                    <button class="segment-btn" data-pie-period="day">Gün</button>
-                    <button class="segment-btn" data-pie-period="week">Hafta</button>
-                    <button class="segment-btn active" data-pie-period="month">Ay</button>
+                    <button class="segment-btn" data-pie-period="day" id="pieDayBtn">Gün</button>
+                    <button class="segment-btn" data-pie-period="week" id="pieWeekBtn">Hafta</button>
+                    <button class="segment-btn active" data-pie-period="month" id="pieMonthBtn">Ay</button>
                 </div>
             </div>
             <canvas id="categoryChart"></canvas>
@@ -700,14 +752,14 @@
     </div>
 
     <div class="action-buttons">
-        <button class="btn-income" id="openIncomeModal"><i class="fas fa-plus-circle"></i> Gelir</button>
-        <button class="btn-expense" id="openExpenseModal"><i class="fas fa-minus-circle"></i> Gider</button>
-        <button class="btn-borc" id="openBorcModal"><i class="fas fa-hand-holding-usd"></i> Borç</button>
-        <button class="btn-alacak" id="openAlacakModal"><i class="fas fa-money-bill-wave"></i> Alacak</button>
+        <button class="btn-income" id="openIncomeModal"><i class="fas fa-plus-circle"></i> <span id="incomeBtnText">Gelir</span></button>
+        <button class="btn-expense" id="openExpenseModal"><i class="fas fa-minus-circle"></i> <span id="expenseBtnText">Gider</span></button>
+        <button class="btn-borc" id="openBorcModal"><i class="fas fa-hand-holding-usd"></i> <span id="debtBtnText">Borç</span></button>
+        <button class="btn-alacak" id="openAlacakModal"><i class="fas fa-money-bill-wave"></i> <span id="receivableBtnText">Alacak</span></button>
     </div>
 
     <div class="borc-header">
-        <div class="section-title"><i class="fas fa-exchange-alt"></i> Borç & Alacaklar</div>
+        <div class="section-title"><i class="fas fa-exchange-alt"></i> <span id="debtHeader">Borç & Alacaklar</span></div>
         <div id="borcOzet" style="font-size:0.7rem;"></div>
     </div>
     <div id="borcList" class="borc-list">Yükleniyor...</div>
@@ -715,11 +767,11 @@
     <div class="search-box"><input type="text" id="searchInput" placeholder="İşlem ara (başlık/kategori)"></div>
     
     <div class="transactions-header">
-        <div class="section-title"><i class="fas fa-history"></i> İşlem Geçmişi <span id="transactionCount" style="font-size:0.7rem; margin-left:8px;"></span></div>
+        <div class="section-title"><i class="fas fa-history"></i> <span id="historyTitle">İşlem Geçmişi</span> <span id="transactionCount" style="font-size:0.7rem; margin-left:8px;"></span></div>
         <div class="filter-buttons" id="filterButtons">
-            <button class="filter-btn active" data-filter="all">Tümü</button>
-            <button class="filter-btn" data-filter="gelir">💰 Gelir</button>
-            <button class="filter-btn" data-filter="gider">💸 Gider</button>
+            <button class="filter-btn active" data-filter="all" id="filterAll">Tümü</button>
+            <button class="filter-btn" data-filter="gelir" id="filterIncome">💰 Gelir</button>
+            <button class="filter-btn" data-filter="gider" id="filterExpense">💸 Gider</button>
         </div>
     </div>
     <div id="transactionList" class="transaction-list"></div>
@@ -727,36 +779,36 @@
 </div>
 
 <!-- Modals -->
-<div id="incomeModal" class="modal"><div class="modal-card"><div class="modal-header"><span>Gelir Ekle</span><span class="modal-close" data-modal="incomeModal">&times;</span></div>
-    <div class="form-group"><label>Başlık</label><input type="text" id="incomeTitle" class="form-control" placeholder="Tag işi, maaş"></div>
-    <div class="form-group"><label>Kategori</label><select id="incomeCat" class="form-control"><option>Tag İşleri</option><option>Maaş</option><option>Serbest İş</option><option>Hediye</option><option>Yatırım</option><option>Diğer</option></select></div>
-    <div class="form-group"><label>Tutar (₺)</label><input type="number" id="incomeAmount" class="form-control"></div>
-    <div class="form-group"><label>Tarih</label><input type="date" id="incomeDate" class="form-control"></div>
-    <button class="modal-save" id="saveIncomeBtn">Kaydet</button>
+<div id="incomeModal" class="modal"><div class="modal-card"><div class="modal-header"><span id="incomeModalTitle">Gelir Ekle</span><span class="modal-close" data-modal="incomeModal">&times;</span></div>
+    <div class="form-group"><label id="incomeTitleLabel">Başlık</label><input type="text" id="incomeTitle" class="form-control" placeholder="Tag işi, maaş"></div>
+    <div class="form-group"><label id="incomeCatLabel">Kategori</label><select id="incomeCat" class="form-control"><option>Tag İşleri</option><option>Maaş</option><option>Serbest İş</option><option>Hediye</option><option>Yatırım</option><option>Diğer</option></select></div>
+    <div class="form-group"><label id="incomeAmountLabel">Tutar (₺)</label><input type="number" id="incomeAmount" class="form-control"></div>
+    <div class="form-group"><label id="incomeDateLabel">Tarih</label><input type="date" id="incomeDate" class="form-control"></div>
+    <button class="modal-save" id="saveIncomeBtn"><span id="saveIncomeBtnText">Kaydet</span></button>
 </div></div>
 
-<div id="expenseModal" class="modal"><div class="modal-card"><div class="modal-header"><span>Gider Ekle</span><span class="modal-close" data-modal="expenseModal">&times;</span></div>
-    <div class="form-group"><label>Başlık</label><input type="text" id="expenseTitle" class="form-control" placeholder="Kahve, fatura"></div>
-    <div class="form-group"><label>Kategori</label><select id="expenseCat" class="form-control"><option>Faturalar</option><option>Tag Malzemesi</option><option>Alışveriş</option><option>Yeme/İçme</option><option>Ulaşım</option><option>Sağlık</option><option>Eğlence</option><option>Kira/Aidat</option><option>Borç Ödemesi</option><option>Diğer</option></select></div>
-    <div class="form-group"><label>Tutar (₺)</label><input type="number" id="expenseAmount" class="form-control"></div>
-    <div class="form-group"><label>Tarih</label><input type="date" id="expenseDate" class="form-control"></div>
-    <button class="modal-save" id="saveExpenseBtn">Kaydet</button>
+<div id="expenseModal" class="modal"><div class="modal-card"><div class="modal-header"><span id="expenseModalTitle">Gider Ekle</span><span class="modal-close" data-modal="expenseModal">&times;</span></div>
+    <div class="form-group"><label id="expenseTitleLabel">Başlık</label><input type="text" id="expenseTitle" class="form-control" placeholder="Kahve, fatura"></div>
+    <div class="form-group"><label id="expenseCatLabel">Kategori</label><select id="expenseCat" class="form-control"><option>Faturalar</option><option>Tag Malzemesi</option><option>Alışveriş</option><option>Yeme/İçme</option><option>Ulaşım</option><option>Sağlık</option><option>Eğlence</option><option>Kira/Aidat</option><option>Borç Ödemesi</option><option>Diğer</option></select></div>
+    <div class="form-group"><label id="expenseAmountLabel">Tutar (₺)</label><input type="number" id="expenseAmount" class="form-control"></div>
+    <div class="form-group"><label id="expenseDateLabel">Tarih</label><input type="date" id="expenseDate" class="form-control"></div>
+    <button class="modal-save" id="saveExpenseBtn"><span id="saveExpenseBtnText">Kaydet</span></button>
 </div></div>
 
-<div id="borcModal" class="modal"><div class="modal-card"><div class="modal-header"><span>Borç Ekle</span><span class="modal-close" data-modal="borcModal">&times;</span></div>
-    <div class="form-group"><label>Kişi/Kurum</label><input type="text" id="borcKisi" class="form-control"></div>
-    <div class="form-group"><label>Miktar (₺)</label><input type="number" id="borcMiktar" class="form-control"></div>
-    <div class="form-group"><label>Son Ödeme Tarihi</label><input type="date" id="borcTarih" class="form-control"></div>
-    <div class="form-group"><label>Açıklama</label><input type="text" id="borcAciklama" class="form-control"></div>
-    <button class="modal-save" id="saveBorcBtn">Ekle</button>
+<div id="borcModal" class="modal"><div class="modal-card"><div class="modal-header"><span id="borcModalTitle">Borç Ekle</span><span class="modal-close" data-modal="borcModal">&times;</span></div>
+    <div class="form-group"><label id="borcPersonLabel">Kişi/Kurum</label><input type="text" id="borcKisi" class="form-control"></div>
+    <div class="form-group"><label id="borcAmountLabel">Miktar (₺)</label><input type="number" id="borcMiktar" class="form-control"></div>
+    <div class="form-group"><label id="borcDateLabel">Son Ödeme Tarihi</label><input type="date" id="borcTarih" class="form-control"></div>
+    <div class="form-group"><label id="borcDescLabel">Açıklama</label><input type="text" id="borcAciklama" class="form-control"></div>
+    <button class="modal-save" id="saveBorcBtn"><span id="saveBorcBtnText">Ekle</span></button>
 </div></div>
 
-<div id="alacakModal" class="modal"><div class="modal-card"><div class="modal-header"><span>Alacak Ekle</span><span class="modal-close" data-modal="alacakModal">&times;</span></div>
-    <div class="form-group"><label>Kişi/Kurum</label><input type="text" id="alacakKisi" class="form-control"></div>
-    <div class="form-group"><label>Miktar (₺)</label><input type="number" id="alacakMiktar" class="form-control"></div>
-    <div class="form-group"><label>Tahmini Tarih</label><input type="date" id="alacakTarih" class="form-control"></div>
-    <div class="form-group"><label>Açıklama</label><input type="text" id="alacakAciklama" class="form-control"></div>
-    <button class="modal-save" id="saveAlacakBtn">Ekle</button>
+<div id="alacakModal" class="modal"><div class="modal-card"><div class="modal-header"><span id="alacakModalTitle">Alacak Ekle</span><span class="modal-close" data-modal="alacakModal">&times;</span></div>
+    <div class="form-group"><label id="alacakPersonLabel">Kişi/Kurum</label><input type="text" id="alacakKisi" class="form-control"></div>
+    <div class="form-group"><label id="alacakAmountLabel">Miktar (₺)</label><input type="number" id="alacakMiktar" class="form-control"></div>
+    <div class="form-group"><label id="alacakDateLabel">Tahmini Tarih</label><input type="date" id="alacakTarih" class="form-control"></div>
+    <div class="form-group"><label id="alacakDescLabel">Açıklama</label><input type="text" id="alacakAciklama" class="form-control"></div>
+    <button class="modal-save" id="saveAlacakBtn"><span id="saveAlacakBtnText">Ekle</span></button>
 </div></div>
 
 <script type="module">
@@ -774,6 +826,278 @@
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
 
+    // Çoklu dil desteği
+    const translations = {
+        tr: {
+            loading: "Yükleniyor...",
+            pdf: "PDF",
+            kpiIncome: "Bu Ay Gelir",
+            kpiExpense: "Bu Ay Gider",
+            kpiRemaining: "Kalan Bütçe",
+            lineChartTitle: "Gelir/Gider",
+            pieChartTitle: "Gider Dağılımı",
+            day: "Gün",
+            week: "Hafta",
+            month: "Ay",
+            incomeBtn: "Gelir",
+            expenseBtn: "Gider",
+            debtBtn: "Borç",
+            receivableBtn: "Alacak",
+            debtHeader: "Borç & Alacaklar",
+            searchPlaceholder: "İşlem ara (başlık/kategori)",
+            historyTitle: "İşlem Geçmişi",
+            filterAll: "Tümü",
+            filterIncome: "💰 Gelir",
+            filterExpense: "💸 Gider",
+            incomeModalTitle: "Gelir Ekle",
+            expenseModalTitle: "Gider Ekle",
+            debtModalTitle: "Borç Ekle",
+            receivableModalTitle: "Alacak Ekle",
+            titleLabel: "Başlık",
+            categoryLabel: "Kategori",
+            amountLabel: "Tutar (₺)",
+            dateLabel: "Tarih",
+            personLabel: "Kişi/Kurum",
+            descLabel: "Açıklama",
+            save: "Kaydet",
+            add: "Ekle",
+            paid: "Ödendi",
+            collected: "Tahsil Edildi",
+            overdue: "⚠️ Gecikti",
+            todayDue: "🕒 Bugün son gün",
+            approaching: (days) => `🕒 Yaklaşıyor (${days} gün)`,
+            noDebts: "Borç/Alacak yok",
+            overdueDebts: "gecikmiş borç",
+            toastIncomeAdded: "Gelir eklendi",
+            toastExpenseAdded: "Gider eklendi",
+            toastDebtAdded: "Borç eklendi",
+            toastReceivableAdded: "Alacak eklendi",
+            toastDebtPaid: "Borç ödendi, gidere eklendi",
+            toastReceivableCollected: "Alacak tahsil edildi, gelire eklendi",
+            toastDeleted: "İşlem silindi",
+            toastError: "Hata",
+            toastInvalid: "Geçerli bilgi",
+            toastMissing: "Eksik bilgi",
+            toastPdfReady: "PDF hazır",
+            toastFiltered: (cat) => `"${cat}" kategorisine göre filtreleme yapıldı`,
+            // Kategori isimleri (çeviri yapılabilir ama basit tutalım)
+            // grafiklerde kategori isimleri olduğu gibi kalır veya çevrilebilir. Şimdilik sabit.
+        },
+        en: {
+            loading: "Loading...",
+            pdf: "PDF",
+            kpiIncome: "Income This Month",
+            kpiExpense: "Expenses This Month",
+            kpiRemaining: "Remaining Budget",
+            lineChartTitle: "Income/Expense",
+            pieChartTitle: "Expense Breakdown",
+            day: "Day",
+            week: "Week",
+            month: "Month",
+            incomeBtn: "Income",
+            expenseBtn: "Expense",
+            debtBtn: "Debt",
+            receivableBtn: "Receivable",
+            debtHeader: "Debts & Receivables",
+            searchPlaceholder: "Search transaction (title/category)",
+            historyTitle: "Transaction History",
+            filterAll: "All",
+            filterIncome: "💰 Income",
+            filterExpense: "💸 Expense",
+            incomeModalTitle: "Add Income",
+            expenseModalTitle: "Add Expense",
+            debtModalTitle: "Add Debt",
+            receivableModalTitle: "Add Receivable",
+            titleLabel: "Title",
+            categoryLabel: "Category",
+            amountLabel: "Amount (₺)",
+            dateLabel: "Date",
+            personLabel: "Person/Institution",
+            descLabel: "Description",
+            save: "Save",
+            add: "Add",
+            paid: "Paid",
+            collected: "Collected",
+            overdue: "⚠️ Overdue",
+            todayDue: "🕒 Due today",
+            approaching: (days) => `🕒 Approaching (${days} days)`,
+            noDebts: "No debts or receivables",
+            overdueDebts: "overdue debts",
+            toastIncomeAdded: "Income added",
+            toastExpenseAdded: "Expense added",
+            toastDebtAdded: "Debt added",
+            toastReceivableAdded: "Receivable added",
+            toastDebtPaid: "Debt paid, added to expenses",
+            toastReceivableCollected: "Receivable collected, added to income",
+            toastDeleted: "Transaction deleted",
+            toastError: "Error",
+            toastInvalid: "Invalid info",
+            toastMissing: "Missing info",
+            toastPdfReady: "PDF ready",
+            toastFiltered: (cat) => `Filtered by category "${cat}"`,
+        },
+        ar: {
+            loading: "جاري التحميل...",
+            pdf: "PDF",
+            kpiIncome: "الدخل هذا الشهر",
+            kpiExpense: "المصروفات هذا الشهر",
+            kpiRemaining: "الميزانية المتبقية",
+            lineChartTitle: "الدخل/المصروفات",
+            pieChartTitle: "توزيع المصروفات",
+            day: "يوم",
+            week: "أسبوع",
+            month: "شهر",
+            incomeBtn: "دخل",
+            expenseBtn: "مصروف",
+            debtBtn: "دين",
+            receivableBtn: "مستحق",
+            debtHeader: "الديون والمستحقات",
+            searchPlaceholder: "ابحث في المعاملات (العنوان/الفئة)",
+            historyTitle: "سجل المعاملات",
+            filterAll: "الكل",
+            filterIncome: "💰 دخل",
+            filterExpense: "💸 مصروف",
+            incomeModalTitle: "إضافة دخل",
+            expenseModalTitle: "إضافة مصروف",
+            debtModalTitle: "إضافة دين",
+            receivableModalTitle: "إضافة مستحق",
+            titleLabel: "العنوان",
+            categoryLabel: "الفئة",
+            amountLabel: "المبلغ (₺)",
+            dateLabel: "التاريخ",
+            personLabel: "الشخص/المؤسسة",
+            descLabel: "الوصف",
+            save: "حفظ",
+            add: "إضافة",
+            paid: "تم السداد",
+            collected: "تم التحصيل",
+            overdue: "⚠️ متأخر",
+            todayDue: "🕒 ينتهي اليوم",
+            approaching: (days) => `🕒 يقترب (${days} يوم)`,
+            noDebts: "لا توجد ديون أو مستحقات",
+            overdueDebts: "ديون متأخرة",
+            toastIncomeAdded: "تمت إضافة الدخل",
+            toastExpenseAdded: "تمت إضافة المصروف",
+            toastDebtAdded: "تمت إضافة الدين",
+            toastReceivableAdded: "تمت إضافة المستحق",
+            toastDebtPaid: "تم سداد الدين وأضيف إلى المصروفات",
+            toastReceivableCollected: "تم تحصيل المستحق وأضيف إلى الدخل",
+            toastDeleted: "تم حذف المعاملة",
+            toastError: "خطأ",
+            toastInvalid: "معلومات غير صالحة",
+            toastMissing: "معلومات ناقصة",
+            toastPdfReady: "PDF جاهز",
+            toastFiltered: (cat) => `تم التصفية حسب الفئة "${cat}"`,
+        },
+        fr: {
+            loading: "Chargement...",
+            pdf: "PDF",
+            kpiIncome: "Revenus ce mois",
+            kpiExpense: "Dépenses ce mois",
+            kpiRemaining: "Budget restant",
+            lineChartTitle: "Revenus/Dépenses",
+            pieChartTitle: "Répartition des dépenses",
+            day: "Jour",
+            week: "Semaine",
+            month: "Mois",
+            incomeBtn: "Revenu",
+            expenseBtn: "Dépense",
+            debtBtn: "Dette",
+            receivableBtn: "Créance",
+            debtHeader: "Dettes et Créances",
+            searchPlaceholder: "Rechercher une transaction (titre/catégorie)",
+            historyTitle: "Historique des transactions",
+            filterAll: "Tout",
+            filterIncome: "💰 Revenu",
+            filterExpense: "💸 Dépense",
+            incomeModalTitle: "Ajouter un revenu",
+            expenseModalTitle: "Ajouter une dépense",
+            debtModalTitle: "Ajouter une dette",
+            receivableModalTitle: "Ajouter une créance",
+            titleLabel: "Titre",
+            categoryLabel: "Catégorie",
+            amountLabel: "Montant (₺)",
+            dateLabel: "Date",
+            personLabel: "Personne/Institution",
+            descLabel: "Description",
+            save: "Enregistrer",
+            add: "Ajouter",
+            paid: "Payé",
+            collected: "Recouvré",
+            overdue: "⚠️ En retard",
+            todayDue: "🕒 Dernier jour",
+            approaching: (days) => `🕒 Proche (${days} jours)`,
+            noDebts: "Aucune dette ou créance",
+            overdueDebts: "dettes en retard",
+            toastIncomeAdded: "Revenu ajouté",
+            toastExpenseAdded: "Dépense ajoutée",
+            toastDebtAdded: "Dette ajoutée",
+            toastReceivableAdded: "Créance ajoutée",
+            toastDebtPaid: "Dette payée, ajoutée aux dépenses",
+            toastReceivableCollected: "Créance recouvrée, ajoutée aux revenus",
+            toastDeleted: "Transaction supprimée",
+            toastError: "Erreur",
+            toastInvalid: "Informations invalides",
+            toastMissing: "Informations manquantes",
+            toastPdfReady: "PDF prêt",
+            toastFiltered: (cat) => `Filtré par catégorie "${cat}"`,
+        },
+        de: {
+            loading: "Laden...",
+            pdf: "PDF",
+            kpiIncome: "Einnahmen diesen Monat",
+            kpiExpense: "Ausgaben diesen Monat",
+            kpiRemaining: "Restbudget",
+            lineChartTitle: "Einnahmen/Ausgaben",
+            pieChartTitle: "Ausgabenverteilung",
+            day: "Tag",
+            week: "Woche",
+            month: "Monat",
+            incomeBtn: "Einnahme",
+            expenseBtn: "Ausgabe",
+            debtBtn: "Schuld",
+            receivableBtn: "Forderung",
+            debtHeader: "Schulden & Forderungen",
+            searchPlaceholder: "Transaktion suchen (Titel/Kategorie)",
+            historyTitle: "Transaktionsverlauf",
+            filterAll: "Alle",
+            filterIncome: "💰 Einnahme",
+            filterExpense: "💸 Ausgabe",
+            incomeModalTitle: "Einnahme hinzufügen",
+            expenseModalTitle: "Ausgabe hinzufügen",
+            debtModalTitle: "Schuld hinzufügen",
+            receivableModalTitle: "Forderung hinzufügen",
+            titleLabel: "Titel",
+            categoryLabel: "Kategorie",
+            amountLabel: "Betrag (₺)",
+            dateLabel: "Datum",
+            personLabel: "Person/Institution",
+            descLabel: "Beschreibung",
+            save: "Speichern",
+            add: "Hinzufügen",
+            paid: "Bezahlt",
+            collected: "Eingezogen",
+            overdue: "⚠️ Überfällig",
+            todayDue: "🕒 Fällig heute",
+            approaching: (days) => `🕒 Nähert sich (${days} Tage)`,
+            noDebts: "Keine Schulden oder Forderungen",
+            overdueDebts: "überfällige Schulden",
+            toastIncomeAdded: "Einnahme hinzugefügt",
+            toastExpenseAdded: "Ausgabe hinzugefügt",
+            toastDebtAdded: "Schuld hinzugefügt",
+            toastReceivableAdded: "Forderung hinzugefügt",
+            toastDebtPaid: "Schuld bezahlt, zu Ausgaben hinzugefügt",
+            toastReceivableCollected: "Forderung eingezogen, zu Einnahmen hinzugefügt",
+            toastDeleted: "Transaktion gelöscht",
+            toastError: "Fehler",
+            toastInvalid: "Ungültige Information",
+            toastMissing: "Fehlende Information",
+            toastPdfReady: "PDF bereit",
+            toastFiltered: (cat) => `Gefiltert nach Kategorie "${cat}"`,
+        }
+    };
+
+    let currentLang = "tr";
     let allGelirler = [], allGiderler = [], allBorclar = [], allAlacaklar = [];
     let currentYear = new Date().getFullYear(), currentMonth = new Date().getMonth();
     let chart1 = null, chart2 = null;
@@ -785,7 +1109,75 @@
     let currentPiePeriod = "month";
     let currentLinePeriod = "month";
 
-    // Yerel tarih parse (YYYY-MM-DD)
+    function t(key, ...args) {
+        let str = translations[currentLang][key] || translations["tr"][key] || key;
+        if (args.length && typeof str === 'function') return str(...args);
+        return str;
+    }
+
+    function applyLanguage() {
+        document.getElementById("loadingText").innerText = t("loading");
+        document.getElementById("pdfBtnText").innerText = t("pdf");
+        document.getElementById("kpiIncomeTitle").innerText = t("kpiIncome");
+        document.getElementById("kpiExpenseTitle").innerText = t("kpiExpense");
+        document.getElementById("kpiRemainingTitle").innerText = t("kpiRemaining");
+        document.getElementById("lineChartTitle").innerText = t("lineChartTitle");
+        document.getElementById("pieChartTitle").innerText = t("pieChartTitle");
+        document.getElementById("lineDayBtn").innerText = t("day");
+        document.getElementById("lineWeekBtn").innerText = t("week");
+        document.getElementById("lineMonthBtn").innerText = t("month");
+        document.getElementById("pieDayBtn").innerText = t("day");
+        document.getElementById("pieWeekBtn").innerText = t("week");
+        document.getElementById("pieMonthBtn").innerText = t("month");
+        document.getElementById("incomeBtnText").innerText = t("incomeBtn");
+        document.getElementById("expenseBtnText").innerText = t("expenseBtn");
+        document.getElementById("debtBtnText").innerText = t("debtBtn");
+        document.getElementById("receivableBtnText").innerText = t("receivableBtn");
+        document.getElementById("debtHeader").innerText = t("debtHeader");
+        document.getElementById("searchInput").placeholder = t("searchPlaceholder");
+        document.getElementById("historyTitle").innerText = t("historyTitle");
+        document.getElementById("filterAll").innerText = t("filterAll");
+        document.getElementById("filterIncome").innerHTML = t("filterIncome");
+        document.getElementById("filterExpense").innerHTML = t("filterExpense");
+        document.getElementById("incomeModalTitle").innerText = t("incomeModalTitle");
+        document.getElementById("expenseModalTitle").innerText = t("expenseModalTitle");
+        document.getElementById("borcModalTitle").innerText = t("debtModalTitle");
+        document.getElementById("alacakModalTitle").innerText = t("receivableModalTitle");
+        document.getElementById("incomeTitleLabel").innerText = t("titleLabel");
+        document.getElementById("incomeCatLabel").innerText = t("categoryLabel");
+        document.getElementById("incomeAmountLabel").innerText = t("amountLabel");
+        document.getElementById("incomeDateLabel").innerText = t("dateLabel");
+        document.getElementById("saveIncomeBtnText").innerText = t("save");
+        document.getElementById("expenseTitleLabel").innerText = t("titleLabel");
+        document.getElementById("expenseCatLabel").innerText = t("categoryLabel");
+        document.getElementById("expenseAmountLabel").innerText = t("amountLabel");
+        document.getElementById("expenseDateLabel").innerText = t("dateLabel");
+        document.getElementById("saveExpenseBtnText").innerText = t("save");
+        document.getElementById("borcPersonLabel").innerText = t("personLabel");
+        document.getElementById("borcAmountLabel").innerText = t("amountLabel");
+        document.getElementById("borcDateLabel").innerText = t("dateLabel");
+        document.getElementById("borcDescLabel").innerText = t("descLabel");
+        document.getElementById("saveBorcBtnText").innerText = t("add");
+        document.getElementById("alacakPersonLabel").innerText = t("personLabel");
+        document.getElementById("alacakAmountLabel").innerText = t("amountLabel");
+        document.getElementById("alacakDateLabel").innerText = t("dateLabel");
+        document.getElementById("alacakDescLabel").innerText = t("descLabel");
+        document.getElementById("saveAlacakBtnText").innerText = t("add");
+        document.getElementById("langBtnText").innerText = currentLang.toUpperCase();
+        
+        // RTL kontrolü
+        if (currentLang === "ar") {
+            document.body.classList.add("rtl");
+        } else {
+            document.body.classList.remove("rtl");
+        }
+        
+        // Dinamik içerikleri yenile (borç listesi, işlem listesi)
+        renderBorcList();
+        applyFilterAndRender();
+        updateCharts();
+    }
+
     function parseLocalDate(dateStr) {
         if (!dateStr) return null;
         let parts = dateStr.split('T')[0].split('-');
@@ -800,8 +1192,18 @@
         if (!d || isNaN(d)) d = new Date(dateInput);
         if (isNaN(d.getTime())) return "Geçersiz Tarih";
         const gunler = ["Pazar", "Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi"];
-        const gunAdi = gunler[d.getDay()];
-        return `${d.toLocaleDateString('tr-TR')} ${gunAdi}`;
+        const gunlerEn = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+        const gunlerFr = ["Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"];
+        const gunlerDe = ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"];
+        const gunlerAr = ["الأحد", "الإثنين", "الثلاثاء", "الأربعاء", "الخميس", "الجمعة", "السبت"];
+        let gunAdi = "";
+        if (currentLang === "en") gunAdi = gunlerEn[d.getDay()];
+        else if (currentLang === "fr") gunAdi = gunlerFr[d.getDay()];
+        else if (currentLang === "de") gunAdi = gunlerDe[d.getDay()];
+        else if (currentLang === "ar") gunAdi = gunlerAr[d.getDay()];
+        else gunAdi = gunler[d.getDay()];
+        let dateStr = d.toLocaleDateString(currentLang === "tr" ? "tr-TR" : (currentLang === "ar" ? "ar-EG" : currentLang));
+        return `${dateStr} ${gunAdi}`;
     }
 
     function getDaysUntilDue(dateStr) {
@@ -818,9 +1220,9 @@
     function getWarningText(dateStr) {
         const days = getDaysUntilDue(dateStr);
         if (days === null) return "";
-        if (days < 0) return '<span class="warning-overdue">⚠️ Gecikti</span>';
-        if (days === 0) return '<span class="warning-coming">🕒 Bugün son gün</span>';
-        if (days <= 7) return `<span class="warning-coming">🕒 Yaklaşıyor (${days} gün)</span>`;
+        if (days < 0) return '<span class="warning-overdue">' + t("overdue") + '</span>';
+        if (days === 0) return '<span class="warning-coming">' + t("todayDue") + '</span>';
+        if (days <= 7) return '<span class="warning-coming">' + t("approaching", days) + '</span>';
         return "";
     }
 
@@ -831,7 +1233,7 @@
     }
 
     function showToast(msg, err = false) {
-        let t = document.createElement('div'); t.className = 'toast'; t.innerText = msg; t.style.background = err ? '#ff3b30' : '#1c1c1e'; document.body.appendChild(t); setTimeout(() => t.remove(), 2500);
+        let tDiv = document.createElement('div'); tDiv.className = 'toast'; tDiv.innerText = msg; tDiv.style.background = err ? '#ff3b30' : '#1c1c1e'; document.body.appendChild(tDiv); setTimeout(() => tDiv.remove(), 2500);
     }
     function formatMoney(amt) { return '₺' + amt.toLocaleString('tr-TR'); }
 
@@ -852,7 +1254,7 @@
             allTransactionsArray.sort((a,b) => new Date(b.tarih) - new Date(a.tarih));
             renderDashboard();
         } catch(error) {
-            showToast("Veri yüklenemedi: " + error.message, true);
+            showToast(t("toastError") + ": " + error.message, true);
         } finally {
             showLoading(false);
         }
@@ -869,9 +1271,6 @@
         document.getElementById('monthExpense').innerHTML = formatMoney(aylikGider);
         document.getElementById('monthRemaining').innerHTML = formatMoney(aylikGelir - aylikGider);
         document.getElementById('currentMonthDisplay').innerText = getMonthName(year, month);
-        
-     
-        
         renderBorcList();
         applyFilterAndRender();
         updateCharts();
@@ -883,20 +1282,20 @@
         [...allBorclar, ...allAlacaklar].forEach(item => {
             const isBorc = item.tip === 'borc';
             const warningHtml = getWarningText(item.tarih);
-            if(warningHtml.includes('Gecikti') && isBorc) geciken++;
+            if(warningHtml.includes(t("overdue")) && isBorc) geciken++;
             html += `<div class="borc-card ${isBorc ? '' : 'alacak'}">
                 <div class="borc-detay">
-                    <div class="borc-title">${isBorc ? '🧾 Borç' : '💰 Alacak'} - ${escapeHtml(item.kisi)}</div>
-                    <div class="borc-tarih">Son Tarih: ${formatDateOnly(item.tarih)} ${warningHtml}</div>
+                    <div class="borc-title">${isBorc ? '🧾 ' + t("debtBtn") : '💰 ' + t("receivableBtn")} - ${escapeHtml(item.kisi)}</div>
+                    <div class="borc-tarih">${t("dateLabel")}: ${formatDateOnly(item.tarih)} ${warningHtml}</div>
                     <div style="font-size:0.7rem; color:#8e8e93;">${escapeHtml(item.aciklama || '')}</div>
                 </div>
                 <div class="borc-tutar" style="color:${isBorc ? '#ff3b30' : '#34c759'}">${formatMoney(item.miktar)}</div>
-                <button class="btn-ode" data-id="${item.id}" data-tip="${item.tip}" data-miktar="${item.miktar}">${isBorc ? 'Ödendi' : 'Tahsil Edildi'}</button>
+                <button class="btn-ode" data-id="${item.id}" data-tip="${item.tip}" data-miktar="${item.miktar}">${isBorc ? t("paid") : t("collected")}</button>
             </div>`;
         });
-        if(html === '') html = '<div style="text-align:center;padding:20px;">Borç/Alacak yok</div>';
+        if(html === '') html = '<div style="text-align:center;padding:20px;">' + t("noDebts") + '</div>';
         document.getElementById('borcList').innerHTML = html;
-        document.getElementById('borcOzet').innerHTML = `⚠️ ${geciken} gecikmiş borç`;
+        document.getElementById('borcOzet').innerHTML = `⚠️ ${geciken} ${t("overdueDebts")}`;
         document.querySelectorAll('.borc-card .btn-ode').forEach(btn => {
             btn.addEventListener('click', async (e) => {
                 if(isProcessing) return;
@@ -909,15 +1308,15 @@
                     if(tip === 'borc') {
                         await addDoc(collection(db, "mucahit_giderler"), { baslik: "Borç Ödemesi", kategori: "Borç Ödemesi", tutar: miktar, tarih: new Date().toISOString() });
                         await deleteDoc(doc(db, "mucahit_borclar", id));
-                        showToast("Borç ödendi, gidere eklendi");
+                        showToast(t("toastDebtPaid"));
                     } else {
                         await addDoc(collection(db, "mucahit_gelirler"), { baslik: "Alacak Tahsilatı", kategori: "Diğer", tutar: miktar, tarih: new Date().toISOString() });
                         await deleteDoc(doc(db, "mucahit_alacaklar", id));
-                        showToast("Alacak tahsil edildi, gelire eklendi");
+                        showToast(t("toastReceivableCollected"));
                     }
                     await loadAll();
                 } catch(err) {
-                    showToast("İşlem başarısız: " + err.message, true);
+                    showToast(t("toastError") + ": " + err.message, true);
                 } finally {
                     isProcessing = false;
                     showLoading(false);
@@ -960,8 +1359,9 @@
                     </div>
                     <div style="font-weight:700; color:${t.tip === 'gelir' ? '#34c759' : '#ff3b30'}">${t.tip === 'gelir' ? '+' : '-'} ${formatMoney(t.tutar)}</div>
                 </div>
-                <div class="swipe-delete"><i class="fas fa-trash-alt"></i> Sil</div>
+                <div class="swipe-delete"><i class="fas fa-trash-alt"></i> ${t("paid")? "Sil" : "Delete"}</div>
             `;
+            // Swipe işlemleri
             let startX = 0;
             let isSwiping = false;
             const handleStart = (clientX) => { startX = clientX; isSwiping = true; };
@@ -990,10 +1390,10 @@
                 try {
                     if(tip === 'gelir') await deleteDoc(doc(db, "mucahit_gelirler", id));
                     else await deleteDoc(doc(db, "mucahit_giderler", id));
-                    showToast("İşlem silindi");
+                    showToast(t("toastDeleted"));
                     await loadAll();
                 } catch(err) {
-                    showToast("Silme hatası, yeniden dene", true);
+                    showToast(t("toastError") + ": " + err.message, true);
                 } finally {
                     isProcessing = false;
                     showLoading(false);
@@ -1002,11 +1402,11 @@
             container.appendChild(itemDiv);
         });
         
-        document.getElementById('transactionCount').innerHTML = `${filteredTransactionsArray.length} işlem`;
+        document.getElementById('transactionCount').innerHTML = `${filteredTransactionsArray.length} ${t("historyTitle")}`;
         loadMoreContainer.innerHTML = '';
         if(currentDisplayCount < filteredTransactionsArray.length) {
             let btn = document.createElement('button');
-            btn.innerText = 'Daha Fazla Yükle';
+            btn.innerText = currentLang === "tr" ? "Daha Fazla Yükle" : (currentLang === "en" ? "Load More" : (currentLang === "fr" ? "Charger plus" : (currentLang === "de" ? "Mehr laden" : "تحميل المزيد")));
             btn.className = 'load-more-btn';
             btn.onclick = () => {
                 currentDisplayCount += 10;
@@ -1043,7 +1443,7 @@
                 });
                 gelirData.push(gelirTop);
                 giderData.push(giderTop);
-                labels.push(d.toLocaleDateString('tr-TR', {day:'numeric', month:'short'}));
+                labels.push(d.toLocaleDateString(currentLang === "tr" ? "tr-TR" : (currentLang === "ar" ? "ar-EG" : currentLang), {day:'numeric', month:'short'}));
             }
         } else if (currentLinePeriod === 'week') {
             for (let w = 5; w >= 0; w--) {
@@ -1090,7 +1490,7 @@
         if(chart1) chart1.destroy();
         chart1 = new Chart(ctx1, {
             type: 'line',
-            data: { labels, datasets: [{ label: 'Gelir', data: gelirData, borderColor: '#34c759', backgroundColor: 'transparent', tension: 0.3, fill: false, pointBackgroundColor: '#34c759' }, { label: 'Gider', data: giderData, borderColor: '#ff3b30', backgroundColor: 'transparent', tension: 0.3, fill: false, pointBackgroundColor: '#ff3b30' }] },
+            data: { labels, datasets: [{ label: t("incomeBtn"), data: gelirData, borderColor: '#34c759', backgroundColor: 'transparent', tension: 0.3, fill: false, pointBackgroundColor: '#34c759' }, { label: t("expenseBtn"), data: giderData, borderColor: '#ff3b30', backgroundColor: 'transparent', tension: 0.3, fill: false, pointBackgroundColor: '#ff3b30' }] },
             options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { labels: { color: fontColor } } } }
         });
     }
@@ -1144,7 +1544,7 @@
                     if (category) {
                         document.getElementById('searchInput').value = category;
                         applyFilterAndRender();
-                        showToast(`"${category}" kategorisine göre filtreleme yapıldı`);
+                        showToast(t("toastFiltered", category));
                     }
                 }
             }
@@ -1156,16 +1556,15 @@
         const { year, month } = getCurrentFilterObj();
         let aylikGelir=0, aylikGider=0;
         let aylikIslemler = [];
-        allGelirler.forEach(g => { let d = parseLocalDate(g.tarih); if(d && d.getFullYear()===year && d.getMonth()===month) { aylikGelir += g.tutar; aylikIslemler.push({...g, tip:'Gelir'}); } });
-        allGiderler.forEach(g => { let d = parseLocalDate(g.tarih); if(d && d.getFullYear()===year && d.getMonth()===month) { aylikGider += g.tutar; aylikIslemler.push({...g, tip:'Gider'}); } });
+        allGelirler.forEach(g => { let d = parseLocalDate(g.tarih); if(d && d.getFullYear()===year && d.getMonth()===month) { aylikGelir += g.tutar; aylikIslemler.push({...g, tip:t("incomeBtn")}); } });
+        allGiderler.forEach(g => { let d = parseLocalDate(g.tarih); if(d && d.getFullYear()===year && d.getMonth()===month) { aylikGider += g.tutar; aylikIslemler.push({...g, tip:t("expenseBtn")}); } });
         aylikIslemler.sort((a,b)=>new Date(b.tarih)-new Date(a.tarih));
         
-        // Borç/Alacak listesi
-        let borcAlacakHtml = '<h3 style="margin-top:20px;">Borç & Alacaklar</h3><table style="width:100%; border-collapse:collapse; font-size:11px; margin-top:8px;"><thead><tr style="background:#f2f2f2;"><th>Tip</th><th>Kişi</th><th>Tutar</th><th>Son Tarih</th><th>Durum</th></tr></thead><tbody>';
+        let borcAlacakHtml = '<h3>' + t("debtHeader") + '</h3><table style="width:100%; border-collapse:collapse; font-size:11px; margin-top:8px;"><thead><tr style="background:#f2f2f2;"><th>' + t("debtBtn") + '/' + t("receivableBtn") + '</th><th>' + t("personLabel") + '</th><th>' + t("amountLabel") + '</th><th>' + t("dateLabel") + '</th><th>' + t("status") + '</th></tr></thead><tbody>';
         [...allBorclar, ...allAlacaklar].forEach(item => {
             const isBorc = item.tip === 'borc';
-            const durum = getWarningText(item.tarih);
-            borcAlacakHtml += `<tr><td>${isBorc ? 'Borç' : 'Alacak'}</td><td>${escapeHtml(item.kisi)}</td><td>${formatMoney(item.miktar)}</td><td>${formatDateOnly(item.tarih)}</td><td>${durum.replace(/<[^>]*>/g, '')}</td></tr>`;
+            const durum = getWarningText(item.tarih).replace(/<[^>]*>/g, '');
+            borcAlacakHtml += `<tr><td>${isBorc ? t("debtBtn") : t("receivableBtn")}</td><td>${escapeHtml(item.kisi)}</td><td>${formatMoney(item.miktar)}</td><td>${formatDateOnly(item.tarih)}</td><td>${durum}</td></tr>`;
         });
         borcAlacakHtml += '</tbody></table>';
         
@@ -1178,14 +1577,14 @@
             <h1 style="font-size:24px; font-weight:800; text-align:center;">MÜCAHİTKASA RAPORU</h1>
             <p style="text-align:center; color:#666;">${getMonthName(year, month)}</p>
             <div style="display:flex; gap:12px; margin:16px 0;">
-                <div style="flex:1; background:#f5f5f7; padding:12px; border-radius:20px;"><div>Gelir</div><div style="font-size:20px; color:#34c759;">${formatMoney(aylikGelir)}</div></div>
-                <div style="flex:1; background:#f5f5f7; padding:12px; border-radius:20px;"><div>Gider</div><div style="font-size:20px; color:#ff3b30;">${formatMoney(aylikGider)}</div></div>
-                <div style="flex:1; background:#f5f5f7; padding:12px; border-radius:20px;"><div>Kalan</div><div style="font-size:20px;">${formatMoney(aylikGelir-aylikGider)}</div></div>
+                <div style="flex:1; background:#f5f5f7; padding:12px; border-radius:20px;"><div>${t("kpiIncome")}</div><div style="font-size:20px; color:#34c759;">${formatMoney(aylikGelir)}</div></div>
+                <div style="flex:1; background:#f5f5f7; padding:12px; border-radius:20px;"><div>${t("kpiExpense")}</div><div style="font-size:20px; color:#ff3b30;">${formatMoney(aylikGider)}</div></div>
+                <div style="flex:1; background:#f5f5f7; padding:12px; border-radius:20px;"><div>${t("kpiRemaining")}</div><div style="font-size:20px;">${formatMoney(aylikGelir-aylikGider)}</div></div>
             </div>
             <table style="width:100%; border-collapse:collapse; font-size:11px;">
-                <thead><tr style="background:#f2f2f2;"><th style="padding:8px;">Tarih</th><th>Tip</th><th>Başlık</th><th>Kategori</th><th>Tutar</th></tr></thead>
+                <thead><tr style="background:#f2f2f2;"><th style="padding:8px;">${t("dateLabel")}</th><th>${t("type")}</th><th>${t("titleLabel")}</th><th>${t("categoryLabel")}</th><th>${t("amountLabel")}</th></tr></thead>
                 <tbody>${aylikIslemler.map(t => {
-                    const rowBg = t.tip === 'Gelir' ? '#f0fff0' : '#fff0f0';
+                    const rowBg = t.tip === t("incomeBtn") ? '#f0fff0' : '#fff0f0';
                     return `<tr style="background:${rowBg};">
                         <td style="padding:6px;">${formatDateOnly(t.tarih)}</td>
                         <td>${t.tip}</td>
@@ -1197,15 +1596,15 @@
             </table>
             ${borcAlacakHtml}
             <div style="margin-top:16px; padding:12px; background:#f5f5f7; border-radius:16px; display:flex; justify-content:space-between; font-weight:600;">
-                <span>Toplam Gelir: <span style="color:#34c759;">${formatMoney(aylikGelir)}</span></span>
-                <span>Toplam Gider: <span style="color:#ff3b30;">${formatMoney(aylikGider)}</span></span>
-                <span>Net: <span>${formatMoney(aylikGelir-aylikGider)}</span></span>
+                <span>${t("kpiIncome")}: <span style="color:#34c759;">${formatMoney(aylikGelir)}</span></span>
+                <span>${t("kpiExpense")}: <span style="color:#ff3b30;">${formatMoney(aylikGider)}</span></span>
+                <span>${t("kpiRemaining")}: <span>${formatMoney(aylikGelir-aylikGider)}</span></span>
             </div>
         `;
         document.body.appendChild(pdfDiv);
         await html2pdf().from(pdfDiv).set({ margin: 0.5, filename: `mucahitkasa_${getMonthName(year, month)}.pdf`, image: { type: 'jpeg', quality: 0.98 }, html2canvas: { scale: 2 }, jsPDF: { unit: 'in', format: 'a4', orientation: 'landscape' } }).save();
         document.body.removeChild(pdfDiv);
-        showToast("PDF hazır");
+        showToast(t("toastPdfReady"));
         showLoading(false);
     };
 
@@ -1220,7 +1619,7 @@
         if(modalId === 'borcModal') { document.getElementById('borcKisi').value = ''; document.getElementById('borcMiktar').value = ''; document.getElementById('borcTarih').value = ''; document.getElementById('borcAciklama').value = ''; }
         if(modalId === 'alacakModal') { document.getElementById('alacakKisi').value = ''; document.getElementById('alacakMiktar').value = ''; document.getElementById('alacakTarih').value = ''; document.getElementById('alacakAciklama').value = ''; }
     }
-    async function addGeneric(collectionName, data, modalId, successMsg) {
+    async function addGeneric(collectionName, data, modalId, successMsgKey) {
         if(isProcessing) return;
         isProcessing = true;
         showLoading(true);
@@ -1228,9 +1627,9 @@
             await addDoc(collection(db, collectionName), data);
             closeModal(modalId);
             await loadAll();
-            showToast(successMsg);
+            showToast(t(successMsgKey));
         } catch(err) {
-            showToast("Hata: " + err.message, true);
+            showToast(t("toastError") + ": " + err.message, true);
         } finally {
             isProcessing = false;
             showLoading(false);
@@ -1240,31 +1639,31 @@
         let baslik = document.getElementById('incomeTitle').value.trim();
         let tutar = parseFloat(document.getElementById('incomeAmount').value);
         let tarih = document.getElementById('incomeDate').value;
-        if(!baslik || tutar<=0) return showToast("Geçerli bilgi", true);
+        if(!baslik || tutar<=0) return showToast(t("toastInvalid"), true);
         if(!tarih) tarih = new Date().toISOString().split('T')[0];
-        addGeneric("mucahit_gelirler", { baslik, kategori: document.getElementById('incomeCat').value, tutar, tarih: new Date(tarih).toISOString() }, "incomeModal", "Gelir eklendi");
+        addGeneric("mucahit_gelirler", { baslik, kategori: document.getElementById('incomeCat').value, tutar, tarih: new Date(tarih).toISOString() }, "incomeModal", "toastIncomeAdded");
     };
     document.getElementById('saveExpenseBtn').onclick = () => {
         let baslik = document.getElementById('expenseTitle').value.trim();
         let tutar = parseFloat(document.getElementById('expenseAmount').value);
         let tarih = document.getElementById('expenseDate').value;
-        if(!baslik || tutar<=0) return showToast("Geçerli bilgi", true);
+        if(!baslik || tutar<=0) return showToast(t("toastInvalid"), true);
         if(!tarih) tarih = new Date().toISOString().split('T')[0];
-        addGeneric("mucahit_giderler", { baslik, kategori: document.getElementById('expenseCat').value, tutar, tarih: new Date(tarih).toISOString() }, "expenseModal", "Gider eklendi");
+        addGeneric("mucahit_giderler", { baslik, kategori: document.getElementById('expenseCat').value, tutar, tarih: new Date(tarih).toISOString() }, "expenseModal", "toastExpenseAdded");
     };
     document.getElementById('saveBorcBtn').onclick = async () => {
         let kisi = document.getElementById('borcKisi').value.trim();
         let miktar = parseFloat(document.getElementById('borcMiktar').value);
         let tarih = document.getElementById('borcTarih').value;
-        if(!kisi || miktar<=0 || !tarih) return showToast("Eksik bilgi", true);
-        addGeneric("mucahit_borclar", { kisi, miktar, tarih, aciklama: document.getElementById('borcAciklama').value }, "borcModal", "Borç eklendi");
+        if(!kisi || miktar<=0 || !tarih) return showToast(t("toastMissing"), true);
+        addGeneric("mucahit_borclar", { kisi, miktar, tarih, aciklama: document.getElementById('borcAciklama').value }, "borcModal", "toastDebtAdded");
     };
     document.getElementById('saveAlacakBtn').onclick = async () => {
         let kisi = document.getElementById('alacakKisi').value.trim();
         let miktar = parseFloat(document.getElementById('alacakMiktar').value);
         let tarih = document.getElementById('alacakTarih').value;
-        if(!kisi || miktar<=0 || !tarih) return showToast("Eksik bilgi", true);
-        addGeneric("mucahit_alacaklar", { kisi, miktar, tarih, aciklama: document.getElementById('alacakAciklama').value }, "alacakModal", "Alacak eklendi");
+        if(!kisi || miktar<=0 || !tarih) return showToast(t("toastMissing"), true);
+        addGeneric("mucahit_alacaklar", { kisi, miktar, tarih, aciklama: document.getElementById('alacakAciklama').value }, "alacakModal", "toastReceivableAdded");
     };
     function getMonthName(y,m) { return ["Ocak","Şubat","Mart","Nisan","Mayıs","Haziran","Temmuz","Ağustos","Eylül","Ekim","Kasım","Aralık"][m]+" "+y; }
     function escapeHtml(s) { if(!s) return ''; return s.replace(/[&<>]/g, m => ({ '&':'&amp;','<':'&lt;','>':'&gt;' }[m])); }
@@ -1306,6 +1705,28 @@
         });
     });
     
+    // Dil seçimi
+    const langBtn = document.getElementById('langBtn');
+    const langDropdown = document.getElementById('langDropdown');
+    langBtn.addEventListener('click', () => {
+        langDropdown.style.display = langDropdown.style.display === 'block' ? 'none' : 'block';
+    });
+    document.querySelectorAll('.lang-dropdown button').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const lang = btn.dataset.lang;
+            currentLang = lang;
+            localStorage.setItem('mucahit_lang', lang);
+            applyLanguage();
+            langDropdown.style.display = 'none';
+            renderDashboard(); // yeniden çiz
+        });
+    });
+    document.addEventListener('click', (e) => {
+        if (!langBtn.contains(e.target) && !langDropdown.contains(e.target)) {
+            langDropdown.style.display = 'none';
+        }
+    });
+    
     // Modal dışarı tıklama kapatma
     document.querySelectorAll('.modal').forEach(modal => {
         modal.addEventListener('click', (e) => {
@@ -1334,6 +1755,11 @@
     // 24 saat hatırlama ve otomatik giriş
     const savedPin = localStorage.getItem('mucahit_pin');
     const savedTimestamp = localStorage.getItem('mucahit_oturum');
+    const savedLang = localStorage.getItem('mucahit_lang');
+    if (savedLang && translations[savedLang]) currentLang = savedLang;
+    else currentLang = "tr";
+    applyLanguage(); // ilk dil uygulaması
+    
     const nowTime = Date.now();
     const TWENTY_FOUR_HOURS = 24 * 60 * 60 * 1000;
     let autoLogin = false;
@@ -1366,7 +1792,7 @@
             document.getElementById('loginContainer').style.display = 'none';
             document.getElementById('appContainer').style.display = 'block';
             loadAll();
-        } else showToast("Hatalı şifre", true);
+        } else showToast(t("toastInvalid") + " (şifre)", true);
     };
 </script>
 </body>
