@@ -7,13 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         :root {
             --bg: #f2f2f7;
             --card: #ffffff;
@@ -26,7 +20,6 @@
             --primary: #007aff;
             --radius: 20px;
         }
-
         body.dark {
             --bg: #000000;
             --card: #1c1c1e;
@@ -34,344 +27,52 @@
             --text-sec: #98989e;
             --border: #2c2c2e;
         }
-
-        body {
-            background: var(--bg);
-            font-family: 'Inter', sans-serif;
-            color: var(--text);
-            padding: 20px 16px 40px;
-            min-height: 100vh;
-            transition: all 0.3s;
-        }
-
-        .container {
-            max-width: 480px;
-            margin: 0 auto;
-        }
-
-        .card {
-            background: var(--card);
-            border-radius: var(--radius);
-            padding: 20px;
-            margin-bottom: 16px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-        }
-
-        h1 {
-            font-size: 28px;
-            font-weight: 800;
-        }
-
-        .gradient-text {
-            background: linear-gradient(135deg, var(--text), var(--accent));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        h2 {
-            font-size: 17px;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 16px;
-        }
-
-        .btn {
-            background: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 14px;
-            padding: 16px;
-            font-weight: 600;
-            font-size: 16px;
-            width: 100%;
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 8px;
-            transition: 0.2s;
-        }
-
-        .btn:active {
-            transform: scale(0.97);
-        }
-
-        .btn-outline {
-            background: transparent;
-            border: 1.5px solid var(--border);
-            color: var(--text);
-        }
-
-        .btn-small {
-            padding: 8px 14px;
-            width: auto;
-            border-radius: 10px;
-        }
-
-        input, textarea {
-            width: 100%;
-            padding: 14px;
-            background: var(--bg);
-            border: 1.5px solid var(--border);
-            border-radius: 14px;
-            font-size: 16px;
-            color: var(--text);
-            margin-bottom: 12px;
-        }
-
-        input:focus, textarea:focus {
-            outline: none;
-            border-color: var(--primary);
-        }
-
-        .flex-between {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .star-card {
-            text-align: center;
-            padding: 30px 20px;
-        }
-
-        .star-icon {
-            font-size: 56px;
-            margin-bottom: 12px;
-        }
-
-        .star-message {
-            font-size: 16px;
-            font-weight: 600;
-            color: var(--accent);
-        }
-
-        .habit-item {
-            background: var(--bg);
-            border-radius: 16px;
-            padding: 16px;
-            margin-bottom: 10px;
-        }
-
-        .habit-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 12px;
-        }
-
-        .habit-name {
-            font-weight: 700;
-            font-size: 16px;
-        }
-
-        .habit-days {
-            font-size: 20px;
-            font-weight: 800;
-            color: var(--accent);
-        }
-
-        .habit-actions {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-        }
-
-        .action-btn {
-            border-radius: 10px;
-            padding: 10px;
-            font-size: 14px;
-            font-weight: 600;
-            border: none;
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .action-relapse {
-            background: rgba(255, 59, 48, 0.1);
-            color: var(--danger);
-        }
-
-        .action-crisis {
-            background: rgba(52, 199, 89, 0.1);
-            color: var(--success);
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-        }
-
-        .stat-block {
-            background: var(--bg);
-            border-radius: 14px;
-            padding: 16px 10px;
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 24px;
-            font-weight: 800;
-            color: var(--accent);
-        }
-
-        .stat-label {
-            font-size: 11px;
-            color: var(--text-sec);
-            margin-top: 6px;
-        }
-
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(4px);
-            visibility: hidden;
-            opacity: 0;
-            transition: 0.3s;
-            display: flex;
-            align-items: flex-end;
-            z-index: 1000;
-        }
-
-        .modal-overlay.active {
-            visibility: visible;
-            opacity: 1;
-        }
-
-        .modal-content {
-            background: var(--card);
-            width: 100%;
-            border-radius: 24px 24px 0 0;
-            padding: 24px;
-            transform: translateY(100%);
-            transition: 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-            max-height: 85vh;
-            overflow-y: auto;
-        }
-
-        .modal-overlay.active .modal-content {
-            transform: translateY(0);
-        }
-
-        .modal-drag-handle {
-            width: 40px;
-            height: 5px;
-            background: var(--border);
-            border-radius: 5px;
-            margin: 0 auto 20px;
-        }
-
-        .reason-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin: 20px 0;
-        }
-
-        .reason-btn {
-            background: var(--bg);
-            border: 1.5px solid var(--border);
-            border-radius: 12px;
-            padding: 12px;
-            font-size: 14px;
-            cursor: pointer;
-        }
-
-        .reason-btn.selected {
-            border-color: var(--primary);
-            background: rgba(0, 122, 255, 0.1);
-        }
-
-        .mood-selector {
-            display: flex;
-            justify-content: space-around;
-            margin: 20px 0;
-        }
-
-        .mood-emoji {
-            font-size: 44px;
-            cursor: pointer;
-            filter: grayscale(100%);
-            opacity: 0.5;
-            transition: 0.2s;
-        }
-
-        .mood-emoji.active {
-            filter: grayscale(0%);
-            opacity: 1;
-            transform: scale(1.2);
-        }
-
-        .predefined-habits {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .predef-habit {
-            background: var(--bg);
-            border: 1.5px solid var(--border);
-            border-radius: 30px;
-            padding: 10px 16px;
-            font-size: 14px;
-            cursor: pointer;
-        }
-
-        .toast {
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%) translateY(-100px);
-            background: var(--text);
-            color: var(--card);
-            padding: 12px 24px;
-            border-radius: 100px;
-            font-size: 14px;
-            z-index: 2000;
-            transition: 0.3s;
-        }
-
-        .toast.show {
-            transform: translateX(-50%) translateY(0);
-        }
-
-        .hidden {
-            display: none !important;
-        }
-
-        .breathing-circle {
-            width: 150px;
-            height: 150px;
-            background: var(--success);
-            border-radius: 50%;
-            margin: 20px auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: 0.5s ease-in-out;
-            color: white;
-            font-size: 20px;
-            font-weight: bold;
-        }
-
-        .timer-text {
-            font-size: 32px;
-            font-weight: 800;
-            text-align: center;
-            margin: 20px 0;
-        }
+        body { background: var(--bg); font-family: 'Inter', sans-serif; color: var(--text); padding: 20px 16px 40px; transition: all 0.3s; }
+        .container { max-width: 480px; margin: 0 auto; }
+        .card { background: var(--card); border-radius: var(--radius); padding: 20px; margin-bottom: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        h1 { font-size: 28px; font-weight: 800; }
+        .gradient-text { background: linear-gradient(135deg, var(--text), var(--accent)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        h2 { font-size: 17px; font-weight: 600; display: flex; align-items: center; gap: 8px; margin-bottom: 16px; }
+        .btn { background: var(--primary); color: white; border: none; border-radius: 14px; padding: 16px; font-weight: 600; font-size: 16px; width: 100%; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 8px; transition: 0.2s; }
+        .btn:active { transform: scale(0.97); }
+        .btn-outline { background: transparent; border: 1.5px solid var(--border); color: var(--text); }
+        .btn-small { padding: 8px 14px; width: auto; border-radius: 10px; }
+        input, textarea { width: 100%; padding: 14px; background: var(--bg); border: 1.5px solid var(--border); border-radius: 14px; font-size: 16px; color: var(--text); margin-bottom: 12px; }
+        input:focus, textarea:focus { outline: none; border-color: var(--primary); }
+        .flex-between { display: flex; justify-content: space-between; align-items: center; }
+        .star-card { text-align: center; padding: 30px 20px; }
+        .star-icon { font-size: 56px; margin-bottom: 12px; }
+        .star-message { font-size: 16px; font-weight: 600; color: var(--accent); }
+        .habit-item { background: var(--bg); border-radius: 16px; padding: 16px; margin-bottom: 10px; }
+        .habit-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+        .habit-name { font-weight: 700; font-size: 16px; }
+        .habit-days { font-size: 20px; font-weight: 800; color: var(--accent); }
+        .habit-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .action-btn { border-radius: 10px; padding: 10px; font-size: 14px; font-weight: 600; border: none; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 6px; }
+        .action-relapse { background: rgba(255, 59, 48, 0.1); color: var(--danger); }
+        .action-crisis { background: rgba(52, 199, 89, 0.1); color: var(--success); }
+        .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+        .stat-block { background: var(--bg); border-radius: 14px; padding: 16px 10px; text-align: center; }
+        .stat-number { font-size: 24px; font-weight: 800; color: var(--accent); }
+        .stat-label { font-size: 11px; color: var(--text-sec); margin-top: 6px; }
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); backdrop-filter: blur(4px); visibility: hidden; opacity: 0; transition: 0.3s; display: flex; align-items: flex-end; z-index: 1000; }
+        .modal-overlay.active { visibility: visible; opacity: 1; }
+        .modal-content { background: var(--card); width: 100%; border-radius: 24px 24px 0 0; padding: 24px; transform: translateY(100%); transition: 0.3s cubic-bezier(0.2,0.9,0.4,1.1); max-height: 85vh; overflow-y: auto; }
+        .modal-overlay.active .modal-content { transform: translateY(0); }
+        .modal-drag-handle { width: 40px; height: 5px; background: var(--border); border-radius: 5px; margin: 0 auto 20px; }
+        .reason-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 20px 0; }
+        .reason-btn { background: var(--bg); border: 1.5px solid var(--border); border-radius: 12px; padding: 12px; font-size: 14px; cursor: pointer; }
+        .reason-btn.selected { border-color: var(--primary); background: rgba(0,122,255,0.1); }
+        .mood-selector { display: flex; justify-content: space-around; margin: 20px 0; }
+        .mood-emoji { font-size: 44px; cursor: pointer; filter: grayscale(100%); opacity: 0.5; transition: 0.2s; }
+        .mood-emoji.active { filter: grayscale(0%); opacity: 1; transform: scale(1.2); }
+        .predefined-habits { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
+        .predef-habit { background: var(--bg); border: 1.5px solid var(--border); border-radius: 30px; padding: 10px 16px; font-size: 14px; cursor: pointer; }
+        .toast { position: fixed; top: 20px; left: 50%; transform: translateX(-50%) translateY(-100px); background: var(--text); color: var(--card); padding: 12px 24px; border-radius: 100px; font-size: 14px; z-index: 2000; transition: 0.3s; }
+        .toast.show { transform: translateX(-50%) translateY(0); }
+        .hidden { display: none !important; }
+        .breathing-circle { width: 150px; height: 150px; background: var(--success); border-radius: 50%; margin: 20px auto; display: flex; align-items: center; justify-content: center; transition: 0.5s ease-in-out; color: white; font-size: 20px; font-weight: bold; }
+        .timer-text { font-size: 32px; font-weight: 800; text-align: center; margin: 20px 0; }
     </style>
 </head>
 <body>
@@ -514,7 +215,7 @@
 
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
-    import { getFirestore, collection, addDoc, getDocs, query, where, updateDoc, doc, Timestamp, setDoc, orderBy } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+    import { getFirestore, collection, addDoc, getDocs, query, where, updateDoc, doc, Timestamp, setDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
     import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
 
     const firebaseConfig = {
@@ -553,12 +254,19 @@
     async function loadHabits() {
         if (!currentUser) return;
         try {
-            const q = query(collection(db, "habits"), where("userId", "==", currentUser.uid), orderBy("createdAt", "desc"));
+            // INDEX SORUNU ÇÖZÜLDÜ: orderBy kaldırıldı, frontend'de sıralama yapılıyor
+            const q = query(collection(db, "habits"), where("userId", "==", currentUser.uid));
             const snap = await getDocs(q);
             habits = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+            // createdAt'e göre büyükten küçüğe sırala
+            habits.sort((a, b) => (b.createdAt?.toMillis?.() || b.createdAt || 0) - (a.createdAt?.toMillis?.() || a.createdAt || 0));
             renderHabits();
             updateStats();
-        } catch (e) { showToast("Veri yüklenemedi: " + e.message); }
+        } catch (e) { 
+            console.error(e);
+            showToast("Veri yüklenemedi: " + (e.message || "bilinmeyen hata")); 
+            document.getElementById('habitsList').innerHTML = '<div style="text-align:center;padding:20px;">⛔ Yüklenemedi, sayfayı yenile</div>';
+        }
     }
 
     function renderHabits() {
@@ -617,7 +325,7 @@
             closeModal('addHabitModal');
             document.getElementById('newHabitName').value = '';
             showToast(`"${name}" eklendi`);
-        } catch (e) { showToast("Ekleme hatası"); }
+        } catch (e) { showToast("Ekleme hatası: " + e.message); }
     };
 
     function updateStats() {
@@ -638,12 +346,21 @@
         else { star.innerHTML = '🌠'; msg.innerText = `${longest} gün! Süperstarsın`; }
     }
 
-    // MOOD
+    // MOOD - index sorunu yok, ama orderBy kaldırıldı
     async function loadLastMood() {
         if (!currentUser) return;
-        const q = query(collection(db, "moods"), where("userId", "==", currentUser.uid), orderBy("date", "desc"));
-        const snap = await getDocs(q);
-        if (!snap.empty) document.getElementById('lastMood').innerHTML = `${snap.docs[0].data().emoji} ${snap.docs[0].data().text?.substring(0,20) || ''}`;
+        try {
+            const q = query(collection(db, "moods"), where("userId", "==", currentUser.uid));
+            const snap = await getDocs(q);
+            if (!snap.empty) {
+                let moods = snap.docs.map(d => ({ ...d.data(), date: d.data().date?.toMillis?.() || 0 }));
+                moods.sort((a,b) => b.date - a.date);
+                let last = moods[0];
+                document.getElementById('lastMood').innerHTML = `${last.emoji} ${last.text?.substring(0,20) || ''}`;
+            } else {
+                document.getElementById('lastMood').innerHTML = 'Kaydedilmedi';
+            }
+        } catch(e) { console.error(e); }
     }
     document.getElementById('moodBtn').onclick = () => {
         document.querySelectorAll('.mood-emoji').forEach(e => e.classList.remove('active'));
@@ -663,12 +380,13 @@
         loadLastMood();
     };
 
-    // GOAL
+    // GOAL - basit sorgu, index gerekmez
     async function loadGoal() {
         if (!currentUser) return;
         const q = query(collection(db, "goals"), where("userId", "==", currentUser.uid));
         const snap = await getDocs(q);
         if (!snap.empty) document.getElementById('goalDisplay').innerHTML = `🎯 ${snap.docs[0].data().targetDays} gün`;
+        else document.getElementById('goalDisplay').innerHTML = 'Belirlenmedi';
     }
     document.getElementById('goalBtn').onclick = () => openModal('goalModal');
     document.getElementById('saveGoal').onclick = async () => {
@@ -681,10 +399,10 @@
         } else showToast("Geçerli sayı gir");
     };
 
-    // KRİZ - NEFES EGZERSİZİ (ÇALIŞIYOR)
+    // KRİZ - NEFES EGZERSİZİ (çalışıyor)
     function startBreathing() {
         if (breathInterval) clearInterval(breathInterval);
-        let phase = "inhale"; // inhale, hold, exhale
+        let phase = "inhale"; 
         let timer = 4;
         const circle = document.getElementById('breathingCircle');
         const timerDiv = document.getElementById('breathTimer');
@@ -728,9 +446,7 @@
             currentUser = user;
             document.getElementById('loginContainer').classList.add('hidden');
             document.getElementById('appContainer').classList.remove('hidden');
-            await loadHabits();
-            await loadGoal();
-            await loadLastMood();
+            await Promise.all([loadHabits(), loadGoal(), loadLastMood()]);
             showToast(`Hoş geldin ${user.email.split('@')[0]}`);
         } else {
             document.getElementById('loginContainer').classList.remove('hidden');
