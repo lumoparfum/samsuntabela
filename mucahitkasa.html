@@ -42,6 +42,7 @@
         body.light .modal-card {
             background: #ffffff;
             border-color: #e9e9ef;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02), 0 4px 12px rgba(0,0,0,0.03);
         }
         body.dark {
             background: #000000;
@@ -55,6 +56,7 @@
         body.dark .modal-card {
             background: #1c1c1e;
             border-color: #2c2c2e;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.4);
         }
         body.dark .kpi-title,
         body.dark .borc-tarih,
@@ -75,7 +77,7 @@
         body.dark .icon-btn {
             background: #2c2c2e;
             border-color: #3a3a3c;
-            color: #ff9f1c;
+            color: #ffd966;
         }
         .trans-cat {
             background: #f2f2f5;
@@ -106,14 +108,18 @@
             margin-bottom: 16px;
         }
         .logo-area h1 {
-            font-size: 1.8rem;
+            font-size: 1.9rem;
             font-weight: 800;
             letter-spacing: -1px;
-            background: linear-gradient(135deg, #0A2540, #F5A623);
+            background: linear-gradient(135deg, #FFD700, #F5A623);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
             text-align: center;
+            text-shadow: 0 0 6px rgba(255,215,0,0.3);
+        }
+        body.dark .logo-area h1 {
+            text-shadow: 0 0 10px rgba(255,215,0,0.5);
         }
         .header-actions {
             display: flex;
@@ -131,6 +137,10 @@
             gap: 6px;
             cursor: pointer;
             background: #ffffff;
+            transition: transform 0.1s, opacity 0.2s;
+        }
+        .icon-btn:active {
+            transform: scale(0.97);
         }
         .month-panel {
             background: #f9f9fb;
@@ -155,6 +165,10 @@
             font-size: 1rem;
             cursor: pointer;
             color: #007aff;
+            transition: transform 0.1s;
+        }
+        .month-nav-btn:active {
+            transform: scale(0.9);
         }
         .current-month {
             font-size: 1.1rem;
@@ -172,6 +186,10 @@
             padding: 14px;
             text-align: center;
             border: 0.5px solid;
+            transition: transform 0.1s;
+        }
+        .kpi-card:active {
+            transform: scale(0.98);
         }
         .kpi-title {
             font-size: 0.65rem;
@@ -228,6 +246,10 @@
             gap: 6px;
             cursor: pointer;
             border: none;
+            transition: transform 0.1s, opacity 0.2s;
+        }
+        .btn-income:active, .btn-expense:active, .btn-borc:active, .btn-alacak:active {
+            transform: scale(0.97);
         }
         .btn-income { background: #e5f5e8; color: #2c6e3c; }
         .btn-expense { background: #ffe8e8; color: #c41e1e; }
@@ -276,14 +298,21 @@
         .btn-ode {
             background: #ff9f1c;
             border: none;
-            padding: 8px 14px;
+            padding: 6px 12px;
             border-radius: 30px;
             color: white;
             font-weight: 600;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             cursor: pointer;
-            min-width: 85px;
+            min-width: 75px;
             white-space: nowrap;
+            transition: transform 0.1s, opacity 0.2s;
+        }
+        .btn-ode:active {
+            transform: scale(0.95);
+        }
+        .borc-card.alacak .btn-ode {
+            background: #34c759;
         }
         .transaction-item {
             border-radius: 20px;
@@ -353,6 +382,10 @@
             font-size: 0.7rem;
             font-weight: 500;
             cursor: pointer;
+            transition: transform 0.1s;
+        }
+        .filter-btn:active {
+            transform: scale(0.95);
         }
         body.dark .filter-btn {
             border-color: #3a3a3c;
@@ -374,10 +407,14 @@
             margin-top: 8px;
             cursor: pointer;
             color: #007aff;
+            transition: transform 0.1s;
+        }
+        .load-more-btn:active {
+            transform: scale(0.98);
         }
         body.dark .load-more-btn {
             border-color: #3a3a3c;
-            color: #ff9f1c;
+            color: #ffd966;
         }
         .modal {
             position: fixed;
@@ -404,6 +441,11 @@
             font-weight: 700;
             font-size: 1.2rem;
             margin-bottom: 16px;
+        }
+        .modal-close {
+            cursor: pointer;
+            font-size: 1.5rem;
+            line-height: 1;
         }
         .form-group {
             margin-bottom: 16px;
@@ -433,6 +475,10 @@
             font-weight: 600;
             margin-top: 8px;
             cursor: pointer;
+            transition: transform 0.1s;
+        }
+        .modal-save:active {
+            transform: scale(0.97);
         }
         .toast {
             position: fixed;
@@ -462,10 +508,36 @@
             font-size: 0.8rem;
             color: #6c6c70;
         }
-        .spinner {
-            text-align: center;
-            padding: 20px;
-            color: #8e8e93;
+        .spinner-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(4px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 4000;
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 0.2s, opacity 0.2s;
+        }
+        .spinner-overlay.active {
+            visibility: visible;
+            opacity: 1;
+        }
+        .spinner-content {
+            background: rgba(28,28,30,0.9);
+            border-radius: 60px;
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: white;
+            font-weight: 500;
+            backdrop-filter: blur(12px);
         }
         .fa-spinner {
             animation: spin 1s linear infinite;
@@ -479,7 +551,7 @@
 <body class="light">
 <div id="loginContainer" style="position:fixed; top:0; left:0; width:100%; height:100%; background:#fff; display:flex; justify-content:center; align-items:center; z-index:1000;">
     <div style="background:#fff; border-radius:48px; padding:40px 30px; width:90%; max-width:340px; text-align:center; box-shadow:0 20px 40px rgba(0,0,0,0.05); border:0.5px solid #e9e9ef;">
-        <div style="font-size:2rem; font-weight:800; margin-bottom:30px; background:linear-gradient(135deg,#0A2540,#F5A623); -webkit-background-clip:text; background-clip:text; color:transparent;">MÜCAHİT<span style="color:#F5A623;">KASA</span></div>
+        <div style="font-size:2rem; font-weight:800; margin-bottom:30px; background:linear-gradient(135deg,#FFD700,#F5A623); -webkit-background-clip:text; background-clip:text; color:transparent;">MÜCAHİT<span style="color:#F5A623;">KASA</span></div>
         <input type="password" id="pinInput" style="width:100%; padding:14px; background:#f9f9fb; border:0.5px solid #e9e9ef; border-radius:60px; text-align:center; margin-bottom:16px;" placeholder="Şifre" autocomplete="off">
         <div class="remember-row">
             <input type="checkbox" id="rememberCheckbox">
@@ -488,11 +560,12 @@
         <button id="loginBtn" style="width:100%; padding:14px; background:#0A2540; color:white; font-weight:600; border:none; border-radius:60px;">Giriş Yap</button>
     </div>
 </div>
+<div class="spinner-overlay" id="globalSpinner"><div class="spinner-content"><i class="fas fa-spinner fa-spin"></i> Yükleniyor...</div></div>
 
 <div id="appContainer" class="app-container" style="display:none">
     <div class="app-card">
         <div class="app-header">
-            <div class="logo-area"><h1>MÜCAHİT<span style="color:#F5A623;">KASA</span></h1></div>
+            <div class="logo-area"><h1>MÜCAHİT<span style="color:#FFD700;">KASA</span></h1></div>
             <div class="header-actions">
                 <button class="icon-btn" id="themeToggleBtn"><i class="fas fa-moon"></i></button>
                 <button class="icon-btn" id="pdfBtn"><i class="fas fa-file-pdf"></i> PDF</button>
@@ -545,22 +618,22 @@
     <div id="loadMoreContainer" style="margin-top: 8px;"></div>
 </div>
 
-<!-- Modals aynı -->
-<div id="incomeModal" class="modal"><div class="modal-card"><div class="modal-header"><span>Gelir Ekle</span><span class="modal-close" onclick="closeModal('incomeModal')">&times;</span></div>
+<!-- Modals -->
+<div id="incomeModal" class="modal"><div class="modal-card"><div class="modal-header"><span>Gelir Ekle</span><span class="modal-close" data-modal="incomeModal">&times;</span></div>
     <div class="form-group"><label>Başlık</label><input type="text" id="incomeTitle" class="form-control" placeholder="Tag işi, maaş"></div>
     <div class="form-group"><label>Kategori</label><select id="incomeCat" class="form-control"><option>Tag İşleri</option><option>Maaş</option><option>Serbest İş</option><option>Hediye</option><option>Yatırım</option><option>Diğer</option></select></div>
     <div class="form-group"><label>Tutar (₺)</label><input type="number" id="incomeAmount" class="form-control"></div>
     <button class="modal-save" id="saveIncomeBtn">Kaydet</button>
 </div></div>
 
-<div id="expenseModal" class="modal"><div class="modal-card"><div class="modal-header"><span>Gider Ekle</span><span class="modal-close" onclick="closeModal('expenseModal')">&times;</span></div>
+<div id="expenseModal" class="modal"><div class="modal-card"><div class="modal-header"><span>Gider Ekle</span><span class="modal-close" data-modal="expenseModal">&times;</span></div>
     <div class="form-group"><label>Başlık</label><input type="text" id="expenseTitle" class="form-control" placeholder="Kahve, fatura"></div>
     <div class="form-group"><label>Kategori</label><select id="expenseCat" class="form-control"><option>Faturalar</option><option>Tag Malzemesi</option><option>Alışveriş</option><option>Yeme/İçme</option><option>Ulaşım</option><option>Sağlık</option><option>Eğlence</option><option>Kira/Aidat</option><option>Borç Ödemesi</option><option>Diğer</option></select></div>
     <div class="form-group"><label>Tutar (₺)</label><input type="number" id="expenseAmount" class="form-control"></div>
     <button class="modal-save" id="saveExpenseBtn">Kaydet</button>
 </div></div>
 
-<div id="borcModal" class="modal"><div class="modal-card"><div class="modal-header"><span>Borç Ekle</span><span class="modal-close" onclick="closeModal('borcModal')">&times;</span></div>
+<div id="borcModal" class="modal"><div class="modal-card"><div class="modal-header"><span>Borç Ekle</span><span class="modal-close" data-modal="borcModal">&times;</span></div>
     <div class="form-group"><label>Kişi/Kurum</label><input type="text" id="borcKisi" class="form-control"></div>
     <div class="form-group"><label>Miktar (₺)</label><input type="number" id="borcMiktar" class="form-control"></div>
     <div class="form-group"><label>Son Ödeme Tarihi</label><input type="date" id="borcTarih" class="form-control"></div>
@@ -568,7 +641,7 @@
     <button class="modal-save" id="saveBorcBtn">Ekle</button>
 </div></div>
 
-<div id="alacakModal" class="modal"><div class="modal-card"><div class="modal-header"><span>Alacak Ekle</span><span class="modal-close" onclick="closeModal('alacakModal')">&times;</span></div>
+<div id="alacakModal" class="modal"><div class="modal-card"><div class="modal-header"><span>Alacak Ekle</span><span class="modal-close" data-modal="alacakModal">&times;</span></div>
     <div class="form-group"><label>Kişi/Kurum</label><input type="text" id="alacakKisi" class="form-control"></div>
     <div class="form-group"><label>Miktar (₺)</label><input type="number" id="alacakMiktar" class="form-control"></div>
     <div class="form-group"><label>Tahmini Tarih</label><input type="date" id="alacakTarih" class="form-control"></div>
@@ -591,9 +664,6 @@
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
 
-    // Güvenlik uyarısı
-    console.warn("⚠️ Güvenlik: Firestore kurallarını kısıtlamazsan herkes verilerini okuyabilir! Authentication ve kuralları güncelle.");
-
     let allGelirler = [], allGiderler = [], allBorclar = [], allAlacaklar = [];
     let currentYear = new Date().getFullYear(), currentMonth = new Date().getMonth();
     let chart1 = null, chart2 = null;
@@ -603,37 +673,18 @@
     let allTransactionsArray = [];
     let filteredTransactionsArray = [];
 
-    function formatDateWithDay(date) {
+    function formatDateOnly(date) {
         const gunler = ["Pazar", "Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi"];
         const d = new Date(date);
         const gunAdi = gunler[d.getDay()];
-        return `${d.toLocaleDateString('tr-TR')} ${gunAdi} ${d.toLocaleTimeString('tr-TR', {hour:'2-digit', minute:'2-digit'})}`;
+        return `${d.toLocaleDateString('tr-TR')} ${gunAdi}`;
     }
 
-    function generateAppleTouchIcon() {
-        const canvas = document.createElement('canvas');
-        canvas.width = 180;
-        canvas.height = 180;
-        const ctx = canvas.getContext('2d');
-        ctx.fillStyle = '#0A2540';
-        ctx.fillRect(0, 0, 180, 180);
-        ctx.fillStyle = '#F5A623';
-        ctx.font = 'bold 100px "Inter"';
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-        ctx.fillText('💰', 90, 90);
-        canvas.toBlob(blob => {
-            const url = URL.createObjectURL(blob);
-            let link = document.querySelector('link[rel="apple-touch-icon"]');
-            if(!link) {
-                link = document.createElement('link');
-                link.rel = 'apple-touch-icon';
-                document.head.appendChild(link);
-            }
-            link.href = url;
-        });
+    function showLoading(show) {
+        const spinner = document.getElementById('globalSpinner');
+        if(show) spinner.classList.add('active');
+        else spinner.classList.remove('active');
     }
-    generateAppleTouchIcon();
 
     function showToast(msg, err = false) {
         let t = document.createElement('div'); t.className = 'toast'; t.innerText = msg; t.style.background = err ? '#ff3b30' : '#1c1c1e'; document.body.appendChild(t); setTimeout(() => t.remove(), 2500);
@@ -661,17 +712,6 @@
         } finally {
             showLoading(false);
         }
-    }
-
-    function showLoading(show) {
-        const loader = document.getElementById('globalLoader');
-        if(!loader && show) {
-            let div = document.createElement('div');
-            div.id = 'globalLoader';
-            div.className = 'spinner';
-            div.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Yükleniyor...';
-            document.getElementById('appContainer').prepend(div);
-        } else if(!show && loader) loader.remove();
     }
 
     function getCurrentFilterObj() { return { year: currentYear, month: currentMonth }; }
@@ -702,7 +742,7 @@
             html += `<div class="borc-card ${isBorc ? '' : 'alacak'}">
                 <div class="borc-detay">
                     <div class="borc-title">${isBorc ? '🧾 Borç' : '💰 Alacak'} - ${escapeHtml(item.kisi)}</div>
-                    <div class="borc-tarih">Son Tarih: ${formatDateWithDay(item.tarih)} ${gecikti ? '⚠️ Gecikti' : ''}</div>
+                    <div class="borc-tarih">Son Tarih: ${formatDateOnly(item.tarih)} ${gecikti ? '⚠️ Gecikti' : ''}</div>
                     <div style="font-size:0.7rem; color:#8e8e93;">${escapeHtml(item.aciklama || '')}</div>
                 </div>
                 <div class="borc-tutar" style="color:${isBorc ? '#ff3b30' : '#34c759'}">${formatMoney(item.miktar)}</div>
@@ -716,6 +756,7 @@
             btn.addEventListener('click', async (e) => {
                 if(isProcessing) return;
                 isProcessing = true;
+                showLoading(true);
                 const id = btn.dataset.id;
                 const tip = btn.dataset.tip;
                 const miktar = parseFloat(btn.dataset.miktar);
@@ -734,6 +775,7 @@
                     showToast("İşlem başarısız: " + err.message, true);
                 } finally {
                     isProcessing = false;
+                    showLoading(false);
                 }
             });
         });
@@ -758,7 +800,7 @@
         container.innerHTML = '';
         
         toShow.forEach(t => {
-            let dateStr = formatDateWithDay(t.tarih);
+            let dateStr = formatDateOnly(t.tarih);
             let icon = t.tip === 'gelir' ? '💰' : '💸';
             let itemDiv = document.createElement('div');
             itemDiv.className = 'transaction-item';
@@ -775,7 +817,7 @@
                 </div>
                 <div class="swipe-delete"><i class="fas fa-trash-alt"></i> Sil</div>
             `;
-            // Touch ve mouse swipe
+            // swipe işlemleri
             let startX = 0;
             let isSwiping = false;
             const handleStart = (clientX) => { startX = clientX; isSwiping = true; };
@@ -798,23 +840,20 @@
                 e.stopPropagation();
                 if(isProcessing) return;
                 isProcessing = true;
+                showLoading(true);
                 const id = itemDiv.dataset.id;
                 const tip = itemDiv.dataset.tip;
-                // UI'dan hemen kaldır
-                const index = filteredTransactionsArray.findIndex(x => x.docId === id);
-                if(index !== -1) filteredTransactionsArray.splice(index, 1);
-                const mainIndex = allTransactionsArray.findIndex(x => x.docId === id);
-                if(mainIndex !== -1) allTransactionsArray.splice(mainIndex, 1);
-                renderTransactionListWithPagination();
                 try {
                     if(tip === 'gelir') await deleteDoc(doc(db, "mucahit_gelirler", id));
                     else await deleteDoc(doc(db, "mucahit_giderler", id));
                     showToast("İşlem silindi");
+                    await loadAll();
                 } catch(err) {
                     showToast("Silme hatası, yeniden dene", true);
-                    await loadAll();
+                } finally {
+                    isProcessing = false;
+                    showLoading(false);
                 }
-                isProcessing = false;
             });
             container.appendChild(itemDiv);
         });
@@ -834,7 +873,6 @@
     }
 
     function updateCharts() {
-        // Aylık grafik (son 6 ay, seçili aya göre)
         let son6 = [];
         for(let i=5; i>=0; i--) {
             let d = new Date(currentYear, currentMonth - i, 1);
@@ -853,12 +891,11 @@
         const ctx1 = document.getElementById('monthlyChart').getContext('2d');
         if(chart1) chart1.destroy();
         chart1 = new Chart(ctx1, {
-            type: 'bar',
-            data: { labels, datasets: [{ label: 'Gelir', data: gelirData, backgroundColor: '#34c759' }, { label: 'Gider', data: giderData, backgroundColor: '#ff3b30' }] },
+            type: 'line',
+            data: { labels, datasets: [{ label: 'Gelir', data: gelirData, borderColor: '#34c759', backgroundColor: 'transparent', tension: 0.3, fill: false, pointBackgroundColor: '#34c759' }, { label: 'Gider', data: giderData, borderColor: '#ff3b30', backgroundColor: 'transparent', tension: 0.3, fill: false, pointBackgroundColor: '#ff3b30' }] },
             options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { labels: { color: fontColor } } } }
         });
         
-        // Kategori grafiği sadece seçili ayın giderleri
         const { year, month } = getCurrentFilterObj();
         let catMap = new Map();
         allGiderler.forEach(g => {
@@ -867,19 +904,20 @@
                 catMap.set(g.kategori, (catMap.get(g.kategori)||0) + g.tutar);
             }
         });
+        const kurumsalRenkler = ['#2C3E50', '#E67E22', '#2ECC71', '#E74C3C', '#3498DB', '#9B59B6', '#1ABC9C', '#F1C40F', '#E67E22', '#7F8C8D'];
         const ctx2 = document.getElementById('categoryChart').getContext('2d');
         if(chart2) chart2.destroy();
         chart2 = new Chart(ctx2, {
             type: 'pie',
-            data: { labels: Array.from(catMap.keys()), datasets: [{ data: Array.from(catMap.values()), backgroundColor: ['#ff9f1c','#1e3a5f','#34c759','#ff3b30','#af52de','#ff9500'] }] },
+            data: { labels: Array.from(catMap.keys()), datasets: [{ data: Array.from(catMap.values()), backgroundColor: kurumsalRenkler.slice(0, catMap.size) }] },
             options: { plugins: { legend: { labels: { color: fontColor } } } }
         });
     }
 
     window.exportToPDF = async () => {
+        showLoading(true);
         const { year, month } = getCurrentFilterObj();
         let aylikGelir=0, aylikGider=0;
-        // Sadece seçili ayın işlemleri
         let aylikIslemler = [];
         allGelirler.forEach(g => { let d=new Date(g.tarih); if(d.getFullYear()===year && d.getMonth()===month) { aylikGelir += g.tutar; aylikIslemler.push({...g, tip:'Gelir'}); } });
         allGiderler.forEach(g => { let d=new Date(g.tarih); if(d.getFullYear()===year && d.getMonth()===month) { aylikGider += g.tutar; aylikIslemler.push({...g, tip:'Gider'}); } });
@@ -903,7 +941,7 @@
                 <tbody>${aylikIslemler.map(t => {
                     const rowBg = t.tip === 'Gelir' ? '#f0fff0' : '#fff0f0';
                     return `<tr style="background:${rowBg};">
-                        <td style="padding:6px;">${formatDateWithDay(t.tarih)}</td>
+                        <td style="padding:6px;">${formatDateOnly(t.tarih)}</td>
                         <td>${t.tip}</td>
                         <td>${escapeHtml(t.baslik)}</td>
                         <td>${escapeHtml(t.kategori)}</td>
@@ -918,7 +956,10 @@
             </div>
         `;
         document.body.appendChild(pdfDiv);
-        html2pdf().from(pdfDiv).set({ margin: 0.5, filename: `mucahitkasa_${getMonthName(year, month)}.pdf`, image: { type: 'jpeg', quality: 0.98 }, html2canvas: { scale: 2 }, jsPDF: { unit: 'in', format: 'a4', orientation: 'landscape' } }).save().then(() => { document.body.removeChild(pdfDiv); showToast("PDF hazır"); });
+        await html2pdf().from(pdfDiv).set({ margin: 0.5, filename: `mucahitkasa_${getMonthName(year, month)}.pdf`, image: { type: 'jpeg', quality: 0.98 }, html2canvas: { scale: 2 }, jsPDF: { unit: 'in', format: 'a4', orientation: 'landscape' } }).save();
+        document.body.removeChild(pdfDiv);
+        showToast("PDF hazır");
+        showLoading(false);
     };
 
     function openModal(id) { document.getElementById(id).style.display = 'flex'; }
@@ -935,6 +976,7 @@
     async function addGeneric(collectionName, data, modalId, successMsg) {
         if(isProcessing) return;
         isProcessing = true;
+        showLoading(true);
         try {
             await addDoc(collection(db, collectionName), { ...data, tarih: new Date().toISOString() });
             closeModal(modalId);
@@ -944,6 +986,7 @@
             showToast("Hata: " + err.message, true);
         } finally {
             isProcessing = false;
+            showLoading(false);
         }
     }
     document.getElementById('saveIncomeBtn').onclick = () => {
@@ -991,6 +1034,22 @@
             btn.classList.add('active');
             currentFilter = btn.dataset.filter;
             applyFilterAndRender();
+        });
+    });
+    
+    // Modal dışarı tıklama kapatma
+    document.querySelectorAll('.modal').forEach(modal => {
+        modal.addEventListener('click', (e) => {
+            if(e.target === modal) {
+                const modalId = modal.id;
+                closeModal(modalId);
+            }
+        });
+    });
+    document.querySelectorAll('.modal-close').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const modalId = btn.getAttribute('data-modal');
+            if(modalId) closeModal(modalId);
         });
     });
     
