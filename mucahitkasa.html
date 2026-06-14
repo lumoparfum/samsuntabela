@@ -672,11 +672,6 @@
             <div class="kpi-card"><div class="kpi-title">Bu Ay Gider</div><div class="kpi-value expense-value" id="monthExpense">₺0</div></div>
             <div class="kpi-card"><div class="kpi-title">Kalan Bütçe</div><div class="kpi-value balance-value" id="monthRemaining">₺0</div></div>
         </div>
-        <!-- Haftalık özet kartı -->
-        <div class="summary-card" id="weekSummary">
-            <span class="summary-label">Bu hafta net</span>
-            <span class="summary-value" id="weekNetValue">₺0</span>
-        </div>
     </div>
 
     <div class="chart-row">
@@ -875,23 +870,7 @@
         document.getElementById('monthRemaining').innerHTML = formatMoney(aylikGelir - aylikGider);
         document.getElementById('currentMonthDisplay').innerText = getMonthName(year, month);
         
-        // Haftalık net
-        const now = new Date();
-        const startOfWeek = new Date(now);
-        const dayOfWeek = now.getDay();
-        const diffToMonday = (dayOfWeek === 0 ? 6 : dayOfWeek - 1);
-        startOfWeek.setDate(now.getDate() - diffToMonday);
-        startOfWeek.setHours(0,0,0,0);
-        const endOfWeek = new Date(startOfWeek);
-        endOfWeek.setDate(startOfWeek.getDate() + 6);
-        endOfWeek.setHours(23,59,59,999);
-        let weekInc = 0, weekExp = 0;
-        allGelirler.forEach(g => { let d = parseLocalDate(g.tarih); if(d && d >= startOfWeek && d <= endOfWeek) weekInc += g.tutar; });
-        allGiderler.forEach(g => { let d = parseLocalDate(g.tarih); if(d && d >= startOfWeek && d <= endOfWeek) weekExp += g.tutar; });
-        const weekNet = weekInc - weekExp;
-        const weekNetElem = document.getElementById('weekNetValue');
-        weekNetElem.innerHTML = formatMoney(weekNet);
-        weekNetElem.style.color = weekNet >= 0 ? '#34c759' : '#ff3b30';
+     
         
         renderBorcList();
         applyFilterAndRender();
