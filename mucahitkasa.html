@@ -39,7 +39,8 @@
         body.light .transaction-item,
         body.light .borc-card,
         body.light .chart-card,
-        body.light .modal-card {
+        body.light .modal-card,
+        body.light .summary-card {
             background: #ffffff;
             border-color: #e9e9ef;
             box-shadow: 0 2px 8px rgba(0,0,0,0.02), 0 4px 12px rgba(0,0,0,0.03);
@@ -53,7 +54,8 @@
         body.dark .transaction-item,
         body.dark .borc-card,
         body.dark .chart-card,
-        body.dark .modal-card {
+        body.dark .modal-card,
+        body.dark .summary-card {
             background: #1c1c1e;
             border-color: #2c2c2e;
             box-shadow: 0 2px 8px rgba(0,0,0,0.4);
@@ -179,7 +181,7 @@
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 12px;
-            margin-bottom: 20px;
+            margin-bottom: 12px;
         }
         .kpi-card {
             border-radius: 24px;
@@ -205,6 +207,36 @@
         .expense-value { color: #ff3b30; }
         .balance-value { color: #0A2540; }
         body.dark .balance-value { color: #ffffff; }
+
+        /* Günlük/Haftalık özet kartı */
+        .summary-card {
+            border-radius: 24px;
+            padding: 14px;
+            margin-bottom: 20px;
+            border: 0.5px solid;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .summary-item {
+            flex: 1;
+            text-align: center;
+            font-size: 0.8rem;
+        }
+        .summary-label {
+            font-weight: 500;
+            color: #8e8e93;
+            font-size: 0.7rem;
+        }
+        .summary-value {
+            font-weight: 700;
+            font-size: 1rem;
+        }
+        .positive { color: #34c759; }
+        .negative { color: #ff3b30; }
+
         .chart-row {
             display: flex;
             flex-direction: column;
@@ -222,7 +254,34 @@
             margin-bottom: 12px;
             display: flex;
             align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
             gap: 8px;
+        }
+        .segment-control {
+            display: flex;
+            gap: 6px;
+            background: rgba(120,120,128,0.16);
+            padding: 4px;
+            border-radius: 40px;
+        }
+        .segment-btn {
+            background: transparent;
+            border: none;
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: #007aff;
+        }
+        .segment-btn.active {
+            background: #007aff;
+            color: white;
+        }
+        body.dark .segment-btn.active {
+            background: #0A84FF;
         }
         canvas {
             max-height: 180px;
@@ -306,7 +365,7 @@
             cursor: pointer;
             min-width: 75px;
             white-space: nowrap;
-            transition: transform 0.1s, opacity 0.2s;
+            transition: transform 0.1s;
         }
         .btn-ode:active {
             transform: scale(0.95);
@@ -584,11 +643,28 @@
             <div class="kpi-card"><div class="kpi-title">Bu Ay Gider</div><div class="kpi-value expense-value" id="monthExpense">₺0</div></div>
             <div class="kpi-card"><div class="kpi-title">Kalan Bütçe</div><div class="kpi-value balance-value" id="monthRemaining">₺0</div></div>
         </div>
+        <!-- Günlük/Haftalık özet kartı -->
+        <div class="summary-card" id="summaryCard">
+            <div class="summary-item"><div class="summary-label">Bugün Gelir</div><div class="summary-value positive" id="todayIncome">₺0</div></div>
+            <div class="summary-item"><div class="summary-label">Bugün Gider</div><div class="summary-value negative" id="todayExpense">₺0</div></div>
+            <div class="summary-item"><div class="summary-label">Dün Gider</div><div class="summary-value negative" id="yesterdayExpense">₺0</div></div>
+            <div class="summary-item"><div class="summary-label">Bu Hafta Net</div><div class="summary-value" id="weekNet">₺0</div></div>
+        </div>
     </div>
 
     <div class="chart-row">
         <div class="chart-card"><div class="section-title"><i class="fas fa-chart-line"></i> Aylık Gelir/Gider</div><canvas id="monthlyChart"></canvas></div>
-        <div class="chart-card"><div class="section-title"><i class="fas fa-chart-pie"></i> Gider Dağılımı (Bu Ay)</div><canvas id="categoryChart"></canvas></div>
+        <div class="chart-card">
+            <div class="section-title">
+                <span><i class="fas fa-chart-pie"></i> Gider Dağılımı</span>
+                <div class="segment-control" id="piePeriodControl">
+                    <button class="segment-btn" data-pie-period="day">Gün</button>
+                    <button class="segment-btn" data-pie-period="week">Hafta</button>
+                    <button class="segment-btn active" data-pie-period="month">Ay</button>
+                </div>
+            </div>
+            <canvas id="categoryChart"></canvas>
+        </div>
     </div>
 
     <div class="action-buttons">
@@ -672,12 +748,39 @@
     let currentDisplayCount = 10;
     let allTransactionsArray = [];
     let filteredTransactionsArray = [];
+    let currentPiePeriod = "month"; // 'day', 'week', 'month'
 
-    function formatDateOnly(date) {
+    // Yardımcı: Yerel tarih (YYYY-MM-DD) string'ini Date objesine çevir (yerel saat diliminde)
+    function parseLocalDate(dateStr) {
+        if (!dateStr) return null;
+        let parts = dateStr.split('T')[0].split('-');
+        if (parts.length === 3) {
+            return new Date(parseInt(parts[0]), parseInt(parts[1])-1, parseInt(parts[2]));
+        }
+        return new Date(dateStr);
+    }
+
+    function formatDateOnly(dateInput) {
+        let d;
+        if (typeof dateInput === 'string') {
+            d = parseLocalDate(dateInput);
+            if (!d || isNaN(d)) d = new Date(dateInput);
+        } else {
+            d = new Date(dateInput);
+        }
+        if (isNaN(d.getTime())) return "Geçersiz Tarih";
         const gunler = ["Pazar", "Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi"];
-        const d = new Date(date);
         const gunAdi = gunler[d.getDay()];
         return `${d.toLocaleDateString('tr-TR')} ${gunAdi}`;
+    }
+
+    function isDateOverdue(dateStr) {
+        if (!dateStr) return false;
+        const targetDate = parseLocalDate(dateStr);
+        if (!targetDate) return false;
+        const today = new Date();
+        today.setHours(0,0,0,0);
+        return targetDate < today;
     }
 
     function showLoading(show) {
@@ -716,33 +819,76 @@
 
     function getCurrentFilterObj() { return { year: currentYear, month: currentMonth }; }
 
+    // Günlük/Haftalık özet hesapla
+    function updateDailySummary() {
+        const today = new Date();
+        today.setHours(0,0,0,0);
+        const yesterday = new Date(today);
+        yesterday.setDate(yesterday.getDate() - 1);
+        
+        // Hafta başı Pazartesi
+        const startOfWeek = new Date(today);
+        const dayOfWeek = today.getDay(); // 0 Pazar, 1 Pazartesi...
+        const diffToMonday = (dayOfWeek === 0 ? 6 : dayOfWeek - 1);
+        startOfWeek.setDate(today.getDate() - diffToMonday);
+        startOfWeek.setHours(0,0,0,0);
+        const endOfWeek = new Date(startOfWeek);
+        endOfWeek.setDate(startOfWeek.getDate() + 6);
+        endOfWeek.setHours(23,59,59,999);
+        
+        let todayInc = 0, todayExp = 0, yesterdayExp = 0, weekInc = 0, weekExp = 0;
+        
+        allGelirler.forEach(g => {
+            const d = parseLocalDate(g.tarih);
+            if (!d) return;
+            if (d.toDateString() === today.toDateString()) todayInc += g.tutar;
+            if (d >= startOfWeek && d <= endOfWeek) weekInc += g.tutar;
+        });
+        allGiderler.forEach(g => {
+            const d = parseLocalDate(g.tarih);
+            if (!d) return;
+            if (d.toDateString() === today.toDateString()) todayExp += g.tutar;
+            if (d.toDateString() === yesterday.toDateString()) yesterdayExp += g.tutar;
+            if (d >= startOfWeek && d <= endOfWeek) weekExp += g.tutar;
+        });
+        
+        document.getElementById('todayIncome').innerHTML = formatMoney(todayInc);
+        document.getElementById('todayExpense').innerHTML = formatMoney(todayExp);
+        document.getElementById('yesterdayExpense').innerHTML = formatMoney(yesterdayExp);
+        const weekNet = weekInc - weekExp;
+        const weekNetElem = document.getElementById('weekNet');
+        weekNetElem.innerHTML = formatMoney(weekNet);
+        weekNetElem.className = `summary-value ${weekNet >= 0 ? 'positive' : 'negative'}`;
+    }
+
     function renderDashboard() {
         const { year, month } = getCurrentFilterObj();
         let aylikGelir = 0, aylikGider = 0;
-        allGelirler.forEach(g => { let d = new Date(g.tarih); if(d.getFullYear()===year && d.getMonth()===month) aylikGelir += g.tutar; });
-        allGiderler.forEach(g => { let d = new Date(g.tarih); if(d.getFullYear()===year && d.getMonth()===month) aylikGider += g.tutar; });
+        allGelirler.forEach(g => { let d = parseLocalDate(g.tarih); if(d && d.getFullYear()===year && d.getMonth()===month) aylikGelir += g.tutar; });
+        allGiderler.forEach(g => { let d = parseLocalDate(g.tarih); if(d && d.getFullYear()===year && d.getMonth()===month) aylikGider += g.tutar; });
         document.getElementById('monthIncome').innerHTML = formatMoney(aylikGelir);
         document.getElementById('monthExpense').innerHTML = formatMoney(aylikGider);
         document.getElementById('monthRemaining').innerHTML = formatMoney(aylikGelir - aylikGider);
         document.getElementById('currentMonthDisplay').innerText = getMonthName(year, month);
         renderBorcList();
         applyFilterAndRender();
-        updateCharts();
+        updateDailySummary();
+        updateCharts(); // Aylık çizgi grafiği ve periyoda göre pasta
     }
 
     function renderBorcList() {
         let html = '';
         let geciken = 0;
         const bugun = new Date();
+        bugun.setHours(0,0,0,0);
         [...allBorclar, ...allAlacaklar].forEach(item => {
             const isBorc = item.tip === 'borc';
-            const tarih = new Date(item.tarih);
-            const gecikti = tarih < bugun;
-            if(gecikti && isBorc) geciken++;
+            const overdue = isDateOverdue(item.tarih);
+            if(overdue && isBorc) geciken++;
             html += `<div class="borc-card ${isBorc ? '' : 'alacak'}">
                 <div class="borc-detay">
                     <div class="borc-title">${isBorc ? '🧾 Borç' : '💰 Alacak'} - ${escapeHtml(item.kisi)}</div>
-                    <div class="borc-tarih">Son Tarih: ${formatDateOnly(item.tarih)} ${gecikti ? '⚠️ Gecikti' : ''}</div>
+                    <div class="borc-tarih">Son Tarih: ${formatDateOnly(item.tarih)} ${overdue ? '⚠️ Gecikti' : ''}</div>
                     <div style="font-size:0.7rem; color:#8e8e93;">${escapeHtml(item.aciklama || '')}</div>
                 </div>
                 <div class="borc-tutar" style="color:${isBorc ? '#ff3b30' : '#34c759'}">${formatMoney(item.miktar)}</div>
@@ -817,7 +963,6 @@
                 </div>
                 <div class="swipe-delete"><i class="fas fa-trash-alt"></i> Sil</div>
             `;
-            // swipe işlemleri
             let startX = 0;
             let isSwiping = false;
             const handleStart = (clientX) => { startX = clientX; isSwiping = true; };
@@ -873,6 +1018,7 @@
     }
 
     function updateCharts() {
+        // Aylık çizgi grafik (son 6 ay)
         let son6 = [];
         for(let i=5; i>=0; i--) {
             let d = new Date(currentYear, currentMonth - i, 1);
@@ -881,8 +1027,8 @@
         let gelirData = [], giderData = [], labels = [];
         son6.forEach(({year, month}) => {
             let inc=0, exp=0;
-            allGelirler.forEach(g => { let d=new Date(g.tarih); if(d.getFullYear()===year && d.getMonth()===month) inc+=g.tutar; });
-            allGiderler.forEach(g => { let d=new Date(g.tarih); if(d.getFullYear()===year && d.getMonth()===month) exp+=g.tutar; });
+            allGelirler.forEach(g => { let d = parseLocalDate(g.tarih); if(d && d.getFullYear()===year && d.getMonth()===month) inc+=g.tutar; });
+            allGiderler.forEach(g => { let d = parseLocalDate(g.tarih); if(d && d.getFullYear()===year && d.getMonth()===month) exp+=g.tutar; });
             gelirData.push(inc); giderData.push(exp);
             labels.push(`${month+1}/${year.toString().slice(-2)}`);
         });
@@ -896,14 +1042,44 @@
             options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { labels: { color: fontColor } } } }
         });
         
-        const { year, month } = getCurrentFilterObj();
+        // Pasta grafiği: seçili periyoda göre (day/week/month)
+        updatePieChart();
+    }
+
+    function updatePieChart() {
+        let period = currentPiePeriod;
+        let now = new Date();
+        now.setHours(0,0,0,0);
+        let startDate, endDate;
+        if (period === 'day') {
+            startDate = now;
+            endDate = new Date(now);
+            endDate.setHours(23,59,59,999);
+        } else if (period === 'week') {
+            let dayOfWeek = now.getDay();
+            let diffToMonday = (dayOfWeek === 0 ? 6 : dayOfWeek - 1);
+            startDate = new Date(now);
+            startDate.setDate(now.getDate() - diffToMonday);
+            startDate.setHours(0,0,0,0);
+            endDate = new Date(startDate);
+            endDate.setDate(startDate.getDate() + 6);
+            endDate.setHours(23,59,59,999);
+        } else { // month
+            startDate = new Date(currentYear, currentMonth, 1);
+            endDate = new Date(currentYear, currentMonth + 1, 0);
+            endDate.setHours(23,59,59,999);
+        }
+        
         let catMap = new Map();
         allGiderler.forEach(g => {
-            let d = new Date(g.tarih);
-            if(d.getFullYear()===year && d.getMonth()===month) {
+            let d = parseLocalDate(g.tarih);
+            if (d && d >= startDate && d <= endDate) {
                 catMap.set(g.kategori, (catMap.get(g.kategori)||0) + g.tutar);
             }
         });
+        
+        const isDark = document.body.classList.contains('dark');
+        const fontColor = isDark ? '#ffffff' : '#1c1c1e';
         const kurumsalRenkler = ['#2C3E50', '#E67E22', '#2ECC71', '#E74C3C', '#3498DB', '#9B59B6', '#1ABC9C', '#F1C40F', '#E67E22', '#7F8C8D'];
         const ctx2 = document.getElementById('categoryChart').getContext('2d');
         if(chart2) chart2.destroy();
@@ -919,8 +1095,8 @@
         const { year, month } = getCurrentFilterObj();
         let aylikGelir=0, aylikGider=0;
         let aylikIslemler = [];
-        allGelirler.forEach(g => { let d=new Date(g.tarih); if(d.getFullYear()===year && d.getMonth()===month) { aylikGelir += g.tutar; aylikIslemler.push({...g, tip:'Gelir'}); } });
-        allGiderler.forEach(g => { let d=new Date(g.tarih); if(d.getFullYear()===year && d.getMonth()===month) { aylikGider += g.tutar; aylikIslemler.push({...g, tip:'Gider'}); } });
+        allGelirler.forEach(g => { let d = parseLocalDate(g.tarih); if(d && d.getFullYear()===year && d.getMonth()===month) { aylikGelir += g.tutar; aylikIslemler.push({...g, tip:'Gelir'}); } });
+        allGiderler.forEach(g => { let d = parseLocalDate(g.tarih); if(d && d.getFullYear()===year && d.getMonth()===month) { aylikGider += g.tutar; aylikIslemler.push({...g, tip:'Gider'}); } });
         aylikIslemler.sort((a,b)=>new Date(b.tarih)-new Date(a.tarih));
         
         const pdfDiv = document.createElement('div');
@@ -1034,6 +1210,16 @@
             btn.classList.add('active');
             currentFilter = btn.dataset.filter;
             applyFilterAndRender();
+        });
+    });
+    
+    // Pasta periyot değiştirme
+    document.querySelectorAll('#piePeriodControl .segment-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('#piePeriodControl .segment-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentPiePeriod = btn.dataset.piePeriod;
+            updatePieChart();
         });
     });
     
