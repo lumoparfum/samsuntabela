@@ -38,12 +38,14 @@
         body.rtl .kpi-title,
         body.rtl .transaction-content,
         body.rtl .borc-detay,
-        body.rtl .modal-card,
-        body.rtl .summary-card {
+        body.rtl .modal-card {
             text-align: right;
         }
         body.rtl .action-buttons button {
             flex-direction: row-reverse;
+        }
+        body.rtl .kpi-card {
+            text-align: center;
         }
         body.light {
             background: #f5f5f7;
@@ -123,6 +125,10 @@
             flex-wrap: wrap;
             margin-bottom: 16px;
         }
+        .logo-area {
+            flex: 1;
+            text-align: center;
+        }
         .logo-area h1 {
             font-size: 1.8rem;
             font-weight: 800;
@@ -176,6 +182,10 @@
             z-index: 100;
             display: none;
             min-width: 140px;
+        }
+        body.rtl .lang-dropdown {
+            right: auto;
+            left: 0;
         }
         body.dark .lang-dropdown {
             background: #1c1c1e;
@@ -365,6 +375,13 @@
         }
         .borc-card.alacak {
             border-left-color: #34c759;
+        }
+        body.rtl .borc-card {
+            border-left: none;
+            border-right: 4px solid #ff9f1c;
+        }
+        body.rtl .borc-card.alacak {
+            border-right-color: #34c759;
         }
         .borc-detay {
             flex: 2;
@@ -781,7 +798,7 @@
 <!-- Modals -->
 <div id="incomeModal" class="modal"><div class="modal-card"><div class="modal-header"><span id="incomeModalTitle">Gelir Ekle</span><span class="modal-close" data-modal="incomeModal">&times;</span></div>
     <div class="form-group"><label id="incomeTitleLabel">Başlık</label><input type="text" id="incomeTitle" class="form-control" placeholder="Tag işi, maaş"></div>
-    <div class="form-group"><label id="incomeCatLabel">Kategori</label><select id="incomeCat" class="form-control"><option>Tag İşleri</option><option>Maaş</option><option>Serbest İş</option><option>Hediye</option><option>Yatırım</option><option>Diğer</option></select></div>
+    <div class="form-group"><label id="incomeCatLabel">Kategori</label><select id="incomeCat" class="form-control"></select></div>
     <div class="form-group"><label id="incomeAmountLabel">Tutar (₺)</label><input type="number" id="incomeAmount" class="form-control"></div>
     <div class="form-group"><label id="incomeDateLabel">Tarih</label><input type="date" id="incomeDate" class="form-control"></div>
     <button class="modal-save" id="saveIncomeBtn"><span id="saveIncomeBtnText">Kaydet</span></button>
@@ -789,7 +806,7 @@
 
 <div id="expenseModal" class="modal"><div class="modal-card"><div class="modal-header"><span id="expenseModalTitle">Gider Ekle</span><span class="modal-close" data-modal="expenseModal">&times;</span></div>
     <div class="form-group"><label id="expenseTitleLabel">Başlık</label><input type="text" id="expenseTitle" class="form-control" placeholder="Kahve, fatura"></div>
-    <div class="form-group"><label id="expenseCatLabel">Kategori</label><select id="expenseCat" class="form-control"><option>Faturalar</option><option>Tag Malzemesi</option><option>Alışveriş</option><option>Yeme/İçme</option><option>Ulaşım</option><option>Sağlık</option><option>Eğlence</option><option>Kira/Aidat</option><option>Borç Ödemesi</option><option>Diğer</option></select></div>
+    <div class="form-group"><label id="expenseCatLabel">Kategori</label><select id="expenseCat" class="form-control"></select></div>
     <div class="form-group"><label id="expenseAmountLabel">Tutar (₺)</label><input type="number" id="expenseAmount" class="form-control"></div>
     <div class="form-group"><label id="expenseDateLabel">Tarih</label><input type="date" id="expenseDate" class="form-control"></div>
     <button class="modal-save" id="saveExpenseBtn"><span id="saveExpenseBtnText">Kaydet</span></button>
@@ -863,11 +880,15 @@
             add: "Ekle",
             paid: "Ödendi",
             collected: "Tahsil Edildi",
+            delete: "Sil",
+            loadMore: "Daha Fazla Yükle",
             overdue: "⚠️ Gecikti",
             todayDue: "🕒 Bugün son gün",
             approaching: (days) => `🕒 Yaklaşıyor (${days} gün)`,
             noDebts: "Borç/Alacak yok",
             overdueDebts: "gecikmiş borç",
+            type: "Tip",
+            status: "Durum",
             toastIncomeAdded: "Gelir eklendi",
             toastExpenseAdded: "Gider eklendi",
             toastDebtAdded: "Borç eklendi",
@@ -880,8 +901,8 @@
             toastMissing: "Eksik bilgi",
             toastPdfReady: "PDF hazır",
             toastFiltered: (cat) => `"${cat}" kategorisine göre filtreleme yapıldı`,
-            // Kategori isimleri (çeviri yapılabilir ama basit tutalım)
-            // grafiklerde kategori isimleri olduğu gibi kalır veya çevrilebilir. Şimdilik sabit.
+            incomeCategories: ["Tag İşleri", "Maaş", "Serbest İş", "Hediye", "Yatırım", "Diğer"],
+            expenseCategories: ["Faturalar", "Tag Malzemesi", "Alışveriş", "Yeme/İçme", "Ulaşım", "Sağlık", "Eğlence", "Kira/Aidat", "Borç Ödemesi", "Diğer"]
         },
         en: {
             loading: "Loading...",
@@ -918,11 +939,15 @@
             add: "Add",
             paid: "Paid",
             collected: "Collected",
+            delete: "Delete",
+            loadMore: "Load More",
             overdue: "⚠️ Overdue",
             todayDue: "🕒 Due today",
             approaching: (days) => `🕒 Approaching (${days} days)`,
             noDebts: "No debts or receivables",
             overdueDebts: "overdue debts",
+            type: "Type",
+            status: "Status",
             toastIncomeAdded: "Income added",
             toastExpenseAdded: "Expense added",
             toastDebtAdded: "Debt added",
@@ -935,6 +960,8 @@
             toastMissing: "Missing info",
             toastPdfReady: "PDF ready",
             toastFiltered: (cat) => `Filtered by category "${cat}"`,
+            incomeCategories: ["Tag Jobs", "Salary", "Freelance", "Gift", "Investment", "Other"],
+            expenseCategories: ["Bills", "Tag Supplies", "Shopping", "Food/Drink", "Transport", "Health", "Entertainment", "Rent/Dues", "Debt Payment", "Other"]
         },
         ar: {
             loading: "جاري التحميل...",
@@ -971,11 +998,15 @@
             add: "إضافة",
             paid: "تم السداد",
             collected: "تم التحصيل",
+            delete: "حذف",
+            loadMore: "تحميل المزيد",
             overdue: "⚠️ متأخر",
             todayDue: "🕒 ينتهي اليوم",
             approaching: (days) => `🕒 يقترب (${days} يوم)`,
             noDebts: "لا توجد ديون أو مستحقات",
             overdueDebts: "ديون متأخرة",
+            type: "النوع",
+            status: "الحالة",
             toastIncomeAdded: "تمت إضافة الدخل",
             toastExpenseAdded: "تمت إضافة المصروف",
             toastDebtAdded: "تمت إضافة الدين",
@@ -988,6 +1019,8 @@
             toastMissing: "معلومات ناقصة",
             toastPdfReady: "PDF جاهز",
             toastFiltered: (cat) => `تم التصفية حسب الفئة "${cat}"`,
+            incomeCategories: ["أعمال الوسم", "راتب", "عمل حر", "هدية", "استثمار", "أخرى"],
+            expenseCategories: ["فواتير", "لوازم الوسم", "تسوق", "طعام/شراب", "مواصلات", "صحة", "ترفيه", "إيجار/رسوم", "سداد دين", "أخرى"]
         },
         fr: {
             loading: "Chargement...",
@@ -1024,11 +1057,15 @@
             add: "Ajouter",
             paid: "Payé",
             collected: "Recouvré",
+            delete: "Supprimer",
+            loadMore: "Charger plus",
             overdue: "⚠️ En retard",
             todayDue: "🕒 Dernier jour",
             approaching: (days) => `🕒 Proche (${days} jours)`,
             noDebts: "Aucune dette ou créance",
             overdueDebts: "dettes en retard",
+            type: "Type",
+            status: "Statut",
             toastIncomeAdded: "Revenu ajouté",
             toastExpenseAdded: "Dépense ajoutée",
             toastDebtAdded: "Dette ajoutée",
@@ -1041,6 +1078,8 @@
             toastMissing: "Informations manquantes",
             toastPdfReady: "PDF prêt",
             toastFiltered: (cat) => `Filtré par catégorie "${cat}"`,
+            incomeCategories: ["Travaux Tag", "Salaire", "Freelance", "Cadeau", "Investissement", "Autre"],
+            expenseCategories: ["Factures", "Fournitures Tag", "Shopping", "Nourriture/Boisson", "Transport", "Santé", "Divertissement", "Loyer/Cotisations", "Paiement de dette", "Autre"]
         },
         de: {
             loading: "Laden...",
@@ -1077,11 +1116,15 @@
             add: "Hinzufügen",
             paid: "Bezahlt",
             collected: "Eingezogen",
+            delete: "Löschen",
+            loadMore: "Mehr laden",
             overdue: "⚠️ Überfällig",
             todayDue: "🕒 Fällig heute",
             approaching: (days) => `🕒 Nähert sich (${days} Tage)`,
             noDebts: "Keine Schulden oder Forderungen",
             overdueDebts: "überfällige Schulden",
+            type: "Typ",
+            status: "Status",
             toastIncomeAdded: "Einnahme hinzugefügt",
             toastExpenseAdded: "Ausgabe hinzugefügt",
             toastDebtAdded: "Schuld hinzugefügt",
@@ -1094,6 +1137,8 @@
             toastMissing: "Fehlende Information",
             toastPdfReady: "PDF bereit",
             toastFiltered: (cat) => `Gefiltert nach Kategorie "${cat}"`,
+            incomeCategories: ["Tag-Jobs", "Gehalt", "Freiberuflich", "Geschenk", "Investition", "Andere"],
+            expenseCategories: ["Rechnungen", "Tag-Material", "Einkaufen", "Essen/Trinken", "Transport", "Gesundheit", "Unterhaltung", "Miete/Gebühren", "Schuldenzahlung", "Andere"]
         }
     };
 
@@ -1109,70 +1154,95 @@
     let currentPiePeriod = "month";
     let currentLinePeriod = "month";
 
-    function t(key, ...args) {
+    // Çeviri fonksiyonu (isim çakışması yok)
+    function __(key, ...args) {
         let str = translations[currentLang][key] || translations["tr"][key] || key;
         if (args.length && typeof str === 'function') return str(...args);
         return str;
     }
 
+    // Kategori dropdown'larını güncelle
+    function updateCategoryDropdowns() {
+        const incomeSelect = document.getElementById('incomeCat');
+        const expenseSelect = document.getElementById('expenseCat');
+        if (incomeSelect) {
+            incomeSelect.innerHTML = '';
+            __("incomeCategories").forEach(cat => {
+                const option = document.createElement('option');
+                option.value = cat;
+                option.textContent = cat;
+                incomeSelect.appendChild(option);
+            });
+        }
+        if (expenseSelect) {
+            expenseSelect.innerHTML = '';
+            __("expenseCategories").forEach(cat => {
+                const option = document.createElement('option');
+                option.value = cat;
+                option.textContent = cat;
+                expenseSelect.appendChild(option);
+            });
+        }
+    }
+
     function applyLanguage() {
-        document.getElementById("loadingText").innerText = t("loading");
-        document.getElementById("pdfBtnText").innerText = t("pdf");
-        document.getElementById("kpiIncomeTitle").innerText = t("kpiIncome");
-        document.getElementById("kpiExpenseTitle").innerText = t("kpiExpense");
-        document.getElementById("kpiRemainingTitle").innerText = t("kpiRemaining");
-        document.getElementById("lineChartTitle").innerText = t("lineChartTitle");
-        document.getElementById("pieChartTitle").innerText = t("pieChartTitle");
-        document.getElementById("lineDayBtn").innerText = t("day");
-        document.getElementById("lineWeekBtn").innerText = t("week");
-        document.getElementById("lineMonthBtn").innerText = t("month");
-        document.getElementById("pieDayBtn").innerText = t("day");
-        document.getElementById("pieWeekBtn").innerText = t("week");
-        document.getElementById("pieMonthBtn").innerText = t("month");
-        document.getElementById("incomeBtnText").innerText = t("incomeBtn");
-        document.getElementById("expenseBtnText").innerText = t("expenseBtn");
-        document.getElementById("debtBtnText").innerText = t("debtBtn");
-        document.getElementById("receivableBtnText").innerText = t("receivableBtn");
-        document.getElementById("debtHeader").innerText = t("debtHeader");
-        document.getElementById("searchInput").placeholder = t("searchPlaceholder");
-        document.getElementById("historyTitle").innerText = t("historyTitle");
-        document.getElementById("filterAll").innerText = t("filterAll");
-        document.getElementById("filterIncome").innerHTML = t("filterIncome");
-        document.getElementById("filterExpense").innerHTML = t("filterExpense");
-        document.getElementById("incomeModalTitle").innerText = t("incomeModalTitle");
-        document.getElementById("expenseModalTitle").innerText = t("expenseModalTitle");
-        document.getElementById("borcModalTitle").innerText = t("debtModalTitle");
-        document.getElementById("alacakModalTitle").innerText = t("receivableModalTitle");
-        document.getElementById("incomeTitleLabel").innerText = t("titleLabel");
-        document.getElementById("incomeCatLabel").innerText = t("categoryLabel");
-        document.getElementById("incomeAmountLabel").innerText = t("amountLabel");
-        document.getElementById("incomeDateLabel").innerText = t("dateLabel");
-        document.getElementById("saveIncomeBtnText").innerText = t("save");
-        document.getElementById("expenseTitleLabel").innerText = t("titleLabel");
-        document.getElementById("expenseCatLabel").innerText = t("categoryLabel");
-        document.getElementById("expenseAmountLabel").innerText = t("amountLabel");
-        document.getElementById("expenseDateLabel").innerText = t("dateLabel");
-        document.getElementById("saveExpenseBtnText").innerText = t("save");
-        document.getElementById("borcPersonLabel").innerText = t("personLabel");
-        document.getElementById("borcAmountLabel").innerText = t("amountLabel");
-        document.getElementById("borcDateLabel").innerText = t("dateLabel");
-        document.getElementById("borcDescLabel").innerText = t("descLabel");
-        document.getElementById("saveBorcBtnText").innerText = t("add");
-        document.getElementById("alacakPersonLabel").innerText = t("personLabel");
-        document.getElementById("alacakAmountLabel").innerText = t("amountLabel");
-        document.getElementById("alacakDateLabel").innerText = t("dateLabel");
-        document.getElementById("alacakDescLabel").innerText = t("descLabel");
-        document.getElementById("saveAlacakBtnText").innerText = t("add");
+        document.getElementById("loadingText").innerText = __("loading");
+        document.getElementById("pdfBtnText").innerText = __("pdf");
+        document.getElementById("kpiIncomeTitle").innerText = __("kpiIncome");
+        document.getElementById("kpiExpenseTitle").innerText = __("kpiExpense");
+        document.getElementById("kpiRemainingTitle").innerText = __("kpiRemaining");
+        document.getElementById("lineChartTitle").innerText = __("lineChartTitle");
+        document.getElementById("pieChartTitle").innerText = __("pieChartTitle");
+        document.getElementById("lineDayBtn").innerText = __("day");
+        document.getElementById("lineWeekBtn").innerText = __("week");
+        document.getElementById("lineMonthBtn").innerText = __("month");
+        document.getElementById("pieDayBtn").innerText = __("day");
+        document.getElementById("pieWeekBtn").innerText = __("week");
+        document.getElementById("pieMonthBtn").innerText = __("month");
+        document.getElementById("incomeBtnText").innerText = __("incomeBtn");
+        document.getElementById("expenseBtnText").innerText = __("expenseBtn");
+        document.getElementById("debtBtnText").innerText = __("debtBtn");
+        document.getElementById("receivableBtnText").innerText = __("receivableBtn");
+        document.getElementById("debtHeader").innerText = __("debtHeader");
+        document.getElementById("searchInput").placeholder = __("searchPlaceholder");
+        document.getElementById("historyTitle").innerText = __("historyTitle");
+        document.getElementById("filterAll").innerText = __("filterAll");
+        document.getElementById("filterIncome").innerHTML = __("filterIncome");
+        document.getElementById("filterExpense").innerHTML = __("filterExpense");
+        document.getElementById("incomeModalTitle").innerText = __("incomeModalTitle");
+        document.getElementById("expenseModalTitle").innerText = __("expenseModalTitle");
+        document.getElementById("borcModalTitle").innerText = __("debtModalTitle");
+        document.getElementById("alacakModalTitle").innerText = __("receivableModalTitle");
+        document.getElementById("incomeTitleLabel").innerText = __("titleLabel");
+        document.getElementById("incomeCatLabel").innerText = __("categoryLabel");
+        document.getElementById("incomeAmountLabel").innerText = __("amountLabel");
+        document.getElementById("incomeDateLabel").innerText = __("dateLabel");
+        document.getElementById("saveIncomeBtnText").innerText = __("save");
+        document.getElementById("expenseTitleLabel").innerText = __("titleLabel");
+        document.getElementById("expenseCatLabel").innerText = __("categoryLabel");
+        document.getElementById("expenseAmountLabel").innerText = __("amountLabel");
+        document.getElementById("expenseDateLabel").innerText = __("dateLabel");
+        document.getElementById("saveExpenseBtnText").innerText = __("save");
+        document.getElementById("borcPersonLabel").innerText = __("personLabel");
+        document.getElementById("borcAmountLabel").innerText = __("amountLabel");
+        document.getElementById("borcDateLabel").innerText = __("dateLabel");
+        document.getElementById("borcDescLabel").innerText = __("descLabel");
+        document.getElementById("saveBorcBtnText").innerText = __("add");
+        document.getElementById("alacakPersonLabel").innerText = __("personLabel");
+        document.getElementById("alacakAmountLabel").innerText = __("amountLabel");
+        document.getElementById("alacakDateLabel").innerText = __("dateLabel");
+        document.getElementById("alacakDescLabel").innerText = __("descLabel");
+        document.getElementById("saveAlacakBtnText").innerText = __("add");
         document.getElementById("langBtnText").innerText = currentLang.toUpperCase();
         
-        // RTL kontrolü
+        updateCategoryDropdowns();
+        
         if (currentLang === "ar") {
             document.body.classList.add("rtl");
         } else {
             document.body.classList.remove("rtl");
         }
         
-        // Dinamik içerikleri yenile (borç listesi, işlem listesi)
         renderBorcList();
         applyFilterAndRender();
         updateCharts();
@@ -1191,19 +1261,9 @@
         let d = parseLocalDate(dateInput);
         if (!d || isNaN(d)) d = new Date(dateInput);
         if (isNaN(d.getTime())) return "Geçersiz Tarih";
-        const gunler = ["Pazar", "Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi"];
-        const gunlerEn = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-        const gunlerFr = ["Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"];
-        const gunlerDe = ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"];
-        const gunlerAr = ["الأحد", "الإثنين", "الثلاثاء", "الأربعاء", "الخميس", "الجمعة", "السبت"];
-        let gunAdi = "";
-        if (currentLang === "en") gunAdi = gunlerEn[d.getDay()];
-        else if (currentLang === "fr") gunAdi = gunlerFr[d.getDay()];
-        else if (currentLang === "de") gunAdi = gunlerDe[d.getDay()];
-        else if (currentLang === "ar") gunAdi = gunlerAr[d.getDay()];
-        else gunAdi = gunler[d.getDay()];
-        let dateStr = d.toLocaleDateString(currentLang === "tr" ? "tr-TR" : (currentLang === "ar" ? "ar-EG" : currentLang));
-        return `${dateStr} ${gunAdi}`;
+        const langMap = { tr: "tr-TR", en: "en-US", ar: "ar-EG", fr: "fr-FR", de: "de-DE" };
+        const locale = langMap[currentLang] || "tr-TR";
+        return d.toLocaleDateString(locale, { year: 'numeric', month: 'long', day: 'numeric' });
     }
 
     function getDaysUntilDue(dateStr) {
@@ -1220,9 +1280,9 @@
     function getWarningText(dateStr) {
         const days = getDaysUntilDue(dateStr);
         if (days === null) return "";
-        if (days < 0) return '<span class="warning-overdue">' + t("overdue") + '</span>';
-        if (days === 0) return '<span class="warning-coming">' + t("todayDue") + '</span>';
-        if (days <= 7) return '<span class="warning-coming">' + t("approaching", days) + '</span>';
+        if (days < 0) return '<span class="warning-overdue">' + __("overdue") + '</span>';
+        if (days === 0) return '<span class="warning-coming">' + __("todayDue") + '</span>';
+        if (days <= 7) return '<span class="warning-coming">' + __("approaching", days) + '</span>';
         return "";
     }
 
@@ -1254,13 +1314,20 @@
             allTransactionsArray.sort((a,b) => new Date(b.tarih) - new Date(a.tarih));
             renderDashboard();
         } catch(error) {
-            showToast(t("toastError") + ": " + error.message, true);
+            showToast(__("toastError") + ": " + error.message, true);
         } finally {
             showLoading(false);
         }
     }
 
     function getCurrentFilterObj() { return { year: currentYear, month: currentMonth }; }
+
+    function getMonthName(year, month) {
+        const date = new Date(year, month, 1);
+        const langMap = { tr: "tr-TR", en: "en-US", ar: "ar-EG", fr: "fr-FR", de: "de-DE" };
+        const locale = langMap[currentLang] || "tr-TR";
+        return date.toLocaleDateString(locale, { year: 'numeric', month: 'long' });
+    }
 
     function renderDashboard() {
         const { year, month } = getCurrentFilterObj();
@@ -1282,20 +1349,20 @@
         [...allBorclar, ...allAlacaklar].forEach(item => {
             const isBorc = item.tip === 'borc';
             const warningHtml = getWarningText(item.tarih);
-            if(warningHtml.includes(t("overdue")) && isBorc) geciken++;
+            if(warningHtml.includes(__("overdue")) && isBorc) geciken++;
             html += `<div class="borc-card ${isBorc ? '' : 'alacak'}">
                 <div class="borc-detay">
-                    <div class="borc-title">${isBorc ? '🧾 ' + t("debtBtn") : '💰 ' + t("receivableBtn")} - ${escapeHtml(item.kisi)}</div>
-                    <div class="borc-tarih">${t("dateLabel")}: ${formatDateOnly(item.tarih)} ${warningHtml}</div>
+                    <div class="borc-title">${isBorc ? '🧾 ' + __("debtBtn") : '💰 ' + __("receivableBtn")} - ${escapeHtml(item.kisi)}</div>
+                    <div class="borc-tarih">${__("dateLabel")}: ${formatDateOnly(item.tarih)} ${warningHtml}</div>
                     <div style="font-size:0.7rem; color:#8e8e93;">${escapeHtml(item.aciklama || '')}</div>
                 </div>
                 <div class="borc-tutar" style="color:${isBorc ? '#ff3b30' : '#34c759'}">${formatMoney(item.miktar)}</div>
-                <button class="btn-ode" data-id="${item.id}" data-tip="${item.tip}" data-miktar="${item.miktar}">${isBorc ? t("paid") : t("collected")}</button>
+                <button class="btn-ode" data-id="${item.id}" data-tip="${item.tip}" data-miktar="${item.miktar}">${isBorc ? __("paid") : __("collected")}</button>
             </div>`;
         });
-        if(html === '') html = '<div style="text-align:center;padding:20px;">' + t("noDebts") + '</div>';
+        if(html === '') html = '<div style="text-align:center;padding:20px;">' + __("noDebts") + '</div>';
         document.getElementById('borcList').innerHTML = html;
-        document.getElementById('borcOzet').innerHTML = `⚠️ ${geciken} ${t("overdueDebts")}`;
+        document.getElementById('borcOzet').innerHTML = `⚠️ ${geciken} ${__("overdueDebts")}`;
         document.querySelectorAll('.borc-card .btn-ode').forEach(btn => {
             btn.addEventListener('click', async (e) => {
                 if(isProcessing) return;
@@ -1308,15 +1375,15 @@
                     if(tip === 'borc') {
                         await addDoc(collection(db, "mucahit_giderler"), { baslik: "Borç Ödemesi", kategori: "Borç Ödemesi", tutar: miktar, tarih: new Date().toISOString() });
                         await deleteDoc(doc(db, "mucahit_borclar", id));
-                        showToast(t("toastDebtPaid"));
+                        showToast(__("toastDebtPaid"));
                     } else {
                         await addDoc(collection(db, "mucahit_gelirler"), { baslik: "Alacak Tahsilatı", kategori: "Diğer", tutar: miktar, tarih: new Date().toISOString() });
                         await deleteDoc(doc(db, "mucahit_alacaklar", id));
-                        showToast(t("toastReceivableCollected"));
+                        showToast(__("toastReceivableCollected"));
                     }
                     await loadAll();
                 } catch(err) {
-                    showToast(t("toastError") + ": " + err.message, true);
+                    showToast(__("toastError") + ": " + err.message, true);
                 } finally {
                     isProcessing = false;
                     showLoading(false);
@@ -1359,9 +1426,8 @@
                     </div>
                     <div style="font-weight:700; color:${t.tip === 'gelir' ? '#34c759' : '#ff3b30'}">${t.tip === 'gelir' ? '+' : '-'} ${formatMoney(t.tutar)}</div>
                 </div>
-                <div class="swipe-delete"><i class="fas fa-trash-alt"></i> ${t("paid")? "Sil" : "Delete"}</div>
+                <div class="swipe-delete"><i class="fas fa-trash-alt"></i> ${__("delete")}</div>
             `;
-            // Swipe işlemleri
             let startX = 0;
             let isSwiping = false;
             const handleStart = (clientX) => { startX = clientX; isSwiping = true; };
@@ -1390,10 +1456,10 @@
                 try {
                     if(tip === 'gelir') await deleteDoc(doc(db, "mucahit_gelirler", id));
                     else await deleteDoc(doc(db, "mucahit_giderler", id));
-                    showToast(t("toastDeleted"));
+                    showToast(__("toastDeleted"));
                     await loadAll();
                 } catch(err) {
-                    showToast(t("toastError") + ": " + err.message, true);
+                    showToast(__("toastError") + ": " + err.message, true);
                 } finally {
                     isProcessing = false;
                     showLoading(false);
@@ -1402,11 +1468,11 @@
             container.appendChild(itemDiv);
         });
         
-        document.getElementById('transactionCount').innerHTML = `${filteredTransactionsArray.length} ${t("historyTitle")}`;
+        document.getElementById('transactionCount').innerHTML = `${filteredTransactionsArray.length} ${__("historyTitle")}`;
         loadMoreContainer.innerHTML = '';
         if(currentDisplayCount < filteredTransactionsArray.length) {
             let btn = document.createElement('button');
-            btn.innerText = currentLang === "tr" ? "Daha Fazla Yükle" : (currentLang === "en" ? "Load More" : (currentLang === "fr" ? "Charger plus" : (currentLang === "de" ? "Mehr laden" : "تحميل المزيد")));
+            btn.innerText = __("loadMore");
             btn.className = 'load-more-btn';
             btn.onclick = () => {
                 currentDisplayCount += 10;
@@ -1427,6 +1493,8 @@
         let giderData = [];
         const now = new Date();
         now.setHours(0,0,0,0);
+        const langMap = { tr: "tr-TR", en: "en-US", ar: "ar-EG", fr: "fr-FR", de: "de-DE" };
+        const locale = langMap[currentLang] || "tr-TR";
         
         if (currentLinePeriod === 'day') {
             for (let i = 6; i >= 0; i--) {
@@ -1443,7 +1511,7 @@
                 });
                 gelirData.push(gelirTop);
                 giderData.push(giderTop);
-                labels.push(d.toLocaleDateString(currentLang === "tr" ? "tr-TR" : (currentLang === "ar" ? "ar-EG" : currentLang), {day:'numeric', month:'short'}));
+                labels.push(d.toLocaleDateString(locale, { day: 'numeric', month: 'short' }));
             }
         } else if (currentLinePeriod === 'week') {
             for (let w = 5; w >= 0; w--) {
@@ -1480,7 +1548,7 @@
                 });
                 gelirData.push(gelirTop);
                 giderData.push(giderTop);
-                labels.push(`${d.getMonth()+1}/${d.getFullYear().toString().slice(-2)}`);
+                labels.push(d.toLocaleDateString(locale, { year: '2-digit', month: 'numeric' }));
             }
         }
         
@@ -1490,7 +1558,7 @@
         if(chart1) chart1.destroy();
         chart1 = new Chart(ctx1, {
             type: 'line',
-            data: { labels, datasets: [{ label: t("incomeBtn"), data: gelirData, borderColor: '#34c759', backgroundColor: 'transparent', tension: 0.3, fill: false, pointBackgroundColor: '#34c759' }, { label: t("expenseBtn"), data: giderData, borderColor: '#ff3b30', backgroundColor: 'transparent', tension: 0.3, fill: false, pointBackgroundColor: '#ff3b30' }] },
+            data: { labels, datasets: [{ label: __("incomeBtn"), data: gelirData, borderColor: '#34c759', backgroundColor: 'transparent', tension: 0.3, fill: false, pointBackgroundColor: '#34c759' }, { label: __("expenseBtn"), data: giderData, borderColor: '#ff3b30', backgroundColor: 'transparent', tension: 0.3, fill: false, pointBackgroundColor: '#ff3b30' }] },
             options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { labels: { color: fontColor } } } }
         });
     }
@@ -1544,7 +1612,7 @@
                     if (category) {
                         document.getElementById('searchInput').value = category;
                         applyFilterAndRender();
-                        showToast(t("toastFiltered", category));
+                        showToast(__("toastFiltered", category));
                     }
                 }
             }
@@ -1556,15 +1624,15 @@
         const { year, month } = getCurrentFilterObj();
         let aylikGelir=0, aylikGider=0;
         let aylikIslemler = [];
-        allGelirler.forEach(g => { let d = parseLocalDate(g.tarih); if(d && d.getFullYear()===year && d.getMonth()===month) { aylikGelir += g.tutar; aylikIslemler.push({...g, tip:t("incomeBtn")}); } });
-        allGiderler.forEach(g => { let d = parseLocalDate(g.tarih); if(d && d.getFullYear()===year && d.getMonth()===month) { aylikGider += g.tutar; aylikIslemler.push({...g, tip:t("expenseBtn")}); } });
+        allGelirler.forEach(g => { let d = parseLocalDate(g.tarih); if(d && d.getFullYear()===year && d.getMonth()===month) { aylikGelir += g.tutar; aylikIslemler.push({...g, tip: __("incomeBtn")}); } });
+        allGiderler.forEach(g => { let d = parseLocalDate(g.tarih); if(d && d.getFullYear()===year && d.getMonth()===month) { aylikGider += g.tutar; aylikIslemler.push({...g, tip: __("expenseBtn")}); } });
         aylikIslemler.sort((a,b)=>new Date(b.tarih)-new Date(a.tarih));
         
-        let borcAlacakHtml = '<h3>' + t("debtHeader") + '</h3><table style="width:100%; border-collapse:collapse; font-size:11px; margin-top:8px;"><thead><tr style="background:#f2f2f2;"><th>' + t("debtBtn") + '/' + t("receivableBtn") + '</th><th>' + t("personLabel") + '</th><th>' + t("amountLabel") + '</th><th>' + t("dateLabel") + '</th><th>' + t("status") + '</th></tr></thead><tbody>';
+        let borcAlacakHtml = '<h3>' + __("debtHeader") + '</h3><table style="width:100%; border-collapse:collapse; font-size:11px; margin-top:8px;"><thead><tr style="background:#f2f2f2;"><th>' + __("type") + '</th><th>' + __("personLabel") + '</th><th>' + __("amountLabel") + '</th><th>' + __("dateLabel") + '</th><th>' + __("status") + '</th><tr></thead><tbody>';
         [...allBorclar, ...allAlacaklar].forEach(item => {
             const isBorc = item.tip === 'borc';
             const durum = getWarningText(item.tarih).replace(/<[^>]*>/g, '');
-            borcAlacakHtml += `<tr><td>${isBorc ? t("debtBtn") : t("receivableBtn")}</td><td>${escapeHtml(item.kisi)}</td><td>${formatMoney(item.miktar)}</td><td>${formatDateOnly(item.tarih)}</td><td>${durum}</td></tr>`;
+            borcAlacakHtml += `<tr><td>${isBorc ? __("debtBtn") : __("receivableBtn")}</td><td>${escapeHtml(item.kisi)}</td><td>${formatMoney(item.miktar)}</td><td>${formatDateOnly(item.tarih)}</td><td>${durum}</td></tr>`;
         });
         borcAlacakHtml += '</tbody></table>';
         
@@ -1577,14 +1645,14 @@
             <h1 style="font-size:24px; font-weight:800; text-align:center;">MÜCAHİTKASA RAPORU</h1>
             <p style="text-align:center; color:#666;">${getMonthName(year, month)}</p>
             <div style="display:flex; gap:12px; margin:16px 0;">
-                <div style="flex:1; background:#f5f5f7; padding:12px; border-radius:20px;"><div>${t("kpiIncome")}</div><div style="font-size:20px; color:#34c759;">${formatMoney(aylikGelir)}</div></div>
-                <div style="flex:1; background:#f5f5f7; padding:12px; border-radius:20px;"><div>${t("kpiExpense")}</div><div style="font-size:20px; color:#ff3b30;">${formatMoney(aylikGider)}</div></div>
-                <div style="flex:1; background:#f5f5f7; padding:12px; border-radius:20px;"><div>${t("kpiRemaining")}</div><div style="font-size:20px;">${formatMoney(aylikGelir-aylikGider)}</div></div>
+                <div style="flex:1; background:#f5f5f7; padding:12px; border-radius:20px;"><div>${__("kpiIncome")}</div><div style="font-size:20px; color:#34c759;">${formatMoney(aylikGelir)}</div></div>
+                <div style="flex:1; background:#f5f5f7; padding:12px; border-radius:20px;"><div>${__("kpiExpense")}</div><div style="font-size:20px; color:#ff3b30;">${formatMoney(aylikGider)}</div></div>
+                <div style="flex:1; background:#f5f5f7; padding:12px; border-radius:20px;"><div>${__("kpiRemaining")}</div><div style="font-size:20px;">${formatMoney(aylikGelir-aylikGider)}</div></div>
             </div>
             <table style="width:100%; border-collapse:collapse; font-size:11px;">
-                <thead><tr style="background:#f2f2f2;"><th style="padding:8px;">${t("dateLabel")}</th><th>${t("type")}</th><th>${t("titleLabel")}</th><th>${t("categoryLabel")}</th><th>${t("amountLabel")}</th></tr></thead>
+                <thead><tr style="background:#f2f2f2;"><th style="padding:8px;">${__("dateLabel")}</th><th>${__("type")}</th><th>${__("titleLabel")}</th><th>${__("categoryLabel")}</th><th>${__("amountLabel")}</th>}</thead>
                 <tbody>${aylikIslemler.map(t => {
-                    const rowBg = t.tip === t("incomeBtn") ? '#f0fff0' : '#fff0f0';
+                    const rowBg = t.tip === __("incomeBtn") ? '#f0fff0' : '#fff0f0';
                     return `<tr style="background:${rowBg};">
                         <td style="padding:6px;">${formatDateOnly(t.tarih)}</td>
                         <td>${t.tip}</td>
@@ -1596,15 +1664,15 @@
             </table>
             ${borcAlacakHtml}
             <div style="margin-top:16px; padding:12px; background:#f5f5f7; border-radius:16px; display:flex; justify-content:space-between; font-weight:600;">
-                <span>${t("kpiIncome")}: <span style="color:#34c759;">${formatMoney(aylikGelir)}</span></span>
-                <span>${t("kpiExpense")}: <span style="color:#ff3b30;">${formatMoney(aylikGider)}</span></span>
-                <span>${t("kpiRemaining")}: <span>${formatMoney(aylikGelir-aylikGider)}</span></span>
+                <span>${__("kpiIncome")}: <span style="color:#34c759;">${formatMoney(aylikGelir)}</span></span>
+                <span>${__("kpiExpense")}: <span style="color:#ff3b30;">${formatMoney(aylikGider)}</span></span>
+                <span>${__("kpiRemaining")}: <span>${formatMoney(aylikGelir-aylikGider)}</span></span>
             </div>
         `;
         document.body.appendChild(pdfDiv);
         await html2pdf().from(pdfDiv).set({ margin: 0.5, filename: `mucahitkasa_${getMonthName(year, month)}.pdf`, image: { type: 'jpeg', quality: 0.98 }, html2canvas: { scale: 2 }, jsPDF: { unit: 'in', format: 'a4', orientation: 'landscape' } }).save();
         document.body.removeChild(pdfDiv);
-        showToast(t("toastPdfReady"));
+        showToast(__("toastPdfReady"));
         showLoading(false);
     };
 
@@ -1627,9 +1695,9 @@
             await addDoc(collection(db, collectionName), data);
             closeModal(modalId);
             await loadAll();
-            showToast(t(successMsgKey));
+            showToast(__(successMsgKey));
         } catch(err) {
-            showToast(t("toastError") + ": " + err.message, true);
+            showToast(__("toastError") + ": " + err.message, true);
         } finally {
             isProcessing = false;
             showLoading(false);
@@ -1639,7 +1707,7 @@
         let baslik = document.getElementById('incomeTitle').value.trim();
         let tutar = parseFloat(document.getElementById('incomeAmount').value);
         let tarih = document.getElementById('incomeDate').value;
-        if(!baslik || tutar<=0) return showToast(t("toastInvalid"), true);
+        if(!baslik || tutar<=0) return showToast(__("toastInvalid"), true);
         if(!tarih) tarih = new Date().toISOString().split('T')[0];
         addGeneric("mucahit_gelirler", { baslik, kategori: document.getElementById('incomeCat').value, tutar, tarih: new Date(tarih).toISOString() }, "incomeModal", "toastIncomeAdded");
     };
@@ -1647,7 +1715,7 @@
         let baslik = document.getElementById('expenseTitle').value.trim();
         let tutar = parseFloat(document.getElementById('expenseAmount').value);
         let tarih = document.getElementById('expenseDate').value;
-        if(!baslik || tutar<=0) return showToast(t("toastInvalid"), true);
+        if(!baslik || tutar<=0) return showToast(__("toastInvalid"), true);
         if(!tarih) tarih = new Date().toISOString().split('T')[0];
         addGeneric("mucahit_giderler", { baslik, kategori: document.getElementById('expenseCat').value, tutar, tarih: new Date(tarih).toISOString() }, "expenseModal", "toastExpenseAdded");
     };
@@ -1655,17 +1723,16 @@
         let kisi = document.getElementById('borcKisi').value.trim();
         let miktar = parseFloat(document.getElementById('borcMiktar').value);
         let tarih = document.getElementById('borcTarih').value;
-        if(!kisi || miktar<=0 || !tarih) return showToast(t("toastMissing"), true);
+        if(!kisi || miktar<=0 || !tarih) return showToast(__("toastMissing"), true);
         addGeneric("mucahit_borclar", { kisi, miktar, tarih, aciklama: document.getElementById('borcAciklama').value }, "borcModal", "toastDebtAdded");
     };
     document.getElementById('saveAlacakBtn').onclick = async () => {
         let kisi = document.getElementById('alacakKisi').value.trim();
         let miktar = parseFloat(document.getElementById('alacakMiktar').value);
         let tarih = document.getElementById('alacakTarih').value;
-        if(!kisi || miktar<=0 || !tarih) return showToast(t("toastMissing"), true);
+        if(!kisi || miktar<=0 || !tarih) return showToast(__("toastMissing"), true);
         addGeneric("mucahit_alacaklar", { kisi, miktar, tarih, aciklama: document.getElementById('alacakAciklama').value }, "alacakModal", "toastReceivableAdded");
     };
-    function getMonthName(y,m) { return ["Ocak","Şubat","Mart","Nisan","Mayıs","Haziran","Temmuz","Ağustos","Eylül","Ekim","Kasım","Aralık"][m]+" "+y; }
     function escapeHtml(s) { if(!s) return ''; return s.replace(/[&<>]/g, m => ({ '&':'&amp;','<':'&lt;','>':'&gt;' }[m])); }
     window.changeMonth = (delta) => { let nm = currentMonth+delta; if(nm<0){nm=11;currentYear--;} if(nm>11){nm=0;currentYear++;} currentMonth=nm; renderDashboard(); };
     document.getElementById('prevMonthBtn').onclick = () => changeMonth(-1);
@@ -1687,7 +1754,6 @@
         });
     });
     
-    // Period change
     document.querySelectorAll('#linePeriodControl .segment-btn').forEach(btn => {
         btn.addEventListener('click', () => {
             document.querySelectorAll('#linePeriodControl .segment-btn').forEach(b => b.classList.remove('active'));
@@ -1705,7 +1771,6 @@
         });
     });
     
-    // Dil seçimi
     const langBtn = document.getElementById('langBtn');
     const langDropdown = document.getElementById('langDropdown');
     langBtn.addEventListener('click', () => {
@@ -1718,7 +1783,7 @@
             localStorage.setItem('mucahit_lang', lang);
             applyLanguage();
             langDropdown.style.display = 'none';
-            renderDashboard(); // yeniden çiz
+            renderDashboard();
         });
     });
     document.addEventListener('click', (e) => {
@@ -1727,7 +1792,6 @@
         }
     });
     
-    // Modal dışarı tıklama kapatma
     document.querySelectorAll('.modal').forEach(modal => {
         modal.addEventListener('click', (e) => {
             if(e.target === modal) {
@@ -1752,13 +1816,12 @@
     if(window.matchMedia('(prefers-color-scheme: dark)').matches) setTheme('dark'); else setTheme('light');
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => setTheme(e.matches ? 'dark' : 'light'));
     
-    // 24 saat hatırlama ve otomatik giriş
     const savedPin = localStorage.getItem('mucahit_pin');
     const savedTimestamp = localStorage.getItem('mucahit_oturum');
     const savedLang = localStorage.getItem('mucahit_lang');
     if (savedLang && translations[savedLang]) currentLang = savedLang;
     else currentLang = "tr";
-    applyLanguage(); // ilk dil uygulaması
+    applyLanguage();
     
     const nowTime = Date.now();
     const TWENTY_FOUR_HOURS = 24 * 60 * 60 * 1000;
@@ -1792,7 +1855,7 @@
             document.getElementById('loginContainer').style.display = 'none';
             document.getElementById('appContainer').style.display = 'block';
             loadAll();
-        } else showToast(t("toastInvalid") + " (şifre)", true);
+        } else showToast(__("toastInvalid") + " (şifre)", true);
     };
 </script>
 </body>
