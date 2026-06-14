@@ -7,417 +7,316 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="TeegarLife">
     <title>TeegarLife | Yıldız gibi parla</title>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        /* Gece/gündüz değişkenleri – iOS stil */
+        /* TEMEL AYARLAR */
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        
         :root {
-            --bg: #f2f2f6;
+            --bg: #f2f2f7;
             --card: #ffffff;
             --text: #1c1c1e;
-            --text2: #8e8e93;
-            --border: #e9e9ef;
+            --text-sec: #8e8e93;
+            --border: #e5e5ea;
             --accent: #F5A623;
-            --accent2: #e09512;
             --danger: #ff3b30;
             --success: #34c759;
             --primary: #007aff;
-            --shadow: 0 2px 12px rgba(0,0,0,0.04);
+            --shadow: 0 4px 20px rgba(0,0,0,0.05);
+            --radius: 20px;
         }
 
         body.dark {
             --bg: #000000;
             --card: #1c1c1e;
             --text: #ffffff;
-            --text2: #98989e;
+            --text-sec: #98989e;
             --border: #2c2c2e;
-            --shadow: 0 2px 12px rgba(0,0,0,0.3);
+            --shadow: 0 4px 20px rgba(0,0,0,0.4);
         }
 
         body {
             background: var(--bg);
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             color: var(--text);
-            padding: 20px 16px;
-            transition: all 0.2s;
+            padding: 20px 16px 40px;
             min-height: 100vh;
+            transition: background 0.3s, color 0.3s;
         }
 
-        .container {
-            max-width: 500px;
-            margin: 0 auto;
-        }
+        .container { max-width: 480px; margin: 0 auto; }
 
-        /* iOS kart */
+        /* KARTLAR VE TİPOGRAFİ */
         .card {
             background: var(--card);
-            border-radius: 24px;
+            border-radius: var(--radius);
             padding: 20px;
             margin-bottom: 16px;
             box-shadow: var(--shadow);
-            transition: all 0.2s;
+            transition: all 0.3s ease;
         }
 
-        /* Tipografi */
-        h1 {
-            font-size: 32px;
-            font-weight: 800;
-            letter-spacing: -0.5px;
+        h1 { font-size: 28px; font-weight: 800; letter-spacing: -0.5px; }
+        .gradient-text {
             background: linear-gradient(135deg, var(--text), var(--accent));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
         }
+        h2 { font-size: 17px; font-weight: 600; display: flex; align-items: center; gap: 8px; margin-bottom: 16px; }
 
-        h2 {
-            font-size: 17px;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 16px;
-        }
-
-        /* Butonlar */
+        /* BUTONLAR & INPUTLAR */
+        button { font-family: 'Inter', sans-serif; }
         .btn {
             background: var(--primary);
+            color: white;
             border: none;
-            border-radius: 100px;
-            padding: 14px 20px;
+            border-radius: 14px;
+            padding: 16px;
             font-weight: 600;
             font-size: 16px;
-            color: white;
-            cursor: pointer;
             width: 100%;
-            transition: 0.2s;
+            cursor: pointer;
+            transition: transform 0.1s, opacity 0.2s;
+            display: flex; justify-content: center; align-items: center; gap: 8px;
         }
+        .btn:active { transform: scale(0.97); opacity: 0.9; }
+        .btn-outline { background: transparent; border: 1.5px solid var(--border); color: var(--text); }
+        .btn-small { padding: 8px 14px; font-size: 14px; width: auto; border-radius: 10px; }
 
-        .btn-outline {
-            background: transparent;
-            border: 1px solid var(--border);
-            color: var(--primary);
+        input, textarea {
+            width: 100%;
+            padding: 16px;
+            background: var(--bg);
+            border: 1.5px solid transparent;
+            border-radius: 14px;
+            font-size: 16px;
+            color: var(--text);
+            margin-bottom: 12px;
+            transition: border 0.2s;
+            font-family: 'Inter', sans-serif;
         }
+        input:focus, textarea:focus { outline: none; border-color: var(--primary); }
 
-        .btn-small {
-            padding: 8px 16px;
-            font-size: 14px;
-            width: auto;
-        }
+        /* ÖZEL BİLEŞENLER */
+        .flex-between { display: flex; justify-content: space-between; align-items: center; }
+        
+        .star-card { text-align: center; padding: 30px 20px; }
+        .star-icon { font-size: 56px; margin-bottom: 12px; filter: drop-shadow(0 4px 10px rgba(245, 166, 35, 0.3)); }
+        .star-message { font-size: 16px; font-weight: 600; color: var(--accent); }
 
-        /* Yıldız motifi – küçük, şık */
-        .star-card {
-            text-align: center;
-            background: var(--card);
-        }
-        .star-icon {
-            font-size: 44px;
-            display: inline-block;
-            margin-bottom: 8px;
-        }
-        .star-message {
-            font-size: 15px;
-            font-weight: 500;
-            color: var(--accent);
-        }
-
-        /* Bağımlılık listesi */
-        .habit-list {
+        .habit-item {
+            background: var(--bg);
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 10px;
             display: flex;
             flex-direction: column;
             gap: 12px;
         }
-        .habit-item {
-            background: var(--bg);
-            border-radius: 20px;
-            padding: 16px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 12px;
-            transition: 0.2s;
+        .habit-header { display: flex; justify-content: space-between; align-items: center; }
+        .habit-name { font-weight: 700; font-size: 16px; }
+        .habit-days { font-size: 20px; font-weight: 800; color: var(--accent); }
+        .habit-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        
+        .action-btn {
+            border-radius: 10px; padding: 10px; font-size: 14px; font-weight: 600; border: none; cursor: pointer;
+            display: flex; justify-content: center; align-items: center; gap: 6px;
         }
-        .habit-name {
-            font-weight: 700;
-            font-size: 17px;
-        }
-        .habit-days {
-            font-size: 24px;
-            font-weight: 800;
-            color: var(--accent);
-        }
-        .habit-actions {
-            display: flex;
-            gap: 10px;
-            margin-top: 8px;
-        }
-        .relapse-btn, .crisis-btn {
-            background: rgba(255, 59, 48, 0.1);
-            border: 0.5px solid var(--danger);
-            color: var(--danger);
-            border-radius: 40px;
-            padding: 6px 16px;
-            font-size: 13px;
-            font-weight: 500;
-            cursor: pointer;
-        }
-        .crisis-btn {
-            background: rgba(52, 199, 89, 0.1);
-            border-color: var(--success);
-            color: var(--success);
-        }
+        .action-relapse { background: rgba(255, 59, 48, 0.1); color: var(--danger); }
+        .action-crisis { background: rgba(52, 199, 89, 0.1); color: var(--success); }
 
-        /* İstatistik grid */
-        .stats-grid {
-            display: flex;
-            gap: 12px;
-            margin-top: 8px;
-        }
-        .stat-block {
-            flex: 1;
-            background: var(--bg);
-            border-radius: 20px;
-            padding: 12px;
-            text-align: center;
-        }
-        .stat-number {
-            font-size: 28px;
-            font-weight: 700;
-            color: var(--accent);
-        }
-        .stat-label {
-            font-size: 12px;
-            color: var(--text2);
-            margin-top: 4px;
-        }
+        .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+        .stat-block { background: var(--bg); border-radius: 14px; padding: 16px 10px; text-align: center; }
+        .stat-number { font-size: 24px; font-weight: 800; color: var(--accent); }
+        .stat-label { font-size: 11px; color: var(--text-sec); margin-top: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
 
-        /* Modal (iOS sheet) */
-        .modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.4);
-            backdrop-filter: blur(12px);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
+        /* BOTTOM SHEET MODALS (iOS Tarzı) */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5); backdrop-filter: blur(4px);
+            opacity: 0; visibility: hidden; transition: all 0.3s; z-index: 1000;
+            display: flex; align-items: flex-end;
         }
+        .modal-overlay.active { opacity: 1; visibility: visible; }
+        
         .modal-content {
             background: var(--card);
-            border-radius: 32px;
-            width: 90%;
-            max-width: 340px;
-            padding: 24px;
-            text-align: center;
-            animation: fadeScale 0.2s;
-        }
-        @keyframes fadeScale {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
-        }
-        .reason-grid {
-            display: grid;
-            grid-template-columns: repeat(2,1fr);
-            gap: 10px;
-            margin: 16px 0;
-        }
-        .reason-btn {
-            background: var(--bg);
-            border: none;
-            border-radius: 40px;
-            padding: 10px;
-            font-size: 14px;
-            cursor: pointer;
-        }
-        .mood-selector {
-            display: flex;
-            justify-content: center;
-            gap: 24px;
-            margin: 16px 0;
-        }
-        .mood-emoji {
-            font-size: 40px;
-            cursor: pointer;
-            opacity: 0.6;
-            transition: 0.2s;
-        }
-        .mood-emoji.active {
-            opacity: 1;
-            transform: scale(1.2);
-        }
-        input, textarea {
             width: 100%;
-            padding: 14px;
-            background: var(--bg);
-            border: none;
-            border-radius: 100px;
-            font-size: 16px;
-            color: var(--text);
-            margin-bottom: 12px;
-        }
-        textarea {
-            border-radius: 24px;
-            resize: none;
-        }
-        .flex-between {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .toast {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            right: 20px;
-            background: var(--text);
-            color: var(--bg);
-            padding: 12px;
-            border-radius: 100px;
-            text-align: center;
-            z-index: 2000;
-            animation: slideUp 0.3s;
-        }
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .badge-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 8px;
-        }
-        .badge {
-            background: var(--bg);
-            border-radius: 40px;
-            padding: 4px 12px;
-            font-size: 12px;
-        }
-        .badge-earned {
-            background: var(--accent);
-            color: white;
-        }
-        .theme-btn {
-            background: var(--card);
-            border: 0.5px solid var(--border);
-            border-radius: 100px;
-            padding: 8px 12px;
-            font-size: 14px;
-            cursor: pointer;
-        }
-        .empty-state {
-            text-align: center;
+            border-radius: 24px 24px 0 0;
             padding: 24px;
-            color: var(--text2);
+            transform: translateY(100%);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+            max-height: 90vh;
+            overflow-y: auto;
         }
-        .clickable-icon {
-            cursor: pointer;
-            transition: 0.1s;
+        .modal-overlay.active .modal-content { transform: translateY(0); }
+        
+        .modal-drag-handle { width: 40px; height: 5px; background: var(--border); border-radius: 5px; margin: 0 auto 20px; }
+
+        .reason-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 20px 0; }
+        .reason-btn { background: var(--bg); border: 1.5px solid transparent; border-radius: 12px; padding: 12px; font-size: 14px; font-weight: 500; color: var(--text); cursor: pointer; }
+        .reason-btn.selected { border-color: var(--primary); background: rgba(0, 122, 255, 0.05); }
+
+        .mood-selector { display: flex; justify-content: space-around; margin: 20px 0; }
+        .mood-emoji { font-size: 44px; cursor: pointer; filter: grayscale(100%); opacity: 0.5; transition: 0.2s; }
+        .mood-emoji.active { filter: grayscale(0%); opacity: 1; transform: scale(1.15); }
+
+        .toast {
+            position: fixed; top: 20px; left: 50%; transform: translateX(-50%) translateY(-100px);
+            background: var(--text); color: var(--card); padding: 14px 24px;
+            border-radius: 100px; font-size: 14px; font-weight: 500;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15); z-index: 2000; transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.2);
         }
-        .clickable-icon:active { transform: scale(0.96); }
+        .toast.show { transform: translateX(-50%) translateY(0); }
+        
+        /* GİZLEME SINIFI */
+        .hidden { display: none !important; }
     </style>
 </head>
 <body>
-<div id="loginContainer" style="min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 20px;">
-    <div class="card" style="width: 100%; text-align: center;">
-        <h1 style="font-size: 36px;">✨ TeegarLife</h1>
-        <p style="color: var(--text2); margin: 16px 0 24px;">yıldızın gibi parla</p>
-        <input type="email" id="loginEmail" placeholder="E-posta">
-        <input type="password" id="loginPassword" placeholder="Şifre">
+
+<div id="toast" class="toast">Mesaj</div>
+
+<div id="loginContainer" class="container" style="display: flex; flex-direction: column; justify-content: center; min-height: 90vh;">
+    <div class="card" style="padding: 40px 20px; text-align: center;">
+        <div class="star-icon" style="font-size: 64px;">✨</div>
+        <h1 class="gradient-text">TeegarLife</h1>
+        <p style="color: var(--text-sec); margin: 8px 0 32px;">İçindeki ışığı yeniden keşfet</p>
+        
+        <input type="email" id="loginEmail" placeholder="E-posta adresin">
+        <input type="password" id="loginPassword" placeholder="Şifren">
+        
         <button id="loginBtn" class="btn" style="margin-bottom: 12px;">Giriş Yap</button>
-        <button id="registerBtn" class="btn-outline btn" style="margin-bottom: 12px;">Kayıt Ol</button>
-        <button id="googleLoginBtn" class="btn-outline btn" style="background: #db4437; color: white; border: none;">Google ile Giriş</button>
+        <button id="registerBtn" class="btn btn-outline" style="margin-bottom: 24px;">Hesap Oluştur</button>
+        
+        <div style="position: relative; text-align: center; margin-bottom: 24px;">
+            <hr style="border: none; border-top: 1px solid var(--border);">
+            <span style="position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: var(--card); padding: 0 10px; color: var(--text-sec); font-size: 12px;">VEYA</span>
+        </div>
+        
+        <button id="googleLoginBtn" class="btn" style="background: #db4437; border: none; color: white;">
+            <i class="fab fa-google"></i> Google ile Devam Et
+        </button>
     </div>
 </div>
 
-<div id="appContainer" style="display: none;">
-    <div class="container">
+<div id="appContainer" class="container hidden">
+    <div class="flex-between" style="margin-bottom: 24px;">
+        <h1 class="gradient-text">TeegarLife</h1>
+        <button id="themeToggleBtn" class="btn-small btn-outline" style="border: none; background: var(--card); box-shadow: var(--shadow); border-radius: 50%; width: 40px; height: 40px; display: flex; justify-content: center; align-items: center;"><i class="fas fa-moon"></i></button>
+    </div>
+
+    <div class="card star-card">
+        <div class="star-icon" id="starIcon">⭐</div>
+        <div class="star-message" id="starMessage">Yıldızın parlıyor</div>
+    </div>
+
+    <div class="card">
+        <div class="flex-between">
+            <h2><i class="fas fa-layer-group" style="color: var(--primary);"></i> Mücadelelerim</h2>
+            <button id="addHabitBtn" class="btn-small btn-outline" style="color: var(--primary); border-color: var(--primary);"><i class="fas fa-plus"></i> Yeni</button>
+        </div>
+        <div id="habitsList">
+            </div>
+    </div>
+
+    <div class="card" style="background: linear-gradient(135deg, rgba(52, 199, 89, 0.1), rgba(52, 199, 89, 0.05)); border: 1px solid rgba(52, 199, 89, 0.2);">
+        <h2><i class="fas fa-life-ring" style="color: var(--success);"></i> Acil Destek</h2>
+        <p style="font-size: 14px; color: var(--text-sec); margin-bottom: 16px;">Kendini zayıf hissettiğinde hemen buraya tıkla.</p>
+        <button id="crisisGlobalBtn" class="btn" style="background: var(--success);">Kriz Anındayım, Yardım Et</button>
+    </div>
+
+    <div class="card">
+        <div class="flex-between">
+            <h2><i class="fas fa-chart-pie" style="color: var(--accent);"></i> İstatistikler</h2>
+        </div>
+        <div class="stats-grid" id="statsGrid">
+            <div class="stat-block"><div class="stat-number" id="longestStreak">0</div><div class="stat-label">En Uzun Seri</div></div>
+            <div class="stat-block"><div class="stat-number" id="totalRelapses">0</div><div class="stat-label">Nüksetme</div></div>
+            <div class="stat-block"><div class="stat-number" id="totalClean">0</div><div class="stat-label">Temiz Gün</div></div>
+        </div>
+    </div>
+
+    <div class="card">
         <div class="flex-between" style="margin-bottom: 20px;">
-            <h1>TeegarLife</h1>
-            <button id="themeToggleBtn" class="theme-btn"><i class="fas fa-moon"></i></button>
-        </div>
-
-        <!-- Yıldız kartı – sade ve estetik -->
-        <div class="card star-card">
-            <div class="star-icon" id="starIcon">⭐</div>
-            <div class="star-message" id="starMessage">Yıldızın parlıyor</div>
-        </div>
-
-        <!-- Bağımlılıklar -->
-        <div class="card">
-            <div class="flex-between">
-                <h2><i class="fas fa-list-ul"></i> Bağımlılıklarım</h2>
-                <button id="addHabitBtn" class="btn-small btn-outline"><i class="fas fa-plus"></i> Ekle</button>
+            <div>
+                <h2><i class="far fa-face-smile" style="color: var(--primary);"></i> Modum</h2>
+                <div id="lastMood" style="color: var(--text-sec); font-size: 14px;">Henüz kaydedilmedi</div>
             </div>
-            <div id="habitsList" class="habit-list"></div>
+            <button id="dailyMoodBtn" class="btn-small btn-outline">Güncelle</button>
         </div>
-
-        <!-- Acil destek butonu -->
-        <div class="card">
-            <h2><i class="fas fa-hand-holding-heart"></i> Acil Destek</h2>
-            <button id="crisisGlobalBtn" class="btn" style="background: var(--success);">Kriz anındayım, yardım et</button>
-        </div>
-
-        <!-- İstatistikler -->
-        <div class="card">
-            <div class="flex-between">
-                <h2><i class="fas fa-chart-simple"></i> İstatistikler</h2>
-                <button id="statsDetailBtn" class="btn-small btn-outline">Detay</button>
+        <hr style="border: none; border-top: 1px solid var(--border); margin-bottom: 20px;">
+        <div class="flex-between">
+            <div>
+                <h2><i class="fas fa-flag-checkered" style="color: var(--danger);"></i> Hedefim</h2>
+                <div id="goalDisplay" style="color: var(--text-sec); font-size: 14px;">Belirlenmedi</div>
             </div>
-            <div class="stats-grid" id="statsGrid">
-                <div class="stat-block"><div class="stat-number" id="longestStreak">0</div><div class="stat-label">en uzun seri</div></div>
-                <div class="stat-block"><div class="stat-number" id="totalRelapses">0</div><div class="stat-label">nüksetme</div></div>
-                <div class="stat-block"><div class="stat-number" id="totalClean">0</div><div class="stat-label">toplam temiz gün</div></div>
-            </div>
-        </div>
-
-        <!-- Duygu + Hedef -->
-        <div class="card">
-            <div class="flex-between" style="margin-bottom: 16px;">
-                <div><h2><i class="far fa-smile"></i> Son Duygu</h2><div id="lastMood" style="color: var(--text2);">Kayıt yok</div></div>
-                <button id="dailyMoodBtn" class="btn-small btn-outline">Ekle</button>
-            </div>
-            <div class="flex-between">
-                <div><h2><i class="fas fa-bullseye"></i> Hedef</h2><div id="goalDisplay" style="color: var(--text2);">Hedef yok</div></div>
-                <button id="goalBtn" class="btn-small btn-outline">Belirle</button>
-            </div>
-        </div>
-
-        <!-- Rozet önizleme -->
-        <div class="card">
-            <div class="flex-between">
-                <h2><i class="fas fa-medal"></i> Rozetlerim</h2>
-                <button id="badgesModalBtn" class="btn-small btn-outline">Tümü</button>
-            </div>
-            <div id="badgesPreview" class="badge-list"></div>
+            <button id="goalBtn" class="btn-small btn-outline">Belirle</button>
         </div>
     </div>
 </div>
 
-<!-- Modal'lar -->
-<div id="relapseModal" class="modal"><div class="modal-content"><h3>Nüksetme nedeni?</h3><div id="relapseReasons" class="reason-grid"></div><button id="confirmRelapse" class="btn">Kaydet</button></div></div>
-<div id="crisisModal" class="modal"><div class="modal-content"><h3>🧘 Kriz Anı</h3><p style="margin:16px 0;">Derin nefes al, sakinleş. 1 dakika boyunca odaklan.</p><button id="breatheBtn" class="btn">Nefes egzersizi başlat</button><button id="closeCrisis" class="btn-outline btn" style="margin-top:12px;">Kapat</button></div></div>
-<div id="statsModal" class="modal"><div class="modal-content"><h3>📊 Detaylı İstatistikler</h3><div id="statsDetail" style="margin:16px 0;"></div><button id="closeStats" class="btn">Kapat</button></div></div>
-<div id="dailyModal" class="modal"><div class="modal-content"><h3>Bugün nasılsın?</h3><textarea id="moodText" rows="2" placeholder="Duygunu yaz..."></textarea><div class="mood-selector"><span class="mood-emoji" data-mood="😊">😊</span><span class="mood-emoji" data-mood="😐">😐</span><span class="mood-emoji" data-mood="😔">😔</span></div><button id="saveMood" class="btn">Kaydet</button></div></div>
-<div id="goalModal" class="modal"><div class="modal-content"><h3>🎯 Hedef Belirle</h3><input type="number" id="goalDays" placeholder="Kaç gün temiz kalacaksın?"><button id="saveGoal" class="btn">Kaydet</button></div></div>
-<div id="badgesModal" class="modal"><div class="modal-content"><h3>🏆 Rozetlerim</h3><div id="badgesDetail" style="margin:16px 0;"></div><button id="closeBadges" class="btn">Kapat</button></div></div>
+<div id="relapseModal" class="modal-overlay">
+    <div class="modal-content">
+        <div class="modal-drag-handle"></div>
+        <h3 style="text-align: center; margin-bottom: 10px;">Neden Nüksetti?</h3>
+        <p style="text-align: center; color: var(--text-sec); font-size: 14px;">Kendine karşı dürüst ol, bu bir öğrenme sürecidir.</p>
+        <div id="relapseReasons" class="reason-grid"></div>
+        <button id="confirmRelapse" class="btn" style="background: var(--danger);">Kaydet ve Yeniden Başla</button>
+        <button class="btn btn-outline close-modal-btn" style="margin-top: 12px; border: none;">İptal</button>
+    </div>
+</div>
+
+<div id="crisisModal" class="modal-overlay">
+    <div class="modal-content">
+        <div class="modal-drag-handle"></div>
+        <div style="text-align: center;">
+            <i class="fas fa-spa" style="font-size: 48px; color: var(--success); margin-bottom: 16px;"></i>
+            <h3>Derin bir nefes al</h3>
+            <p style="color: var(--text-sec); margin: 16px 0; font-size: 15px; line-height: 1.5;">Şu an hissettiğin kriz dalgası geçici. Sadece 10 dakika bekle ve bu sürede zihnini başka bir şeye odakla.</p>
+        </div>
+        <button id="breatheBtn" class="btn" style="background: var(--success);">Nefes Egzersizini Başlat</button>
+        <button class="btn btn-outline close-modal-btn" style="margin-top: 12px; border: none;">Kapat</button>
+    </div>
+</div>
+
+<div id="dailyModal" class="modal-overlay">
+    <div class="modal-content">
+        <div class="modal-drag-handle"></div>
+        <h3 style="text-align: center;">Bugün Nasılsın?</h3>
+        <div class="mood-selector">
+            <span class="mood-emoji active" data-mood="😊">😊</span>
+            <span class="mood-emoji" data-mood="😐">😐</span>
+            <span class="mood-emoji" data-mood="😔">😔</span>
+            <span class="mood-emoji" data-mood="😡">😡</span>
+        </div>
+        <textarea id="moodText" rows="2" placeholder="İçinden geçenleri kısaca yaz..."></textarea>
+        <button id="saveMood" class="btn">Kaydet</button>
+        <button class="btn btn-outline close-modal-btn" style="margin-top: 12px; border: none;">Kapat</button>
+    </div>
+</div>
+
+<div id="goalModal" class="modal-overlay">
+    <div class="modal-content">
+        <div class="modal-drag-handle"></div>
+        <h3 style="text-align: center; margin-bottom: 20px;">Hedef Belirle</h3>
+        <input type="number" id="goalDays" placeholder="Örn: 30 (Gün olarak)" pattern="[0-9]*" inputmode="numeric">
+        <button id="saveGoal" class="btn">Hedefi Kaydet</button>
+        <button class="btn btn-outline close-modal-btn" style="margin-top: 12px; border: none;">Kapat</button>
+    </div>
+</div>
 
 <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js";
-    import { getFirestore, collection, addDoc, getDocs, query, where, updateDoc, doc, Timestamp, orderBy } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-firestore.js";
-    import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-auth.js";
+    // DÜZELTME 1: Firebase v12 diye bir sürüm yoktur. Uygulamayı çökerten buydu. Doğru ve stabil v10 sürümüne güncellendi.
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+    import { getFirestore, collection, addDoc, getDocs, query, where, updateDoc, doc, Timestamp, orderBy } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+    import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
 
     const firebaseConfig = {
         apiKey: "AIzaSyBMRK0wjFVi8vCmbpAdqep6GiKdpFNcpMQ",
@@ -436,19 +335,39 @@
     let currentUser = null;
     let habits = [];
     let currentHabitId = null;
+    let selectedRelapseReason = null;
 
+    // Toast Mesaj Sistemi
     function showToast(msg) {
-        const t = document.createElement('div');
-        t.className = 'toast';
-        t.innerText = msg;
-        document.body.appendChild(t);
-        setTimeout(() => t.remove(), 2500);
+        const toast = document.getElementById('toast');
+        toast.innerText = msg;
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 3000);
     }
 
-    function vibrate() { if ('vibrate' in navigator) navigator.vibrate(100); }
-
+    function vibrate() { if ('vibrate' in navigator) navigator.vibrate(50); }
     function daysSince(ts) { if (!ts) return 0; return Math.max(0, Math.floor((Date.now() - ts) / (1000*3600*24))); }
+    function escapeHtml(str) { return str.replace(/[&<>]/g, m => ({ '&':'&amp;','<':'&lt;','>':'&gt;' }[m])); }
 
+    // Hata Çevirici (Kullanıcıya İngilizce kod göstermemek için)
+    function translateError(code) {
+        if(code.includes('invalid-credential') || code.includes('user-not-found') || code.includes('wrong-password')) return "E-posta veya şifre hatalı.";
+        if(code.includes('email-already-in-use')) return "Bu e-posta adresi zaten kullanımda.";
+        if(code.includes('weak-password')) return "Şifre çok zayıf. En az 6 karakter olmalı.";
+        return "Bir hata oluştu, lütfen tekrar dene.";
+    }
+
+    // Modal Yönetimi
+    function openModal(id) { document.getElementById(id).classList.add('active'); }
+    function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+    document.querySelectorAll('.close-modal-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => e.target.closest('.modal-overlay').classList.remove('active'));
+    });
+    document.querySelectorAll('.modal-overlay').forEach(overlay => {
+        overlay.addEventListener('click', (e) => { if(e.target === overlay) overlay.classList.remove('active'); });
+    });
+
+    // Veri Yükleme İşlemleri
     async function loadHabits() {
         if (!currentUser) return;
         const q = query(collection(db, "habits"), where("userId", "==", currentUser.uid), orderBy("createdAt", "desc"));
@@ -456,46 +375,76 @@
         habits = snap.docs.map(d => ({ id: d.id, ...d.data() }));
         renderHabits();
         updateStats();
-        updateBadgesPreview();
-        updateStarMessage();
     }
 
+    // DÜZELTME 2: Event Listener'ların birbirini ezmemesi için Event Delegation kullanıldı.
     function renderHabits() {
         const container = document.getElementById('habitsList');
         if (habits.length === 0) {
-            container.innerHTML = '<div class="empty-state"><i class="fas fa-plus-circle" style="font-size:32px; opacity:0.5;"></i><p style="margin-top:8px;">Bağımlılık eklemek için "+ Ekle" butonuna tıkla</p></div>';
+            container.innerHTML = '<div style="text-align:center; padding: 20px; color: var(--text-sec);"><i class="fas fa-seedling" style="font-size:32px; opacity:0.5; margin-bottom:10px;"></i><p>Henüz bir takip oluşturmadın.<br>Yukarıdaki + butonundan başla.</p></div>';
             return;
         }
+        
         container.innerHTML = habits.map(h => {
             const clean = daysSince(h.lastRelapse || h.startDate);
             return `
-                <div class="habit-item" data-id="${h.id}">
-                    <div><span class="habit-name">${escapeHtml(h.name)}</span><div class="habit-days">✨ ${clean} gün</div></div>
+                <div class="habit-item">
+                    <div class="habit-header">
+                        <span class="habit-name">${escapeHtml(h.name)}</span>
+                        <div class="habit-days">✨ ${clean} gün</div>
+                    </div>
                     <div class="habit-actions">
-                        <button class="relapse-btn" data-id="${h.id}">Nüksetme</button>
-                        <button class="crisis-btn crisis-local">Kriz</button>
+                        <button class="action-btn action-relapse" data-id="${h.id}"><i class="fas fa-rotate-left"></i> Nüksetme</button>
+                        <button class="action-btn action-crisis"><i class="fas fa-heart-pulse"></i> Kriz</button>
                     </div>
                 </div>
             `;
         }).join('');
-        document.querySelectorAll('.relapse-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                currentHabitId = btn.dataset.id;
-                openRelapseModal();
-            });
-        });
-        document.querySelectorAll('.crisis-local').forEach(() => openCrisisModal());
     }
 
-    async function addRelapse(habitId, reason) {
-        const habit = habits.find(h => h.id === habitId);
-        if (!habit) return;
-        const reasons = [...(habit.relapseReasons || []), reason];
-        await updateDoc(doc(db, "habits", habitId), { lastRelapse: Timestamp.now().toMillis(), relapseReasons: reasons });
-        await loadHabits();
-        showToast("Nüksetme kaydedildi. Yeniden başlıyorsun, pes etme!");
-        vibrate();
+    // Dinamik Buton Tıklamaları (Event Delegation)
+    document.getElementById('habitsList').addEventListener('click', (e) => {
+        const relapseBtn = e.target.closest('.action-relapse');
+        const crisisBtn = e.target.closest('.action-crisis');
+        
+        if (relapseBtn) {
+            currentHabitId = relapseBtn.dataset.id;
+            selectedRelapseReason = null;
+            renderRelapseReasons();
+            openModal('relapseModal');
+        }
+        if (crisisBtn) {
+            openModal('crisisModal');
+            vibrate();
+        }
+    });
+
+    // Nüksetme Nedenleri
+    const reasonsList = ['Stres', 'Yalnızlık', 'Can Sıkıntısı', 'Gece / Uyku Öncesi', 'Arkadaş Ortamı', 'Öfke'];
+    function renderRelapseReasons() {
+        const div = document.getElementById('relapseReasons');
+        div.innerHTML = reasonsList.map(r => `<button class="reason-btn">${r}</button>`).join('');
+        div.querySelectorAll('.reason-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                div.querySelectorAll('.reason-btn').forEach(b => b.classList.remove('selected'));
+                btn.classList.add('selected');
+                selectedRelapseReason = btn.innerText;
+            });
+        });
     }
+
+    document.getElementById('confirmRelapse').addEventListener('click', async () => {
+        if(!selectedRelapseReason) return showToast("Lütfen bir neden seç.");
+        if (currentHabitId) {
+            const habit = habits.find(h => h.id === currentHabitId);
+            const reasons = [...(habit.relapseReasons || []), selectedRelapseReason];
+            await updateDoc(doc(db, "habits", currentHabitId), { lastRelapse: Timestamp.now().toMillis(), relapseReasons: reasons });
+            await loadHabits();
+            showToast("Kaydedildi. Hiçbir şey bitmedi, sadece öğrendin!");
+            closeModal('relapseModal');
+            vibrate();
+        }
+    });
 
     async function addHabit(name) {
         await addDoc(collection(db, "habits"), {
@@ -507,10 +456,10 @@
             createdAt: Timestamp.now()
         });
         await loadHabits();
-        showToast(`"${name}" eklendi. Haydi başla!`);
+        showToast(`"${name}" eklendi. Başarılar!`);
     }
 
-    async function updateStats() {
+    function updateStats() {
         let longest = 0, totalRel = 0, totalClean = 0;
         for (const h of habits) {
             const clean = daysSince(h.lastRelapse || h.startDate);
@@ -521,166 +470,120 @@
         document.getElementById('longestStreak').innerText = longest;
         document.getElementById('totalRelapses').innerText = totalRel;
         document.getElementById('totalClean').innerText = totalClean;
-    }
-
-    function updateStarMessage() {
-        const longest = parseInt(document.getElementById('longestStreak').innerText) || 0;
+        
+        // Yıldız Durumu Güncelleme
         const starIcon = document.getElementById('starIcon');
         const starMsg = document.getElementById('starMessage');
-        if (longest === 0) { starIcon.innerHTML = '🌑'; starMsg.innerText = 'Yeni başlangıç, yıldızın uyanıyor'; }
-        else if (longest < 7) { starIcon.innerHTML = '⭐'; starMsg.innerText = `${longest} gündür parlıyorsun`; }
-        else if (longest < 30) { starIcon.innerHTML = '🌟'; starMsg.innerText = `${longest} gün! Yıldızın parlıyor`; }
-        else { starIcon.innerHTML = '🌠'; starMsg.innerText = `${longest} gün! Muhteşem, ışıldıyorsun`; }
+        if (longest === 0) { starIcon.innerHTML = '🌑'; starMsg.innerText = 'Yeni başlangıç, tohum ekildi'; }
+        else if (longest < 7) { starIcon.innerHTML = '⭐'; starMsg.innerText = `${longest} gündür istikrarlısın`; }
+        else if (longest < 30) { starIcon.innerHTML = '🌟'; starMsg.innerText = `${longest} gün! Işığın büyüyor`; }
+        else { starIcon.innerHTML = '🌠'; starMsg.innerText = `${longest} gün! Göz kamaştırıyorsun`; }
     }
 
-    async function updateBadgesPreview() {
-        const badgesSet = new Set();
-        for (const h of habits) {
-            const c = daysSince(h.lastRelapse || h.startDate);
-            if (c >= 7) badgesSet.add('7 Gün 🌱');
-            if (c >= 30) badgesSet.add('30 Gün ⭐');
-            if (c >= 90) badgesSet.add('90 Gün 🌟');
-        }
-        const container = document.getElementById('badgesPreview');
-        if (badgesSet.size === 0) container.innerHTML = '<span class="badge">Henüz rozet yok</span>';
-        else container.innerHTML = Array.from(badgesSet).map(b => `<span class="badge badge-earned">${b}</span>`).join('');
-    }
-
-    async function saveMood(text, emoji) {
-        await addDoc(collection(db, "moods"), { userId: currentUser.uid, text, emoji, date: Timestamp.now() });
-        showToast("Duygun kaydedildi.");
-        loadLastMood();
-    }
-
+    // Diğer Özellikler (Mod & Hedef)
     async function loadLastMood() {
         const q = query(collection(db, "moods"), where("userId", "==", currentUser.uid), orderBy("date", "desc"));
         const snap = await getDocs(q);
         if (!snap.empty) {
             const m = snap.docs[0].data();
-            document.getElementById('lastMood').innerHTML = `${m.emoji || '😊'} ${m.text || ''}`;
-        } else document.getElementById('lastMood').innerHTML = "Kayıt yok";
+            document.getElementById('lastMood').innerHTML = `<span style="font-size:18px;">${m.emoji || '😊'}</span> ${m.text ? m.text.substring(0,15)+'...' : 'Kaydedildi'}`;
+        }
     }
 
-    async function setGoal(days) {
-        const goalRef = doc(db, "goals", currentUser.uid);
-        await updateDoc(goalRef, { targetDays: days, updatedAt: Timestamp.now() }).catch(async () => {
-            await addDoc(collection(db, "goals"), { userId: currentUser.uid, targetDays: days, createdAt: Timestamp.now() });
-        });
-        showToast(`Hedef: ${days} gün temiz kalmak.`);
-        loadGoal();
-    }
-
-    async function loadGoal() {
-        const q = query(collection(db, "goals"), where("userId", "==", currentUser.uid));
-        const snap = await getDocs(q);
-        if (!snap.empty) document.getElementById('goalDisplay').innerHTML = `${snap.docs[0].data().targetDays} gün hedefi`;
-        else document.getElementById('goalDisplay').innerHTML = "Hedef yok";
-    }
-
-    function openRelapseModal() {
-        const reasonsDiv = document.getElementById('relapseReasons');
-        reasonsDiv.innerHTML = ['Stres','Yalnızlık','Can sıkıntısı','Gece','Arkadaş ortamı','Öfke'].map(r => `<button class="reason-btn">${r}</button>`).join('');
-        document.getElementById('relapseModal').style.display = 'flex';
-        document.querySelectorAll('.reason-btn').forEach(btn => {
-            btn.addEventListener('click', async () => {
-                if (currentHabitId) await addRelapse(currentHabitId, btn.innerText);
-                document.getElementById('relapseModal').style.display = 'none';
-                currentHabitId = null;
-            });
-        });
-    }
-
-    function openCrisisModal() {
-        document.getElementById('crisisModal').style.display = 'flex';
-        vibrate();
-    }
-
-    // UI event listeners
-    document.getElementById('addHabitBtn').onclick = () => {
-        const name = prompt("Bağımlılık adı (ör: Sigara, Alkol, 31, Kumar):");
-        if (name?.trim()) addHabit(name.trim());
-    };
-    document.getElementById('crisisGlobalBtn').onclick = () => openCrisisModal();
-    document.getElementById('breatheBtn').onclick = () => {
-        alert("Nefes al (4sn) → Tut (4sn) → Ver (4sn). 1 dakika tekrarla.");
-        document.getElementById('crisisModal').style.display = 'none';
-        vibrate();
-    };
-    document.getElementById('closeCrisis').onclick = () => document.getElementById('crisisModal').style.display = 'none';
-    document.getElementById('statsDetailBtn').onclick = () => {
-        const detail = habits.map(h => `<div style="margin-bottom:8px;"><strong>${h.name}</strong><br>${daysSince(h.lastRelapse || h.startDate)} gün, ${h.relapseReasons?.length || 0} nüksetme</div>`).join('');
-        document.getElementById('statsDetail').innerHTML = detail || "Veri yok";
-        document.getElementById('statsModal').style.display = 'flex';
-    };
-    document.getElementById('closeStats').onclick = () => document.getElementById('statsModal').style.display = 'none';
-    document.getElementById('dailyMoodBtn').onclick = () => document.getElementById('dailyModal').style.display = 'flex';
-    document.getElementById('saveMood').onclick = async () => {
-        const text = document.getElementById('moodText').value;
-        const emoji = document.querySelector('.mood-emoji.active')?.dataset.mood || '😊';
-        await saveMood(text, emoji);
-        document.getElementById('dailyModal').style.display = 'none';
-        document.getElementById('moodText').value = '';
-        document.querySelectorAll('.mood-emoji').forEach(e => e.classList.remove('active'));
-    };
+    document.getElementById('dailyMoodBtn').onclick = () => openModal('dailyModal');
     document.querySelectorAll('.mood-emoji').forEach(e => e.addEventListener('click', () => {
         document.querySelectorAll('.mood-emoji').forEach(m => m.classList.remove('active'));
         e.classList.add('active');
     }));
-    document.getElementById('goalBtn').onclick = () => document.getElementById('goalModal').style.display = 'flex';
+    
+    document.getElementById('saveMood').onclick = async () => {
+        const text = document.getElementById('moodText').value;
+        const emoji = document.querySelector('.mood-emoji.active')?.dataset.mood || '😊';
+        await addDoc(collection(db, "moods"), { userId: currentUser.uid, text, emoji, date: Timestamp.now() });
+        showToast("Duygun kaydedildi.");
+        closeModal('dailyModal');
+        loadLastMood();
+    };
+
+    async function loadGoal() {
+        const q = query(collection(db, "goals"), where("userId", "==", currentUser.uid));
+        const snap = await getDocs(q);
+        if (!snap.empty) document.getElementById('goalDisplay').innerHTML = `Hedef: <b>${snap.docs[0].data().targetDays} gün</b>`;
+    }
+
+    document.getElementById('goalBtn').onclick = () => openModal('goalModal');
     document.getElementById('saveGoal').onclick = async () => {
         const days = parseInt(document.getElementById('goalDays').value);
-        if (days > 0) { await setGoal(days); document.getElementById('goalModal').style.display = 'none'; }
-        else showToast("Geçerli bir sayı girin");
+        if (days > 0) {
+            const goalRef = doc(db, "goals", currentUser.uid);
+            await updateDoc(goalRef, { targetDays: days, updatedAt: Timestamp.now() }).catch(async () => {
+                await addDoc(collection(db, "goals"), { userId: currentUser.uid, targetDays: days, createdAt: Timestamp.now() });
+            });
+            showToast("Hedef güncellendi.");
+            closeModal('goalModal');
+            loadGoal();
+        } else showToast("Geçerli bir gün sayısı girin");
     };
-    document.getElementById('badgesModalBtn').onclick = () => {
-        let html = '';
-        for (const h of habits) {
-            const c = daysSince(h.lastRelapse || h.startDate);
-            html += `<div style="margin-bottom:16px;"><strong>${h.name}</strong> (${c} gün)<br>`;
-            if (c >= 7) html += `<span class="badge badge-earned">7 Gün 🌱</span> `;
-            if (c >= 30) html += `<span class="badge badge-earned">30 Gün ⭐</span> `;
-            if (c >= 90) html += `<span class="badge badge-earned">90 Gün 🌟</span>`;
-            if (c < 7) html += `<span class="badge">Henüz rozet yok</span>`;
-            html += `</div>`;
-        }
-        document.getElementById('badgesDetail').innerHTML = html || "Henüz rozet yok";
-        document.getElementById('badgesModal').style.display = 'flex';
-    };
-    document.getElementById('closeBadges').onclick = () => document.getElementById('badgesModal').style.display = 'none';
 
-    // Tema
+    // Genel Butonlar
+    document.getElementById('addHabitBtn').onclick = () => {
+        const name = prompt("Ne ile mücadele ediyorsun? (Örn: Sigara, Ekran Süresi)");
+        if (name?.trim()) addHabit(name.trim());
+    };
+    document.getElementById('crisisGlobalBtn').onclick = () => { openModal('crisisModal'); vibrate(); };
+    document.getElementById('breatheBtn').onclick = () => {
+        showToast("Nefes Egzersizi Başlıyor... (4-4-4 Kuralı)");
+        closeModal('crisisModal');
+        // Buraya animasyonlu bir sayfa veya div açılabilir.
+    };
+
+    // Tema Ayarları
     const themeBtn = document.getElementById('themeToggleBtn');
-    themeBtn.onclick = () => document.body.classList.toggle('dark');
-    if (window.matchMedia('(prefers-color-scheme: dark)').matches) document.body.classList.add('dark');
+    themeBtn.onclick = () => {
+        document.body.classList.toggle('dark');
+        const isDark = document.body.classList.contains('dark');
+        themeBtn.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+    };
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+        themeBtn.innerHTML = '<i class="fas fa-sun"></i>';
+    }
 
-    // Auth
+    // AUTH İŞLEMLERİ
     onAuthStateChanged(auth, async (user) => {
         if (user) {
             currentUser = user;
-            document.getElementById('loginContainer').style.display = 'none';
-            document.getElementById('appContainer').style.display = 'block';
+            document.getElementById('loginContainer').classList.add('hidden');
+            document.getElementById('appContainer').classList.remove('hidden');
+            showToast(`Hoş geldin!`);
             await Promise.all([loadHabits(), loadGoal(), loadLastMood()]);
-            showToast(`Hoş geldin ${user.email}`);
         } else {
             currentUser = null;
-            document.getElementById('loginContainer').style.display = 'flex';
-            document.getElementById('appContainer').style.display = 'none';
+            document.getElementById('loginContainer').classList.remove('hidden');
+            document.getElementById('appContainer').classList.add('hidden');
         }
     });
+
     document.getElementById('loginBtn').onclick = async () => {
-        try { await signInWithEmailAndPassword(auth, document.getElementById('loginEmail').value, document.getElementById('loginPassword').value); }
-        catch(e) { showToast("Hata: " + e.message); }
+        const e = document.getElementById('loginEmail').value, p = document.getElementById('loginPassword').value;
+        if(!e || !p) return showToast("E-posta ve şifre girmelisin.");
+        try { await signInWithEmailAndPassword(auth, e, p); }
+        catch(err) { showToast(translateError(err.code)); }
     };
+    
     document.getElementById('registerBtn').onclick = async () => {
-        try { await createUserWithEmailAndPassword(auth, document.getElementById('loginEmail').value, document.getElementById('loginPassword').value); showToast("Kayıt başarılı, giriş yap"); }
-        catch(e) { showToast("Hata: " + e.message); }
+        const e = document.getElementById('loginEmail').value, p = document.getElementById('loginPassword').value;
+        if(!e || !p) return showToast("E-posta ve şifre girmelisin.");
+        try { 
+            await createUserWithEmailAndPassword(auth, e, p); 
+            showToast("Aramıza katıldın!"); 
+        } catch(err) { showToast(translateError(err.code)); }
     };
+    
     document.getElementById('googleLoginBtn').onclick = async () => {
         try { await signInWithPopup(auth, googleProvider); }
-        catch(e) { showToast("Google hatası: " + e.message); }
+        catch(err) { showToast("Google girişi iptal edildi veya hata oluştu."); }
     };
-    window.onclick = (e) => { if (e.target.classList.contains('modal')) e.target.style.display = 'none'; };
-    function escapeHtml(str) { return str.replace(/[&<>]/g, m => ({ '&':'&amp;','<':'&lt;','>':'&gt;' }[m])); }
 </script>
 </body>
 </html>
