@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+   <!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
@@ -22,62 +22,63 @@
             -webkit-tap-highlight-color: transparent;
         }
         body {
-            background: #f5f5f7;
+            background: #F2F2F5;
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            color: #1c1c1e;
+            color: #000000;
             transition: background 0.2s, color 0.2s;
-            padding-bottom: 80px; /* bottom nav için alan */
+            min-height: -webkit-fill-available;
         }
-        /* Light Mode */
+        /* Light Mode (iOS Light) */
         body.light {
-            background: #f5f5f7;
-            color: #1c1c1e;
+            background: #F2F2F5;
+            color: #000000;
         }
-        body.light .card, body.light .modal-card, body.light .bottom-nav {
-            background: #ffffff;
-            border-color: #e9e9ef;
+        body.light .card, body.light .modal-card, body.light .bottom-nav, body.light .fab-item {
+            background: #FFFFFF;
+            border-color: #E9E9EF;
             box-shadow: 0 2px 8px rgba(0,0,0,0.02), 0 4px 12px rgba(0,0,0,0.03);
         }
+        body.light .kpi-value { color: #000000; }
+        body.light .balance-card { background: linear-gradient(135deg, #0A2540, #1C4E6F); color: white; }
+        body.light .btn-outline { border-color: #007AFF; color: #007AFF; }
         /* Dark Mode Premium */
         body.dark {
-            background: #0D0D0D;
-            color: #ffffff;
+            background: #000000;
+            color: #FFFFFF;
         }
-        body.dark .card, body.dark .modal-card, body.dark .bottom-nav {
+        body.dark .card, body.dark .modal-card, body.dark .bottom-nav, body.dark .fab-item {
             background: #1C1C1E;
             border-color: #2C2C2E;
             box-shadow: 0 2px 8px rgba(0,0,0,0.4);
         }
-        body.dark .card .subtitle, body.dark .kpi-label, body.dark .summary-label {
-            color: #98989e;
-        }
-        body.dark .icon-btn, body.dark .filter-btn {
-            background: #2C2C2E;
-            border-color: #3A3A3C;
-            color: #FFD966;
-        }
+        body.dark .balance-card { background: linear-gradient(135deg, #0A2540, #1C3E5F); }
+        body.dark .kpi-card .kpi-value { color: #FFFFFF; }
+        body.dark .filter-btn, body.dark .segment-btn { background: #2C2C2E; color: #FFFFFF; border: none; }
+        body.dark .filter-btn.active, body.dark .segment-btn.active { background: #0A84FF; }
+        body.dark .search-box input, body.dark .form-control { background: #2C2C2E; border-color: #3A3A3C; color: white; }
+        body.dark .trans-icon { background: #2C2C2E; }
+        body.dark .debt-box { background: #2C2C2E; }
+        body.dark .debt-box.approaching { background: #3A2C1E; }
         /* Genel Kart */
         .card {
-            border-radius: 28px;
+            border-radius: 24px;
             margin: 16px;
             padding: 16px;
             border: 0.5px solid;
         }
         .balance-card {
-            background: linear-gradient(135deg, #0A2540, #1C4E6F);
-            color: white;
-            border: none;
-        }
-        body.dark .balance-card {
-            background: linear-gradient(135deg, #0A2540, #1C3E5F);
+            margin: 16px;
+            padding: 20px;
+            border-radius: 28px;
+            text-align: center;
         }
         .balance-title {
             font-size: 0.8rem;
-            opacity: 0.9;
-            margin-bottom: 8px;
+            opacity: 0.8;
+            margin-bottom: 6px;
         }
         .balance-value {
-            font-size: 2rem;
+            font-size: 2.2rem;
             font-weight: 800;
             letter-spacing: -0.5px;
         }
@@ -88,48 +89,82 @@
         }
         .kpi-card {
             flex: 1;
-            border-radius: 24px;
-            padding: 16px;
             text-align: center;
+            padding: 16px;
+            border-radius: 20px;
             border: 0.5px solid;
         }
+        .kpi-label {
+            font-size: 0.7rem;
+            color: #8E8E93;
+            margin-top: 6px;
+        }
         .kpi-value {
-            font-size: 1.4rem;
+            font-size: 1.6rem;
             font-weight: 700;
         }
-        .income { color: #34c759; }
-        .expense { color: #ff3b30; }
-        /* Özet kartları (alt alta) */
-        .summary-stack {
+        /* Limit Kartı */
+        .limit-card {
             margin: 0 16px 16px 16px;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
+            padding: 12px;
+            border-radius: 20px;
+            border: 0.5px solid;
         }
-        .summary-item {
+        .limit-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            margin-bottom: 8px;
+        }
+        .progress-bar {
+            background: #E9E9EF;
+            border-radius: 12px;
+            height: 6px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            background: #34C759;
+            width: 0%;
+            height: 100%;
+            border-radius: 12px;
+        }
+        /* Hedef Kartı (küçük) */
+        .goal-mini {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin: 0 16px 16px 16px;
             padding: 12px 16px;
             border-radius: 20px;
             border: 0.5px solid;
         }
-        /* Grafik */
-        .chart-container {
+        .goal-info {
+            flex: 1;
+        }
+        .goal-name {
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+        .goal-progress {
+            width: 120px;
+        }
+        .goal-percent {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #34C759;
+        }
+        /* Grafik Kartı */
+        .chart-card {
             margin: 0 16px 16px 16px;
             padding: 12px;
-            border-radius: 28px;
+            border-radius: 24px;
             border: 0.5px solid;
-        }
-        canvas {
-            max-height: 110px;
-            width: 100% !important;
         }
         .segment-control {
             display: flex;
             gap: 8px;
             justify-content: center;
-            margin-bottom: 16px;
+            margin-bottom: 12px;
         }
         .segment-btn {
             background: rgba(120,120,128,0.16);
@@ -141,8 +176,38 @@
             cursor: pointer;
         }
         .segment-btn.active {
-            background: #007aff;
+            background: #007AFF;
             color: white;
+        }
+        .chart-tabs {
+            display: flex;
+            gap: 10px;
+            margin: 12px 0;
+        }
+        .chart-tab {
+            flex: 1;
+            text-align: center;
+            padding: 8px;
+            border-radius: 30px;
+            background: rgba(120,120,128,0.12);
+            font-size: 0.75rem;
+            font-weight: 500;
+            cursor: pointer;
+        }
+        .chart-tab.active {
+            background: #007AFF;
+            color: white;
+        }
+        canvas {
+            max-height: 120px;
+            width: 100% !important;
+        }
+        .chart-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 12px;
+            font-size: 0.7rem;
+            color: #8E8E93;
         }
         /* Borç Özeti */
         .debt-summary {
@@ -153,24 +218,22 @@
         }
         .debt-box {
             flex: 1;
-            background: #fff0f0;
+            min-width: calc(50% - 12px);
+            background: #FFF0F0;
             border-radius: 20px;
             padding: 12px;
-            border-left: 4px solid #ff3b30;
+            border-left: 4px solid #FF3B30;
         }
         .debt-box.approaching {
-            background: #fff4e0;
-            border-left-color: #ff9500;
+            background: #FFF4E0;
+            border-left-color: #FF9500;
         }
-        body.dark .debt-box { background: #2c2c2e; }
-        body.dark .debt-box.approaching { background: #3a2c1e; }
         .btn-outline {
             background: none;
-            border: 1px solid #007aff;
+            border: 1px solid #007AFF;
             border-radius: 40px;
-            padding: 10px;
+            padding: 8px;
             width: 100%;
-            color: #007aff;
             font-weight: 600;
             margin-top: 8px;
             cursor: pointer;
@@ -178,6 +241,7 @@
         /* Sayfalar */
         .page {
             display: none;
+            padding-bottom: 80px;
         }
         .page.active {
             display: block;
@@ -192,8 +256,8 @@
             justify-content: space-around;
             align-items: center;
             padding: 8px 16px 20px;
-            background: #ffffff;
-            border-top: 0.5px solid #e9e9ef;
+            border-top: 0.5px solid;
+            background: #FFFFFF;
             z-index: 100;
         }
         .nav-item {
@@ -204,14 +268,14 @@
             background: none;
             border: none;
             font-size: 0.7rem;
-            color: #8e8e93;
+            color: #8E8E93;
             cursor: pointer;
         }
         .nav-item i {
             font-size: 1.3rem;
         }
         .nav-item.active {
-            color: #007aff;
+            color: #007AFF;
         }
         /* İşlemler Sayfası */
         .search-box {
@@ -223,14 +287,14 @@
             left: 16px;
             top: 50%;
             transform: translateY(-50%);
-            color: #8e8e93;
+            color: #8E8E93;
         }
         .search-box input {
             width: 100%;
             padding: 12px 12px 12px 40px;
             border-radius: 30px;
-            border: 0.5px solid #e9e9ef;
-            background: #f9f9fb;
+            border: 0.5px solid #E9E9EF;
+            background: #F9F9FB;
             font-size: 0.9rem;
         }
         .filter-buttons {
@@ -240,7 +304,7 @@
         }
         .filter-btn {
             background: transparent;
-            border: 0.5px solid #e9e9ef;
+            border: 0.5px solid #E9E9EF;
             border-radius: 30px;
             padding: 6px 12px;
             font-size: 0.7rem;
@@ -248,8 +312,9 @@
             cursor: pointer;
         }
         .filter-btn.active {
-            background: #007aff;
+            background: #007AFF;
             color: white;
+            border-color: #007AFF;
         }
         .transaction-item {
             display: flex;
@@ -268,20 +333,20 @@
             gap: 12px;
         }
         .trans-icon {
-            width: 36px;
-            height: 36px;
-            border-radius: 18px;
-            background: #f2f2f5;
+            width: 40px;
+            height: 40px;
+            border-radius: 20px;
+            background: #F2F2F5;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.2rem;
         }
         .income-border {
-            border-left: 4px solid #34c759;
+            border-left: 4px solid #34C759;
         }
         .expense-border {
-            border-left: 4px solid #ff3b30;
+            border-left: 4px solid #FF3B30;
         }
         .swipe-delete {
             position: absolute;
@@ -289,7 +354,7 @@
             top: 0;
             height: 100%;
             width: 70px;
-            background: #ff3b30;
+            background: #FF3B30;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -300,9 +365,6 @@
         }
         .transaction-item.swiped .swipe-delete {
             transform: translateX(0);
-        }
-        .transaction-item.swiped .transaction-content {
-            transform: translateX(-70px);
         }
         .load-more {
             background: none;
@@ -324,20 +386,31 @@
             margin: 0 16px 8px 16px;
             border-radius: 20px;
             border: 0.5px solid;
-            border-left: 4px solid #ff9f1c;
+            border-left: 4px solid #FF9F1C;
         }
         .borc-card.alacak {
-            border-left-color: #34c759;
+            border-left-color: #34C759;
         }
         .badge {
             padding: 4px 8px;
             border-radius: 20px;
             font-size: 0.65rem;
             font-weight: 600;
+            display: inline-block;
         }
-        .badge-danger { background: #ff3b30; color: white; }
-        .badge-warning { background: #ff9500; color: white; }
-        .badge-success { background: #34c759; color: white; }
+        .badge-danger { background: #FF3B30; color: white; }
+        .badge-warning { background: #FF9500; color: white; }
+        .badge-success { background: #34C759; color: white; }
+        .btn-pill {
+            background: #FF9F1C;
+            border: none;
+            border-radius: 30px;
+            padding: 6px 12px;
+            color: white;
+            font-weight: 600;
+            font-size: 0.7rem;
+            cursor: pointer;
+        }
         /* Hedefler Sayfası */
         .goal-item {
             margin: 0 16px 12px 16px;
@@ -345,19 +418,7 @@
             border-radius: 20px;
             border: 0.5px solid;
         }
-        .progress-bar {
-            background: #e9e9ef;
-            border-radius: 12px;
-            height: 6px;
-            overflow: hidden;
-            margin: 8px 0;
-        }
-        .progress-fill {
-            background: #34c759;
-            width: 0%;
-            height: 100%;
-        }
-        /* Ayarlar Sayfası */
+        /* Ayarlar */
         .setting-item {
             display: flex;
             justify-content: space-between;
@@ -370,22 +431,26 @@
         /* FAB */
         .fab {
             position: fixed;
-            bottom: 90px;
+            bottom: 80px;
             right: 20px;
             width: 56px;
             height: 56px;
             border-radius: 28px;
-            background: #007aff;
+            background: #007AFF;
             color: white;
             border: none;
             box-shadow: 0 4px 12px rgba(0,0,0,0.2);
             font-size: 24px;
             cursor: pointer;
             z-index: 200;
+            transition: transform 0.1s;
+        }
+        .fab:active {
+            transform: scale(0.92);
         }
         .fab-menu {
             position: fixed;
-            bottom: 150px;
+            bottom: 140px;
             right: 20px;
             display: flex;
             flex-direction: column;
@@ -400,7 +465,7 @@
             opacity: 1;
         }
         .fab-item {
-            background: #1c1c1e;
+            background: #1C1C1E;
             color: white;
             border: none;
             border-radius: 40px;
@@ -410,10 +475,7 @@
             gap: 10px;
             font-size: 0.8rem;
             font-weight: 500;
-        }
-        body.light .fab-item {
-            background: #ffffff;
-            color: #1c1c1e;
+            cursor: pointer;
         }
         /* Modal */
         .modal {
@@ -434,7 +496,7 @@
             width: 90%;
             max-width: 380px;
             padding: 20px;
-            max-height: 80vh;
+            max-height: 85vh;
             overflow-y: auto;
         }
         .form-group {
@@ -443,15 +505,15 @@
         .form-group label {
             font-size: 0.75rem;
             font-weight: 500;
-            color: #6c6c70;
+            color: #8E8E93;
             display: block;
             margin-bottom: 4px;
         }
         .form-control {
             width: 100%;
             padding: 12px;
-            background: #f9f9fb;
-            border: 0.5px solid #e9e9ef;
+            background: #F9F9FB;
+            border: 0.5px solid #E9E9EF;
             border-radius: 30px;
             font-size: 0.9rem;
         }
@@ -471,7 +533,7 @@
             bottom: 100px;
             left: 20px;
             right: 20px;
-            background: #1c1c1e;
+            background: #1C1C1E;
             color: white;
             padding: 12px;
             border-radius: 40px;
@@ -510,33 +572,101 @@
             display: flex;
             gap: 12px;
             color: white;
+            font-size: 0.9rem;
         }
+        /* Login */
         #loginContainer {
-            background: #000 !important;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
         }
-        #loginContainer > div {
-            background: #1c1c1e !important;
-            border-color: #2c2c2e !important;
+        .login-card {
+            background: #1C1C1E;
+            border-radius: 48px;
+            padding: 40px 30px;
+            width: 90%;
+            max-width: 340px;
+            text-align: center;
+            border: 0.5px solid #2C2C2E;
+        }
+        .login-card h1 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 30px;
+            color: #FFD700;
+        }
+        .login-card input {
+            width: 100%;
+            padding: 14px;
+            background: #2C2C2E;
+            border: 0.5px solid #3A3A3C;
+            border-radius: 60px;
+            text-align: center;
+            color: white;
+            margin-bottom: 16px;
+        }
+        .login-card button {
+            width: 100%;
+            padding: 14px;
+            background: #0A84FF;
+            color: white;
+            font-weight: 600;
+            border: none;
+            border-radius: 60px;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 16px 8px 16px;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+        .logo span:first-child { color: #0A2540; }
+        .logo span:last-child { color: #F5A623; }
+        body.dark .logo span:first-child { color: #FFFFFF; }
+        .icon-btn {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 30px;
         }
     </style>
 </head>
 <body class="light">
-<!-- Login -->
-<div id="loginContainer" style="position:fixed; top:0; left:0; width:100%; height:100%; display:flex; justify-content:center; align-items:center; z-index:10000;">
-    <div style="border-radius:48px; padding:40px 30px; width:90%; max-width:340px; text-align:center; border:0.5px solid;">
-        <div style="font-size:2rem; font-weight:800; margin-bottom:30px;">Mu<span style="color:#F5A623;">Cash</span></div>
-        <input type="password" id="pinInput" style="width:100%; padding:14px; border-radius:60px; text-align:center; margin-bottom:16px;" placeholder="Şifre" autocomplete="off">
-        <div style="display:flex; justify-content:center; gap:8px; margin-bottom:16px;"><input type="checkbox" id="rememberCheckbox"><label>Beni hatırla (24 saat)</label></div>
-        <button id="loginBtn" style="width:100%; padding:14px; background:#0A84FF; color:white; font-weight:600; border:none; border-radius:60px;">Giriş Yap</button>
+<div id="loginContainer">
+    <div class="login-card">
+        <h1>Mu<span style="color:#FFD700;">Cash</span></h1>
+        <input type="password" id="pinInput" placeholder="Şifre" autocomplete="off">
+        <div style="display:flex; justify-content:center; gap:8px; margin:16px 0;">
+            <input type="checkbox" id="rememberCheckbox"> <label style="color:#98989E;">Beni hatırla (24 saat)</label>
+        </div>
+        <button id="loginBtn">Giriş Yap</button>
     </div>
 </div>
 <div class="spinner-overlay" id="globalSpinner"><div class="spinner-content"><i class="fas fa-spinner fa-spin"></i> Yükleniyor...</div></div>
 
 <div id="appContainer" style="display:none">
-    <!-- Sayfalar -->
+    <div class="header">
+        <div class="logo"><span>Mu</span><span>Cash</span></div>
+        <button class="icon-btn" id="themeToggleBtn"><i class="fas fa-moon"></i></button>
+    </div>
+
     <div id="homePage" class="page active">
         <!-- Kalan Bütçe -->
-        <div class="balance-card card" style="margin:16px;">
+        <div class="balance-card">
             <div class="balance-title">Kalan Bütçe</div>
             <div class="balance-value" id="monthRemaining">₺0</div>
         </div>
@@ -545,42 +675,50 @@
             <div class="kpi-card"><div class="kpi-value income" id="monthIncome">₺0</div><div class="kpi-label">Gelir</div></div>
             <div class="kpi-card"><div class="kpi-value expense" id="monthExpense">₺0</div><div class="kpi-label">Gider</div></div>
         </div>
-        <!-- Özet (alt alta) -->
-        <div class="summary-stack">
-            <div class="summary-item"><span>Gelir Değişimi</span><span id="incomeChange" class="positive">0%</span></div>
-            <div class="summary-item"><span>Gider Değişimi</span><span id="expenseChange" class="negative">0%</span></div>
-            <div class="summary-item"><span>Tasarruf Değişimi</span><span id="savingChange" class="positive">0%</span></div>
+        <!-- Aylık Limit -->
+        <div class="limit-card" id="limitCard">
+            <div class="limit-header"><span>Aylık Harcama Limiti</span><span id="limitAmountText">Limit yok</span></div>
+            <div class="progress-bar"><div class="progress-fill" id="limitProgressBar"></div></div>
+            <div style="font-size:0.7rem; margin-top:6px;">Harcanan: <span id="monthlySpent">₺0</span> / <span id="monthlyLimitValue">₺0</span></div>
+            <div style="text-align:right; margin-top:8px;"><button id="editLimitBtn" style="background:none; border:none; color:#007AFF; font-size:0.7rem;">Limit Belirle</button></div>
         </div>
-        <!-- Ana Hedef -->
-        <div class="card" id="goalCard" style="display:none;">
-            <div style="display:flex; justify-content:space-between;"><span class="goal-title" id="goalTitle"></span><span id="goalPercent">0%</span></div>
-            <div class="progress-bar"><div class="progress-fill" id="goalProgressFill"></div></div>
-            <div class="goal-stats" style="font-size:0.7rem; margin-top:8px;"><span id="goalCollected">₺0</span><span id="goalTarget">₺0</span></div>
-            <div style="margin-top:8px;"><span id="goalRemaining"></span> kaldı</div>
+        <!-- Ana Hedef (küçük) -->
+        <div id="goalMiniCard" class="goal-mini" style="display:none;">
+            <div class="goal-info"><div class="goal-name" id="goalNameMini"></div><div class="goal-progress"><div class="progress-bar"><div class="progress-fill" id="goalProgressMini"></div></div></div></div>
+            <div class="goal-percent" id="goalPercentMini">0%</div>
         </div>
-        <!-- Trend Grafik -->
-        <div class="chart-container">
+        <!-- Grafikler -->
+        <div class="chart-card">
             <div class="segment-control" id="chartPeriodControl">
                 <button class="segment-btn" data-period="day">Gün</button>
                 <button class="segment-btn" data-period="week">Hafta</button>
                 <button class="segment-btn active" data-period="month">Ay</button>
             </div>
-            <canvas id="trendChart" style="max-height:110px;"></canvas>
-        </div>
-        <!-- Borç Özeti -->
-        <div class="card">
-            <div style="display:flex; justify-content:space-between;"><span>Borç & Alacak</span><button id="viewAllDebtsBtn" style="background:none; border:none; color:#007aff;">Detaylar</button></div>
-            <div class="debt-summary" style="margin:0; margin-top:12px;">
-                <div class="debt-box"><div>⚠️ Gecikmiş</div><strong id="overdueTotal">₺0</strong></div>
-                <div class="debt-box approaching"><div>⏳ Yaklaşan</div><strong id="approachingTotal">₺0</strong></div>
-                <div class="debt-box"><div>💰 Toplam Borç</div><strong id="totalDebt">₺0</strong></div>
-                <div class="debt-box"><div>💵 Alacak</div><strong id="totalReceivable">₺0</strong></div>
+            <div class="chart-tabs">
+                <div class="chart-tab active" data-chart="trend">Trend</div>
+                <div class="chart-tab" data-chart="pie">Kategoriler</div>
+            </div>
+            <div class="chart-container">
+                <canvas id="trendChart"></canvas>
+                <canvas id="pieChart" style="display:none;"></canvas>
+            </div>
+            <div class="chart-stats" id="chartStats">
+                <span>Gelir: ₺0</span>
+                <span>Gider: ₺0</span>
             </div>
         </div>
+        <!-- Borç Özeti -->
+        <div class="debt-summary">
+            <div class="debt-box"><div>⚠️ Gecikmiş</div><strong id="overdueTotal">₺0</strong></div>
+            <div class="debt-box approaching"><div>⏳ Yaklaşan</div><strong id="approachingTotal">₺0</strong></div>
+            <div class="debt-box"><div>💰 Toplam Borç</div><strong id="totalDebt">₺0</strong></div>
+            <div class="debt-box"><div>💵 Alacak</div><strong id="totalReceivable">₺0</strong></div>
+        </div>
+        <button class="btn-outline" id="viewAllDebtsBtn">Detayları Gör</button>
     </div>
 
     <div id="transactionsPage" class="page">
-        <div class="search-box"><i class="fas fa-search"></i><input type="text" id="searchInput" placeholder="Ara (başlık/kategori)"></div>
+        <div class="search-box"><i class="fas fa-search"></i><input type="text" id="searchInput" placeholder="Ara"></div>
         <div class="filter-buttons" id="filterButtons">
             <button class="filter-btn active" data-filter="all">Tümü</button>
             <button class="filter-btn" data-filter="gelir">Gelir</button>
@@ -597,14 +735,13 @@
 
     <div id="goalsPage" class="page">
         <div id="goalsList"></div>
-        <button id="addGoalBtn" class="modal-save" style="margin:16px; width:calc(100% - 32px); background:#34c759;">+ Yeni Hedef</button>
+        <button id="addGoalBtn" class="modal-save" style="margin:16px; width:calc(100% - 32px); background:#34C759;">+ Yeni Hedef</button>
     </div>
 
     <div id="settingsPage" class="page">
         <div class="setting-item"><span>Karanlık Mod</span><label class="switch"><input type="checkbox" id="darkModeSwitch"><span class="slider"></span></label></div>
-        <div class="setting-item"><span>Aylık Harcama Limiti</span><button id="editLimitBtn" style="background:none; border:none; color:#007aff;">Belirle</button></div>
-        <div class="setting-item"><span>PDF Rapor</span><button id="pdfBtn" style="background:none; border:none; color:#007aff;">Oluştur</button></div>
-        <div class="setting-item"><span>Çıkış Yap</span><button id="logoutBtn" style="background:none; border:none; color:#ff3b30;">Çıkış</button></div>
+        <div class="setting-item"><span>PDF Rapor</span><button id="pdfBtn" style="background:none; border:none; color:#007AFF;">Oluştur</button></div>
+        <div class="setting-item"><span>Çıkış Yap</span><button id="logoutBtn" style="background:none; border:none; color:#FF3B30;">Çıkış</button></div>
     </div>
 
     <!-- Bottom Navigation -->
@@ -630,43 +767,43 @@
 <div id="incomeModal" class="modal"><div class="modal-card"><div class="modal-header"><span>Gelir Ekle</span><span class="modal-close" data-modal="incomeModal">&times;</span></div>
     <div class="form-group"><label>Başlık</label><input type="text" id="incomeTitle" class="form-control"></div>
     <div class="form-group"><label>Kategori</label><select id="incomeCat" class="form-control"><option>Tag İşleri</option><option>Maaş</option><option>Serbest İş</option><option>Hediye</option><option>Yatırım</option><option>Diğer</option></select></div>
-    <div class="form-group"><label>Tutar (₺)</label><input type="number" id="incomeAmount" class="form-control"></div>
+    <div class="form-group"><label>Tutar (₺)</label><input type="text" id="incomeAmount" class="form-control" inputmode="numeric"></div>
     <div class="form-group"><label>Tarih</label><input type="date" id="incomeDate" class="form-control"></div>
     <button class="modal-save" id="saveIncomeBtn">Kaydet</button>
 </div></div>
 <div id="expenseModal" class="modal"><div class="modal-card"><div class="modal-header"><span>Gider Ekle</span><span class="modal-close" data-modal="expenseModal">&times;</span></div>
     <div class="form-group"><label>Başlık</label><input type="text" id="expenseTitle" class="form-control"></div>
     <div class="form-group"><label>Kategori</label><select id="expenseCat" class="form-control"><option>Faturalar</option><option>Tag Malzemesi</option><option>Alışveriş</option><option>Yeme/İçme</option><option>Ulaşım</option><option>Sağlık</option><option>Eğlence</option><option>Kira/Aidat</option><option>Borç Ödemesi</option><option>Diğer</option></select></div>
-    <div class="form-group"><label>Tutar (₺)</label><input type="number" id="expenseAmount" class="form-control"></div>
+    <div class="form-group"><label>Tutar (₺)</label><input type="text" id="expenseAmount" class="form-control" inputmode="numeric"></div>
     <div class="form-group"><label>Tarih</label><input type="date" id="expenseDate" class="form-control"></div>
     <button class="modal-save" id="saveExpenseBtn">Kaydet</button>
 </div></div>
 <div id="borcModal" class="modal"><div class="modal-card"><div class="modal-header"><span>Borç Ekle</span><span class="modal-close" data-modal="borcModal">&times;</span></div>
     <div class="form-group"><label>Kişi/Kurum</label><input type="text" id="borcKisi" class="form-control"></div>
-    <div class="form-group"><label>Miktar (₺)</label><input type="number" id="borcMiktar" class="form-control"></div>
+    <div class="form-group"><label>Miktar (₺)</label><input type="text" id="borcMiktar" class="form-control" inputmode="numeric"></div>
     <div class="form-group"><label>Son Ödeme Tarihi</label><input type="date" id="borcTarih" class="form-control"></div>
     <div class="form-group"><label>Açıklama</label><input type="text" id="borcAciklama" class="form-control"></div>
     <button class="modal-save" id="saveBorcBtn">Ekle</button>
 </div></div>
 <div id="alacakModal" class="modal"><div class="modal-card"><div class="modal-header"><span>Alacak Ekle</span><span class="modal-close" data-modal="alacakModal">&times;</span></div>
     <div class="form-group"><label>Kişi/Kurum</label><input type="text" id="alacakKisi" class="form-control"></div>
-    <div class="form-group"><label>Miktar (₺)</label><input type="number" id="alacakMiktar" class="form-control"></div>
+    <div class="form-group"><label>Miktar (₺)</label><input type="text" id="alacakMiktar" class="form-control" inputmode="numeric"></div>
     <div class="form-group"><label>Tahmini Tarih</label><input type="date" id="alacakTarih" class="form-control"></div>
     <div class="form-group"><label>Açıklama</label><input type="text" id="alacakAciklama" class="form-control"></div>
     <button class="modal-save" id="saveAlacakBtn">Ekle</button>
 </div></div>
 <div id="goalEditModal" class="modal"><div class="modal-card"><div class="modal-header"><span id="goalEditTitle">Hedef Ekle</span><span class="modal-close" data-modal="goalEditModal">&times;</span></div>
     <div class="form-group"><label>Hedef Adı</label><input type="text" id="goalName" class="form-control"></div>
-    <div class="form-group"><label>Hedef Tutar (₺)</label><input type="number" id="goalTargetAmount" class="form-control"></div>
-    <div class="form-group"><label>Mevcut Birikim (₺)</label><input type="number" id="goalCurrentAmount" class="form-control"></div>
+    <div class="form-group"><label>Hedef Tutar (₺)</label><input type="text" id="goalTargetAmount" class="form-control" inputmode="numeric"></div>
+    <div class="form-group"><label>Mevcut Birikim (₺)</label><input type="text" id="goalCurrentAmount" class="form-control" inputmode="numeric"></div>
     <div class="form-group"><label>Hedef Tarihi</label><input type="date" id="goalDate" class="form-control"></div>
     <div class="form-group"><label><input type="checkbox" id="goalPrimary"> Ana Hedef yap</label></div>
     <input type="hidden" id="goalId">
     <button class="modal-save" id="saveGoalBtn">Kaydet</button>
-    <button class="modal-save" id="deleteGoalBtn" style="background:#ff3b30;">Sil</button>
+    <button class="modal-save" id="deleteGoalBtn" style="background:#FF3B30;">Sil</button>
 </div></div>
 <div id="limitModal" class="modal"><div class="modal-card"><div class="modal-header"><span>Aylık Limit</span><span class="modal-close" data-modal="limitModal">&times;</span></div>
-    <div class="form-group"><label>Limit (₺)</label><input type="number" id="limitInput" class="form-control"></div>
+    <div class="form-group"><label>Limit (₺)</label><input type="text" id="limitInput" class="form-control" inputmode="numeric"></div>
     <button class="modal-save" id="saveLimitBtn">Kaydet</button>
 </div></div>
 
@@ -679,21 +816,24 @@
 
     let allGelirler=[], allGiderler=[], allBorclar=[], allAlacaklar=[], allHedefler=[];
     let currentYear=new Date().getFullYear(), currentMonth=new Date().getMonth();
-    let trendChart=null;
-    let isProcessing=false, currentFilter="all", currentDisplayCount=10;
+    let trendChart=null, pieChartInstance=null;
+    let isProcessing=false, currentFilter="all", currentDisplayCount=10, debtDisplayCount=5;
     let allTransactionsArray=[], filteredTransactionsArray=[];
     let monthlyLimit=0;
     let currentChartPeriod="month";
-    let debtDisplayCount=5;
+    let currentChartTab="trend";
 
     function parseLocalDate(dateStr){ if(!dateStr) return null; let p=dateStr.split('T')[0].split('-'); if(p.length===3) return new Date(parseInt(p[0]), parseInt(p[1])-1, parseInt(p[2])); return new Date(dateStr); }
     function formatDate(d){ let dd=parseLocalDate(d); if(!dd||isNaN(dd)) dd=new Date(d); return dd.toLocaleDateString('tr-TR'); }
     function getDaysUntilDue(dateStr){ let t=parseLocalDate(dateStr); if(!t) return null; let today=new Date(); today.setHours(0,0,0,0); t.setHours(0,0,0,0); return Math.ceil((t-today)/86400000); }
     function getWarningBadge(days){ if(days===null) return ""; if(days<0) return '<span class="badge badge-danger">⚠️ Gecikti</span>'; if(days===0) return '<span class="badge badge-warning">🕒 Bugün son gün</span>'; if(days<=7) return `<span class="badge badge-warning">🕒 Yaklaşıyor (${days} gün)</span>`; return ""; }
     function showLoading(show){ document.getElementById('globalSpinner').classList.toggle('active',show); }
-    function showToast(msg,err=false){ let t=document.createElement('div'); t.className='toast'; t.innerText=msg; t.style.background=err?'#ff3b30':'#1c1c1e'; document.body.appendChild(t); setTimeout(()=>t.remove(),2500); }
+    function showToast(msg,err=false){ let t=document.createElement('div'); t.className='toast'; t.innerText=msg; t.style.background=err?'#FF3B30':'#1C1C1E'; document.body.appendChild(t); setTimeout(()=>t.remove(),2500); }
     function formatMoney(amt){ return '₺'+amt.toLocaleString('tr-TR'); }
     function escapeHtml(s){ return s? s.replace(/[&<>]/g, m=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[m])):''; }
+    function formatNumberInput(input){ let val=input.value.replace(/\./g,'').replace(/,/g,''); if(!isNaN(val) && val!=='') input.value=Number(val).toLocaleString('tr-TR'); else input.value=''; }
+
+    document.querySelectorAll('input[inputmode="numeric"]').forEach(inp=>{ inp.addEventListener('input',function(){ formatNumberInput(this); }); inp.addEventListener('blur',function(){ let num=this.value.replace(/\./g,''); if(num==='') this.value=''; else this.value=Number(num).toLocaleString('tr-TR'); }); });
 
     async function loadAll(){
         showLoading(true);
@@ -721,15 +861,6 @@
         finally{ showLoading(false); }
     }
 
-    async function getPrevMonthTotals(){
-        let prevYear=currentYear, prevMonth=currentMonth-1;
-        if(prevMonth<0){ prevMonth=11; prevYear--; }
-        let gelir=0,gider=0;
-        allGelirler.forEach(g=>{let d=parseLocalDate(g.tarih); if(d && d.getFullYear()===prevYear && d.getMonth()===prevMonth) gelir+=g.tutar;});
-        allGiderler.forEach(g=>{let d=parseLocalDate(g.tarih); if(d && d.getFullYear()===prevYear && d.getMonth()===prevMonth) gider+=g.tutar;});
-        return {gelir,gider,tasarruf:gelir-gider};
-    }
-
     async function renderDashboard(){
         let gelir=0, gider=0;
         allGelirler.forEach(g=>{let d=parseLocalDate(g.tarih); if(d && d.getFullYear()===currentYear && d.getMonth()===currentMonth) gelir+=g.tutar;});
@@ -738,29 +869,24 @@
         document.getElementById('monthIncome').innerHTML=formatMoney(gelir);
         document.getElementById('monthExpense').innerHTML=formatMoney(gider);
         document.getElementById('monthRemaining').innerHTML=formatMoney(kalan);
-        let prev=await getPrevMonthTotals();
-        let gelirDeg=prev.gelir?((gelir-prev.gelir)/prev.gelir*100).toFixed(0):(gelir>0?100:0);
-        let giderDeg=prev.gider?((gider-prev.gider)/prev.gider*100).toFixed(0):(gider>0?100:0);
-        let tasarrufPrev=prev.tasarruf, tasarrufNow=kalan;
-        let tasarrufDeg=tasarrufPrev?((tasarrufNow-tasarrufPrev)/Math.abs(tasarrufPrev)*100).toFixed(0):(tasarrufNow>0?100:0);
-        document.getElementById('incomeChange').innerHTML=(gelirDeg>=0?`+${gelirDeg}`:`${gelirDeg}`)+'%';
-        document.getElementById('incomeChange').className=gelirDeg>=0?'positive':'negative';
-        document.getElementById('expenseChange').innerHTML=(giderDeg>=0?`+${giderDeg}`:`${giderDeg}`)+'%';
-        document.getElementById('expenseChange').className=giderDeg<=0?'positive':'negative';
-        document.getElementById('savingChange').innerHTML=(tasarrufDeg>=0?`+${tasarrufDeg}`:`${tasarrufDeg}`)+'%';
-        document.getElementById('savingChange').className=tasarrufDeg>=0?'positive':'negative';
+        // Limit
+        let spent=gider;
+        document.getElementById('monthlySpent').innerHTML=formatMoney(spent);
+        document.getElementById('monthlyLimitValue').innerHTML=monthlyLimit?formatMoney(monthlyLimit):'Limit yok';
+        document.getElementById('limitAmountText').innerHTML=monthlyLimit?formatMoney(monthlyLimit):'Limit yok';
+        if(monthlyLimit>0){
+            let percent=Math.min(100,(spent/monthlyLimit)*100);
+            document.getElementById('limitProgressBar').style.width=percent+'%';
+        } else { document.getElementById('limitProgressBar').style.width='0%'; }
         // Hedef
         let primary=allHedefler.find(g=>g.primary===true) || (allHedefler[0]||null);
         if(primary){
-            document.getElementById('goalCard').style.display='block';
+            document.getElementById('goalMiniCard').style.display='flex';
             let current=primary.current||0, target=primary.target, percent=(current/target)*100;
-            document.getElementById('goalTitle').innerText=primary.name;
-            document.getElementById('goalPercent').innerText=percent.toFixed(0)+'%';
-            document.getElementById('goalProgressFill').style.width=Math.min(100,percent)+'%';
-            document.getElementById('goalCollected').innerHTML=formatMoney(current);
-            document.getElementById('goalTarget').innerHTML=formatMoney(target);
-            document.getElementById('goalRemaining').innerHTML=formatMoney(target-current);
-        } else { document.getElementById('goalCard').style.display='none'; }
+            document.getElementById('goalNameMini').innerText=primary.name;
+            document.getElementById('goalPercentMini').innerText=percent.toFixed(0)+'%';
+            document.getElementById('goalProgressMini').style.width=Math.min(100,percent)+'%';
+        } else { document.getElementById('goalMiniCard').style.display='none'; }
         // Borç özeti
         let overdueTotal=0, approachingTotal=0, totalDebt=0, totalReceivable=0;
         allBorclar.forEach(b=>{ let d=getDaysUntilDue(b.tarih); totalDebt+=b.miktar; if(d<0) overdueTotal+=b.miktar; if(d>=0 && d<=7) approachingTotal+=b.miktar; });
@@ -769,22 +895,22 @@
         document.getElementById('approachingTotal').innerHTML=formatMoney(approachingTotal);
         document.getElementById('totalDebt').innerHTML=formatMoney(totalDebt);
         document.getElementById('totalReceivable').innerHTML=formatMoney(totalReceivable);
-        updateChart();
+        updateCharts();
     }
 
-    async function updateChart(){
-        let labels=[], gelirData=[], giderData=[];
+    async function updateCharts(){
+        let labels=[], gelirData=[], giderData=[], periodTotalGelir=0, periodTotalGider=0;
+        let now=new Date(); now.setHours(0,0,0,0);
         if(currentChartPeriod==='day'){
-            let now=new Date(); now.setHours(0,0,0,0);
             for(let i=6;i>=0;i--){ let d=new Date(now); d.setDate(now.getDate()-i);
                 let inc=0,exp=0;
                 allGelirler.forEach(g=>{let dd=parseLocalDate(g.tarih); if(dd && dd.toDateString()===d.toDateString()) inc+=g.tutar;});
                 allGiderler.forEach(g=>{let dd=parseLocalDate(g.tarih); if(dd && dd.toDateString()===d.toDateString()) exp+=g.tutar;});
                 gelirData.push(inc); giderData.push(exp);
+                if(i===0){ periodTotalGelir=inc; periodTotalGider=exp; }
                 labels.push(d.toLocaleDateString('tr-TR',{day:'numeric',month:'short'}));
             }
         } else if(currentChartPeriod==='week'){
-            let now=new Date(); now.setHours(0,0,0,0);
             for(let w=5;w>=0;w--){
                 let start=new Date(now); start.setDate(now.getDate()-(now.getDay()===0?6:now.getDay()-1)-(w*7)); start.setHours(0,0,0,0);
                 let end=new Date(start); end.setDate(start.getDate()+6); end.setHours(23,59,59,999);
@@ -792,6 +918,7 @@
                 allGelirler.forEach(g=>{let d=parseLocalDate(g.tarih); if(d && d>=start && d<=end) inc+=g.tutar;});
                 allGiderler.forEach(g=>{let d=parseLocalDate(g.tarih); if(d && d>=start && d<=end) exp+=g.tutar;});
                 gelirData.push(inc); giderData.push(exp);
+                if(w===0){ periodTotalGelir=inc; periodTotalGider=exp; }
                 labels.push(`${start.getDate()}/${start.getMonth()+1}`);
             }
         } else {
@@ -800,12 +927,39 @@
                 allGelirler.forEach(g=>{let dd=parseLocalDate(g.tarih); if(dd && dd.getFullYear()===d.getFullYear() && dd.getMonth()===d.getMonth()) inc+=g.tutar;});
                 allGiderler.forEach(g=>{let dd=parseLocalDate(g.tarih); if(dd && dd.getFullYear()===d.getFullYear() && dd.getMonth()===d.getMonth()) exp+=g.tutar;});
                 gelirData.push(inc); giderData.push(exp);
+                if(i===0){ periodTotalGelir=inc; periodTotalGider=exp; }
                 labels.push(d.toLocaleDateString('tr-TR',{month:'short',year:'2-digit'}));
             }
         }
-        let ctx=document.getElementById('trendChart').getContext('2d');
-        if(trendChart) trendChart.destroy();
-        trendChart=new Chart(ctx,{type:'line',data:{labels,datasets:[{label:'Gelir',data:gelirData,borderColor:'#34c759',tension:0.3,fill:false},{label:'Gider',data:giderData,borderColor:'#ff3b30',tension:0.3,fill:false}]},options:{responsive:true,maintainAspectRatio:true}});
+        document.getElementById('chartStats').innerHTML=`<span>Gelir: ${formatMoney(periodTotalGelir)}</span><span>Gider: ${formatMoney(periodTotalGider)}</span>`;
+        if(currentChartTab==='trend'){
+            document.getElementById('trendChart').style.display='block';
+            document.getElementById('pieChart').style.display='none';
+            let ctx=document.getElementById('trendChart').getContext('2d');
+            if(trendChart) trendChart.destroy();
+            trendChart=new Chart(ctx,{type:'line',data:{labels,datasets:[{label:'Gelir',data:gelirData,borderColor:'#34C759',tension:0.3,fill:false,pointBackgroundColor:'#34C759'},{label:'Gider',data:giderData,borderColor:'#FF3B30',tension:0.3,fill:false,pointBackgroundColor:'#FF3B30'}]},options:{responsive:true,maintainAspectRatio:true,plugins:{legend:{position:'top'}}}});
+        } else {
+            document.getElementById('trendChart').style.display='none';
+            document.getElementById('pieChart').style.display='block';
+            let startDate,endDate;
+            if(currentChartPeriod==='day'){
+                let today=new Date(); today.setHours(0,0,0,0);
+                startDate=today; endDate=new Date(today); endDate.setHours(23,59,59,999);
+            } else if(currentChartPeriod==='week'){
+                let today=new Date(); today.setHours(0,0,0,0);
+                let diff=today.getDay()===0?6:today.getDay()-1;
+                startDate=new Date(today); startDate.setDate(today.getDate()-diff); startDate.setHours(0,0,0,0);
+                endDate=new Date(startDate); endDate.setDate(startDate.getDate()+6); endDate.setHours(23,59,59,999);
+            } else {
+                startDate=new Date(currentYear, currentMonth, 1);
+                endDate=new Date(currentYear, currentMonth+1, 0); endDate.setHours(23,59,59,999);
+            }
+            let catMap=new Map();
+            allGiderler.forEach(g=>{let d=parseLocalDate(g.tarih); if(d && d>=startDate && d<=endDate) catMap.set(g.kategori,(catMap.get(g.kategori)||0)+g.tutar);});
+            let ctx=document.getElementById('pieChart').getContext('2d');
+            if(pieChartInstance) pieChartInstance.destroy();
+            pieChartInstance=new Chart(ctx,{type:'pie',data:{labels:Array.from(catMap.keys()),datasets:[{data:Array.from(catMap.values()),backgroundColor:['#2C3E50','#E67E22','#2ECC71','#E74C3C','#3498DB','#9B59B6','#1ABC9C','#F1C40F']}]},options:{plugins:{legend:{position:'bottom'}}}});
+        }
     }
 
     function renderTransactionsPage(){
@@ -826,7 +980,7 @@
             let div=document.createElement('div');
             div.className=`transaction-item ${t.tip==='gelir'?'income-border':'expense-border'}`;
             div.dataset.id=t.docId; div.dataset.tip=t.tip;
-            div.innerHTML=`<div class="transaction-content" style="display:flex; justify-content:space-between; width:100%;"><div class="transaction-left"><div class="trans-icon">${icon}</div><div><div style="font-weight:600;">${escapeHtml(t.baslik)}</div><div><span class="trans-cat" style="background:#f2f2f5; padding:2px 8px; border-radius:20px; font-size:0.7rem;">${escapeHtml(t.kategori)}</span></div><div style="font-size:0.7rem;">${formatDate(t.tarih)}</div></div></div><div style="font-weight:700; color:${t.tip==='gelir'?'#34c759':'#ff3b30'}">${t.tip==='gelir'?'+':'-'} ${formatMoney(t.tutar)}</div></div><div class="swipe-delete"><i class="fas fa-trash-alt"></i> Sil</div>`;
+            div.innerHTML=`<div style="display:flex; justify-content:space-between; width:100%; align-items:center;"><div style="display:flex; gap:12px; align-items:center;"><div class="trans-icon">${icon}</div><div><div style="font-weight:600;">${escapeHtml(t.baslik)}</div><div><span style="background:#F2F2F5; padding:2px 8px; border-radius:20px; font-size:0.7rem;">${escapeHtml(t.kategori)}</span></div><div style="font-size:0.7rem; color:#8E8E93;">${formatDate(t.tarih)}</div></div></div><div style="font-weight:700; color:${t.tip==='gelir'?'#34C759':'#FF3B30'}">${t.tip==='gelir'?'+':'-'} ${formatMoney(t.tutar)}</div></div><div class="swipe-delete"><i class="fas fa-trash-alt"></i> Sil</div>`;
             let startX,swiping=false;
             div.addEventListener('touchstart',e=>{startX=e.touches[0].clientX; swiping=true;});
             div.addEventListener('touchmove',e=>{if(!swiping)return; let diff=startX-e.touches[0].clientX; if(diff>25)div.classList.add('swiped'); else if(diff<-25)div.classList.remove('swiped');});
@@ -864,7 +1018,7 @@
             let badge=getWarningBadge(days);
             let div=document.createElement('div');
             div.className=`borc-card ${isBorc?'':'alacak'}`;
-            div.innerHTML=`<div><div style="font-weight:600;">${isBorc?'🧾 Borç':'💰 Alacak'} - ${escapeHtml(item.kisi)}</div><div style="font-size:0.7rem;">Son Tarih: ${formatDate(item.tarih)} ${badge}</div><div style="font-size:0.65rem;">${escapeHtml(item.aciklama||'')}</div></div><div><div style="font-weight:700; color:${isBorc?'#ff3b30':'#34c759'}">${formatMoney(item.miktar)}</div><button class="btn-pill" data-id="${item.id}" data-tip="${item.tip}" data-miktar="${item.miktar}" style="background:${isBorc?'#ff9f1c':'#34c759'}; border:none; border-radius:30px; padding:6px 12px; color:white; margin-top:6px;">${isBorc?'Ödendi':'Tahsil Edildi'}</button></div>`;
+            div.innerHTML=`<div><div style="font-weight:600;">${isBorc?'🧾 Borç':'💰 Alacak'} - ${escapeHtml(item.kisi)}</div><div style="font-size:0.7rem; margin-top:4px;">Son Tarih: ${formatDate(item.tarih)} ${badge}</div><div style="font-size:0.65rem;">${escapeHtml(item.aciklama||'')}</div></div><div><div style="font-weight:700; color:${isBorc?'#FF3B30':'#34C759'}">${formatMoney(item.miktar)}</div><button class="btn-pill" data-id="${item.id}" data-tip="${item.tip}" data-miktar="${item.miktar}" style="background:${isBorc?'#FF9F1C':'#34C759'}">${isBorc?'Ödendi':'Tahsil Edildi'}</button></div>`;
             container.appendChild(div);
         });
         let loadMore=document.getElementById('debtsLoadMore');
@@ -900,7 +1054,7 @@
             let percent=(goal.current||0)/goal.target*100;
             let div=document.createElement('div');
             div.className='goal-item';
-            div.innerHTML=`<div style="display:flex; justify-content:space-between;"><b>${escapeHtml(goal.name)}</b> <span>${percent.toFixed(0)}%</span></div><div class="progress-bar"><div class="progress-fill" style="width:${Math.min(100,percent)}%"></div></div><div style="display:flex; justify-content:space-between; font-size:0.7rem;"><span>${formatMoney(goal.current||0)}</span><span>${formatMoney(goal.target)}</span></div><div style="margin-top:8px;"><button class="editGoalBtn" data-id="${goal.id}" style="background:none; border:none; color:#007aff;">Düzenle</button> <button class="deleteGoalBtn" data-id="${goal.id}" style="background:none; border:none; color:#ff3b30;">Sil</button></div>`;
+            div.innerHTML=`<div style="display:flex; justify-content:space-between;"><b>${escapeHtml(goal.name)}</b> <span>${percent.toFixed(0)}%</span></div><div class="progress-bar"><div class="progress-fill" style="width:${Math.min(100,percent)}%"></div></div><div style="display:flex; justify-content:space-between; font-size:0.7rem;"><span>${formatMoney(goal.current||0)}</span><span>${formatMoney(goal.target)}</span></div><div style="margin-top:8px;"><button class="editGoalBtn" data-id="${goal.id}" style="background:none; border:none; color:#007AFF;">Düzenle</button> <button class="deleteGoalBtn" data-id="${goal.id}" style="background:none; border:none; color:#FF3B30;">Sil</button></div>`;
             container.appendChild(div);
         }
         document.querySelectorAll('.editGoalBtn').forEach(btn=>btn.addEventListener('click',()=>{
@@ -908,8 +1062,8 @@
             if(goal){
                 document.getElementById('goalId').value=goal.id;
                 document.getElementById('goalName').value=goal.name;
-                document.getElementById('goalTargetAmount').value=goal.target;
-                document.getElementById('goalCurrentAmount').value=goal.current||0;
+                document.getElementById('goalTargetAmount').value=goal.target.toLocaleString('tr-TR');
+                document.getElementById('goalCurrentAmount').value=(goal.current||0).toLocaleString('tr-TR');
                 document.getElementById('goalDate').value=goal.date||'';
                 document.getElementById('goalPrimary').checked=goal.primary===true;
                 document.getElementById('goalEditTitle').innerText='Hedef Düzenle';
@@ -928,7 +1082,6 @@
     }
     async function saveLimit(limit){ await setDoc(doc(db,"mucahit_ayarlar","limit"),{tutar:limit}); monthlyLimit=limit; renderDashboard(); }
 
-    // PDF Rapor (kart tasarımı)
     async function exportPDF(){
         showLoading(true);
         let gelirTotal=0, giderTotal=0, list=[];
@@ -936,17 +1089,17 @@
         allGiderler.forEach(g=>{let d=parseLocalDate(g.tarih); if(d && d.getFullYear()===currentYear && d.getMonth()===currentMonth){ giderTotal+=g.tutar; list.push({...g,tip:'Gider'});}});
         list.sort((a,b)=>new Date(b.tarih)-new Date(a.tarih));
         let div=document.createElement('div');
-        div.style.padding='20px'; div.style.fontFamily='Inter'; div.style.maxWidth='600px'; div.style.margin='auto';
+        div.style.padding='20px'; div.style.fontFamily='Inter'; div.style.maxWidth='600px'; div.style.margin='auto'; div.style.backgroundColor='white'; div.style.color='black';
         div.innerHTML=`
             <h1 style="font-size:24px; text-align:center;">MuCash Finansal Rapor</h1>
             <p style="text-align:center; color:#666;">${new Date(currentYear,currentMonth,1).toLocaleDateString('tr-TR',{year:'numeric',month:'long'})}</p>
             <div style="display:flex; gap:16px; margin:20px 0;">
-                <div style="flex:1; background:#e5f5e8; padding:16px; border-radius:20px;"><div>Gelir</div><div style="font-size:20px; color:#34c759;">${formatMoney(gelirTotal)}</div></div>
-                <div style="flex:1; background:#ffe8e8; padding:16px; border-radius:20px;"><div>Gider</div><div style="font-size:20px; color:#ff3b30;">${formatMoney(giderTotal)}</div></div>
-                <div style="flex:1; background:#e0f0ff; padding:16px; border-radius:20px;"><div>Kalan</div><div style="font-size:20px;">${formatMoney(gelirTotal-giderTotal)}</div></div>
+                <div style="flex:1; background:#E5F5E8; padding:16px; border-radius:20px;"><div>Gelir</div><div style="font-size:20px; color:#34C759;">${formatMoney(gelirTotal)}</div></div>
+                <div style="flex:1; background:#FFE8E8; padding:16px; border-radius:20px;"><div>Gider</div><div style="font-size:20px; color:#FF3B30;">${formatMoney(giderTotal)}</div></div>
+                <div style="flex:1; background:#E0F0FF; padding:16px; border-radius:20px;"><div>Kalan</div><div style="font-size:20px;">${formatMoney(gelirTotal-giderTotal)}</div></div>
             </div>
-            <div style="margin-top:20px;"><h3>İşlemler</h3>${list.map(l=>`<div style="display:flex; justify-content:space-between; border-bottom:1px solid #eee; padding:8px;"><span>${formatDate(l.tarih)} ${l.baslik} (${l.kategori})</span><span style="font-weight:600; color:${l.tip==='Gelir'?'#34c759':'#ff3b30'}">${l.tip==='Gelir'?'+':'-'} ${formatMoney(l.tutar)}</span></div>`).join('')}</div>
-            <div style="margin-top:20px;"><h3>Borç & Alacaklar</h3>${[...allBorclar.map(b=>({...b,tip:'Borç'})),...allAlacaklar.map(a=>({...a,tip:'Alacak'}))].map(i=>`<div style="display:flex; justify-content:space-between; border-bottom:1px solid #eee; padding:8px;"><span>${i.tip} - ${i.kisi}</span><span>${formatMoney(i.miktar)}</span><span>${formatDate(i.tarih)}</span></div>`).join('')}</div>
+            <div style="margin-top:20px;"><h3>İşlemler</h3>${list.map(l=>`<div style="display:flex; justify-content:space-between; border-bottom:1px solid #EEE; padding:8px;"><span>${formatDate(l.tarih)} ${l.baslik} (${l.kategori})</span><span style="font-weight:600; color:${l.tip==='Gelir'?'#34C759':'#FF3B30'}">${l.tip==='Gelir'?'+':'-'} ${formatMoney(l.tutar)}</span></div>`).join('')}</div>
+            <div style="margin-top:20px;"><h3>Borç & Alacaklar</h3>${[...allBorclar.map(b=>({...b,tip:'Borç'})),...allAlacaklar.map(a=>({...a,tip:'Alacak'}))].map(i=>`<div style="display:flex; justify-content:space-between; border-bottom:1px solid #EEE; padding:8px;"><span>${i.tip} - ${i.kisi}</span><span>${formatMoney(i.miktar)}</span><span>${formatDate(i.tarih)}</span></div>`).join('')}</div>
         `;
         document.body.appendChild(div);
         await html2pdf().from(div).set({margin:0.5, filename:`MuCash_Rapor_${currentYear}_${currentMonth+1}.pdf`}).save();
@@ -955,7 +1108,7 @@
         showLoading(false);
     }
 
-    // Sayfa navigasyonu
+    // Navigation
     let pages={ home:'homePage', transactions:'transactionsPage', debts:'debtsPage', goals:'goalsPage', settings:'settingsPage' };
     function showPage(pageId){ Object.values(pages).forEach(p=>document.getElementById(p).classList.remove('active')); document.getElementById(pageId).classList.add('active'); }
     document.querySelectorAll('.nav-item').forEach(btn=>{
@@ -968,18 +1121,18 @@
     // FAB
     let fabBtn=document.getElementById('fabBtn'), fabMenu=document.getElementById('fabMenu');
     fabBtn.onclick=()=>fabMenu.classList.toggle('show');
-    document.getElementById('fabIncome').onclick=()=>{ fabMenu.classList.remove('show'); document.getElementById('incomeDate').value=new Date().toISOString().split('T')[0]; openModal('incomeModal'); };
-    document.getElementById('fabExpense').onclick=()=>{ fabMenu.classList.remove('show'); document.getElementById('expenseDate').value=new Date().toISOString().split('T')[0]; openModal('expenseModal'); };
+    document.getElementById('fabIncome').onclick=()=>{ fabMenu.classList.remove('show'); document.getElementById('incomeDate').valueAsDate=new Date(); openModal('incomeModal'); };
+    document.getElementById('fabExpense').onclick=()=>{ fabMenu.classList.remove('show'); document.getElementById('expenseDate').valueAsDate=new Date(); openModal('expenseModal'); };
     document.getElementById('fabDebt').onclick=()=>{ fabMenu.classList.remove('show'); openModal('borcModal'); };
     document.getElementById('fabReceivable').onclick=()=>{ fabMenu.classList.remove('show'); openModal('alacakModal'); };
+    document.getElementById('viewAllDebtsBtn').onclick=()=>{ document.querySelector('.nav-item[data-page="debts"]').click(); };
+    document.getElementById('editLimitBtn').onclick=()=>{ document.getElementById('limitInput').value=monthlyLimit?monthlyLimit.toLocaleString('tr-TR'):''; openModal('limitModal'); };
+    document.getElementById('saveLimitBtn').onclick=async()=>{ let val=parseFloat(document.getElementById('limitInput').value.replace(/\./g,'')); if(val>0) await saveLimit(val); else if(val===0) await saveLimit(0); closeModal('limitModal'); };
     document.getElementById('pdfBtn').onclick=()=>exportPDF();
     document.getElementById('logoutBtn').onclick=()=>{ document.getElementById('loginContainer').style.display='flex'; document.getElementById('appContainer').style.display='none'; };
-    document.getElementById('editLimitBtn').onclick=()=>openModal('limitModal');
-    document.getElementById('saveLimitBtn').onclick=async()=>{ let val=parseFloat(document.getElementById('limitInput').value); if(val>0) await saveLimit(val); closeModal('limitModal'); };
-    document.getElementById('viewAllDebtsBtn').onclick=()=>{ document.querySelector('.nav-item[data-page="debts"]').click(); };
     document.getElementById('addGoalBtn').onclick=()=>{ document.getElementById('goalId').value=''; document.getElementById('goalName').value=''; document.getElementById('goalTargetAmount').value=''; document.getElementById('goalCurrentAmount').value='0'; document.getElementById('goalDate').value=''; document.getElementById('goalPrimary').checked=false; document.getElementById('goalEditTitle').innerText='Yeni Hedef'; openModal('goalEditModal'); };
     document.getElementById('saveGoalBtn').onclick=async()=>{
-        let goal={ id:document.getElementById('goalId').value, name:document.getElementById('goalName').value.trim(), target:parseFloat(document.getElementById('goalTargetAmount').value), current:parseFloat(document.getElementById('goalCurrentAmount').value)||0, date:document.getElementById('goalDate').value, primary:document.getElementById('goalPrimary').checked };
+        let goal={ id:document.getElementById('goalId').value, name:document.getElementById('goalName').value.trim(), target:parseFloat(document.getElementById('goalTargetAmount').value.replace(/\./g,'')), current:parseFloat(document.getElementById('goalCurrentAmount').value.replace(/\./g,''))||0, date:document.getElementById('goalDate').value, primary:document.getElementById('goalPrimary').checked };
         if(!goal.name||goal.target<=0) return showToast("Geçerli bilgi",true);
         await saveGoal(goal); closeModal('goalEditModal'); await loadAll();
     };
@@ -987,15 +1140,21 @@
     // Dark mode
     let darkSwitch=document.getElementById('darkModeSwitch');
     darkSwitch.addEventListener('change',()=>{ if(darkSwitch.checked) document.body.classList.add('dark'); else document.body.classList.remove('dark'); });
+    document.getElementById('themeToggleBtn').addEventListener('click',()=>{ darkSwitch.checked=!darkSwitch.checked; if(darkSwitch.checked) document.body.classList.add('dark'); else document.body.classList.remove('dark'); });
     if(window.matchMedia('(prefers-color-scheme: dark)').matches){ document.body.classList.add('dark'); darkSwitch.checked=true; }
     // Chart period
     document.querySelectorAll('#chartPeriodControl .segment-btn').forEach(btn=>{
         btn.addEventListener('click',()=>{
             document.querySelectorAll('#chartPeriodControl .segment-btn').forEach(b=>b.classList.remove('active'));
-            btn.classList.add('active'); currentChartPeriod=btn.dataset.period; updateChart();
+            btn.classList.add('active'); currentChartPeriod=btn.dataset.period; updateCharts();
         });
     });
-    // Filtre ve arama
+    document.querySelectorAll('.chart-tab').forEach(tab=>{
+        tab.addEventListener('click',()=>{
+            document.querySelectorAll('.chart-tab').forEach(t=>t.classList.remove('active'));
+            tab.classList.add('active'); currentChartTab=tab.dataset.chart; updateCharts();
+        });
+    });
     document.getElementById('searchInput').addEventListener('keyup',()=>renderTransactionsPage());
     document.querySelectorAll('#filterButtons .filter-btn').forEach(btn=>{
         btn.addEventListener('click',()=>{
@@ -1003,12 +1162,10 @@
             btn.classList.add('active'); currentFilter=btn.dataset.filter; renderTransactionsPage();
         });
     });
-    // Modal
     function openModal(id){ document.getElementById(id).style.display='flex'; }
     window.closeModal=(id)=>{ document.getElementById(id).style.display='none'; };
     document.querySelectorAll('.modal-close').forEach(btn=>btn.addEventListener('click',()=>closeModal(btn.dataset.modal)));
     document.querySelectorAll('.modal').forEach(modal=>modal.addEventListener('click',e=>{if(e.target===modal) closeModal(modal.id);}));
-    // Form kayıtları
     async function addGeneric(col,data,modalId,msg){
         if(isProcessing) return;
         isProcessing=true; showLoading(true);
@@ -1017,24 +1174,24 @@
         finally{ isProcessing=false; showLoading(false); }
     }
     document.getElementById('saveIncomeBtn').onclick=()=>{
-        let b=document.getElementById('incomeTitle').value.trim(), a=parseFloat(document.getElementById('incomeAmount').value), d=document.getElementById('incomeDate').value;
+        let b=document.getElementById('incomeTitle').value.trim(), a=parseFloat(document.getElementById('incomeAmount').value.replace(/\./g,'')), d=document.getElementById('incomeDate').value;
         if(!b||a<=0) return showToast("Geçerli bilgi",true);
         if(!d) d=new Date().toISOString().split('T')[0];
         addGeneric("mucahit_gelirler",{baslik:b,kategori:document.getElementById('incomeCat').value,tutar:a,tarih:new Date(d).toISOString()},"incomeModal","Gelir eklendi");
     };
     document.getElementById('saveExpenseBtn').onclick=()=>{
-        let b=document.getElementById('expenseTitle').value.trim(), a=parseFloat(document.getElementById('expenseAmount').value), d=document.getElementById('expenseDate').value;
+        let b=document.getElementById('expenseTitle').value.trim(), a=parseFloat(document.getElementById('expenseAmount').value.replace(/\./g,'')), d=document.getElementById('expenseDate').value;
         if(!b||a<=0) return showToast("Geçerli bilgi",true);
         if(!d) d=new Date().toISOString().split('T')[0];
         addGeneric("mucahit_giderler",{baslik:b,kategori:document.getElementById('expenseCat').value,tutar:a,tarih:new Date(d).toISOString()},"expenseModal","Gider eklendi");
     };
     document.getElementById('saveBorcBtn').onclick=()=>{
-        let k=document.getElementById('borcKisi').value.trim(), m=parseFloat(document.getElementById('borcMiktar').value), t=document.getElementById('borcTarih').value;
+        let k=document.getElementById('borcKisi').value.trim(), m=parseFloat(document.getElementById('borcMiktar').value.replace(/\./g,'')), t=document.getElementById('borcTarih').value;
         if(!k||m<=0||!t) return showToast("Eksik bilgi",true);
         addGeneric("mucahit_borclar",{kisi:k,miktar:m,tarih:t,aciklama:document.getElementById('borcAciklama').value},"borcModal","Borç eklendi");
     };
     document.getElementById('saveAlacakBtn').onclick=()=>{
-        let k=document.getElementById('alacakKisi').value.trim(), m=parseFloat(document.getElementById('alacakMiktar').value), t=document.getElementById('alacakTarih').value;
+        let k=document.getElementById('alacakKisi').value.trim(), m=parseFloat(document.getElementById('alacakMiktar').value.replace(/\./g,'')), t=document.getElementById('alacakTarih').value;
         if(!k||m<=0||!t) return showToast("Eksik bilgi",true);
         addGeneric("mucahit_alacaklar",{kisi:k,miktar:m,tarih:t,aciklama:document.getElementById('alacakAciklama').value},"alacakModal","Alacak eklendi");
     };
@@ -1056,4 +1213,4 @@
     };
 </script>
 </body>
-</html>
+</html>   
