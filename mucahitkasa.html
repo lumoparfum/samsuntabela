@@ -39,8 +39,7 @@
         body.light .transaction-item,
         body.light .borc-card,
         body.light .chart-card,
-        body.light .modal-card,
-        body.light .summary-card {
+        body.light .modal-card {
             background: #ffffff;
             border-color: #e9e9ef;
             box-shadow: 0 2px 8px rgba(0,0,0,0.02), 0 4px 12px rgba(0,0,0,0.03);
@@ -54,8 +53,7 @@
         body.dark .transaction-item,
         body.dark .borc-card,
         body.dark .chart-card,
-        body.dark .modal-card,
-        body.dark .summary-card {
+        body.dark .modal-card {
             background: #1c1c1e;
             border-color: #2c2c2e;
             box-shadow: 0 2px 8px rgba(0,0,0,0.4);
@@ -110,18 +108,26 @@
             margin-bottom: 16px;
         }
         .logo-area h1 {
-            font-size: 1.9rem;
+            font-size: 2rem;
             font-weight: 800;
-            letter-spacing: -1px;
-            background: linear-gradient(135deg, #FFD700, #F5A623);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
+            letter-spacing: -0.5px;
             text-align: center;
-            text-shadow: 0 0 6px rgba(255,215,0,0.3);
+            margin: 0;
         }
-        body.dark .logo-area h1 {
-            text-shadow: 0 0 10px rgba(255,215,0,0.5);
+        .logo-area .mucahit {
+            color: #1c1c1e;
+            background: none;
+            -webkit-background-clip: unset;
+            background-clip: unset;
+        }
+        .logo-area .kasa {
+            color: #F5A623;
+        }
+        body.dark .logo-area .mucahit {
+            color: #ffffff;
+        }
+        body.dark .logo-area .kasa {
+            color: #FFD966;
         }
         .header-actions {
             display: flex;
@@ -181,7 +187,7 @@
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 12px;
-            margin-bottom: 12px;
+            margin-bottom: 20px;
         }
         .kpi-card {
             border-radius: 24px;
@@ -207,35 +213,6 @@
         .expense-value { color: #ff3b30; }
         .balance-value { color: #0A2540; }
         body.dark .balance-value { color: #ffffff; }
-
-        /* Günlük/Haftalık özet kartı */
-        .summary-card {
-            border-radius: 24px;
-            padding: 14px;
-            margin-bottom: 20px;
-            border: 0.5px solid;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
-        .summary-item {
-            flex: 1;
-            text-align: center;
-            font-size: 0.8rem;
-        }
-        .summary-label {
-            font-weight: 500;
-            color: #8e8e93;
-            font-size: 0.7rem;
-        }
-        .summary-value {
-            font-weight: 700;
-            font-size: 1rem;
-        }
-        .positive { color: #34c759; }
-        .negative { color: #ff3b30; }
 
         .chart-row {
             display: flex;
@@ -350,6 +327,14 @@
             font-size: 0.7rem;
             color: #8e8e93;
         }
+        .warning-overdue {
+            color: #ff3b30;
+            font-weight: 600;
+        }
+        .warning-coming {
+            color: #ff9500;
+            font-weight: 600;
+        }
         .borc-tutar {
             font-weight: 700;
             font-size: 1rem;
@@ -357,13 +342,13 @@
         .btn-ode {
             background: #ff9f1c;
             border: none;
-            padding: 6px 12px;
+            padding: 8px 16px;
             border-radius: 30px;
             color: white;
             font-weight: 600;
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             cursor: pointer;
-            min-width: 75px;
+            min-width: 95px;
             white-space: nowrap;
             transition: transform 0.1s;
         }
@@ -610,7 +595,7 @@
 <body class="light">
 <div id="loginContainer" style="position:fixed; top:0; left:0; width:100%; height:100%; background:#fff; display:flex; justify-content:center; align-items:center; z-index:1000;">
     <div style="background:#fff; border-radius:48px; padding:40px 30px; width:90%; max-width:340px; text-align:center; box-shadow:0 20px 40px rgba(0,0,0,0.05); border:0.5px solid #e9e9ef;">
-        <div style="font-size:2rem; font-weight:800; margin-bottom:30px; background:linear-gradient(135deg,#FFD700,#F5A623); -webkit-background-clip:text; background-clip:text; color:transparent;">MÜCAHİT<span style="color:#F5A623;">KASA</span></div>
+        <div class="logo-area" style="margin-bottom:30px;"><h1><span class="mucahit">MÜCAHİT</span><span class="kasa">KASA</span></h1></div>
         <input type="password" id="pinInput" style="width:100%; padding:14px; background:#f9f9fb; border:0.5px solid #e9e9ef; border-radius:60px; text-align:center; margin-bottom:16px;" placeholder="Şifre" autocomplete="off">
         <div class="remember-row">
             <input type="checkbox" id="rememberCheckbox">
@@ -624,7 +609,7 @@
 <div id="appContainer" class="app-container" style="display:none">
     <div class="app-card">
         <div class="app-header">
-            <div class="logo-area"><h1>MÜCAHİT<span style="color:#FFD700;">KASA</span></h1></div>
+            <div class="logo-area"><h1><span class="mucahit">MÜCAHİT</span><span class="kasa">KASA</span></h1></div>
             <div class="header-actions">
                 <button class="icon-btn" id="themeToggleBtn"><i class="fas fa-moon"></i></button>
                 <button class="icon-btn" id="pdfBtn"><i class="fas fa-file-pdf"></i> PDF</button>
@@ -643,17 +628,20 @@
             <div class="kpi-card"><div class="kpi-title">Bu Ay Gider</div><div class="kpi-value expense-value" id="monthExpense">₺0</div></div>
             <div class="kpi-card"><div class="kpi-title">Kalan Bütçe</div><div class="kpi-value balance-value" id="monthRemaining">₺0</div></div>
         </div>
-        <!-- Günlük/Haftalık özet kartı -->
-        <div class="summary-card" id="summaryCard">
-            <div class="summary-item"><div class="summary-label">Bugün Gelir</div><div class="summary-value positive" id="todayIncome">₺0</div></div>
-            <div class="summary-item"><div class="summary-label">Bugün Gider</div><div class="summary-value negative" id="todayExpense">₺0</div></div>
-            <div class="summary-item"><div class="summary-label">Dün Gider</div><div class="summary-value negative" id="yesterdayExpense">₺0</div></div>
-            <div class="summary-item"><div class="summary-label">Bu Hafta Net</div><div class="summary-value" id="weekNet">₺0</div></div>
-        </div>
     </div>
 
     <div class="chart-row">
-        <div class="chart-card"><div class="section-title"><i class="fas fa-chart-line"></i> Aylık Gelir/Gider</div><canvas id="monthlyChart"></canvas></div>
+        <div class="chart-card">
+            <div class="section-title">
+                <span><i class="fas fa-chart-line"></i> Gelir/Gider</span>
+                <div class="segment-control" id="linePeriodControl">
+                    <button class="segment-btn" data-line-period="day">Gün</button>
+                    <button class="segment-btn" data-line-period="week">Hafta</button>
+                    <button class="segment-btn active" data-line-period="month">Ay</button>
+                </div>
+            </div>
+            <canvas id="monthlyChart"></canvas>
+        </div>
         <div class="chart-card">
             <div class="section-title">
                 <span><i class="fas fa-chart-pie"></i> Gider Dağılımı</span>
@@ -748,9 +736,10 @@
     let currentDisplayCount = 10;
     let allTransactionsArray = [];
     let filteredTransactionsArray = [];
-    let currentPiePeriod = "month"; // 'day', 'week', 'month'
+    let currentPiePeriod = "month";
+    let currentLinePeriod = "month";
 
-    // Yardımcı: Yerel tarih (YYYY-MM-DD) string'ini Date objesine çevir (yerel saat diliminde)
+    // Yerel tarih parse (YYYY-MM-DD)
     function parseLocalDate(dateStr) {
         if (!dateStr) return null;
         let parts = dateStr.split('T')[0].split('-');
@@ -761,26 +750,30 @@
     }
 
     function formatDateOnly(dateInput) {
-        let d;
-        if (typeof dateInput === 'string') {
-            d = parseLocalDate(dateInput);
-            if (!d || isNaN(d)) d = new Date(dateInput);
-        } else {
-            d = new Date(dateInput);
-        }
+        let d = parseLocalDate(dateInput);
+        if (!d || isNaN(d)) d = new Date(dateInput);
         if (isNaN(d.getTime())) return "Geçersiz Tarih";
         const gunler = ["Pazar", "Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi"];
         const gunAdi = gunler[d.getDay()];
         return `${d.toLocaleDateString('tr-TR')} ${gunAdi}`;
     }
 
-    function isDateOverdue(dateStr) {
-        if (!dateStr) return false;
-        const targetDate = parseLocalDate(dateStr);
-        if (!targetDate) return false;
+    function getDaysUntilDue(dateStr) {
+        const target = parseLocalDate(dateStr);
+        if (!target) return null;
         const today = new Date();
         today.setHours(0,0,0,0);
-        return targetDate < today;
+        const diffTime = target - today;
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        return diffDays;
+    }
+
+    function getWarningText(dateStr) {
+        const days = getDaysUntilDue(dateStr);
+        if (days === null) return "";
+        if (days < 0) return '<span class="warning-overdue">⚠️ Gecikti</span>';
+        if (days <= 7) return '<span class="warning-coming">🕒 Yaklaşıyor (' + days + ' gün)</span>';
+        return "";
     }
 
     function showLoading(show) {
@@ -819,48 +812,6 @@
 
     function getCurrentFilterObj() { return { year: currentYear, month: currentMonth }; }
 
-    // Günlük/Haftalık özet hesapla
-    function updateDailySummary() {
-        const today = new Date();
-        today.setHours(0,0,0,0);
-        const yesterday = new Date(today);
-        yesterday.setDate(yesterday.getDate() - 1);
-        
-        // Hafta başı Pazartesi
-        const startOfWeek = new Date(today);
-        const dayOfWeek = today.getDay(); // 0 Pazar, 1 Pazartesi...
-        const diffToMonday = (dayOfWeek === 0 ? 6 : dayOfWeek - 1);
-        startOfWeek.setDate(today.getDate() - diffToMonday);
-        startOfWeek.setHours(0,0,0,0);
-        const endOfWeek = new Date(startOfWeek);
-        endOfWeek.setDate(startOfWeek.getDate() + 6);
-        endOfWeek.setHours(23,59,59,999);
-        
-        let todayInc = 0, todayExp = 0, yesterdayExp = 0, weekInc = 0, weekExp = 0;
-        
-        allGelirler.forEach(g => {
-            const d = parseLocalDate(g.tarih);
-            if (!d) return;
-            if (d.toDateString() === today.toDateString()) todayInc += g.tutar;
-            if (d >= startOfWeek && d <= endOfWeek) weekInc += g.tutar;
-        });
-        allGiderler.forEach(g => {
-            const d = parseLocalDate(g.tarih);
-            if (!d) return;
-            if (d.toDateString() === today.toDateString()) todayExp += g.tutar;
-            if (d.toDateString() === yesterday.toDateString()) yesterdayExp += g.tutar;
-            if (d >= startOfWeek && d <= endOfWeek) weekExp += g.tutar;
-        });
-        
-        document.getElementById('todayIncome').innerHTML = formatMoney(todayInc);
-        document.getElementById('todayExpense').innerHTML = formatMoney(todayExp);
-        document.getElementById('yesterdayExpense').innerHTML = formatMoney(yesterdayExp);
-        const weekNet = weekInc - weekExp;
-        const weekNetElem = document.getElementById('weekNet');
-        weekNetElem.innerHTML = formatMoney(weekNet);
-        weekNetElem.className = `summary-value ${weekNet >= 0 ? 'positive' : 'negative'}`;
-    }
-
     function renderDashboard() {
         const { year, month } = getCurrentFilterObj();
         let aylikGelir = 0, aylikGider = 0;
@@ -872,23 +823,20 @@
         document.getElementById('currentMonthDisplay').innerText = getMonthName(year, month);
         renderBorcList();
         applyFilterAndRender();
-        updateDailySummary();
-        updateCharts(); // Aylık çizgi grafiği ve periyoda göre pasta
+        updateCharts();
     }
 
     function renderBorcList() {
         let html = '';
         let geciken = 0;
-        const bugun = new Date();
-        bugun.setHours(0,0,0,0);
         [...allBorclar, ...allAlacaklar].forEach(item => {
             const isBorc = item.tip === 'borc';
-            const overdue = isDateOverdue(item.tarih);
-            if(overdue && isBorc) geciken++;
+            const warningHtml = getWarningText(item.tarih);
+            if(warningHtml.includes('Gecikti') && isBorc) geciken++;
             html += `<div class="borc-card ${isBorc ? '' : 'alacak'}">
                 <div class="borc-detay">
                     <div class="borc-title">${isBorc ? '🧾 Borç' : '💰 Alacak'} - ${escapeHtml(item.kisi)}</div>
-                    <div class="borc-tarih">Son Tarih: ${formatDateOnly(item.tarih)} ${overdue ? '⚠️ Gecikti' : ''}</div>
+                    <div class="borc-tarih">Son Tarih: ${formatDateOnly(item.tarih)} ${warningHtml}</div>
                     <div style="font-size:0.7rem; color:#8e8e93;">${escapeHtml(item.aciklama || '')}</div>
                 </div>
                 <div class="borc-tutar" style="color:${isBorc ? '#ff3b30' : '#34c759'}">${formatMoney(item.miktar)}</div>
@@ -969,8 +917,8 @@
             const handleMove = (clientX) => {
                 if(!isSwiping) return;
                 let diff = startX - clientX;
-                if(diff > 30 && diff < 100) itemDiv.classList.add('swiped');
-                else if(diff < -30) itemDiv.classList.remove('swiped');
+                if(diff > 25 && diff < 100) itemDiv.classList.add('swiped');
+                else if(diff < -25) itemDiv.classList.remove('swiped');
             };
             const handleEnd = () => { isSwiping = false; };
             itemDiv.addEventListener('touchstart', (e) => handleStart(e.touches[0].clientX));
@@ -1018,20 +966,75 @@
     }
 
     function updateCharts() {
-        // Aylık çizgi grafik (son 6 ay)
-        let son6 = [];
-        for(let i=5; i>=0; i--) {
-            let d = new Date(currentYear, currentMonth - i, 1);
-            son6.push({ year: d.getFullYear(), month: d.getMonth() });
+        updateLineChart();
+        updatePieChart();
+    }
+
+    function updateLineChart() {
+        let labels = [];
+        let gelirData = [];
+        let giderData = [];
+        const now = new Date();
+        now.setHours(0,0,0,0);
+        
+        if (currentLinePeriod === 'day') {
+            // Son 7 gün
+            for (let i = 6; i >= 0; i--) {
+                let d = new Date(now);
+                d.setDate(now.getDate() - i);
+                let gelirTop = 0, giderTop = 0;
+                allGelirler.forEach(g => {
+                    let d2 = parseLocalDate(g.tarih);
+                    if(d2 && d2.toDateString() === d.toDateString()) gelirTop += g.tutar;
+                });
+                allGiderler.forEach(g => {
+                    let d2 = parseLocalDate(g.tarih);
+                    if(d2 && d2.toDateString() === d.toDateString()) giderTop += g.tutar;
+                });
+                gelirData.push(gelirTop);
+                giderData.push(giderTop);
+                labels.push(d.toLocaleDateString('tr-TR', {day:'numeric', month:'short'}));
+            }
+        } else if (currentLinePeriod === 'week') {
+            // Son 6 hafta (Pazartesi başlangıçlı)
+            for (let w = 5; w >= 0; w--) {
+                let startOfWeek = new Date(now);
+                startOfWeek.setDate(now.getDate() - (now.getDay() === 0 ? 6 : now.getDay() - 1) - (w * 7));
+                startOfWeek.setHours(0,0,0,0);
+                let endOfWeek = new Date(startOfWeek);
+                endOfWeek.setDate(startOfWeek.getDate() + 6);
+                endOfWeek.setHours(23,59,59,999);
+                let gelirTop = 0, giderTop = 0;
+                allGelirler.forEach(g => {
+                    let d = parseLocalDate(g.tarih);
+                    if(d && d >= startOfWeek && d <= endOfWeek) gelirTop += g.tutar;
+                });
+                allGiderler.forEach(g => {
+                    let d = parseLocalDate(g.tarih);
+                    if(d && d >= startOfWeek && d <= endOfWeek) giderTop += g.tutar;
+                });
+                gelirData.push(gelirTop);
+                giderData.push(giderTop);
+                labels.push(`${startOfWeek.getDate()}/${startOfWeek.getMonth()+1} - ${endOfWeek.getDate()}/${endOfWeek.getMonth()+1}`);
+            }
+        } else { // month
+            for (let i=5; i>=0; i--) {
+                let d = new Date(currentYear, currentMonth - i, 1);
+                let gelirTop = 0, giderTop = 0;
+                allGelirler.forEach(g => {
+                    let d2 = parseLocalDate(g.tarih);
+                    if(d2 && d2.getFullYear()===d.getFullYear() && d2.getMonth()===d.getMonth()) gelirTop += g.tutar;
+                });
+                allGiderler.forEach(g => {
+                    let d2 = parseLocalDate(g.tarih);
+                    if(d2 && d2.getFullYear()===d.getFullYear() && d2.getMonth()===d.getMonth()) giderTop += g.tutar;
+                });
+                gelirData.push(gelirTop);
+                giderData.push(giderTop);
+                labels.push(`${d.getMonth()+1}/${d.getFullYear().toString().slice(-2)}`);
+            }
         }
-        let gelirData = [], giderData = [], labels = [];
-        son6.forEach(({year, month}) => {
-            let inc=0, exp=0;
-            allGelirler.forEach(g => { let d = parseLocalDate(g.tarih); if(d && d.getFullYear()===year && d.getMonth()===month) inc+=g.tutar; });
-            allGiderler.forEach(g => { let d = parseLocalDate(g.tarih); if(d && d.getFullYear()===year && d.getMonth()===month) exp+=g.tutar; });
-            gelirData.push(inc); giderData.push(exp);
-            labels.push(`${month+1}/${year.toString().slice(-2)}`);
-        });
+        
         const isDark = document.body.classList.contains('dark');
         const fontColor = isDark ? '#ffffff' : '#1c1c1e';
         const ctx1 = document.getElementById('monthlyChart').getContext('2d');
@@ -1041,9 +1044,6 @@
             data: { labels, datasets: [{ label: 'Gelir', data: gelirData, borderColor: '#34c759', backgroundColor: 'transparent', tension: 0.3, fill: false, pointBackgroundColor: '#34c759' }, { label: 'Gider', data: giderData, borderColor: '#ff3b30', backgroundColor: 'transparent', tension: 0.3, fill: false, pointBackgroundColor: '#ff3b30' }] },
             options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { labels: { color: fontColor } } } }
         });
-        
-        // Pasta grafiği: seçili periyoda göre (day/week/month)
-        updatePieChart();
     }
 
     function updatePieChart() {
@@ -1213,7 +1213,17 @@
         });
     });
     
-    // Pasta periyot değiştirme
+    // Line period change
+    document.querySelectorAll('#linePeriodControl .segment-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('#linePeriodControl .segment-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentLinePeriod = btn.dataset.linePeriod;
+            updateLineChart();
+        });
+    });
+    
+    // Pie period change
     document.querySelectorAll('#piePeriodControl .segment-btn').forEach(btn => {
         btn.addEventListener('click', () => {
             document.querySelectorAll('#piePeriodControl .segment-btn').forEach(b => b.classList.remove('active'));
