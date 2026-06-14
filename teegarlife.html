@@ -3,18 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>TeegarLife | Yıldız gibi parla</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <title>TeegarLife | Yıldız Gibi Parla</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
         :root {
             --bg: #f2f2f7;
             --card: #ffffff;
@@ -25,7 +24,6 @@
             --danger: #ff3b30;
             --success: #34c759;
             --primary: #007aff;
-            --shadow: 0 4px 20px rgba(0,0,0,0.05);
             --radius: 20px;
         }
 
@@ -35,39 +33,51 @@
             --text: #ffffff;
             --text-sec: #98989e;
             --border: #2c2c2e;
-            --shadow: 0 4px 20px rgba(0,0,0,0.4);
         }
 
         body {
             background: var(--bg);
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Inter', sans-serif;
             color: var(--text);
             padding: 20px 16px 40px;
             min-height: 100vh;
-            transition: background 0.3s, color 0.3s;
+            transition: all 0.3s;
         }
 
-        .container { max-width: 480px; margin: 0 auto; }
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+        }
 
         .card {
             background: var(--card);
             border-radius: var(--radius);
             padding: 20px;
             margin-bottom: 16px;
-            box-shadow: var(--shadow);
-            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
         }
 
-        h1 { font-size: 28px; font-weight: 800; letter-spacing: -0.5px; }
+        h1 {
+            font-size: 28px;
+            font-weight: 800;
+        }
+
         .gradient-text {
             background: linear-gradient(135deg, var(--text), var(--accent));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
         }
-        h2 { font-size: 17px; font-weight: 600; display: flex; align-items: center; gap: 8px; margin-bottom: 16px; }
 
-        button { font-family: 'Inter', sans-serif; cursor: pointer; }
+        h2 {
+            font-size: 17px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
         .btn {
             background: var(--primary);
             color: white;
@@ -78,142 +88,318 @@
             font-size: 16px;
             width: 100%;
             cursor: pointer;
-            transition: transform 0.1s, opacity 0.2s;
-            display: flex; justify-content: center; align-items: center; gap: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            transition: 0.2s;
         }
-        .btn:active { transform: scale(0.97); opacity: 0.9; }
-        .btn-outline { background: transparent; border: 1.5px solid var(--border); color: var(--text); }
-        .btn-small { padding: 8px 14px; font-size: 14px; width: auto; border-radius: 10px; }
 
-        input, textarea, select {
+        .btn:active {
+            transform: scale(0.97);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid var(--border);
+            color: var(--text);
+        }
+
+        .btn-small {
+            padding: 8px 14px;
+            width: auto;
+            border-radius: 10px;
+        }
+
+        input, textarea {
             width: 100%;
-            padding: 16px;
+            padding: 14px;
             background: var(--bg);
             border: 1.5px solid var(--border);
             border-radius: 14px;
             font-size: 16px;
             color: var(--text);
             margin-bottom: 12px;
-            transition: border 0.2s;
-            font-family: 'Inter', sans-serif;
         }
-        input:focus, textarea:focus, select:focus { outline: none; border-color: var(--primary); }
 
-        .flex-between { display: flex; justify-content: space-between; align-items: center; }
-        
-        .star-card { text-align: center; padding: 30px 20px; }
-        .star-icon { font-size: 56px; margin-bottom: 12px; filter: drop-shadow(0 4px 10px rgba(245, 166, 35, 0.3)); }
-        .star-message { font-size: 16px; font-weight: 600; color: var(--accent); }
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .flex-between {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .star-card {
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        .star-icon {
+            font-size: 56px;
+            margin-bottom: 12px;
+        }
+
+        .star-message {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--accent);
+        }
 
         .habit-item {
             background: var(--bg);
             border-radius: 16px;
             padding: 16px;
             margin-bottom: 10px;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
         }
-        .habit-header { display: flex; justify-content: space-between; align-items: center; }
-        .habit-name { font-weight: 700; font-size: 16px; }
-        .habit-days { font-size: 20px; font-weight: 800; color: var(--accent); }
-        .habit-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-        
-        .action-btn {
-            border-radius: 10px; padding: 10px; font-size: 14px; font-weight: 600; border: none; cursor: pointer;
-            display: flex; justify-content: center; align-items: center; gap: 6px;
-        }
-        .action-relapse { background: rgba(255, 59, 48, 0.1); color: var(--danger); }
-        .action-crisis { background: rgba(52, 199, 89, 0.1); color: var(--success); }
 
-        .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-        .stat-block { background: var(--bg); border-radius: 14px; padding: 16px 10px; text-align: center; }
-        .stat-number { font-size: 24px; font-weight: 800; color: var(--accent); }
-        .stat-label { font-size: 11px; color: var(--text-sec); margin-top: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .habit-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .habit-name {
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .habit-days {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--accent);
+        }
+
+        .habit-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .action-btn {
+            border-radius: 10px;
+            padding: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .action-relapse {
+            background: rgba(255, 59, 48, 0.1);
+            color: var(--danger);
+        }
+
+        .action-crisis {
+            background: rgba(52, 199, 89, 0.1);
+            color: var(--success);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .stat-block {
+            background: var(--bg);
+            border-radius: 14px;
+            padding: 16px 10px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--accent);
+        }
+
+        .stat-label {
+            font-size: 11px;
+            color: var(--text-sec);
+            margin-top: 6px;
+        }
 
         .modal-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.5); backdrop-filter: blur(4px);
-            opacity: 0; visibility: hidden; transition: all 0.3s; z-index: 1000;
-            display: flex; align-items: flex-end;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            visibility: hidden;
+            opacity: 0;
+            transition: 0.3s;
+            display: flex;
+            align-items: flex-end;
+            z-index: 1000;
         }
-        .modal-overlay.active { opacity: 1; visibility: visible; }
-        
+
+        .modal-overlay.active {
+            visibility: visible;
+            opacity: 1;
+        }
+
         .modal-content {
             background: var(--card);
             width: 100%;
             border-radius: 24px 24px 0 0;
             padding: 24px;
             transform: translateY(100%);
-            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.1);
-            max-height: 90vh;
+            transition: 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            max-height: 85vh;
             overflow-y: auto;
         }
-        .modal-overlay.active .modal-content { transform: translateY(0); }
-        
-        .modal-drag-handle { width: 40px; height: 5px; background: var(--border); border-radius: 5px; margin: 0 auto 20px; }
 
-        .reason-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 20px 0; }
-        .reason-btn { background: var(--bg); border: 1.5px solid var(--border); border-radius: 12px; padding: 12px; font-size: 14px; font-weight: 500; color: var(--text); cursor: pointer; transition: all 0.2s; }
-        .reason-btn.selected { border-color: var(--primary); background: rgba(0, 122, 255, 0.05); }
+        .modal-overlay.active .modal-content {
+            transform: translateY(0);
+        }
 
-        .mood-selector { display: flex; justify-content: space-around; margin: 20px 0; }
-        .mood-emoji { font-size: 44px; cursor: pointer; filter: grayscale(100%); opacity: 0.5; transition: 0.2s; }
-        .mood-emoji.active { filter: grayscale(0%); opacity: 1; transform: scale(1.15); }
-        
+        .modal-drag-handle {
+            width: 40px;
+            height: 5px;
+            background: var(--border);
+            border-radius: 5px;
+            margin: 0 auto 20px;
+        }
+
+        .reason-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .reason-btn {
+            background: var(--bg);
+            border: 1.5px solid var(--border);
+            border-radius: 12px;
+            padding: 12px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .reason-btn.selected {
+            border-color: var(--primary);
+            background: rgba(0, 122, 255, 0.1);
+        }
+
+        .mood-selector {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+        }
+
+        .mood-emoji {
+            font-size: 44px;
+            cursor: pointer;
+            filter: grayscale(100%);
+            opacity: 0.5;
+            transition: 0.2s;
+        }
+
+        .mood-emoji.active {
+            filter: grayscale(0%);
+            opacity: 1;
+            transform: scale(1.2);
+        }
+
         .predefined-habits {
-            display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
         }
+
         .predef-habit {
-            background: var(--bg); border: 1.5px solid var(--border); border-radius: 30px;
-            padding: 10px 16px; font-size: 14px; cursor: pointer; transition: all 0.2s;
+            background: var(--bg);
+            border: 1.5px solid var(--border);
+            border-radius: 30px;
+            padding: 10px 16px;
+            font-size: 14px;
+            cursor: pointer;
         }
-        .predef-habit:hover, .predef-habit:active { border-color: var(--primary); background: rgba(0,122,255,0.05); }
 
         .toast {
-            position: fixed; top: 20px; left: 50%; transform: translateX(-50%) translateY(-100px);
-            background: var(--text); color: var(--card); padding: 14px 24px;
-            border-radius: 100px; font-size: 14px; font-weight: 500;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15); z-index: 2000; transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.2);
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%) translateY(-100px);
+            background: var(--text);
+            color: var(--card);
+            padding: 12px 24px;
+            border-radius: 100px;
+            font-size: 14px;
+            z-index: 2000;
+            transition: 0.3s;
         }
-        .toast.show { transform: translateX(-50%) translateY(0); }
-        
-        .hidden { display: none !important; }
-        
-        .loading-spinner { text-align: center; padding: 20px; color: var(--text-sec); }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .breathing-circle {
+            width: 150px;
+            height: 150px;
+            background: var(--success);
+            border-radius: 50%;
+            margin: 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.5s ease-in-out;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .timer-text {
+            font-size: 32px;
+            font-weight: 800;
+            text-align: center;
+            margin: 20px 0;
+        }
     </style>
 </head>
 <body>
 
-<div id="toast" class="toast">Mesaj</div>
+<div id="toast" class="toast">✨ TeegarLife</div>
 
-<div id="loginContainer" class="container" style="display: flex; flex-direction: column; justify-content: center; min-height: 90vh;">
-    <div class="card" style="padding: 40px 20px; text-align: center;">
-        <div class="star-icon" style="font-size: 64px;">✨</div>
+<!-- LOGIN -->
+<div id="loginContainer" class="container">
+    <div class="card" style="text-align: center; padding: 40px 20px;">
+        <div style="font-size: 64px;">✨</div>
         <h1 class="gradient-text">TeegarLife</h1>
         <p style="color: var(--text-sec); margin: 8px 0 32px;">İçindeki ışığı yeniden keşfet</p>
-        
-        <input type="email" id="loginEmail" placeholder="E-posta adresin">
-        <input type="password" id="loginPassword" placeholder="Şifren">
-        
-        <button id="loginBtn" class="btn" style="margin-bottom: 12px;">Giriş Yap</button>
-        <button id="registerBtn" class="btn btn-outline" style="margin-bottom: 24px;">Hesap Oluştur</button>
-        
-        <div style="position: relative; text-align: center; margin-bottom: 24px;">
-            <hr style="border: none; border-top: 1px solid var(--border);">
-            <span style="position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: var(--card); padding: 0 10px; color: var(--text-sec); font-size: 12px;">VEYA</span>
+        <input type="email" id="loginEmail" placeholder="E-posta">
+        <input type="password" id="loginPassword" placeholder="Şifre">
+        <button id="loginBtn" class="btn">Giriş Yap</button>
+        <button id="registerBtn" class="btn btn-outline" style="margin-top: 12px;">Hesap Oluştur</button>
+        <div style="margin: 20px 0; position: relative;">
+            <hr><span style="background: var(--card); padding: 0 10px; position: absolute; top: -10px; left: 50%; transform: translateX(-50%);">VEYA</span>
         </div>
-        
-        <button id="googleLoginBtn" class="btn" style="background: #db4437; border: none; color: white;">
-            <i class="fab fa-google"></i> Google ile Devam Et
-        </button>
+        <button id="googleLoginBtn" class="btn" style="background: #db4437;">Google ile Devam Et</button>
     </div>
 </div>
 
+<!-- ANA UYGULAMA -->
 <div id="appContainer" class="container hidden">
-    <div class="flex-between" style="margin-bottom: 24px;">
+    <div class="flex-between" style="margin-bottom: 20px;">
         <h1 class="gradient-text">TeegarLife</h1>
-        <button id="themeToggleBtn" class="btn-small btn-outline" style="border: none; background: var(--card); box-shadow: var(--shadow); border-radius: 50%; width: 40px; height: 40px; display: flex; justify-content: center; align-items: center;"><i class="fas fa-moon"></i></button>
+        <button id="themeToggle" class="btn-small btn-outline" style="border-radius: 50%; width: 40px; height: 40px;">🌙</button>
     </div>
 
     <div class="card star-card">
@@ -223,25 +409,23 @@
 
     <div class="card">
         <div class="flex-between">
-            <h2><i class="fas fa-layer-group" style="color: var(--primary);"></i> Mücadelelerim</h2>
-            <button id="addHabitBtn" class="btn-small btn-outline" style="color: var(--primary); border-color: var(--primary);"><i class="fas fa-plus"></i> Yeni</button>
+            <h2><i class="fas fa-layer-group"></i> Mücadelelerim</h2>
+            <button id="addHabitBtn" class="btn-small btn-outline">+ Yeni</button>
         </div>
         <div id="habitsList">
-            <div class="loading-spinner"><i class="fas fa-spinner fa-pulse"></i> Yükleniyor...</div>
+            <div style="text-align: center; padding: 20px;"><i class="fas fa-spinner fa-pulse"></i> Yükleniyor...</div>
         </div>
     </div>
 
-    <div class="card" style="background: linear-gradient(135deg, rgba(52, 199, 89, 0.1), rgba(52, 199, 89, 0.05)); border: 1px solid rgba(52, 199, 89, 0.2);">
-        <h2><i class="fas fa-life-ring" style="color: var(--success);"></i> Acil Destek</h2>
-        <p style="font-size: 14px; color: var(--text-sec); margin-bottom: 16px;">Kendini zayıf hissettiğinde hemen buraya tıkla.</p>
-        <button id="crisisGlobalBtn" class="btn" style="background: var(--success);">Kriz Anındayım, Yardım Et</button>
+    <div class="card" style="background: rgba(52,199,89,0.1);">
+        <h2><i class="fas fa-life-ring"></i> Acil Destek</h2>
+        <p style="font-size: 14px; margin-bottom: 16px;">Kriz anında nefes egzersizi başlat</p>
+        <button id="crisisBtn" class="btn" style="background: var(--success);">Kriz Anındayım</button>
     </div>
 
     <div class="card">
-        <div class="flex-between">
-            <h2><i class="fas fa-chart-pie" style="color: var(--accent);"></i> İstatistikler</h2>
-        </div>
-        <div class="stats-grid" id="statsGrid">
+        <h2><i class="fas fa-chart-pie"></i> İstatistikler</h2>
+        <div class="stats-grid">
             <div class="stat-block"><div class="stat-number" id="longestStreak">0</div><div class="stat-label">En Uzun Seri</div></div>
             <div class="stat-block"><div class="stat-number" id="totalRelapses">0</div><div class="stat-label">Nüksetme</div></div>
             <div class="stat-block"><div class="stat-number" id="totalClean">0</div><div class="stat-label">Temiz Gün</div></div>
@@ -249,31 +433,24 @@
     </div>
 
     <div class="card">
-        <div class="flex-between" style="margin-bottom: 20px;">
-            <div>
-                <h2><i class="far fa-face-smile" style="color: var(--primary);"></i> Modum</h2>
-                <div id="lastMood" style="color: var(--text-sec); font-size: 14px;">Henüz kaydedilmedi</div>
-            </div>
-            <button id="dailyMoodBtn" class="btn-small btn-outline">Güncelle</button>
-        </div>
-        <hr style="border: none; border-top: 1px solid var(--border); margin-bottom: 20px;">
         <div class="flex-between">
-            <div>
-                <h2><i class="fas fa-flag-checkered" style="color: var(--danger);"></i> Hedefim</h2>
-                <div id="goalDisplay" style="color: var(--text-sec); font-size: 14px;">Belirlenmedi</div>
-            </div>
+            <div><h2><i class="far fa-face-smile"></i> Modum</h2><div id="lastMood" style="color: var(--text-sec);">Kaydedilmedi</div></div>
+            <button id="moodBtn" class="btn-small btn-outline">Güncelle</button>
+        </div>
+        <hr style="margin: 16px 0;">
+        <div class="flex-between">
+            <div><h2><i class="fas fa-flag-checkered"></i> Hedefim</h2><div id="goalDisplay">Belirlenmedi</div></div>
             <button id="goalBtn" class="btn-small btn-outline">Belirle</button>
         </div>
     </div>
 </div>
 
-<!-- YENİ HABİT EKLEME MODAL'ı (Prompt yerine) -->
+<!-- MODALLAR -->
 <div id="addHabitModal" class="modal-overlay">
     <div class="modal-content">
         <div class="modal-drag-handle"></div>
-        <h3 style="text-align: center; margin-bottom: 16px;">Yeni Mücadele Ekle</h3>
-        <p style="color: var(--text-sec); font-size: 13px; text-align: center; margin-bottom: 20px;">Hızlı başlangıç için öneriler:</p>
-        <div class="predefined-habits" id="predefinedHabits">
+        <h3 style="text-align: center;">Yeni Mücadele</h3>
+        <div class="predefined-habits">
             <span class="predef-habit" data-name="Sigara 🚬">Sigara 🚬</span>
             <span class="predef-habit" data-name="Alkol 🍺">Alkol 🍺</span>
             <span class="predef-habit" data-name="Ekran Süresi 📱">Ekran Süresi 📱</span>
@@ -281,20 +458,19 @@
             <span class="predef-habit" data-name="Kumar 🎰">Kumar 🎰</span>
             <span class="predef-habit" data-name="Abur Cubur 🍫">Abur Cubur 🍫</span>
         </div>
-        <input type="text" id="newHabitName" placeholder="Kendi mücadeleni yaz (örn: Sigara, Ekran Süresi...)" autocomplete="off">
-        <button id="confirmAddHabit" class="btn" style="margin-top: 8px;">Ekle</button>
-        <button class="btn btn-outline close-modal-btn" style="margin-top: 12px; border: none;">İptal</button>
+        <input type="text" id="newHabitName" placeholder="Kendi mücadeleni yaz">
+        <button id="confirmAddHabit" class="btn">Ekle</button>
+        <button class="btn btn-outline close-modal" style="margin-top: 12px;">İptal</button>
     </div>
 </div>
 
 <div id="relapseModal" class="modal-overlay">
     <div class="modal-content">
         <div class="modal-drag-handle"></div>
-        <h3 style="text-align: center; margin-bottom: 10px;">Neden Nüksetti?</h3>
-        <p style="text-align: center; color: var(--text-sec); font-size: 14px;">Kendine karşı dürüst ol, bu bir öğrenme sürecidir.</p>
+        <h3 style="text-align: center;">Neden Nüksettin?</h3>
         <div id="relapseReasons" class="reason-grid"></div>
-        <button id="confirmRelapse" class="btn" style="background: var(--danger);">Kaydet ve Yeniden Başla</button>
-        <button class="btn btn-outline close-modal-btn" style="margin-top: 12px; border: none;">İptal</button>
+        <button id="confirmRelapse" class="btn" style="background: var(--danger);">Kaydet</button>
+        <button class="btn btn-outline close-modal">İptal</button>
     </div>
 </div>
 
@@ -302,44 +478,43 @@
     <div class="modal-content">
         <div class="modal-drag-handle"></div>
         <div style="text-align: center;">
-            <i class="fas fa-spa" style="font-size: 48px; color: var(--success); margin-bottom: 16px;"></i>
-            <h3>Derin bir nefes al</h3>
-            <p style="color: var(--text-sec); margin: 16px 0; font-size: 15px; line-height: 1.5;">Şu an hissettiğin kriz dalgası geçici. Sadece 10 dakika bekle ve bu sürede zihnini başka bir şeye odakla.</p>
+            <h3>🧘‍♂️ Nefes Egzersizi</h3>
+            <div id="breathingCircle" class="breathing-circle">Nefes Al</div>
+            <div id="breathTimer" class="timer-text">4</div>
+            <button id="stopBreathing" class="btn btn-outline">Kapat</button>
         </div>
-        <button id="breatheBtn" class="btn" style="background: var(--success);">Nefes Egzersizini Başlat</button>
-        <button class="btn btn-outline close-modal-btn" style="margin-top: 12px; border: none;">Kapat</button>
     </div>
 </div>
 
-<div id="dailyModal" class="modal-overlay">
+<div id="moodModal" class="modal-overlay">
     <div class="modal-content">
         <div class="modal-drag-handle"></div>
         <h3 style="text-align: center;">Bugün Nasılsın?</h3>
         <div class="mood-selector">
-            <span class="mood-emoji active" data-mood="😊">😊</span>
+            <span class="mood-emoji" data-mood="😊">😊</span>
             <span class="mood-emoji" data-mood="😐">😐</span>
             <span class="mood-emoji" data-mood="😔">😔</span>
             <span class="mood-emoji" data-mood="😡">😡</span>
         </div>
-        <textarea id="moodText" rows="2" placeholder="İçinden geçenleri kısaca yaz..."></textarea>
+        <textarea id="moodText" rows="2" placeholder="Duygularını yaz..."></textarea>
         <button id="saveMood" class="btn">Kaydet</button>
-        <button class="btn btn-outline close-modal-btn" style="margin-top: 12px; border: none;">Kapat</button>
+        <button class="btn btn-outline close-modal">Kapat</button>
     </div>
 </div>
 
 <div id="goalModal" class="modal-overlay">
     <div class="modal-content">
         <div class="modal-drag-handle"></div>
-        <h3 style="text-align: center; margin-bottom: 20px;">Hedef Belirle</h3>
-        <input type="number" id="goalDays" placeholder="Örn: 30 (Gün olarak)" pattern="[0-9]*" inputmode="numeric">
-        <button id="saveGoal" class="btn">Hedefi Kaydet</button>
-        <button class="btn btn-outline close-modal-btn" style="margin-top: 12px; border: none;">Kapat</button>
+        <h3 style="text-align: center;">Hedef Gün Sayısı</h3>
+        <input type="number" id="goalDays" placeholder="Örn: 30">
+        <button id="saveGoal" class="btn">Kaydet</button>
+        <button class="btn btn-outline close-modal">Kapat</button>
     </div>
 </div>
 
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
-    import { getFirestore, collection, addDoc, getDocs, query, where, updateDoc, doc, Timestamp, orderBy, setDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+    import { getFirestore, collection, addDoc, getDocs, query, where, updateDoc, doc, Timestamp, setDoc, orderBy } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
     import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
 
     const firebaseConfig = {
@@ -354,44 +529,26 @@
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
     const auth = getAuth();
-    const googleProvider = new GoogleAuthProvider();
+    const provider = new GoogleAuthProvider();
 
     let currentUser = null;
     let habits = [];
     let currentHabitId = null;
-    let selectedRelapseReason = null;
+    let selectedReason = null;
+    let breathInterval = null;
 
     function showToast(msg) {
-        const toast = document.getElementById('toast');
+        let toast = document.getElementById('toast');
         toast.innerText = msg;
         toast.classList.add('show');
-        setTimeout(() => toast.classList.remove('show'), 3000);
-    }
-
-    function vibrate() { if ('vibrate' in navigator) navigator.vibrate(50); }
-    function daysSince(ts) { if (!ts) return 0; return Math.max(0, Math.floor((Date.now() - ts) / (1000*3600*24))); }
-    function escapeHtml(str) { 
-        if (!str) return '';
-        return str.replace(/[&<>]/g, m => ({ '&':'&amp;','<':'&lt;','>':'&gt;' }[m])); 
-    }
-
-    function translateError(code) {
-        if(code.includes('invalid-credential') || code.includes('user-not-found') || code.includes('wrong-password')) return "E-posta veya şifre hatalı.";
-        if(code.includes('email-already-in-use')) return "Bu e-posta adresi zaten kullanımda.";
-        if(code.includes('weak-password')) return "Şifre çok zayıf. En az 6 karakter olmalı.";
-        if(code.includes('auth-domain')) return "Bağlantı hatası. Lütfen internetini kontrol et.";
-        return "Bir hata oluştu, lütfen tekrar dene.";
+        setTimeout(() => toast.classList.remove('show'), 2500);
     }
 
     function openModal(id) { document.getElementById(id).classList.add('active'); }
     function closeModal(id) { document.getElementById(id).classList.remove('active'); }
-    
-    document.querySelectorAll('.close-modal-btn').forEach(btn => {
-        btn.addEventListener('click', (e) => e.target.closest('.modal-overlay').classList.remove('active'));
-    });
-    document.querySelectorAll('.modal-overlay').forEach(overlay => {
-        overlay.addEventListener('click', (e) => { if(e.target === overlay) overlay.classList.remove('active'); });
-    });
+    document.querySelectorAll('.close-modal').forEach(btn => btn.onclick = () => btn.closest('.modal-overlay').classList.remove('active'));
+
+    function daysSince(ms) { if (!ms) return 0; return Math.max(0, Math.floor((Date.now() - ms) / 86400000)); }
 
     async function loadHabits() {
         if (!currentUser) return;
@@ -401,266 +558,198 @@
             habits = snap.docs.map(d => ({ id: d.id, ...d.data() }));
             renderHabits();
             updateStats();
-        } catch(e) {
-            console.error(e);
-            showToast("Veriler yüklenirken hata oluştu.");
-        }
+        } catch (e) { showToast("Veri yüklenemedi: " + e.message); }
     }
 
     function renderHabits() {
         const container = document.getElementById('habitsList');
-        if (!container) return;
-        if (habits.length === 0) {
-            container.innerHTML = '<div style="text-align:center; padding: 20px; color: var(--text-sec);"><i class="fas fa-seedling" style="font-size:32px; opacity:0.5; margin-bottom:10px;"></i><p>Henüz bir takip oluşturmadın.<br>Yukarıdaki + butonundan başla.</p></div>';
+        if (!habits.length) {
+            container.innerHTML = '<div style="text-align:center; padding:20px;"><i class="fas fa-plus-circle" style="font-size:32px; opacity:0.5;"></i><p>+ Yeni ile başla</p></div>';
             return;
         }
-        
         container.innerHTML = habits.map(h => {
-            const clean = daysSince(h.lastRelapse || h.startDate);
-            return `
-                <div class="habit-item" data-id="${h.id}">
-                    <div class="habit-header">
-                        <span class="habit-name">${escapeHtml(h.name)}</span>
-                        <div class="habit-days">✨ ${clean} gün</div>
-                    </div>
-                    <div class="habit-actions">
-                        <button class="action-btn action-relapse" data-id="${h.id}"><i class="fas fa-rotate-left"></i> Nüksetme</button>
-                        <button class="action-btn action-crisis" data-id="${h.id}"><i class="fas fa-heart-pulse"></i> Kriz</button>
-                    </div>
+            let clean = daysSince(h.lastRelapse || h.startDate);
+            return `<div class="habit-item">
+                <div class="habit-header"><span class="habit-name">${escapeHtml(h.name)}</span><span class="habit-days">✨ ${clean} gün</span></div>
+                <div class="habit-actions">
+                    <button class="action-relapse" data-id="${h.id}"><i class="fas fa-rotate-left"></i> Nüksetme</button>
+                    <button class="action-crisis" data-id="${h.id}"><i class="fas fa-heart-pulse"></i> Kriz</button>
                 </div>
-            `;
+            </div>`;
         }).join('');
+        document.querySelectorAll('.action-relapse').forEach(btn => btn.onclick = () => { currentHabitId = btn.dataset.id; openRelapseModal(); });
+        document.querySelectorAll('.action-crisis').forEach(btn => btn.onclick = () => openModal('crisisModal'));
     }
 
-    document.getElementById('habitsList')?.addEventListener('click', (e) => {
-        const relapseBtn = e.target.closest('.action-relapse');
-        const crisisBtn = e.target.closest('.action-crisis');
-        
-        if (relapseBtn) {
-            currentHabitId = relapseBtn.dataset.id;
-            selectedRelapseReason = null;
-            renderRelapseReasons();
-            openModal('relapseModal');
-            vibrate();
-        }
-        if (crisisBtn) {
-            openModal('crisisModal');
-            vibrate();
-        }
-    });
-
-    const reasonsList = ['Stres', 'Yalnızlık', 'Can Sıkıntısı', 'Gece / Uyku Öncesi', 'Arkadaş Ortamı', 'Öfke', 'İş/Okul Baskısı', 'Sosyal Medya'];
-    function renderRelapseReasons() {
-        const div = document.getElementById('relapseReasons');
-        if (!div) return;
-        div.innerHTML = reasonsList.map(r => `<button class="reason-btn">${r}</button>`).join('');
-        div.querySelectorAll('.reason-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                div.querySelectorAll('.reason-btn').forEach(b => b.classList.remove('selected'));
-                btn.classList.add('selected');
-                selectedRelapseReason = btn.innerText;
-            });
+    function openRelapseModal() {
+        selectedReason = null;
+        const reasons = ['Stres', 'Yalnızlık', 'Can Sıkıntısı', 'Uykusuzluk', 'Öfke', 'Sosyal Baskı'];
+        const container = document.getElementById('relapseReasons');
+        container.innerHTML = reasons.map(r => `<button class="reason-btn">${r}</button>`).join('');
+        container.querySelectorAll('.reason-btn').forEach(btn => btn.onclick = () => {
+            container.querySelectorAll('.reason-btn').forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+            selectedReason = btn.innerText;
         });
+        openModal('relapseModal');
     }
 
-    document.getElementById('confirmRelapse')?.addEventListener('click', async () => {
-        if(!selectedRelapseReason) return showToast("Lütfen bir neden seç.");
-        if (currentHabitId) {
-            try {
-                const habit = habits.find(h => h.id === currentHabitId);
-                const reasons = [...(habit.relapseReasons || []), selectedRelapseReason];
-                await updateDoc(doc(db, "habits", currentHabitId), { 
-                    lastRelapse: Timestamp.now().toMillis(), 
-                    relapseReasons: reasons 
-                });
-                await loadHabits();
-                showToast("Kaydedildi. Hiçbir şey bitmedi, sadece öğrendin!");
-                closeModal('relapseModal');
-                vibrate();
-            } catch(e) {
-                showToast("Hata oluştu, tekrar dene.");
-            }
-        }
-    });
-
-    // YENİ: Modal ile habit ekleme
-    document.getElementById('addHabitBtn')?.addEventListener('click', () => {
-        document.getElementById('newHabitName').value = '';
-        openModal('addHabitModal');
-    });
-    
-    // Ön tanımlı habit seçenekleri
-    document.querySelectorAll('#predefinedHabits .predef-habit').forEach(el => {
-        el.addEventListener('click', () => {
-            const name = el.dataset.name || el.innerText;
-            document.getElementById('newHabitName').value = name;
-        });
-    });
-    
-    document.getElementById('confirmAddHabit')?.addEventListener('click', async () => {
-        const name = document.getElementById('newHabitName').value.trim();
-        if (!name) return showToast("Lütfen bir mücadele adı gir.");
+    document.getElementById('confirmRelapse').onclick = async () => {
+        if (!selectedReason) return showToast("Bir neden seç");
         try {
-            await addDoc(collection(db, "habits"), {
-                userId: currentUser.uid,
-                name: name,
-                startDate: Timestamp.now().toMillis(),
-                lastRelapse: null,
-                relapseReasons: [],
-                createdAt: Timestamp.now()
-            });
+            const habit = habits.find(h => h.id === currentHabitId);
+            const reasons = [...(habit.relapseReasons || []), selectedReason];
+            await updateDoc(doc(db, "habits", currentHabitId), { lastRelapse: Timestamp.now().toMillis(), relapseReasons: reasons });
             await loadHabits();
-            showToast(`"${name}" eklendi. Başarılar!`);
+            closeModal('relapseModal');
+            showToast("Kaydedildi. Yeniden başlıyorsun ✨");
+        } catch (e) { showToast("Hata: " + e.message); }
+    };
+
+    document.getElementById('addHabitBtn').onclick = () => openModal('addHabitModal');
+    document.querySelectorAll('.predef-habit').forEach(el => el.onclick = () => document.getElementById('newHabitName').value = el.dataset.name);
+    document.getElementById('confirmAddHabit').onclick = async () => {
+        let name = document.getElementById('newHabitName').value.trim();
+        if (!name) return showToast("Bir isim yaz");
+        try {
+            await addDoc(collection(db, "habits"), { userId: currentUser.uid, name, startDate: Timestamp.now().toMillis(), lastRelapse: null, relapseReasons: [], createdAt: Timestamp.now() });
+            await loadHabits();
             closeModal('addHabitModal');
-            vibrate();
-        } catch(e) {
-            showToast("Ekleme sırasında hata oluştu.");
-        }
-    });
+            document.getElementById('newHabitName').value = '';
+            showToast(`"${name}" eklendi`);
+        } catch (e) { showToast("Ekleme hatası"); }
+    };
 
     function updateStats() {
         let longest = 0, totalRel = 0, totalClean = 0;
-        for (const h of habits) {
-            const clean = daysSince(h.lastRelapse || h.startDate);
+        habits.forEach(h => {
+            let clean = daysSince(h.lastRelapse || h.startDate);
             totalRel += (h.relapseReasons?.length || 0);
             totalClean += clean;
             if (clean > longest) longest = clean;
-        }
+        });
         document.getElementById('longestStreak').innerText = longest;
         document.getElementById('totalRelapses').innerText = totalRel;
         document.getElementById('totalClean').innerText = totalClean;
-        
-        const starIcon = document.getElementById('starIcon');
-        const starMsg = document.getElementById('starMessage');
-        if (longest === 0) { starIcon.innerHTML = '🌑'; starMsg.innerText = 'Yeni başlangıç, tohum ekildi'; }
-        else if (longest < 7) { starIcon.innerHTML = '⭐'; starMsg.innerText = `${longest} gündür istikrarlısın`; }
-        else if (longest < 30) { starIcon.innerHTML = '🌟'; starMsg.innerText = `${longest} gün! Işığın büyüyor`; }
-        else { starIcon.innerHTML = '🌠'; starMsg.innerText = `${longest} gün! Göz kamaştırıyorsun`; }
+        let star = document.getElementById('starIcon'), msg = document.getElementById('starMessage');
+        if (longest === 0) { star.innerHTML = '🌑'; msg.innerText = 'Yeni başlangıç'; }
+        else if (longest < 7) { star.innerHTML = '⭐'; msg.innerText = `${longest} gün istikrar`; }
+        else if (longest < 30) { star.innerHTML = '🌟'; msg.innerText = `${longest} gün! Işığın büyüyor`; }
+        else { star.innerHTML = '🌠'; msg.innerText = `${longest} gün! Süperstarsın`; }
     }
 
+    // MOOD
     async function loadLastMood() {
         if (!currentUser) return;
-        try {
-            const q = query(collection(db, "moods"), where("userId", "==", currentUser.uid), orderBy("date", "desc"));
-            const snap = await getDocs(q);
-            if (!snap.empty) {
-                const m = snap.docs[0].data();
-                document.getElementById('lastMood').innerHTML = `<span style="font-size:18px;">${m.emoji || '😊'}</span> ${m.text ? m.text.substring(0,15)+'...' : 'Kaydedildi'}`;
-            } else {
-                document.getElementById('lastMood').innerHTML = 'Henüz kaydedilmedi';
-            }
-        } catch(e) { console.error(e); }
+        const q = query(collection(db, "moods"), where("userId", "==", currentUser.uid), orderBy("date", "desc"));
+        const snap = await getDocs(q);
+        if (!snap.empty) document.getElementById('lastMood').innerHTML = `${snap.docs[0].data().emoji} ${snap.docs[0].data().text?.substring(0,20) || ''}`;
     }
-
-    document.getElementById('dailyMoodBtn')?.addEventListener('click', () => openModal('dailyModal'));
-    
-    document.querySelectorAll('.mood-emoji').forEach(e => e.addEventListener('click', () => {
+    document.getElementById('moodBtn').onclick = () => {
+        document.querySelectorAll('.mood-emoji').forEach(e => e.classList.remove('active'));
+        document.querySelector('.mood-emoji').classList.add('active');
+        openModal('moodModal');
+    };
+    document.querySelectorAll('.mood-emoji').forEach(e => e.onclick = () => {
         document.querySelectorAll('.mood-emoji').forEach(m => m.classList.remove('active'));
         e.classList.add('active');
-    }));
-    
-    document.getElementById('saveMood')?.addEventListener('click', async () => {
-        const text = document.getElementById('moodText').value;
-        const emoji = document.querySelector('.mood-emoji.active')?.dataset.mood || '😊';
-        try {
-            await addDoc(collection(db, "moods"), { userId: currentUser.uid, text, emoji, date: Timestamp.now() });
-            showToast("Duygun kaydedildi.");
-            closeModal('dailyModal');
-            loadLastMood();
-        } catch(e) { showToast("Kaydedilemedi."); }
     });
+    document.getElementById('saveMood').onclick = async () => {
+        let emoji = document.querySelector('.mood-emoji.active')?.dataset.mood || '😊';
+        let text = document.getElementById('moodText').value;
+        await addDoc(collection(db, "moods"), { userId: currentUser.uid, emoji, text, date: Timestamp.now() });
+        showToast("Duygun kaydedildi");
+        closeModal('moodModal');
+        loadLastMood();
+    };
 
+    // GOAL
     async function loadGoal() {
         if (!currentUser) return;
-        try {
-            const q = query(collection(db, "goals"), where("userId", "==", currentUser.uid));
-            const snap = await getDocs(q);
-            if (!snap.empty) {
-                const goal = snap.docs[0].data();
-                document.getElementById('goalDisplay').innerHTML = `Hedef: <b>${goal.targetDays} gün</b>`;
-            } else {
-                document.getElementById('goalDisplay').innerHTML = 'Belirlenmedi';
-            }
-        } catch(e) { console.error(e); }
+        const q = query(collection(db, "goals"), where("userId", "==", currentUser.uid));
+        const snap = await getDocs(q);
+        if (!snap.empty) document.getElementById('goalDisplay').innerHTML = `🎯 ${snap.docs[0].data().targetDays} gün`;
     }
-
-    document.getElementById('goalBtn')?.addEventListener('click', () => openModal('goalModal'));
-    
-    document.getElementById('saveGoal')?.addEventListener('click', async () => {
-        const days = parseInt(document.getElementById('goalDays').value);
+    document.getElementById('goalBtn').onclick = () => openModal('goalModal');
+    document.getElementById('saveGoal').onclick = async () => {
+        let days = parseInt(document.getElementById('goalDays').value);
         if (days > 0) {
-            try {
-                // DÜZELTME: setDoc ile merge yap
-                const goalRef = doc(db, "goals", currentUser.uid);
-                await setDoc(goalRef, { userId: currentUser.uid, targetDays: days, updatedAt: Timestamp.now() }, { merge: true });
-                showToast("Hedef güncellendi.");
-                closeModal('goalModal');
-                loadGoal();
-            } catch(e) { showToast("Hedef kaydedilemedi."); }
-        } else showToast("Geçerli bir gün sayısı girin");
-    });
+            await setDoc(doc(db, "goals", currentUser.uid), { userId: currentUser.uid, targetDays: days, updatedAt: Timestamp.now() }, { merge: true });
+            showToast("Hedef kaydedildi");
+            closeModal('goalModal');
+            loadGoal();
+        } else showToast("Geçerli sayı gir");
+    };
 
-    document.getElementById('crisisGlobalBtn')?.addEventListener('click', () => { openModal('crisisModal'); vibrate(); });
-    
-    document.getElementById('breatheBtn')?.addEventListener('click', () => {
-        showToast("Nefes Egzersizi: 4 sn nefes al → 4 sn tut → 4 sn ver");
-        closeModal('crisisModal');
-    });
-
-    const themeBtn = document.getElementById('themeToggleBtn');
-    themeBtn?.addEventListener('click', () => {
-        document.body.classList.toggle('dark');
-        const isDark = document.body.classList.contains('dark');
-        themeBtn.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
-    });
-    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.body.classList.add('dark');
-        if(themeBtn) themeBtn.innerHTML = '<i class="fas fa-sun"></i>';
+    // KRİZ - NEFES EGZERSİZİ (ÇALIŞIYOR)
+    function startBreathing() {
+        if (breathInterval) clearInterval(breathInterval);
+        let phase = "inhale"; // inhale, hold, exhale
+        let timer = 4;
+        const circle = document.getElementById('breathingCircle');
+        const timerDiv = document.getElementById('breathTimer');
+        circle.style.transform = "scale(1)";
+        function updateBreath() {
+            timerDiv.innerText = timer;
+            if (phase === "inhale") {
+                circle.innerText = "Nefes Al";
+                circle.style.transform = `scale(${1 + (4-timer)*0.1})`;
+                circle.style.background = "var(--success)";
+                if (timer === 1) { phase = "hold"; timer = 4; }
+                else timer--;
+            } else if (phase === "hold") {
+                circle.innerText = "Tut";
+                circle.style.background = "var(--primary)";
+                if (timer === 1) { phase = "exhale"; timer = 4; }
+                else timer--;
+            } else if (phase === "exhale") {
+                circle.innerText = "Nefes Ver";
+                circle.style.transform = `scale(${1 + (timer-4)*0.1})`;
+                circle.style.background = "var(--accent)";
+                if (timer === 1) { phase = "inhale"; timer = 4; }
+                else timer--;
+            }
+        }
+        updateBreath();
+        breathInterval = setInterval(updateBreath, 1000);
     }
+    document.getElementById('crisisBtn').onclick = () => { openModal('crisisModal'); startBreathing(); };
+    document.getElementById('stopBreathing').onclick = () => { if(breathInterval) clearInterval(breathInterval); closeModal('crisisModal'); };
+
+    // TEMA
+    document.getElementById('themeToggle').onclick = () => {
+        document.body.classList.toggle('dark');
+        document.getElementById('themeToggle').innerHTML = document.body.classList.contains('dark') ? '☀️' : '🌙';
+    };
 
     // AUTH
     onAuthStateChanged(auth, async (user) => {
         if (user) {
             currentUser = user;
-            document.getElementById('loginContainer')?.classList.add('hidden');
-            document.getElementById('appContainer')?.classList.remove('hidden');
-            showToast(`Hoş geldin ${user.email?.split('@')[0] || ''}!`);
-            await Promise.all([loadHabits(), loadGoal(), loadLastMood()]);
+            document.getElementById('loginContainer').classList.add('hidden');
+            document.getElementById('appContainer').classList.remove('hidden');
+            await loadHabits();
+            await loadGoal();
+            await loadLastMood();
+            showToast(`Hoş geldin ${user.email.split('@')[0]}`);
         } else {
-            currentUser = null;
-            document.getElementById('loginContainer')?.classList.remove('hidden');
-            document.getElementById('appContainer')?.classList.add('hidden');
+            document.getElementById('loginContainer').classList.remove('hidden');
+            document.getElementById('appContainer').classList.add('hidden');
         }
     });
+    document.getElementById('loginBtn').onclick = async () => {
+        let email = document.getElementById('loginEmail').value, pwd = document.getElementById('loginPassword').value;
+        if (!email || !pwd) return showToast("E-posta ve şifre gir");
+        try { await signInWithEmailAndPassword(auth, email, pwd); } catch (e) { showToast("Hatalı giriş"); }
+    };
+    document.getElementById('registerBtn').onclick = async () => {
+        let email = document.getElementById('loginEmail').value, pwd = document.getElementById('loginPassword').value;
+        if (!email || !pwd || pwd.length < 6) return showToast("Şifre en az 6 karakter");
+        try { await createUserWithEmailAndPassword(auth, email, pwd); showToast("Hesap oluşturuldu"); } catch (e) { showToast("Bu email kullanılıyor"); }
+    };
+    document.getElementById('googleLoginBtn').onclick = async () => { try { await signInWithPopup(auth, provider); } catch(e) { showToast("Google girişi başarısız"); } };
 
-    document.getElementById('loginBtn')?.addEventListener('click', async () => {
-        const e = document.getElementById('loginEmail').value, p = document.getElementById('loginPassword').value;
-        if(!e || !p) return showToast("E-posta ve şifre girmelisin.");
-        try { 
-            await signInWithEmailAndPassword(auth, e, p); 
-        } catch(err) { 
-            showToast(translateError(err.code)); 
-        }
-    });
-    
-    document.getElementById('registerBtn')?.addEventListener('click', async () => {
-        const e = document.getElementById('loginEmail').value, p = document.getElementById('loginPassword').value;
-        if(!e || !p) return showToast("E-posta ve şifre girmelisin.");
-        try { 
-            await createUserWithEmailAndPassword(auth, e, p); 
-            showToast("Aramıza katıldın!"); 
-        } catch(err) { 
-            showToast(translateError(err.code)); 
-        }
-    });
-    
-    document.getElementById('googleLoginBtn')?.addEventListener('click', async () => {
-        try { 
-            await signInWithPopup(auth, googleProvider); 
-        } catch(err) { 
-            showToast("Google girişi iptal edildi veya hata oluştu."); 
-        }
-    });
+    function escapeHtml(str) { return str.replace(/[&<>]/g, m => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;' }[m])); }
 </script>
 </body>
 </html>
