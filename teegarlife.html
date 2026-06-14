@@ -6,6 +6,9 @@
     <title>TeegarLife | Yıldız Gibi Parla</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         :root {
@@ -28,444 +31,198 @@
             --border: #2c2c2e;
         }
         body { background: var(--bg); font-family: 'Inter', sans-serif; color: var(--text); padding: 20px 16px 40px; transition: all 0.3s; }
-        .container { max-width: 480px; margin: 0 auto; }
+        .container { max-width: 500px; margin: 0 auto; }
         .card { background: var(--card); border-radius: var(--radius); padding: 20px; margin-bottom: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
         h1 { font-size: 28px; font-weight: 800; }
         .gradient-text { background: linear-gradient(135deg, var(--text), var(--accent)); -webkit-background-clip: text; background-clip: text; color: transparent; }
         h2 { font-size: 17px; font-weight: 600; display: flex; align-items: center; gap: 8px; margin-bottom: 16px; }
-        .btn { background: var(--primary); color: white; border: none; border-radius: 14px; padding: 16px; font-weight: 600; font-size: 16px; width: 100%; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 8px; transition: 0.2s; }
+        h3 { font-size: 16px; margin: 12px 0 8px; }
+        .btn { background: var(--primary); color: white; border: none; border-radius: 14px; padding: 14px; font-weight: 600; font-size: 15px; width: 100%; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 8px; transition: 0.2s; }
         .btn:active { transform: scale(0.97); }
         .btn-outline { background: transparent; border: 1.5px solid var(--border); color: var(--text); }
-        .btn-small { padding: 8px 14px; width: auto; border-radius: 10px; }
-        input, textarea { width: 100%; padding: 14px; background: var(--bg); border: 1.5px solid var(--border); border-radius: 14px; font-size: 16px; color: var(--text); margin-bottom: 12px; }
-        input:focus, textarea:focus { outline: none; border-color: var(--primary); }
+        .btn-small { padding: 8px 14px; width: auto; border-radius: 10px; font-size: 13px; }
+        input, textarea, select { width: 100%; padding: 12px; background: var(--bg); border: 1.5px solid var(--border); border-radius: 14px; font-size: 15px; color: var(--text); margin-bottom: 12px; }
         .flex-between { display: flex; justify-content: space-between; align-items: center; }
-        .star-card { text-align: center; padding: 30px 20px; }
-        .star-icon { font-size: 56px; margin-bottom: 12px; }
+        .star-card { text-align: center; padding: 30px 20px; position: relative; overflow: hidden; }
+        .star-icon { font-size: 64px; margin-bottom: 12px; transition: filter 0.3s, text-shadow 0.3s; filter: drop-shadow(0 0 5px gold); }
         .star-message { font-size: 16px; font-weight: 600; color: var(--accent); }
-        .habit-item { background: var(--bg); border-radius: 16px; padding: 16px; margin-bottom: 10px; }
-        .habit-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
-        .habit-name { font-weight: 700; font-size: 16px; }
-        .habit-days { font-size: 20px; font-weight: 800; color: var(--accent); }
-        .habit-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-        .action-btn { border-radius: 10px; padding: 10px; font-size: 14px; font-weight: 600; border: none; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 6px; }
-        .action-relapse { background: rgba(255, 59, 48, 0.1); color: var(--danger); }
-        .action-crisis { background: rgba(52, 199, 89, 0.1); color: var(--success); }
-        .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-        .stat-block { background: var(--bg); border-radius: 14px; padding: 16px 10px; text-align: center; }
-        .stat-number { font-size: 24px; font-weight: 800; color: var(--accent); }
-        .stat-label { font-size: 11px; color: var(--text-sec); margin-top: 6px; }
-        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); backdrop-filter: blur(4px); visibility: hidden; opacity: 0; transition: 0.3s; display: flex; align-items: flex-end; z-index: 1000; }
-        .modal-overlay.active { visibility: visible; opacity: 1; }
-        .modal-content { background: var(--card); width: 100%; border-radius: 24px 24px 0 0; padding: 24px; transform: translateY(100%); transition: 0.3s cubic-bezier(0.2,0.9,0.4,1.1); max-height: 85vh; overflow-y: auto; }
+        .habit-item { background: var(--bg); border-radius: 16px; padding: 16px; margin-bottom: 12px; }
+        .habit-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; flex-wrap: wrap; }
+        .habit-name { font-weight: 800; font-size: 18px; }
+        .habit-days { font-size: 22px; font-weight: 800; color: var(--accent); }
+        .habit-stats { font-size: 12px; color: var(--text-sec); margin: 8px 0; display: flex; gap: 12px; flex-wrap: wrap; }
+        .habit-actions { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-top: 8px; }
+        .action-btn { border-radius: 10px; padding: 8px; font-size: 12px; font-weight: 600; border: none; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 4px; }
+        .action-relapse { background: rgba(255,59,48,0.15); color: var(--danger); }
+        .action-crisis { background: rgba(52,199,89,0.15); color: var(--success); }
+        .action-war { background: rgba(245,166,35,0.15); color: var(--accent); }
+        .stats-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-bottom: 16px; }
+        .stat-block { background: var(--bg); border-radius: 14px; padding: 12px; text-align: center; }
+        .stat-number { font-size: 22px; font-weight: 800; color: var(--accent); }
+        .badge-container { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+        .badge { background: var(--bg); border-radius: 40px; padding: 6px 12px; font-size: 12px; display: inline-flex; align-items: center; gap: 6px; }
+        .calendar-grid { display: grid; grid-template-columns: repeat(7,1fr); gap: 4px; margin-top: 12px; }
+        .cal-day { aspect-ratio: 1; background: var(--bg); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 12px; }
+        .cal-day.clean { background: rgba(52,199,89,0.3); color: var(--success); }
+        .cal-day.relapse { background: rgba(255,59,48,0.3); color: var(--danger); }
+        .modal-overlay { position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.5); backdrop-filter: blur(4px); visibility: hidden; opacity:0; transition:0.3s; display: flex; align-items: flex-end; z-index: 1000; }
+        .modal-overlay.active { visibility: visible; opacity:1; }
+        .modal-content { background: var(--card); width:100%; border-radius: 24px 24px 0 0; padding: 24px; transform: translateY(100%); transition:0.3s; max-height: 85vh; overflow-y: auto; }
         .modal-overlay.active .modal-content { transform: translateY(0); }
         .modal-drag-handle { width: 40px; height: 5px; background: var(--border); border-radius: 5px; margin: 0 auto 20px; }
         .reason-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 20px 0; }
-        .reason-btn { background: var(--bg); border: 1.5px solid var(--border); border-radius: 12px; padding: 12px; font-size: 14px; cursor: pointer; }
+        .reason-btn { background: var(--bg); border: 1.5px solid var(--border); border-radius: 12px; padding: 10px; cursor: pointer; }
         .reason-btn.selected { border-color: var(--primary); background: rgba(0,122,255,0.1); }
         .mood-selector { display: flex; justify-content: space-around; margin: 20px 0; }
-        .mood-emoji { font-size: 44px; cursor: pointer; filter: grayscale(100%); opacity: 0.5; transition: 0.2s; }
-        .mood-emoji.active { filter: grayscale(0%); opacity: 1; transform: scale(1.2); }
-        .predefined-habits { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
-        .predef-habit { background: var(--bg); border: 1.5px solid var(--border); border-radius: 30px; padding: 10px 16px; font-size: 14px; cursor: pointer; }
-        .toast { position: fixed; top: 20px; left: 50%; transform: translateX(-50%) translateY(-100px); background: var(--text); color: var(--card); padding: 12px 24px; border-radius: 100px; font-size: 14px; z-index: 2000; transition: 0.3s; }
+        .mood-emoji { font-size: 44px; cursor: pointer; filter: grayscale(100%); opacity:0.5; transition:0.2s; }
+        .mood-emoji.active { filter: grayscale(0); opacity:1; transform: scale(1.2); }
+        .game-board { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; margin: 20px 0; }
+        .game-card { aspect-ratio: 1; background: var(--primary); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 28px; cursor: pointer; transition:0.2s; color:white; }
+        .game-card.flipped { background: var(--accent); }
+        .toast { position: fixed; top:20px; left:50%; transform: translateX(-50%) translateY(-100px); background: var(--text); color:var(--card); padding: 10px 20px; border-radius: 40px; font-size:14px; z-index:2000; transition:0.3s; }
         .toast.show { transform: translateX(-50%) translateY(0); }
         .hidden { display: none !important; }
-        .breathing-circle { width: 150px; height: 150px; background: var(--success); border-radius: 50%; margin: 20px auto; display: flex; align-items: center; justify-content: center; transition: 0.5s ease-in-out; color: white; font-size: 20px; font-weight: bold; }
-        .timer-text { font-size: 32px; font-weight: 800; text-align: center; margin: 20px 0; }
+        .breathing-circle { width: 140px; height:140px; background: var(--success); border-radius: 50%; margin:20px auto; display: flex; align-items: center; justify-content: center; transition:0.5s ease; color:white; font-weight:bold; }
+        .community-msg { background: var(--bg); border-radius: 14px; padding: 12px; margin-bottom: 10px; }
+        .health-timeline { font-size: 13px; background: var(--bg); padding: 12px; border-radius: 14px; margin-top: 12px; }
     </style>
 </head>
 <body>
 
 <div id="toast" class="toast">✨ TeegarLife</div>
 
-<!-- LOGIN -->
 <div id="loginContainer" class="container">
-    <div class="card" style="text-align: center; padding: 40px 20px;">
-        <div style="font-size: 64px;">✨</div>
+    <div class="card" style="text-align:center; padding:40px 20px;">
+        <div style="font-size:64px;">✨</div>
         <h1 class="gradient-text">TeegarLife</h1>
-        <p style="color: var(--text-sec); margin: 8px 0 32px;">İçindeki ışığı yeniden keşfet</p>
+        <p style="color:var(--text-sec); margin:8px 0 32px;">Yıldız gibi parla</p>
         <input type="email" id="loginEmail" placeholder="E-posta">
-        <input type="password" id="loginPassword" placeholder="Şifre">
+        <input type="password" id="loginPassword" placeholder="Şifre (min 6)">
         <button id="loginBtn" class="btn">Giriş Yap</button>
-        <button id="registerBtn" class="btn btn-outline" style="margin-top: 12px;">Hesap Oluştur</button>
-        <div style="margin: 20px 0; position: relative;">
-            <hr><span style="background: var(--card); padding: 0 10px; position: absolute; top: -10px; left: 50%; transform: translateX(-50%);">VEYA</span>
-        </div>
-        <button id="googleLoginBtn" class="btn" style="background: #db4437;">Google ile Devam Et</button>
+        <button id="registerBtn" class="btn btn-outline" style="margin-top:12px;">Hesap Oluştur</button>
+        <div style="margin:20px 0; position:relative;"><hr><span style="background:var(--card); padding:0 10px; position:absolute; top:-10px; left:50%; transform:translateX(-50%);">VEYA</span></div>
+        <button id="googleLoginBtn" class="btn" style="background:#db4437;">Google ile Devam</button>
     </div>
 </div>
 
-<!-- ANA UYGULAMA -->
 <div id="appContainer" class="container hidden">
-    <div class="flex-between" style="margin-bottom: 20px;">
+    <div class="flex-between" style="margin-bottom:20px;">
         <h1 class="gradient-text">TeegarLife</h1>
-        <button id="themeToggle" class="btn-small btn-outline" style="border-radius: 50%; width: 40px; height: 40px;">🌙</button>
+        <button id="themeToggle" class="btn-small btn-outline" style="border-radius:50%; width:40px; height:40px;">🌙</button>
     </div>
-
     <div class="card star-card">
         <div class="star-icon" id="starIcon">⭐</div>
         <div class="star-message" id="starMessage">Yıldızın parlıyor</div>
+        <div class="health-timeline" id="healthInfo">Sağlık kazanımları burada</div>
     </div>
-
-    <div class="card">
-        <div class="flex-between">
-            <h2><i class="fas fa-layer-group"></i> Mücadelelerim</h2>
-            <button id="addHabitBtn" class="btn-small btn-outline">+ Yeni</button>
-        </div>
-        <div id="habitsList">
-            <div style="text-align: center; padding: 20px;"><i class="fas fa-spinner fa-pulse"></i> Yükleniyor...</div>
-        </div>
+    <div class="card" id="habitCard">
+        <div class="flex-between"><h2><i class="fas fa-layer-group"></i> Mücadelelerim</h2><button id="addHabitBtn" class="btn-small btn-outline">+ Yeni</button></div>
+        <div id="habitsList">Yükleniyor...</div>
     </div>
-
-    <div class="card" style="background: rgba(52,199,89,0.1);">
-        <h2><i class="fas fa-life-ring"></i> Acil Destek</h2>
-        <p style="font-size: 14px; margin-bottom: 16px;">Kriz anında nefes egzersizi başlat</p>
-        <button id="crisisBtn" class="btn" style="background: var(--success);">Kriz Anındayım</button>
+    <div class="card"><h2><i class="fas fa-chart-line"></i> İstatistikler & Rozetler</h2>
+        <div class="stats-grid"><div class="stat-block"><div class="stat-number" id="longestStreak">0</div><div class="stat-label">En Uzun Seri</div></div><div class="stat-block"><div class="stat-number" id="totalRelapses">0</div><div class="stat-label">Nüksetme</div></div><div class="stat-block"><div class="stat-number" id="totalClean">0</div><div class="stat-label">Toplam Temiz Gün</div></div></div>
+        <div id="badgesList" class="badge-container"></div>
+        <button id="showCalendarBtn" class="btn-small btn-outline" style="margin-top:10px;">📅 Takvimi Göster</button>
+        <div id="calendarView" class="hidden"><div class="calendar-grid" id="calendarGrid"></div></div>
+        <canvas id="triggerChart" style="max-height:180px; margin-top:16px;"></canvas>
     </div>
-
-    <div class="card">
-        <h2><i class="fas fa-chart-pie"></i> İstatistikler</h2>
-        <div class="stats-grid">
-            <div class="stat-block"><div class="stat-number" id="longestStreak">0</div><div class="stat-label">En Uzun Seri</div></div>
-            <div class="stat-block"><div class="stat-number" id="totalRelapses">0</div><div class="stat-label">Nüksetme</div></div>
-            <div class="stat-block"><div class="stat-number" id="totalClean">0</div><div class="stat-label">Temiz Gün</div></div>
-        </div>
+    <div class="card"><h2><i class="fas fa-life-ring"></i> Acil Destek & Kriz</h2>
+        <button id="crisisBtn" class="btn" style="background:var(--success); margin-bottom:8px;">🧘‍♂️ Kriz Anındayım (Nefes)</button>
+        <button id="gameCrisisBtn" class="btn btn-outline" style="margin-bottom:8px;">🎮 Dikkat Dağıtıcı Oyun</button>
+        <button id="warBtn" class="btn btn-outline" style="background: rgba(245,166,35,0.2);">⚔️ Bir Günlük Savaş (Bildirim)</button>
     </div>
-
-    <div class="card">
-        <div class="flex-between">
-            <div><h2><i class="far fa-face-smile"></i> Modum</h2><div id="lastMood" style="color: var(--text-sec);">Kaydedilmedi</div></div>
-            <button id="moodBtn" class="btn-small btn-outline">Güncelle</button>
-        </div>
-        <hr style="margin: 16px 0;">
-        <div class="flex-between">
-            <div><h2><i class="fas fa-flag-checkered"></i> Hedefim</h2><div id="goalDisplay">Belirlenmedi</div></div>
-            <button id="goalBtn" class="btn-small btn-outline">Belirle</button>
-        </div>
+    <div class="card"><h2><i class="fas fa-coins"></i> Kaçırdığın Anılar & Tasarruf</h2>
+        <div id="savingsDisplay">💰 Bugüne kadar biriktirdiğin para hesaplanıyor...</div>
+        <div id="missedOpportunities" style="font-size:13px; margin-top:8px;"></div>
+    </div>
+    <div class="card"><h2><i class="fas fa-users"></i> Anonim Topluluk</h2>
+        <div id="communityMessages" style="max-height:200px; overflow-y:auto; margin-bottom:12px;"></div>
+        <textarea id="newCommunityMsg" rows="2" placeholder="Anonim mesaj bırak... (destek / başarı hikayesi)"></textarea>
+        <button id="sendCommunityMsg" class="btn-small btn-outline">Gönder</button>
+    </div>
+    <div class="card"><h2><i class="far fa-face-smile"></i> Modum & Hedef</h2>
+        <div class="flex-between"><div><div id="lastMood">Kaydedilmedi</div></div><button id="moodBtn" class="btn-small btn-outline">Duygu Güncelle</button></div>
+        <hr style="margin:12px 0;"><div class="flex-between"><div><div id="goalDisplay">Hedef yok</div></div><button id="goalBtn" class="btn-small btn-outline">Hedef Belirle</button></div>
+        <button id="exportPDFBtn" class="btn-small btn-outline" style="margin-top:12px;">📄 Verileri PDF Olarak Dışa Aktar (Ödüllü Reklam)</button>
     </div>
 </div>
 
 <!-- MODALLAR -->
-<div id="addHabitModal" class="modal-overlay">
-    <div class="modal-content">
-        <div class="modal-drag-handle"></div>
-        <h3 style="text-align: center;">Yeni Mücadele</h3>
-        <div class="predefined-habits">
-            <span class="predef-habit" data-name="Sigara 🚬">Sigara 🚬</span>
-            <span class="predef-habit" data-name="Alkol 🍺">Alkol 🍺</span>
-            <span class="predef-habit" data-name="Ekran Süresi 📱">Ekran Süresi 📱</span>
-            <span class="predef-habit" data-name="Mastürbasyon ⚠️">Mastürbasyon ⚠️</span>
-            <span class="predef-habit" data-name="Kumar 🎰">Kumar 🎰</span>
-            <span class="predef-habit" data-name="Abur Cubur 🍫">Abur Cubur 🍫</span>
-        </div>
-        <input type="text" id="newHabitName" placeholder="Kendi mücadeleni yaz">
-        <button id="confirmAddHabit" class="btn">Ekle</button>
-        <button class="btn btn-outline close-modal" style="margin-top: 12px;">İptal</button>
-    </div>
-</div>
+<div id="addHabitModal" class="modal-overlay"><div class="modal-content"><div class="modal-drag-handle"></div><h3>Yeni Mücadele</h3>
+    <select id="habitTypeSelect"><option value="Sigara">🚬 Sigara</option><option value="Alkol">🍺 Alkol</option><option value="Mastürbasyon">🔞 Mastürbasyon</option><option value="Kumar">🎰 Kumar</option><option value="YemeBozuklugu">🍔 Yeme Bozukluğu</option></select>
+    <input type="text" id="newHabitName" placeholder="Özel isim (opsiyonel)">
+    <input type="number" id="dailyCost" placeholder="Günlük ortalama harcama (TL) - Sigara/Alkol/Kumar için" value="30">
+    <button id="confirmAddHabit" class="btn">Ekle</button><button class="btn btn-outline close-modal">İptal</button>
+</div></div>
 
-<div id="relapseModal" class="modal-overlay">
-    <div class="modal-content">
-        <div class="modal-drag-handle"></div>
-        <h3 style="text-align: center;">Neden Nüksettin?</h3>
-        <div id="relapseReasons" class="reason-grid"></div>
-        <button id="confirmRelapse" class="btn" style="background: var(--danger);">Kaydet</button>
-        <button class="btn btn-outline close-modal">İptal</button>
-    </div>
-</div>
+<div id="relapseModal" class="modal-overlay"><div class="modal-content"><div class="modal-drag-handle"></div><h3>Neden Nüksettin?</h3><div id="relapseReasons" class="reason-grid"></div><button id="confirmRelapse" class="btn" style="background:var(--danger);">Kaydet</button><button class="btn btn-outline close-modal">İptal</button></div></div>
 
-<div id="crisisModal" class="modal-overlay">
-    <div class="modal-content">
-        <div class="modal-drag-handle"></div>
-        <div style="text-align: center;">
-            <h3>🧘‍♂️ Nefes Egzersizi</h3>
-            <div id="breathingCircle" class="breathing-circle">Nefes Al</div>
-            <div id="breathTimer" class="timer-text">4</div>
-            <button id="stopBreathing" class="btn btn-outline">Kapat</button>
-        </div>
-    </div>
-</div>
+<div id="crisisModal" class="modal-overlay"><div class="modal-content"><div class="modal-drag-handle"></div><div style="text-align:center"><h3>🧘‍♂️ Nefes Egzersizi</h3><div id="breathingCircle" class="breathing-circle">Nefes Al</div><div id="breathTimer" class="timer-text" style="font-size:28px;">4</div><button id="stopBreathing" class="btn btn-outline">Kapat</button></div></div></div>
 
-<div id="moodModal" class="modal-overlay">
-    <div class="modal-content">
-        <div class="modal-drag-handle"></div>
-        <h3 style="text-align: center;">Bugün Nasılsın?</h3>
-        <div class="mood-selector">
-            <span class="mood-emoji" data-mood="😊">😊</span>
-            <span class="mood-emoji" data-mood="😐">😐</span>
-            <span class="mood-emoji" data-mood="😔">😔</span>
-            <span class="mood-emoji" data-mood="😡">😡</span>
-        </div>
-        <textarea id="moodText" rows="2" placeholder="Duygularını yaz..."></textarea>
-        <button id="saveMood" class="btn">Kaydet</button>
-        <button class="btn btn-outline close-modal">Kapat</button>
-    </div>
-</div>
+<div id="gameModal" class="modal-overlay"><div class="modal-content"><div class="modal-drag-handle"></div><h3>🔍 Hafıza Oyunu (Kartları eşle)</h3><div id="gameBoard" class="game-board"></div><button id="closeGameBtn" class="btn btn-outline">Kapat</button></div></div>
 
-<div id="goalModal" class="modal-overlay">
-    <div class="modal-content">
-        <div class="modal-drag-handle"></div>
-        <h3 style="text-align: center;">Hedef Gün Sayısı</h3>
-        <input type="number" id="goalDays" placeholder="Örn: 30">
-        <button id="saveGoal" class="btn">Kaydet</button>
-        <button class="btn btn-outline close-modal">Kapat</button>
-    </div>
-</div>
+<div id="moodModal" class="modal-overlay"><div class="modal-content"><div class="modal-drag-handle"></div><h3>Bugün Nasılsın?</h3><div class="mood-selector"><span class="mood-emoji" data-mood="😊">😊</span><span class="mood-emoji" data-mood="😐">😐</span><span class="mood-emoji" data-mood="😔">😔</span><span class="mood-emoji" data-mood="😡">😡</span></div><textarea id="moodText" rows="2" placeholder="Duyguların..."></textarea><button id="saveMood" class="btn">Kaydet</button><button class="btn btn-outline close-modal">Kapat</button></div></div>
+
+<div id="goalModal" class="modal-overlay"><div class="modal-content"><div class="modal-drag-handle"></div><h3>Hedef Gün Sayısı</h3><input type="number" id="goalDays" placeholder="Örn: 30"><button id="saveGoal" class="btn">Kaydet</button><button class="btn btn-outline close-modal">İptal</button></div></div>
 
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
-    import { getFirestore, collection, addDoc, getDocs, query, where, updateDoc, doc, Timestamp, setDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+    import { getFirestore, collection, addDoc, getDocs, query, where, updateDoc, doc, Timestamp, setDoc, deleteDoc, orderBy, getDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
     import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
-
-    const firebaseConfig = {
-        apiKey: "AIzaSyBMRK0wjFVi8vCmbpAdqep6GiKdpFNcpMQ",
-        authDomain: "teegarlife.firebaseapp.com",
-        projectId: "teegarlife",
-        storageBucket: "teegarlife.firebasestorage.app",
-        messagingSenderId: "1017210354029",
-        appId: "1:1017210354029:web:316e1f8465cba4c1bd8264"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-    const auth = getAuth();
-    const provider = new GoogleAuthProvider();
-
-    let currentUser = null;
-    let habits = [];
-    let currentHabitId = null;
-    let selectedReason = null;
-    let breathInterval = null;
-
-    function showToast(msg) {
-        let toast = document.getElementById('toast');
-        toast.innerText = msg;
-        toast.classList.add('show');
-        setTimeout(() => toast.classList.remove('show'), 2500);
-    }
-
+    const firebaseConfig = { apiKey: "AIzaSyBMRK0wjFVi8vCmbpAdqep6GiKdpFNcpMQ", authDomain: "teegarlife.firebaseapp.com", projectId: "teegarlife", storageBucket: "teegarlife.firebasestorage.app", messagingSenderId: "1017210354029", appId: "1:1017210354029:web:316e1f8465cba4c1bd8264" };
+    const app = initializeApp(firebaseConfig); const db = getFirestore(app); const auth = getAuth(); const provider = new GoogleAuthProvider();
+    let currentUser = null, habits = [], currentHabitId = null, selectedReason = null, breathInterval = null, chartInstance = null, warActive = false, warInterval = null;
+    function showToast(msg) { let t=document.getElementById('toast'); t.innerText=msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),2500); }
     function openModal(id) { document.getElementById(id).classList.add('active'); }
     function closeModal(id) { document.getElementById(id).classList.remove('active'); }
-    document.querySelectorAll('.close-modal').forEach(btn => btn.onclick = () => btn.closest('.modal-overlay').classList.remove('active'));
-
-    function daysSince(ms) { if (!ms) return 0; return Math.max(0, Math.floor((Date.now() - ms) / 86400000)); }
-
-    async function loadHabits() {
-        if (!currentUser) return;
-        try {
-            // INDEX SORUNU ÇÖZÜLDÜ: orderBy kaldırıldı, frontend'de sıralama yapılıyor
-            const q = query(collection(db, "habits"), where("userId", "==", currentUser.uid));
-            const snap = await getDocs(q);
-            habits = snap.docs.map(d => ({ id: d.id, ...d.data() }));
-            // createdAt'e göre büyükten küçüğe sırala
-            habits.sort((a, b) => (b.createdAt?.toMillis?.() || b.createdAt || 0) - (a.createdAt?.toMillis?.() || a.createdAt || 0));
-            renderHabits();
-            updateStats();
-        } catch (e) { 
-            console.error(e);
-            showToast("Veri yüklenemedi: " + (e.message || "bilinmeyen hata")); 
-            document.getElementById('habitsList').innerHTML = '<div style="text-align:center;padding:20px;">⛔ Yüklenemedi, sayfayı yenile</div>';
-        }
-    }
-
-    function renderHabits() {
-        const container = document.getElementById('habitsList');
-        if (!habits.length) {
-            container.innerHTML = '<div style="text-align:center; padding:20px;"><i class="fas fa-plus-circle" style="font-size:32px; opacity:0.5;"></i><p>+ Yeni ile başla</p></div>';
-            return;
-        }
-        container.innerHTML = habits.map(h => {
-            let clean = daysSince(h.lastRelapse || h.startDate);
-            return `<div class="habit-item">
-                <div class="habit-header"><span class="habit-name">${escapeHtml(h.name)}</span><span class="habit-days">✨ ${clean} gün</span></div>
-                <div class="habit-actions">
-                    <button class="action-relapse" data-id="${h.id}"><i class="fas fa-rotate-left"></i> Nüksetme</button>
-                    <button class="action-crisis" data-id="${h.id}"><i class="fas fa-heart-pulse"></i> Kriz</button>
-                </div>
-            </div>`;
-        }).join('');
-        document.querySelectorAll('.action-relapse').forEach(btn => btn.onclick = () => { currentHabitId = btn.dataset.id; openRelapseModal(); });
-        document.querySelectorAll('.action-crisis').forEach(btn => btn.onclick = () => openModal('crisisModal'));
-    }
-
-    function openRelapseModal() {
-        selectedReason = null;
-        const reasons = ['Stres', 'Yalnızlık', 'Can Sıkıntısı', 'Uykusuzluk', 'Öfke', 'Sosyal Baskı'];
-        const container = document.getElementById('relapseReasons');
-        container.innerHTML = reasons.map(r => `<button class="reason-btn">${r}</button>`).join('');
-        container.querySelectorAll('.reason-btn').forEach(btn => btn.onclick = () => {
-            container.querySelectorAll('.reason-btn').forEach(b => b.classList.remove('selected'));
-            btn.classList.add('selected');
-            selectedReason = btn.innerText;
-        });
-        openModal('relapseModal');
-    }
-
-    document.getElementById('confirmRelapse').onclick = async () => {
-        if (!selectedReason) return showToast("Bir neden seç");
-        try {
-            const habit = habits.find(h => h.id === currentHabitId);
-            const reasons = [...(habit.relapseReasons || []), selectedReason];
-            await updateDoc(doc(db, "habits", currentHabitId), { lastRelapse: Timestamp.now().toMillis(), relapseReasons: reasons });
-            await loadHabits();
-            closeModal('relapseModal');
-            showToast("Kaydedildi. Yeniden başlıyorsun ✨");
-        } catch (e) { showToast("Hata: " + e.message); }
-    };
-
-    document.getElementById('addHabitBtn').onclick = () => openModal('addHabitModal');
-    document.querySelectorAll('.predef-habit').forEach(el => el.onclick = () => document.getElementById('newHabitName').value = el.dataset.name);
-    document.getElementById('confirmAddHabit').onclick = async () => {
-        let name = document.getElementById('newHabitName').value.trim();
-        if (!name) return showToast("Bir isim yaz");
-        try {
-            await addDoc(collection(db, "habits"), { userId: currentUser.uid, name, startDate: Timestamp.now().toMillis(), lastRelapse: null, relapseReasons: [], createdAt: Timestamp.now() });
-            await loadHabits();
-            closeModal('addHabitModal');
-            document.getElementById('newHabitName').value = '';
-            showToast(`"${name}" eklendi`);
-        } catch (e) { showToast("Ekleme hatası: " + e.message); }
-    };
-
-    function updateStats() {
-        let longest = 0, totalRel = 0, totalClean = 0;
-        habits.forEach(h => {
-            let clean = daysSince(h.lastRelapse || h.startDate);
-            totalRel += (h.relapseReasons?.length || 0);
-            totalClean += clean;
-            if (clean > longest) longest = clean;
-        });
-        document.getElementById('longestStreak').innerText = longest;
-        document.getElementById('totalRelapses').innerText = totalRel;
-        document.getElementById('totalClean').innerText = totalClean;
-        let star = document.getElementById('starIcon'), msg = document.getElementById('starMessage');
-        if (longest === 0) { star.innerHTML = '🌑'; msg.innerText = 'Yeni başlangıç'; }
-        else if (longest < 7) { star.innerHTML = '⭐'; msg.innerText = `${longest} gün istikrar`; }
-        else if (longest < 30) { star.innerHTML = '🌟'; msg.innerText = `${longest} gün! Işığın büyüyor`; }
-        else { star.innerHTML = '🌠'; msg.innerText = `${longest} gün! Süperstarsın`; }
-    }
-
-    // MOOD - index sorunu yok, ama orderBy kaldırıldı
-    async function loadLastMood() {
-        if (!currentUser) return;
-        try {
-            const q = query(collection(db, "moods"), where("userId", "==", currentUser.uid));
-            const snap = await getDocs(q);
-            if (!snap.empty) {
-                let moods = snap.docs.map(d => ({ ...d.data(), date: d.data().date?.toMillis?.() || 0 }));
-                moods.sort((a,b) => b.date - a.date);
-                let last = moods[0];
-                document.getElementById('lastMood').innerHTML = `${last.emoji} ${last.text?.substring(0,20) || ''}`;
-            } else {
-                document.getElementById('lastMood').innerHTML = 'Kaydedilmedi';
-            }
-        } catch(e) { console.error(e); }
-    }
-    document.getElementById('moodBtn').onclick = () => {
-        document.querySelectorAll('.mood-emoji').forEach(e => e.classList.remove('active'));
-        document.querySelector('.mood-emoji').classList.add('active');
-        openModal('moodModal');
-    };
-    document.querySelectorAll('.mood-emoji').forEach(e => e.onclick = () => {
-        document.querySelectorAll('.mood-emoji').forEach(m => m.classList.remove('active'));
-        e.classList.add('active');
-    });
-    document.getElementById('saveMood').onclick = async () => {
-        let emoji = document.querySelector('.mood-emoji.active')?.dataset.mood || '😊';
-        let text = document.getElementById('moodText').value;
-        await addDoc(collection(db, "moods"), { userId: currentUser.uid, emoji, text, date: Timestamp.now() });
-        showToast("Duygun kaydedildi");
-        closeModal('moodModal');
-        loadLastMood();
-    };
-
-    // GOAL - basit sorgu, index gerekmez
-    async function loadGoal() {
-        if (!currentUser) return;
-        const q = query(collection(db, "goals"), where("userId", "==", currentUser.uid));
-        const snap = await getDocs(q);
-        if (!snap.empty) document.getElementById('goalDisplay').innerHTML = `🎯 ${snap.docs[0].data().targetDays} gün`;
-        else document.getElementById('goalDisplay').innerHTML = 'Belirlenmedi';
-    }
-    document.getElementById('goalBtn').onclick = () => openModal('goalModal');
-    document.getElementById('saveGoal').onclick = async () => {
-        let days = parseInt(document.getElementById('goalDays').value);
-        if (days > 0) {
-            await setDoc(doc(db, "goals", currentUser.uid), { userId: currentUser.uid, targetDays: days, updatedAt: Timestamp.now() }, { merge: true });
-            showToast("Hedef kaydedildi");
-            closeModal('goalModal');
-            loadGoal();
-        } else showToast("Geçerli sayı gir");
-    };
-
-    // KRİZ - NEFES EGZERSİZİ (çalışıyor)
-    function startBreathing() {
-        if (breathInterval) clearInterval(breathInterval);
-        let phase = "inhale"; 
-        let timer = 4;
-        const circle = document.getElementById('breathingCircle');
-        const timerDiv = document.getElementById('breathTimer');
-        circle.style.transform = "scale(1)";
-        function updateBreath() {
-            timerDiv.innerText = timer;
-            if (phase === "inhale") {
-                circle.innerText = "Nefes Al";
-                circle.style.transform = `scale(${1 + (4-timer)*0.1})`;
-                circle.style.background = "var(--success)";
-                if (timer === 1) { phase = "hold"; timer = 4; }
-                else timer--;
-            } else if (phase === "hold") {
-                circle.innerText = "Tut";
-                circle.style.background = "var(--primary)";
-                if (timer === 1) { phase = "exhale"; timer = 4; }
-                else timer--;
-            } else if (phase === "exhale") {
-                circle.innerText = "Nefes Ver";
-                circle.style.transform = `scale(${1 + (timer-4)*0.1})`;
-                circle.style.background = "var(--accent)";
-                if (timer === 1) { phase = "inhale"; timer = 4; }
-                else timer--;
-            }
-        }
-        updateBreath();
-        breathInterval = setInterval(updateBreath, 1000);
-    }
-    document.getElementById('crisisBtn').onclick = () => { openModal('crisisModal'); startBreathing(); };
-    document.getElementById('stopBreathing').onclick = () => { if(breathInterval) clearInterval(breathInterval); closeModal('crisisModal'); };
-
-    // TEMA
-    document.getElementById('themeToggle').onclick = () => {
-        document.body.classList.toggle('dark');
-        document.getElementById('themeToggle').innerHTML = document.body.classList.contains('dark') ? '☀️' : '🌙';
-    };
-
-    // AUTH
-    onAuthStateChanged(auth, async (user) => {
-        if (user) {
-            currentUser = user;
-            document.getElementById('loginContainer').classList.add('hidden');
-            document.getElementById('appContainer').classList.remove('hidden');
-            await Promise.all([loadHabits(), loadGoal(), loadLastMood()]);
-            showToast(`Hoş geldin ${user.email.split('@')[0]}`);
-        } else {
-            document.getElementById('loginContainer').classList.remove('hidden');
-            document.getElementById('appContainer').classList.add('hidden');
-        }
-    });
-    document.getElementById('loginBtn').onclick = async () => {
-        let email = document.getElementById('loginEmail').value, pwd = document.getElementById('loginPassword').value;
-        if (!email || !pwd) return showToast("E-posta ve şifre gir");
-        try { await signInWithEmailAndPassword(auth, email, pwd); } catch (e) { showToast("Hatalı giriş"); }
-    };
-    document.getElementById('registerBtn').onclick = async () => {
-        let email = document.getElementById('loginEmail').value, pwd = document.getElementById('loginPassword').value;
-        if (!email || !pwd || pwd.length < 6) return showToast("Şifre en az 6 karakter");
-        try { await createUserWithEmailAndPassword(auth, email, pwd); showToast("Hesap oluşturuldu"); } catch (e) { showToast("Bu email kullanılıyor"); }
-    };
-    document.getElementById('googleLoginBtn').onclick = async () => { try { await signInWithPopup(auth, provider); } catch(e) { showToast("Google girişi başarısız"); } };
-
-    function escapeHtml(str) { return str.replace(/[&<>]/g, m => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;' }[m])); }
+    document.querySelectorAll('.close-modal').forEach(btn=>btn.onclick=()=>btn.closest('.modal-overlay').classList.remove('active'));
+    function daysSince(ms) { if(!ms) return 0; return Math.max(0, Math.floor((Date.now()-ms)/86400000)); }
+    async function loadHabits() { if(!currentUser) return; try { const q = query(collection(db,"habits"), where("userId","==",currentUser.uid)); const snap = await getDocs(q); habits = snap.docs.map(d=>{let data=d.data(); return {id:d.id,...data, dailyCost:data.dailyCost||0, habitType:data.habitType||'Sigara'};}); renderHabits(); updateStatsAndBadges(); updateSavingsAndMissed(); updateHealthInfo(); updateStarBrightness(); } catch(e){ showToast("Hata:"+e.message); } }
+    async function updateStatsAndBadges() { let longest=0,totalRel=0,totalClean=0; habits.forEach(h=>{let clean=daysSince(h.lastRelapse||h.startDate); totalRel+=(h.relapseReasons?.length||0); totalClean+=clean; if(clean>longest) longest=clean;}); document.getElementById('longestStreak').innerText=longest; document.getElementById('totalRelapses').innerText=totalRel; document.getElementById('totalClean').innerText=totalClean; await checkBadges(longest); renderBadges(); updateTriggerChart(); renderCalendar(); }
+    async function checkBadges(streak) { if(!currentUser) return; const badgesRef=collection(db,"badges"); const q=query(badgesRef, where("userId","==",currentUser.uid)); const existing=await getDocs(q); const existingNames=existing.docs.map(d=>d.data().name); const milestones=[3,7,30,90,365]; for(let m of milestones){ if(streak>=m && !existingNames.includes(`${m}gün`)){ await addDoc(collection(db,"badges"),{userId:currentUser.uid, name:`${m}gün`, earnedAt:Timestamp.now()}); showToast(`🎉 Yeni rozet: ${m} gün!`); } } }
+    async function renderBadges() { if(!currentUser) return; const snap=await getDocs(query(collection(db,"badges"), where("userId","==",currentUser.uid))); const container=document.getElementById('badgesList'); if(snap.empty) container.innerHTML='<span class="badge">Henüz rozet yok</span>'; else container.innerHTML=snap.docs.map(d=>`<span class="badge">🏅 ${d.data().name}</span>`).join(''); }
+    function renderHabits() { let container=document.getElementById('habitsList'); if(!habits.length){ container.innerHTML='<div style="text-align:center;padding:20px;">➕ Yeni ile başla</div>'; return; } container.innerHTML=habits.map(h=>{let clean=daysSince(h.lastRelapse||h.startDate); let saved=(h.dailyCost||0)*clean; return `<div class="habit-item"><div class="habit-header"><span class="habit-name">${escapeHtml(h.name||h.habitType)}</span><span class="habit-days">✨ ${clean} gün</span></div><div class="habit-stats">💰 ${saved} TL birikim | ${h.relapseReasons?.length||0} nüksetme</div><div class="habit-actions"><button class="action-relapse" data-id="${h.id}">🔄 Nükset</button><button class="action-crisis" data-id="${h.id}">🆘 Kriz</button><button class="action-war" data-id="${h.id}">⚔️ Savaş</button></div></div>`;}).join(''); document.querySelectorAll('.action-relapse').forEach(btn=>btn.onclick=()=>{currentHabitId=btn.dataset.id; openRelapseModal();}); document.querySelectorAll('.action-crisis').forEach(btn=>btn.onclick=()=>openModal('crisisModal')); document.querySelectorAll('.action-war').forEach(btn=>btn.onclick=()=>startDailyWar(btn.dataset.id)); }
+    function openRelapseModal() { selectedReason=null; const reasons=['Stres','Yalnızlık','Can Sıkıntısı','Gece','Arkadaş Ortamı','Öfke']; document.getElementById('relapseReasons').innerHTML=reasons.map(r=>`<button class="reason-btn">${r}</button>`).join(''); document.querySelectorAll('.reason-btn').forEach(btn=>btn.onclick=()=>{document.querySelectorAll('.reason-btn').forEach(b=>b.classList.remove('selected')); btn.classList.add('selected'); selectedReason=btn.innerText;}); openModal('relapseModal'); }
+    document.getElementById('confirmRelapse').onclick=async()=>{if(!selectedReason) return showToast("Bir neden seç"); try{ let habit=habits.find(h=>h.id===currentHabitId); let reasons=[...(habit.relapseReasons||[]), selectedReason]; let newRelapseDate=Timestamp.now().toMillis(); await updateDoc(doc(db,"habits",currentHabitId),{lastRelapse:newRelapseDate, relapseReasons:reasons}); await addDoc(collection(db,"relapseLogs"),{userId:currentUser.uid, habitId:currentHabitId, date:newRelapseDate, reason:selectedReason}); await loadHabits(); closeModal('relapseModal'); showToast("Kaydedildi. Yeniden başlıyorsun ✨"); }catch(e){showToast("Hata");}};
+    document.getElementById('addHabitBtn').onclick=()=>openModal('addHabitModal');
+    document.getElementById('confirmAddHabit').onclick=async()=>{ let type=document.getElementById('habitTypeSelect').value; let customName=document.getElementById('newHabitName').value.trim(); let name=customName||type; let dailyCost=parseInt(document.getElementById('dailyCost').value)||0; await addDoc(collection(db,"habits"),{userId:currentUser.uid, name, habitType:type, dailyCost, startDate:Timestamp.now().toMillis(), lastRelapse:null, relapseReasons:[], createdAt:Timestamp.now()}); await loadHabits(); closeModal('addHabitModal'); showToast(`"${name}" eklendi`); };
+    function updateSavingsAndMissed(){ let totalSaved=0; habits.forEach(h=>{let clean=daysSince(h.lastRelapse||h.startDate); totalSaved+=(h.dailyCost||0)*clean;}); document.getElementById('savingsDisplay').innerHTML=`💰 Toplam biriktirilen: ${totalSaved} TL`; let products=[{price:5000,name:"iPhone SE"},{price:15000,name:"Tatil"},{price:3000,name:"PS5 Oyunu"}]; let missed=products.find(p=>p.price<=totalSaved); if(missed) document.getElementById('missedOpportunities').innerHTML=`🎁 Bu parayla ${missed.name} alabilirdin!`; else document.getElementById('missedOpportunities').innerHTML=`📉 Az kaldı, devam et.`; }
+    function updateHealthInfo(){ let habit=habits.find(h=>h.habitType==='Sigara'); if(!habit) return; let clean=daysSince(habit.lastRelapse||habit.startDate); let msg=''; if(clean>=1) msg='❤️ 1 gün: Nabız düşer, CO seviyesi azalır.'; if(clean>=7) msg='👃 1 hafta: Koku alma duyusu geri gelir.'; if(clean>=30) msg='🫁 1 ay: Akciğerler temizlenmeye başlar.'; if(clean>=90) msg='💪 3 ay: Dolaşım iyileşir.'; if(clean>=365) msg='🌟 1 yıl: Kalp hastalığı riski yarı yarıya azalır.'; document.getElementById('healthInfo').innerHTML=msg||'Sigara için sağlık kazanımları burada görünecek.'; }
+    function updateStarBrightness(){ let longest=parseInt(document.getElementById('longestStreak').innerText); let star=document.getElementById('starIcon'); let msgDiv=document.getElementById('starMessage'); if(longest===0){star.innerHTML='🌑'; msgDiv.innerText='Yeni başlangıç'; star.style.filter='drop-shadow(0 0 2px gray)';} else if(longest<7){star.innerHTML='⭐'; msgDiv.innerText=`${longest} gün istikrar`; star.style.filter='drop-shadow(0 0 5px gold)';} else if(longest<30){star.innerHTML='🌟'; msgDiv.innerText=`${longest} gün! Işığın büyüyor`; star.style.filter='drop-shadow(0 0 12px orange)';} else{star.innerHTML='🌠'; msgDiv.innerText=`${longest} gün! Süperstar`; star.style.filter='drop-shadow(0 0 20px yellow)';} }
+    async function renderCalendar(){ let last60=[]; for(let i=59;i>=0;i--){ let d=new Date(); d.setDate(d.getDate()-i); last60.push(d); } let relapseDates=[]; const snap=await getDocs(query(collection(db,"relapseLogs"), where("userId","==",currentUser.uid))); snap.forEach(doc=>{let ts=doc.data().date; if(ts) relapseDates.push(new Date(ts).toDateString());}); let grid=document.getElementById('calendarGrid'); if(!grid) return; grid.innerHTML=last60.map(day=>{let cls=relapseDates.includes(day.toDateString())?'relapse':'clean'; return `<div class="cal-day ${cls}">${day.getDate()}</div>`;}).join(''); }
+    function updateTriggerChart(){ let reasons={}; habits.forEach(h=>{(h.relapseReasons||[]).forEach(r=>reasons[r]=(reasons[r]||0)+1);}); if(chartInstance) chartInstance.destroy(); let ctx=document.getElementById('triggerChart').getContext('2d'); chartInstance=new Chart(ctx,{type:'pie',data:{labels:Object.keys(reasons),datasets:[{data:Object.values(reasons),backgroundColor:['#ff3b30','#34c759','#007aff','#F5A623','#af52de','#ff9500']}]},options:{responsive:true, plugins:{legend:{position:'bottom'}}}}); }
+    // Nefes
+    function startBreathing(){ if(breathInterval) clearInterval(breathInterval); let phase="inhale",timer=4; let circle=document.getElementById('breathingCircle'),timerDiv=document.getElementById('breathTimer'); function update(){ timerDiv.innerText=timer; if(phase==="inhale"){ circle.innerText="Nefes Al"; circle.style.transform=`scale(${1+(4-timer)*0.1})`; circle.style.background="var(--success)"; if(timer===1){phase="hold";timer=4;}else timer--;} else if(phase==="hold"){ circle.innerText="Tut"; circle.style.background="var(--primary)"; if(timer===1){phase="exhale";timer=4;}else timer--;} else{ circle.innerText="Nefes Ver"; circle.style.transform=`scale(${1+(timer-4)*0.1})`; circle.style.background="var(--accent)"; if(timer===1){phase="inhale";timer=4;}else timer--;} } update(); breathInterval=setInterval(update,1000); }
+    document.getElementById('crisisBtn').onclick=()=>{openModal('crisisModal'); startBreathing();}; document.getElementById('stopBreathing').onclick=()=>{if(breathInterval)clearInterval(breathInterval); closeModal('crisisModal');};
+    // OYUN
+    let gameCards=[], flipped=[], lock=false; function initGame(){ let icons=['🐶','🐱','🐭','🐹','🐰','🦊','🐻','🐼']; let cards=[...icons,...icons]; for(let i=cards.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[cards[i],cards[j]]=[cards[j],cards[i]];} gameCards=cards; flipped=[]; lock=false; renderGameBoard(); }
+    function renderGameBoard(){ let board=document.getElementById('gameBoard'); board.innerHTML=gameCards.map((icon,idx)=>`<div class="game-card ${flipped.includes(idx)?'flipped':''}" data-idx="${idx}">${flipped.includes(idx)?icon:'?'}</div>`).join(''); document.querySelectorAll('.game-card').forEach(div=>div.onclick=()=>{if(lock||flipped.includes(parseInt(div.dataset.idx)))return; handleCardClick(parseInt(div.dataset.idx));});}
+    function handleCardClick(idx){ flipped.push(idx); renderGameBoard(); if(flipped.length===2){ lock=true; let [a,b]=flipped; if(gameCards[a]!==gameCards[b]){ setTimeout(()=>{flipped=flipped.filter(i=>i!==a && i!==b); lock=false; renderGameBoard();},800); } else { flipped=[]; lock=false; renderGameBoard(); if(flipped.length===0 && document.querySelectorAll('.game-card.flipped').length===gameCards.length){ showToast("🎉 Tebrikler! Kriz yendi!"); closeModal('gameModal');} } } }
+    document.getElementById('gameCrisisBtn').onclick=()=>{initGame(); openModal('gameModal');}; document.getElementById('closeGameBtn').onclick=()=>closeModal('gameModal');
+    // Bir günlük savaş (bildirim)
+    async function startDailyWar(habitId){ if(Notification.permission!=='granted'){ let permission=await Notification.requestPermission(); if(permission!=='granted'){ showToast("Bildirim izni gerekli"); return; } } if(warActive) return showToast("Zaten aktif bir savaş var"); warActive=true; showToast("Bugünü kazanmak için saat başı hatırlatıcı aktif!"); let habit=habits.find(h=>h.id===habitId); if(warInterval) clearInterval(warInterval); warInterval=setInterval(()=>{ new Notification("TeegarLife - Bir Günlük Savaş",{body:`${habit.name} için sözünü hatırla! Güçlüsün.`}); },3600000); setTimeout(()=>{ clearInterval(warInterval); warActive=false; showToast("Savaş tamamlandı! Bir gün daha kazandın."); },86400000); }
+    document.getElementById('warBtn').onclick=()=>{if(habits.length) startDailyWar(habits[0].id); else showToast("Önce bir mücadele ekle");};
+    // PDF dışa aktar (ödüllü reklam simülasyonu)
+    document.getElementById('exportPDFBtn').onclick=async()=>{ showToast("Ödüllü reklam izleniyor... (demo)"); setTimeout(async()=>{ const {jsPDF}=window.jspdf; const doc=new jsPDF(); doc.text("TeegarLife Raporu",20,20); doc.text(`Kullanıcı: ${currentUser.email}`,20,30); doc.text(`En uzun seri: ${document.getElementById('longestStreak').innerText} gün`,20,40); doc.text(`Toplam nüksetme: ${document.getElementById('totalRelapses').innerText}`,20,50); doc.save("teegarlife_rapor.pdf"); showToast("PDF hazır!"); },1500);};
+    // Topluluk
+    async function loadCommunity(){ const snap=await getDocs(query(collection(db,"communityMessages"), orderBy("timestamp","desc"))); let container=document.getElementById('communityMessages'); container.innerHTML=snap.docs.map(d=>`<div class="community-msg"><div>${escapeHtml(d.data().text)}</div><small>❤️ ${d.data().likes||0} beğeni <button class="like-btn" data-id="${d.id}">👍</button></small></div>`).join(''); document.querySelectorAll('.like-btn').forEach(btn=>btn.onclick=async()=>{let ref=doc(db,"communityMessages",btn.dataset.id); let snap2=await getDoc(ref); let likes=snap2.data()?.likes||0; await updateDoc(ref,{likes:likes+1}); loadCommunity();}); }
+    document.getElementById('sendCommunityMsg').onclick=async()=>{ let text=document.getElementById('newCommunityMsg').value.trim(); if(!text) return; await addDoc(collection(db,"communityMessages"),{userId:currentUser.uid, text, timestamp:Timestamp.now(), likes:0}); document.getElementById('newCommunityMsg').value=''; loadCommunity(); };
+    // Mood ve Goal
+    async function loadLastMood(){ const snap=await getDocs(query(collection(db,"moods"), where("userId","==",currentUser.uid), orderBy("date","desc"))); if(!snap.empty) document.getElementById('lastMood').innerHTML=`${snap.docs[0].data().emoji} ${snap.docs[0].data().text?.substring(0,30)||''}`; }
+    document.getElementById('moodBtn').onclick=()=>{document.querySelectorAll('.mood-emoji').forEach(e=>e.classList.remove('active')); document.querySelector('.mood-emoji').classList.add('active'); openModal('moodModal');}; document.querySelectorAll('.mood-emoji').forEach(e=>e.onclick=()=>{document.querySelectorAll('.mood-emoji').forEach(m=>m.classList.remove('active')); e.classList.add('active');}); document.getElementById('saveMood').onclick=async()=>{let emoji=document.querySelector('.mood-emoji.active')?.dataset.mood||'😊'; let text=document.getElementById('moodText').value; await addDoc(collection(db,"moods"),{userId:currentUser.uid, emoji, text, date:Timestamp.now()}); showToast("Duygun kaydedildi"); closeModal('moodModal'); loadLastMood();};
+    async function loadGoal(){ const snap=await getDocs(query(collection(db,"goals"), where("userId","==",currentUser.uid))); if(!snap.empty) document.getElementById('goalDisplay').innerHTML=`🎯 ${snap.docs[0].data().targetDays} gün`; }
+    document.getElementById('goalBtn').onclick=()=>openModal('goalModal'); document.getElementById('saveGoal').onclick=async()=>{let days=parseInt(document.getElementById('goalDays').value); if(days>0){ await setDoc(doc(db,"goals",currentUser.uid),{userId:currentUser.uid, targetDays:days, updatedAt:Timestamp.now()},{merge:true}); showToast("Hedef kaydedildi"); closeModal('goalModal'); loadGoal();}};
+    document.getElementById('showCalendarBtn').onclick=()=>{let cal=document.getElementById('calendarView'); cal.classList.toggle('hidden'); if(!cal.classList.contains('hidden')) renderCalendar();};
+    // Auth
+    onAuthStateChanged(auth, async(user)=>{ if(user){ currentUser=user; document.getElementById('loginContainer').classList.add('hidden'); document.getElementById('appContainer').classList.remove('hidden'); await Promise.all([loadHabits(), loadGoal(), loadLastMood(), loadCommunity()]); showToast(`Hoş geldin ${user.email.split('@')[0]}`); } else { document.getElementById('loginContainer').classList.remove('hidden'); document.getElementById('appContainer').classList.add('hidden'); }});
+    document.getElementById('loginBtn').onclick=async()=>{let e=document.getElementById('loginEmail').value, p=document.getElementById('loginPassword').value; if(!e||!p) return; try{await signInWithEmailAndPassword(auth,e,p);}catch(e){showToast("Hatalı giriş");}};
+    document.getElementById('registerBtn').onclick=async()=>{let e=document.getElementById('loginEmail').value, p=document.getElementById('loginPassword').value; if(!e||p.length<6) return showToast("Şifre min 6"); try{await createUserWithEmailAndPassword(auth,e,p);}catch(e){showToast("Email kullanımda");}};
+    document.getElementById('googleLoginBtn').onclick=async()=>{try{await signInWithPopup(auth,provider);}catch(e){showToast("Google hatası");}};
+    document.getElementById('themeToggle').onclick=()=>{document.body.classList.toggle('dark'); document.getElementById('themeToggle').innerHTML=document.body.classList.contains('dark')?'☀️':'🌙';};
+    function escapeHtml(str){return str.replace(/[&<>]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[m]));}
+    // Günün sözü (her gün değişen)
+    const quotes=["Her yeni gün yeniden başlamak için bir fırsattır.","Karanlıkta parlayan bir yıldız ol.","Nüksetmek öğrenmektir, pes etmek değil.","Sen güçlüsün, bunu unutma.","Küçük adımlar büyük zaferler getirir."];
+    let todayIndex=new Date().getDate()%quotes.length; document.getElementById('starMessage').innerHTML+=`<br><span style="font-size:12px;">✨ "${quotes[todayIndex]}"</span>`;
 </script>
 </body>
 </html>
