@@ -28,8 +28,8 @@
         }
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: #F2F2F5;
-            color: #000000;
+            background: #f5f5f7;
+            color: #1c1c1e;
             transition: background 0.2s, color 0.2s;
             min-height: 100dvh;
             display: flex;
@@ -40,7 +40,7 @@
             background: #f5f5f7;
             color: #1c1c1e;
         }
-        body.light .card, body.light .modal-card, body.light .bottom-nav, body.light .fab-item, body.light .rate-card {
+        body.light .card, body.light .modal-card, body.light .fab-item, body.light .rate-card {
             background: #ffffff;
             border-color: #e9e9ef;
             box-shadow: 0 2px 8px rgba(0,0,0,0.02), 0 4px 12px rgba(0,0,0,0.03);
@@ -54,7 +54,7 @@
             background: #000000;
             color: #ffffff;
         }
-        body.dark .card, body.dark .modal-card, body.dark .bottom-nav, body.dark .fab-item, body.dark .rate-card {
+        body.dark .card, body.dark .modal-card, body.dark .fab-item, body.dark .rate-card {
             background: #1c1c1e;
             border-color: #2c2c2e;
             box-shadow: 0 2px 8px rgba(0,0,0,0.4);
@@ -64,11 +64,11 @@
         }
         body.dark .kpi-income { color: #34c759; }
         body.dark .kpi-expense { color: #ff3b30; }
-        body.dark .filter-btn, body.dark .segment-btn, body.dark .chart-tab {
+        body.dark .filter-btn, body.dark .segment-btn, body.dark .chart-tab, body.dark .nav-segment {
             background: #2c2c2e;
             color: #ffffff;
         }
-        body.dark .filter-btn.active, body.dark .segment-btn.active, body.dark .chart-tab.active {
+        body.dark .filter-btn.active, body.dark .segment-btn.active, body.dark .chart-tab.active, body.dark .nav-segment.active {
             background: #0a84ff;
             color: white;
         }
@@ -84,13 +84,42 @@
         /* Layout */
         .app-container {
             flex: 1;
-            padding-bottom: calc(100px + env(safe-area-inset-bottom, 0px));
+            padding-bottom: 30px;
         }
         .page {
             display: none;
         }
         .page.active {
             display: block;
+        }
+        /* Üst Segment (Bottom nav kalktı, yerine bu geldi) */
+        .nav-segments {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding: 8px 16px;
+            background: transparent;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+        .nav-segments::-webkit-scrollbar {
+            display: none;
+        }
+        .nav-segment {
+            flex-shrink: 0;
+            padding: 8px 18px;
+            border-radius: 40px;
+            background: #f2f2f5;
+            border: 0.5px solid #e9e9ef;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .nav-segment.active {
+            background: #007aff;
+            color: white;
+            border-color: #007aff;
         }
         /* Cards */
         .card {
@@ -136,7 +165,7 @@
             font-size: 1.6rem;
             font-weight: 700;
         }
-        /* Limit Kartı (ince modern) */
+        /* Limit Kartı */
         .limit-card {
             margin: 0 12px 16px 12px;
             padding: 10px 12px;
@@ -157,9 +186,6 @@
         .limit-amount {
             font-weight: 700;
             font-size: 1rem;
-        }
-        .limit-progress {
-            width: 100px;
         }
         .progress-bar {
             background: #e9e9ef;
@@ -267,38 +293,6 @@
             font-weight: 600;
             cursor: pointer;
             text-align: center;
-        }
-        /* Bottom Navigation (fixed) */
-        .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            padding: 8px 16px calc(20px + env(safe-area-inset-bottom, 0px));
-            border-top: 0.5px solid;
-            background: #ffffff;
-            z-index: 100;
-        }
-        .nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 4px;
-            background: none;
-            border: none;
-            font-size: 0.7rem;
-            color: #8e8e93;
-            cursor: pointer;
-            transition: color 0.2s;
-        }
-        .nav-item i {
-            font-size: 1.3rem;
-        }
-        .nav-item.active {
-            color: #007aff;
         }
         /* İşlemler Sayfası */
         .search-box {
@@ -472,7 +466,7 @@
         /* FAB (PWA uyumlu) */
         .fab {
             position: fixed;
-            bottom: calc(80px + env(safe-area-inset-bottom, 0px));
+            bottom: calc(30px + env(safe-area-inset-bottom, 0px));
             right: 20px;
             width: 56px;
             height: 56px;
@@ -488,7 +482,7 @@
         }
         .fab-menu {
             position: fixed;
-            bottom: calc(140px + env(safe-area-inset-bottom, 0px));
+            bottom: calc(90px + env(safe-area-inset-bottom, 0px));
             right: 20px;
             display: flex;
             flex-direction: column;
@@ -669,6 +663,17 @@
             color: white;
             margin-bottom: 16px;
         }
+        .remember-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+        .remember-row label {
+            color: #98989e;
+            font-size: 0.8rem;
+        }
         .login-card button {
             width: 100%;
             padding: 14px;
@@ -717,8 +722,8 @@
     <div class="login-card">
         <h1><span class="mu">Mu</span><span class="cash">Cash</span></h1>
         <input type="password" id="pinInput" placeholder="Şifre" autocomplete="off">
-        <div style="display:flex; justify-content:center; gap:8px; margin:16px 0;">
-            <input type="checkbox" id="rememberCheckbox"> <label style="color:#98989e;">Beni hatırla (24 saat)</label>
+        <div class="remember-row">
+            <input type="checkbox" id="rememberCheckbox"> <label>Beni hatırla (24 saat)</label>
         </div>
         <button id="loginBtn">Giriş Yap</button>
     </div>
@@ -729,6 +734,15 @@
     <div class="header">
         <div class="logo"><span class="mu">Mu</span><span class="cash">Cash</span></div>
         <button class="icon-btn" id="themeToggleBtn"><i class="fas fa-moon"></i></button>
+    </div>
+
+    <!-- Üst Segment (Bottom nav kalktı) -->
+    <div class="nav-segments">
+        <div class="nav-segment active" data-page="home">Ana Sayfa</div>
+        <div class="nav-segment" data-page="transactions">İşlemler</div>
+        <div class="nav-segment" data-page="debts">Borçlar</div>
+        <div class="nav-segment" data-page="goals">Hedefler</div>
+        <div class="nav-segment" data-page="settings">Ayarlar</div>
     </div>
 
     <div id="homePage" class="page active">
@@ -816,14 +830,6 @@
         <div class="setting-item"><span>Karanlık Mod</span><input type="checkbox" id="darkModeSwitch" style="transform: scale(1.2);"></div>
         <div class="setting-item"><span>PDF Rapor</span><button id="pdfBtn" style="background:none; border:none; color:#007aff;">Oluştur</button></div>
         <div class="setting-item"><span>Çıkış Yap</span><button id="logoutBtn" style="background:none; border:none; color:#ff3b30;">Çıkış</button></div>
-    </div>
-
-    <div class="bottom-nav">
-        <button class="nav-item active" data-page="home"><i class="fas fa-home"></i><span>Ana Sayfa</span></button>
-        <button class="nav-item" data-page="transactions"><i class="fas fa-list-ul"></i><span>İşlemler</span></button>
-        <button class="nav-item" data-page="debts"><i class="fas fa-hand-holding-usd"></i><span>Borçlar</span></button>
-        <button class="nav-item" data-page="goals"><i class="fas fa-bullseye"></i><span>Hedefler</span></button>
-        <button class="nav-item" data-page="settings"><i class="fas fa-cog"></i><span>Ayarlar</span></button>
     </div>
 
     <button class="fab" id="fabBtn"><i class="fas fa-plus"></i></button>
@@ -1263,19 +1269,16 @@
 
     function getMonthName(y,m) { return ["Ocak","Şubat","Mart","Nisan","Mayıs","Haziran","Temmuz","Ağustos","Eylül","Ekim","Kasım","Aralık"][m]+" "+y; }
 
-    // Navigation
-    let pages={ home:'homePage', transactions:'transactionsPage', debts:'debtsPage', goals:'goalsPage', settings:'settingsPage' };
-    function showPage(pageId){
-        Object.values(pages).forEach(p=>document.getElementById(p).classList.remove('active'));
-        document.getElementById(pageId).classList.add('active');
-        if(pageId === 'goalsPage') startRateUpdates();
-        else stopRateUpdates();
-    }
-    document.querySelectorAll('.nav-item').forEach(btn=>{
-        btn.addEventListener('click',()=>{
-            document.querySelectorAll('.nav-item').forEach(b=>b.classList.remove('active'));
-            btn.classList.add('active');
-            showPage(pages[btn.dataset.page]);
+    // Üst segment navigasyon
+    document.querySelectorAll('.nav-segment').forEach(seg=>{
+        seg.addEventListener('click',()=>{
+            document.querySelectorAll('.nav-segment').forEach(s=>s.classList.remove('active'));
+            seg.classList.add('active');
+            const pageId = seg.dataset.page;
+            document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+            document.getElementById(pageId + 'Page').classList.add('active');
+            if(pageId === 'goals') startRateUpdates();
+            else stopRateUpdates();
         });
     });
     // FAB
@@ -1285,7 +1288,7 @@
     document.getElementById('fabExpense').onclick=()=>{ fabMenu.classList.remove('show'); document.getElementById('expenseDateTime').value=new Date().toISOString().slice(0,16); openModal('expenseModal'); };
     document.getElementById('fabDebt').onclick=()=>{ fabMenu.classList.remove('show'); openModal('borcModal'); };
     document.getElementById('fabReceivable').onclick=()=>{ fabMenu.classList.remove('show'); openModal('alacakModal'); };
-    document.getElementById('viewAllDebtsBtn').onclick=()=>{ document.querySelector('.nav-item[data-page="debts"]').click(); };
+    document.getElementById('viewAllDebtsBtn').onclick=()=>{ document.querySelector('.nav-segment[data-page="debts"]').click(); };
     document.getElementById('editLimitBtn').onclick=()=>{ document.getElementById('limitInput').value=monthlyLimit?monthlyLimit.toLocaleString('tr-TR'):''; openModal('limitModal'); };
     document.getElementById('saveLimitBtn').onclick=async()=>{ let val=parseFloat(document.getElementById('limitInput').value.replace(/\./g,'')); if(val>0) await saveLimit(val); else if(val===0) await saveLimit(0); closeModal('limitModal'); };
     document.getElementById('pdfBtn').onclick=()=>exportToPDF();
