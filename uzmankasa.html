@@ -188,7 +188,13 @@
             flex-wrap: wrap;
             gap: 12px;
         }
-        .month-nav { display: flex; gap: 20px; align-items: center; }
+        .month-nav {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            flex: 1;
+            justify-content: center;
+        }
         .month-nav-btn {
             background: transparent;
             border: none;
@@ -203,6 +209,7 @@
             font-size: 1.3rem;
             font-weight: 600;
             color: #000;
+            text-align: center;
         }
         .month-select-dropdown {
             background: #ffffff;
@@ -546,12 +553,17 @@
     function formatMoney(amount) { return '₺' + amount.toLocaleString('tr-TR'); }
 
     async function loadData() {
-        const q = query(collection(db, "islemler"), orderBy("tarih", "desc"));
-        const snap = await getDocs(q);
-        allTransactions = [];
-        snap.forEach(docSnap => { let data = docSnap.data(); data.id = docSnap.id; allTransactions.push(data); });
-        renderCurrentMonth();
-        updateChart();
+        try {
+            const q = query(collection(db, "islemler"), orderBy("tarih", "desc"));
+            const snap = await getDocs(q);
+            allTransactions = [];
+            snap.forEach(docSnap => { let data = docSnap.data(); data.id = docSnap.id; allTransactions.push(data); });
+            renderCurrentMonth();
+            updateChart();
+        } catch (error) {
+            console.error("Veri yüklenirken hata:", error);
+            showToast("Veriler alınamadı, bağlantıyı kontrol edin", true);
+        }
     }
 
     function getFilteredTransactions() {
@@ -569,7 +581,11 @@
             if (t.tip === 'gelir') totalInc += t.tutar;
             else totalExp += t.tutar;
             let dateObj = new Date(t.tarih);
-            let dateStr = dateObj.toLocaleDateString('tr-TR') + ' ' + dateObj.toLocaleTimeString('tr-TR', {hour:'2-digit', minute:'2-digit'});
+            // Gün adı (Pazartesi, Salı, vb.) ile birlikte tarih ve saat gösterimi
+            const gunAdi = dateObj.toLocaleDateString('tr-TR', { weekday: 'long' });
+            const tarihGoster = dateObj.toLocaleDateString('tr-TR');
+            const saatGoster = dateObj.toLocaleTimeString('tr-TR', {hour:'2-digit', minute:'2-digit'});
+            const dateStr = `${gunAdi}, ${tarihGoster} ${saatGoster}`;
             const transClass = t.tip === 'gelir' ? 'income-trans' : 'expense-trans';
             const amountClass = t.tip === 'gelir' ? 'income-amount' : 'expense-amount';
             const sign = t.tip === 'gelir' ? '+' : '-';
@@ -706,8 +722,28 @@
     };
 
     window.askDelete = (id) => { deleteId = id; openModal('confirmModal'); };
+    
+    // Silme işlemi için güçlendirilmiş yöntem - KPI'ların anında güncellenmesi sağlanır
     document.getElementById('confirmDeleteBtn').onclick = async () => {
-        if (deleteId) { await deleteDoc(doc(db, "islemler", deleteId)); await loadData(); showToast('İşlem silindi'); deleteId = null; closeModal('confirmModal'); }
+        if (deleteId) {
+            const deleteBtn = document.getElementById('confirmDeleteBtn');
+            const originalText = deleteBtn.innerText;
+            deleteBtn.innerText = 'Siliniyor...';
+            deleteBtn.disabled = true;
+            try {
+                await deleteDoc(doc(db, "islemler", deleteId));
+                await loadData();  // Veriler yeniden çekilir ve KPI'lar + liste güncellenir
+                showToast('İşlem silindi');
+                deleteId = null;
+                closeModal('confirmModal');
+            } catch (err) {
+                console.error("Silme hatası:", err);
+                showToast('Silme sırasında hata oluştu', true);
+            } finally {
+                deleteBtn.innerText = originalText;
+                deleteBtn.disabled = false;
+            }
+        }
     };
 
     window.openModal = (id) => document.getElementById(id).style.display = 'flex';
@@ -811,15 +847,12 @@
     function checkRememberedLogin() {
         const savedPin = localStorage.getItem('rememberedPin');
         if (savedPin === "talha5534") {
-            // doğrudan giriş yap
             document.getElementById('loginContainer').style.display = 'none';
             document.getElementById('appContainer').style.display = 'block';
             loadData();
         } else {
-            // hatırlama yok veya şifre değişmiş, login ekranını göster
             document.getElementById('loginContainer').style.display = 'flex';
             document.getElementById('appContainer').style.display = 'none';
-            // çıkış yapılmış gibi, eğer yanlış kayıt varsa temizle
             if (savedPin) localStorage.removeItem('rememberedPin');
         }
     }
