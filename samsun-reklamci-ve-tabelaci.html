@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L8TEVWG2BN"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-L8TEVWG2BN');
+    </script>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     
@@ -307,7 +316,7 @@
 <div class="wp-float">
     <div class="mobile-nav-texts"><a href="index.html">ANASAYFA</a><a href="#bolgeler">BÖLGELER</a><a href="#iletisim">İLETİŞİM</a></div>
     <a href="https://www.instagram.com/uzman.reklamm/" class="wp-btn" target="_blank" style="background: #e4405f;"><i class="fab fa-instagram"></i></a>
-    <a href="https://wa.me/905079605049" class="wp-btn" target="_blank" style="background: #25d366;"><i class="fab fa-whatsapp"></i></a>
+    <a href="https://wa.me/905079605049" class="wp-btn" target="_blank" style="background: #25d366;" onclick="gtag('event', 'whatsapp_tiklama', {'sayfa': window.location.pathname});"><i class="fab fa-whatsapp"></i></a>
 </div>
 <script>
     document.addEventListener('keydown', function(e) {
