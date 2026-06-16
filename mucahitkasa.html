@@ -93,7 +93,7 @@
         .page { display: none; }
         .page.active { display: block; }
         
-        /* Üst Segment (iOS style) */
+        /* Üst Segment */
         .nav-segments {
             display: flex;
             gap: 8px;
@@ -113,7 +113,6 @@
             cursor: pointer;
             transition: all 0.2s;
         }
-        /* Cards */
         .card {
             border-radius: 24px;
             margin: 16px;
@@ -142,8 +141,6 @@
         }
         .kpi-label { font-size: 0.7rem; color: #8E8E93; margin-top: 6px; }
         .kpi-value { font-size: 1.6rem; font-weight: 700; }
-        
-        /* Limit Kartı */
         .limit-card {
             margin: 0 12px 16px 12px;
             padding: 10px 12px;
@@ -166,7 +163,6 @@
         .progress-fill { background: #34C759; width: 0%; height: 100%; }
         .limit-edit-btn { background: none; border: none; color: #007AFF; font-size: 0.7rem; margin-left: 12px; cursor: pointer; }
         
-        /* Grafik */
         .chart-card {
             margin: 0 12px 16px 12px;
             padding: 12px;
@@ -214,7 +210,6 @@
             color: #8E8E93;
         }
         
-        /* Borç özeti */
         .debt-summary {
             display: flex;
             flex-wrap: wrap;
@@ -244,7 +239,6 @@
             text-align: center;
         }
         
-        /* İşlemler Sayfası */
         .search-box {
             position: relative;
             margin: 12px;
@@ -334,7 +328,6 @@
             cursor: pointer;
         }
         .transaction-item.swiped .swipe-delete { transform: translateX(0); }
-        
         .load-more-btn {
             background: none;
             border: 0.5px solid;
@@ -346,8 +339,6 @@
             font-weight: 600;
             cursor: pointer;
         }
-        
-        /* Borçlar Sayfası */
         .borc-card {
             display: flex;
             justify-content: space-between;
@@ -379,13 +370,41 @@
             font-size: 0.7rem;
             cursor: pointer;
         }
-        
-        /* Hedefler Sayfası */
         .goal-item {
             margin: 0 12px 12px 12px;
             padding: 12px;
             border-radius: 20px;
             border: 0.5px solid;
+        }
+        .goal-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 8px;
+            align-items: center;
+        }
+        .goal-actions button {
+            background: none;
+            border: 1px solid #007AFF;
+            border-radius: 30px;
+            padding: 4px 12px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .goal-actions .btn-add {
+            background: #34C759;
+            color: white;
+            border-color: #34C759;
+        }
+        .goal-actions .btn-remove {
+            background: #FF3B30;
+            color: white;
+            border-color: #FF3B30;
+        }
+        .goal-actions .btn-auto {
+            background: #FF9F1C;
+            color: white;
+            border-color: #FF9F1C;
         }
         .rate-card {
             margin: 12px;
@@ -398,8 +417,6 @@
             font-size: 0.7rem;
         }
         .rate-item { display: flex; gap: 8px; }
-        
-        /* Ayarlar */
         .setting-item {
             display: flex;
             justify-content: space-between;
@@ -409,8 +426,22 @@
             border-radius: 20px;
             border: 0.5px solid;
         }
-        
-        /* FAB */
+        .auto-item {
+            padding: 12px 16px;
+            margin: 0 12px 8px 12px;
+            border-radius: 20px;
+            border: 0.5px solid;
+        }
+        .auto-item .auto-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .auto-item .auto-detail {
+            font-size: 0.7rem;
+            color: #8E8E93;
+            margin-top: 4px;
+        }
         .fab {
             position: fixed;
             bottom: calc(30px + env(safe-area-inset-bottom, 0px));
@@ -455,7 +486,6 @@
         }
         body.light .fab-item { background: #FFFFFF; color: #1C1C1E; }
         
-        /* Modal */
         .modal {
             position: fixed;
             top: 0;
@@ -722,6 +752,7 @@
     <div id="settingsPage" class="page">
         <div class="setting-item"><span>Karanlık Mod</span><input type="checkbox" id="darkModeSwitch" style="transform: scale(1.2);"></div>
         <div class="setting-item"><span>PDF Rapor</span><button id="pdfBtn" style="background:none; border:none; color:#007AFF;">Oluştur</button></div>
+        <div class="setting-item"><span>Otomatik İşlemler</span><button id="autoModalBtn" style="background:none; border:none; color:#007AFF;">Yönet</button></div>
         <div class="setting-item"><span>Çıkış Yap</span><button id="logoutBtn" style="background:none; border:none; color:#FF3B30;">Çıkış</button></div>
     </div>
 
@@ -769,9 +800,27 @@
     <div class="form-group"><label>Mevcut Birikim (₺)</label><input type="text" id="goalCurrentAmount" class="form-control" inputmode="numeric"></div>
     <div class="form-group"><label>Hedef Tarihi</label><input type="date" id="goalDate" class="form-control"></div>
     <div class="form-group"><label><input type="checkbox" id="goalPrimary"> Ana Hedef yap</label></div>
+    <div class="form-group"><label><input type="checkbox" id="goalAutoAdd"> Otomatik ekle</label></div>
+    <div class="form-group" id="autoFields" style="display:none;"><label>Otomatik Miktar (₺)</label><input type="text" id="goalAutoAmount" class="form-control" inputmode="numeric"></div>
+    <div class="form-group" id="autoDayField" style="display:none;"><label>Eklenecek Gün (1-31)</label><input type="number" id="goalAutoDay" class="form-control" min="1" max="31"></div>
     <input type="hidden" id="goalId">
     <button class="modal-save" id="saveGoalBtn">Kaydet</button>
     <button class="modal-save" id="deleteGoalBtn" style="background:#FF3B30;">Sil</button>
+</div></div>
+<div id="autoModal" class="modal"><div class="modal-card"><div class="modal-header"><span>Otomatik İşlemler</span><span class="modal-close" data-modal="autoModal">&times;</span></div>
+    <div id="autoList"></div>
+    <button class="modal-save" id="addAutoBtn" style="background:#34C759;">+ Yeni Kural</button>
+</div></div>
+<div id="autoEditModal" class="modal"><div class="modal-card"><div class="modal-header"><span id="autoEditTitle">Kural Ekle</span><span class="modal-close" data-modal="autoEditModal">&times;</span></div>
+    <div class="form-group"><label>Başlık</label><input type="text" id="autoTitle" class="form-control"></div>
+    <div class="form-group"><label>Tutar (₺)</label><input type="text" id="autoAmount" class="form-control" inputmode="numeric"></div>
+    <div class="form-group"><label>Tip</label><select id="autoType" class="form-control"><option value="gelir">Gelir</option><option value="gider">Gider</option></select></div>
+    <div class="form-group"><label>Kategori</label><input type="text" id="autoCategory" class="form-control" placeholder="Maaş, Kira, Aidat..."></div>
+    <div class="form-group"><label>Eklenecek Gün (1-31)</label><input type="number" id="autoDay" class="form-control" min="1" max="31"></div>
+    <div class="form-group"><label><input type="checkbox" id="autoActive" checked> Aktif</label></div>
+    <input type="hidden" id="autoId">
+    <button class="modal-save" id="saveAutoBtn">Kaydet</button>
+    <button class="modal-save" id="deleteAutoBtn" style="background:#FF3B30;">Sil</button>
 </div></div>
 <div id="limitModal" class="modal"><div class="modal-card"><div class="modal-header"><span>Aylık Limit</span><span class="modal-close" data-modal="limitModal">&times;</span></div>
     <div class="form-group"><label>Limit (₺)</label><input type="text" id="limitInput" class="form-control" inputmode="numeric"></div>
@@ -785,7 +834,7 @@
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
 
-    let allGelirler=[], allGiderler=[], allBorclar=[], allAlacaklar=[], allHedefler=[];
+    let allGelirler=[], allGiderler=[], allBorclar=[], allAlacaklar=[], allHedefler=[], allOtomatik=[];
     let currentYear=new Date().getFullYear(), currentMonth=new Date().getMonth();
     let trendChart=null, pieChartInstance=null;
     let isProcessing=false, currentFilter="all";
@@ -802,8 +851,7 @@
     function formatDateTimeWithDay(d){
         let date=new Date(d); if(isNaN(date)) return "";
         const gunlerKisa = ["Paz", "Pzt", "Sal", "Çar", "Per", "Cum", "Cmt"];
-        const gunAdi = gunlerKisa[date.getDay()];
-        return `${date.toLocaleDateString('tr-TR')} ${gunAdi} ${date.toLocaleTimeString('tr-TR', {hour:'2-digit', minute:'2-digit'})}`;
+        return `${date.toLocaleDateString('tr-TR')} ${gunlerKisa[date.getDay()]} ${date.toLocaleTimeString('tr-TR', {hour:'2-digit', minute:'2-digit'})}`;
     }
     function formatDateOnly(d){
         let date=new Date(d); if(isNaN(date)) return "";
@@ -840,6 +888,46 @@
     function startRateUpdates(){ if(rateUpdateInterval) clearInterval(rateUpdateInterval); fetchExchangeRates(); rateUpdateInterval = setInterval(fetchExchangeRates, 15000); }
     function stopRateUpdates(){ if(rateUpdateInterval) clearInterval(rateUpdateInterval); rateUpdateInterval = null; }
 
+    async function processAutoTransactions(){
+        const today = new Date();
+        const day = today.getDate();
+        const month = today.getMonth();
+        const year = today.getFullYear();
+        // Otomatik işlemleri kontrol et
+        for (let auto of allOtomatik) {
+            if (!auto.aktif) continue;
+            if (auto.gun !== day) continue;
+            // Bu ay zaten eklendi mi kontrol et
+            const lastAdded = auto.son_eklenme_tarihi ? new Date(auto.son_eklenme_tarihi) : null;
+            if (lastAdded && lastAdded.getFullYear() === year && lastAdded.getMonth() === month) continue;
+            // İşlemi ekle
+            const data = {
+                baslik: auto.baslik,
+                kategori: auto.kategori || 'Diğer',
+                tutar: auto.tutar,
+                tarih: new Date().toISOString()
+            };
+            const col = auto.tip === 'gelir' ? 'mucahit_gelirler' : 'mucahit_giderler';
+            await addDoc(collection(db, col), data);
+            // Son eklenme tarihini güncelle
+            await updateDoc(doc(db, 'mucahit_otomatik', auto.id), { son_eklenme_tarihi: new Date().toISOString() });
+            showToast(`✅ ${auto.baslik} otomatik eklendi`);
+        }
+        // Hedef otomatik eklemeleri kontrol et
+        for (let goal of allHedefler) {
+            if (!goal.otomatik_ekle) continue;
+            if (goal.otomatik_gun !== day) continue;
+            const lastAdded = goal.son_eklenme_tarihi ? new Date(goal.son_eklenme_tarihi) : null;
+            if (lastAdded && lastAdded.getFullYear() === year && lastAdded.getMonth() === month) continue;
+            const newCurrent = (goal.current || 0) + (goal.otomatik_miktar || 0);
+            await updateDoc(doc(db, 'mucahit_hedefler', goal.id), {
+                current: newCurrent,
+                son_eklenme_tarihi: new Date().toISOString()
+            });
+            showToast(`🎯 Hedef "${goal.name}" otomatik eklendi`);
+        }
+    }
+
     async function loadAll(){
         showLoading(true);
         try{
@@ -853,15 +941,20 @@
             allAlacaklar=b2.docs.map(d=>({id:d.id,...d.data(),tip:'alacak'}));
             const h1=await getDocs(collection(db,"mucahit_hedefler"));
             allHedefler=h1.docs.map(d=>({id:d.id,...d.data()}));
+            const a1=await getDocs(collection(db,"mucahit_otomatik"));
+            allOtomatik=a1.docs.map(d=>({id:d.id,...d.data()}));
             const limitDoc=await getDoc(doc(db,"mucahit_ayarlar","limit"));
             monthlyLimit=limitDoc.exists()?limitDoc.data().tutar:0;
             allTransactionsArray=[...allGelirler.map(g=>({...g,tip:'gelir',tutar:g.tutar,baslik:g.baslik,kategori:g.kategori,tarih:g.tarihISO,docId:g.id})),
                                  ...allGiderler.map(g=>({...g,tip:'gider',tutar:g.tutar,baslik:g.baslik,kategori:g.kategori,tarih:g.tarihISO,docId:g.id}))];
             allTransactionsArray.sort((a,b)=>new Date(b.tarih)-new Date(a.tarih));
+            // Otomatik işlemleri kontrol et
+            await processAutoTransactions();
             renderDashboard();
             renderTransactionsPage();
             renderDebtsPage();
             renderGoalsPage();
+            renderAutoList();
         } catch(e){ showToast("Veri yüklenemedi: "+e.message,true); }
         finally{ showLoading(false); }
     }
@@ -1057,7 +1150,17 @@
             let percent=(goal.current||0)/goal.target*100;
             let div=document.createElement('div');
             div.className='goal-item';
-            div.innerHTML=`<div style="display:flex; justify-content:space-between;"><b>${escapeHtml(goal.name)}</b> <span>${percent.toFixed(0)}%</span></div><div class="progress-bar"><div class="progress-fill" style="width:${Math.min(100,percent)}%"></div></div><div style="display:flex; justify-content:space-between; font-size:0.7rem;"><span>${formatMoney(goal.current||0)}</span><span>${formatMoney(goal.target)}</span></div><div style="margin-top:8px;"><button class="editGoalBtn" data-id="${goal.id}" style="background:none; border:none; color:#007AFF;">Düzenle</button> <button class="deleteGoalBtn" data-id="${goal.id}" style="background:none; border:none; color:#FF3B30;">Sil</button></div>`;
+            div.innerHTML=`
+                <div style="display:flex; justify-content:space-between;"><b>${escapeHtml(goal.name)}</b> <span>${percent.toFixed(0)}%</span></div>
+                <div class="progress-bar"><div class="progress-fill" style="width:${Math.min(100,percent)}%"></div></div>
+                <div style="display:flex; justify-content:space-between; font-size:0.7rem;"><span>${formatMoney(goal.current||0)}</span><span>${formatMoney(goal.target)}</span></div>
+                <div class="goal-actions">
+                    <button class="btn-add" onclick="goalAdd('${goal.id}')">+</button>
+                    <button class="btn-remove" onclick="goalRemove('${goal.id}')">−</button>
+                    ${goal.otomatik_ekle ? `<span style="font-size:0.6rem; color:#8E8E93;">🔄 ${goal.otomatik_miktar}₺ / ay (gün ${goal.otomatik_gun})</span>` : ''}
+                    <button class="editGoalBtn" data-id="${goal.id}" style="background:none; border:none; color:#007AFF;">✎</button>
+                </div>
+            `;
             container.appendChild(div);
         }
         document.querySelectorAll('.editGoalBtn').forEach(btn=>btn.addEventListener('click',()=>{
@@ -1069,18 +1172,117 @@
                 document.getElementById('goalCurrentAmount').value=(goal.current||0).toLocaleString('tr-TR');
                 document.getElementById('goalDate').value=goal.date||'';
                 document.getElementById('goalPrimary').checked=goal.primary===true;
+                document.getElementById('goalAutoAdd').checked=goal.otomatik_ekle===true;
+                document.getElementById('goalAutoAmount').value=goal.otomatik_miktar||'';
+                document.getElementById('goalAutoDay').value=goal.otomatik_gun||'';
                 document.getElementById('goalEditTitle').innerText='Hedef Düzenle';
+                toggleAutoFields();
                 openModal('goalEditModal');
             }
         }));
-        document.querySelectorAll('.deleteGoalBtn').forEach(btn=>btn.addEventListener('click',async()=>{
-            if(confirm('Hedef silinsin mi?')){ await deleteDoc(doc(db,"mucahit_hedefler",btn.dataset.id)); await loadAll(); }
+    }
+
+    window.goalAdd = async (id) => {
+        const miktar = prompt('Eklenecek miktarı girin (₺):');
+        if (!miktar) return;
+        const val = parseFloat(miktar.replace(/\./g,''));
+        if (isNaN(val) || val <= 0) return showToast('Geçerli miktar girin', true);
+        const goal = allHedefler.find(g=>g.id===id);
+        if (!goal) return;
+        const newCurrent = (goal.current||0) + val;
+        await updateDoc(doc(db,"mucahit_hedefler",id), { current: newCurrent });
+        showToast(`✅ Hedefe ${formatMoney(val)} eklendi`);
+        await loadAll();
+    };
+    window.goalRemove = async (id) => {
+        const miktar = prompt('Çıkarılacak miktarı girin (₺):');
+        if (!miktar) return;
+        const val = parseFloat(miktar.replace(/\./g,''));
+        if (isNaN(val) || val <= 0) return showToast('Geçerli miktar girin', true);
+        const goal = allHedefler.find(g=>g.id===id);
+        if (!goal) return;
+        const newCurrent = Math.max(0, (goal.current||0) - val);
+        await updateDoc(doc(db,"mucahit_hedefler",id), { current: newCurrent });
+        showToast(`✅ Hedeften ${formatMoney(val)} çıkarıldı`);
+        await loadAll();
+    };
+
+    function renderAutoList(){
+        let container=document.getElementById('autoList');
+        container.innerHTML='';
+        for(let auto of allOtomatik){
+            let div=document.createElement('div');
+            div.className='auto-item';
+            div.innerHTML=`
+                <div class="auto-header">
+                    <b>${escapeHtml(auto.baslik)}</b>
+                    <span style="color:${auto.tip==='gelir'?'#34C759':'#FF3B30'}">${auto.tip==='gelir'?'+':'-'} ${formatMoney(auto.tutar)}</span>
+                </div>
+                <div class="auto-detail">Her ay ${auto.gun}'de • ${auto.kategori||'Diğer'} • ${auto.aktif?'✅ Aktif':'❌ Pasif'}</div>
+                <div style="margin-top:6px;">
+                    <button class="editAutoBtn" data-id="${auto.id}" style="background:none; border:none; color:#007AFF; font-size:0.7rem;">Düzenle</button>
+                    <button class="toggleAutoBtn" data-id="${auto.id}" style="background:none; border:none; color:#FF9500; font-size:0.7rem;">${auto.aktif?'Pasif Yap':'Aktif Yap'}</button>
+                </div>
+            `;
+            container.appendChild(div);
+        }
+        document.querySelectorAll('.editAutoBtn').forEach(btn=>btn.addEventListener('click',()=>{
+            let auto=allOtomatik.find(a=>a.id===btn.dataset.id);
+            if(auto){
+                document.getElementById('autoId').value=auto.id;
+                document.getElementById('autoTitle').value=auto.baslik;
+                document.getElementById('autoAmount').value=auto.tutar.toLocaleString('tr-TR');
+                document.getElementById('autoType').value=auto.tip;
+                document.getElementById('autoCategory').value=auto.kategori||'';
+                document.getElementById('autoDay').value=auto.gun;
+                document.getElementById('autoActive').checked=auto.aktif;
+                document.getElementById('autoEditTitle').innerText='Kural Düzenle';
+                openModal('autoEditModal');
+            }
+        }));
+        document.querySelectorAll('.toggleAutoBtn').forEach(btn=>btn.addEventListener('click',async()=>{
+            let auto=allOtomatik.find(a=>a.id===btn.dataset.id);
+            if(auto){
+                await updateDoc(doc(db,"mucahit_otomatik",auto.id),{aktif:!auto.aktif});
+                showToast(`✅ ${auto.baslik} ${!auto.aktif?'aktif':'pasif'} yapıldı`);
+                await loadAll();
+            }
         }));
     }
 
+    function toggleAutoFields(){
+        const checked = document.getElementById('goalAutoAdd').checked;
+        document.getElementById('autoFields').style.display = checked ? 'block' : 'none';
+        document.getElementById('autoDayField').style.display = checked ? 'block' : 'none';
+    }
+    document.getElementById('goalAutoAdd').addEventListener('change', toggleAutoFields);
+
     async function saveGoal(goal){
-        if(goal.id) await updateDoc(doc(db,"mucahit_hedefler",goal.id),{name:goal.name,target:goal.target,current:goal.current,date:goal.date,primary:goal.primary});
-        else await addDoc(collection(db,"mucahit_hedefler"),{name:goal.name,target:goal.target,current:goal.current||0,date:goal.date,primary:goal.primary||false});
+        const data = {
+            name: goal.name,
+            target: goal.target,
+            current: goal.current,
+            date: goal.date,
+            primary: goal.primary,
+            otomatik_ekle: goal.otomatik_ekle,
+            otomatik_miktar: goal.otomatik_ekle ? goal.otomatik_miktar : 0,
+            otomatik_gun: goal.otomatik_ekle ? goal.otomatik_gun : 0
+        };
+        if(goal.id) await updateDoc(doc(db,"mucahit_hedefler",goal.id), data);
+        else await addDoc(collection(db,"mucahit_hedefler"), data);
+        await loadAll();
+    }
+    async function saveAuto(auto){
+        const data = {
+            baslik: auto.baslik,
+            tutar: auto.tutar,
+            tip: auto.tip,
+            kategori: auto.kategori,
+            gun: auto.gun,
+            aktif: auto.aktif
+        };
+        if(auto.id) await updateDoc(doc(db,"mucahit_otomatik",auto.id), data);
+        else await addDoc(collection(db,"mucahit_otomatik"), data);
         await loadAll();
     }
     async function saveLimit(limit){ await setDoc(doc(db,"mucahit_ayarlar","limit"),{tutar:limit}); monthlyLimit=limit; renderDashboard(); }
@@ -1097,6 +1299,17 @@
             borcHtml+=`<tr><td>${i.tip==='borc'?'Borç':'Alacak'}</td><td>${escapeHtml(i.kisi)}</td><td>${formatMoney(i.miktar)}</td><td>${formatDateOnly(i.tarih)}</td><td>${getWarningText(i.tarih).replace(/<[^>]*>/g,'')}</td></tr>`;
         });
         borcHtml+='</tbody></table>';
+        let hedefHtml = '<h3>Hedefler</h3><table style="width:100%; border-collapse:collapse; font-size:9px;"><thead><tr style="background:#f2f2f2;"><th>Hedef</th><th>Birikim</th><th>Hedef</th><th>Tamamlanma</th></tr></thead><tbody>';
+        allHedefler.forEach(g=>{
+            const pct = ((g.current||0)/g.target*100).toFixed(0);
+            hedefHtml+=`<tr><td>${escapeHtml(g.name)}</td><td>${formatMoney(g.current||0)}</td><td>${formatMoney(g.target)}</td><td>${pct}%</td></tr>`;
+        });
+        hedefHtml+='</tbody></table>';
+        let autoHtml = '<h3>Otomatik İşlemler</h3><table style="width:100%; border-collapse:collapse; font-size:9px;"><thead><tr style="background:#f2f2f2;"><th>Başlık</th><th>Tutar</th><th>Tip</th><th>Gün</th><th>Durum</th></tr></thead><tbody>';
+        allOtomatik.forEach(a=>{
+            autoHtml+=`<tr><td>${escapeHtml(a.baslik)}</td><td>${formatMoney(a.tutar)}</td><td>${a.tip==='gelir'?'Gelir':'Gider'}</td><td>${a.gun}</td><td>${a.aktif?'Aktif':'Pasif'}</td></tr>`;
+        });
+        autoHtml+='</tbody></table>';
         const div = document.createElement('div');
         div.style.padding='8px'; div.style.fontFamily='Inter'; div.style.backgroundColor='#fff'; div.style.color='#000'; div.style.fontSize='9px';
         div.innerHTML = `<h1 style="font-size:16px; text-align:center;">MuCash Finansal Rapor</h1><p style="text-align:center;">${getMonthName(year,month)}</p>
@@ -1104,7 +1317,8 @@
         <div style="flex:1; background:#f5f5f7; padding:8px; border-radius:12px;"><div>Gider</div><div style="color:#FF3B30;">${formatMoney(aylikGider)}</div></div>
         <div style="flex:1; background:#f5f5f7; padding:8px; border-radius:12px;"><div>Kalan</div><div>${formatMoney(aylikGelir-aylikGider)}</div></div></div>
         <table style="width:100%; border-collapse:collapse; font-size:9px;">${list.map(l=>`<tr style="background:${l.tip==='Gelir'?'#f0fff0':'#fff0f0'}"><td style="padding:4px;">${formatDateTimeWithDay(l.tarihISO)}</td><td>${l.tip}</td><td>${escapeHtml(l.baslik)}</td><td>${escapeHtml(l.kategori)}</td><td style="text-align:right;">${formatMoney(l.tutar)}</td></tr>`).join('')}</table>
-        ${borcHtml}<div style="margin-top:12px; padding:8px; background:#f5f5f7; border-radius:12px; display:flex; justify-content:space-between;"><span>Toplam Gelir: ${formatMoney(aylikGelir)}</span><span>Toplam Gider: ${formatMoney(aylikGider)}</span><span>Net: ${formatMoney(aylikGelir-aylikGider)}</span></div>`;
+        ${borcHtml}${hedefHtml}${autoHtml}
+        <div style="margin-top:12px; padding:8px; background:#f5f5f7; border-radius:12px; display:flex; justify-content:space-between;"><span>Toplam Gelir: ${formatMoney(aylikGelir)}</span><span>Toplam Gider: ${formatMoney(aylikGider)}</span><span>Net: ${formatMoney(aylikGelir-aylikGider)}</span></div>`;
         document.body.appendChild(div);
         await html2pdf().from(div).set({ margin: 0.2, filename: `MuCash_Rapor.pdf`, image: { type: 'jpeg', quality: 0.98 }, html2canvas: { scale: 2 }, jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' } }).save();
         div.remove();
@@ -1139,13 +1353,74 @@
     document.getElementById('saveLimitBtn').onclick=async()=>{ let val=parseFloat(document.getElementById('limitInput').value.replace(/\./g,'')); if(val>0) await saveLimit(val); closeModal('limitModal'); };
     document.getElementById('pdfBtn').onclick=()=>exportToPDF();
     document.getElementById('logoutBtn').onclick=()=>{ document.getElementById('loginContainer').style.display='flex'; document.getElementById('appContainer').style.display='none'; stopRateUpdates(); };
-    document.getElementById('addGoalBtn').onclick=()=>{ document.getElementById('goalId').value=''; document.getElementById('goalName').value=''; document.getElementById('goalTargetAmount').value=''; document.getElementById('goalCurrentAmount').value='0'; document.getElementById('goalDate').value=''; document.getElementById('goalPrimary').checked=false; document.getElementById('goalEditTitle').innerText='Yeni Hedef'; openModal('goalEditModal'); };
-    document.getElementById('saveGoalBtn').onclick=async()=>{
-        let g={ id:document.getElementById('goalId').value, name:document.getElementById('goalName').value.trim(), target:parseFloat(document.getElementById('goalTargetAmount').value.replace(/\./g,'')), current:parseFloat(document.getElementById('goalCurrentAmount').value.replace(/\./g,''))||0, date:document.getElementById('goalDate').value, primary:document.getElementById('goalPrimary').checked };
-        if(!g.name||g.target<=0) return showToast("Geçerli bilgi",true);
-        await saveGoal(g); closeModal('goalEditModal'); await loadAll();
+    document.getElementById('addGoalBtn').onclick=()=>{
+        document.getElementById('goalId').value='';
+        document.getElementById('goalName').value='';
+        document.getElementById('goalTargetAmount').value='';
+        document.getElementById('goalCurrentAmount').value='0';
+        document.getElementById('goalDate').value='';
+        document.getElementById('goalPrimary').checked=false;
+        document.getElementById('goalAutoAdd').checked=false;
+        document.getElementById('goalAutoAmount').value='';
+        document.getElementById('goalAutoDay').value='';
+        document.getElementById('goalEditTitle').innerText='Yeni Hedef';
+        toggleAutoFields();
+        openModal('goalEditModal');
     };
-    document.getElementById('deleteGoalBtn').onclick=async()=>{ let id=document.getElementById('goalId').value; if(id&&confirm('Sil?')){ await deleteDoc(doc(db,"mucahit_hedefler",id)); closeModal('goalEditModal'); await loadAll(); } };
+    document.getElementById('saveGoalBtn').onclick=async()=>{
+        const autoAdd = document.getElementById('goalAutoAdd').checked;
+        let g={
+            id:document.getElementById('goalId').value,
+            name:document.getElementById('goalName').value.trim(),
+            target:parseFloat(document.getElementById('goalTargetAmount').value.replace(/\./g,'')),
+            current:parseFloat(document.getElementById('goalCurrentAmount').value.replace(/\./g,''))||0,
+            date:document.getElementById('goalDate').value,
+            primary:document.getElementById('goalPrimary').checked,
+            otomatik_ekle: autoAdd,
+            otomatik_miktar: autoAdd ? parseFloat(document.getElementById('goalAutoAmount').value.replace(/\./g,''))||0 : 0,
+            otomatik_gun: autoAdd ? parseInt(document.getElementById('goalAutoDay').value)||1 : 0
+        };
+        if(!g.name||g.target<=0) return showToast("Geçerli bilgi",true);
+        await saveGoal(g);
+        closeModal('goalEditModal');
+        await loadAll();
+    };
+    document.getElementById('deleteGoalBtn').onclick=async()=>{
+        let id=document.getElementById('goalId').value;
+        if(id&&confirm('Sil?')){ await deleteDoc(doc(db,"mucahit_hedefler",id)); closeModal('goalEditModal'); await loadAll(); }
+    };
+    // Auto modals
+    document.getElementById('autoModalBtn').onclick=()=>{ renderAutoList(); openModal('autoModal'); };
+    document.getElementById('addAutoBtn').onclick=()=>{
+        document.getElementById('autoId').value='';
+        document.getElementById('autoTitle').value='';
+        document.getElementById('autoAmount').value='';
+        document.getElementById('autoType').value='gelir';
+        document.getElementById('autoCategory').value='';
+        document.getElementById('autoDay').value='';
+        document.getElementById('autoActive').checked=true;
+        document.getElementById('autoEditTitle').innerText='Yeni Kural';
+        openModal('autoEditModal');
+    };
+    document.getElementById('saveAutoBtn').onclick=async()=>{
+        let a={
+            id:document.getElementById('autoId').value,
+            baslik:document.getElementById('autoTitle').value.trim(),
+            tutar:parseFloat(document.getElementById('autoAmount').value.replace(/\./g,'')),
+            tip:document.getElementById('autoType').value,
+            kategori:document.getElementById('autoCategory').value.trim()||'Diğer',
+            gun:parseInt(document.getElementById('autoDay').value),
+            aktif:document.getElementById('autoActive').checked
+        };
+        if(!a.baslik||a.tutar<=0||!a.gun||a.gun<1||a.gun>31) return showToast("Geçerli bilgi",true);
+        await saveAuto(a);
+        closeModal('autoEditModal');
+        await loadAll();
+    };
+    document.getElementById('deleteAutoBtn').onclick=async()=>{
+        let id=document.getElementById('autoId').value;
+        if(id&&confirm('Sil?')){ await deleteDoc(doc(db,"mucahit_otomatik",id)); closeModal('autoEditModal'); await loadAll(); }
+    };
     // Dark mode
     let darkSwitch=document.getElementById('darkModeSwitch');
     darkSwitch.addEventListener('change',()=>{ if(darkSwitch.checked) document.body.classList.add('dark'); else document.body.classList.remove('dark'); updateCharts(); });
