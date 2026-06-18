@@ -5,21 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
     <title>Karadeniz Matbaa | Fason Baskı, Kartvizit, Broşür, Afiş, Magnet, Etiket</title>
     <meta name="description" content="Karadeniz'in en hızlı matbaası! Kartvizit, broşür, afiş, magnet, etiket ve fason baskı. Reklamcılara, matbaacılara ve ajanslara özel toptan fiyatlar. WhatsApp ile hemen teklif alın." />
-    <meta name="keywords" content="Karadeniz matbaa, fason baskı, kartvizit baskısı, broşür baskısı, afiş baskısı, magnet baskısı, etiket baskısı, toptan baskı, reklamcılara özel, organize matbaa, matbaacı, reklam ajansı, Karadeniz matbaa fiyatları, en ucuz matbaa" />
+    <meta name="keywords" content="Karadeniz matbaa, fason baskı, kartvizit baskısı, broşür baskısı, afiş baskısı, magnet baskısı, etiket baskısı, toptan baskı, reklamcılara özel, organize matbaa, matbaacı, reklam ajansı" />
     <link rel="canonical" href="https://karadenizmatbaa.com" />
+    
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    
     <style>
-        /* RESET & BASE */
+        /* ========== RESET & BASE ========== */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
-        body { font-family: 'Inter', sans-serif; background: #f8f9fc; color: #1a1a2e; line-height: 1.6; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: #f8f9fc; 
+            color: #1a1a2e; 
+            line-height: 1.6; 
+        }
         a { text-decoration: none; color: inherit; }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
-        /* COLOR PALETTE */
+        /* ========== COLOR PALETTE ========== */
         :root {
             --primary: #0a1e3a;
             --secondary: #f47b20;
@@ -30,7 +37,7 @@
             --wa-green: #25d366;
         }
 
-        /* BUTTONS */
+        /* ========== BUTTONS ========== */
         .btn-primary {
             display: inline-block;
             background: var(--secondary);
@@ -41,17 +48,22 @@
             font-size: 1rem;
             border: none;
             cursor: pointer;
-            transition: background 0.3s, transform 0.2s;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
             text-align: center;
         }
-        .btn-primary i { margin-right: 10px; color: #fff; }
-        .btn-primary:hover { background: #d96a0e; transform: scale(1.03); }
+        .btn-primary i { margin-right: 8px; color: #fff; }
+        .btn-primary:hover {
+            background: #d96a0e;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
+        }
 
         .btn-wa {
             display: inline-block;
             background: var(--wa-green);
             color: #fff;
-            padding: 8px 18px;
+            padding: 8px 16px;
             border-radius: 50px;
             font-weight: 700;
             font-size: 0.85rem;
@@ -63,7 +75,7 @@
         .btn-wa i { margin-right: 6px; color: #fff; }
         .btn-wa:hover { background: #1da851; transform: scale(1.03); }
 
-        /* NAVBAR */
+        /* ========== NAVBAR ========== */
         nav {
             background: var(--primary);
             padding: 14px 0;
@@ -88,7 +100,7 @@
         .logo span { color: var(--secondary); }
         .nav-links {
             display: flex;
-            gap: 30px;
+            gap: 25px;
             align-items: center;
             flex-wrap: wrap;
         }
@@ -99,19 +111,25 @@
             transition: color 0.3s;
         }
         .nav-links a:hover { color: var(--secondary); }
-        .nav-links .btn-primary { padding: 8px 20px; font-size: 0.85rem; }
+        .nav-links .btn-primary { 
+            padding: 10px 22px; 
+            font-size: 0.85rem;
+            margin: 0;
+        }
         .mobile-menu-btn {
             display: none;
-            font-size: 1.8rem;
+            background: none;
+            border: none;
             color: #fff;
+            font-size: 1.5rem;
             cursor: pointer;
         }
 
-        /* HERO */
+        /* ========== HERO ========== */
         .hero {
             background: linear-gradient(135deg, var(--primary) 0%, #142b4a 100%);
             color: #fff;
-            padding: 100px 0 120px;
+            padding: clamp(60px, 12vw, 120px) 0;
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -124,27 +142,32 @@
             width: 100%;
             height: 100%;
             background: url('https://images.unsplash.com/photo-1562329261-6dd0ce2e2d6d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
-            opacity: 0.12;
+            opacity: 0.15;
             z-index: 0;
         }
         .hero .container { position: relative; z-index: 1; }
         .hero h1 {
-            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-size: clamp(2rem, 5vw, 3.5rem);
             font-weight: 900;
             line-height: 1.2;
             margin-bottom: 20px;
         }
         .hero h1 span { color: var(--secondary); }
         .hero p {
-            font-size: 1.2rem;
+            font-size: clamp(1rem, 2vw, 1.2rem);
             max-width: 750px;
             margin: 0 auto 35px;
             opacity: 0.9;
             line-height: 1.7;
         }
-        .hero .btn-primary { font-size: 1.1rem; padding: 16px 44px; }
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
 
-        /* SECTION TITLE */
+        /* ========== SECTION TITLE ========== */
         .section-title {
             text-align: center;
             margin-bottom: 50px;
@@ -160,9 +183,9 @@
             margin-top: 8px;
         }
 
-        /* SERVICES */
+        /* ========== SERVICES ========== */
         .services {
-            padding: 80px 0;
+            padding: clamp(50px, 10vw, 80px) 0;
             background: #fff;
         }
         .services-grid {
@@ -175,57 +198,57 @@
             border-radius: 16px;
             padding: 25px 18px;
             text-align: center;
-            transition: transform 0.3s, box-shadow 0.3s;
-            border: 1px solid var(--light-gray);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid transparent;
+            cursor: pointer;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
         .service-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+            transform: translateY(-8px);
+            border-color: var(--secondary);
+            box-shadow: 0 15px 40px rgba(255, 107, 53, 0.15);
         }
-        .service-card i {
-            font-size: 2.8rem;
-            color: var(--secondary);
-            margin-bottom: 12px;
+        .service-card img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 3px solid var(--secondary);
+            transition: all 0.3s;
+        }
+        .service-card:hover img {
+            transform: scale(1.1);
+            border-color: var(--primary);
         }
         .service-card h3 {
             font-size: 1.2rem;
             font-weight: 700;
-            margin-bottom: 6px;
+            color: var(--primary);
+            margin-bottom: 8px;
         }
         .service-card p {
             color: var(--gray);
             font-size: 0.9rem;
-            margin-bottom: 12px;
+            line-height: 1.6;
+            margin-bottom: 15px;
             flex: 1;
-        }
-        .service-card .price-tag {
-            display: inline-block;
-            background: var(--primary);
-            color: #fff;
-            padding: 4px 16px;
-            border-radius: 30px;
-            font-weight: 700;
-            font-size: 0.95rem;
-            margin-bottom: 12px;
         }
         .service-card .btn-wa {
             width: 100%;
-            max-width: 160px;
-            font-size: 0.8rem;
-            padding: 7px 14px;
+            max-width: 180px;
         }
 
-        /* PRICE LIST (CARDS) */
-        .price-list {
-            padding: 80px 0;
+        /* ========== PRICING (CARDS) ========== */
+        .pricing {
+            padding: clamp(50px, 10vw, 80px) 0;
             background: #f8f9fc;
         }
         .price-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
         }
         .price-card {
@@ -285,209 +308,120 @@
             font-size: 0.8rem;
         }
 
-        /* ORGANIZE MATBAA (modern 2 sütun) */
-        .organize {
-            padding: 80px 0;
+        /* ========== BENEFITS ========== */
+        .benefits {
+            padding: clamp(50px, 10vw, 80px) 0;
             background: #fff;
         }
-        .organize-wrapper {
+        .benefits-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: center;
-            background: #f8f9fc;
-            border-radius: 20px;
-            padding: 50px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
         }
-        .organize-text h2 {
-            color: var(--primary);
-            font-weight: 800;
-            font-size: 2rem;
-            margin-bottom: 15px;
-        }
-        .organize-text p {
-            color: var(--gray);
-            line-height: 1.8;
-            font-size: 1.05rem;
-            margin-bottom: 12px;
-        }
-        .organize-list {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px 25px;
-        }
-        .organize-list .item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-weight: 600;
-            color: var(--primary);
-            font-size: 0.95rem;
-        }
-        .organize-list .item i {
-            color: var(--secondary);
-            font-size: 1.1rem;
-            width: 22px;
-            text-align: center;
-        }
-        @media (max-width: 768px) {
-            .organize-wrapper {
-                grid-template-columns: 1fr;
-                padding: 30px;
-            }
-            .organize-list {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* WHY US */
-        .why-us {
-            padding: 80px 0;
-            background: var(--primary);
-            color: #fff;
-        }
-        .why-us .section-title h2 { color: #fff; }
-        .why-us .section-title p { color: rgba(255,255,255,0.7); }
-        .why-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 25px;
-        }
-        .why-item {
+        .benefit-item {
             text-align: center;
             padding: 15px;
         }
-        .why-item i {
-            font-size: 2.5rem;
+        .benefit-item i {
+            font-size: 2.8rem;
             color: var(--secondary);
-            margin-bottom: 12px;
+            margin-bottom: 15px;
         }
-        .why-item h4 {
+        .benefit-item h3 {
             font-weight: 700;
-            font-size: 1.1rem;
-            margin-bottom: 6px;
-        }
-        .why-item p { opacity: 0.8; font-size: 0.9rem; }
-
-        /* SERVICE AREAS */
-        .service-areas {
-            padding: 80px 0;
-            background: #fff;
-        }
-        .city-tags {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        .city-tag {
-            background: var(--light-gray);
-            padding: 8px 18px;
-            border-radius: 40px;
-            font-weight: 600;
             color: var(--primary);
-            font-size: 0.9rem;
-            transition: 0.3s;
-            border: 1px solid transparent;
-            cursor: pointer;
+            margin-bottom: 8px;
         }
-        .city-tag:hover {
-            background: var(--secondary);
-            color: #fff;
-            border-color: var(--secondary);
-            transform: scale(1.05);
-        }
-        .city-tag i { margin-right: 5px; color: var(--secondary); }
-        .city-tag:hover i { color: #fff; }
-        .city-tag .kargo {
-            background: var(--primary);
-            color: #fff;
-            padding: 2px 10px;
-            border-radius: 30px;
-            font-size: 0.65rem;
-            margin-left: 4px;
+        .benefit-item p {
+            color: var(--gray);
+            font-size: 0.95rem;
         }
 
-        /* FAQ (SSS) - Accordion */
+        /* ========== FAQ (SİZLERİN İSTEDİĞİ GİBİ) ========== */
         .faq {
-            padding: 80px 0;
+            padding: clamp(50px, 10vw, 80px) 0;
             background: #f8f9fc;
         }
-        .faq-grid {
-            max-width: 850px;
+        .faq-container {
+            max-width: 800px;
             margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
         }
         .faq-item {
             background: #fff;
             border-radius: 12px;
+            margin-bottom: 12px;
             border: 1px solid var(--light-gray);
             overflow: hidden;
-            transition: 0.3s;
+            transition: all 0.3s;
         }
-        .faq-item:hover { border-color: var(--secondary); }
-        .faq-item .question {
-            font-weight: 700;
-            font-size: 1.05rem;
-            color: var(--primary);
+        .faq-item:hover {
+            border-color: var(--secondary);
+            box-shadow: 0 4px 12px rgba(255, 107, 53, 0.08);
+        }
+        .faq-question {
             padding: 16px 20px;
+            font-weight: 700;
+            color: var(--primary);
             display: flex;
             justify-content: space-between;
             align-items: center;
             cursor: pointer;
-            background: #fff;
-            transition: 0.2s;
             user-select: none;
+            background: #fff;
+            transition: background 0.2s;
         }
-        .faq-item .question i {
+        .faq-question:hover {
+            background: #f8f9fc;
+        }
+        .faq-question .faq-icon {
+            font-size: 1.4rem;
+            font-weight: 300;
             color: var(--secondary);
             transition: transform 0.3s;
-            font-size: 1.2rem;
         }
-        .faq-item .answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease, padding 0.3s;
-            padding: 0 20px;
+        .faq-answer {
+            display: none;
+            padding: 0 20px 20px;
             color: var(--gray);
             line-height: 1.7;
             font-size: 0.95rem;
+            border-top: 1px solid var(--light-gray);
         }
-        .faq-item.active .answer {
-            max-height: 400px;
-            padding: 0 20px 20px;
+        .faq-item.active .faq-answer {
+            display: block;
+            animation: slideDown 0.3s ease;
         }
-        .faq-item.active .question i {
+        .faq-item.active .faq-icon {
             transform: rotate(180deg);
         }
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-        /* CONTACT */
+        /* ========== CONTACT ========== */
         .contact {
-            padding: 80px 0;
-            background: #fff;
+            padding: clamp(50px, 10vw, 80px) 0;
+            background: var(--primary);
+            color: #fff;
         }
         .contact-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 50px;
-            align-items: start;
         }
         .contact-info h3 {
             font-size: 1.6rem;
             font-weight: 800;
-            color: var(--primary);
             margin-bottom: 20px;
+            color: #fff;
         }
         .contact-info p {
-            color: var(--gray);
             margin-bottom: 12px;
             display: flex;
             align-items: center;
             gap: 12px;
+            opacity: 0.9;
         }
         .contact-info i {
             color: var(--secondary);
@@ -495,212 +429,180 @@
             width: 24px;
             text-align: center;
         }
-        .contact-info .btn-primary { margin-top: 20px; }
-        .contact-info .address-block {
-            background: #f8f9fc;
+        .contact-info a {
+            color: #fff;
+            transition: color 0.3s;
+        }
+        .contact-info a:hover { color: var(--secondary); }
+        .address-block {
+            background: rgba(255,255,255,0.1);
             padding: 20px;
             border-radius: 12px;
-            margin-top: 20px;
+            margin-top: 25px;
+            margin-bottom: 25px;
             border-left: 4px solid var(--secondary);
         }
-        .contact-info .address-block p { margin-bottom: 6px; }
-        .contact-info .address-block strong { color: var(--primary); }
+        .address-block p { margin-bottom: 6px; }
+        .address-block strong { color: var(--secondary); }
 
-        /* FOOTER */
+        /* ========== FOOTER ========== */
         footer {
-            background: var(--dark);
-            color: rgba(255,255,255,0.7);
+            background: #002347;
+            color: rgba(255,255,255,0.8);
             padding: 40px 0 20px;
             border-top: 3px solid var(--secondary);
         }
         footer .container {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 30px;
+            margin-bottom: 30px;
         }
-        footer .footer-col { flex: 1; min-width: 160px; }
-        footer .footer-col h4 {
+        footer h4 {
             color: #fff;
-            font-weight: 700;
-            margin-bottom: 15px;
-        }
-        footer .footer-col a {
-            display: block;
-            color: rgba(255,255,255,0.6);
-            margin-bottom: 8px;
-            transition: color 0.3s;
-            font-size: 0.9rem;
-            cursor: pointer;
-        }
-        footer .footer-col a:hover { color: var(--secondary); }
-        footer .footer-col p {
-            color: rgba(255,255,255,0.6);
-            font-size: 0.9rem;
-            margin-bottom: 6px;
-        }
-        footer .footer-col p i { color: var(--secondary); margin-right: 8px; }
-        footer .footer-bottom {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            margin-top: 30px;
-            width: 100%;
-            font-size: 0.85rem;
-        }
-
-        /* MODAL */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.7);
-            z-index: 99999;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-        .modal-overlay.active { display: flex; }
-        .modal-box {
-            background: #fff;
-            max-width: 700px;
-            width: 100%;
-            border-radius: 16px;
-            padding: 40px;
-            max-height: 80vh;
-            overflow-y: auto;
-            position: relative;
-        }
-        .modal-box .close-modal {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            font-size: 2rem;
-            cursor: pointer;
-            color: var(--gray);
-            transition: 0.3s;
-        }
-        .modal-box .close-modal:hover { color: var(--primary); }
-        .modal-box h2 {
-            color: var(--primary);
             font-weight: 800;
             margin-bottom: 15px;
+            font-size: 1.1rem;
         }
-        .modal-box p {
-            color: var(--gray);
-            line-height: 1.7;
-            margin-bottom: 12px;
+        footer a {
+            display: block;
+            margin-bottom: 10px;
+            color: rgba(255,255,255,0.7);
+            transition: color 0.3s;
+        }
+        footer a:hover { color: var(--secondary); }
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
         }
 
-        /* FLOATING WHATSAPP */
-        .wp-float {
+        /* ========== FLOATING BUTTONS ========== */
+        .floating-buttons {
             position: fixed;
-            bottom: 25px;
-            right: 25px;
-            z-index: 9999;
+            bottom: 20px;
+            right: 20px;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            gap: 10px;
+            gap: 12px;
+            z-index: 500;
         }
-        .wp-float a {
+        .float-btn {
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
             color: #fff;
-            font-size: 1.8rem;
-            text-decoration: none;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-            transition: transform 0.2s;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            border: none;
         }
-        .wp-float a:hover { transform: scale(1.08); }
-        .wp-float .wp-btn { background: var(--wa-green); }
-        .wp-float .ig-btn { background: #e4405f; }
+        .float-btn:hover { transform: scale(1.1); }
+        .wp-btn { background: var(--wa-green); }
+        .ig-btn { background: linear-gradient(135deg, #f39c12, #e74c3c); }
 
-        /* RESPONSIVE */
+        /* ========== RESPONSIVE ========== */
         @media (max-width: 992px) {
-            .contact-grid { grid-template-columns: 1fr; gap: 30px; }
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
         }
         @media (max-width: 768px) {
             .mobile-menu-btn { display: block; }
             .nav-links {
-                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
                 width: 100%;
-                flex-direction: column;
                 background: var(--primary);
-                padding: 20px 0;
-                gap: 15px;
+                flex-direction: column;
+                gap: 0;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s;
             }
-            .nav-links.open { display: flex; }
-            .hero { padding: 60px 0 80px; }
-            .hero h1 { font-size: 2.2rem; }
-            .price-grid { grid-template-columns: 1fr; }
-            .wp-float a { width: 48px; height: 48px; font-size: 1.5rem; }
+            .nav-links.open {
+                max-height: 400px;
+            }
+            .nav-links a {
+                padding: 12px 20px;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+            .nav-links .btn-primary {
+                border-radius: 0;
+                margin: 0;
+                width: 100%;
+            }
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            .hero-buttons .btn-primary,
+            .hero-buttons .btn-secondary {
+                width: 100%;
+                text-align: center;
+            }
+            .floating-buttons {
+                bottom: 15px;
+                right: 10px;
+            }
+            .float-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 1.3rem;
+            }
         }
         @media (max-width: 480px) {
-            .logo { font-size: 1.4rem; }
-            .services-grid {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 12px;
-            }
-            .service-card {
-                padding: 15px 10px;
-            }
-            .service-card i { font-size: 2rem; }
-            .service-card h3 { font-size: 0.85rem; }
-            .service-card p { font-size: 0.7rem; }
-            .service-card .price-tag { font-size: 0.75rem; padding: 3px 10px; }
-            .service-card .btn-wa {
-                font-size: 0.65rem;
-                padding: 5px 10px;
-                max-width: 100%;
-            }
-            .why-grid { grid-template-columns: 1fr 1fr; }
-            .city-tags { gap: 6px; }
-            .city-tag { padding: 5px 12px; font-size: 0.75rem; }
-            .faq-item .question { font-size: 0.9rem; padding: 12px 15px; }
-            .faq-item .answer { font-size: 0.85rem; }
-        }
-        @media (max-width: 380px) {
-            .services-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 10px;
-            }
+            .hero h1 { font-size: 1.6rem; }
+            .price-grid { grid-template-columns: 1fr; }
+            .benefits-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
-<!-- NAV -->
+<!-- ========== NAVBAR ========== -->
 <nav>
     <div class="container">
         <div class="logo" onclick="location.href='#'">Karadeniz<span>Matbaa</span></div>
-        <div class="mobile-menu-btn" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
+        <button class="mobile-menu-btn" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </button>
         <div class="nav-links" id="navLinks">
             <a href="#hizmetler">Hizmetler</a>
-            <a href="#fiyatlar">Fiyat Listesi</a>
-            <a href="#hakkimizda">Hakkımızda</a>
+            <a href="#fiyat">Fiyat</a>
+            <a href="#sss">Sık Sorulanlar</a>
             <a href="#iletisim" class="btn-primary"><i class="fab fa-whatsapp"></i> Teklif Al</a>
         </div>
     </div>
 </nav>
 
-<!-- HERO -->
+<!-- ========== HERO ========== -->
 <section class="hero">
     <div class="container">
         <h1>Karadeniz'in <span>En Hızlı</span> Matbaası</h1>
         <p>Kartvizit, broşür, afiş, magnet, etiket ve fason baskıda en uygun fiyat. Reklamcılar, matbaacılar ve ajanslar için özel toptan fiyatlar. Siparişiniz ertesi gün kargoda!</p>
-        <a href="https://wa.me/905016675755?text=Merhaba,%20karadenizmatbaa.com%20üzerinden%20teklif%20almak%20istiyorum." target="_blank" class="btn-primary"><i class="fab fa-whatsapp"></i> WhatsApp ile Teklif Al</a>
+        <div class="hero-buttons">
+            <a href="https://wa.me/905016675755?text=Merhaba,%20karadenizmatbaa.com%20üzerinden%20teklif%20almak%20istiyorum." target="_blank" class="btn-primary">
+                <i class="fab fa-whatsapp"></i> WhatsApp ile Yaz
+            </a>
+        </div>
     </div>
 </section>
 
-<!-- SERVICES -->
+<!-- ========== SERVICES ========== -->
 <section class="services" id="hizmetler">
     <div class="container">
         <div class="section-title">
@@ -709,53 +611,47 @@
         </div>
         <div class="services-grid">
             <div class="service-card">
-                <i class="fas fa-id-card"></i>
+                <img src="https://images.unsplash.com/photo-1586336234596-26d9a7c737b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&h=150&q=80" alt="Kartvizit" />
                 <h3>Kartvizit</h3>
                 <p>1.000 Adet, 250gr. Bristol, Parlak Selefon</p>
-                <span class="price-tag">195 ₺’den başlayan</span>
                 <a href="https://wa.me/905016675755?text=Merhaba,%20Kartvizit%20fiyatı%20hakkında%20bilgi%20almak%20istiyorum." target="_blank" class="btn-wa"><i class="fab fa-whatsapp"></i> Fiyat Sor</a>
             </div>
             <div class="service-card">
-                <i class="fas fa-book"></i>
+                <img src="https://images.unsplash.com/photo-1544716278-e513176f20b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&h=150&q=80" alt="Broşür" />
                 <h3>Broşür</h3>
                 <p>A5, 115gr. Kuşe, Çift Yön Parlak</p>
-                <span class="price-tag">800 ₺’den başlayan</span>
                 <a href="https://wa.me/905016675755?text=Merhaba,%20Broşür%20fiyatı%20hakkında%20bilgi%20almak%20istiyorum." target="_blank" class="btn-wa"><i class="fab fa-whatsapp"></i> Fiyat Sor</a>
             </div>
             <div class="service-card">
-                <i class="fas fa-image"></i>
+                <img src="https://images.unsplash.com/photo-1577962917302-cd874c4e31d2?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&h=150&q=80" alt="Afiş" />
                 <h3>Afiş / Poster</h3>
                 <p>34x49 cm, 90gr. Parlak Kuşe, 100 Adet</p>
-                <span class="price-tag">1.265 ₺’den başlayan</span>
                 <a href="https://wa.me/905016675755?text=Merhaba,%20Afiş%20fiyatı%20hakkında%20bilgi%20almak%20istiyorum." target="_blank" class="btn-wa"><i class="fab fa-whatsapp"></i> Fiyat Sor</a>
             </div>
             <div class="service-card">
-                <i class="fas fa-magnet"></i>
+                <img src="https://images.unsplash.com/photo-1583864697784-a0efc8379f70?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&h=150&q=80" alt="Magnet" />
                 <h3>Magnet</h3>
                 <p>1.000 Adet, 46x68mm, Oval Kesim, Parlak Selefon</p>
-                <span class="price-tag">610 ₺’den başlayan</span>
                 <a href="https://wa.me/905016675755?text=Merhaba,%20Magnet%20fiyatı%20hakkında%20bilgi%20almak%20istiyorum." target="_blank" class="btn-wa"><i class="fab fa-whatsapp"></i> Fiyat Sor</a>
             </div>
             <div class="service-card">
-                <i class="fas fa-tag"></i>
+                <img src="https://images.unsplash.com/photo-1626785774573-5e1a8b5b1b1b?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&h=150&q=80" alt="Etiket" />
                 <h3>Etiket</h3>
                 <p>1.000 Adet, 53x83mm, Kuşe Çıkartma, Parlak Selefon</p>
-                <span class="price-tag">290 ₺’den başlayan</span>
                 <a href="https://wa.me/905016675755?text=Merhaba,%20Etiket%20fiyatı%20hakkında%20bilgi%20almak%20istiyorum." target="_blank" class="btn-wa"><i class="fab fa-whatsapp"></i> Fiyat Sor</a>
             </div>
             <div class="service-card">
-                <i class="fas fa-print"></i>
+                <img src="https://images.unsplash.com/photo-1562329261-6dd0ce2e2d6d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&h=150&q=80" alt="Fason Baskı" />
                 <h3>Fason Baskı</h3>
                 <p>Reklamcılar, ajanslar ve matbaacılar için toptan baskı, CNC, lazer kesim</p>
-                <span class="price-tag">Projeye özel</span>
                 <a href="https://wa.me/905016675755?text=Merhaba,%20Fason%20baskı%20hakkında%20bilgi%20almak%20istiyorum." target="_blank" class="btn-wa"><i class="fab fa-whatsapp"></i> Teklif Al</a>
             </div>
         </div>
     </div>
 </section>
 
-<!-- PRICE LIST -->
-<section class="price-list" id="fiyatlar">
+<!-- ========== PRICING (CARDS) ========== -->
+<section class="pricing" id="fiyat">
     <div class="container">
         <div class="section-title">
             <h2>Öne Çıkan Fiyat Listesi</h2>
@@ -836,210 +732,242 @@
             </div>
         </div>
         <div style="text-align:center; margin-top:40px;">
-            <a href="https://wa.me/905016675755?text=Merhaba,%20tüm%20fiyat%20listesini%20görmek%20istiyorum." target="_blank" class="btn-primary" style="padding:16px 44px; font-size:1.1rem;"><i class="fab fa-whatsapp"></i> Tüm Fiyat Listesini WhatsApp'tan Al</a>
+            <a href="https://wa.me/905016675755?text=Merhaba,%20tüm%20fiyat%20listesini%20görmek%20istiyorum." target="_blank" class="btn-primary"><i class="fab fa-whatsapp"></i> Tüm Fiyat Listesini WhatsApp'tan Al</a>
         </div>
     </div>
 </section>
 
-<!-- ORGANIZE MATBAA -->
-<section class="organize" id="hakkimizda">
-    <div class="container">
-        <div class="organize-wrapper">
-            <div class="organize-text">
-                <h2>Organize Matbaa Nedir?</h2>
-                <p><strong>Organize Matbaa</strong>, birçok işin toplanarak tek seferde basılmasıdır. Biz Karadeniz Matbaa olarak, ajanslar, matbaacılar ve reklamcılar için toplu baskı çözümleri sunuyoruz. Ofset, dijital ve serigrafi baskı teknikleriyle, en uygun fiyat garantisi veriyoruz.</p>
-                <p>Hızlı, ekonomik ve kaliteli baskı için doğru adres. Fabrika fiyatlarıyla, aracısız hizmet.</p>
-            </div>
-            <div class="organize-list">
-                <div class="item"><i class="fas fa-check-circle"></i> Ofset Baskı</div>
-                <div class="item"><i class="fas fa-check-circle"></i> Dijital Baskı</div>
-                <div class="item"><i class="fas fa-check-circle"></i> Serigrafi Baskı</div>
-                <div class="item"><i class="fas fa-check-circle"></i> Fason CNC Kesim</div>
-                <div class="item"><i class="fas fa-check-circle"></i> Lazer Kesim</div>
-                <div class="item"><i class="fas fa-check-circle"></i> Toptan Baskı</div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- WHY US -->
-<section class="why-us">
+<!-- ========== BENEFITS ========== -->
+<section class="benefits">
     <div class="container">
         <div class="section-title">
             <h2>Neden Karadeniz Matbaa?</h2>
             <p>Farkımızı ortaya koyan 5 temel değer</p>
         </div>
-        <div class="why-grid">
-            <div class="why-item">
+        <div class="benefits-grid">
+            <div class="benefit-item">
                 <i class="fas fa-tachometer-alt"></i>
-                <h4>Hızlı Teslimat</h4>
+                <h3>Hızlı Teslimat</h3>
                 <p>Ertesi gün kargoda, acil işlerinizde yanınızdayız.</p>
             </div>
-            <div class="why-item">
+            <div class="benefit-item">
                 <i class="fas fa-tag"></i>
-                <h4>Uygun Fiyat</h4>
+                <h3>Uygun Fiyat</h3>
                 <p>Aracısız, direkt fabrika fiyatları. Reklamcılara özel indirimler.</p>
             </div>
-            <div class="why-item">
+            <div class="benefit-item">
                 <i class="fas fa-check-circle"></i>
-                <h4>Kaliteli Malzeme</h4>
+                <h3>Kaliteli Malzeme</h3>
                 <p>1. sınıf kağıt, mürekkep ve selefon kullanıyoruz.</p>
             </div>
-            <div class="why-item">
+            <div class="benefit-item">
                 <i class="fas fa-headset"></i>
-                <h4>7/24 Destek</h4>
+                <h3>7/24 Destek</h3>
                 <p>WhatsApp hattımızdan anında yanıt, profesyonel grafik desteği.</p>
             </div>
-            <div class="why-item">
+            <div class="benefit-item">
                 <i class="fas fa-truck"></i>
-                <h4>Türkiye’ye Kargo</h4>
+                <h3>Türkiye’ye Kargo</h3>
                 <p>Karadeniz’in her noktasına ve Türkiye’nin dört bir yanına hızlı kargo.</p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- SERVICE AREAS -->
-<section class="service-areas">
+<!-- ========== FAQ (SİZLERİN İSTEDİĞİ GİBİ) ========== -->
+<section class="faq" id="sss">
     <div class="container">
         <div class="section-title">
-            <h2>Hizmet Verdiğimiz İller</h2>
-            <p>Karadeniz bölgesinde ve Türkiye genelinde yanınızdayız</p>
-        </div>
-        <div class="city-tags">
-            <span class="city-tag"><i class="fas fa-map-marker-alt"></i> Samsun</span>
-            <span class="city-tag"><i class="fas fa-map-marker-alt"></i> Trabzon</span>
-            <span class="city-tag"><i class="fas fa-map-marker-alt"></i> Ordu</span>
-            <span class="city-tag"><i class="fas fa-map-marker-alt"></i> Sinop</span>
-            <span class="city-tag"><i class="fas fa-map-marker-alt"></i> Rize</span>
-            <span class="city-tag"><i class="fas fa-map-marker-alt"></i> Giresun</span>
-            <span class="city-tag"><i class="fas fa-map-marker-alt"></i> Amasya</span>
-            <span class="city-tag"><i class="fas fa-map-marker-alt"></i> Kastamonu</span>
-            <span class="city-tag"><i class="fas fa-map-marker-alt"></i> Zonguldak</span>
-            <span class="city-tag"><i class="fas fa-map-marker-alt"></i> Bartın</span>
-            <span class="city-tag"><i class="fas fa-map-marker-alt"></i> Düzce</span>
-            <span class="city-tag"><i class="fas fa-map-marker-alt"></i> Sakarya</span>
-            <span class="city-tag"><i class="fas fa-map-marker-alt"></i> Kocaeli</span>
-            <span class="city-tag"><i class="fas fa-map-marker-alt"></i> İstanbul</span>
-            <span class="city-tag" style="background: var(--secondary); color: #fff; border-color: var(--secondary);"><i class="fas fa-truck"></i> Türkiye’nin her yerine kargo <span class="kargo" style="background: var(--primary);">Hızlı Teslimat</span></span>
-        </div>
-    </div>
-</section>
-
-<!-- FAQ (SSS) - 15 Soru -->
-<section class="faq">
-    <div class="container">
-        <div class="section-title">
-            <h2>Sık Sorulan Sorular</h2>
+            <h2>Sıkça Sorulan Sorular</h2>
             <p>En çok merak edilen konular</p>
         </div>
-        <div class="faq-grid">
-            <div class="faq-item" onclick="toggleFaq(this)">
-                <div class="question">Kartvizit fiyatları ne kadar? <i class="fas fa-chevron-down"></i></div>
-                <div class="answer">En ucuz kartvizit 195 ₺'den başlıyor (1.000 Adet, NK). Güncel fiyatlarımız için <a href="https://wa.me/905016675755?text=Merhaba,%20kartvizit%20güncel%20fiyat%20listesini%20görmek%20istiyorum." target="_blank" style="color:var(--secondary); font-weight:700;">WhatsApp</a> ile iletişime geçin.</div>
+        <div class="faq-container">
+            <div class="faq-item active">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    Samsun'da tabela fiyatları ne kadar?
+                    <span class="faq-icon">−</span>
+                </div>
+                <div class="faq-answer">Fiyatlar; kullanılan malzeme, harf büyüklüğü, ışıklı veya ışıksız olmasına göre değişir. En doğru teklifi almak için WhatsApp'tan görsel veya ölçü gönderebilirsiniz, ücretsiz keşif yapıyoruz.</div>
             </div>
-            <div class="faq-item" onclick="toggleFaq(this)">
-                <div class="question">Broşür baskı süresi ne kadar? <i class="fas fa-chevron-down"></i></div>
-                <div class="answer">Broşür siparişleri 1-2 iş günü içinde kargoya verilir. Acil işler için özel çözümlerimiz mevcuttur.</div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    Kutu harf tabela ne kadar dayanır?
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">Paslanmaz çelik ve kaliteli pleksi malzeme ile üretilen tabelalarımız dış hava koşullarına karşı 5-7 yıl ilk günkü parlaklığını korur. LED aydınlatmalarımız 50.000 saat ömürlüdür.</div>
             </div>
-            <div class="faq-item" onclick="toggleFaq(this)">
-                <div class="question">Fason baskı nedir ve kimler yararlanabilir? <i class="fas fa-chevron-down"></i></div>
-                <div class="answer">Fason baskı, reklamcılar, matbaacılar ve ajanslar için toplu üretim hizmetidir. Siz işi getirin, biz en uygun fiyata ve hızlıca basalım. Detaylar için <a href="https://wa.me/905016675755?text=Merhaba,%20fason%20baskı%20hakkında%20bilgi%20almak%20istiyorum." target="_blank" style="color:var(--secondary); font-weight:700;">WhatsApp</a> ile iletişime geçin.</div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    Totem tabelalar rüzgara dayanıklı mı?
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">Evet, Karadeniz'in şiddetli rüzgarlarına karşı statik hesaplamalar yapılır, galvanizli çelik konstrüksiyon ve derin beton temel ile üretilir. TS EN standartlarına uygundur.</div>
             </div>
-            <div class="faq-item" onclick="toggleFaq(this)">
-                <div class="question">Nasıl sipariş verebilirim? <i class="fas fa-chevron-down"></i></div>
-                <div class="answer">WhatsApp hattımızdan veya telefonla bize ulaşarak sipariş verebilirsiniz. Dosyalarınızı kabul ediyor, baskı ve kargo sürecini başlatıyoruz.</div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    Araç giydirme folyosu boyaya zarar verir mi?
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">Hayır, kullandığımız 1.sınıf cast folyolar (3M, Avery) söküldüğünde aracın orijinal boyasına zerre kadar zarar vermez, ayrıca garanti veriyoruz.</div>
             </div>
-            <div class="faq-item" onclick="toggleFaq(this)">
-                <div class="question">Afiş baskı fiyatları nedir? <i class="fas fa-chevron-down"></i></div>
-                <div class="answer">Afiş fiyatlarımız 1.265 ₺'den başlıyor (34x49 cm, 90gr, 100 Adet). Güncel fiyatlar için <a href="https://wa.me/905016675755?text=Merhaba,%20afiş%20güncel%20fiyat%20listesini%20görmek%20istiyorum." target="_blank" style="color:var(--secondary); font-weight:700;">WhatsApp</a> ile iletişime geçin.</div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    Samsun dışına da montaj yapıyor musunuz?
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">Evet, Karadeniz'in her iline (Ordu, Giresun, Trabzon, Rize, Sinop, Amasya, Kastamonu) ve Türkiye'nin birçok noktasına profesyonel montaj ekibimizle hizmet veriyoruz.</div>
             </div>
-            <div class="faq-item" onclick="toggleFaq(this)">
-                <div class="question">Magnet baskısı ne kadar sürer? <i class="fas fa-chevron-down"></i></div>
-                <div class="answer">Magnet siparişleri 1-2 iş günü içinde kargoya verilir. Hızlı teslimat için stok malzemelerimiz hazırdır.</div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    Tabelalarınızın garantisi var mı?
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">Tüm tabelalarımız malzeme ve işçilik hatasına karşı 2 yıl garantilidir. LED aydınlatmalar için ayrıca 3 yıl garanti sunuyoruz.</div>
             </div>
-            <div class="faq-item" onclick="toggleFaq(this)">
-                <div class="question">Ödeme seçenekleriniz nelerdir? <i class="fas fa-chevron-down"></i></div>
-                <div class="answer">Nakit, banka havalesi ve kredi kartına taksit imkanı sunuyoruz. Büyük projelerde peşinatlı ödeme planı yapabiliriz.</div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    Kutu harf ile ışıklı pano arasındaki fark nedir?
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">Kutu harf 3 boyutlu ve her harf ayrı ayrı ışıklıdır, daha prestijlidir. Işıklı pano ise tek bir kasa içinde aydınlatmalıdır, ekonomiktir.</div>
             </div>
-            <div class="faq-item" onclick="toggleFaq(this)">
-                <div class="question">Hangi baskı tekniklerini kullanıyorsunuz? <i class="fas fa-chevron-down"></i></div>
-                <div class="answer">Ofset, dijital, serigrafi, flekso ve tifdruk baskı tekniklerini kullanıyoruz. Her işe en uygun metodu biz belirliyoruz.</div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    CNC lazer kesim hizmetiniz var mı?
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">Evet, Bafra atölyemizde 3 adet CNC router, 2 adet fiber lazer ve CO2 lazer ile pleksi, ahşap, paslanmaz malzemeleri fason kesiyoruz.</div>
             </div>
-            <div class="faq-item" onclick="toggleFaq(this)">
-                <div class="question">Etiket fiyatları ne kadar? <i class="fas fa-chevron-down"></i></div>
-                <div class="answer">Etiket fiyatlarımız 290 ₺'den başlıyor (1.000 Adet, E). Güncel fiyatlar için <a href="https://wa.me/905016675755?text=Merhaba,%20etiket%20güncel%20fiyat%20listesini%20görmek%20istiyorum." target="_blank" style="color:var(--secondary); font-weight:700;">WhatsApp</a> ile iletişime geçin.</div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    Dijital baskıda hangi çözünürlüğü kullanıyorsunuz?
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">720 dpi'den 1440 dpi'ye kadar UV ve solvent baskı yapıyoruz. Dış mekan brandalarımız 440-600 gr/m² arasıdır.</div>
             </div>
-            <div class="faq-item" onclick="toggleFaq(this)">
-                <div class="question">Renk uyumu ve kalite garantiniz var mı? <i class="fas fa-chevron-down"></i></div>
-                <div class="answer">Evet, tüm baskılarımızda Pantone ve CMYK renk uyumu sağlanır. Kalite standartlarımız ISO belgelidir.</div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    Cephe giydirme işlemi ne kadar sürer?
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">Orta büyüklükte bir mağaza cephesi ortalama 3-5 iş gününde tamamlanır. Proje büyüklüğüne göre planlama yapılır.</div>
             </div>
-            <div class="faq-item" onclick="toggleFaq(this)">
-                <div class="question">Kargo ücreti ne kadar? <i class="fas fa-chevron-down"></i></div>
-                <div class="answer">Kargo ücreti, siparişin ağırlığına ve adrese göre değişir. Toplu siparişlerde kargo ücretsiz kampanyalarımız oluyor. Detaylar için <a href="https://wa.me/905016675755?text=Merhaba,%20kargo%20ücreti%20hakkında%20bilgi%20almak%20istiyorum." target="_blank" style="color:var(--secondary); font-weight:700;">WhatsApp</a> ile iletişime geçin.</div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    Fuar standı tasarımı ve kurulumu yapıyor musunuz?
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">Evet, fuar standınızı konseptinden montajına kadar anahtar teslim yapıyoruz. Modüler sistemler ile sökülüp takılabilir standlar üretiyoruz.</div>
             </div>
-            <div class="faq-item" onclick="toggleFaq(this)">
-                <div class="question">Grafik tasarım desteği veriyor musunuz? <i class="fas fa-chevron-down"></i></div>
-                <div class="answer">Evet, profesyonel grafik ekibimizle tasarım ihtiyaçlarınızda yanınızdayız. Baskı öncesi tasarım kontrolü yapıyoruz.</div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    Ödeme seçenekleriniz nelerdir?
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">Nakit, banka havalesi ve kredi kartına taksit imkanı. Büyük projelerde peşinatlı ve montaj sonrası ödeme planı yapılabilir.</div>
             </div>
-            <div class="faq-item" onclick="toggleFaq(this)">
-                <div class="question">Türkiye dışına da gönderim yapıyor musunuz? <i class="fas fa-chevron-down"></i></div>
-                <div class="answer">Şu an sadece Türkiye içi gönderim yapıyoruz. Ancak yurt dışı talepleriniz için <a href="https://wa.me/905016675755?text=Merhaba,%20yurt%20dışı%20gönderim%20hakkında%20bilgi%20almak%20istiyorum." target="_blank" style="color:var(--secondary); font-weight:700;">WhatsApp</a> ile iletişime geçebilirsiniz.</div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    Referanslarınızı nerede görebilirim?
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">Web sitemizin "Ustalık Eserlerimiz" bölümünde 30'dan fazla proje fotoğrafı bulunuyor. Ayrıca Google haritalar üzerinde müşteri yorumlarımızı inceleyebilirsiniz.</div>
             </div>
-            <div class="faq-item" onclick="toggleFaq(this)">
-                <div class="question">Hangi dosya formatlarını kabul ediyorsunuz? <i class="fas fa-chevron-down"></i></div>
-                <div class="answer">PDF, CDR, AI, EPS, PSD, JPG, PNG formatlarını kabul ediyoruz. Baskı öncesi dosya kontrollerinizi yapıyoruz.</div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    İşletmem için hangi tabela daha uygun?
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">Konum, bütçe ve marka kimliğine göre size en uygun çözümü ücretsiz olarak belirliyoruz. WhatsApp'tan ulaşın.</div>
             </div>
-            <div class="faq-item" onclick="toggleFaq(this)">
-                <div class="question">Neden Karadeniz Matbaa'yı tercih etmeliyim? <i class="fas fa-chevron-down"></i></div>
-                <div class="answer">Aracısız fabrika fiyatı, hızlı teslimat, kaliteli malzeme, 7/24 WhatsApp desteği, profesyonel grafik ekibi ve Türkiye'nin her yerine kargo avantajıyla en iyi seçeneğiz. Fiyatlarımızı <a href="https://wa.me/905016675755?text=Merhaba,%20özel%20teklif%20almak%20istiyorum." target="_blank" style="color:var(--secondary); font-weight:700;">WhatsApp</a> ile karşılaştırabilirsiniz.</div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    LED aydınlatmalar ne kadar elektrik harcar?
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">Çok düşük enerji tüketimi. 1 metrekarelik bir tabela ayda yaklaşık 5-10 TL elektrik harcar. Enerji tasarruflu Samsung LED kullanıyoruz.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    Sipariş teslim süreniz ne kadar?
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">Standart tabelalarda 5-7 iş günü, özel projelerde proje büyüklüğüne göre değişir. Acil işler için stok malzemelerle hızlı üretim yapabiliyoruz.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    Montaj ekibiniz profesyonel mi?
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">Evet, tüm montaj ekiplerimiz yüksekte çalışma belgeli, sigortalı ve yıllardır bizimle çalışan ustalardan oluşur.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    Karadeniz bölgesinde başka illere de hizmet veriyor musunuz?
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">Evet, Samsun merkezli olmak üzere Karadeniz geneli ve çevre İç Anadolu illerine (Amasya, Tokat, Çorum vb.) montaj yapıyoruz.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    Neden Uzman Reklam'ı tercih etmeliyim?
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">1973'ten beri Karadeniz'de hizmet veren, kendi fabrikasında üretim yapan, aracısız ve garantili iş yapan köklü bir firmayız.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    İletişim bilgileriniz nelerdir?
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">Telefon: 0532 220 46 49, WhatsApp: 0507 960 5049, Adres: Emirefendi Mh. Çizmeli 2.Sk. No:33 Bafra/Samsun.</div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- CONTACT -->
+<!-- ========== CONTACT ========== -->
 <section class="contact" id="iletisim">
     <div class="container">
-        <div class="section-title">
-            <h2>İletişim</h2>
-            <p>Bize ulaşın, projenizi hemen başlatalım</p>
+        <div class="section-title" style="color: #fff; margin-bottom: 40px;">
+            <h2 style="color: #fff;">İletişim</h2>
+            <p style="color: rgba(255,255,255,0.8);">Bize ulaşın, projenizi hemen başlatalım</p>
         </div>
         <div class="contact-grid">
             <div class="contact-info">
                 <h3>Hemen Teklif Alın</h3>
                 <p><i class="fas fa-phone-alt"></i> <a href="tel:+905016675755">0 501 667 57 55</a></p>
-                <p><i class="fab fa-whatsapp"></i> <a href="https://wa.me/905016675755" target="_blank">WhatsApp ile yazın</a></p>
+                <p><i class="fab fa-whatsapp"></i> <a href="https://wa.me/905016675755" target="_blank">WhatsApp ile Yazın</a></p>
                 <p><i class="fas fa-envelope"></i> <a href="mailto:info@karadenizmatbaa.com">info@karadenizmatbaa.com</a></p>
 
                 <div class="address-block">
-                    <p><strong><i class="fas fa-print" style="color:var(--secondary);"></i> Toraman Matbaa</strong></p>
+                    <p><strong><i class="fas fa-print"></i> Toraman Matbaa</strong></p>
                     <p>2. Matbaacılar Sitesi 5.Kat E Blok 3NE19 Topkapı - İSTANBUL</p>
-                    <p><a href="https://toramanmatbaa.com" target="_blank" style="color:var(--secondary);">toramanmatbaa.com</a> | 444 5 340</p>
-                    <p style="margin-top:12px;"><strong><i class="fas fa-store" style="color:var(--secondary);"></i> Uzman Reklam</strong></p>
+                    <p><a href="https://toramanmatbaa.com" target="_blank" style="color: var(--secondary);">toramanmatbaa.com</a> | 444 5 340</p>
+                    <p style="margin-top:15px;"><strong><i class="fas fa-store"></i> Uzman Reklam</strong></p>
                     <p>Emirefendi Mh. Çizmeli 2.Sk. No:33, Bafra / SAMSUN</p>
-                    <p><a href="https://samsuntabela.tr" target="_blank" style="color:var(--secondary);">samsuntabela.tr</a> | 0532 220 46 49</p>
+                    <p><a href="https://samsuntabela.tr" target="_blank" style="color: var(--secondary);">samsuntabela.tr</a> | 0532 220 46 49</p>
                 </div>
 
                 <a href="https://wa.me/905016675755?text=Merhaba,%20karadenizmatbaa.com%20üzerinden%20teklif%20almak%20istiyorum." target="_blank" class="btn-primary"><i class="fab fa-whatsapp"></i> WhatsApp ile Yaz</a>
             </div>
             <div>
-                <h3 style="font-size:1.4rem; font-weight:800; color:var(--primary); margin-bottom:15px;">Çalışma Saatleri</h3>
+                <h3 style="color: #fff;">Çalışma Saatleri</h3>
                 <p><strong>Hafta içi:</strong> 09:00 – 19:00</p>
                 <p><strong>Cumartesi:</strong> 09:00 – 15:00</p>
                 <p><strong>Pazar:</strong> Kapalı (WhatsApp'tan yazabilirsiniz)</p>
-                <p style="margin-top:20px; color:var(--gray);"><i class="fas fa-clock" style="color:var(--secondary);"></i> Acil işleriniz için WhatsApp hattımız her zaman açıktır.</p>
+                <p style="margin-top:20px;"><i class="fas fa-clock" style="color:var(--secondary);"></i> Acil işleriniz için WhatsApp hattımız her zaman açıktır.</p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- FOOTER -->
+<!-- ========== FOOTER ========== -->
 <footer>
     <div class="container">
         <div class="footer-col">
             <h4>Karadeniz Matbaa</h4>
-            <p style="color:rgba(255,255,255,0.5); font-size:0.9rem;">Karadeniz'in en hızlı matbaası. Kartvizit, broşür, afiş, magnet, etiket ve fason baskı.</p>
+            <p>Karadeniz'in en hızlı matbaası. Kartvizit, broşür, afiş, magnet, etiket ve fason baskı.</p>
         </div>
         <div class="footer-col">
             <h4>Hizmetler</h4>
@@ -1052,26 +980,24 @@
         </div>
         <div class="footer-col">
             <h4>Kurumsal</h4>
-            <a href="#hakkimizda">Hakkımızda</a>
+            <a href="#sss">Sık Sorulanlar</a>
             <a href="#iletisim">İletişim</a>
             <a onclick="openModal('kvkk')">KVKK</a>
             <a onclick="openModal('gizlilik')">Gizlilik Politikası</a>
         </div>
         <div class="footer-col">
             <h4>Bize Ulaşın</h4>
-            <p><i class="fas fa-phone-alt"></i> 0 501 667 57 55</p>
-            <p><i class="fab fa-whatsapp"></i> WhatsApp ile yazın</p>
-            <p><i class="fas fa-envelope"></i> info@karadenizmatbaa.com</p>
-            <p style="margin-top:10px; font-size:0.85rem; color:rgba(255,255,255,0.4);">Toraman Matbaa: <a href="https://toramanmatbaa.com" target="_blank" style="color:var(--secondary);">toramanmatbaa.com</a></p>
-            <p style="font-size:0.85rem; color:rgba(255,255,255,0.4);">Uzman Reklam: <a href="https://samsuntabela.tr" target="_blank" style="color:var(--secondary);">samsuntabela.tr</a></p>
+            <p><i class="fas fa-phone-alt"></i> <a href="tel:+905016675755">0 501 667 57 55</a></p>
+            <p><i class="fab fa-whatsapp"></i> <a href="https://wa.me/905016675755">WhatsApp ile Yazın</a></p>
+            <p><i class="fas fa-envelope"></i> <a href="mailto:info@karadenizmatbaa.com">info@karadenizmatbaa.com</a></p>
         </div>
-        <div class="footer-bottom">
-            <p>© 2026 Karadeniz Matbaa. Tüm hakları saklıdır. | Toraman Matbaa &amp; Uzman Reklam işbirliği</p>
-        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2026 Karadeniz Matbaa. Tüm hakları saklıdır. | Toraman Matbaa &amp; Uzman Reklam işbirliği</p>
     </div>
 </footer>
 
-<!-- MODALS -->
+<!-- ========== MODALS (KVKK & Gizlilik) ========== -->
 <div class="modal-overlay" id="kvkkModal">
     <div class="modal-box">
         <span class="close-modal" onclick="closeModal('kvkkModal')">&times;</span>
@@ -1096,22 +1022,94 @@
     </div>
 </div>
 
-<!-- FLOATING WHATSAPP + INSTAGRAM -->
-<div class="wp-float">
-    <a href="https://wa.me/905016675755?text=Merhaba,%20karadenizmatbaa.com%20üzerinden%20teklif%20almak%20istiyorum." target="_blank" class="wp-btn" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-    <a href="https://www.instagram.com/toramanmatbaa" target="_blank" class="ig-btn" title="Instagram"><i class="fab fa-instagram"></i></a>
+<style>
+    .modal-overlay {
+        display: none;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(3px);
+        animation: fadeIn 0.3s;
+    }
+    .modal-overlay.active { display: flex; }
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+    .modal-box {
+        background: #fff;
+        padding: 40px;
+        border-radius: 20px;
+        width: 90%;
+        max-width: 500px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        position: relative;
+        animation: slideUp 0.3s ease;
+    }
+    @keyframes slideUp {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    .close-modal {
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        font-size: 28px;
+        font-weight: bold;
+        color: var(--gray);
+        cursor: pointer;
+        transition: color 0.3s;
+    }
+    .close-modal:hover { color: var(--secondary); }
+    .modal-box h2 {
+        font-size: 1.8rem;
+        color: var(--primary);
+        margin-bottom: 20px;
+    }
+    .modal-box p {
+        color: var(--gray);
+        line-height: 1.7;
+        margin-bottom: 12px;
+    }
+</style>
+
+<!-- ========== FLOATING BUTTONS ========== -->
+<div class="floating-buttons">
+    <a href="https://wa.me/905016675755?text=Merhaba,%20karadenizmatbaa.com%20üzerinden%20teklif%20almak%20istiyorum." target="_blank" class="float-btn wp-btn" title="WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    <a href="https://www.instagram.com/toramanmatbaa" target="_blank" class="float-btn ig-btn" title="Instagram">
+        <i class="fab fa-instagram"></i>
+    </a>
 </div>
 
-<!-- SCRIPTS -->
+<!-- ========== SCRIPTS ========== -->
 <script>
+    // Navbar Mobile Menu
     function toggleMenu() {
         document.getElementById('navLinks').classList.toggle('open');
     }
 
+    // FAQ Toggle (index.html'deki gibi)
     function toggleFaq(el) {
-        el.classList.toggle('active');
+        const parent = el.closest('.faq-item');
+        const icon = parent.querySelector('.faq-icon');
+        if (parent.classList.contains('active')) {
+            parent.classList.remove('active');
+            icon.textContent = '+';
+        } else {
+            parent.classList.add('active');
+            icon.textContent = '−';
+        }
     }
 
+    // Modals
     function openModal(type) {
         if (type === 'kvkk') document.getElementById('kvkkModal').classList.add('active');
         else if (type === 'gizlilik') document.getElementById('gizlilikModal').classList.add('active');
@@ -1132,16 +1130,19 @@
         });
     });
 
-    // Sayfa yüklendiğinde tüm FAQ'lar kapalı olsun
+    // Sayfa yüklendiğinde tüm FAQ'lar kapalı olsun (ilk soru hariç)
     document.addEventListener('DOMContentLoaded', function() {
-        document.querySelectorAll('.faq-item').forEach(item => {
-            item.classList.remove('active');
+        const items = document.querySelectorAll('.faq-item');
+        items.forEach((item, index) => {
+            if (index !== 0) {
+                item.classList.remove('active');
+                item.querySelector('.faq-icon').textContent = '+';
+            }
         });
     });
 </script>
 
-<!-- GOOGLE ANALYTICS (placeholder) -->
-<!-- 
+<!-- ========== GOOGLE ANALYTICS ========== -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -1149,7 +1150,6 @@
   gtag('js', new Date());
   gtag('config', 'G-XXXXXXXXXX');
 </script>
--->
 
 </body>
 </html>
