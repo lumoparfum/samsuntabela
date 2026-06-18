@@ -37,6 +37,22 @@
             --ig-color: #E4405F;
         }
 
+        /* ========== SCROLL FADE-IN ========== */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .fade-in-delay-1 { transition-delay: 0.1s; }
+        .fade-in-delay-2 { transition-delay: 0.2s; }
+        .fade-in-delay-3 { transition-delay: 0.3s; }
+        .fade-in-delay-4 { transition-delay: 0.4s; }
+        .fade-in-delay-5 { transition-delay: 0.5s; }
+
         /* ========== BUTTONS ========== */
         .btn-primary {
             display: inline-block;
@@ -145,7 +161,51 @@
             opacity: 0.2;
             z-index: 0;
         }
+        /* Hero animasyonlu arka plan daireleri */
+        .hero-blob {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.08;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .hero-blob-1 {
+            width: 400px; height: 400px;
+            background: var(--secondary);
+            top: -100px; right: -80px;
+            animation: blobFloat 7s ease-in-out infinite;
+        }
+        .hero-blob-2 {
+            width: 280px; height: 280px;
+            background: #fff;
+            bottom: -60px; left: -60px;
+            animation: blobFloat 9s ease-in-out infinite reverse;
+        }
+        .hero-blob-3 {
+            width: 160px; height: 160px;
+            background: var(--secondary);
+            top: 40%; left: 10%;
+            animation: blobFloat 5s ease-in-out infinite 2s;
+        }
+        @keyframes blobFloat {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-25px) scale(1.05); }
+        }
+        /* Hero içeriği animasyonu */
         .hero .container { position: relative; z-index: 1; }
+        .hero h1 {
+            animation: heroFadeUp 0.9s ease both;
+        }
+        .hero p {
+            animation: heroFadeUp 0.9s ease 0.2s both;
+        }
+        .hero-buttons {
+            animation: heroFadeUp 0.9s ease 0.4s both;
+        }
+        @keyframes heroFadeUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
         .hero h1 {
             font-size: clamp(2rem, 5vw, 3.5rem);
             font-weight: 900;
@@ -198,7 +258,7 @@
             border-radius: 16px;
             padding: 25px 18px;
             text-align: center;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             border: 2px solid transparent;
             cursor: pointer;
             display: flex;
@@ -206,9 +266,10 @@
             align-items: center;
         }
         .service-card:hover {
-            transform: translateY(-8px);
+            transform: translateY(-12px) scale(1.02);
             border-color: var(--secondary);
-            box-shadow: 0 15px 40px rgba(255, 107, 53, 0.15);
+            box-shadow: 0 20px 50px rgba(244, 123, 32, 0.2);
+            background: #fff;
         }
         .service-card img {
             width: 80px;
@@ -217,11 +278,12 @@
             object-fit: cover;
             margin-bottom: 15px;
             border: 3px solid var(--secondary);
-            transition: all 0.3s;
+            transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         .service-card:hover img {
-            transform: scale(1.1);
+            transform: scale(1.15) rotate(5deg);
             border-color: var(--primary);
+            box-shadow: 0 6px 20px rgba(244, 123, 32, 0.3);
         }
         .service-card h3 {
             font-size: 1.2rem;
@@ -256,15 +318,30 @@
             border-radius: 16px;
             padding: 20px 18px;
             border: 1px solid var(--light-gray);
-            transition: 0.3s;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             display: flex;
             flex-direction: column;
             box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            position: relative;
+            overflow: hidden;
+        }
+        .price-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--secondary), #ffa550);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.35s ease;
         }
         .price-card:hover {
             border-color: var(--secondary);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(244, 123, 32, 0.15);
+            transform: translateY(-6px);
+        }
+        .price-card:hover::before {
+            transform: scaleX(1);
         }
         .price-card .product-name {
             font-weight: 800;
@@ -320,12 +397,27 @@
         }
         .benefit-item {
             text-align: center;
-            padding: 15px;
+            padding: 25px 15px;
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+        .benefit-item:hover {
+            background: #fff;
+            box-shadow: 0 8px 24px rgba(244, 123, 32, 0.1);
+            transform: translateY(-6px);
         }
         .benefit-item i {
             font-size: 2.8rem;
             color: var(--secondary);
             margin-bottom: 15px;
+            display: inline-block;
+            transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .benefit-item:hover i {
+            transform: scale(1.25) rotate(-8deg);
+            color: var(--primary);
+            filter: drop-shadow(0 4px 8px rgba(244,123,32,0.35));
         }
         .benefit-item h3 {
             font-weight: 700;
@@ -357,10 +449,18 @@
             font-weight: 600;
             color: var(--primary);
             font-size: 0.9rem;
-            transition: 0.3s;
+            transition: all 0.25s ease;
             border: 1px solid var(--light-gray);
             cursor: default;
         }
+        .city-tag:hover {
+            background: var(--secondary);
+            color: #fff;
+            border-color: var(--secondary);
+            transform: translateY(-3px) scale(1.04);
+            box-shadow: 0 6px 16px rgba(244,123,32,0.25);
+        }
+        .city-tag:hover i { color: #fff; }
         .city-tag i { margin-right: 5px; color: var(--secondary); }
         .city-tag .kargo {
             background: var(--secondary);
@@ -634,10 +734,27 @@
             transition: all 0.3s;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
             border: none;
+            position: relative;
         }
-        .float-btn:hover { transform: scale(1.1); }
+        .float-btn:hover { transform: scale(1.12); }
         .wp-btn { background: var(--wa-green); }
         .ig-btn { background: var(--ig-color); }
+        /* Pulse ring — sadece WP butonu */
+        .wp-btn::before {
+            content: '';
+            position: absolute;
+            width: 100%; height: 100%;
+            border-radius: 50%;
+            background: var(--wa-green);
+            opacity: 0.4;
+            animation: pulseRing 2s ease-out infinite;
+            z-index: -1;
+        }
+        @keyframes pulseRing {
+            0%   { transform: scale(1);   opacity: 0.4; }
+            70%  { transform: scale(1.6); opacity: 0; }
+            100% { transform: scale(1.6); opacity: 0; }
+        }
 
         /* ========== RESPONSIVE ========== */
         @media (max-width: 992px) {
@@ -659,23 +776,55 @@
                 transition: max-height 0.3s;
             }
             .nav-links.open { max-height: 400px; }
-            .nav-links a { padding: 12px 20px; border-bottom: 1px solid rgba(255,255,255,0.1); }
-            .nav-links .btn-primary { border-radius: 0; margin: 0; width: 100%; }
+            .nav-links a {
+                padding: 14px 20px;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+                min-height: 48px;
+                display: flex;
+                align-items: center;
+            }
+            .nav-links .btn-primary { border-radius: 0; margin: 0; width: 100%; justify-content: center; }
             .services-grid { grid-template-columns: 1fr; }
             .hero-buttons { flex-direction: column; align-items: center; }
-            .hero-buttons .btn-primary { width: 100%; text-align: center; }
-            .floating-buttons { bottom: 15px; right: 10px; }
-            .float-btn { width: 50px; height: 50px; font-size: 1.3rem; }
-            .faq-toggle-header h2 { font-size: 1.4rem; }
-            .faq-list { padding: 20px; }
+            .hero-buttons .btn-primary { width: 100%; max-width: 320px; text-align: center; justify-content: center; }
+            .floating-buttons { bottom: 16px; right: 12px; gap: 10px; }
+            .float-btn { width: 52px; height: 52px; font-size: 1.3rem; }
+            .faq-toggle-header { padding: 18px 20px; }
+            .faq-toggle-header h2 { font-size: 1.3rem; }
+            .faq-list { padding: 16px; gap: 12px; }
             .faq-question { font-size: 0.95rem; }
+            .contact-grid { gap: 24px; }
+            .address-block { padding: 14px; }
+            /* Touch targets: tutti i bottoni min 44px */
+            .btn-primary, .btn-wa { min-height: 44px; display: inline-flex; align-items: center; justify-content: center; }
+        }
+        @media (max-width: 580px) {
+            .services-grid { grid-template-columns: 1fr; }
+            .price-grid { grid-template-columns: 1fr; }
+            .price-card .product-meta { flex-direction: column; align-items: flex-start; gap: 10px; }
+            .price-card .btn-wa { width: 100%; text-align: center; justify-content: center; }
         }
         @media (max-width: 480px) {
-            .hero h1 { font-size: 1.6rem; }
-            .price-grid { grid-template-columns: 1fr; }
-            .benefits-grid { grid-template-columns: 1fr; }
+            .hero { padding: 44px 0 52px; }
+            .hero h1 { font-size: 1.55rem; line-height: 1.3; }
+            .hero p { font-size: 0.95rem; margin-bottom: 26px; }
+            .section-title h2 { font-size: 1.7rem; }
+            .benefits-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
             .city-tags { gap: 6px; }
-            .city-tag { padding: 5px 12px; font-size: 0.8rem; }
+            .city-tag { padding: 6px 12px; font-size: 0.8rem; }
+            .city-tag.kargo-tag { font-size: 0.78rem; }
+            .faq-toggle-header h2 { font-size: 1.15rem; }
+            .float-btn { width: 48px; height: 48px; font-size: 1.2rem; }
+            .floating-buttons { bottom: 12px; right: 8px; }
+            footer .container { gap: 20px; }
+            .contact-info h3 { font-size: 1.3rem; }
+            .modal-box { padding: 24px 18px; }
+            .modal-box h2 { font-size: 1.4rem; }
+        }
+        @media (max-width: 360px) {
+            .hero h1 { font-size: 1.3rem; }
+            .benefits-grid { grid-template-columns: 1fr; }
+            .logo { font-size: 1.4rem; }
         }
     </style>
 </head>
@@ -699,6 +848,9 @@
 
 <!-- ========== HERO ========== -->
 <section class="hero">
+    <div class="hero-blob hero-blob-1"></div>
+    <div class="hero-blob hero-blob-2"></div>
+    <div class="hero-blob hero-blob-3"></div>
     <div class="container">
         <h1>Karadeniz'in <span>En Hızlı</span> Matbaası</h1>
         <p>Kartvizit, broşür, afiş, magnet, etiket ve fason baskıda en uygun fiyat. Reklamcılar, matbaacılar ve ajanslar için özel toptan fiyatlar. Siparişiniz ertesi gün kargoda!</p>
@@ -713,7 +865,7 @@
 <!-- ========== SERVICES ========== -->
 <section class="services" id="hizmetler">
     <div class="container">
-        <div class="section-title">
+        <div class="section-title fade-in">
             <h2>Hizmetlerimiz</h2>
             <p>En çok tercih edilen matbaa ürünlerimiz</p>
         </div>
@@ -761,7 +913,7 @@
 <!-- ========== PRICING (CARDS) ========== -->
 <section class="pricing" id="fiyat">
     <div class="container">
-        <div class="section-title">
+        <div class="section-title fade-in">
             <h2>Öne Çıkan Fiyat Listesi</h2>
             <p>En ucuz fiyatlarla başlayan ürünlerimiz. Detaylı liste için WhatsApp'tan ulaşın.</p>
         </div>
@@ -848,7 +1000,7 @@
 <!-- ========== BENEFITS ========== -->
 <section class="benefits">
     <div class="container">
-        <div class="section-title">
+        <div class="section-title fade-in">
             <h2>Neden Karadeniz Matbaa?</h2>
             <p>Farkımızı ortaya koyan 5 temel değer</p>
         </div>
@@ -885,7 +1037,7 @@
 <!-- ========== SERVICE AREAS ========== -->
 <section class="service-areas">
     <div class="container">
-        <div class="section-title">
+        <div class="section-title fade-in">
             <h2>Hizmet Verdiğimiz İller</h2>
             <p>Karadeniz bölgesinde ve Türkiye genelinde yanınızdayız</p>
         </div>
@@ -1183,6 +1335,28 @@
 
 <!-- ========== SCRIPTS ========== -->
 <script>
+    // ========== SCROLL FADE-IN ==========
+    const fadeEls = document.querySelectorAll('.fade-in, .service-card, .price-card, .benefit-item, .city-tag, .faq-item');
+    fadeEls.forEach((el, i) => {
+        el.classList.add('fade-in');
+        // stagger delay for grids
+        const parent = el.parentElement;
+        const siblings = Array.from(parent.children);
+        const idx = siblings.indexOf(el);
+        if (idx > 0 && idx <= 5) el.classList.add(`fade-in-delay-${idx}`);
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
     // Navbar Mobile Menu
     function toggleMenu() {
         document.getElementById('navLinks').classList.toggle('open');
