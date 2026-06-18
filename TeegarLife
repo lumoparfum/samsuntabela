@@ -1,0 +1,1556 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="apple-mobile-web-app-title" content="TeegarLife"/>
+<meta name="theme-color" content="#060B18"/>
+<title>TeegarLife – Yıldızın Gibi Parla</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+<style>
+/* ══════════════════════════════════════
+   TOKENS
+══════════════════════════════════════ */
+:root{
+  --bg:       #060B18;
+  --bg2:      #0D1526;
+  --bg3:      #131E35;
+  --card:     #111827;
+  --border:   rgba(255,255,255,.07);
+  --text:     #EEF2FF;
+  --text2:    #A5B4D4;
+  --text3:    #5B6E90;
+  --gold:     #FFD166;
+  --gold2:    #F4A832;
+  --blue:     #4F8EF7;
+  --green:    #2DD4BF;
+  --red:      #F87171;
+  --orange:   #FB923C;
+  --purple:   #A78BFA;
+  --star:     #FFD166;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html,body{height:100%;overscroll-behavior:none;}
+body{
+  font-family:'Space Grotesk',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  min-height:100dvh;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+a{text-decoration:none;color:inherit;}
+button{font-family:inherit;cursor:pointer;border:none;background:none;}
+input,select,textarea{font-family:inherit;}
+::-webkit-scrollbar{width:0;background:transparent;}
+
+/* ══════════════════════════════════════
+   STARFIELD
+══════════════════════════════════════ */
+#starfield{
+  position:fixed;top:0;left:0;width:100%;height:100%;
+  pointer-events:none;z-index:0;
+}
+
+/* ══════════════════════════════════════
+   LOGIN
+══════════════════════════════════════ */
+#loginScreen{
+  position:fixed;inset:0;z-index:9999;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--bg);
+  flex-direction:column;gap:0;
+}
+.login-wrap{
+  width:92%;max-width:360px;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:32px;
+  padding:40px 32px 36px;
+  text-align:center;
+  box-shadow:0 0 60px rgba(79,142,247,.12);
+}
+.login-star{font-size:3.5rem;line-height:1;margin-bottom:12px;animation:starPulse 3s ease-in-out infinite;}
+@keyframes starPulse{0%,100%{text-shadow:0 0 20px #FFD16688;}50%{text-shadow:0 0 50px #FFD166cc,0 0 80px #FFD16644;}}
+.login-logo{font-size:2rem;font-weight:700;letter-spacing:-.5px;margin-bottom:4px;}
+.login-logo span{color:var(--gold);}
+.login-tagline{font-size:.82rem;color:var(--text3);margin-bottom:32px;}
+.login-input{
+  width:100%;padding:14px 18px;
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:50px;color:var(--text);font-size:1rem;
+  text-align:center;letter-spacing:4px;margin-bottom:8px;
+  transition:border-color .2s;
+}
+.login-input:focus{outline:none;border-color:var(--gold);}
+.login-remember{display:flex;align-items:center;gap:8px;justify-content:center;margin-bottom:20px;font-size:.82rem;color:var(--text3);}
+.login-remember input{accent-color:var(--gold);width:16px;height:16px;}
+.login-btn{
+  width:100%;padding:14px;border-radius:50px;
+  background:linear-gradient(135deg,var(--gold),var(--gold2));
+  color:#0D1526;font-weight:700;font-size:1rem;
+  transition:all .2s;box-shadow:0 4px 20px rgba(255,209,102,.25);
+}
+.login-btn:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(255,209,102,.35);}
+.login-err{font-size:.78rem;color:var(--red);margin-top:8px;min-height:18px;}
+
+/* ══════════════════════════════════════
+   APP SHELL
+══════════════════════════════════════ */
+#app{display:none;flex-direction:column;min-height:100dvh;position:relative;z-index:1;}
+#app.visible{display:flex;}
+
+/* ══════════════════════════════════════
+   HEADER
+══════════════════════════════════════ */
+.header{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:max(16px,env(safe-area-inset-top)) 20px 12px;
+}
+.header-logo{font-size:1.3rem;font-weight:700;color:var(--gold);}
+.header-logo span{color:var(--text3);font-weight:400;}
+.icon-btn{
+  width:38px;height:38px;border-radius:50%;
+  background:var(--card);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.1rem;transition:all .2s;
+}
+.icon-btn:hover{border-color:var(--gold);background:var(--bg3);}
+
+/* ══════════════════════════════════════
+   BOTTOM NAV
+══════════════════════════════════════ */
+.bottom-nav{
+  display:flex;
+  background:var(--card);
+  border-top:1px solid var(--border);
+  padding:8px 0 max(8px,env(safe-area-inset-bottom));
+  position:sticky;bottom:0;z-index:100;
+}
+.nav-item{
+  flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;
+  font-size:.65rem;font-weight:600;color:var(--text3);padding:4px 0;
+  transition:color .2s;
+}
+.nav-item .nav-ico{font-size:1.4rem;transition:transform .2s;}
+.nav-item.active{color:var(--gold);}
+.nav-item.active .nav-ico{transform:scale(1.15);}
+
+/* ══════════════════════════════════════
+   PAGES
+══════════════════════════════════════ */
+.page{display:none;flex:1;overflow-y:auto;padding-bottom:20px;animation:pageIn .25s ease;}
+.page.active{display:block;}
+@keyframes pageIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* ══════════════════════════════════════
+   CARDS / SHARED
+══════════════════════════════════════ */
+.card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:24px;margin:12px 16px;padding:18px;
+}
+.section-label{
+  font-size:.68rem;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--text3);margin:20px 20px 8px;
+}
+.pill-badge{
+  display:inline-block;padding:3px 10px;border-radius:20px;
+  font-size:.65rem;font-weight:700;
+}
+.pill-green{background:rgba(45,212,191,.15);color:var(--green);}
+.pill-gold{background:rgba(255,209,102,.15);color:var(--gold);}
+.pill-red{background:rgba(248,113,113,.15);color:var(--red);}
+.pill-blue{background:rgba(79,142,247,.15);color:var(--blue);}
+
+/* ══════════════════════════════════════
+   HOME PAGE — STAR WIDGET
+══════════════════════════════════════ */
+.star-widget{
+  text-align:center;padding:28px 20px 20px;position:relative;
+  overflow:hidden;
+}
+.star-core{
+  position:relative;display:inline-block;margin-bottom:16px;
+  cursor:default;
+}
+.star-svg{
+  width:120px;height:120px;
+  filter:drop-shadow(0 0 20px rgba(255,209,102,.5));
+  animation:starSpin 20s linear infinite;
+}
+@keyframes starSpin{from{filter:drop-shadow(0 0 18px rgba(255,209,102,.4));}50%{filter:drop-shadow(0 0 40px rgba(255,209,102,.8));}to{filter:drop-shadow(0 0 18px rgba(255,209,102,.4));}}
+.star-day-badge{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  font-family:'Space Mono',monospace;
+  font-size:1.6rem;font-weight:700;color:var(--gold);
+  text-shadow:0 0 20px var(--gold);
+  pointer-events:none;
+}
+.star-day-label{font-size:.65rem;color:var(--text3);margin-top:-4px;}
+.star-quote{
+  font-size:.88rem;color:var(--text2);
+  max-width:300px;margin:0 auto;line-height:1.6;
+  font-style:italic;
+}
+
+/* ══════════════════════════════════════
+   BAĞIMLILIK KARTLARI
+══════════════════════════════════════ */
+.dep-cards{display:flex;flex-direction:column;gap:0;}
+.dep-card{
+  display:flex;align-items:center;gap:14px;
+  margin:0 16px 10px;padding:16px;
+  background:var(--card);border:1px solid var(--border);
+  border-radius:20px;transition:all .2s;position:relative;overflow:hidden;
+}
+.dep-card::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:4px;
+  border-radius:4px 0 0 4px;
+}
+.dep-card[data-type="sigara"]::before{background:var(--orange);}
+.dep-card[data-type="alkol"]::before{background:var(--blue);}
+.dep-card[data-type="31"]::before{background:var(--purple);}
+.dep-card[data-type="kumar"]::before{background:var(--green);}
+.dep-card[data-type="yeme"]::before{background:var(--red);}
+.dep-icon{font-size:2rem;width:48px;text-align:center;flex-shrink:0;}
+.dep-info{flex:1;min-width:0;}
+.dep-name{font-weight:700;font-size:.95rem;margin-bottom:2px;}
+.dep-days{
+  font-family:'Space Mono',monospace;
+  font-size:1.5rem;font-weight:700;color:var(--gold);line-height:1;
+}
+.dep-sub{font-size:.68rem;color:var(--text3);margin-top:2px;}
+.dep-actions{display:flex;flex-direction:column;gap:6px;flex-shrink:0;}
+.dep-btn{
+  padding:6px 12px;border-radius:30px;font-size:.68rem;font-weight:700;
+  transition:all .2s;
+}
+.dep-btn-relapse{
+  background:rgba(248,113,113,.15);color:var(--red);
+  border:1px solid rgba(248,113,113,.2);
+}
+.dep-btn-relapse:hover{background:rgba(248,113,113,.25);}
+.dep-btn-crisis{
+  background:rgba(79,142,247,.15);color:var(--blue);
+  border:1px solid rgba(79,142,247,.2);
+}
+.dep-btn-crisis:hover{background:rgba(79,142,247,.25);}
+
+/* ══════════════════════════════════════
+   NET WORTH / SAVINGS
+══════════════════════════════════════ */
+.savings-row{display:flex;gap:10px;margin:0 16px 10px;}
+.savings-box{
+  flex:1;background:var(--card);border:1px solid var(--border);
+  border-radius:20px;padding:14px;text-align:center;
+}
+.savings-box .s-label{font-size:.65rem;color:var(--text3);margin-bottom:4px;}
+.savings-box .s-value{font-size:1.2rem;font-weight:700;color:var(--green);}
+.savings-box .s-sub{font-size:.6rem;color:var(--text3);margin-top:2px;}
+
+/* ══════════════════════════════════════
+   ADD ADDICTION PAGE
+══════════════════════════════════════ */
+.add-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:12px;
+  padding:0 16px;
+}
+.add-type-card{
+  background:var(--card);border:2px solid var(--border);
+  border-radius:20px;padding:20px 14px;text-align:center;
+  cursor:pointer;transition:all .25s;
+}
+.add-type-card:hover,.add-type-card.selected{
+  border-color:var(--gold);background:var(--bg3);
+  box-shadow:0 0 20px rgba(255,209,102,.1);
+}
+.add-type-card .at-icon{font-size:2.2rem;margin-bottom:8px;}
+.add-type-card .at-name{font-weight:700;font-size:.9rem;}
+.add-type-card .at-desc{font-size:.72rem;color:var(--text3);margin-top:4px;}
+
+/* ══════════════════════════════════════
+   FORM ELEMENTS
+══════════════════════════════════════ */
+.form-card{background:var(--card);border:1px solid var(--border);border-radius:24px;margin:12px 16px;padding:20px;}
+.form-label{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--text3);display:block;margin-bottom:8px;}
+.form-input{
+  width:100%;padding:12px 16px;
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:50px;color:var(--text);font-size:.95rem;
+  transition:border-color .2s;
+}
+.form-input:focus{outline:none;border-color:var(--gold);}
+.form-group{margin-bottom:16px;}
+.btn-primary{
+  width:100%;padding:15px;border-radius:50px;
+  background:linear-gradient(135deg,var(--gold),var(--gold2));
+  color:#0D1526;font-weight:700;font-size:1rem;
+  transition:all .2s;box-shadow:0 4px 20px rgba(255,209,102,.2);
+}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(255,209,102,.3);}
+.btn-danger{
+  width:100%;padding:13px;border-radius:50px;margin-top:10px;
+  background:rgba(248,113,113,.12);color:var(--red);
+  border:1px solid rgba(248,113,113,.2);font-weight:700;
+}
+.btn-ghost{
+  width:100%;padding:13px;border-radius:50px;margin-top:8px;
+  background:transparent;color:var(--text3);
+  border:1px solid var(--border);font-weight:600;
+}
+
+/* ══════════════════════════════════════
+   STATS PAGE — CALENDAR
+══════════════════════════════════════ */
+.cal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;}
+.cal-nav{background:var(--bg2);border:1px solid var(--border);border-radius:30px;padding:6px 14px;font-size:.8rem;font-weight:600;color:var(--text);}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;}
+.cal-day-label{text-align:center;font-size:.6rem;font-weight:700;color:var(--text3);padding:4px 0;}
+.cal-day{
+  aspect-ratio:1;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-size:.7rem;font-weight:600;color:var(--text3);
+  transition:all .2s;cursor:default;
+}
+.cal-day.clean{background:rgba(45,212,191,.2);color:var(--green);}
+.cal-day.relapse{background:rgba(248,113,113,.2);color:var(--red);}
+.cal-day.today{border:2px solid var(--gold);color:var(--gold);}
+.cal-day.empty{opacity:0;}
+
+/* ══════════════════════════════════════
+   STATS — CHARTS (CSS BAR CHARTS)
+══════════════════════════════════════ */
+.bar-chart{display:flex;align-items:flex-end;gap:6px;height:100px;margin-top:8px;}
+.bar-wrap{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;}
+.bar{
+  width:100%;border-radius:6px 6px 0 0;
+  background:linear-gradient(to top,var(--gold2),var(--gold));
+  min-height:4px;transition:height .5s ease;
+}
+.bar-label{font-size:.55rem;color:var(--text3);text-align:center;}
+
+/* ══════════════════════════════════════
+   ROZET SAYFASI
+══════════════════════════════════════ */
+.badge-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:0 16px;}
+.badge-item{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:20px;padding:16px 10px;text-align:center;
+  transition:all .25s;position:relative;
+}
+.badge-item.earned{
+  border-color:rgba(255,209,102,.4);
+  box-shadow:0 0 20px rgba(255,209,102,.1);
+}
+.badge-item.locked{opacity:.4;filter:grayscale(.8);}
+.badge-emoji{font-size:2.2rem;margin-bottom:8px;display:block;}
+.badge-name{font-size:.72rem;font-weight:700;margin-bottom:3px;}
+.badge-req{font-size:.6rem;color:var(--text3);}
+.badge-earned-mark{
+  position:absolute;top:8px;right:8px;
+  font-size:.6rem;background:var(--gold);color:#0D1526;
+  border-radius:20px;padding:2px 6px;font-weight:700;
+}
+
+/* ══════════════════════════════════════
+   GÜNLÜK SAYFA
+══════════════════════════════════════ */
+.mood-row{display:flex;gap:8px;justify-content:center;margin-bottom:16px;}
+.mood-btn{
+  font-size:1.8rem;width:52px;height:52px;border-radius:50%;
+  background:var(--bg2);border:2px solid var(--border);
+  transition:all .2s;
+}
+.mood-btn.selected{border-color:var(--gold);transform:scale(1.15);background:rgba(255,209,102,.1);}
+.journal-entry{
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:16px;padding:14px;margin-bottom:10px;
+}
+.journal-entry .je-date{font-size:.65rem;color:var(--text3);margin-bottom:6px;}
+.journal-entry .je-mood{font-size:1.1rem;margin-bottom:4px;}
+.journal-entry .je-text{font-size:.85rem;color:var(--text2);line-height:1.5;}
+
+/* ══════════════════════════════════════
+   MODALS (OVERLAY)
+══════════════════════════════════════ */
+.modal{
+  position:fixed;inset:0;z-index:5000;
+  background:rgba(0,0,0,.7);backdrop-filter:blur(8px);
+  display:none;align-items:flex-end;justify-content:center;
+}
+.modal.center{align-items:center;}
+.modal.show{display:flex;animation:modalIn .25s ease;}
+@keyframes modalIn{from{opacity:0}to{opacity:1}}
+.modal-box{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:32px 32px 24px 24px;
+  width:100%;max-width:500px;padding:24px 20px;
+  max-height:90dvh;overflow-y:auto;
+  animation:slideUp .25s ease;
+}
+.modal.center .modal-box{border-radius:28px;width:92%;}
+@keyframes slideUp{from{transform:translateY(40px);opacity:0}to{transform:translateY(0);opacity:1}}
+.modal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;}
+.modal-title{font-size:1.15rem;font-weight:700;}
+.modal-close{font-size:1.8rem;color:var(--text3);line-height:1;padding:0 4px;}
+
+/* ══════════════════════════════════════
+   NEFES EGZERSİZİ
+══════════════════════════════════════ */
+.breath-wrap{text-align:center;padding:20px 0;}
+.breath-circle{
+  width:140px;height:140px;border-radius:50%;
+  background:radial-gradient(circle,rgba(79,142,247,.3),rgba(79,142,247,.05));
+  border:2px solid rgba(79,142,247,.4);
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 20px;font-size:1rem;font-weight:700;color:var(--blue);
+  transition:transform 4s ease;
+}
+.breath-circle.inhale{transform:scale(1.6);}
+.breath-circle.exhale{transform:scale(1);}
+.breath-instruction{font-size:1.1rem;font-weight:700;color:var(--blue);margin-bottom:8px;}
+.breath-counter{font-size:.85rem;color:var(--text3);}
+
+/* ══════════════════════════════════════
+   KRİZ MODU
+══════════════════════════════════════ */
+.crisis-options{display:flex;flex-direction:column;gap:12px;}
+.crisis-opt{
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:20px;padding:16px;display:flex;align-items:center;gap:14px;
+  cursor:pointer;transition:all .2s;
+}
+.crisis-opt:hover{border-color:var(--blue);background:var(--bg3);}
+.crisis-opt .co-icon{font-size:1.8rem;flex-shrink:0;}
+.crisis-opt .co-title{font-weight:700;font-size:.95rem;margin-bottom:3px;}
+.crisis-opt .co-desc{font-size:.75rem;color:var(--text3);}
+
+/* ══════════════════════════════════════
+   MINI GAME — TAP GAME
+══════════════════════════════════════ */
+.tap-game{text-align:center;padding:10px 0;}
+.tap-target{
+  width:100px;height:100px;border-radius:50%;
+  background:linear-gradient(135deg,var(--gold),var(--gold2));
+  display:flex;align-items:center;justify-content:center;
+  font-size:2.5rem;margin:0 auto 16px;
+  cursor:pointer;transition:transform .1s;
+  box-shadow:0 4px 20px rgba(255,209,102,.3);
+  user-select:none;
+}
+.tap-target:active{transform:scale(.9);}
+.tap-score{font-size:2rem;font-weight:700;color:var(--gold);font-family:'Space Mono',monospace;}
+.tap-label{font-size:.8rem;color:var(--text3);}
+.tap-timer{font-size:1rem;color:var(--text2);margin-top:8px;}
+
+/* ══════════════════════════════════════
+   CONFETTI
+══════════════════════════════════════ */
+.confetti-container{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9998;}
+.confetti-piece{position:absolute;width:10px;height:10px;top:-10px;border-radius:2px;animation:confettiFall 2.5s linear forwards;}
+@keyframes confettiFall{to{transform:translateY(110vh) rotate(720deg);opacity:0;}}
+
+/* ══════════════════════════════════════
+   TOAST
+══════════════════════════════════════ */
+.toast{
+  position:fixed;bottom:calc(80px + env(safe-area-inset-bottom));
+  left:16px;right:16px;
+  background:var(--card);border:1px solid var(--border);
+  color:var(--text);padding:13px 18px;
+  border-radius:40px;text-align:center;z-index:9999;
+  font-size:.88rem;font-weight:600;
+  animation:toastIn .3s ease;
+  box-shadow:0 4px 20px rgba(0,0,0,.4);
+}
+@keyframes toastIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+
+/* ══════════════════════════════════════
+   SETTINGS PAGE
+══════════════════════════════════════ */
+.setting-row{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:15px 16px;margin:0 16px 8px;
+  background:var(--card);border:1px solid var(--border);border-radius:18px;
+}
+.setting-left{display:flex;align-items:center;gap:12px;}
+.setting-icon{font-size:1.2rem;}
+.setting-label{font-weight:600;font-size:.9rem;}
+.setting-action{background:none;border:none;color:var(--blue);font-weight:700;font-size:.85rem;}
+.setting-action.danger{color:var(--red);}
+
+/* ══════════════════════════════════════
+   EMPTY STATE
+══════════════════════════════════════ */
+.empty-state{text-align:center;padding:48px 24px;}
+.empty-state .e-icon{font-size:3.5rem;margin-bottom:12px;opacity:.5;}
+.empty-state p{font-size:.88rem;color:var(--text3);line-height:1.6;}
+
+/* ══════════════════════════════════════
+   SPINNER
+══════════════════════════════════════ */
+.spinner{
+  position:fixed;inset:0;z-index:9998;
+  background:rgba(6,11,24,.7);backdrop-filter:blur(4px);
+  display:none;align-items:center;justify-content:center;
+}
+.spinner.show{display:flex;}
+.spinner-dot{
+  width:12px;height:12px;border-radius:50%;background:var(--gold);
+  animation:spinnerDot 1.4s ease-in-out infinite;
+}
+.spinner-dot:nth-child(2){animation-delay:.2s;margin:0 8px;}
+.spinner-dot:nth-child(3){animation-delay:.4s;}
+@keyframes spinnerDot{0%,80%,100%{transform:scale(0);opacity:.3}40%{transform:scale(1);opacity:1}}
+
+/* ══════════════════════════════════════
+   SCROLLABLE TABS
+══════════════════════════════════════ */
+.tab-row{
+  display:flex;gap:8px;overflow-x:auto;padding:0 16px 4px;
+  scrollbar-width:none;-webkit-overflow-scrolling:touch;
+}
+.tab-row::-webkit-scrollbar{display:none;}
+.tab-pill{
+  flex-shrink:0;padding:8px 18px;border-radius:40px;
+  font-size:.78rem;font-weight:600;cursor:pointer;
+  background:var(--card);border:1px solid var(--border);color:var(--text2);
+  transition:all .2s;
+}
+.tab-pill.active{background:var(--gold);color:#0D1526;border-color:var(--gold);}
+</style>
+</head>
+<body>
+
+<!-- STARFIELD -->
+<canvas id="starfield"></canvas>
+
+<!-- CONFETTI -->
+<div class="confetti-container" id="confettiEl"></div>
+
+<!-- SPINNER -->
+<div class="spinner" id="spinner">
+  <div class="spinner-dot"></div>
+  <div class="spinner-dot"></div>
+  <div class="spinner-dot"></div>
+</div>
+
+<!-- ══════════════════════════════════════
+     LOGIN SCREEN
+══════════════════════════════════════ -->
+<div id="loginScreen">
+  <div class="login-wrap">
+    <div class="login-star">⭐</div>
+    <div class="login-logo">Teegar<span>Life</span></div>
+    <div class="login-tagline">Karanlıkta parlayan bir yıldız ol</div>
+    <input type="password" id="pinInput" class="login-input" placeholder="••••••••" autocomplete="off" maxlength="20"/>
+    <div class="login-remember">
+      <input type="checkbox" id="rememberMe"/>
+      <label for="rememberMe">Beni hatırla (7 gün)</label>
+    </div>
+    <button class="login-btn" onclick="doLogin()">Giriş Yap ✦</button>
+    <div class="login-err" id="loginErr"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     APP
+══════════════════════════════════════ -->
+<div id="app">
+  <div class="header">
+    <div class="header-logo">Teegar<span>Life</span></div>
+    <div style="display:flex;gap:8px;">
+      <button class="icon-btn" onclick="showCrisis()" title="Kriz Modu">🆘</button>
+      <button class="icon-btn" onclick="switchPage('settings')">⚙️</button>
+    </div>
+  </div>
+
+  <!-- HOME PAGE -->
+  <div class="page active" id="page-home">
+    <!-- Star Widget -->
+    <div class="star-widget">
+      <div class="star-core">
+        <svg class="star-svg" id="mainStar" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="starGrad" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#FFE566"/>
+              <stop offset="60%" stop-color="#FFD166"/>
+              <stop offset="100%" stop-color="#F4A832"/>
+            </radialGradient>
+            <filter id="glow">
+              <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+              <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+          </defs>
+          <polygon id="starPoly" points="60,10 74,44 110,44 82,66 92,100 60,78 28,100 38,66 10,44 46,44" fill="url(#starGrad)" filter="url(#glow)"/>
+        </svg>
+        <div class="star-day-badge" id="mainDayBadge">0</div>
+      </div>
+      <div class="star-day-label" id="mainDayLabel">gün temiz</div>
+      <div class="star-quote" id="mainQuote" style="margin-top:12px;">"Karanlıkta parlayan bir yıldız ol."</div>
+    </div>
+
+    <!-- Tasarruf -->
+    <div class="savings-row" id="savingsRow" style="display:none;"></div>
+
+    <!-- Bağımlılık Kartları -->
+    <div class="section-label">Bağımlılıklarım</div>
+    <div class="dep-cards" id="depCards">
+      <div class="empty-state">
+        <div class="e-icon">🌟</div>
+        <p>Henüz bağımlılık eklemedin.<br>Aşağıdan ekle ve mücadeleye başla!</p>
+      </div>
+    </div>
+
+    <div style="padding:0 16px;margin-top:8px;">
+      <button class="btn-primary" onclick="switchPage('add')">+ Bağımlılık Ekle</button>
+    </div>
+
+    <!-- Günün Sözü -->
+    <div class="section-label">Günün Sözü</div>
+    <div class="card" id="dailyQuoteCard">
+      <div style="font-size:1.5rem;margin-bottom:8px;">💬</div>
+      <div id="dailyQuoteText" style="font-size:.9rem;color:var(--text2);line-height:1.7;font-style:italic;"></div>
+    </div>
+  </div>
+
+  <!-- EKLE PAGE -->
+  <div class="page" id="page-add">
+    <div class="section-label" style="margin-top:8px;">Bağımlılık Türü Seç</div>
+    <div class="add-grid">
+      <div class="add-type-card" onclick="selectType('sigara')" id="type-sigara">
+        <div class="at-icon">🚬</div>
+        <div class="at-name">Sigara</div>
+        <div class="at-desc">Günlük adet takibi</div>
+      </div>
+      <div class="add-type-card" onclick="selectType('alkol')" id="type-alkol">
+        <div class="at-icon">🍺</div>
+        <div class="at-name">Alkol</div>
+        <div class="at-desc">Birim takibi</div>
+      </div>
+      <div class="add-type-card" onclick="selectType('31')" id="type-31">
+        <div class="at-icon">🔞</div>
+        <div class="at-name">31</div>
+        <div class="at-desc">Gün sayacı</div>
+      </div>
+      <div class="add-type-card" onclick="selectType('kumar')" id="type-kumar">
+        <div class="at-icon">🎰</div>
+        <div class="at-name">Kumar</div>
+        <div class="at-desc">Para takibi</div>
+      </div>
+      <div class="add-type-card" onclick="selectType('yeme')" id="type-yeme">
+        <div class="at-icon">🍔</div>
+        <div class="at-name">Yeme Bozukluğu</div>
+        <div class="at-desc">Atak takibi</div>
+      </div>
+    </div>
+
+    <div id="addFormArea" style="display:none;">
+      <div class="form-card" style="margin-top:16px;">
+        <div class="form-group">
+          <label class="form-label">Başlangıç Tarihi</label>
+          <input type="date" id="addStartDate" class="form-input"/>
+        </div>
+        <!-- Sigara/Alkol için para alanı -->
+        <div id="addMoneyArea" style="display:none;">
+          <div class="form-group">
+            <label class="form-label" id="addMoneyLabel">Günlük Harcama (₺)</label>
+            <input type="number" id="addMoneyVal" class="form-input" placeholder="0" inputmode="decimal"/>
+          </div>
+        </div>
+        <!-- Kumar için para alanı -->
+        <div id="addGambleArea" style="display:none;">
+          <div class="form-group">
+            <label class="form-label">Günlük Kumar Limitiniz (₺)</label>
+            <input type="number" id="addGambleVal" class="form-input" placeholder="0" inputmode="decimal"/>
+          </div>
+        </div>
+        <button class="btn-primary" onclick="saveAddiction()">Kaydet & Başla ✦</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- İSTATİSTİK PAGE -->
+  <div class="page" id="page-stats">
+    <div class="tab-row" id="statsTabRow"></div>
+    <div id="statsContent"></div>
+  </div>
+
+  <!-- ROZETLER PAGE -->
+  <div class="page" id="page-badges">
+    <div class="section-label" style="margin-top:8px;">Rozetlerim</div>
+    <div class="badge-grid" id="badgeGrid"></div>
+  </div>
+
+  <!-- GÜNLÜK PAGE -->
+  <div class="page" id="page-journal">
+    <div class="form-card">
+      <div class="form-group">
+        <label class="form-label">Bugün nasıl hissediyorsun?</label>
+        <div class="mood-row">
+          <button class="mood-btn" onclick="selectMood('😊')" data-mood="😊">😊</button>
+          <button class="mood-btn" onclick="selectMood('😐')" data-mood="😐">😐</button>
+          <button class="mood-btn" onclick="selectMood('😔')" data-mood="😔">😔</button>
+          <button class="mood-btn" onclick="selectMood('😡')" data-mood="😡">😡</button>
+          <button class="mood-btn" onclick="selectMood('💪')" data-mood="💪">💪</button>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Günlük Not (maks. 200 karakter)</label>
+        <textarea id="journalText" class="form-input" style="border-radius:16px;resize:none;height:100px;" maxlength="200" placeholder="Bugün nasıl geçti? Neler hissettin?"></textarea>
+      </div>
+      <button class="btn-primary" onclick="saveJournal()">Kaydet ✦</button>
+    </div>
+    <div class="section-label">Geçmiş Notlar</div>
+    <div id="journalList" style="padding:0 16px;"></div>
+  </div>
+
+  <!-- AYARLAR PAGE -->
+  <div class="page" id="page-settings">
+    <div class="section-label" style="margin-top:8px;">Hesap</div>
+    <div class="setting-row">
+      <div class="setting-left"><span class="setting-icon">🚪</span><span class="setting-label">Çıkış Yap</span></div>
+      <button class="setting-action danger" onclick="doLogout()">Çıkış</button>
+    </div>
+    <div class="section-label">Veriler</div>
+    <div class="setting-row">
+      <div class="setting-left"><span class="setting-icon">🗑️</span><span class="setting-label">Tüm Verileri Sil</span></div>
+      <button class="setting-action danger" onclick="clearAllData()">Sil</button>
+    </div>
+    <div class="section-label">Uygulama Hakkında</div>
+    <div class="card" style="text-align:center;">
+      <div style="font-size:2rem;margin-bottom:8px;">⭐</div>
+      <div style="font-weight:700;margin-bottom:4px;">TeegarLife v1.0</div>
+      <div style="font-size:.78rem;color:var(--text3);line-height:1.6;">Bağımlılıkla mücadelede<br>yanındaki yıldız dost 🌟<br><br>Tıpkı Teegarden yıldızı gibi,<br>karanlıkta bile parlıyorsun.</div>
+    </div>
+  </div>
+
+  <!-- BOTTOM NAV -->
+  <nav class="bottom-nav">
+    <button class="nav-item active" onclick="switchPage('home')" id="nav-home">
+      <span class="nav-ico">🏠</span><span>Ana Sayfa</span>
+    </button>
+    <button class="nav-item" onclick="switchPage('stats')" id="nav-stats">
+      <span class="nav-ico">📊</span><span>İstatistik</span>
+    </button>
+    <button class="nav-item" onclick="switchPage('badges')" id="nav-badges">
+      <span class="nav-ico">🏆</span><span>Rozetler</span>
+    </button>
+    <button class="nav-item" onclick="switchPage('journal')" id="nav-journal">
+      <span class="nav-ico">📔</span><span>Günlük</span>
+    </button>
+    <button class="nav-item" onclick="switchPage('add')" id="nav-add">
+      <span class="nav-ico">➕</span><span>Ekle</span>
+    </button>
+  </nav>
+</div>
+
+<!-- ══════════════════════════════════════
+     MODALS
+══════════════════════════════════════ -->
+
+<!-- KRİZ MODAL -->
+<div class="modal" id="crisisModal">
+  <div class="modal-box">
+    <div class="modal-header">
+      <span class="modal-title">🆘 Kriz Modu</span>
+      <span class="modal-close" onclick="closeModal('crisisModal')">×</span>
+    </div>
+    <p style="font-size:.88rem;color:var(--text2);margin-bottom:16px;">Zor bir an yaşıyorsun. Güçlüsün. Hangisini denersin?</p>
+    <div class="crisis-options">
+      <div class="crisis-opt" onclick="startBreath()">
+        <div class="co-icon">🫁</div>
+        <div>
+          <div class="co-title">Nefes Egzersizi</div>
+          <div class="co-desc">1 dakikalık rehberli nefes tekniği</div>
+        </div>
+      </div>
+      <div class="crisis-opt" onclick="startTapGame()">
+        <div class="co-icon">🎮</div>
+        <div>
+          <div class="co-title">Dikkat Dağıt (Tap Game)</div>
+          <div class="co-desc">30 saniye boyunca yıldıza dokun!</div>
+        </div>
+      </div>
+      <div class="crisis-opt" onclick="showMotivation()">
+        <div class="co-icon">💪</div>
+        <div>
+          <div class="co-title">Motivasyon Sözü</div>
+          <div class="co-desc">Seni güçlendirecek bir söz</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NEFES MODAL -->
+<div class="modal center" id="breathModal">
+  <div class="modal-box" style="text-align:center;">
+    <div class="modal-header">
+      <span class="modal-title">🫁 Nefes Egzersizi</span>
+      <span class="modal-close" onclick="stopBreath()">×</span>
+    </div>
+    <div class="breath-wrap">
+      <div class="breath-circle" id="breathCircle">Hazır</div>
+      <div class="breath-instruction" id="breathInstruction">Başlamak için dokun</div>
+      <div class="breath-counter" id="breathCounter">6 tur kaldı</div>
+      <button class="btn-primary" style="margin-top:20px;max-width:200px;" id="breathStartBtn" onclick="beginBreath()">Başla</button>
+    </div>
+  </div>
+</div>
+
+<!-- TAP GAME MODAL -->
+<div class="modal center" id="tapModal">
+  <div class="modal-box" style="text-align:center;">
+    <div class="modal-header">
+      <span class="modal-title">🎮 Tap Game</span>
+      <span class="modal-close" onclick="closeModal('tapModal')">×</span>
+    </div>
+    <div class="tap-game">
+      <div class="tap-score" id="tapScore">0</div>
+      <div class="tap-label">puan</div>
+      <div class="tap-target" id="tapTarget" onclick="tapIt()">⭐</div>
+      <div class="tap-timer" id="tapTimer">30 saniye</div>
+    </div>
+  </div>
+</div>
+
+<!-- MOTIVASYON MODAL -->
+<div class="modal center" id="motivModal">
+  <div class="modal-box" style="text-align:center;">
+    <div class="modal-header">
+      <span class="modal-title">💪 Motivasyon</span>
+      <span class="modal-close" onclick="closeModal('motivModal')">×</span>
+    </div>
+    <div style="font-size:3rem;margin-bottom:16px;">⭐</div>
+    <div id="motivText" style="font-size:1.05rem;line-height:1.7;color:var(--text2);font-style:italic;margin-bottom:20px;"></div>
+    <button class="btn-primary" onclick="closeModal('motivModal')">Güçlüyüm! 💪</button>
+  </div>
+</div>
+
+<!-- NÜKSETME MODAL -->
+<div class="modal center" id="relapseModal">
+  <div class="modal-box">
+    <div class="modal-header">
+      <span class="modal-title">😔 Nüksetme</span>
+      <span class="modal-close" onclick="closeModal('relapseModal')">×</span>
+    </div>
+    <p style="font-size:.88rem;color:var(--text2);margin-bottom:16px;">Ne oldu? Tetikleyiciyi seç:</p>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;" id="triggerBtns">
+      <button onclick="selectTrigger('Stres')" class="tab-pill">😤 Stres</button>
+      <button onclick="selectTrigger('Yalnızlık')" class="tab-pill">😶 Yalnızlık</button>
+      <button onclick="selectTrigger('Can sıkıntısı')" class="tab-pill">🥱 Can sıkıntısı</button>
+      <button onclick="selectTrigger('Arkadaş etkisi')" class="tab-pill">👥 Arkadaş</button>
+      <button onclick="selectTrigger('Gece')" class="tab-pill">🌙 Gece</button>
+      <button onclick="selectTrigger('Ortam')" class="tab-pill">🏠 Ortam</button>
+      <button onclick="selectTrigger('Diğer')" class="tab-pill">❓ Diğer</button>
+    </div>
+    <p style="font-size:.75rem;color:var(--text3);">Bir tetikleyici seçince sayaç sıfırlanır.</p>
+  </div>
+</div>
+
+<script>
+// ══════════════════════════════════════
+// DATA
+// ══════════════════════════════════════
+const PIN = '547143614';
+const QUOTES = [
+  "Karanlıkta parlayan bir yıldız ol.",
+  "Her yeni gün, yeniden başlamak için bir fırsattır.",
+  "Düşmek başarısızlık değil, kalkmamak başarısızlıktır.",
+  "Sen de Teegarden yıldızı gibi, karanlığı aydınlatırsın.",
+  "Önemli olan pes etmemek. Yeniden başla.",
+  "Bugünkü direncin, yarınki gücündür.",
+  "Her temiz gün, kendi üzerindeki en büyük zaferdir.",
+  "Yıldızlar en iyi karanlıkta parlar.",
+  "Güçlüsün. Bunu her gün kendine hatırlat.",
+  "Bir adım geriye gitmek, yeniden koşmak için alan açmaktır.",
+  "Mücadele ettiğin her gün, sana ait bir zaferdir.",
+  "İçindeki ışık söndürülemez.",
+  "Zorluk geçici, özgürlük kalıcıdır.",
+  "Bugün sözünü tutarsan, yarın daha güçlü olursun.",
+  "Sen değişmeye karar verdin. Bu cesarettir."
+];
+const MOTIV = [
+  "Şu an çok zor hissettiriyorsa, bil ki bu his geçici. Sen kalıcısın.",
+  "Bugüne kadar attığın her adım boşa gitmedi. Vazgeçme.",
+  "Teegarden yıldızı trilyonlarca km uzaktan ışık saçıyor. Senin ışığın da söndürülemez.",
+  "Bu an geçecek. Ama direnç göstermen, seni güçlendirmeye devam edecek.",
+  "İçindeki yıldız hâlâ parlıyor. Onu söndürme.",
+  "En zorlu anlarda verilen kararlar, hayatı değiştirir. Bu o an.",
+  "Bugün geçerse, yarın daha güçlü olarak uyanırsın.",
+  "Bir dakika dayan. Sonra bir dakika daha. Böyle kazanılır."
+];
+const BADGE_DEF = [
+  {id:'7d',  name:'İlk Hafta',   emoji:'🌱', req:'7 gün temiz',   days:7},
+  {id:'14d', name:'2 Hafta',     emoji:'🌿', req:'14 gün temiz',  days:14},
+  {id:'21d', name:'Alışkanlık',  emoji:'💎', req:'21 gün temiz',  days:21},
+  {id:'30d', name:'Bir Ay',      emoji:'🌙', req:'30 gün temiz',  days:30},
+  {id:'60d', name:'2 Ay',        emoji:'🌟', req:'60 gün temiz',  days:60},
+  {id:'90d', name:'3 Ay',        emoji:'🏅', req:'90 gün temiz',  days:90},
+  {id:'180d',name:'Yarı Yıl',    emoji:'🥇', req:'180 gün temiz', days:180},
+  {id:'365d',name:'1 Yıl',       emoji:'👑', req:'365 gün temiz', days:365},
+  {id:'500d',name:'500 Gün',     emoji:'🌠', req:'500 gün temiz', days:500},
+  {id:'r1',  name:'İlk Adım',    emoji:'🚀', req:'İlk bağımlılık eklendi', days:0, special:'added'},
+  {id:'j7',  name:'Günlükçü',    emoji:'📔', req:'7 gün günlük yaz', days:0, special:'journal7'},
+  {id:'crisis1',name:'Kriz Aşıcı',emoji:'🛡️',req:'Kriz modunu kullandın',days:0,special:'crisis1'},
+];
+const TYPE_META = {
+  sigara:{label:'Sigara',icon:'🚬',color:'#FB923C',moneylabel:'Günlük Sigara Harcaması (₺)'},
+  alkol: {label:'Alkol', icon:'🍺',color:'#4F8EF7',moneylabel:'Günlük Alkol Harcaması (₺)'},
+  '31':  {label:'31',   icon:'🔞',color:'#A78BFA',moneylabel:null},
+  kumar: {label:'Kumar',icon:'🎰',color:'#2DD4BF',moneylabel:null},
+  yeme:  {label:'Yeme Bozukluğu',icon:'🍔',color:'#F87171',moneylabel:null},
+};
+
+// ══════════════════════════════════════
+// STATE
+// ══════════════════════════════════════
+let addictions = [];      // [{type,startDate,moneyday,relapses:[{date,trigger}]}]
+let journals   = [];      // [{date,mood,text}]
+let earnedBadges = [];    // ['7d','r1',...]
+let crisisUsed = false;
+let selectedType = null;
+let selectedMood = null;
+let currentRelapseIdx = null;
+let breathInterval = null, breathPhase = 0, breathRound = 0;
+let tapInterval = null, tapCount = 0, tapTimeLeft = 0;
+let calYear, calMonth;
+let statsActiveType = 0;
+
+// ══════════════════════════════════════
+// STORAGE
+// ══════════════════════════════════════
+function save(){
+  localStorage.setItem('tl_add', JSON.stringify(addictions));
+  localStorage.setItem('tl_jrn', JSON.stringify(journals));
+  localStorage.setItem('tl_bdg', JSON.stringify(earnedBadges));
+  localStorage.setItem('tl_crs', crisisUsed?'1':'0');
+}
+function load(){
+  try{
+    addictions   = JSON.parse(localStorage.getItem('tl_add')||'[]');
+    journals     = JSON.parse(localStorage.getItem('tl_jrn')||'[]');
+    earnedBadges = JSON.parse(localStorage.getItem('tl_bdg')||'[]');
+    crisisUsed   = localStorage.getItem('tl_crs')==='1';
+  }catch(e){ addictions=[]; journals=[]; earnedBadges=[]; }
+}
+
+// ══════════════════════════════════════
+// AUTH
+// ══════════════════════════════════════
+function doLogin(){
+  const v = document.getElementById('pinInput').value;
+  const err = document.getElementById('loginErr');
+  if(v === PIN){
+    if(document.getElementById('rememberMe').checked){
+      const exp = Date.now()+7*24*3600*1000;
+      localStorage.setItem('tl_session', exp.toString());
+    }
+    startApp();
+  } else {
+    err.textContent='Hatalı şifre. Tekrar dene.';
+    document.getElementById('pinInput').value='';
+    setTimeout(()=>err.textContent='',2500);
+  }
+}
+document.getElementById('pinInput').addEventListener('keydown',e=>{if(e.key==='Enter')doLogin();});
+
+function checkSession(){
+  const exp=localStorage.getItem('tl_session');
+  if(exp && Date.now()<parseInt(exp)) return true;
+  localStorage.removeItem('tl_session');
+  return false;
+}
+function doLogout(){
+  localStorage.removeItem('tl_session');
+  document.getElementById('app').classList.remove('visible');
+  document.getElementById('loginScreen').style.display='flex';
+  document.getElementById('pinInput').value='';
+}
+
+// ══════════════════════════════════════
+// STARFIELD
+// ══════════════════════════════════════
+function initStarfield(){
+  const c=document.getElementById('starfield');
+  const ctx=c.getContext('2d');
+  c.width=window.innerWidth; c.height=window.innerHeight;
+  const stars=[];
+  for(let i=0;i<200;i++) stars.push({
+    x:Math.random()*c.width, y:Math.random()*c.height,
+    r:Math.random()*1.5+.3,
+    a:Math.random(), da:.002+Math.random()*.004,
+    phase:Math.random()*Math.PI*2
+  });
+  function draw(){
+    ctx.clearRect(0,0,c.width,c.height);
+    stars.forEach(s=>{
+      s.phase+=s.da;
+      const alpha=.3+.7*((Math.sin(s.phase)+1)/2);
+      ctx.beginPath();
+      ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+      ctx.fillStyle=`rgba(255,220,100,${alpha*0.9})`;
+      ctx.fill();
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+  window.addEventListener('resize',()=>{c.width=window.innerWidth;c.height=window.innerHeight;});
+}
+
+// ══════════════════════════════════════
+// APP START
+// ══════════════════════════════════════
+function startApp(){
+  document.getElementById('loginScreen').style.display='none';
+  document.getElementById('app').classList.add('visible');
+  load();
+  renderHome();
+  renderBadges();
+  renderJournal();
+  checkBadges();
+}
+
+// ══════════════════════════════════════
+// PAGE SWITCHING
+// ══════════════════════════════════════
+function switchPage(name){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  const pg=document.getElementById('page-'+name);
+  if(pg) pg.classList.add('active');
+  const nav=document.getElementById('nav-'+name);
+  if(nav) nav.classList.add('active');
+  if(name==='home') renderHome();
+  if(name==='stats') renderStats();
+  if(name==='badges') renderBadges();
+  if(name==='journal') renderJournal();
+  if(name==='add') resetAddForm();
+}
+
+// ══════════════════════════════════════
+// HELPERS
+// ══════════════════════════════════════
+function daysSince(dateStr){
+  if(!dateStr) return 0;
+  const start=new Date(dateStr); start.setHours(0,0,0,0);
+  const now=new Date(); now.setHours(0,0,0,0);
+  return Math.max(0,Math.floor((now-start)/86400000));
+}
+function todayStr(){return new Date().toISOString().slice(0,10);}
+function fmtDate(s){if(!s)return'';const d=new Date(s);return d.toLocaleDateString('tr-TR');}
+function showToast(msg,color){
+  const t=document.createElement('div');t.className='toast';
+  t.style.borderColor=color||'var(--border)';
+  t.textContent=msg;document.body.appendChild(t);
+  setTimeout(()=>t.remove(),3000);
+}
+function openModal(id){document.getElementById(id).classList.add('show');}
+function closeModal(id){document.getElementById(id).classList.remove('show');}
+
+// ══════════════════════════════════════
+// CONFETTI
+// ══════════════════════════════════════
+function fireConfetti(){
+  const c=document.getElementById('confettiEl');c.innerHTML='';
+  const colors=['#FFD166','#4F8EF7','#2DD4BF','#F87171','#A78BFA','#FB923C'];
+  for(let i=0;i<70;i++){
+    const p=document.createElement('div');p.className='confetti-piece';
+    p.style.left=Math.random()*100+'vw';
+    p.style.background=colors[Math.floor(Math.random()*colors.length)];
+    p.style.animationDelay=Math.random()+'s';
+    p.style.animationDuration=(2+Math.random()*1.5)+'s';
+    p.style.width=p.style.height=(6+Math.random()*8)+'px';
+    p.style.borderRadius=Math.random()>.5?'50%':'2px';
+    c.appendChild(p);
+  }
+  setTimeout(()=>c.innerHTML='',4000);
+}
+
+// ══════════════════════════════════════
+// HOME RENDER
+// ══════════════════════════════════════
+function renderHome(){
+  // Star brightness by max days
+  const maxDays = addictions.length?Math.max(...addictions.map(a=>daysSince(a.startDate))):0;
+  const starPoly=document.getElementById('starPoly');
+  const brightness=Math.min(1,maxDays/90);
+  starPoly.style.opacity=0.4+0.6*brightness;
+  document.getElementById('mainDayBadge').textContent=maxDays;
+  document.getElementById('mainDayLabel').textContent=maxDays===1?'gün temiz':'gün temiz';
+
+  // Daily quote
+  const dayOfYear=Math.floor((new Date()-new Date(new Date().getFullYear(),0,0))/86400000);
+  document.getElementById('dailyQuoteText').textContent=QUOTES[dayOfYear%QUOTES.length];
+  document.getElementById('mainQuote').textContent='"'+QUOTES[(dayOfYear+3)%QUOTES.length]+'"';
+
+  // Dep cards
+  const dc=document.getElementById('depCards');
+  if(!addictions.length){
+    dc.innerHTML='<div class="empty-state"><div class="e-icon">🌟</div><p>Henüz bağımlılık eklemedin.<br>Aşağıdan ekle ve mücadeleye başla!</p></div>';
+  } else {
+    dc.innerHTML='';
+    addictions.forEach((a,i)=>{
+      const d=daysSince(a.startDate);
+      const m=TYPE_META[a.type]||{label:a.type,icon:'❓',color:'#fff'};
+      const div=document.createElement('div');
+      div.className='dep-card';div.dataset.type=a.type;
+      div.innerHTML=`
+        <div class="dep-icon">${m.icon}</div>
+        <div class="dep-info">
+          <div class="dep-name">${m.label}</div>
+          <div class="dep-days">${d}</div>
+          <div class="dep-sub">gün temiz · Başlangıç: ${fmtDate(a.startDate)}</div>
+          ${a.relapses&&a.relapses.length?`<span class="pill-badge pill-red" style="margin-top:4px;">🔁 ${a.relapses.length} nüksetme</span>`:''}
+        </div>
+        <div class="dep-actions">
+          <button class="dep-btn dep-btn-relapse" onclick="triggerRelapse(${i})">😔 Nüksetme</button>
+          <button class="dep-btn dep-btn-crisis" onclick="showCrisis()">🆘 Kriz</button>
+        </div>
+      `;
+      dc.appendChild(div);
+    });
+  }
+
+  // Savings
+  const sr=document.getElementById('savingsRow');
+  const moneyAddictions=addictions.filter(a=>a.moneyday&&a.moneyday>0);
+  if(moneyAddictions.length){
+    sr.style.display='flex';
+    let totalSaved=0;
+    moneyAddictions.forEach(a=>{totalSaved+=daysSince(a.startDate)*parseFloat(a.moneyday||0);});
+    sr.innerHTML=`
+      <div class="savings-box">
+        <div class="s-label">💰 Tasarruf</div>
+        <div class="s-value">₺${totalSaved.toLocaleString('tr-TR',{maximumFractionDigits:0})}</div>
+        <div class="s-sub">bugüne kadar biriktirdin</div>
+      </div>
+      <div class="savings-box">
+        <div class="s-label">📅 Bu Ay</div>
+        <div class="s-value">₺${(totalSaved/Math.max(1,daysSince(addictions[0]?.startDate))*30).toLocaleString('tr-TR',{maximumFractionDigits:0})}</div>
+        <div class="s-sub">aylık tahmini tasarruf</div>
+      </div>
+    `;
+  } else {
+    sr.style.display='none';
+  }
+}
+
+// ══════════════════════════════════════
+// BAĞIMLILIK EKLE
+// ══════════════════════════════════════
+function selectType(t){
+  selectedType=t;
+  document.querySelectorAll('.add-type-card').forEach(c=>c.classList.remove('selected'));
+  document.getElementById('type-'+t).classList.add('selected');
+  const m=TYPE_META[t];
+  const area=document.getElementById('addFormArea');
+  area.style.display='block';
+  document.getElementById('addStartDate').value=todayStr();
+  const ma=document.getElementById('addMoneyArea');
+  const ga=document.getElementById('addGambleArea');
+  ma.style.display='none'; ga.style.display='none';
+  if(m.moneylabel){ma.style.display='block';document.getElementById('addMoneyLabel').textContent=m.moneylabel;}
+  if(t==='kumar'){ga.style.display='block';}
+}
+function resetAddForm(){
+  selectedType=null;
+  document.querySelectorAll('.add-type-card').forEach(c=>c.classList.remove('selected'));
+  document.getElementById('addFormArea').style.display='none';
+  document.getElementById('addMoneyVal').value='';
+  document.getElementById('addGambleVal').value='';
+}
+function saveAddiction(){
+  if(!selectedType){showToast('Bir tür seç!','var(--red)');return;}
+  const start=document.getElementById('addStartDate').value;
+  if(!start){showToast('Tarih gir!','var(--red)');return;}
+  const exists=addictions.find(a=>a.type===selectedType);
+  if(exists){showToast('Bu bağımlılık zaten var!','var(--orange)');return;}
+  const obj={type:selectedType,startDate:start,relapses:[]};
+  const m=TYPE_META[selectedType];
+  if(m.moneylabel) obj.moneyday=parseFloat(document.getElementById('addMoneyVal').value)||0;
+  if(selectedType==='kumar') obj.daygamble=parseFloat(document.getElementById('addGambleVal').value)||0;
+  addictions.push(obj);
+  save();
+  checkBadges();
+  showToast('🌟 '+m.label+' eklendi! Başarılar!','var(--gold)');
+  resetAddForm();
+  switchPage('home');
+  renderHome();
+}
+
+// ══════════════════════════════════════
+// NÜKSETME
+// ══════════════════════════════════════
+function triggerRelapse(idx){
+  currentRelapseIdx=idx;
+  document.querySelectorAll('#triggerBtns .tab-pill').forEach(b=>b.classList.remove('active'));
+  openModal('relapseModal');
+}
+function selectTrigger(trigger){
+  if(currentRelapseIdx===null)return;
+  const a=addictions[currentRelapseIdx];
+  const prevDays=daysSince(a.startDate);
+  if(!a.relapses)a.relapses=[];
+  a.relapses.push({date:todayStr(),trigger});
+  // reset start date
+  a.startDate=todayStr();
+  save();
+  closeModal('relapseModal');
+  renderHome();
+  checkBadges();
+  // motivating message
+  setTimeout(()=>{
+    showToast(`💪 Önemli olan pes etmemek. Önceki rekorun ${prevDays} gündü. Şimdi daha iyisini yap!`,'var(--blue)');
+  },400);
+  currentRelapseIdx=null;
+}
+
+// ══════════════════════════════════════
+// KRİZ MODU
+// ══════════════════════════════════════
+function showCrisis(){
+  closeModal('crisisModal');
+  setTimeout(()=>openModal('crisisModal'),50);
+  if(!crisisUsed){crisisUsed=true;save();checkBadges();}
+}
+function startBreath(){
+  closeModal('crisisModal');
+  breathRound=0;breathPhase=0;
+  document.getElementById('breathCircle').className='breath-circle';
+  document.getElementById('breathCircle').textContent='Hazır';
+  document.getElementById('breathInstruction').textContent='Başlamak için Başla\'ya dokun';
+  document.getElementById('breathCounter').textContent='6 tur kaldı';
+  document.getElementById('breathStartBtn').style.display='block';
+  openModal('breathModal');
+}
+function beginBreath(){
+  document.getElementById('breathStartBtn').style.display='none';
+  breathRound=6;breathPhase=0;
+  runBreath();
+}
+function runBreath(){
+  if(breathRound<=0){
+    document.getElementById('breathInstruction').textContent='Harika! 🌟 Çok iyisin.';
+    document.getElementById('breathCounter').textContent='Egzersiz bitti';
+    document.getElementById('breathCircle').textContent='✅';
+    document.getElementById('breathCircle').className='breath-circle';
+    return;
+  }
+  if(breathPhase===0){
+    document.getElementById('breathInstruction').textContent='Nefes al...';
+    document.getElementById('breathCircle').textContent='↑';
+    document.getElementById('breathCircle').className='breath-circle inhale';
+    document.getElementById('breathCounter').textContent=breathRound+' tur kaldı';
+    breathPhase=1;
+    setTimeout(()=>{
+      document.getElementById('breathInstruction').textContent='Tut...';
+      document.getElementById('breathCircle').textContent='⏸';
+      setTimeout(()=>{
+        document.getElementById('breathInstruction').textContent='Nefes ver...';
+        document.getElementById('breathCircle').textContent='↓';
+        document.getElementById('breathCircle').className='breath-circle exhale';
+        setTimeout(()=>{breathRound--;breathPhase=0;runBreath();},4000);
+      },2000);
+    },4000);
+  }
+}
+function stopBreath(){
+  breathRound=0;
+  closeModal('breathModal');
+}
+
+// ══════════════════════════════════════
+// TAP GAME
+// ══════════════════════════════════════
+function startTapGame(){
+  closeModal('crisisModal');
+  tapCount=0;tapTimeLeft=30;
+  document.getElementById('tapScore').textContent='0';
+  document.getElementById('tapTimer').textContent='30 saniye';
+  document.getElementById('tapTarget').style.display='flex';
+  openModal('tapModal');
+  if(tapInterval)clearInterval(tapInterval);
+  tapInterval=setInterval(()=>{
+    tapTimeLeft--;
+    document.getElementById('tapTimer').textContent=tapTimeLeft+' saniye';
+    if(tapTimeLeft<=0){
+      clearInterval(tapInterval);
+      document.getElementById('tapTarget').style.display='none';
+      document.getElementById('tapTimer').textContent='Bitti! Puan: '+tapCount+' 🌟';
+    }
+  },1000);
+}
+function tapIt(){
+  tapCount++;
+  document.getElementById('tapScore').textContent=tapCount;
+  const t=document.getElementById('tapTarget');
+  t.style.transform='scale(.85)';
+  setTimeout(()=>t.style.transform='',100);
+}
+
+// ══════════════════════════════════════
+// MOTİVASYON
+// ══════════════════════════════════════
+function showMotivation(){
+  closeModal('crisisModal');
+  document.getElementById('motivText').textContent=MOTIV[Math.floor(Math.random()*MOTIV.length)];
+  openModal('motivModal');
+}
+
+// ══════════════════════════════════════
+// İSTATİSTİK
+// ══════════════════════════════════════
+function renderStats(){
+  const tabRow=document.getElementById('statsTabRow');
+  const content=document.getElementById('statsContent');
+  if(!addictions.length){
+    tabRow.innerHTML='';
+    content.innerHTML='<div class="empty-state"><div class="e-icon">📊</div><p>Henüz istatistik yok.<br>Bağımlılık ekleyerek başla!</p></div>';
+    return;
+  }
+  tabRow.innerHTML='';
+  addictions.forEach((a,i)=>{
+    const m=TYPE_META[a.type]||{label:a.type,icon:'❓'};
+    const btn=document.createElement('button');
+    btn.className='tab-pill'+(i===statsActiveType?' active':'');
+    btn.textContent=m.icon+' '+m.label;
+    btn.onclick=()=>{statsActiveType=i;renderStats();};
+    tabRow.appendChild(btn);
+  });
+  const a=addictions[statsActiveType];
+  const m=TYPE_META[a.type]||{label:a.type,icon:'❓',color:'#fff'};
+  const days=daysSince(a.startDate);
+  const relapses=a.relapses||[];
+  // Trigger stats
+  const trigMap={};
+  relapses.forEach(r=>{trigMap[r.trigger]=(trigMap[r.trigger]||0)+1;});
+  const trigHtml=Object.keys(trigMap).length?
+    Object.entries(trigMap).map(([k,v])=>`<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);font-size:.85rem;"><span>${k}</span><span class="pill-badge pill-red">${v} kez</span></div>`).join(''):
+    '<div style="font-size:.8rem;color:var(--text3);">Henüz nüksetme kaydı yok. Harika! 🌟</div>';
+
+  // Calendar
+  const now=new Date();
+  calYear=calYear||now.getFullYear();
+  calMonth=calMonth!==undefined?calMonth:now.getMonth();
+  const calHtml=buildCalendar(a);
+
+  // Savings
+  let savingsHtml='';
+  if(a.moneyday&&a.moneyday>0){
+    const saved=days*parseFloat(a.moneyday);
+    savingsHtml=`
+      <div class="section-label">💰 Tasarruf</div>
+      <div class="card">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+          <span style="font-size:.82rem;color:var(--text3);">Günlük harcama</span>
+          <span style="font-weight:700;">₺${parseFloat(a.moneyday).toLocaleString('tr-TR')}</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+          <span style="font-size:.82rem;color:var(--text3);">Biriktirilen toplam</span>
+          <span style="font-weight:700;color:var(--green);">₺${saved.toLocaleString('tr-TR',{maximumFractionDigits:0})}</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <span style="font-size:.82rem;color:var(--text3);">Yıllık tahmini</span>
+          <span style="font-weight:700;color:var(--gold);">₺${(parseFloat(a.moneyday)*365).toLocaleString('tr-TR',{maximumFractionDigits:0})}</span>
+        </div>
+      </div>`;
+  }
+
+  // Streak chart (last 7 days bar)
+  const barHtml=buildBarChart(a);
+
+  content.innerHTML=`
+    <div class="section-label" style="margin-top:12px;">📅 Takvim — ${new Date(calYear,calMonth).toLocaleString('tr-TR',{month:'long',year:'numeric'})}</div>
+    <div class="card">
+      <div class="cal-header">
+        <button class="cal-nav" onclick="calNav(-1)">‹ Önceki</button>
+        <button class="cal-nav" onclick="calNav(1)">Sonraki ›</button>
+      </div>
+      ${calHtml}
+      <div style="display:flex;gap:12px;margin-top:10px;font-size:.7rem;">
+        <span>🟢 Temiz</span><span>🔴 Nüksetme</span><span>⭐ Bugün</span>
+      </div>
+    </div>
+    <div class="section-label">📈 Son 7 Gün</div>
+    <div class="card">${barHtml}</div>
+    <div class="section-label">📋 Özet</div>
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+        <span style="font-size:.82rem;color:var(--text3);">Temiz gün</span>
+        <span style="font-weight:700;color:var(--green);">${days} gün</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+        <span style="font-size:.82rem;color:var(--text3);">Toplam nüksetme</span>
+        <span style="font-weight:700;color:var(--red);">${relapses.length}</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;">
+        <span style="font-size:.82rem;color:var(--text3);">Başlangıç</span>
+        <span style="font-weight:700;">${fmtDate(a.startDate)}</span>
+      </div>
+    </div>
+    <div class="section-label">🔍 Tetikleyici Analizi</div>
+    <div class="card">${trigHtml}</div>
+    ${savingsHtml}
+  `;
+}
+function calNav(dir){calMonth+=dir;if(calMonth<0){calMonth=11;calYear--;}if(calMonth>11){calMonth=0;calYear++;}renderStats();}
+function buildCalendar(a){
+  const y=calYear,m=calMonth;
+  const firstDay=new Date(y,m,1).getDay();
+  const daysInMonth=new Date(y,m+1,0).getDate();
+  const today=new Date();
+  const relapseSet=new Set((a.relapses||[]).map(r=>r.date));
+  const startDate=new Date(a.startDate);
+  startDate.setHours(0,0,0,0);
+  const days=['Pzt','Sal','Çar','Per','Cum','Cmt','Paz'];
+  let html='<div class="cal-grid">';
+  days.forEach(d=>html+=`<div class="cal-day-label">${d}</div>`);
+  // offset (Mon=0)
+  const offset=(firstDay===0?6:firstDay-1);
+  for(let i=0;i<offset;i++) html+=`<div class="cal-day empty"></div>`;
+  for(let d=1;d<=daysInMonth;d++){
+    const dateStr=`${y}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    const isToday=today.getFullYear()===y&&today.getMonth()===m&&today.getDate()===d;
+    const isRelapse=relapseSet.has(dateStr);
+    const dayDate=new Date(dateStr); dayDate.setHours(0,0,0,0);
+    const isClean=dayDate>=startDate&&!isRelapse;
+    let cls='cal-day';
+    if(isToday) cls+=' today';
+    else if(isRelapse) cls+=' relapse';
+    else if(isClean) cls+=' clean';
+    html+=`<div class="${cls}">${d}</div>`;
+  }
+  html+='</div>';
+  return html;
+}
+function buildBarChart(a){
+  const relapseSet=new Set((a.relapses||[]).map(r=>r.date));
+  const startDate=new Date(a.startDate);startDate.setHours(0,0,0,0);
+  const days=['Pzt','Sal','Çar','Per','Cum','Cmt','Paz','Bugün'];
+  let html='<div class="bar-chart">';
+  for(let i=6;i>=0;i--){
+    const d=new Date(); d.setDate(d.getDate()-i); d.setHours(0,0,0,0);
+    const ds=d.toISOString().slice(0,10);
+    const isClean=d>=startDate&&!relapseSet.has(ds);
+    const isToday=i===0;
+    html+=`<div class="bar-wrap">
+      <div class="bar" style="height:${isClean?'80':'8'}px;background:${isClean?'linear-gradient(to top,var(--gold2),var(--gold))':'rgba(248,113,113,.4)'};"></div>
+      <div class="bar-label">${['Pzt','Sal','Çar','Per','Cum','Cmt','Paz'][d.getDay()===0?6:d.getDay()-1]}</div>
+    </div>`;
+  }
+  html+='</div>';
+  return html;
+}
+
+// ══════════════════════════════════════
+// ROZETLER
+// ══════════════════════════════════════
+function checkBadges(){
+  const newBadges=[];
+  const maxDays=addictions.length?Math.max(...addictions.map(a=>daysSince(a.startDate))):0;
+  const journalDays=new Set(journals.map(j=>j.date)).size;
+  BADGE_DEF.forEach(b=>{
+    if(earnedBadges.includes(b.id)) return;
+    let earn=false;
+    if(b.special==='added'&&addictions.length>0) earn=true;
+    else if(b.special==='journal7'&&journalDays>=7) earn=true;
+    else if(b.special==='crisis1'&&crisisUsed) earn=true;
+    else if(!b.special&&b.days>0&&maxDays>=b.days) earn=true;
+    if(earn){earnedBadges.push(b.id);newBadges.push(b);}
+  });
+  if(newBadges.length){
+    save();
+    newBadges.forEach((b,i)=>{
+      setTimeout(()=>{
+        fireConfetti();
+        showToast('🏆 Yeni rozet: '+b.emoji+' '+b.name,'var(--gold)');
+      },i*600);
+    });
+  }
+}
+function renderBadges(){
+  const grid=document.getElementById('badgeGrid');
+  grid.innerHTML='';
+  BADGE_DEF.forEach(b=>{
+    const earned=earnedBadges.includes(b.id);
+    const div=document.createElement('div');
+    div.className='badge-item '+(earned?'earned':'locked');
+    div.innerHTML=`
+      ${earned?'<div class="badge-earned-mark">✓</div>':''}
+      <div class="badge-emoji">${b.emoji}</div>
+      <div class="badge-name">${b.name}</div>
+      <div class="badge-req">${b.req}</div>
+    `;
+    grid.appendChild(div);
+  });
+}
+
+// ══════════════════════════════════════
+// GÜNLÜK
+// ══════════════════════════════════════
+function selectMood(m){
+  selectedMood=m;
+  document.querySelectorAll('.mood-btn').forEach(b=>{
+    b.classList.toggle('selected',b.dataset.mood===m);
+  });
+}
+function saveJournal(){
+  const text=document.getElementById('journalText').value.trim();
+  if(!selectedMood){showToast('Bir duygu seç!','var(--red)');return;}
+  if(!text){showToast('Bir şeyler yaz!','var(--red)');return;}
+  journals.unshift({date:todayStr(),mood:selectedMood,text});
+  // max 60 entries
+  if(journals.length>60) journals=journals.slice(0,60);
+  save();
+  checkBadges();
+  selectedMood=null;
+  document.getElementById('journalText').value='';
+  document.querySelectorAll('.mood-btn').forEach(b=>b.classList.remove('selected'));
+  renderJournal();
+  showToast('📔 Günlük kaydedildi!','var(--green)');
+}
+function renderJournal(){
+  const list=document.getElementById('journalList');
+  list.innerHTML='';
+  if(!journals.length){
+    list.innerHTML='<div class="empty-state"><div class="e-icon">📔</div><p>Henüz günlük yok.<br>Bugün nasıl hissediyorsun?</p></div>';
+    return;
+  }
+  journals.slice(0,20).forEach(j=>{
+    const div=document.createElement('div');
+    div.className='journal-entry';
+    div.innerHTML=`<div class="je-date">${fmtDate(j.date)}</div><div class="je-mood">${j.mood}</div><div class="je-text">${j.text}</div>`;
+    list.appendChild(div);
+  });
+}
+
+// ══════════════════════════════════════
+// AYARLAR
+// ══════════════════════════════════════
+function clearAllData(){
+  if(!confirm('Tüm veriler silinecek. Emin misin?')) return;
+  localStorage.clear();
+  addictions=[];journals=[];earnedBadges=[];crisisUsed=false;
+  save();renderHome();renderBadges();renderJournal();
+  showToast('Veriler silindi.','var(--red)');
+}
+
+// ══════════════════════════════════════
+// BOOT
+// ══════════════════════════════════════
+window.addEventListener('DOMContentLoaded',()=>{
+  initStarfield();
+  const now=new Date();
+  calYear=now.getFullYear();calMonth=now.getMonth();
+  if(checkSession()){
+    startApp();
+  }
+});
+</script>
+</body>
+</html>
