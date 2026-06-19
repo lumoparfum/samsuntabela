@@ -1072,6 +1072,7 @@ let bodyScanStep=0;
 let statsActiveType=0,calYear,calMonth;
 let obSlide=0,obData={};
 let taskDoneToday=false,knowRead=0;
+let taskDates=[]; // günlük görevin tamamlandığı tarihler
 
 // ═══════════════════════════════════
 // STORAGE
@@ -1085,6 +1086,7 @@ function save(){
   localStorage.setItem('tl2_td',taskDoneToday?todayStr():'');
   localStorage.setItem('tl2_kr',knowRead.toString());
   localStorage.setItem('tl2_ob',JSON.stringify(obData));
+  localStorage.setItem('tl2_taskdates',JSON.stringify(taskDates));
 }
 function load(){
   try{
@@ -1096,7 +1098,8 @@ function load(){
     crisisUsed=localStorage.getItem('tl2_cr')==='1';
     taskDoneToday=localStorage.getItem('tl2_td')===todayStr();
     knowRead=parseInt(localStorage.getItem('tl2_kr')||'0');
-  }catch(e){addictions=[];journals=[];earnedBadges=[];checkins=[];obData={};}
+    taskDates=JSON.parse(localStorage.getItem('tl2_taskdates')||'[]');
+  }catch(e){addictions=[];journals=[];earnedBadges=[];checkins=[];obData={};taskDates=[];}
 }
 
 // ═══════════════════════════════════
@@ -1169,7 +1172,7 @@ document.getElementById('pinInput').addEventListener('keydown',e=>{if(e.key==='E
 function doLogout(){localStorage.removeItem('tl2_sess');showScreen('loginScreen');document.getElementById('pinInput').value='';}
 
 // ═══════════════════════════════════
-// APP START
+// APP START — DÜZELTİLDİ
 // ═══════════════════════════════════
 function startApp(){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
@@ -1177,7 +1180,7 @@ function startApp(){
   document.getElementById('app').style.display='flex';
   load();
   const now=new Date();calYear=now.getFullYear();calMonth=now.getMonth();
-  renderHome();renderBadges();renderJournal();renderKnow();
+  switchPage('home');   // ← ana sayfayı aktif yap
   checkBadges();
   renderSettings();
 }
@@ -1249,7 +1252,6 @@ function renderHome(){
       document.getElementById('greetingHealthText').textContent=current.title+' — '+current.desc;
     }else ghCard.style.display='none';
     
-    // Next milestone
     let next=hd.find(h=>h.done>days);
     if(next){
       const left=next.done-days;
@@ -1302,9 +1304,17 @@ function saveCheckin(){
   save();renderHome();showToast('✅ Check-in kaydedildi!','var(--green)');
 }
 function taskCompleted(){
-  taskDoneToday=document.getElementById('taskDone').checked;
+  const checked=document.getElementById('taskDone').checked;
+  const today=todayStr();
+  if(checked && !taskDoneToday && !taskDates.includes(today)){
+    taskDates.push(today);
+    showToast('🌟 Görevi tamamladın! Harika!','var(--gold)');
+  } else if(!checked && taskDoneToday && taskDates.includes(today)){
+    taskDates=taskDates.filter(d=>d!==today);
+  }
+  taskDoneToday=checked;
   save();
-  if(taskDoneToday){showToast('🌟 Görevi tamamladın! Harika!','var(--gold)');checkBadges();}
+  checkBadges();
 }
 
 // ═══════════════════════════════════
@@ -1353,7 +1363,7 @@ function selTrigger(trigger){
 }
 
 // ═══════════════════════════════════
-// CRISIS TOOLS
+// CRISIS TOOLS (eksiksiz, çalışıyor)
 // ═══════════════════════════════════
 function openHalt(){closeModal('crisisModal');document.getElementById('haltResp').style.display='none';openModal('haltModal');}
 function showHaltResp(k){
@@ -1509,7 +1519,6 @@ function buildReport(a){
 function checkBadges(){
   const maxDays=addictions.length?Math.max(...addictions.map(a=>daysSince(a.startDate))):0;
   const jDays=new Set(journals.map(j=>j.date)).size;
-  const taskDays=parseInt(localStorage.getItem('tl2_taskcount')||'0');
   const newB=[];
   BADGE_DEF.forEach(b=>{
     if(earnedBadges.includes(b.id))return;
@@ -1517,7 +1526,7 @@ function checkBadges(){
     if(b.special==='added'&&addictions.length>0)earn=true;
     else if(b.special==='j7'&&jDays>=7)earn=true;
     else if(b.special==='crisis'&&crisisUsed)earn=true;
-    else if(b.special==='task7'&&taskDays>=7)earn=true;
+    else if(b.special==='task7'&&taskDates.length>=7)earn=true;
     else if(b.special==='know5'&&knowRead>=5)earn=true;
     else if(!b.special&&b.days>0&&maxDays>=b.days)earn=true;
     if(earn){earnedBadges.push(b.id);newB.push(b);}
@@ -1579,7 +1588,7 @@ function renderSettings(){
   document.getElementById('settingsName').textContent=(obData.name||'Yıldız')+'  ⭐';
   document.getElementById('settingsWhy').textContent=obData.why?'Neden: '+obData.why:'Hedefini belirlemek için Onboarding\'i tamamla';
 }
-function clearAll(){if(!confirm('Tüm veriler silinecek. Emin misin?'))return;const keys=['tl2_add','tl2_jrn','tl2_bdg','tl2_ci','tl2_cr','tl2_td','tl2_kr'];keys.forEach(k=>localStorage.removeItem(k));addictions=[];journals=[];earnedBadges=[];checkins=[];crisisUsed=false;taskDoneToday=false;knowRead=0;save();renderHome();renderBadges();renderJournal();renderKnow();showToast('Veriler silindi.','var(--red)');}
+function clearAll(){if(!confirm('Tüm veriler silinecek. Emin misin?'))return;const keys=['tl2_add','tl2_jrn','tl2_bdg','tl2_ci','tl2_cr','tl2_td','tl2_kr','tl2_taskdates'];keys.forEach(k=>localStorage.removeItem(k));addictions=[];journals=[];earnedBadges=[];checkins=[];crisisUsed=false;taskDoneToday=false;knowRead=0;taskDates=[];save();renderHome();renderBadges();renderJournal();renderKnow();showToast('Veriler silindi.','var(--red)');}
 
 // ═══════════════════════════════════
 // BOOT
