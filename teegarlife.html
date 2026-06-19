@@ -1208,7 +1208,7 @@ function switchPage(name){
 function renderHome(){
   const name=obData.name||'Yıldız';
   const hour=getHour();
-  let greet=hour<12?'Günaydın':'(hour<18?'İyi öğlenler':'İyi akşamlar')';
+  let greet = hour < 12 ? 'Günaydın ☀️' : hour < 18 ? 'İyi öğlenler 🌤️' : 'İyi akşamlar 🌙';
   if(hour<12)greet='Günaydın ☀️';else if(hour<18)greet='İyi öğlenler 🌤️';else greet='İyi akşamlar 🌙';
   document.getElementById('greetingName').textContent=greet+', '+name+'!';
   
