@@ -173,7 +173,7 @@
             background:var(--bg2); font-size:0.75rem; font-weight:500; cursor:pointer; color:var(--text);
         }
         .chart-tab.active { background:var(--blue); color:#fff; }
-        canvas { max-height:160px; width:100%!important; }
+        canvas { max-height:200px; width:100%!important; }
         .chart-stats { display:flex; justify-content:space-between; margin-top:10px; font-size:0.7rem; color:var(--text3); }
 
         /* ── DEBT SUMMARY ── */
@@ -414,6 +414,121 @@
         /* ── MISC ── */
         select.form-control option { background:var(--card); color:var(--text); }
         .section-title { font-size:0.7rem; font-weight:700; color:var(--text3); text-transform:uppercase; letter-spacing:.06em; margin:0 16px 8px; }
+
+        /* ── INSIGHT CARD ── */
+        .insight-card {
+            margin:0 12px 12px; border-radius:20px; overflow:hidden;
+            border:0.5px solid var(--border); box-shadow:var(--shadow);
+        }
+        .insight-item {
+            display:flex; align-items:center; gap:12px; padding:12px 14px;
+            background:var(--card); border-bottom:0.5px solid var(--border);
+        }
+        .insight-item:last-child { border-bottom:none; }
+        .insight-icon { font-size:1.3rem; flex-shrink:0; width:36px; text-align:center; }
+        .insight-text { flex:1; min-width:0; }
+        .insight-title { font-size:0.82rem; font-weight:700; margin-bottom:1px; }
+        .insight-sub { font-size:0.68rem; color:var(--text3); }
+        .insight-val { font-weight:700; font-size:0.88rem; flex-shrink:0; margin-left:8px; }
+
+        /* ── DEBT ALERT BANNER ── */
+        .debt-alert-banner {
+            margin:0 12px 12px; padding:12px 14px; border-radius:18px;
+            background:linear-gradient(135deg,rgba(255,59,48,.12),rgba(255,59,48,.06));
+            border:1px solid rgba(255,59,48,.25); display:none;
+        }
+        .debt-alert-banner .dab-title { font-size:0.8rem; font-weight:700; color:var(--red); margin-bottom:4px; }
+        .debt-alert-banner .dab-item { font-size:0.75rem; color:var(--text2); padding:3px 0; display:flex; justify-content:space-between; }
+
+        /* ── SAVINGS SCORE ── */
+        .score-card {
+            margin:0 12px 12px; padding:14px 16px; border-radius:20px;
+            border:0.5px solid var(--border); background:var(--card); box-shadow:var(--shadow);
+            display:flex; align-items:center; gap:14px;
+        }
+        .score-circle {
+            width:56px; height:56px; border-radius:50%; flex-shrink:0;
+            display:flex; align-items:center; justify-content:center;
+            font-size:1.1rem; font-weight:800;
+            background:conic-gradient(var(--green) var(--pct), var(--bg2) 0);
+            position:relative;
+        }
+        .score-circle::after {
+            content:''; position:absolute; width:42px; height:42px;
+            border-radius:50%; background:var(--card);
+        }
+        .score-num { position:relative; z-index:1; font-size:0.9rem; font-weight:800; }
+        .score-info { flex:1; }
+        .score-label { font-size:0.68rem; color:var(--text3); margin-bottom:3px; }
+        .score-title { font-size:0.88rem; font-weight:700; margin-bottom:2px; }
+        .score-sub { font-size:0.7rem; color:var(--text3); }
+
+        /* ── CAT BUDGET ── */
+        .cat-budget-card {
+            margin:0 12px 12px; border-radius:20px; overflow:hidden;
+            border:0.5px solid var(--border); box-shadow:var(--shadow);
+        }
+        .cat-budget-header {
+            display:flex; justify-content:space-between; align-items:center;
+            padding:10px 14px; background:var(--card); border-bottom:0.5px solid var(--border);
+        }
+        .cat-budget-header span { font-size:0.7rem; font-weight:700; color:var(--text3); text-transform:uppercase; letter-spacing:.05em; }
+        .cat-budget-header button { background:none; border:none; color:var(--blue); font-size:0.72rem; font-weight:600; cursor:pointer; }
+        .cat-budget-item { padding:10px 14px; background:var(--card); border-bottom:0.5px solid var(--border); }
+        .cat-budget-item:last-child { border-bottom:none; }
+        .cat-budget-row { display:flex; justify-content:space-between; align-items:center; margin-bottom:5px; }
+        .cat-budget-name { font-size:0.8rem; font-weight:600; display:flex; align-items:center; gap:6px; }
+        .cat-budget-amounts { font-size:0.68rem; color:var(--text3); }
+        .cat-budget-pct { font-size:0.7rem; font-weight:700; }
+
+        /* ── MONTHLY SUMMARY ── */
+        .monthly-summary-card {
+            margin:0 12px 12px; padding:16px; border-radius:22px;
+            background:linear-gradient(135deg,#0A2540,#1C4E6F); color:#fff;
+            box-shadow:var(--shadow);
+        }
+        .msc-title { font-size:0.68rem; opacity:.7; margin-bottom:8px; text-transform:uppercase; letter-spacing:.06em; }
+        .msc-row { display:flex; justify-content:space-between; align-items:center; padding:5px 0; border-bottom:1px solid rgba(255,255,255,.1); }
+        .msc-row:last-child { border-bottom:none; padding-bottom:0; }
+        .msc-label { font-size:0.78rem; opacity:.8; }
+        .msc-value { font-size:0.9rem; font-weight:700; }
+
+        /* ── COUNT UP ANIMATION ── */
+        @keyframes countUp { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+        .count-anim { animation:countUp .4s ease; }
+
+        /* ── PIE CLICK MODAL ── */
+        .pie-detail-item {
+            display:flex; justify-content:space-between; align-items:center;
+            padding:10px 0; border-bottom:0.5px solid var(--border); font-size:0.85rem;
+        }
+        .pie-detail-item:last-child { border-bottom:none; }
+
+        /* ── DELETE CONFIRM MODAL ── */
+        .delete-confirm-modal { }
+
+        /* ── IMPROVED BALANCE CARD ── */
+        .balance-card {
+            margin:12px; padding:20px 16px 16px; border-radius:24px;
+            background: var(--balance-bg); color:#fff; text-align:center; position:relative; overflow:hidden;
+        }
+        .balance-card::before {
+            content:''; position:absolute; top:-30px; right:-30px;
+            width:100px; height:100px; border-radius:50%; background:rgba(255,255,255,.06);
+        }
+        .balance-card::after {
+            content:''; position:absolute; bottom:-20px; left:-20px;
+            width:70px; height:70px; border-radius:50%; background:rgba(255,255,255,.04);
+        }
+        .balance-title { font-size:0.72rem; opacity:.75; margin-bottom:4px; letter-spacing:.04em; text-transform:uppercase; }
+        .balance-value { font-size:2.2rem; font-weight:800; letter-spacing:-1px; position:relative; z-index:1; }
+        .balance-sub { font-size:0.7rem; opacity:.65; margin-top:4px; }
+        .balance-divider { height:1px; background:rgba(255,255,255,.1); margin:12px 0; }
+        .balance-kpi-row { display:flex; justify-content:space-between; }
+        .balance-kpi { flex:1; text-align:center; }
+        .balance-kpi-val { font-size:1.1rem; font-weight:700; }
+        .balance-kpi-lbl { font-size:0.65rem; opacity:.65; margin-top:2px; }
+        .balance-kpi + .balance-kpi { border-left:1px solid rgba(255,255,255,.1); }
     </style>
 </head>
 <body class="light">
