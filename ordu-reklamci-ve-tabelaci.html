@@ -9,10 +9,9 @@
       gtag('js', new Date());
       gtag('config', 'G-L8TEVWG2BN');
     </script>
-    
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    
     <meta name="thumbnail" content="https://samsuntabela.tr/web-app-manifest-512x512.png">
     <link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
@@ -20,7 +19,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
     <meta name="apple-mobile-web-app-title" content="Uzman Reklam" />
     <link rel="manifest" href="site.webmanifest" />
-    
+
     <title>Ordu Reklamcı & Tabelacı | Fatsa, Ünye Tabela İmalatı | Uzman Reklam - Matbaa & Baskı</title>
     <meta name="description" content="Ordu reklamcı ve tabela firması. Altınordu, Fatsa, Ünye ve Karadeniz bölgesine kutu harf, totem tabela, araç giydirme, kartvizit, broşür, magnet, etiket, afiş, fason CNC ve dijital baskı. Aracısız üretim, uygun fiyat.">
     <meta name="keywords" content="Ordu reklamcı, Ordu tabelacı, Fatsa tabela, Ünye reklam, Altınordu tabelacı, Ordu araç giydirme, Ordu kutu harf, tabela imalatı Ordu, fason CNC, lazer kesim, reklamcılara özel, Ordu matbaa, Ordu kartvizit, Ordu broşür, Ordu magnet, Ordu etiket, Ordu afiş, ucuz kartvizit, dijital baskı Ordu">
@@ -129,7 +128,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
-        /* ─── TOKENS (Claude'dan alındı) ─── */
+        /* ─── TOKENS ─── */
         :root {
             --neon: #ccff00;
             --neon-dim: rgba(204,255,0,0.12);
@@ -160,7 +159,7 @@
         ::-webkit-scrollbar-thumb:hover { background: #444; }
         * { scrollbar-color: #2a2a2a var(--bg); scrollbar-width: thin; }
 
-        /* ─── INFO STRIP (Claude) ─── */
+        /* ─── INFO STRIP ─── */
         .info-strip {
             background: var(--neon);
             color: #000;
@@ -181,7 +180,7 @@
         .info-strip a { color: #000; text-decoration: none; }
         .info-strip.hidden { transform: translateY(-100%); }
 
-        /* ─── NAV (Claude) ─── */
+        /* ─── NAV ─── */
         nav {
             display: flex;
             justify-content: space-between;
@@ -229,7 +228,7 @@
             .nav-links { display: none; }
         }
 
-        /* ─── HERO (Claude + resim) ─── */
+        /* ─── HERO ─── */
         .seo-hero {
             padding-top: calc(32px + 68px);
             min-height: 100svh;
@@ -401,7 +400,7 @@
         .scroll-hint-line { width: 1px; height: 36px; background: linear-gradient(to bottom, var(--text-muted), transparent); }
         @keyframes fadeUp { 0% { transform: translateX(-50%) translateY(0); } 100% { transform: translateX(-50%) translateY(8px); } }
 
-        /* ─── REVEAL (Claude) ─── */
+        /* ─── REVEAL ─── */
         .reveal {
             opacity: 0;
             transform: translateY(30px);
@@ -423,7 +422,7 @@
         }
         .section-label::before { content: ''; display: block; width: 24px; height: 2px; background: var(--neon); }
 
-        /* ─── MAP / DISTRICT GRID ─── */
+        /* ─── MAP GRID ─── */
         .map-section {
             padding: 70px 5% 0;
             max-width: 1300px;
@@ -468,7 +467,7 @@
         .district-card i { font-size: 1.6rem; color: #444; transition: color var(--transition); }
         .district-card:hover i { color: var(--neon); }
 
-        /* ─── CONTENT SECTION ─── */
+        /* ─── CONTENT ─── */
         .seo-content-section {
             padding: 60px 5% 80px;
             max-width: 1300px;
@@ -579,7 +578,6 @@
             background: linear-gradient(to top, rgba(0,0,0,0.4) 0%, transparent 50%);
         }
 
-        /* ─── CAMPAIGN BADGE ─── */
         .campaign-badge {
             display: inline-flex;
             align-items: center;
@@ -600,7 +598,7 @@
         }
         @media (max-width: 550px) { .district-block h2 { flex-direction: column; align-items: flex-start; gap: 6px; } }
 
-        /* ─── PRODUCT GRID (Claude'dan ikonsuz, butonlar eski linklerle) ─── */
+        /* ─── PRODUCT GRID ─── */
         .product-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -674,6 +672,7 @@
         }
         .guarantee-tag i { color: var(--neon); margin-right: 4px; }
 
+        /* ─── BUTONLAR: pointer-events: auto ile güvence ─── */
         .btn-wa {
             display: flex;
             align-items: center;
@@ -689,10 +688,12 @@
             transition: var(--transition);
             text-transform: uppercase;
             letter-spacing: 0.3px;
+            pointer-events: auto !important;
+            cursor: pointer !important;
         }
         .btn-wa:hover { background: #20b859; transform: scale(1.02); color: #000; }
 
-        /* ─── SEO TEXT BLOCK ─── */
+        /* ─── SEO TEXT ─── */
         .seo-text-block {
             margin-top: 32px;
             padding-top: 28px;
@@ -706,7 +707,7 @@
         }
         .seo-text-block p strong { color: #ccc; }
 
-        /* ─── FAQ (Claude'dan sade accordion) ─── */
+        /* ─── FAQ ─── */
         .faq-section {
             padding: 0 5% 80px;
             max-width: 1300px;
@@ -750,7 +751,7 @@
         }
         .faq-item.open .faq-a { max-height: 300px; padding: 0 4px 22px; }
 
-        /* ─── CTA BANNER ─── */
+        /* ─── CTA ─── */
         .btn-panel {
             display: flex;
             justify-content: center;
@@ -992,12 +993,12 @@
 </head>
 <body>
 
-<!-- Info Strip (Claude) -->
+<!-- Info Strip -->
 <div class="info-strip" id="infoStrip">
     ⚡ Ordu'ya Ücretsiz Keşif &nbsp;|&nbsp; <a href="tel:+905322204649">0532 220 46 49</a> &nbsp;|&nbsp; Aynı Gün Üretim · Ertesi Gün Kargo
 </div>
 
-<!-- NAV (Claude) -->
+<!-- NAV -->
 <nav id="mainNav">
     <div class="logo-area">
         <div class="logo"><a href="index.html">UZMAN<span>REKLAM</span></a></div>
@@ -1012,15 +1013,13 @@
     </div>
 </nav>
 
-<!-- HERO (Claude + resim) -->
+<!-- HERO -->
 <section class="seo-hero" id="top">
     <div class="hero-glow hero-glow-1"></div>
     <div class="hero-glow hero-glow-2"></div>
     <div class="hero-inner">
         <div class="hero-eyebrow">Karadeniz'in Fabrika Gücü</div>
-        <h1>
-            ORDU <span>REKLAMCI & TABELACI</span>
-        </h1>
+        <h1>ORDU <span>REKLAMCI & TABELACI</span></h1>
         <div class="hero-typing-wrap">
             <span class="hero-typing" id="typingEl"></span>
         </div>
@@ -1061,7 +1060,7 @@
     </div>
 </section>
 
-<!-- MAP / DISTRICT GRID (Claude) -->
+<!-- MAP -->
 <section class="map-section reveal" id="bolgeler">
     <div class="section-label">Hizmet Noktaları</div>
     <h2 style="font-size:clamp(1.3rem,3vw,2rem); font-weight:900; letter-spacing:-0.5px; text-transform:uppercase; margin-bottom:28px;">Ordu'nun Neresindeysen Oradayız</h2>
@@ -1074,7 +1073,7 @@
     </div>
 </section>
 
-<!-- CONTENT BLOCKS (eski yapı, Claude grafik iyileştirmeleriyle) -->
+<!-- CONTENT -->
 <section class="seo-content-section">
 
     <!-- ALTINORDU -->
@@ -1122,7 +1121,7 @@
         </div>
     </div>
 
-    <!-- MATBAA (eski linkler, claude tasarım) -->
+    <!-- MATBAA -->
     <div class="district-block reveal" id="matbaa">
         <h2>
             <i class="fas fa-print"></i> Matbaa & Dijital Baskı Ürünleri
@@ -1136,60 +1135,60 @@
                 <div class="product-title">Kartvizit <span>1.000 Adet</span></div>
                 <div class="product-desc">250gr. Bristol, Tek Yön Renkli, Parlak Selefonlu, 90x50mm</div>
                 <div class="product-price">195 ₺ <small>(KDV Dahil)</small></div>
-                <a href="https://wa.me/905016675755?text=Merhaba, Ordu sayfanızdan 1.000 Adet Kartvizit (NK) için teklif almak istiyorum." target="_blank" class="btn-wa"><i class="fab fa-whatsapp"></i> Teklif Al</a>
+                <a href="https://wa.me/905016675755?text=Merhaba, Ordu sayfanızdan 1.000 Adet Kartvizit (NK) için teklif almak istiyorum." target="_blank" class="btn-wa" onclick="console.log('Buton tıklandı: Kartvizit 1000');"><i class="fab fa-whatsapp"></i> Teklif Al</a>
             </div>
             <!-- Kartvizit Çift Yön -->
             <div class="product-card">
                 <div class="product-title">Kartvizit <span>1.000 Adet</span></div>
                 <div class="product-desc">350gr. Çift Yön Renkli, Parlak Selefonlu, 90x50mm</div>
                 <div class="product-price">290 ₺ <small>(KDV Dahil)</small></div>
-                <a href="https://wa.me/905016675755?text=Merhaba, Ordu sayfanızdan 1.000 Adet Çift Yön Kartvizit (CYP) için teklif almak istiyorum." target="_blank" class="btn-wa"><i class="fab fa-whatsapp"></i> Teklif Al</a>
+                <a href="https://wa.me/905016675755?text=Merhaba, Ordu sayfanızdan 1.000 Adet Çift Yön Kartvizit (CYP) için teklif almak istiyorum." target="_blank" class="btn-wa" onclick="console.log('Buton tıklandı: Kartvizit Çift Yön 1000');"><i class="fab fa-whatsapp"></i> Teklif Al</a>
             </div>
             <!-- Broşür A6 -->
             <div class="product-card">
                 <div class="product-title">Broşür <span>1.000 Adet</span></div>
                 <div class="product-desc">115gr. Eko Çift Yön Parlak Kuşe, A6 (90x135mm)</div>
                 <div class="product-price">400 ₺ <small>(KDV Dahil)</small></div>
-                <a href="https://wa.me/905016675755?text=Merhaba, Ordu sayfanızdan 1.000 Adet A6 Broşür için teklif almak istiyorum." target="_blank" class="btn-wa"><i class="fab fa-whatsapp"></i> Teklif Al</a>
+                <a href="https://wa.me/905016675755?text=Merhaba, Ordu sayfanızdan 1.000 Adet A6 Broşür için teklif almak istiyorum." target="_blank" class="btn-wa" onclick="console.log('Buton tıklandı: Broşür A6 1000');"><i class="fab fa-whatsapp"></i> Teklif Al</a>
             </div>
             <!-- Broşür A5 -->
             <div class="product-card">
                 <div class="product-title">Broşür <span>1.000 Adet</span></div>
                 <div class="product-desc">115gr. Eko Çift Yön Parlak Kuşe, A5 (135x200mm)</div>
                 <div class="product-price">800 ₺ <small>(KDV Dahil)</small></div>
-                <a href="https://wa.me/905016675755?text=Merhaba, Ordu sayfanızdan 1.000 Adet A5 Broşür için teklif almak istiyorum." target="_blank" class="btn-wa"><i class="fab fa-whatsapp"></i> Teklif Al</a>
+                <a href="https://wa.me/905016675755?text=Merhaba, Ordu sayfanızdan 1.000 Adet A5 Broşür için teklif almak istiyorum." target="_blank" class="btn-wa" onclick="console.log('Buton tıklandı: Broşür A5 1000');"><i class="fab fa-whatsapp"></i> Teklif Al</a>
             </div>
             <!-- Magnet -->
             <div class="product-card">
                 <div class="product-title">Magnet <span>1.000 Adet</span></div>
                 <div class="product-desc">46x68mm, Renkli Baskı + Parlak Selefon, Oval Kesim</div>
                 <div class="product-price">610 ₺ <small>(KDV Dahil)</small></div>
-                <a href="https://wa.me/905016675755?text=Merhaba, Ordu sayfanızdan 1.000 Adet Magnet (MAG2) için teklif almak istiyorum." target="_blank" class="btn-wa"><i class="fab fa-whatsapp"></i> Teklif Al</a>
+                <a href="https://wa.me/905016675755?text=Merhaba, Ordu sayfanızdan 1.000 Adet Magnet (MAG2) için teklif almak istiyorum." target="_blank" class="btn-wa" onclick="console.log('Buton tıklandı: Magnet 1000');"><i class="fab fa-whatsapp"></i> Teklif Al</a>
             </div>
             <!-- Etiket -->
             <div class="product-card">
                 <div class="product-title">Etiket <span>1.000 Adet</span></div>
                 <div class="product-desc">53x83mm, Kuşe Çıkartma + Parlak Selefon, Düz Kesim</div>
                 <div class="product-price">290 ₺ <small>(KDV Dahil)</small></div>
-                <a href="https://wa.me/905016675755?text=Merhaba, Ordu sayfanızdan 1.000 Adet Etiket (E) için teklif almak istiyorum." target="_blank" class="btn-wa"><i class="fab fa-whatsapp"></i> Teklif Al</a>
+                <a href="https://wa.me/905016675755?text=Merhaba, Ordu sayfanızdan 1.000 Adet Etiket (E) için teklif almak istiyorum." target="_blank" class="btn-wa" onclick="console.log('Buton tıklandı: Etiket 1000');"><i class="fab fa-whatsapp"></i> Teklif Al</a>
             </div>
             <!-- Afiş 34x49 -->
             <div class="product-card">
                 <div class="product-title">Afiş / Poster <span>100 Adet</span></div>
                 <div class="product-desc">34x49 cm, 90gr. Parlak Kuşe, Tek Yön Renkli</div>
                 <div class="product-price">1.265 ₺ <small>(KDV Dahil)</small></div>
-                <a href="https://wa.me/905016675755?text=Merhaba, Ordu sayfanızdan 100 Adet 34x49 Afiş için teklif almak istiyorum." target="_blank" class="btn-wa"><i class="fab fa-whatsapp"></i> Teklif Al</a>
+                <a href="https://wa.me/905016675755?text=Merhaba, Ordu sayfanızdan 100 Adet 34x49 Afiş için teklif almak istiyorum." target="_blank" class="btn-wa" onclick="console.log('Buton tıklandı: Afiş 34x49 100');"><i class="fab fa-whatsapp"></i> Teklif Al</a>
             </div>
             <!-- Afiş 49x69 -->
             <div class="product-card">
                 <div class="product-title">Afiş / Poster <span>100 Adet</span></div>
                 <div class="product-desc">49x69 cm, 90gr. Parlak Kuşe, Tek Yön Renkli</div>
                 <div class="product-price">2.200 ₺ <small>(KDV Dahil)</small></div>
-                <a href="https://wa.me/905016675755?text=Merhaba, Ordu sayfanızdan 100 Adet 49x69 Afiş için teklif almak istiyorum." target="_blank" class="btn-wa"><i class="fab fa-whatsapp"></i> Teklif Al</a>
+                <a href="https://wa.me/905016675755?text=Merhaba, Ordu sayfanızdan 100 Adet 49x69 Afiş için teklif almak istiyorum." target="_blank" class="btn-wa" onclick="console.log('Buton tıklandı: Afiş 49x69 100');"><i class="fab fa-whatsapp"></i> Teklif Al</a>
             </div>
         </div>
 
-        <!-- SEO DESTEKLİ DETAYLI METİN (eski) -->
+        <!-- SEO -->
         <div class="seo-text-block">
             <p>Ordu genelinde matbaa ve dijital baskı hizmetlerimizle Altınordu, Fatsa, Ünye, Perşembe, Kumru, Gölköy, Aybastı, Kabataş, Korgan, Akkuş, Mesudiye, İkizce, Çatalpınar, Gürgentepe ve Çaybaşı ilçelerine hızlı kargo ile ulaşıyoruz. İşletmenizin ihtiyacı olan kartvizit, broşür, magnet, etiket, afiş, el ilanı, davetiye, antetli kağıt, fatura, makbuz, takvim, bloknot gibi tüm matbaa ürünlerini kendi tesisimizde üretiyoruz. Ayrıca kutu harf, totem, cephe giydirme ve araç giydirme gibi reklam çözümlerimizle de Ordu'daki firmaların yanındayız.</p>
             <p>Neden Uzman Reklam? Çünkü aracı yok, bayi yok, sadece üreticiden tüketiciye doğrudan satış yapıyoruz. Yüksek adetli siparişlerinizde ek indirimler ve aynı gün baskı seçenekleri mevcuttur. Tüm fiyatlarımız %20 KDV dahil olup, kargo ücreti ayrıca hesaplanır. Toplu alımlarda kargo bedava kampanyalarımızı sormayı unutmayın. Matbaa işleriniz için <strong>0 501 667 57 55</strong> numaralı WhatsApp hattımızdan ürün kodunu veya ihtiyacınızı ileterek en güncel fiyat ve teslimat bilgilerini öğrenebilirsiniz.</p>
@@ -1197,13 +1196,13 @@
         </div>
     </div>
 
-    <!-- CTA BUTTON (eski) -->
+    <!-- CTA -->
     <div class="btn-panel">
         <a href="https://wa.me/905079605049" class="btn-main" onclick="gtag('event', 'whatsapp_tiklama', {'sayfa': window.location.pathname});"><i class="fab fa-whatsapp"></i> WHATSAPP İLE ORDU PROJENİZİ BAŞLATIN</a>
     </div>
 </section>
 
-<!-- FAQ (Claude'dan sade accordion) -->
+<!-- FAQ -->
 <section class="faq-section reveal" id="faq">
     <div class="section-label">Sıkça Sorulan Sorular</div>
     <h2 style="font-size:clamp(1.3rem,3vw,2rem); font-weight:900; letter-spacing:-0.5px; text-transform:uppercase; margin-bottom:28px;">Ordu Tabela & Reklam SSS</h2>
@@ -1244,7 +1243,7 @@
     <div id="lb-caption"></div>
 </div>
 
-<!-- FOOTER (eski) -->
+<!-- FOOTER -->
 <section class="footer-grid" id="iletisim">
     <div class="footer-box">
         <h3>FABRİKA & ATÖLYE</h3>
@@ -1258,14 +1257,14 @@
         </div>
         <a href="https://www.google.com/maps/dir//Uzman+Reklam,+Emirefendi,+%C3%87izmeli+2.+Sk.+No:33,+55400+Bafra%2FSamsun/" target="_blank" class="btn-main" style="width:100%; justify-content:center; padding:15px 0; margin-top:15px;">YOL TARİFİ AL</a>
     </div>
-    
+
     <div class="footer-box">
         <h3>KURUMSAL BİLGİLER</h3>
         <ul class="contact-info-list">
             <li><i class="fas fa-user-tie"></i> <div><strong>Firma Sahibi:</strong> Abdurrahman TORAMAN</div></li>
             <li><i class="fas fa-file-invoice-dollar"></i> <div><strong>Vergi Dairesi:</strong> BAFRA V.D.  |  <strong>No:</strong> 214 7659 4794</div></li>
         </ul>
-        
+
         <div class="bank-box">
             <h4><i class="fas fa-university"></i> Banka Hesap Bilgileri</h4>
             <p><strong>Banka:</strong> Garanti Bankası  |  <strong>Şube Kodu:</strong> 520</p>
@@ -1285,11 +1284,11 @@
 
 <div class="region-links">
     <span>HİZMET AĞIMIZ:</span>
-    <a href="samsun-reklamci-ve-tabelaci.html">SAMSUN</a> | 
-    <a href="bafra-reklamci-ve-tabelaci.html">BAFRA</a> | 
-    <a href="atakum-reklamci-ve-tabelaci.html">ATAKUM</a> | 
-    <a href="ordu-reklamci-ve-tabelaci.html">ORDU</a> | 
-    <a href="sinop-reklamci-ve-tabelaci.html">SİNOP</a> | 
+    <a href="samsun-reklamci-ve-tabelaci.html">SAMSUN</a> |
+    <a href="bafra-reklamci-ve-tabelaci.html">BAFRA</a> |
+    <a href="atakum-reklamci-ve-tabelaci.html">ATAKUM</a> |
+    <a href="ordu-reklamci-ve-tabelaci.html">ORDU</a> |
+    <a href="sinop-reklamci-ve-tabelaci.html">SİNOP</a> |
     <a href="trabzon-reklamci-ve-tabelaci.html">TRABZON</a>
 </div>
 
@@ -1345,7 +1344,7 @@
         requestAnimationFrame(step);
     }
 
-    // ── Intersection Observer (reveal + counters) ──
+    // ── Intersection Observer ──
     const revealEls = document.querySelectorAll('.reveal');
     const counters  = document.querySelectorAll('.num[data-count]');
     let countersStarted = false;
@@ -1410,7 +1409,7 @@
         });
     });
 
-    // ── F12 / CTRL+U / CTRL+SHIFT+I engelle (eski) ──
+    // ── F12 / CTRL+U / CTRL+SHIFT+I engelle ──
     document.addEventListener('keydown', function(e) {
         if (e.key === 'F12' || e.keyCode === 123) {
             e.preventDefault();
