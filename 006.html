@@ -223,8 +223,7 @@ const COINS = [
   'ADAUSDT','DOGEUSDT','DOTUSDT','FETUSDT','BNBUSDT','MATICUSDT'
 ];
 
-// ── ÇOKLU VERİ KAYNAKLARI (Basitleştirilmiş) ──────────
-// Önce Binance ve mirror'ları dene, onlar olmazsa diğerlerine geç
+// ── ÇOKLU VERİ KAYNAKLARI ──────────────────────────
 const KAYNAKLAR = [
   { name: 'Binance', base: 'https://api.binance.com' },
   { name: 'Binance1', base: 'https://api1.binance.com' },
@@ -257,11 +256,13 @@ let toplamKazanc=0, toplamKayip=0, maxPortfoy=BASLANGIC_SERMAYE, maxDrawdown=0;
 let chartMode='equity', chartMain=null, chartDag=null, chartCoin=null;
 let fiyatCache={}, apiOk=false, trendYonu='YATAY';
 let aktifKaynak = null;
+let sonFiyatZamani = 0;
 
 // DOM
 const logBox = document.getElementById('log-box');
 
 function log(msg, tip='info'){
+  if(!logBox) return;
   const s = new Date().toLocaleTimeString('tr-TR');
   const div = document.createElement('div'); div.className = `ls ${tip}`; div.textContent = `[${s}] ${msg}`;
   logBox.appendChild(div);
@@ -274,10 +275,9 @@ function signStr(n){ return (n>=0?'+':'') + n.toFixed(2); }
 function formatFiyat(f){ return f < 1 ? f.toFixed(5) : f < 100 ? f.toFixed(4) : f.toFixed(2); }
 
 // ═══════════════════════════════════════════════════════════════
-// API – ÇOKLU KAYNAK (DÜZELTİLDİ)
+// API – ÇOKLU KAYNAK
 // ═══════════════════════════════════════════════════════════════
 async function fetchFiyatlar(){
-  // Önce cache'e bak
   if(fiyatCache && Object.keys(fiyatCache).length > 0 && Date.now() - sonFiyatZamani < 2000){
     return fiyatCache;
   }
@@ -311,7 +311,6 @@ async function fetchFiyatlar(){
           if(COINS.includes(x.currency_pair)) out[x.currency_pair] = parseFloat(x.last);
         });
       } else if(kaynak.name === 'MEXC' && data){
-        // MEXC: [{symbol, price}] formatında
         data.forEach(x => {
           if(COINS.includes(x.symbol)) out[x.symbol] = parseFloat(x.price);
         });
@@ -320,7 +319,6 @@ async function fetchFiyatlar(){
           if(COINS.includes(x.symbol)) out[x.symbol] = parseFloat(x.close);
         });
       } else if(data){
-        // Binance ve mirror: [{symbol, price}]
         data.forEach(x => {
           if(COINS.includes(x.symbol)) out[x.symbol] = parseFloat(x.price);
         });
@@ -328,22 +326,22 @@ async function fetchFiyatlar(){
 
       if(Object.keys(out).length > 0){
         fiyatCache = out;
+        sonFiyatZamani = Date.now();
         aktifKaynak = kaynak.name;
-        document.getElementById('kaynak-txt').textContent = '📡 ' + kaynak.name;
-        if(!apiOk){ apiOk=true; document.getElementById('api-txt').innerHTML='API: <b class="g">Bağlı</b>'; }
+        const kaynakEl = document.getElementById('kaynak-txt');
+        if(kaynakEl) kaynakEl.textContent = '📡 ' + kaynak.name;
+        if(!apiOk){ apiOk=true; const apiEl = document.getElementById('api-txt'); if(apiEl) apiEl.innerHTML = 'API: <b class="g">Bağlı</b>'; }
         return out;
       }
     } catch(e){ continue; }
   }
 
-  // Hiçbir kaynak çalışmadı
-  apiOk=false; document.getElementById('api-txt').innerHTML='API: <b class="r">Hata</b>';
+  apiOk=false; const apiEl = document.getElementById('api-txt'); if(apiEl) apiEl.innerHTML = 'API: <b class="r">Hata</b>';
   log('⚠️ Fiyat alınamadı (tüm kaynaklar başarısız)', 'warning');
   return null;
 }
-let sonFiyatZamani = 0;
 
-// ── KLINES (MUM) ──────────────────────────────────────
+// ── KLINES ───────────────────────────────────────────
 async function fetchKlines(symbol, interval, limit=20){
   for(const kaynak of KAYNAKLAR){
     try{
@@ -380,7 +378,7 @@ async function fetchKlines(symbol, interval, limit=20){
   return null;
 }
 
-// ── 24s TICKER ────────────────────────────────────────
+// ── 24s TICKER ──────────────────────────────────────
 async function fetchTicker24(){
   for(const kaynak of KAYNAKLAR){
     try{
@@ -425,10 +423,12 @@ async function fetchTicker24(){
 }
 
 // ═══════════════════════════════════════════════════════════════
-// TREND BELİRLEME
+// TREND BELİRLEME (NULL KONTROLÜ EKLENDİ)
 // ═══════════════════════════════════════════════════════════════
 async function trendBelirle() {
   const tTxt = document.getElementById('trend-txt');
+  if (!tTxt) { console.warn('trend-txt elementi bulunamadı'); return; }
+
   try {
     const klines1 = await fetchKlines('BTCUSDT', '1h', 12);
     const klines2 = await fetchKlines('BTCUSDT', '15m', 12);
@@ -734,28 +734,36 @@ function guncelUI(fiyatlar=null){
   const portfoy = portfoyDeger();
   const netKZ = portfoy - BASLANGIC_SERMAYE;
 
-  document.getElementById('kasa-val').textContent = `$${kasa.toFixed(2)}`;
-  document.getElementById('islem-val').textContent = `$${islemde.toFixed(2)}`;
-  document.getElementById('islem-poz').textContent = pozisyonlar.length;
-  document.getElementById('islem-kz').innerHTML = `<span style="color:${canliKz>=0?'var(--green)':'var(--red)'}">${signStr(canliKz)}$</span>`;
-  document.getElementById('kasa-fark').innerHTML = `<span style="color:${netKZ>=0?'var(--green)':'var(--red)'}">${signStr(netKZ)}$</span>`;
+  const setText = (id, val) => { const el = document.getElementById(id); if(el) el.textContent = val; };
+  const setHtml = (id, html) => { const el = document.getElementById(id); if(el) el.innerHTML = html; };
 
-  document.getElementById('s-net').textContent = `$${portfoy.toFixed(2)}`;
+  setText('kasa-val', `$${kasa.toFixed(2)}`);
+  setText('islem-val', `$${islemde.toFixed(2)}`);
+  setText('islem-poz', pozisyonlar.length);
+  const kzEl = document.getElementById('islem-kz');
+  if(kzEl) kzEl.innerHTML = `<span style="color:${canliKz>=0?'var(--green)':'var(--red)'}">${signStr(canliKz)}$</span>`;
+  const farkEl = document.getElementById('kasa-fark');
+  if(farkEl) farkEl.innerHTML = `<span style="color:${netKZ>=0?'var(--green)':'var(--red)'}">${signStr(netKZ)}$</span>`;
+
+  setText('s-net', `$${portfoy.toFixed(2)}`);
 
   const oran = toplamIslem>0 ? (kazancSayisi/toplamIslem*100) : 0;
-  document.getElementById('s-oran').textContent = toplamIslem>0 ? oran.toFixed(1)+'%' : '—%';
-  document.getElementById('s-oran').style.color = oran>=50?'var(--green)':'var(--red)';
-  document.getElementById('s-islem').textContent = `${toplamIslem} işlem`;
-  document.getElementById('s-kazanc').textContent = `$${toplamKazanc.toFixed(2)}`;
-  document.getElementById('s-kazanc-sub').textContent = `${kazancSayisi} işlem`;
-  document.getElementById('s-kayip').textContent = `$${toplamKayip.toFixed(2)}`;
-  document.getElementById('s-kayip-sub').textContent = `${kayipSayisi} işlem`;
-  document.getElementById('s-likid').textContent = likidasyonSayisi;
-  document.getElementById('s-likid-sub').textContent = likidasyonSayisi>0?`Kayıp: -$${toplamKayip.toFixed(0)}`:'Temiz';
-  document.getElementById('s-dd').textContent = (maxDrawdown*100).toFixed(2)+'%';
+  const oranEl = document.getElementById('s-oran');
+  if(oranEl){
+    oranEl.textContent = toplamIslem>0 ? oran.toFixed(1)+'%' : '—%';
+    oranEl.style.color = oran>=50?'var(--green)':'var(--red)';
+  }
+  setText('s-islem', `${toplamIslem} işlem`);
+  setText('s-kazanc', `$${toplamKazanc.toFixed(2)}`);
+  setText('s-kazanc-sub', `${kazancSayisi} işlem`);
+  setText('s-kayip', `$${toplamKayip.toFixed(2)}`);
+  setText('s-kayip-sub', `${kayipSayisi} işlem`);
+  setText('s-likid', likidasyonSayisi);
+  setText('s-likid-sub', likidasyonSayisi>0?`Kayıp: -$${toplamKayip.toFixed(0)}`:'Temiz');
+  setText('s-dd', (maxDrawdown*100).toFixed(2)+'%');
 
-  document.getElementById('acik-badge').textContent = pozisyonlar.length;
-  document.getElementById('gecmis-badge').textContent = islemGecmisi.length;
+  setText('acik-badge', pozisyonlar.length);
+  setText('gecmis-badge', islemGecmisi.length);
 
   tabloGuncelle(fiyatlar);
   gecmisTabloGuncelle();
@@ -765,6 +773,7 @@ function guncelUI(fiyatlar=null){
 
 function tabloGuncelle(fiyatlar=null){
   const tbody = document.getElementById('poz-tbody');
+  if(!tbody) return;
   if(pozisyonlar.length===0){
     tbody.innerHTML='<tr><td colspan="13" style="text-align:center;color:var(--text2);padding:14px;">Açık pozisyon yok</td></tr>';
     return;
@@ -797,6 +806,7 @@ function tabloGuncelle(fiyatlar=null){
 
 function gecmisTabloGuncelle(){
   const tbody = document.getElementById('gecmis-tbody');
+  if(!tbody) return;
   const list = islemGecmisi.slice(0,50);
   if(list.length===0){
     tbody.innerHTML='<tr><td colspan="10" style="text-align:center;color:var(--text2);padding:14px;">Henüz işlem yok</td></tr>';
@@ -819,8 +829,9 @@ function gecmisTabloGuncelle(){
 }
 
 function coinChipGuncelle(){
-  const entries = Object.entries(coinStats).filter(([,v])=>v.islem>0).sort((a,b)=>b[1].kar-a[1].kar).slice(0,10);
   const wrap = document.getElementById('coin-grid');
+  if(!wrap) return;
+  const entries = Object.entries(coinStats).filter(([,v])=>v.islem>0).sort((a,b)=>b[1].kar-a[1].kar).slice(0,10);
   if(entries.length===0){ wrap.innerHTML=''; return; }
   wrap.innerHTML = entries.map(([c2,v]) => `
     <div class="cc">
@@ -838,7 +849,7 @@ function coinChipGuncelle(){
   });
 }
 
-function setChartMode(m){ chartMode = m; ['equity','pnl'].forEach(id=>{ document.getElementById(`ctab-${id}`).classList.toggle('active', id===m); }); grafikGuncelle(); }
+function setChartMode(m){ chartMode = m; ['equity','pnl'].forEach(id=>{ const el = document.getElementById(`ctab-${id}`); if(el) el.classList.toggle('active', id===m); }); grafikGuncelle(); }
 
 function grafikGuncelle(){
   if(chartMain) chartMain.destroy();
@@ -897,9 +908,10 @@ async function anaDongu(){
 document.getElementById('btn-start').addEventListener('click', async ()=>{
   if(botCalisiyor) return;
   botCalisiyor = true;
-  document.getElementById('durum-txt').textContent = 'Çalışıyor';
-  document.getElementById('durum-txt').className = 'g';
-  document.getElementById('pulse-dot').className = 'pulse';
+  const durumEl = document.getElementById('durum-txt');
+  if(durumEl){ durumEl.textContent = 'Çalışıyor'; durumEl.className = 'g'; }
+  const pulseEl = document.getElementById('pulse-dot');
+  if(pulseEl) pulseEl.className = 'pulse';
   await trendBelirle();
   if(loopTimer) clearInterval(loopTimer);
   loopTimer = setInterval(anaDongu, 2500);
@@ -908,9 +920,10 @@ document.getElementById('btn-start').addEventListener('click', async ()=>{
 
 document.getElementById('btn-stop').addEventListener('click', ()=>{
   botCalisiyor = false;
-  document.getElementById('durum-txt').textContent = 'Durduruldu';
-  document.getElementById('durum-txt').className = 'r';
-  document.getElementById('pulse-dot').className = 'pulse off';
+  const durumEl = document.getElementById('durum-txt');
+  if(durumEl){ durumEl.textContent = 'Durduruldu'; durumEl.className = 'r'; }
+  const pulseEl = document.getElementById('pulse-dot');
+  if(pulseEl) pulseEl.className = 'pulse off';
   log('⏸ Bot durduruldu.','warning');
 });
 
@@ -930,8 +943,8 @@ document.getElementById('btn-panik').addEventListener('click', ()=>{
     log(`🧨 ${coin(p.coin)} PANİK SATIŞI | ${signStr(karTutar)}$`, 'error');
   });
   pozisyonlar = [];
-  document.getElementById('durum-txt').textContent = 'Panik Modu';
-  document.getElementById('durum-txt').className = 'r';
+  const durumEl = document.getElementById('durum-txt');
+  if(durumEl){ durumEl.textContent = 'Panik Modu'; durumEl.className = 'r'; }
   guncelUI(fiyatlar);
 });
 
