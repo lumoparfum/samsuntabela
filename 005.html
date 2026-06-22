@@ -223,22 +223,19 @@ const COINS = [
   'ADAUSDT','DOGEUSDT','DOTUSDT','FETUSDT','BNBUSDT','MATICUSDT'
 ];
 
-// ── ÇOKLU VERİ KAYNAKLARI ─────────────────────────────
-// Önce hangi kaynağı deneyeceğimiz (sıralı)
+// ── ÇOKLU VERİ KAYNAKLARI (Basitleştirilmiş) ──────────
+// Önce Binance ve mirror'ları dene, onlar olmazsa diğerlerine geç
 const KAYNAKLAR = [
   { name: 'Binance', base: 'https://api.binance.com' },
-  { name: 'Binance2', base: 'https://api1.binance.com' },
-  { name: 'Binance3', base: 'https://api2.binance.com' },
-  { name: 'Binance4', base: 'https://api3.binance.com' },
+  { name: 'Binance1', base: 'https://api1.binance.com' },
+  { name: 'Binance2', base: 'https://api2.binance.com' },
+  { name: 'Binance3', base: 'https://api3.binance.com' },
   { name: 'BinanceVision', base: 'https://data-api.binance.vision' },
   { name: 'KuCoin', base: 'https://api.kucoin.com' },
   { name: 'Gate', base: 'https://api.gateio.ws' },
   { name: 'MEXC', base: 'https://api.mexc.com' },
   { name: 'HTX', base: 'https://api.huobi.pro' },
 ];
-
-// Hangi kaynağın klines desteği var (bazıları yok)
-const KLINES_DESTEKI = ['Binance','Binance2','Binance3','Binance4','BinanceVision','KuCoin','Gate','MEXC','HTX'];
 
 // ═══════════════════════════════════════════════════════════════
 // STATE
@@ -277,166 +274,79 @@ function signStr(n){ return (n>=0?'+':'') + n.toFixed(2); }
 function formatFiyat(f){ return f < 1 ? f.toFixed(5) : f < 100 ? f.toFixed(4) : f.toFixed(2); }
 
 // ═══════════════════════════════════════════════════════════════
-// API – ÇOKLU KAYNAK
+// API – ÇOKLU KAYNAK (DÜZELTİLDİ)
 // ═══════════════════════════════════════════════════════════════
-async function fetchWithFallback(endpoint, params='', options={}){
-  const { klines=false, fiyat=false, ticker=false } = options;
-  
+async function fetchFiyatlar(){
+  // Önce cache'e bak
+  if(fiyatCache && Object.keys(fiyatCache).length > 0 && Date.now() - sonFiyatZamani < 2000){
+    return fiyatCache;
+  }
+
   for(const kaynak of KAYNAKLAR){
     try{
-      // Bazı kaynaklar klines desteklemiyor
-      if(klines && !KLINES_DESTEKI.includes(kaynak.name)) continue;
-      
       let url;
       if(kaynak.name === 'KuCoin'){
-        // KuCoin farklı endpoint
-        if(fiyat) url = kaynak.base + '/api/v1/market/orderbook/level1?symbol=' + params;
-        else if(klines) url = kaynak.base + '/api/v1/market/candles?symbol=' + params + '&type=1min&limit=20';
-        else if(ticker) url = kaynak.base + '/api/v1/market/allTickers';
-        else continue;
+        url = kaynak.base + '/api/v1/market/allTickers';
       } else if(kaynak.name === 'Gate'){
-        if(fiyat) url = kaynak.base + '/api/v4/spot/tickers?currency_pair=' + params;
-        else if(klines) url = kaynak.base + '/api/v4/spot/candlesticks?currency_pair=' + params + '&interval=1m&limit=20';
-        else if(ticker) url = kaynak.base + '/api/v4/spot/tickers';
-        else continue;
+        url = kaynak.base + '/api/v4/spot/tickers';
       } else if(kaynak.name === 'MEXC'){
-        if(fiyat) url = kaynak.base + '/api/v3/ticker/price?symbol=' + params;
-        else if(klines) url = kaynak.base + '/api/v3/klines?symbol=' + params + '&interval=1m&limit=20';
-        else if(ticker) url = kaynak.base + '/api/v3/ticker/24hr';
-        else continue;
+        url = kaynak.base + '/api/v3/ticker/price';
       } else if(kaynak.name === 'HTX'){
-        if(fiyat) url = kaynak.base + '/market/detail/merged?symbol=' + params;
-        else if(klines) url = kaynak.base + '/market/history/kline?symbol=' + params + '&period=1min&size=20';
-        else if(ticker) url = kaynak.base + '/market/tickers';
-        else continue;
+        url = kaynak.base + '/market/tickers';
       } else {
-        // Binance ve mirror'lar
-        url = kaynak.base + endpoint + params;
+        url = kaynak.base + '/api/v3/ticker/price';
       }
 
       const res = await fetch(url);
       if(!res.ok) continue;
-      
       let data = await res.json();
-      
-      // Farklı kaynakların veri formatlarını normalize et
-      if(kaynak.name === 'KuCoin'){
-        if(fiyat && data.data) return { symbol: params, price: parseFloat(data.data.price) };
-        if(klines && data.data) return data.data.map(k => ({ open: parseFloat(k[0]), high: parseFloat(k[1]), low: parseFloat(k[2]), close: parseFloat(k[3]), vol: parseFloat(k[4]) }));
-        if(ticker && data.data) {
-          const out = {};
-          data.data.forEach(x => { if(COINS.includes(x.symbol)) out[x.symbol] = { pct24: parseFloat(x.changeRate)*100, vol: parseFloat(x.vol) }; });
-          return out;
-        }
-      } else if(kaynak.name === 'Gate'){
-        if(fiyat && data[0]) return { symbol: params, price: parseFloat(data[0].last) };
-        if(klines && data) return data.map(k => ({ open: parseFloat(k[0]), high: parseFloat(k[1]), low: parseFloat(k[2]), close: parseFloat(k[3]), vol: parseFloat(k[4]) }));
-        if(ticker && data) {
-          const out = {};
-          data.forEach(x => { if(COINS.includes(x.currency_pair)) out[x.currency_pair] = { pct24: parseFloat(x.change_percentage), vol: parseFloat(x.quote_volume) }; });
-          return out;
-        }
-      } else if(kaynak.name === 'MEXC'){
-        if(fiyat && data) return { symbol: params, price: parseFloat(data.price) };
-        if(klines && data) return data.map(k => ({ open: parseFloat(k[1]), high: parseFloat(k[2]), low: parseFloat(k[3]), close: parseFloat(k[4]), vol: parseFloat(k[5]) }));
-        if(ticker && data) {
-          const out = {};
-          data.forEach(x => { if(COINS.includes(x.symbol)) out[x.symbol] = { pct24: parseFloat(x.priceChangePercent), vol: parseFloat(x.quoteVolume) }; });
-          return out;
-        }
-      } else if(kaynak.name === 'HTX'){
-        if(fiyat && data.tick) return { symbol: params, price: parseFloat(data.tick.close) };
-        if(klines && data.data) return data.data.map(k => ({ open: parseFloat(k[0]), high: parseFloat(k[1]), low: parseFloat(k[2]), close: parseFloat(k[3]), vol: parseFloat(k[4]) }));
-        if(ticker && data.data) {
-          const out = {};
-          data.data.forEach(x => { if(COINS.includes(x.symbol)) out[x.symbol] = { pct24: parseFloat(x.chg), vol: parseFloat(x.vol) }; });
-          return out;
-        }
-      } else {
-        // Binance formatı
-        if(fiyat && data) return data;
-        if(klines && data) return data.map(k => ({ open: parseFloat(k[1]), high: parseFloat(k[2]), low: parseFloat(k[3]), close: parseFloat(k[4]), vol: parseFloat(k[5]) }));
-        if(ticker && data) {
-          const out = {};
-          data.forEach(x => { if(COINS.includes(x.symbol)) out[x.symbol] = { pct24: parseFloat(x.priceChangePercent), vol: parseFloat(x.quoteVolume) }; });
-          return out;
-        }
+      const out = {};
+
+      if(kaynak.name === 'KuCoin' && data.data){
+        data.data.forEach(x => {
+          if(COINS.includes(x.symbol)) out[x.symbol] = parseFloat(x.last);
+        });
+      } else if(kaynak.name === 'Gate' && data){
+        data.forEach(x => {
+          if(COINS.includes(x.currency_pair)) out[x.currency_pair] = parseFloat(x.last);
+        });
+      } else if(kaynak.name === 'MEXC' && data){
+        // MEXC: [{symbol, price}] formatında
+        data.forEach(x => {
+          if(COINS.includes(x.symbol)) out[x.symbol] = parseFloat(x.price);
+        });
+      } else if(kaynak.name === 'HTX' && data.data){
+        data.data.forEach(x => {
+          if(COINS.includes(x.symbol)) out[x.symbol] = parseFloat(x.close);
+        });
+      } else if(data){
+        // Binance ve mirror: [{symbol, price}]
+        data.forEach(x => {
+          if(COINS.includes(x.symbol)) out[x.symbol] = parseFloat(x.price);
+        });
       }
-      
-      // Eğer buraya geldiysek ve data boş değilse, başarılı say
-      if(data) { aktifKaynak = kaynak.name; document.getElementById('kaynak-txt').textContent = '📡 ' + kaynak.name; return data; }
-      
+
+      if(Object.keys(out).length > 0){
+        fiyatCache = out;
+        aktifKaynak = kaynak.name;
+        document.getElementById('kaynak-txt').textContent = '📡 ' + kaynak.name;
+        if(!apiOk){ apiOk=true; document.getElementById('api-txt').innerHTML='API: <b class="g">Bağlı</b>'; }
+        return out;
+      }
     } catch(e){ continue; }
   }
-  throw new Error('Tüm kaynaklar başarısız');
-}
 
-// ── FİYAT ─────────────────────────────────────────────
-async function fetchFiyatlar(){
-  try{
-    // Önce tüm coinleri tek seferde alabilecek kaynakları dene
-    for(const kaynak of KAYNAKLAR){
-      try{
-        let url;
-        if(kaynak.name === 'KuCoin') url = kaynak.base + '/api/v1/market/allTickers';
-        else if(kaynak.name === 'Gate') url = kaynak.base + '/api/v4/spot/tickers';
-        else if(kaynak.name === 'MEXC') url = kaynak.base + '/api/v3/ticker/price';
-        else if(kaynak.name === 'HTX') url = kaynak.base + '/market/tickers';
-        else url = kaynak.base + '/api/v3/ticker/price';
-        
-        const res = await fetch(url);
-        if(!res.ok) continue;
-        let data = await res.json();
-        const out = {};
-        
-        if(kaynak.name === 'KuCoin' && data.data){
-          data.data.forEach(x => { 
-            if(COINS.includes(x.symbol)) out[x.symbol] = parseFloat(x.last);
-          });
-        } else if(kaynak.name === 'Gate' && data){
-          data.forEach(x => { 
-            if(COINS.includes(x.currency_pair)) out[x.currency_pair] = parseFloat(x.last);
-          });
-        } else if(kaynak.name === 'MEXC' && data){
-          data.forEach(x => { 
-            if(COINS.includes(x.symbol)) out[x.symbol] = parseFloat(x.price);
-          });
-        } else if(kaynak.name === 'HTX' && data.data){
-          data.data.forEach(x => { 
-            if(COINS.includes(x.symbol)) out[x.symbol] = parseFloat(x.close);
-          });
-        } else if(data){
-          data.forEach(x => { 
-            if(COINS.includes(x.symbol)) out[x.symbol] = parseFloat(x.price);
-          });
-        }
-        
-        if(Object.keys(out).length > 0){
-          fiyatCache = out;
-          aktifKaynak = kaynak.name;
-          document.getElementById('kaynak-txt').textContent = '📡 ' + kaynak.name;
-          if(!apiOk){ apiOk=true; document.getElementById('api-txt').innerHTML='API: <b class="g">Bağlı</b>'; }
-          return out;
-        }
-      } catch(e){ continue; }
-    }
-    throw new Error('Fiyat alınamadı');
-  } catch(e){
-    apiOk=false; document.getElementById('api-txt').innerHTML='API: <b class="r">Hata</b>';
-    log('⚠️ Fiyat hatası: '+e.message, 'warning');
-    return null;
-  }
+  // Hiçbir kaynak çalışmadı
+  apiOk=false; document.getElementById('api-txt').innerHTML='API: <b class="r">Hata</b>';
+  log('⚠️ Fiyat alınamadı (tüm kaynaklar başarısız)', 'warning');
+  return null;
 }
+let sonFiyatZamani = 0;
 
 // ── KLINES (MUM) ──────────────────────────────────────
 async function fetchKlines(symbol, interval, limit=20){
-  // interval'i normalize et
-  const intervalMap = { '1m':'1min', '5m':'5min', '15m':'15min' };
-  
   for(const kaynak of KAYNAKLAR){
     try{
-      if(!KLINES_DESTEKI.includes(kaynak.name)) continue;
-      
       let url;
       if(kaynak.name === 'KuCoin'){
         url = kaynak.base + '/api/v1/market/candles?symbol=' + symbol + '&type=1min&limit=' + limit;
@@ -449,11 +359,11 @@ async function fetchKlines(symbol, interval, limit=20){
       } else {
         url = kaynak.base + '/api/v3/klines?symbol=' + symbol + '&interval=' + interval + '&limit=' + limit;
       }
-      
+
       const res = await fetch(url);
       if(!res.ok) continue;
       let data = await res.json();
-      
+
       if(kaynak.name === 'KuCoin' && data.data){
         return data.data.map(k => ({ open: parseFloat(k[0]), high: parseFloat(k[1]), low: parseFloat(k[2]), close: parseFloat(k[3]), vol: parseFloat(k[4]) }));
       } else if(kaynak.name === 'Gate' && data){
@@ -480,24 +390,34 @@ async function fetchTicker24(){
       else if(kaynak.name === 'MEXC') url = kaynak.base + '/api/v3/ticker/24hr';
       else if(kaynak.name === 'HTX') url = kaynak.base + '/market/tickers';
       else url = kaynak.base + '/api/v3/ticker/24hr';
-      
+
       const res = await fetch(url);
       if(!res.ok) continue;
       let data = await res.json();
       const out = {};
-      
+
       if(kaynak.name === 'KuCoin' && data.data){
-        data.data.forEach(x => { if(COINS.includes(x.symbol)) out[x.symbol] = { pct24: parseFloat(x.changeRate)*100, vol: parseFloat(x.vol) }; });
+        data.data.forEach(x => {
+          if(COINS.includes(x.symbol)) out[x.symbol] = { pct24: parseFloat(x.changeRate)*100, vol: parseFloat(x.vol) };
+        });
       } else if(kaynak.name === 'Gate' && data){
-        data.forEach(x => { if(COINS.includes(x.currency_pair)) out[x.currency_pair] = { pct24: parseFloat(x.change_percentage), vol: parseFloat(x.quote_volume) }; });
+        data.forEach(x => {
+          if(COINS.includes(x.currency_pair)) out[x.currency_pair] = { pct24: parseFloat(x.change_percentage), vol: parseFloat(x.quote_volume) };
+        });
       } else if(kaynak.name === 'MEXC' && data){
-        data.forEach(x => { if(COINS.includes(x.symbol)) out[x.symbol] = { pct24: parseFloat(x.priceChangePercent), vol: parseFloat(x.quoteVolume) }; });
+        data.forEach(x => {
+          if(COINS.includes(x.symbol)) out[x.symbol] = { pct24: parseFloat(x.priceChangePercent), vol: parseFloat(x.quoteVolume) };
+        });
       } else if(kaynak.name === 'HTX' && data.data){
-        data.data.forEach(x => { if(COINS.includes(x.symbol)) out[x.symbol] = { pct24: parseFloat(x.chg), vol: parseFloat(x.vol) }; });
+        data.data.forEach(x => {
+          if(COINS.includes(x.symbol)) out[x.symbol] = { pct24: parseFloat(x.chg), vol: parseFloat(x.vol) };
+        });
       } else if(data){
-        data.forEach(x => { if(COINS.includes(x.symbol)) out[x.symbol] = { pct24: parseFloat(x.priceChangePercent), vol: parseFloat(x.quoteVolume) }; });
+        data.forEach(x => {
+          if(COINS.includes(x.symbol)) out[x.symbol] = { pct24: parseFloat(x.priceChangePercent), vol: parseFloat(x.quoteVolume) };
+        });
       }
-      
+
       if(Object.keys(out).length > 0) return out;
     } catch(e){ continue; }
   }
@@ -505,7 +425,7 @@ async function fetchTicker24(){
 }
 
 // ═══════════════════════════════════════════════════════════════
-// TREND BELİRLEME (Çoklu kaynaktan klines)
+// TREND BELİRLEME
 // ═══════════════════════════════════════════════════════════════
 async function trendBelirle() {
   const tTxt = document.getElementById('trend-txt');
