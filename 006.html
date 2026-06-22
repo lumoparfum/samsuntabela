@@ -217,6 +217,7 @@ const MAX_TP = 0.015;
 const MIN_TP = 0.005;
 const MAX_SL = 0.008;
 const MIN_SL = 0.002;
+const AYNI_COIN_MAX = 2; // Aynı coine max 2 işlem
 
 const COINS = [
   'BTCUSDT','ETHUSDT','SOLUSDT','XRPUSDT','AVAXUSDT','LINKUSDT',
@@ -257,6 +258,7 @@ let chartMode='equity', chartMain=null, chartDag=null, chartCoin=null;
 let fiyatCache={}, apiOk=false, trendYonu='YATAY';
 let aktifKaynak = null;
 let sonFiyatZamani = 0;
+let sonHataZamani = 0;
 
 // DOM
 const logBox = document.getElementById('log-box');
@@ -275,14 +277,25 @@ function signStr(n){ return (n>=0?'+':'') + n.toFixed(2); }
 function formatFiyat(f){ return f < 1 ? f.toFixed(5) : f < 100 ? f.toFixed(4) : f.toFixed(2); }
 
 // ═══════════════════════════════════════════════════════════════
-// API – ÇOKLU KAYNAK
+// API – ÇOKLU KAYNAK (DÜZELTİLDİ)
 // ═══════════════════════════════════════════════════════════════
 async function fetchFiyatlar(){
-  if(fiyatCache && Object.keys(fiyatCache).length > 0 && Date.now() - sonFiyatZamani < 2000){
+  if(fiyatCache && Object.keys(fiyatCache).length > 0 && Date.now() - sonFiyatZamani < 3000){
     return fiyatCache;
   }
 
-  for(const kaynak of KAYNAKLAR){
+  // Önce aktif kaynağı dene
+  let kaynakSirasi = [];
+  if(aktifKaynak){
+    const aktif = KAYNAKLAR.find(k => k.name === aktifKaynak);
+    if(aktif) kaynakSirasi.push(aktif);
+  }
+  // Diğerlerini ekle
+  for(const k of KAYNAKLAR){
+    if(!kaynakSirasi.find(x => x.name === k.name)) kaynakSirasi.push(k);
+  }
+
+  for(const kaynak of kaynakSirasi){
     try{
       let url;
       if(kaynak.name === 'KuCoin'){
@@ -303,25 +316,15 @@ async function fetchFiyatlar(){
       const out = {};
 
       if(kaynak.name === 'KuCoin' && data.data){
-        data.data.forEach(x => {
-          if(COINS.includes(x.symbol)) out[x.symbol] = parseFloat(x.last);
-        });
+        data.data.forEach(x => { if(COINS.includes(x.symbol)) out[x.symbol] = parseFloat(x.last); });
       } else if(kaynak.name === 'Gate' && data){
-        data.forEach(x => {
-          if(COINS.includes(x.currency_pair)) out[x.currency_pair] = parseFloat(x.last);
-        });
+        data.forEach(x => { if(COINS.includes(x.currency_pair)) out[x.currency_pair] = parseFloat(x.last); });
       } else if(kaynak.name === 'MEXC' && data){
-        data.forEach(x => {
-          if(COINS.includes(x.symbol)) out[x.symbol] = parseFloat(x.price);
-        });
+        data.forEach(x => { if(COINS.includes(x.symbol)) out[x.symbol] = parseFloat(x.price); });
       } else if(kaynak.name === 'HTX' && data.data){
-        data.data.forEach(x => {
-          if(COINS.includes(x.symbol)) out[x.symbol] = parseFloat(x.close);
-        });
+        data.data.forEach(x => { if(COINS.includes(x.symbol)) out[x.symbol] = parseFloat(x.close); });
       } else if(data){
-        data.forEach(x => {
-          if(COINS.includes(x.symbol)) out[x.symbol] = parseFloat(x.price);
-        });
+        data.forEach(x => { if(COINS.includes(x.symbol)) out[x.symbol] = parseFloat(x.price); });
       }
 
       if(Object.keys(out).length > 0){
@@ -337,7 +340,12 @@ async function fetchFiyatlar(){
   }
 
   apiOk=false; const apiEl = document.getElementById('api-txt'); if(apiEl) apiEl.innerHTML = 'API: <b class="r">Hata</b>';
-  log('⚠️ Fiyat alınamadı (tüm kaynaklar başarısız)', 'warning');
+  // Hata log'unu sınırla
+  const now = Date.now();
+  if(now - sonHataZamani > 30000){
+    log('⚠️ Fiyat alınamadı (tüm kaynaklar başarısız)', 'warning');
+    sonHataZamani = now;
+  }
   return null;
 }
 
@@ -395,25 +403,15 @@ async function fetchTicker24(){
       const out = {};
 
       if(kaynak.name === 'KuCoin' && data.data){
-        data.data.forEach(x => {
-          if(COINS.includes(x.symbol)) out[x.symbol] = { pct24: parseFloat(x.changeRate)*100, vol: parseFloat(x.vol) };
-        });
+        data.data.forEach(x => { if(COINS.includes(x.symbol)) out[x.symbol] = { pct24: parseFloat(x.changeRate)*100, vol: parseFloat(x.vol) }; });
       } else if(kaynak.name === 'Gate' && data){
-        data.forEach(x => {
-          if(COINS.includes(x.currency_pair)) out[x.currency_pair] = { pct24: parseFloat(x.change_percentage), vol: parseFloat(x.quote_volume) };
-        });
+        data.forEach(x => { if(COINS.includes(x.currency_pair)) out[x.currency_pair] = { pct24: parseFloat(x.change_percentage), vol: parseFloat(x.quote_volume) }; });
       } else if(kaynak.name === 'MEXC' && data){
-        data.forEach(x => {
-          if(COINS.includes(x.symbol)) out[x.symbol] = { pct24: parseFloat(x.priceChangePercent), vol: parseFloat(x.quoteVolume) };
-        });
+        data.forEach(x => { if(COINS.includes(x.symbol)) out[x.symbol] = { pct24: parseFloat(x.priceChangePercent), vol: parseFloat(x.quoteVolume) }; });
       } else if(kaynak.name === 'HTX' && data.data){
-        data.data.forEach(x => {
-          if(COINS.includes(x.symbol)) out[x.symbol] = { pct24: parseFloat(x.chg), vol: parseFloat(x.vol) };
-        });
+        data.data.forEach(x => { if(COINS.includes(x.symbol)) out[x.symbol] = { pct24: parseFloat(x.chg), vol: parseFloat(x.vol) }; });
       } else if(data){
-        data.forEach(x => {
-          if(COINS.includes(x.symbol)) out[x.symbol] = { pct24: parseFloat(x.priceChangePercent), vol: parseFloat(x.quoteVolume) };
-        });
+        data.forEach(x => { if(COINS.includes(x.symbol)) out[x.symbol] = { pct24: parseFloat(x.priceChangePercent), vol: parseFloat(x.quoteVolume) }; });
       }
 
       if(Object.keys(out).length > 0) return out;
@@ -423,7 +421,7 @@ async function fetchTicker24(){
 }
 
 // ═══════════════════════════════════════════════════════════════
-// TREND BELİRLEME (NULL KONTROLÜ EKLENDİ)
+// TREND BELİRLEME
 // ═══════════════════════════════════════════════════════════════
 async function trendBelirle() {
   const tTxt = document.getElementById('trend-txt');
@@ -558,7 +556,7 @@ async function yeniPozisyon(){
     if(Math.random() > 0.4) return;
   }
 
-  let uygun = COINS.filter(c => !pozisyonlar.find(p => p.coin === c));
+  let uygun = COINS.filter(c => !pozisyonlar.find(p => p.coin === c) && coinSayisi(c) < AYNI_COIN_MAX);
   if(uygun.length === 0) return;
 
   const skorlar = [];
@@ -634,6 +632,10 @@ async function yeniPozisyon(){
   coinStats[best.sym].islem++;
 
   log(`🔵 ${tip} ${coin(best.sym)} | $${miktar.toFixed(2)} | ${kaldirac}x | TP:${(tpOran*100).toFixed(1)}% SL:${(slOran*100).toFixed(1)}% | Skor:${best.skor.toFixed(2)}`, 'trade');
+}
+
+function coinSayisi(coin){
+  return pozisyonlar.filter(p => p.coin === coin).length;
 }
 
 // ═══════════════════════════════════════════════════════════════
