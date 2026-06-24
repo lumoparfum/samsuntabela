@@ -636,10 +636,7 @@
                 </div>
 
                 <div class="settings-section">Hesap</div>
-                <div class="setting-item">
-                    <div class="setting-left"><span class="setting-icon">🔒</span><span class="setting-label">PIN Değiştir</span></div>
-                    <button class="setting-action" id="changePinBtn">Değiştir</button>
-                </div>
+                
                 <div class="setting-item">
                     <div class="setting-left"><span class="setting-icon">🚪</span><span class="setting-label">Çıkış Yap</span></div>
                     <button class="setting-action danger" id="logoutBtn">Çıkış</button>
@@ -791,15 +788,7 @@
         </div>
     </div>
 
-    <div id="changePinModal" class="modal center">
-        <div class="modal-card">
-            <div class="modal-header"><span>PIN Değiştir</span><span class="modal-close" data-modal="changePinModal">&times;</span></div>
-            <div class="form-group"><label>Mevcut PIN</label><input type="password" id="currentPinInput" class="form-control" placeholder="Mevcut şifre"></div>
-            <div class="form-group"><label>Yeni PIN</label><input type="password" id="newPinInput" class="form-control" placeholder="Yeni şifre (min 4 hane)"></div>
-            <div class="form-group"><label>Yeni PIN Tekrar</label><input type="password" id="newPinConfirm" class="form-control" placeholder="Tekrar gir"></div>
-            <button class="modal-save" id="savePinBtn">Değiştir</button>
-        </div>
-    </div>
+    
 
     <!-- ===== JAVASCRIPT ===== -->
     <script type="module">
@@ -873,7 +862,7 @@
         function formatNumInput(inp) { let raw = inp.value.replace(/\./g, '').replace(/,/g, '').replace(/[^0-9]/g, ''); if (raw) inp.value = Number(raw).toLocaleString('tr-TR'); else inp.value = ''; }
         function parseNumInput(val) { return parseFloat((val || '0').replace(/\./g, '').replace(',', '.')) || 0; }
         function textCol() { return document.body.classList.contains('dark') ? '#FFFFFF' : '#1C1C1E'; }
-        function hashPin(pin) { let h = 0; for (let i = 0; i < pin.length; i++) { h = ((h << 5) - h) + pin.charCodeAt(i); h |= 0; } return String(h); }
+        
         function getDefaultCatLimits() { return { "Faturalar": 5000, "Yeme/İçme": 3000, "Ulaşım": 1500, "Alışveriş": 2000, "Eğlence": 1000, "Sağlık": 1000, "Kira/Aidat": 0, "Tag Malzemesi": 0, "Borç Ödemesi": 0, "Diğer": 0 }; }
 
         document.querySelectorAll('input[inputmode="numeric"]').forEach(inp => {
@@ -2029,19 +2018,7 @@
         };
 
         // ── PIN CHANGE ──
-        document.getElementById('changePinBtn').onclick = () => { document.getElementById('currentPinInput').value = ''; document.getElementById('newPinInput').value = ''; document.getElementById('newPinConfirm').value = ''; openModal('changePinModal'); };
-        document.getElementById('savePinBtn').onclick = () => {
-            const current = document.getElementById('currentPinInput').value;
-            const newPin = document.getElementById('newPinInput').value;
-            const confirm = document.getElementById('newPinConfirm').value;
-            const savedHash = localStorage.getItem('mucahit_pin_hash');
-            if (hashPin(current) !== savedHash) return showToast('Mevcut PIN hatalı', true);
-            if (newPin.length < 4) return showToast('Yeni PIN en az 4 hane olmalı', true);
-            if (newPin !== confirm) return showToast('PIN'ler eşleşmiyor', true);
-            localStorage.setItem('mucahit_pin_hash', hashPin(newPin));
-            closeModal('changePinModal');
-            showToast('PIN değiştirildi 🔒');
-        };
+        
 
         // ── FAB ──
         let fabBtn = document.getElementById('fabBtn'), fabMenu = document.getElementById('fabMenu');
@@ -2089,21 +2066,21 @@
         });
 
         // ── LOGOUT ──
-        document.getElementById('logoutBtn').onclick = () => { localStorage.removeItem('mucahit_pin_hash'); localStorage.removeItem('mucahit_oturum'); document.getElementById('loginContainer').style.display = 'flex'; document.getElementById('appContainer').style.display = 'none'; stopRates(); };
+        document.getElementById('logoutBtn').onclick = () => { localStorage.removeItem('mucahit_pin'); localStorage.removeItem('mucahit_oturum'); document.getElementById('loginContainer').style.display = 'flex'; document.getElementById('appContainer').style.display = 'none'; stopRates(); };
 
         // ── AUTH ──
-        const CORRECT_PIN_HASH = hashPin('547143614'); // Default PIN hash
-        const savedHash = localStorage.getItem('mucahit_pin_hash');
+        
+        const savedPin = localStorage.getItem('mucahit_pin');
         const savedTs = localStorage.getItem('mucahit_oturum');
-        if (savedHash && savedTs && (Date.now() - parseInt(savedTs) < 86400000)) {
+        if (savedPin && savedTs && (Date.now() - parseInt(savedTs) < 86400000)) {
             document.getElementById('loginContainer').style.display = 'none';
             document.getElementById('appContainer').style.display = 'block';
             loadAll(); fetchRates();
-        } else { localStorage.removeItem('mucahit_pin_hash'); localStorage.removeItem('mucahit_oturum'); }
+        } else { localStorage.removeItem('mucahit_pin'); localStorage.removeItem('mucahit_oturum'); }
 
         document.getElementById('loginBtn').onclick = () => {
-            if (hashPin(document.getElementById('pinInput').value) === CORRECT_PIN_HASH) {
-                if (document.getElementById('rememberCheckbox').checked) { localStorage.setItem('mucahit_pin_hash', CORRECT_PIN_HASH); localStorage.setItem('mucahit_oturum', Date.now().toString()); }
+            if (document.getElementById('pinInput').value === '547143614') {
+                if (document.getElementById('rememberCheckbox').checked) { localStorage.setItem('mucahit_pin', '547143614'); localStorage.setItem('mucahit_oturum', Date.now().toString()); }
                 document.getElementById('loginContainer').style.display = 'none';
                 document.getElementById('appContainer').style.display = 'block';
                 loadAll(); fetchRates();
