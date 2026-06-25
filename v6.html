@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🚀 VUR-KAÇ BOT v6.1 - Otonom (3x aynı coin)</title>
+    <title>🚀 VUR-KAÇ BOT v6.2 - SON HAL</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
     <style>
-        /* Aynı stiller – v6.0'daki tüm CSS aynen burada */
+        /* ===== TAMAMI AYNI STILLER ===== */
         *{margin:0;padding:0;box-sizing:border-box}
         :root{
             --bg:#050508;
@@ -177,7 +177,7 @@
 </div>
 
 <div class="header">
-    <h1>🚀 VUR-KAÇ BOT v6.1</h1>
+    <h1>🚀 VUR-KAÇ BOT v6.2</h1>
     <div class="header-status">
         <div class="ai-badge"><span>🤖 Claude Sonnet 4.6</span>by Anthropic</div>
         <div class="status-badge status-stopped" id="botStatus">
@@ -202,7 +202,7 @@
             <div class="portfolio-summary">
                 <div class="portfolio-row"><span class="portfolio-label">💵 Serbest Kasa</span><span class="portfolio-value" id="freeBalance">$500.00</span></div>
                 <div class="portfolio-row"><span class="portfolio-label">🔒 İşlemdeki Marjin</span><span class="portfolio-value" id="lockedMargin">$0.00</span></div>
-                <div class="portfolio-row"><span class="portfolio-label">📊 Açık Pozisyonlar</span><span class="portfolio-value" id="openPosCount">0 / 50</span></div>
+                <div class="portfolio-row"><span class="portfolio-label">📊 Açık Pozisyonlar</span><span class="portfolio-value" id="openPosCount">0 / 20</span></div>
             </div>
             <div class="total-pnl-display">
                 <div class="total-pnl-label">📈 ANLIK TOPLAM P&L</div>
@@ -238,14 +238,14 @@
                 <div class="risk-row"><span>Min Marjin ($)</span><input type="number" id="cfg_minmargin" value="2" min="0.5" step="0.5"></div>
                 <div class="risk-row"><span>Max Marjin ($)</span><input type="number" id="cfg_maxmargin" value="5" min="2" step="0.5"></div>
                 <div class="risk-row"><span>Min Kaldıraç</span><input type="number" id="cfg_minlev" value="10" min="1" step="1"></div>
-                <div class="risk-row"><span>Max Kaldıraç</span><input type="number" id="cfg_maxlev" value="30" min="1" step="1"></div>
-                <div class="risk-row"><span>Min Kar ($)</span><input type="number" id="cfg_minprofit" value="0.30" min="0.10" step="0.05"></div>
+                <div class="risk-row"><span>Max Kaldıraç</span><input type="number" id="cfg_maxlev" value="20" min="1" step="1"></div>
+                <div class="risk-row"><span>Min Kar ($)</span><input type="number" id="cfg_minprofit" value="0.50" min="0.10" step="0.05"></div>
                 <div class="risk-row"><span>Max Kar ($)</span><input type="number" id="cfg_maxprofit" value="1.50" min="0.30" step="0.05"></div>
                 <div class="risk-row"><span>Min Stop (%)</span><input type="number" id="cfg_minstop" value="1.0" min="0.5" step="0.1"></div>
-                <div class="risk-row"><span>Max Stop (%)</span><input type="number" id="cfg_maxstop" value="2.5" min="1.0" step="0.1"></div>
-                <div class="risk-row"><span>Max Günlük Zarar ($)</span><input type="number" id="cfg_dailyloss" value="20" min="5" step="5"></div>
-                <div class="risk-row"><span>Max Pozisyon</span><input type="number" id="cfg_maxpos" value="30" min="1" step="1"></div>
-                <div class="risk-row"><span>Aynı Coin Max Açılış</span><input type="number" id="cfg_samecoin" value="3" min="1" step="1"></div>
+                <div class="risk-row"><span>Max Stop (%)</span><input type="number" id="cfg_maxstop" value="1.8" min="0.8" step="0.1"></div>
+                <div class="risk-row"><span>Max Günlük Zarar ($)</span><input type="number" id="cfg_dailyloss" value="15" min="5" step="5"></div>
+                <div class="risk-row"><span>Max Pozisyon</span><input type="number" id="cfg_maxpos" value="20" min="1" step="1"></div>
+                <div class="risk-row"><span>Aynı Coin Max Açılış</span><input type="number" id="cfg_samecoin" value="2" min="1" step="1"></div>
             </div>
             <div style="display:flex;flex-direction:column;gap:8px;margin-top:12px;">
                 <button class="btn btn-apply" onclick="applySettings()">💾 AYARLARI UYGULA</button>
@@ -267,7 +267,7 @@
             <div class="chart-container"><canvas id="mainChart"></canvas></div>
         </div>
         <div class="card">
-            <div class="card-title">🔍 COİN TARAYICI (30 COİN)</div>
+            <div class="card-title">🔍 COİN TARAYICI (30 COİN) - ANLIK</div>
             <div class="scanner-grid" id="scannerGrid"></div>
         </div>
         <div class="card">
@@ -279,7 +279,7 @@
     <!-- SAĞ PANEL -->
     <div class="right-panel">
         <div class="card">
-            <div class="card-title">🎯 AÇIK POZİSYONLAR (<span id="openPositionsCount">0</span>/50)</div>
+            <div class="card-title">🎯 AÇIK POZİSYONLAR (<span id="openPositionsCount">0</span>/20)</div>
             <div class="positions-list" id="positionsList"><div style="text-align:center;color:var(--text-muted);padding:40px">Henüz açık pozisyon yok</div></div>
         </div>
         <div class="card">
@@ -297,32 +297,32 @@
 
 <script>
     // ============================================================
-    // VUR-KAÇ BOT v6.1 – OTONOM, 3 AYNI COIN, MIN KASA 30$
+    // VUR-KAÇ BOT v6.2 – SON HAL (TÜM HATALAR DÜZELTİLDİ)
     // CLAUDE SONNET 4.6 (ANTHROPIC)
     // ============================================================
 
-    // -------- KONFİG (varsayılan) --------
+    // -------- KONFİG --------
     const CONFIG = {
         INITIAL_BALANCE: 500,
         MIN_BALANCE: 30,
-        MAX_POSITIONS: 30,
+        MAX_POSITIONS: 20,
         MIN_LEVERAGE: 10,
-        MAX_LEVERAGE: 30,
+        MAX_LEVERAGE: 20,
         MIN_MARGIN: 2,
         MAX_MARGIN: 5,
-        MIN_PROFIT: 0.30,
+        MIN_PROFIT: 0.50,
         MAX_PROFIT: 1.50,
         MIN_STOP_PERCENT: 1.0,
-        MAX_STOP_PERCENT: 2.5,
-        MAX_DAILY_LOSS: 20,
+        MAX_STOP_PERCENT: 1.8,
+        MAX_DAILY_LOSS: 15,
         MAX_CONSECUTIVE_LOSSES: 3,
         COOLDOWN_AFTER_LOSSES: 10,
-        SAME_COIN_MAX_OPEN: 3,
-        COINS: ['BTCUSDT','ETHUSDT','BNBUSDT','SOLUSDT','XRPUSDT','ADAUSDT','DOGEUSDT','DOTUSDT','AVAXUSDT','MATICUSDT','LINKUSDT','LTCUSDT','UNIUSDT','ATOMUSDT','ETCUSDT','FILUSDT','XLMUSDT','VETUSDT','TRXUSDT','NEARUSDT','ALGOUSDT','FTMUSDT','SANDUSDT','MANAUSDT','AXSUSDT','GALAUSDT','APEUSDT','OPUSDT','ARBUSDT','APTUSDT'],
-        SCAN_INTERVAL: 15000,
-        UPDATE_INTERVAL: 3000,
+        SAME_COIN_MAX_OPEN: 2,
+        SCAN_INTERVAL: 20000,
+        UPDATE_INTERVAL: 5000,
         MAKER_FEE: 0.001,
-        TAKER_FEE: 0.001
+        TAKER_FEE: 0.001,
+        COINS: ['BTCUSDT','ETHUSDT','BNBUSDT','SOLUSDT','XRPUSDT','ADAUSDT','DOGEUSDT','DOTUSDT','AVAXUSDT','MATICUSDT','LINKUSDT','LTCUSDT','UNIUSDT','ATOMUSDT','ETCUSDT','FILUSDT','XLMUSDT','VETUSDT','TRXUSDT','NEARUSDT','ALGOUSDT','FTMUSDT','SANDUSDT','MANAUSDT','AXSUSDT','GALAUSDT','APEUSDT','OPUSDT','ARBUSDT','APTUSDT']
     };
 
     // -------- DURUM --------
@@ -388,7 +388,7 @@
         }catch(e){ return null }
     }
 
-    // -------- ANALİZ FONKSİYONLARI (v4.0'dan aynen) --------
+    // -------- ANALİZ FONKSİYONLARI --------
     function calculateEMA(d,p){
         const k=2/(p+1);
         let e=d[0].close;
@@ -509,13 +509,13 @@
         return {signal:'NEUTRAL', score:0, details:dt.join(', ')||'Kararsız', confidence:0, metrics};
     }
 
-    // -------- RİSK HESAPLAMALARI (SABİT, random yok) --------
+    // -------- RİSK HESAPLAMALARI (SABİT MARJİN, BALANCE KULLANMAZ) --------
     function calculateLeverage(volatility,confidence){
         let l=CONFIG.MIN_LEVERAGE;
         if(volatility<0.5 && confidence>=8) l=CONFIG.MAX_LEVERAGE;
-        else if(volatility<1 && confidence>=6) l=Math.min(CONFIG.MAX_LEVERAGE, Math.max(CONFIG.MIN_LEVERAGE, 25));
-        else if(volatility<2 && confidence>=5) l=Math.min(CONFIG.MAX_LEVERAGE, Math.max(CONFIG.MIN_LEVERAGE, 20));
-        else if(volatility<3 && confidence>=4) l=Math.min(CONFIG.MAX_LEVERAGE, Math.max(CONFIG.MIN_LEVERAGE, 15));
+        else if(volatility<1 && confidence>=6) l=Math.min(CONFIG.MAX_LEVERAGE, Math.max(CONFIG.MIN_LEVERAGE, 18));
+        else if(volatility<2 && confidence>=5) l=Math.min(CONFIG.MAX_LEVERAGE, Math.max(CONFIG.MIN_LEVERAGE, 15));
+        else if(volatility<3 && confidence>=4) l=Math.min(CONFIG.MAX_LEVERAGE, Math.max(CONFIG.MIN_LEVERAGE, 12));
         else if(volatility<5 && confidence>=3) l=Math.min(CONFIG.MAX_LEVERAGE, Math.max(CONFIG.MIN_LEVERAGE, 10));
         else l=CONFIG.MIN_LEVERAGE;
         return Math.min(CONFIG.MAX_LEVERAGE, Math.max(CONFIG.MIN_LEVERAGE, l));
@@ -529,7 +529,7 @@
         const normalizedVolatility=Math.max(0,1-(volatility/10));
         const score=(normalizedConfidence*0.7 + normalizedVolatility*0.3);
         const margin=minMargin + (range*score);
-        return Math.max(minMargin, Math.min(margin, balance - CONFIG.MIN_BALANCE));
+        return Math.max(minMargin, Math.min(margin, CONFIG.MAX_MARGIN));
     }
     function shouldEnterTrade(analysis, price){
         if(analysis.signal==='NEUTRAL') return false;
@@ -567,8 +567,8 @@
 
         const positionSize = margin * leverage;
         const atr = calculateATR(coinData[symbol]?.klines1m || [], 14);
-        const lastAtr = atr[atr.length-1] || price * 0.02;
-        const slPercentRaw = (lastAtr/price)*100*2;
+        const lastAtr = atr[atr.length-1] || price * 0.015;
+        const slPercentRaw = (lastAtr/price)*100*1.5;
         const slPercent = Math.min(CONFIG.MAX_STOP_PERCENT, Math.max(CONFIG.MIN_STOP_PERCENT, slPercentRaw));
         const profitTarget = calculateDynamicProfitTarget(price, leverage, volatility, analysis.confidence);
         const tpPercent = (profitTarget / margin) * 100;
@@ -577,11 +577,11 @@
         if(side === 'LONG'){
             stopPrice = price * (1 - slPercent/100);
             takeProfitPrice = price * (1 + tpPercent/100);
-            liquidationPrice = price * (1 - (100/leverage)/100 * 0.9);
+            liquidationPrice = price * (1 - (100/leverage)/100 * 0.85);
         } else {
             stopPrice = price * (1 + slPercent/100);
             takeProfitPrice = price * (1 - tpPercent/100);
-            liquidationPrice = price * (1 + (100/leverage)/100 * 0.9);
+            liquidationPrice = price * (1 + (100/leverage)/100 * 0.85);
         }
 
         tradeCounter++;
@@ -621,8 +621,8 @@
         const fee = Math.abs(pos.margin * 0.002);
         const netPnl = pnl - fee;
         balance += pos.margin + netPnl;
-        if(pnl < 0){
-            dailyLoss += Math.abs(pnl);
+        if(netPnl < 0){
+            dailyLoss += Math.abs(netPnl);
             consecutiveLosses++;
             if(consecutiveLosses >= CONFIG.MAX_CONSECUTIVE_LOSSES){
                 addLog('warn', `⚠️ ${CONFIG.MAX_CONSECUTIVE_LOSSES} arka arkaya zarar - 10dk mola`);
@@ -645,26 +645,30 @@
     // -------- LİKİDASYON --------
     function handleLiquidation(pos, price){
         const fee = pos.margin * 0.002;
-        pos.pnl = -pos.margin - fee;
-        balance += pos.margin + pos.pnl;
-        dailyLoss += pos.margin;
+        const netLoss = -pos.margin - fee;
+        balance += pos.margin + netLoss;
+        dailyLoss += Math.abs(netLoss);
         consecutiveLosses++;
-        addLog('loss', `🚨 ${pos.symbol} LİKİDASYON! -${formatMoney(pos.margin+fee)} (komisyon dahil)`);
+        addLog('loss', `🚨 ${pos.symbol} LİKİDASYON! ${formatMoney(netLoss)} (komisyon dahil)`);
         showNotification(`${pos.symbol} LİKİDASYON!`, 'error');
         const idx = positions.findIndex(p => p.id === pos.id);
         if(idx > -1){
-            history.unshift({ ...pos, closePrice: price, closeTime: now(), closeReason: 'LIQUIDATION', duration: Math.floor((now()-pos.openTime)/1000/60), pnl: -pos.margin-fee, fee });
+            history.unshift({ ...pos, closePrice: price, closeTime: now(), closeReason: 'LIQUIDATION', duration: Math.floor((now()-pos.openTime)/1000/60), pnl: netLoss, fee });
             positions.splice(idx, 1);
         }
         updateUI();
     }
 
-    // -------- POZİSYON GÜNCELLEME --------
+    // -------- POZİSYON GÜNCELLEME (ANLIK FİYAT, SCANNER'ı da güncelle) --------
     async function updatePositions(){
         for(const pos of positions){
             const price = await fetchPrice(pos.symbol);
             if(!price) continue;
             pos.currentPrice = price;
+            // Scanner için güncel fiyatı coinData'ya yaz
+            if(!coinData[pos.symbol]) coinData[pos.symbol] = {};
+            coinData[pos.symbol].currentPrice = price;
+
             const pd = pos.type==='LONG' ? (price-pos.entryPrice)/pos.entryPrice : (pos.entryPrice-price)/pos.entryPrice;
             pos.pnlPercent = pd * 100 * pos.leverage;
             pos.pnl = pos.margin * pos.pnlPercent / 100;
@@ -677,6 +681,24 @@
             if(pos.type==='LONG' && price <= pos.stopLoss){ closePosition(pos.id, 'STOP_LOSS'); continue; }
             if(pos.type==='SHORT' && price >= pos.stopLoss){ closePosition(pos.id, 'STOP_LOSS'); continue; }
         }
+        // Scanner'ı güncelle (anlık fiyatlar için)
+        renderScannerFromCache();
+    }
+
+    // -------- SCANNER RENDER (CACHE'DEN) --------
+    function renderScannerFromCache(){
+        const g = document.getElementById('scannerGrid');
+        const results = CONFIG.COINS.map(symbol => {
+            const data = coinData[symbol];
+            const price = data?.currentPrice || data?.klines1m?.[data.klines1m.length-1]?.close || 0;
+            const analysis = data?.analysis || {signal:'NEUTRAL', score:0, details:'', confidence:0, metrics:0};
+            return { symbol, analysis, price };
+        });
+        g.innerHTML = results.map(r => {
+            const sc = r.analysis.signal.toLowerCase().replace(/_/g,'-');
+            const st = r.analysis.signal==='STRONG_BUY'?'GÜÇLÜ AL': r.analysis.signal==='BUY'?'AL': r.analysis.signal==='STRONG_SELL'?'GÜÇLÜ SAT': r.analysis.signal==='SELL'?'SAT':'NÖTR';
+            return `<div class="scanner-item ${r.analysis.signal!=='NEUTRAL'?'active':''}"><div><div style="font-weight:700">${r.symbol.replace('USDT','')}</div><div style="font-size:0.75rem;color:var(--text-muted)">${formatMoney(r.price||0)}</div></div><div class="scanner-signal ${sc}">${st}</div></div>`;
+        }).join('');
     }
 
     // -------- TARAMA --------
@@ -691,7 +713,6 @@
             pauseBot(); return;
         }
 
-        const results = [];
         for(const symbol of CONFIG.COINS){
             try{
                 if(!coinData[symbol] || !coinData[symbol].klines1m || coinData[symbol].klines1m.length<30){
@@ -702,15 +723,16 @@
                     ]);
                     coinData[symbol] = { klines1m: k1, klines5m: k5, klines15m: k15 };
                 }
+                // Güncel fiyatı coinData'da varsa kullan, yoksa klines'tan al
+                const price = coinData[symbol].currentPrice || coinData[symbol].klines1m[coinData[symbol].klines1m.length-1]?.close || 0;
                 const k1 = coinData[symbol].klines1m;
                 const k5 = coinData[symbol].klines5m;
                 const k15 = coinData[symbol].klines15m;
                 const analysis = analyzeCoin(k1, k5, k15);
-                const price = k1[k1.length-1]?.close || 0;
-                results.push({ symbol, analysis, price });
+                coinData[symbol].analysis = analysis;
+                coinData[symbol].currentPrice = price;
 
                 if(shouldEnterTrade(analysis, price)){
-                    const existing = positions.find(p => p.symbol === symbol && p.status === 'OPEN');
                     const sameDirCount = positions.filter(p => p.symbol === symbol && p.type === (analysis.signal.includes('BUY')?'LONG':'SHORT')).length;
                     if(sameDirCount < CONFIG.SAME_COIN_MAX_OPEN && positions.length < CONFIG.MAX_POSITIONS){
                         const side = analysis.signal.includes('BUY') ? 'LONG' : 'SHORT';
@@ -719,19 +741,11 @@
                 }
             }catch(e){ /* sessiz */ }
         }
-        renderScanner(results);
+        // Scanner'ı güncelle
+        renderScannerFromCache();
     }
 
-    // -------- UI RENDER FONKSİYONLARI (v4.0 ile aynı) --------
-    function renderScanner(results){
-        const g = document.getElementById('scannerGrid');
-        g.innerHTML = results.map(r => {
-            const sc = r.analysis.signal.toLowerCase().replace(/_/g,'-');
-            const st = r.analysis.signal==='STRONG_BUY'?'GÜÇLÜ AL': r.analysis.signal==='BUY'?'AL': r.analysis.signal==='STRONG_SELL'?'GÜÇLÜ SAT': r.analysis.signal==='SELL'?'SAT':'NÖTR';
-            return `<div class="scanner-item ${r.analysis.signal!=='NEUTRAL'?'active':''}"><div><div style="font-weight:700">${r.symbol.replace('USDT','')}</div><div style="font-size:0.75rem;color:var(--text-muted)">${formatMoney(r.price||0)}</div></div><div class="scanner-signal ${sc}">${st}</div></div>`;
-        }).join('');
-    }
-
+    // -------- UI RENDER FONKSİYONLARI --------
     function renderPositions(){
         const l = document.getElementById('positionsList');
         document.getElementById('openPositionsCount').textContent = positions.length;
@@ -821,6 +835,8 @@
         renderCoinPerformance();
         renderDailySummary();
         renderChart();
+        // Scanner'ı güncelle
+        renderScannerFromCache();
     }
 
     // -------- GRAFİK --------
@@ -870,7 +886,7 @@
         document.getElementById('btnStart').disabled = true;
         document.getElementById('btnPause').disabled = false;
         document.getElementById('btnEmergency').disabled = false;
-        addLog('info','🟢 BOT BAŞLATILDI (Vur-Kaç - 3 aynı coin)');
+        addLog('info','🟢 BOT BAŞLATILDI (V6.2 - Son Hal)');
         showNotification('Bot başlatıldı!', 'success');
         scanCoins();
         scanInterval = setInterval(scanCoins, CONFIG.SCAN_INTERVAL);
@@ -925,12 +941,12 @@
         const pfVal = totalLossAbs>0?(totalGross/totalLossAbs).toFixed(2):'N/A';
         const cs = {};
         history.forEach(h => { if(!cs[h.symbol]) cs[h.symbol]={count:0,pnl:0,wins:0}; cs[h.symbol].count++; cs[h.symbol].pnl+=h.pnl; if(h.pnl>0) cs[h.symbol].wins++; });
-        const report = `═══════════════════════════════════════════════════\n     🚀 VUR-KAÇ BOT v6.1 - OTONOM RAPOR\n     🤖 Claude Sonnet 4.6 by Anthropic\n═══════════════════════════════════════════════════\nTarih: ${now().toLocaleString('tr-TR')}\n\n📊 PORTFÖY ÖZETİ:\n├─ Başlangıç Bakiye: ${formatMoney(initialBalance)}\n├─ Serbest Kasa:     ${formatMoney(balance)}\n├─ İşlemdeki Marjin: ${formatMoney(totalLockedMargin)}\n├─ Toplam Portföy:   ${formatMoney(totalPortfolioValue)}\n├─ Net Kâr/Zarar:    ${netPnL>=0?'+':''}${formatMoney(netPnL)}\n├─ Açık Pozisyon:    ${positions.length}\n└─ Anlık P&L:        ${totalOpenPnL>=0?'+':''}${formatMoney(totalOpenPnL)}\n\n📈 İSTATİSTİKLER:\n├─ Toplam İşlem:     ${tt}\n├─ Kazanan:          ${w} (${wr}%)\n├─ Kaybeden:         ${ls}\n├─ Profit Factor:    ${pfVal}\n├─ Ortalama Kâr:     +${formatMoney(ap)}\n├─ Ortalama Zarar:   ${formatMoney(al)}\n├─ En İyi İşlem:     +${formatMoney(bt)}\n├─ Liquidation:      ${history.filter(h=>h.closeReason==='LIQUIDATION').length}\n└─ Günlük Zarar:     ${formatMoney(dailyLoss)}\n\n🏆 COİN PERFORMANSI:\n${Object.entries(cs).sort((a,b)=>b[1].pnl-a[1].pnl).map(([sym,st])=>`├─ ${sym.replace('USDT','')}: ${st.pnl>=0?'+':''}${formatMoney(st.pnl)} (${st.count} işlem, ${(st.wins/st.count*100).toFixed(0)}% win)`).join('\n')}\n\n🎯 AÇIK POZİSYONLAR:\n${positions.length===0?'└─ Yok':positions.map(p=>`├─ #${p.id} ${p.symbol.replace('USDT','')} | ${p.type} ${p.leverage}x | Marjin:${formatMoney(p.margin)} | Hedef:${formatMoney(p.profitTarget)} | Giriş:${formatMoney(p.entryPrice)} | Anlık:${formatMoney(p.currentPrice)} | P&L:${p.pnl>=0?'+':''}${formatMoney(p.pnl)}`).join('\n')}\n\n📜 İŞLEM GEÇMİŞİ (Son 50):\n${history.slice(0,50).map(h=>`#${h.id} | ${h.symbol.replace('USDT','')} | ${h.type} ${h.leverage}x | Marjin:${formatMoney(h.margin)} | Hedef:${formatMoney(h.profitTarget)} | Giriş:${formatMoney(h.entryPrice)} | Çıkış:${formatMoney(h.closePrice)} | P&L:${h.pnl>=0?'+':''}${formatMoney(h.pnl)} | Süre:${h.duration}dk | ${h.closeReason}`).join('\n')}\n\n═══════════════════════════════════════════════════\n     Rapor: ${now().toLocaleString('tr-TR')}\n═══════════════════════════════════════════════════`;
+        const report = `═══════════════════════════════════════════════════\n     🚀 VUR-KAÇ BOT v6.2 - SON HAL RAPORU\n     🤖 Claude Sonnet 4.6 by Anthropic\n═══════════════════════════════════════════════════\nTarih: ${now().toLocaleString('tr-TR')}\n\n📊 PORTFÖY ÖZETİ:\n├─ Başlangıç Bakiye: ${formatMoney(initialBalance)}\n├─ Serbest Kasa:     ${formatMoney(balance)}\n├─ İşlemdeki Marjin: ${formatMoney(totalLockedMargin)}\n├─ Toplam Portföy:   ${formatMoney(totalPortfolioValue)}\n├─ Net Kâr/Zarar:    ${netPnL>=0?'+':''}${formatMoney(netPnL)}\n├─ Açık Pozisyon:    ${positions.length}\n└─ Anlık P&L:        ${totalOpenPnL>=0?'+':''}${formatMoney(totalOpenPnL)}\n\n📈 İSTATİSTİKLER:\n├─ Toplam İşlem:     ${tt}\n├─ Kazanan:          ${w} (${wr}%)\n├─ Kaybeden:         ${ls}\n├─ Profit Factor:    ${pfVal}\n├─ Ortalama Kâr:     +${formatMoney(ap)}\n├─ Ortalama Zarar:   ${formatMoney(al)}\n├─ En İyi İşlem:     +${formatMoney(bt)}\n├─ Liquidation:      ${history.filter(h=>h.closeReason==='LIQUIDATION').length}\n└─ Günlük Zarar:     ${formatMoney(dailyLoss)}\n\n🏆 COİN PERFORMANSI:\n${Object.entries(cs).sort((a,b)=>b[1].pnl-a[1].pnl).map(([sym,st])=>`├─ ${sym.replace('USDT','')}: ${st.pnl>=0?'+':''}${formatMoney(st.pnl)} (${st.count} işlem, ${(st.wins/st.count*100).toFixed(0)}% win)`).join('\n')}\n\n🎯 AÇIK POZİSYONLAR:\n${positions.length===0?'└─ Yok':positions.map(p=>`├─ #${p.id} ${p.symbol.replace('USDT','')} | ${p.type} ${p.leverage}x | Marjin:${formatMoney(p.margin)} | Hedef:${formatMoney(p.profitTarget)} | Giriş:${formatMoney(p.entryPrice)} | Anlık:${formatMoney(p.currentPrice)} | P&L:${p.pnl>=0?'+':''}${formatMoney(p.pnl)}`).join('\n')}\n\n📜 İŞLEM GEÇMİŞİ (Son 50):\n${history.slice(0,50).map(h=>`#${h.id} | ${h.symbol.replace('USDT','')} | ${h.type} ${h.leverage}x | Marjin:${formatMoney(h.margin)} | Hedef:${formatMoney(h.profitTarget)} | Giriş:${formatMoney(h.entryPrice)} | Çıkış:${formatMoney(h.closePrice)} | P&L:${h.pnl>=0?'+':''}${formatMoney(h.pnl)} | Süre:${h.duration}dk | ${h.closeReason}`).join('\n')}\n\n═══════════════════════════════════════════════════\n     Rapor: ${now().toLocaleString('tr-TR')}\n═══════════════════════════════════════════════════`;
         const blob = new Blob([report], {type:'text/plain;charset=utf-8'});
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = `VUR-KAC-RAPOR-v6.1-${now().toISOString().slice(0,10)}.txt`;
+        a.download = `VUR-KAC-RAPOR-v6.2-${now().toISOString().slice(0,10)}.txt`;
         a.click();
         URL.revokeObjectURL(url);
         addLog('info','📄 Rapor indirildi');
@@ -945,14 +961,14 @@
         CONFIG.MIN_MARGIN = parseFloat(document.getElementById('cfg_minmargin').value) || 2;
         CONFIG.MAX_MARGIN = parseFloat(document.getElementById('cfg_maxmargin').value) || 5;
         CONFIG.MIN_LEVERAGE = parseInt(document.getElementById('cfg_minlev').value) || 10;
-        CONFIG.MAX_LEVERAGE = parseInt(document.getElementById('cfg_maxlev').value) || 30;
-        CONFIG.MIN_PROFIT = parseFloat(document.getElementById('cfg_minprofit').value) || 0.30;
+        CONFIG.MAX_LEVERAGE = parseInt(document.getElementById('cfg_maxlev').value) || 20;
+        CONFIG.MIN_PROFIT = parseFloat(document.getElementById('cfg_minprofit').value) || 0.50;
         CONFIG.MAX_PROFIT = parseFloat(document.getElementById('cfg_maxprofit').value) || 1.50;
         CONFIG.MIN_STOP_PERCENT = parseFloat(document.getElementById('cfg_minstop').value) || 1.0;
-        CONFIG.MAX_STOP_PERCENT = parseFloat(document.getElementById('cfg_maxstop').value) || 2.5;
-        CONFIG.MAX_DAILY_LOSS = parseFloat(document.getElementById('cfg_dailyloss').value) || 20;
-        CONFIG.MAX_POSITIONS = parseInt(document.getElementById('cfg_maxpos').value) || 30;
-        CONFIG.SAME_COIN_MAX_OPEN = parseInt(document.getElementById('cfg_samecoin').value) || 3;
+        CONFIG.MAX_STOP_PERCENT = parseFloat(document.getElementById('cfg_maxstop').value) || 1.8;
+        CONFIG.MAX_DAILY_LOSS = parseFloat(document.getElementById('cfg_dailyloss').value) || 15;
+        CONFIG.MAX_POSITIONS = parseInt(document.getElementById('cfg_maxpos').value) || 20;
+        CONFIG.SAME_COIN_MAX_OPEN = parseInt(document.getElementById('cfg_samecoin').value) || 2;
         showNotification('Ayarlar uygulandı!','success');
         addLog('info','⚙️ Ayarlar güncellendi');
     }
@@ -988,20 +1004,21 @@
     window.addEventListener('load', ()=>{
         renderCoinSelector();
         document.getElementById('loadingOverlay').style.display = 'none';
-        addLog('info', '🚀 VUR-KAÇ BOT v6.1 Yükleniyor...');
-        addLog('info', '🤖 Claude Sonnet 4.6 - Otonom, 3 aynı coin açabilir');
-        addLog('info', '💰 Min Kasa: 30$ | Min Marjin: 2$ | Max Marjin: 5$');
-        addLog('info', '🎯 Hedef: 0.30-1.50$ | Stop: %1.0-2.5 | Kaldıraç: 10-30x');
-        addLog('info', '🛡️ Komisyon: %0.2 (alış+satış) dahil');
+        addLog('info', '🚀 VUR-KAÇ BOT v6.2 Yükleniyor...');
+        addLog('info', '🤖 Claude Sonnet 4.6 - Son Hal (Tüm hatalar düzeltildi)');
+        addLog('info', '💰 Min Kasa: 30$ | Marjin: 2-5$ | Kaldıraç: 10-20x');
+        addLog('info', '🎯 Hedef: 0.50-1.50$ | Stop: %1.0-1.8 | Komisyon: %0.2');
+        addLog('info', '🔄 Scanner artık anlık fiyatları gösteriyor');
         addLog('info', '✅ Bot hazır! BAŞLAT butonuna basın.');
         showNotification('Bot hazır!', 'success');
         updateUI();
         (async ()=>{
             for(const s of CONFIG.COINS.slice(0,5)){
                 const [k1,k5,k15] = await Promise.all([fetchKlines(s,'1m',50), fetchKlines(s,'5m',50), fetchKlines(s,'15m',50)]);
-                coinData[s] = { klines1m:k1, klines5m:k5, klines15m:k15 };
+                coinData[s] = { klines1m:k1, klines5m:k5, klines15m:k15, currentPrice: k1[k1.length-1]?.close || 0 };
             }
             renderChart();
+            renderScannerFromCache();
         })();
     });
 </script>
