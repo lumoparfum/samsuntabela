@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚀 VUR-KAÇ BOT v6.1 - Otonom (3x aynı coin)</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <style>
+        /* Aynı stiller – v6.0'daki tüm CSS aynen burada */
+        *{margin:0;padding:0;box-sizing:border-box}
+        :root{
+            --bg:#050508;
+            --bg-card:rgba(20,20,30,0.6);
+            --bg-glass:rgba(255,255,255,0.03);
+            --border:rgba(255,255,255,0.08);
+            --text:#f0f0f5;
+            --text-muted:rgba(255,255,255,0.5);
+            --green:#00d084;
+            --green-glow:rgba(0,208,132,0.3);
+            --red:#ff4757;
+            --red-glow:rgba(255,71,87,0.3);
+            --yellow:#ffa502;
+            --blue:#3742fa;
+            --purple:#7d5fff;
+            --cyan:#00d2d3;
+            --gradient-1:linear-gradient(135deg,#667eea 0%,#764ba2 100%);
+            --gradient-2:linear-gradient(135deg,#f093fb 0%,#f5576c 100%);
+            --gradient-3:linear-gradient(135deg,#4facfe 0%,#00f2fe 100%);
+        }
+        body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;}
+        body::before{content:'';position:fixed;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle at 30% 30%,rgba(125,95,255,0.08) 0%,transparent 50%),radial-gradient(circle at 70% 70%,rgba(0,210,211,0.06) 0%,transparent 50%);pointer-events:none;z-index:0;}
+        .header{background:var(--bg-glass);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:20px 30px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100;}
+        .header h1{font-size:1.6rem;font-weight:800;background:var(--gradient-3);-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:-0.5px;}
+        .header-status{display:flex;gap:20px;align-items:center;}
+        .ai-badge{font-size:0.75rem;color:var(--text-muted);text-align:right;line-height:1.6;}
+        .ai-badge span{color:var(--cyan);font-weight:700;display:block;}
+        .status-badge{padding:8px 16px;border-radius:50px;font-size:0.8rem;font-weight:700;display:flex;align-items:center;gap:8px;backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.1);}
+        .status-active{background:rgba(0,208,132,0.15);color:var(--green);border-color:var(--green-glow);box-shadow:0 0 20px var(--green-glow)}
+        .status-paused{background:rgba(255,165,2,0.15);color:var(--yellow);border-color:rgba(255,165,2,0.3)}
+        .status-stopped{background:rgba(255,71,87,0.15);color:var(--red);border-color:var(--red-glow)}
+        .pulse{width:8px;height:8px;border-radius:50%;background:currentColor;animation:pulse 2s infinite;box-shadow:0 0 10px currentColor;}
+        @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(0.8)}}
+        .main-grid{display:grid;grid-template-columns:320px 1fr 420px;gap:20px;padding:20px;max-width:1920px;margin:0 auto;position:relative;z-index:1;}
+        @media(max-width:1400px){.main-grid{grid-template-columns:300px 1fr 380px}}
+        @media(max-width:1200px){.main-grid{grid-template-columns:1fr}}
+        .card{background:var(--bg-card);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--border);border-radius:24px;padding:24px;overflow:hidden;transition:all 0.3s ease;position:relative;}
+        .card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.2),transparent);}
+        .card:hover{border-color:rgba(255,255,255,0.15);transform:translateY(-2px);box-shadow:0 20px 40px rgba(0,0,0,0.3);}
+        .card-title{font-size:0.75rem;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:2px;margin-bottom:20px;display:flex;align-items:center;gap:10px;}
+        .balance-card{background:linear-gradient(135deg,rgba(102,126,234,0.1) 0%,rgba(118,75,162,0.1) 100%);border:1px solid rgba(102,126,234,0.3);}
+        .balance-amount{font-size:2.8rem;font-weight:800;color:var(--text);margin:10px 0;letter-spacing:-1px;}
+        .balance-change{font-size:1rem;font-weight:600;display:flex;align-items:center;gap:8px;padding:8px 16px;border-radius:12px;width:fit-content;}
+        .balance-change.positive{background:var(--green-glow);color:var(--green);}
+        .balance-change.negative{background:var(--red-glow);color:var(--red);}
+        .balance-stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px;}
+        .stat-item{background:var(--bg-glass);padding:16px;border-radius:16px;text-align:center;border:1px solid var(--border);transition:all 0.3s;}
+        .stat-item:hover{border-color:rgba(255,255,255,0.2);transform:scale(1.02);}
+        .stat-label{font-size:0.65rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;}
+        .stat-value{font-size:1.1rem;font-weight:700;}
+        .control-buttons{display:flex;flex-direction:column;gap:10px;margin-top:20px;}
+        .btn{padding:14px 24px;border:none;border-radius:16px;font-size:0.85rem;font-weight:700;cursor:pointer;transition:all 0.3s;display:flex;align-items:center;justify-content:center;gap:10px;text-transform:uppercase;letter-spacing:1px;position:relative;overflow:hidden;}
+        .btn::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.2),transparent);transition:left 0.5s;}
+        .btn:hover::before{left:100%}
+        .btn:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(0,0,0,0.4);}
+        .btn:active{transform:translateY(-1px)}
+        .btn-start{background:var(--gradient-1);color:white;box-shadow:0 4px 20px rgba(102,126,234,0.4);}
+        .btn-pause{background:linear-gradient(135deg,#ffa502,#ff6348);color:white;box-shadow:0 4px 20px rgba(255,165,2,0.4);}
+        .btn-emergency{background:linear-gradient(135deg,#ff4757,#ff3838);color:white;animation:emergency-pulse 1.5s infinite;box-shadow:0 4px 20px rgba(255,71,87,0.4);}
+        @keyframes emergency-pulse{0%,100%{box-shadow:0 0 0 0 rgba(255,71,87,0.4)}50%{box-shadow:0 0 0 15px rgba(255,71,87,0)}}
+        .btn-report{background:var(--gradient-3);color:white;box-shadow:0 4px 20px rgba(79,172,254,0.4);}
+        .btn-reset{background:rgba(255,255,255,0.08);color:var(--text);border:1px solid var(--border);}
+        .btn-apply{background:linear-gradient(135deg,#00d084,#00b894);color:white;box-shadow:0 4px 20px rgba(0,208,132,0.3);}
+        .btn:disabled{opacity:0.4;cursor:not-allowed;transform:none!important;box-shadow:none;}
+        .portfolio-summary{background:var(--bg-glass);border-radius:20px;padding:20px;margin-bottom:20px;border:1px solid var(--border);}
+        .portfolio-row{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--border);font-size:0.9rem;}
+        .portfolio-row:last-child{border-bottom:none}
+        .portfolio-label{color:var(--text-muted);font-weight:500;}
+        .portfolio-value{font-weight:700;font-size:1.1rem;}
+        .portfolio-value.green{color:var(--green)}
+        .portfolio-value.red{color:var(--red)}
+        .total-pnl-display{background:var(--bg-glass);border-radius:20px;padding:24px;margin-bottom:20px;border:1px solid var(--border);text-align:center;}
+        .total-pnl-label{font-size:0.8rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:2px;margin-bottom:8px;}
+        .total-pnl-value{font-size:2.5rem;font-weight:800;letter-spacing:-1px;}
+        .total-pnl-value.positive{color:var(--green);text-shadow:0 0 20px var(--green-glow)}
+        .total-pnl-value.negative{color:var(--red);text-shadow:0 0 20px var(--red-glow)}
+        .chart-container{position:relative;height:400px;margin-bottom:20px;}
+        .chart-tabs{display:flex;gap:8px;margin-bottom:15px;}
+        .chart-tab{padding:8px 20px;background:var(--bg-glass);border:1px solid var(--border);border-radius:12px;color:var(--text-muted);font-size:0.8rem;font-weight:600;cursor:pointer;transition:all 0.3s;}
+        .chart-tab.active{background:var(--gradient-3);color:white;border-color:transparent;box-shadow:0 4px 15px rgba(79,172,254,0.3);}
+        .chart-tab:hover:not(.active){border-color:rgba(255,255,255,0.2);color:var(--text);}
+        .log-container{height:280px;overflow-y:auto;background:var(--bg-glass);border-radius:20px;padding:16px;font-family:'SF Mono','Courier New',monospace;font-size:0.8rem;border:1px solid var(--border);}
+        .log-entry{padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.05);display:flex;gap:12px;align-items:flex-start;transition:all 0.2s;}
+        .log-entry:hover{background:rgba(255,255,255,0.02);border-radius:8px;padding:8px}
+        .log-time{color:var(--text-muted);min-width:60px;font-size:0.75rem;}
+        .log-type{font-weight:700;min-width:80px;font-size:0.75rem;padding:2px 8px;border-radius:6px;text-align:center;}
+        .log-type.buy{background:var(--green-glow);color:var(--green)}
+        .log-type.sell{background:var(--red-glow);color:var(--red)}
+        .log-type.info{background:rgba(55,66,250,0.2);color:var(--blue)}
+        .log-type.warn{background:rgba(255,165,2,0.2);color:var(--yellow)}
+        .log-type.profit{background:var(--green-glow);color:var(--green)}
+        .log-type.loss{background:var(--red-glow);color:var(--red)}
+        .log-msg{color:var(--text);flex:1;}
+        .positions-list{max-height:500px;overflow-y:auto;}
+        .position-item{background:var(--bg-glass);border:1px solid var(--border);border-radius:20px;padding:20px;margin-bottom:12px;transition:all 0.3s;position:relative;overflow:hidden;}
+        .position-item::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;border-radius:20px 0 0 20px;}
+        .position-item.long::before{background:var(--green);box-shadow:0 0 10px var(--green-glow)}
+        .position-item.short::before{background:var(--red);box-shadow:0 0 10px var(--red-glow)}
+        .position-item:hover{border-color:rgba(255,255,255,0.2);transform:translateX(5px);}
+        .position-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;}
+        .position-symbol{font-weight:800;font-size:1.1rem;display:flex;align-items:center;gap:10px;}
+        .position-type{padding:4px 12px;border-radius:8px;font-size:0.7rem;font-weight:700;}
+        .position-type.long{background:var(--green-glow);color:var(--green)}
+        .position-type.short{background:var(--red-glow);color:var(--red)}
+        .position-leverage{background:var(--gradient-2);color:white;padding:4px 10px;border-radius:8px;font-size:0.7rem;font-weight:700;}
+        .position-details{display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:0.85rem;}
+        .position-detail{display:flex;justify-content:space-between;padding:6px 0;}
+        .position-detail span:first-child{color:var(--text-muted);font-size:0.8rem}
+        .position-detail span:last-child{font-weight:600}
+        .position-pnl{margin-top:15px;padding-top:15px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
+        .position-pnl-value{font-size:1.3rem;font-weight:800;}
+        .position-pnl-value.positive{color:var(--green)}
+        .position-pnl-value.negative{color:var(--red)}
+        .position-progress{height:4px;background:rgba(255,255,255,0.1);border-radius:4px;margin-top:10px;overflow:hidden;}
+        .position-progress-bar{height:100%;border-radius:4px;transition:width 0.5s ease;}
+        .position-progress-bar.green{background:var(--green);box-shadow:0 0 10px var(--green-glow)}
+        .position-progress-bar.red{background:var(--red);box-shadow:0 0 10px var(--red-glow)}
+        .history-list{max-height:350px;overflow-y:auto;}
+        .history-item{display:flex;justify-content:space-between;align-items:center;padding:14px;border-bottom:1px solid var(--border);font-size:0.85rem;transition:all 0.2s;border-radius:12px;}
+        .history-item:hover{background:var(--bg-glass)}
+        .history-item:last-child{border-bottom:none}
+        .history-symbol{font-weight:700;}
+        .history-result{font-weight:700;font-size:1rem;}
+        .history-result.positive{color:var(--green)}
+        .history-result.negative{color:var(--red)}
+        .scanner-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin-top:15px;}
+        .scanner-item{background:var(--bg-glass);border:1px solid var(--border);border-radius:16px;padding:16px;display:flex;justify-content:space-between;align-items:center;font-size:0.9rem;transition:all 0.3s;}
+        .scanner-item:hover{border-color:rgba(255,255,255,0.2);transform:translateY(-2px)}
+        .scanner-item.active{border-color:var(--green);background:rgba(0,208,132,0.08);box-shadow:0 0 20px var(--green-glow);}
+        .scanner-signal{padding:4px 12px;border-radius:8px;font-size:0.7rem;font-weight:700;}
+        .scanner-signal.strong-buy{background:var(--green);color:white;box-shadow:0 0 10px var(--green-glow)}
+        .scanner-signal.buy{background:var(--green-glow);color:var(--green)}
+        .scanner-signal.strong-sell{background:var(--red);color:white;box-shadow:0 0 10px var(--red-glow)}
+        .scanner-signal.sell{background:var(--red-glow);color:var(--red)}
+        .scanner-signal.neutral{background:rgba(255,255,255,0.1);color:var(--text-muted)}
+        .risk-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);font-size:0.9rem;}
+        .risk-row:last-child{border-bottom:none}
+        .risk-row input{width:80px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:8px;color:var(--text);padding:4px 8px;font-size:0.85rem;text-align:right;outline:none;}
+        .risk-row input:focus{border-color:var(--cyan);box-shadow:0 0 8px rgba(0,210,211,0.3);}
+        ::-webkit-scrollbar{width:8px}
+        ::-webkit-scrollbar-track{background:transparent}
+        ::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.15);border-radius:4px}
+        ::-webkit-scrollbar-thumb:hover{background:rgba(255,255,255,0.25)}
+        @keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+        .card{animation:fadeIn 0.5s ease-out}
+        .bottom-panel{grid-column:1 / -1;display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+        @media(max-width:1200px){.bottom-panel{grid-template-columns:1fr}}
+        .coin-selector{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:15px;}
+        .coin-chip{padding:6px 14px;background:var(--bg-glass);border:1px solid var(--border);border-radius:50px;font-size:0.8rem;font-weight:600;cursor:pointer;transition:all 0.3s;}
+        .coin-chip:hover{border-color:rgba(255,255,255,0.3);transform:translateY(-2px)}
+        .coin-chip.active{background:var(--gradient-3);color:white;border-color:transparent;box-shadow:0 4px 15px rgba(79,172,254,0.3)}
+        .loading-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:var(--bg);display:flex;flex-direction:column;justify-content:center;align-items:center;z-index:1000;}
+        .loading-spinner{width:60px;height:60px;border:3px solid rgba(255,255,255,0.1);border-top-color:var(--cyan);border-radius:50%;animation:spin 1s linear infinite;box-shadow:0 0 20px rgba(0,210,211,0.3);}
+        @keyframes spin{to{transform:rotate(360deg)}}
+        .loading-text{margin-top:20px;color:var(--text-muted);font-size:1rem;font-weight:500;}
+        .notification{position:fixed;top:100px;right:30px;padding:20px 28px;border-radius:20px;color:white;font-weight:700;z-index:1001;animation:slideIn 0.4s ease-out;max-width:400px;backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.1);box-shadow:0 20px 40px rgba(0,0,0,0.4);}
+        @keyframes slideIn{from{transform:translateX(500px);opacity:0}to{transform:translateX(0);opacity:1}}
+        .notification.success{background:rgba(0,208,132,0.9)}
+        .notification.error{background:rgba(255,71,87,0.9)}
+        .notification.warning{background:rgba(255,165,2,0.9);color:#000}
+        .notification.info{background:rgba(55,66,250,0.9)}
+    </style>
+</head>
+<body>
+<div class="loading-overlay" id="loadingOverlay">
+    <div class="loading-spinner"></div>
+    <div class="loading-text">Binance Verileri Yükleniyor...</div>
+</div>
+
+<div class="header">
+    <h1>🚀 VUR-KAÇ BOT v6.1</h1>
+    <div class="header-status">
+        <div class="ai-badge"><span>🤖 Claude Sonnet 4.6</span>by Anthropic</div>
+        <div class="status-badge status-stopped" id="botStatus">
+            <span class="pulse"></span>
+            <span id="statusText">DURDU</span>
+        </div>
+        <div style="font-size:0.9rem;color:var(--text-muted)">
+            <span id="activePositions">0</span> Açık Pozisyon
+        </div>
+    </div>
+</div>
+
+<div class="main-grid">
+    <!-- SOL PANEL -->
+    <div class="left-panel">
+        <div class="card balance-card">
+            <div class="card-title">💰 PORTFÖY</div>
+            <div class="balance-amount" id="balanceAmount">$500.00</div>
+            <div class="balance-change positive" id="balanceChange">
+                <span>▲</span><span>+$0.00 (0.0%)</span>
+            </div>
+            <div class="portfolio-summary">
+                <div class="portfolio-row"><span class="portfolio-label">💵 Serbest Kasa</span><span class="portfolio-value" id="freeBalance">$500.00</span></div>
+                <div class="portfolio-row"><span class="portfolio-label">🔒 İşlemdeki Marjin</span><span class="portfolio-value" id="lockedMargin">$0.00</span></div>
+                <div class="portfolio-row"><span class="portfolio-label">📊 Açık Pozisyonlar</span><span class="portfolio-value" id="openPosCount">0 / 50</span></div>
+            </div>
+            <div class="total-pnl-display">
+                <div class="total-pnl-label">📈 ANLIK TOPLAM P&L</div>
+                <div class="total-pnl-value positive" id="totalPnLDisplay">+$0.00</div>
+            </div>
+            <div class="balance-stats">
+                <div class="stat-item"><div class="stat-label">Başlangıç</div><div class="stat-value" style="color:var(--text)" id="initialBalanceDisplay">$500</div></div>
+                <div class="stat-item"><div class="stat-label">Net K/Z</div><div class="stat-value" style="color:var(--green)" id="totalPnL">+$0</div></div>
+                <div class="stat-item"><div class="stat-label">Kazanan</div><div class="stat-value" style="color:var(--green)" id="winCount">0</div></div>
+                <div class="stat-item"><div class="stat-label">Kaybeden</div><div class="stat-value" style="color:var(--red)" id="lossCount">0</div></div>
+                <div class="stat-item"><div class="stat-label">Win Rate</div><div class="stat-value" style="color:var(--blue)" id="winRate">0%</div></div>
+                <div class="stat-item"><div class="stat-label">Profit Factor</div><div class="stat-value" style="color:var(--cyan)" id="profitFactor">-</div></div>
+                <div class="stat-item"><div class="stat-label">En İyi</div><div class="stat-value" style="color:var(--green)" id="bestTrade">+$0</div></div>
+                <div class="stat-item"><div class="stat-label">Günlük Zarar</div><div class="stat-value" style="color:var(--red)" id="dailyLossDisplay">$0.00</div></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">🎮 KONTROL</div>
+            <div class="control-buttons">
+                <button class="btn btn-start" id="btnStart" onclick="startBot()"><span>▶</span> BAŞLAT</button>
+                <button class="btn btn-pause" id="btnPause" onclick="pauseBot()" disabled><span>⏸</span> DURAKLAT</button>
+                <button class="btn btn-emergency" id="btnEmergency" onclick="emergencyExit()" disabled><span>🚨</span> ACİL ÇIKIŞ</button>
+                <button class="btn btn-report" id="btnReport" onclick="generateReport()"><span>📄</span> RAPOR AL (TXT)</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">⚙️ VUR-KAÇ AYARLARI</div>
+            <div class="risk-settings">
+                <div class="risk-row"><span>Başlangıç Bakiye</span><input type="number" id="cfg_balance" value="500" min="50" step="50"></div>
+                <div class="risk-row"><span>Min Kasa ($)</span><input type="number" id="cfg_minbal" value="30" min="5" step="5"></div>
+                <div class="risk-row"><span>Min Marjin ($)</span><input type="number" id="cfg_minmargin" value="2" min="0.5" step="0.5"></div>
+                <div class="risk-row"><span>Max Marjin ($)</span><input type="number" id="cfg_maxmargin" value="5" min="2" step="0.5"></div>
+                <div class="risk-row"><span>Min Kaldıraç</span><input type="number" id="cfg_minlev" value="10" min="1" step="1"></div>
+                <div class="risk-row"><span>Max Kaldıraç</span><input type="number" id="cfg_maxlev" value="30" min="1" step="1"></div>
+                <div class="risk-row"><span>Min Kar ($)</span><input type="number" id="cfg_minprofit" value="0.30" min="0.10" step="0.05"></div>
+                <div class="risk-row"><span>Max Kar ($)</span><input type="number" id="cfg_maxprofit" value="1.50" min="0.30" step="0.05"></div>
+                <div class="risk-row"><span>Min Stop (%)</span><input type="number" id="cfg_minstop" value="1.0" min="0.5" step="0.1"></div>
+                <div class="risk-row"><span>Max Stop (%)</span><input type="number" id="cfg_maxstop" value="2.5" min="1.0" step="0.1"></div>
+                <div class="risk-row"><span>Max Günlük Zarar ($)</span><input type="number" id="cfg_dailyloss" value="20" min="5" step="5"></div>
+                <div class="risk-row"><span>Max Pozisyon</span><input type="number" id="cfg_maxpos" value="30" min="1" step="1"></div>
+                <div class="risk-row"><span>Aynı Coin Max Açılış</span><input type="number" id="cfg_samecoin" value="3" min="1" step="1"></div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:8px;margin-top:12px;">
+                <button class="btn btn-apply" onclick="applySettings()">💾 AYARLARI UYGULA</button>
+                <button class="btn btn-reset" onclick="resetSim()">🔄 SİMÜLASYONU SIFIRLA</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ORTA PANEL -->
+    <div class="center-panel">
+        <div class="card">
+            <div class="card-title">📈 CANLI GRAFİK</div>
+            <div class="coin-selector" id="coinSelector"></div>
+            <div class="chart-tabs">
+                <div class="chart-tab active" onclick="switchTimeframe('1m',this)">1D</div>
+                <div class="chart-tab" onclick="switchTimeframe('5m',this)">5D</div>
+                <div class="chart-tab" onclick="switchTimeframe('15m',this)">15D</div>
+            </div>
+            <div class="chart-container"><canvas id="mainChart"></canvas></div>
+        </div>
+        <div class="card">
+            <div class="card-title">🔍 COİN TARAYICI (30 COİN)</div>
+            <div class="scanner-grid" id="scannerGrid"></div>
+        </div>
+        <div class="card">
+            <div class="card-title">📝 BOT LOG</div>
+            <div class="log-container" id="botLog"></div>
+        </div>
+    </div>
+
+    <!-- SAĞ PANEL -->
+    <div class="right-panel">
+        <div class="card">
+            <div class="card-title">🎯 AÇIK POZİSYONLAR (<span id="openPositionsCount">0</span>/50)</div>
+            <div class="positions-list" id="positionsList"><div style="text-align:center;color:var(--text-muted);padding:40px">Henüz açık pozisyon yok</div></div>
+        </div>
+        <div class="card">
+            <div class="card-title">📜 İŞLEM GEÇMİŞİ</div>
+            <div class="history-list" id="historyList"><div style="text-align:center;color:var(--text-muted);padding:30px">Henüz işlem geçmişi yok</div></div>
+        </div>
+    </div>
+
+    <!-- ALT PANEL -->
+    <div class="bottom-panel">
+        <div class="card"><div class="card-title">🏆 COİN PERFORMANSI</div><div id="coinPerformance"><div style="text-align:center;color:var(--text-muted);padding:20px">Henüz işlem yok</div></div></div>
+        <div class="card"><div class="card-title">📊 GÜNLÜK ÖZET</div><div id="dailySummary"></div></div>
+    </div>
+</div>
+
+<script>
+    // ============================================================
+    // VUR-KAÇ BOT v6.1 – OTONOM, 3 AYNI COIN, MIN KASA 30$
+    // CLAUDE SONNET 4.6 (ANTHROPIC)
+    // ============================================================
+
+    // -------- KONFİG (varsayılan) --------
+    const CONFIG = {
+        INITIAL_BALANCE: 500,
+        MIN_BALANCE: 30,
+        MAX_POSITIONS: 30,
+        MIN_LEVERAGE: 10,
+        MAX_LEVERAGE: 30,
+        MIN_MARGIN: 2,
+        MAX_MARGIN: 5,
+        MIN_PROFIT: 0.30,
+        MAX_PROFIT: 1.50,
+        MIN_STOP_PERCENT: 1.0,
+        MAX_STOP_PERCENT: 2.5,
+        MAX_DAILY_LOSS: 20,
+        MAX_CONSECUTIVE_LOSSES: 3,
+        COOLDOWN_AFTER_LOSSES: 10,
+        SAME_COIN_MAX_OPEN: 3,
+        COINS: ['BTCUSDT','ETHUSDT','BNBUSDT','SOLUSDT','XRPUSDT','ADAUSDT','DOGEUSDT','DOTUSDT','AVAXUSDT','MATICUSDT','LINKUSDT','LTCUSDT','UNIUSDT','ATOMUSDT','ETCUSDT','FILUSDT','XLMUSDT','VETUSDT','TRXUSDT','NEARUSDT','ALGOUSDT','FTMUSDT','SANDUSDT','MANAUSDT','AXSUSDT','GALAUSDT','APEUSDT','OPUSDT','ARBUSDT','APTUSDT'],
+        SCAN_INTERVAL: 15000,
+        UPDATE_INTERVAL: 3000,
+        MAKER_FEE: 0.001,
+        TAKER_FEE: 0.001
+    };
+
+    // -------- DURUM --------
+    let balance = CONFIG.INITIAL_BALANCE;
+    let initialBalance = CONFIG.INITIAL_BALANCE;
+    let positions = [];
+    let history = [];
+    let botState = 'stopped';
+    let selectedCoin = 'BTCUSDT';
+    let selectedTimeframe = '1m';
+    let chart = null;
+    let coinData = {};
+    let scanInterval = null;
+    let updateInterval = null;
+    let logs = [];
+    let tradeCounter = 0;
+    let dailyLoss = 0;
+    let consecutiveLosses = 0;
+    let lowBalanceWarned = false;
+    let lastLossResetDay = '';
+
+    function formatMoney(a){ return '$' + a.toFixed(2) }
+    function formatPercent(v){ return (v>=0?'+':'') + v.toFixed(2) + '%' }
+    function formatTime(d){ return d.toTimeString().slice(0,5) }
+    function now(){ return new Date() }
+
+    // -------- LOG & BİLDİRİM --------
+    function addLog(t,m){
+        const tm = formatTime(now());
+        logs.unshift({time:tm, type:t, msg:m});
+        if(logs.length>200) logs.pop();
+        renderLogs();
+    }
+    function renderLogs(){
+        const c = document.getElementById('botLog');
+        c.innerHTML = logs.map(l => `<div class="log-entry"><span class="log-time">${l.time}</span><span class="log-type ${l.type}">${l.type.toUpperCase()}</span><span class="log-msg">${l.msg}</span></div>`).join('');
+        c.scrollTop = 0;
+    }
+    function showNotification(m,t){
+        const d = document.createElement('div');
+        d.className = `notification ${t}`;
+        d.textContent = m;
+        document.body.appendChild(d);
+        setTimeout(()=>d.remove(), 4000);
+    }
+
+    // -------- BINANCE VERİ ÇEKME --------
+    async function fetchKlines(s, i, l){
+        try{
+            const url = `https://api.binance.com/api/v3/klines?symbol=${s}&interval=${i}&limit=${l}`;
+            const res = await fetch(url);
+            if(!res.ok) throw new Error('API Error');
+            const d = await res.json();
+            return d.map(x => ({ time:x[0], open:parseFloat(x[1]), high:parseFloat(x[2]), low:parseFloat(x[3]), close:parseFloat(x[4]), volume:parseFloat(x[5]) }));
+        }catch(e){ return [] }
+    }
+    async function fetchPrice(s){
+        try{
+            const url = `https://api.binance.com/api/v3/ticker/price?symbol=${s}`;
+            const res = await fetch(url);
+            const d = await res.json();
+            return parseFloat(d.price);
+        }catch(e){ return null }
+    }
+
+    // -------- ANALİZ FONKSİYONLARI (v4.0'dan aynen) --------
+    function calculateEMA(d,p){
+        const k=2/(p+1);
+        let e=d[0].close;
+        const r=[e];
+        for(let i=1;i<d.length;i++){ e=d[i].close*k + e*(1-k); r.push(e); }
+        return r;
+    }
+    function calculateRSI(d,p=14){
+        const g=[], l=[];
+        for(let i=1;i<d.length;i++){
+            const c=d[i].close-d[i-1].close;
+            g.push(c>0?c:0);
+            l.push(c<0?-c:0);
+        }
+        let ag=g.slice(0,p).reduce((a,b)=>a+b,0)/p, al=l.slice(0,p).reduce((a,b)=>a+b,0)/p;
+        const rsi=[100-(100/(1+ag/al))];
+        for(let i=p;i<g.length;i++){
+            ag=(ag*(p-1)+g[i])/p;
+            al=(al*(p-1)+l[i])/p;
+            rsi.push(100-(100/(1+ag/al)));
+        }
+        return rsi;
+    }
+    function calculateMACD(d){
+        const e12=calculateEMA(d,12), e26=calculateEMA(d,26);
+        const ml=e12.slice(e12.length-e26.length).map((v,i)=>v-e26[i]);
+        const sl=calculateEMA(ml.map(v=>({close:v})),9);
+        const h=ml.slice(ml.length-sl.length).map((v,i)=>v-sl[i]);
+        return {macd:ml, signal:sl, histogram:h};
+    }
+    function calculateBollinger(d,p,m){
+        const b=[];
+        for(let i=p-1;i<d.length;i++){
+            const s=d.slice(i-p+1,i+1), sm=s.reduce((a,x)=>a+x.close,0)/p;
+            const v=s.reduce((a,x)=>a+Math.pow(x.close-sm,2),0)/p;
+            b.push({upper:sm+m*Math.sqrt(v), middle:sm, lower:sm-m*Math.sqrt(v)});
+        }
+        return b;
+    }
+    function calculateATR(d,p){
+        const t=[];
+        for(let i=1;i<d.length;i++) t.push(Math.max(d[i].high-d[i].low, Math.abs(d[i].high-d[i-1].close), Math.abs(d[i].low-d[i-1].close)));
+        let a=t.slice(0,p).reduce((a,b)=>a+b,0)/p;
+        const r=[a];
+        for(let i=p;i<t.length;i++){ a=(a*(p-1)+t[i])/p; r.push(a); }
+        return r;
+    }
+    function calculateVolumeProfile(d){
+        const volumes=d.map(x=>x.volume);
+        const avgVol=volumes.reduce((a,b)=>a+b,0)/volumes.length;
+        const recentVol=volumes.slice(-5).reduce((a,b)=>a+b,0)/5;
+        return {ratio:recentVol/avgVol, average:avgVol, recent:recentVol};
+    }
+    function detectDivergence(k1,k5){
+        const rsi1m=calculateRSI(k1);
+        const lastPrice1=k1[k1.length-1].close;
+        const prevPrice1=k1[k1.length-10].close;
+        const lastRSI1=rsi1m[rsi1m.length-1];
+        const prevRSI1=rsi1m[rsi1m.length-10];
+        const priceUp=lastPrice1>prevPrice1;
+        const rsiDown=lastRSI1<prevRSI1;
+        const priceDown=lastPrice1<prevPrice1;
+        const rsiUp=lastRSI1>prevRSI1;
+        if(priceUp&&rsiDown) return {signal:'BEARISH_DIVERGENCE', strength:3};
+        if(priceDown&&rsiUp) return {signal:'BULLISH_DIVERGENCE', strength:3};
+        return {signal:'NONE', strength:0};
+    }
+    function analyzeMarketStructure(k1,k5,k15){
+        const ema9_1m=calculateEMA(k1,9), ema21_1m=calculateEMA(k1,21);
+        const ema9_5m=calculateEMA(k5,9), ema21_5m=calculateEMA(k5,21);
+        const ema9_15m=calculateEMA(k15,9), ema21_15m=calculateEMA(k15,21);
+        const trend1m=ema9_1m[ema9_1m.length-1]>ema21_1m[ema21_1m.length-1];
+        const trend5m=ema9_5m[ema9_5m.length-1]>ema21_5m[ema21_5m.length-1];
+        const trend15m=ema9_15m[ema9_15m.length-1]>ema21_15m[ema21_15m.length-1];
+        const trendStrength=(trend1m?1:0)+(trend5m?1:0)+(trend15m?1:0);
+        return { trend1m:trend1m?'UP':'DOWN', trend5m:trend5m?'UP':'DOWN', trend15m:trend15m?'UP':'DOWN', trendStrength, aligned:trend1m===trend5m&&trend5m===trend15m };
+    }
+    function analyzeCoin(k1,k5,k15){
+        if(!k1||k1.length<30||!k5||k5.length<30||!k15||k15.length<30) return {signal:'NEUTRAL', score:0, details:'Yetersiz veri', confidence:0, metrics:0};
+        const rsi1m=calculateRSI(k1), rsi5m=calculateRSI(k5), rsi15m=calculateRSI(k15);
+        const lr1=rsi1m[rsi1m.length-1], lr5=rsi5m[rsi5m.length-1], lr15=rsi15m[rsi15m.length-1];
+        const m1=calculateMACD(k1), m5=calculateMACD(k5), m15=calculateMACD(k15);
+        const mh1=m1.histogram[m1.histogram.length-1], mh5=m5.histogram[m5.histogram.length-1], mh15=m15.histogram[m15.histogram.length-1];
+        const bb=calculateBollinger(k1,20,2), lbb=bb[bb.length-1], lp=k1[k1.length-1].close;
+        const e9=calculateEMA(k1,9), e21=calculateEMA(k1,21), et=e9[e9.length-1]>e21[e21.length-1];
+        const vp=calculateVolumeProfile(k1);
+        const div=detectDivergence(k1,k5);
+        const ms=analyzeMarketStructure(k1,k5,k15);
+        let ls=0, ss=0, dt=[], metrics=0;
+        if(lr1<30){ls+=3; dt.push('RSI1m aşırı satım'); metrics++} else if(lr1<40){ls+=1.5; dt.push('RSI1m düşük'); metrics++}
+        if(lr5<35){ls+=2; dt.push('RSI5m aşırı satım'); metrics++}
+        if(lr15<40){ls+=1; dt.push('RSI15m düşük'); metrics++}
+        if(lr1>70){ss+=3; dt.push('RSI1m aşırı alım'); metrics++} else if(lr1>60){ss+=1.5; dt.push('RSI1m yüksek'); metrics++}
+        if(lr5>65){ss+=2; dt.push('RSI5m aşırı alım'); metrics++}
+        if(lr15>60){ss+=1; dt.push('RSI15m yüksek'); metrics++}
+        if(mh1>0&&mh1>m1.histogram[m1.histogram.length-2]){ls+=2.5; dt.push('MACD1m yükseliş'); metrics++}
+        if(mh5>0){ls+=1.5; dt.push('MACD5m pozitif'); metrics++}
+        if(mh15>0){ls+=1; dt.push('MACD15m pozitif'); metrics++}
+        if(mh1<0&&mh1<m1.histogram[m1.histogram.length-2]){ss+=2.5; dt.push('MACD1m düşüş'); metrics++}
+        if(mh5<0){ss+=1.5; dt.push('MACD5m negatif'); metrics++}
+        if(mh15<0){ss+=1; dt.push('MACD15m negatif'); metrics++}
+        if(lp<lbb.lower){ls+=3; dt.push('Fiyat alt band altında'); metrics++} else if(lp<lbb.lower*1.01){ls+=1.5; dt.push('Fiyat alt banda yakın'); metrics++}
+        if(lp>lbb.upper){ss+=3; dt.push('Fiyat üst band üzerinde'); metrics++} else if(lp>lbb.upper*0.99){ss+=1.5; dt.push('Fiyat üst banda yakın'); metrics++}
+        if(et){ls+=1.5; dt.push('EMA9>EMA21'); metrics++} else {ss+=1.5; dt.push('EMA9<EMA21'); metrics++}
+        if(vp.ratio>2){ if(ls>ss) ls+=2; else if(ss>ls) ss+=2; dt.push('Güçlü hacim artışı'); metrics++}
+        else if(vp.ratio>1.5){ if(ls>ss) ls+=1; else if(ss>ls) ss+=1; dt.push('Hacim artışı'); metrics++}
+        if(div.signal==='BULLISH_DIVERGENCE'){ls+=3; dt.push('Boğa divergence'); metrics++}
+        if(div.signal==='BEARISH_DIVERGENCE'){ss+=3; dt.push('Ayı divergence'); metrics++}
+        if(ms.aligned&&ms.trendStrength===3){
+            if(ms.trend1m==='UP'){ls+=2; dt.push('Tüm TF yukarı trend'); metrics++}
+            else{ss+=2; dt.push('Tüm TF aşağı trend'); metrics++}
+        }
+        const confidence=Math.max(ls,ss);
+        if(ls>ss&&ls>=6&&metrics>=6) return {signal:'STRONG_BUY', score:ls, details:dt.join(', '), confidence, metrics};
+        else if(ls>ss&&ls>=3&&metrics>=4) return {signal:'BUY', score:ls, details:dt.join(', '), confidence, metrics};
+        else if(ss>ls&&ss>=6&&metrics>=6) return {signal:'STRONG_SELL', score:ss, details:dt.join(', '), confidence, metrics};
+        else if(ss>ls&&ss>=3&&metrics>=4) return {signal:'SELL', score:ss, details:dt.join(', '), confidence, metrics};
+        return {signal:'NEUTRAL', score:0, details:dt.join(', ')||'Kararsız', confidence:0, metrics};
+    }
+
+    // -------- RİSK HESAPLAMALARI (SABİT, random yok) --------
+    function calculateLeverage(volatility,confidence){
+        let l=CONFIG.MIN_LEVERAGE;
+        if(volatility<0.5 && confidence>=8) l=CONFIG.MAX_LEVERAGE;
+        else if(volatility<1 && confidence>=6) l=Math.min(CONFIG.MAX_LEVERAGE, Math.max(CONFIG.MIN_LEVERAGE, 25));
+        else if(volatility<2 && confidence>=5) l=Math.min(CONFIG.MAX_LEVERAGE, Math.max(CONFIG.MIN_LEVERAGE, 20));
+        else if(volatility<3 && confidence>=4) l=Math.min(CONFIG.MAX_LEVERAGE, Math.max(CONFIG.MIN_LEVERAGE, 15));
+        else if(volatility<5 && confidence>=3) l=Math.min(CONFIG.MAX_LEVERAGE, Math.max(CONFIG.MIN_LEVERAGE, 10));
+        else l=CONFIG.MIN_LEVERAGE;
+        return Math.min(CONFIG.MAX_LEVERAGE, Math.max(CONFIG.MIN_LEVERAGE, l));
+    }
+    function calculatePositionSize(confidence,volatility){
+        if(confidence<4 || volatility>8) return 0;
+        const minMargin=CONFIG.MIN_MARGIN;
+        const maxMargin=CONFIG.MAX_MARGIN;
+        const range=maxMargin-minMargin;
+        const normalizedConfidence=Math.min(confidence,10)/10;
+        const normalizedVolatility=Math.max(0,1-(volatility/10));
+        const score=(normalizedConfidence*0.7 + normalizedVolatility*0.3);
+        const margin=minMargin + (range*score);
+        return Math.max(minMargin, Math.min(margin, balance - CONFIG.MIN_BALANCE));
+    }
+    function shouldEnterTrade(analysis, price){
+        if(analysis.signal==='NEUTRAL') return false;
+        if(analysis.metrics<4) return false;
+        if(analysis.confidence<4) return false;
+        return true;
+    }
+    function calculateDynamicProfitTarget(entryPrice, leverage, volatility, confidence){
+        const minProfit = CONFIG.MIN_PROFIT;
+        const maxProfit = CONFIG.MAX_PROFIT;
+        const range = maxProfit - minProfit;
+        const volatilityFactor = Math.max(0.3, 1-(volatility/10));
+        const confidenceFactor = Math.min(confidence,10)/10;
+        const target = minProfit + (range * confidenceFactor * volatilityFactor);
+        return Math.max(minProfit, Math.min(target, maxProfit));
+    }
+
+    // -------- POZİSYON AÇ (SİMÜLASYON) --------
+    function openPosition(symbol, side, price, analysis){
+        if(positions.length >= CONFIG.MAX_POSITIONS){ addLog('warn', `Max pozisyon: ${CONFIG.MAX_POSITIONS}`); return; }
+        if(balance <= CONFIG.MIN_BALANCE){
+            if(!lowBalanceWarned){ addLog('warn', `Min kasa: ${formatMoney(balance)} - Yeni işlem yok`); lowBalanceWarned=true; }
+            return;
+        }
+        const existingOpposite = positions.find(p => p.symbol===symbol && p.type!==side);
+        if(existingOpposite){ addLog('info', `${symbol} zıt yönde pozisyon var, yeni açılmıyor`); return; }
+        const sameDir = positions.filter(p => p.symbol===symbol && p.type===side);
+        if(sameDir.length >= CONFIG.SAME_COIN_MAX_OPEN){ addLog('info', `${symbol} ${side} zaten ${CONFIG.SAME_COIN_MAX_OPEN} pozisyon var`); return; }
+
+        const volatility = Math.abs(analysis.score)/10;
+        const leverage = calculateLeverage(volatility, analysis.confidence);
+        const margin = calculatePositionSize(analysis.confidence, volatility);
+        if(margin <= 0 || margin < CONFIG.MIN_MARGIN){ addLog('info', `${symbol} için marjin yetersiz`); return; }
+        if(margin > balance - CONFIG.MIN_BALANCE){ addLog('warn', `Yetersiz kasa: ${formatMoney(balance)}`); return; }
+
+        const positionSize = margin * leverage;
+        const atr = calculateATR(coinData[symbol]?.klines1m || [], 14);
+        const lastAtr = atr[atr.length-1] || price * 0.02;
+        const slPercentRaw = (lastAtr/price)*100*2;
+        const slPercent = Math.min(CONFIG.MAX_STOP_PERCENT, Math.max(CONFIG.MIN_STOP_PERCENT, slPercentRaw));
+        const profitTarget = calculateDynamicProfitTarget(price, leverage, volatility, analysis.confidence);
+        const tpPercent = (profitTarget / margin) * 100;
+
+        let stopPrice, takeProfitPrice, liquidationPrice;
+        if(side === 'LONG'){
+            stopPrice = price * (1 - slPercent/100);
+            takeProfitPrice = price * (1 + tpPercent/100);
+            liquidationPrice = price * (1 - (100/leverage)/100 * 0.9);
+        } else {
+            stopPrice = price * (1 + slPercent/100);
+            takeProfitPrice = price * (1 - tpPercent/100);
+            liquidationPrice = price * (1 + (100/leverage)/100 * 0.9);
+        }
+
+        tradeCounter++;
+        const pos = {
+            id: tradeCounter,
+            symbol,
+            type: side,
+            entryPrice: price,
+            currentPrice: price,
+            leverage,
+            margin,
+            positionSize,
+            stopLoss: stopPrice,
+            takeProfit: takeProfitPrice,
+            liquidationPrice,
+            profitTarget,
+            pnl: 0,
+            pnlPercent: 0,
+            openTime: now(),
+            status: 'OPEN',
+            analysis: analysis.details
+        };
+        positions.push(pos);
+        balance -= margin;
+        lowBalanceWarned = false;
+        addLog('buy', `📈 ${symbol} ${side} AÇILDI | ${leverage}x | Marjin:${formatMoney(margin)} | Hedef:${formatMoney(profitTarget)} | Giriş:${formatMoney(price)}`);
+        showNotification(`${symbol} ${side} ${leverage}x AÇILDI`, 'success');
+        updateUI();
+    }
+
+    // -------- POZİSYON KAPAT (SİMÜLASYON) --------
+    function closePosition(id, reason){
+        const idx = positions.findIndex(p => p.id === id);
+        if(idx === -1) return;
+        const pos = positions[idx];
+        const pnl = pos.pnl;
+        const fee = Math.abs(pos.margin * 0.002);
+        const netPnl = pnl - fee;
+        balance += pos.margin + netPnl;
+        if(pnl < 0){
+            dailyLoss += Math.abs(pnl);
+            consecutiveLosses++;
+            if(consecutiveLosses >= CONFIG.MAX_CONSECUTIVE_LOSSES){
+                addLog('warn', `⚠️ ${CONFIG.MAX_CONSECUTIVE_LOSSES} arka arkaya zarar - 10dk mola`);
+                pauseBot();
+                setTimeout(()=>{ if(botState==='paused') startBot(); }, CONFIG.COOLDOWN_AFTER_LOSSES*60*1000);
+            }
+        } else {
+            consecutiveLosses = 0;
+        }
+        const he = { ...pos, closePrice: pos.currentPrice, closeTime: now(), closeReason: reason, duration: Math.floor((now()-pos.openTime)/1000/60), pnl: netPnl, fee };
+        history.unshift(he);
+        if(history.length > 200) history.pop();
+        positions.splice(idx, 1);
+        const pt = netPnl>=0 ? `+${formatMoney(netPnl)}` : formatMoney(netPnl);
+        addLog(netPnl>=0?'profit':'loss', `${pos.symbol} ${pos.type} KAPANDI | ${pt} (komisyon: ${formatMoney(fee)}) | ${reason}`);
+        showNotification(`${pos.symbol} KAPANDI: ${pt}`, netPnl>=0?'success':'error');
+        updateUI();
+    }
+
+    // -------- LİKİDASYON --------
+    function handleLiquidation(pos, price){
+        const fee = pos.margin * 0.002;
+        pos.pnl = -pos.margin - fee;
+        balance += pos.margin + pos.pnl;
+        dailyLoss += pos.margin;
+        consecutiveLosses++;
+        addLog('loss', `🚨 ${pos.symbol} LİKİDASYON! -${formatMoney(pos.margin+fee)} (komisyon dahil)`);
+        showNotification(`${pos.symbol} LİKİDASYON!`, 'error');
+        const idx = positions.findIndex(p => p.id === pos.id);
+        if(idx > -1){
+            history.unshift({ ...pos, closePrice: price, closeTime: now(), closeReason: 'LIQUIDATION', duration: Math.floor((now()-pos.openTime)/1000/60), pnl: -pos.margin-fee, fee });
+            positions.splice(idx, 1);
+        }
+        updateUI();
+    }
+
+    // -------- POZİSYON GÜNCELLEME --------
+    async function updatePositions(){
+        for(const pos of positions){
+            const price = await fetchPrice(pos.symbol);
+            if(!price) continue;
+            pos.currentPrice = price;
+            const pd = pos.type==='LONG' ? (price-pos.entryPrice)/pos.entryPrice : (pos.entryPrice-price)/pos.entryPrice;
+            pos.pnlPercent = pd * 100 * pos.leverage;
+            pos.pnl = pos.margin * pos.pnlPercent / 100;
+
+            if(pos.type==='LONG' && price <= pos.liquidationPrice){ handleLiquidation(pos, price); continue; }
+            if(pos.type==='SHORT' && price >= pos.liquidationPrice){ handleLiquidation(pos, price); continue; }
+
+            if(pos.pnl >= pos.profitTarget){ closePosition(pos.id, 'PROFIT_TARGET'); continue; }
+
+            if(pos.type==='LONG' && price <= pos.stopLoss){ closePosition(pos.id, 'STOP_LOSS'); continue; }
+            if(pos.type==='SHORT' && price >= pos.stopLoss){ closePosition(pos.id, 'STOP_LOSS'); continue; }
+        }
+    }
+
+    // -------- TARAMA --------
+    async function scanCoins(){
+        if(botState !== 'running') return;
+        if(balance <= CONFIG.MIN_BALANCE){
+            if(!lowBalanceWarned){ addLog('warn', `Kasa ${formatMoney(balance)} - Yeni işlem yok`); lowBalanceWarned=true; }
+            return;
+        }
+        if(dailyLoss >= CONFIG.MAX_DAILY_LOSS){
+            addLog('warn', `Günlük max zarar ${formatMoney(CONFIG.MAX_DAILY_LOSS)} aşıldı - Bot durduruldu`);
+            pauseBot(); return;
+        }
+
+        const results = [];
+        for(const symbol of CONFIG.COINS){
+            try{
+                if(!coinData[symbol] || !coinData[symbol].klines1m || coinData[symbol].klines1m.length<30){
+                    const [k1,k5,k15] = await Promise.all([
+                        fetchKlines(symbol, '1m', 50),
+                        fetchKlines(symbol, '5m', 50),
+                        fetchKlines(symbol, '15m', 50)
+                    ]);
+                    coinData[symbol] = { klines1m: k1, klines5m: k5, klines15m: k15 };
+                }
+                const k1 = coinData[symbol].klines1m;
+                const k5 = coinData[symbol].klines5m;
+                const k15 = coinData[symbol].klines15m;
+                const analysis = analyzeCoin(k1, k5, k15);
+                const price = k1[k1.length-1]?.close || 0;
+                results.push({ symbol, analysis, price });
+
+                if(shouldEnterTrade(analysis, price)){
+                    const existing = positions.find(p => p.symbol === symbol && p.status === 'OPEN');
+                    const sameDirCount = positions.filter(p => p.symbol === symbol && p.type === (analysis.signal.includes('BUY')?'LONG':'SHORT')).length;
+                    if(sameDirCount < CONFIG.SAME_COIN_MAX_OPEN && positions.length < CONFIG.MAX_POSITIONS){
+                        const side = analysis.signal.includes('BUY') ? 'LONG' : 'SHORT';
+                        openPosition(symbol, side, price, analysis);
+                    }
+                }
+            }catch(e){ /* sessiz */ }
+        }
+        renderScanner(results);
+    }
+
+    // -------- UI RENDER FONKSİYONLARI (v4.0 ile aynı) --------
+    function renderScanner(results){
+        const g = document.getElementById('scannerGrid');
+        g.innerHTML = results.map(r => {
+            const sc = r.analysis.signal.toLowerCase().replace(/_/g,'-');
+            const st = r.analysis.signal==='STRONG_BUY'?'GÜÇLÜ AL': r.analysis.signal==='BUY'?'AL': r.analysis.signal==='STRONG_SELL'?'GÜÇLÜ SAT': r.analysis.signal==='SELL'?'SAT':'NÖTR';
+            return `<div class="scanner-item ${r.analysis.signal!=='NEUTRAL'?'active':''}"><div><div style="font-weight:700">${r.symbol.replace('USDT','')}</div><div style="font-size:0.75rem;color:var(--text-muted)">${formatMoney(r.price||0)}</div></div><div class="scanner-signal ${sc}">${st}</div></div>`;
+        }).join('');
+    }
+
+    function renderPositions(){
+        const l = document.getElementById('positionsList');
+        document.getElementById('openPositionsCount').textContent = positions.length;
+        document.getElementById('activePositions').textContent = positions.length;
+        if(positions.length===0){ l.innerHTML='<div style="text-align:center;color:var(--text-muted);padding:40px">Henüz açık pozisyon yok</div>'; return; }
+        l.innerHTML = positions.map(pos => {
+            const pc = pos.pnl>=0?'positive':'negative';
+            const pp = Math.min(100, Math.abs(pos.pnlPercent)/10*100);
+            const pbc = pos.pnl>=0?'green':'red';
+            const du = Math.floor((now()-pos.openTime)/1000/60);
+            return `<div class="position-item ${pos.type.toLowerCase()}"><div class="position-header"><div class="position-symbol">${pos.symbol.replace('USDT','')}<span class="position-type ${pos.type.toLowerCase()}">${pos.type}</span><span class="position-leverage">${pos.leverage}x</span></div><span style="font-size:0.75rem;color:var(--text-muted)">#${pos.id}</span></div><div class="position-details"><div class="position-detail"><span>Giriş</span><span>${formatMoney(pos.entryPrice)}</span></div><div class="position-detail"><span>Anlık</span><span>${formatMoney(pos.currentPrice)}</span></div><div class="position-detail"><span>Marjin</span><span>${formatMoney(pos.margin)}</span></div><div class="position-detail"><span>Pozisyon</span><span>${formatMoney(pos.positionSize)}</span></div><div class="position-detail"><span>Hedef</span><span style="color:var(--green)">${formatMoney(pos.profitTarget)}</span></div><div class="position-detail"><span>SL</span><span style="color:var(--red)">${formatMoney(pos.stopLoss)}</span></div><div class="position-detail"><span>Liq.</span><span style="color:var(--red);font-size:0.75rem">${formatMoney(pos.liquidationPrice)}</span></div><div class="position-detail"><span>Süre</span><span>${du}dk</span></div></div><div class="position-pnl"><span style="color:var(--text-muted);font-size:0.8rem">Kâr/Zarar</span><span class="position-pnl-value ${pc}">${pos.pnl>=0?'+':''}${formatMoney(pos.pnl)} (${pos.pnlPercent>=0?'+':''}${pos.pnlPercent.toFixed(2)}%)</span></div><div class="position-progress"><div class="position-progress-bar ${pbc}" style="width:${pp}%"></div></div></div>`;
+        }).join('');
+    }
+
+    function renderHistory(){
+        const l = document.getElementById('historyList');
+        if(history.length===0){ l.innerHTML='<div style="text-align:center;color:var(--text-muted);padding:30px">Henüz işlem geçmişi yok</div>'; return; }
+        l.innerHTML = history.slice(0,20).map(h => {
+            const pc = h.pnl>=0?'positive':'negative';
+            return `<div class="history-item"><div><span class="history-symbol">#${h.id} ${h.symbol.replace('USDT','')}</span><span style="font-size:0.75rem;color:var(--text-muted);margin-left:5px">${h.type} ${h.leverage}x</span></div><div class="history-result ${pc}">${h.pnl>=0?'+':''}${formatMoney(h.pnl)}</div></div>`;
+        }).join('');
+    }
+
+    function renderCoinPerformance(){
+        const el = document.getElementById('coinPerformance');
+        if(!el) return;
+        const cs = {};
+        history.forEach(h => {
+            if(!cs[h.symbol]) cs[h.symbol] = {count:0, pnl:0, wins:0};
+            cs[h.symbol].count++; cs[h.symbol].pnl += h.pnl;
+            if(h.pnl>0) cs[h.symbol].wins++;
+        });
+        if(Object.keys(cs).length===0){ el.innerHTML='<div style="color:var(--text-muted);text-align:center;padding:20px">Henüz işlem yok</div>'; return; }
+        el.innerHTML = Object.entries(cs).sort((a,b)=>b[1].pnl-a[1].pnl).map(([sym, st]) => `<div class="portfolio-row"><span class="portfolio-label" style="font-weight:700">${sym.replace('USDT','')}</span><span style="font-size:0.8rem;color:var(--text-muted)">${st.count} işlem | ${(st.wins/st.count*100).toFixed(0)}% win</span><span class="portfolio-value ${st.pnl>=0?'green':'red'}">${st.pnl>=0?'+':''}${formatMoney(st.pnl)}</span></div>`).join('');
+    }
+
+    function renderDailySummary(){
+        const el = document.getElementById('dailySummary');
+        if(!el) return;
+        const todayStr = new Date().toDateString();
+        const todayTrades = history.filter(h => h.closeTime && new Date(h.closeTime).toDateString()===todayStr);
+        const todayPnL = todayTrades.reduce((a,h)=>a+h.pnl,0);
+        const todayWins = todayTrades.filter(h=>h.pnl>0).length;
+        el.innerHTML = `<div class="portfolio-row"><span class="portfolio-label">Bugünkü İşlem</span><span class="portfolio-value">${todayTrades.length}</span></div><div class="portfolio-row"><span class="portfolio-label">Bugünkü K/Z</span><span class="portfolio-value ${todayPnL>=0?'green':'red'}">${todayPnL>=0?'+':''}${formatMoney(todayPnL)}</span></div><div class="portfolio-row"><span class="portfolio-label">Bugün Win Rate</span><span class="portfolio-value">${todayTrades.length>0?(todayWins/todayTrades.length*100).toFixed(0):0}%</span></div><div class="portfolio-row"><span class="portfolio-label">Günlük Zarar</span><span class="portfolio-value red">${formatMoney(dailyLoss)} / ${formatMoney(CONFIG.MAX_DAILY_LOSS)}</span></div><div class="portfolio-row"><span class="portfolio-label">Ard. Zarar</span><span class="portfolio-value ${consecutiveLosses>=2?'red':''}">${consecutiveLosses} / ${CONFIG.MAX_CONSECUTIVE_LOSSES}</span></div><div class="portfolio-row"><span class="portfolio-label">Toplam İşlem</span><span class="portfolio-value">${history.length}</span></div>`;
+    }
+
+    function updateStats(){
+        const totalLockedMargin = positions.reduce((a,p)=>a+p.margin,0);
+        const totalOpenPnL = positions.reduce((a,p)=>a+p.pnl,0);
+        const totalPortfolioValue = balance + totalLockedMargin + totalOpenPnL;
+        const netPnL = history.reduce((a,h)=>a+h.pnl,0);
+        document.getElementById('freeBalance').textContent = formatMoney(balance);
+        document.getElementById('lockedMargin').textContent = formatMoney(totalLockedMargin);
+        document.getElementById('openPosCount').textContent = `${positions.length} / ${CONFIG.MAX_POSITIONS}`;
+        const tpDisplay = document.getElementById('totalPnLDisplay');
+        tpDisplay.textContent = `${totalOpenPnL>=0?'+':''}${formatMoney(totalOpenPnL)}`;
+        tpDisplay.className = `total-pnl-value ${totalOpenPnL>=0?'positive':'negative'}`;
+        const tt=history.length;
+        const w=history.filter(h=>h.pnl>0).length;
+        const ls=history.filter(h=>h.pnl<0).length;
+        const wr=tt>0?(w/tt*100).toFixed(1):0;
+        const pf = history.filter(h=>h.pnl>0).map(h=>h.pnl);
+        const la = history.filter(h=>h.pnl<0).map(h=>h.pnl);
+        const ap = pf.length>0?pf.reduce((a,b)=>a+b,0)/pf.length:0;
+        const al = la.length>0?la.reduce((a,b)=>a+b,0)/la.length:0;
+        const bt = history.length>0?Math.max(...history.map(h=>h.pnl)):0;
+        const totalGross = pf.reduce((a,b)=>a+b,0);
+        const totalLossAbs = Math.abs(la.reduce((a,b)=>a+b,0));
+        const pfVal = totalLossAbs>0?(totalGross/totalLossAbs).toFixed(2):'∞';
+        document.getElementById('balanceAmount').textContent = formatMoney(totalPortfolioValue);
+        document.getElementById('balanceChange').innerHTML = `<span>${netPnL>=0?'▲':'▼'}</span><span>${netPnL>=0?'+':''}${formatMoney(netPnL)} (${formatPercent(netPnL/initialBalance*100)})</span>`;
+        document.getElementById('balanceChange').className = `balance-change ${netPnL>=0?'positive':'negative'}`;
+        document.getElementById('totalPnL').textContent = `${netPnL>=0?'+':''}${formatMoney(netPnL)}`;
+        document.getElementById('winCount').textContent = w;
+        document.getElementById('lossCount').textContent = ls;
+        document.getElementById('winRate').textContent = wr+'%';
+        const pfEl = document.getElementById('profitFactor');
+        if(pfEl){ pfEl.textContent = pfVal; pfEl.style.color = parseFloat(pfVal)>=1?'var(--green)':'var(--red)'; }
+        document.getElementById('bestTrade').textContent = '+'+formatMoney(bt);
+        document.getElementById('dailyLossDisplay').textContent = formatMoney(dailyLoss);
+    }
+
+    function updateUI(){
+        renderPositions();
+        renderHistory();
+        updateStats();
+        renderCoinPerformance();
+        renderDailySummary();
+        renderChart();
+    }
+
+    // -------- GRAFİK --------
+    function renderChart(){
+        const c = document.getElementById('mainChart').getContext('2d');
+        const tfMap = { '1m':'klines1m', '5m':'klines5m', '15m':'klines15m' };
+        const d = coinData[selectedCoin]?.[tfMap[selectedTimeframe]] || [];
+        if(chart) chart.destroy();
+        chart = new Chart(c, {
+            type: 'line',
+            data: {
+                labels: d.map(x => new Date(x.time).toLocaleTimeString('tr-TR')),
+                datasets: [{ label: selectedCoin.replace('USDT',''), data: d.map(x => x.close), borderColor: '#00d2d3', backgroundColor: 'rgba(0,210,211,0.1)', borderWidth: 2, fill: true, tension: 0.1, pointRadius: 0 }]
+            },
+            options: {
+                responsive: true, maintainAspectRatio: false,
+                plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => '$'+ctx.raw.toFixed(4) } } },
+                scales: {
+                    x: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: 'rgba(255,255,255,0.5)', maxTicksLimit: 8 } },
+                    y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: 'rgba(255,255,255,0.5)', callback: v=>'$'+parseFloat(v).toFixed(2) } }
+                },
+                interaction: { intersect: false, mode: 'index' }
+            }
+        });
+    }
+
+    function renderCoinSelector(){
+        const s = document.getElementById('coinSelector');
+        s.innerHTML = CONFIG.COINS.slice(0,10).map(c => {
+            const sy = c.replace('USDT','');
+            const ia = c===selectedCoin;
+            return `<div class="coin-chip ${ia?'active':''}" onclick="selectCoin('${c}')">${sy}</div>`;
+        }).join('');
+    }
+
+    function selectCoin(s){ selectedCoin = s; renderCoinSelector(); renderChart(); }
+    function switchTimeframe(tf, el){ selectedTimeframe = tf; document.querySelectorAll('.chart-tab').forEach(t=>t.classList.remove('active')); el.classList.add('active'); renderChart(); }
+
+    // -------- BOT KONTROL --------
+    function startBot(){
+        if(botState==='running') return;
+        const today = new Date().toDateString();
+        if(lastLossResetDay !== today){ dailyLoss=0; lastLossResetDay=today; addLog('info','📅 Günlük zarar sayacı sıfırlandı'); }
+        botState = 'running';
+        document.getElementById('botStatus').className = 'status-badge status-active';
+        document.getElementById('statusText').textContent = 'ÇALIŞIYOR';
+        document.getElementById('btnStart').disabled = true;
+        document.getElementById('btnPause').disabled = false;
+        document.getElementById('btnEmergency').disabled = false;
+        addLog('info','🟢 BOT BAŞLATILDI (Vur-Kaç - 3 aynı coin)');
+        showNotification('Bot başlatıldı!', 'success');
+        scanCoins();
+        scanInterval = setInterval(scanCoins, CONFIG.SCAN_INTERVAL);
+        updateInterval = setInterval(async ()=>{ await updatePositions(); updateUI(); }, CONFIG.UPDATE_INTERVAL);
+    }
+
+    function pauseBot(){
+        if(botState!=='running') return;
+        botState = 'paused';
+        document.getElementById('botStatus').className = 'status-badge status-paused';
+        document.getElementById('statusText').textContent = 'DURAKLATILDI';
+        document.getElementById('btnStart').disabled = false;
+        document.getElementById('btnPause').disabled = true;
+        addLog('warn','⏸ BOT DURAKLATILDI - Yeni işlem yok, mevcutlar devam');
+        showNotification('Bot duraklatıldı', 'warning');
+        clearInterval(scanInterval);
+    }
+
+    function emergencyExit(){
+        addLog('warn','🚨 ACİL ÇIKIŞ BAŞLATILIYOR...');
+        showNotification('Acil çıkış başlatıldı!', 'error');
+        const pi = positions.map(p=>p.id);
+        pi.forEach(id => closePosition(id, 'EMERGENCY_EXIT'));
+        botState = 'stopped';
+        document.getElementById('botStatus').className = 'status-badge status-stopped';
+        document.getElementById('statusText').textContent = 'DURDU';
+        document.getElementById('btnStart').disabled = false;
+        document.getElementById('btnPause').disabled = true;
+        document.getElementById('btnEmergency').disabled = true;
+        clearInterval(scanInterval);
+        clearInterval(updateInterval);
+        addLog('info','🔴 ACİL ÇIKIŞ TAMAMLANDI');
+    }
+
+    // -------- RAPOR --------
+    function generateReport(){
+        const totalLockedMargin = positions.reduce((a,p)=>a+p.margin,0);
+        const totalOpenPnL = positions.reduce((a,p)=>a+p.pnl,0);
+        const totalPortfolioValue = balance + totalLockedMargin + totalOpenPnL;
+        const netPnL = history.reduce((a,h)=>a+h.pnl,0);
+        const tt=history.length;
+        const w=history.filter(h=>h.pnl>0).length;
+        const ls=history.filter(h=>h.pnl<0).length;
+        const wr=tt>0?(w/tt*100).toFixed(1):0;
+        const pf = history.filter(h=>h.pnl>0).map(h=>h.pnl);
+        const la = history.filter(h=>h.pnl<0).map(h=>h.pnl);
+        const ap = pf.length>0?pf.reduce((a,b)=>a+b,0)/pf.length:0;
+        const al = la.length>0?la.reduce((a,b)=>a+b,0)/la.length:0;
+        const bt = history.length>0?Math.max(...history.map(h=>h.pnl)):0;
+        const totalGross = pf.reduce((a,b)=>a+b,0);
+        const totalLossAbs = Math.abs(la.reduce((a,b)=>a+b,0));
+        const pfVal = totalLossAbs>0?(totalGross/totalLossAbs).toFixed(2):'N/A';
+        const cs = {};
+        history.forEach(h => { if(!cs[h.symbol]) cs[h.symbol]={count:0,pnl:0,wins:0}; cs[h.symbol].count++; cs[h.symbol].pnl+=h.pnl; if(h.pnl>0) cs[h.symbol].wins++; });
+        const report = `═══════════════════════════════════════════════════\n     🚀 VUR-KAÇ BOT v6.1 - OTONOM RAPOR\n     🤖 Claude Sonnet 4.6 by Anthropic\n═══════════════════════════════════════════════════\nTarih: ${now().toLocaleString('tr-TR')}\n\n📊 PORTFÖY ÖZETİ:\n├─ Başlangıç Bakiye: ${formatMoney(initialBalance)}\n├─ Serbest Kasa:     ${formatMoney(balance)}\n├─ İşlemdeki Marjin: ${formatMoney(totalLockedMargin)}\n├─ Toplam Portföy:   ${formatMoney(totalPortfolioValue)}\n├─ Net Kâr/Zarar:    ${netPnL>=0?'+':''}${formatMoney(netPnL)}\n├─ Açık Pozisyon:    ${positions.length}\n└─ Anlık P&L:        ${totalOpenPnL>=0?'+':''}${formatMoney(totalOpenPnL)}\n\n📈 İSTATİSTİKLER:\n├─ Toplam İşlem:     ${tt}\n├─ Kazanan:          ${w} (${wr}%)\n├─ Kaybeden:         ${ls}\n├─ Profit Factor:    ${pfVal}\n├─ Ortalama Kâr:     +${formatMoney(ap)}\n├─ Ortalama Zarar:   ${formatMoney(al)}\n├─ En İyi İşlem:     +${formatMoney(bt)}\n├─ Liquidation:      ${history.filter(h=>h.closeReason==='LIQUIDATION').length}\n└─ Günlük Zarar:     ${formatMoney(dailyLoss)}\n\n🏆 COİN PERFORMANSI:\n${Object.entries(cs).sort((a,b)=>b[1].pnl-a[1].pnl).map(([sym,st])=>`├─ ${sym.replace('USDT','')}: ${st.pnl>=0?'+':''}${formatMoney(st.pnl)} (${st.count} işlem, ${(st.wins/st.count*100).toFixed(0)}% win)`).join('\n')}\n\n🎯 AÇIK POZİSYONLAR:\n${positions.length===0?'└─ Yok':positions.map(p=>`├─ #${p.id} ${p.symbol.replace('USDT','')} | ${p.type} ${p.leverage}x | Marjin:${formatMoney(p.margin)} | Hedef:${formatMoney(p.profitTarget)} | Giriş:${formatMoney(p.entryPrice)} | Anlık:${formatMoney(p.currentPrice)} | P&L:${p.pnl>=0?'+':''}${formatMoney(p.pnl)}`).join('\n')}\n\n📜 İŞLEM GEÇMİŞİ (Son 50):\n${history.slice(0,50).map(h=>`#${h.id} | ${h.symbol.replace('USDT','')} | ${h.type} ${h.leverage}x | Marjin:${formatMoney(h.margin)} | Hedef:${formatMoney(h.profitTarget)} | Giriş:${formatMoney(h.entryPrice)} | Çıkış:${formatMoney(h.closePrice)} | P&L:${h.pnl>=0?'+':''}${formatMoney(h.pnl)} | Süre:${h.duration}dk | ${h.closeReason}`).join('\n')}\n\n═══════════════════════════════════════════════════\n     Rapor: ${now().toLocaleString('tr-TR')}\n═══════════════════════════════════════════════════`;
+        const blob = new Blob([report], {type:'text/plain;charset=utf-8'});
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `VUR-KAC-RAPOR-v6.1-${now().toISOString().slice(0,10)}.txt`;
+        a.click();
+        URL.revokeObjectURL(url);
+        addLog('info','📄 Rapor indirildi');
+        showNotification('Rapor indirildi!','success');
+    }
+
+    // -------- AYARLAR --------
+    function applySettings(){
+        if(botState==='running'){ showNotification('Botu önce durdur!','warning'); return; }
+        CONFIG.INITIAL_BALANCE = parseFloat(document.getElementById('cfg_balance').value) || 500;
+        CONFIG.MIN_BALANCE = parseFloat(document.getElementById('cfg_minbal').value) || 30;
+        CONFIG.MIN_MARGIN = parseFloat(document.getElementById('cfg_minmargin').value) || 2;
+        CONFIG.MAX_MARGIN = parseFloat(document.getElementById('cfg_maxmargin').value) || 5;
+        CONFIG.MIN_LEVERAGE = parseInt(document.getElementById('cfg_minlev').value) || 10;
+        CONFIG.MAX_LEVERAGE = parseInt(document.getElementById('cfg_maxlev').value) || 30;
+        CONFIG.MIN_PROFIT = parseFloat(document.getElementById('cfg_minprofit').value) || 0.30;
+        CONFIG.MAX_PROFIT = parseFloat(document.getElementById('cfg_maxprofit').value) || 1.50;
+        CONFIG.MIN_STOP_PERCENT = parseFloat(document.getElementById('cfg_minstop').value) || 1.0;
+        CONFIG.MAX_STOP_PERCENT = parseFloat(document.getElementById('cfg_maxstop').value) || 2.5;
+        CONFIG.MAX_DAILY_LOSS = parseFloat(document.getElementById('cfg_dailyloss').value) || 20;
+        CONFIG.MAX_POSITIONS = parseInt(document.getElementById('cfg_maxpos').value) || 30;
+        CONFIG.SAME_COIN_MAX_OPEN = parseInt(document.getElementById('cfg_samecoin').value) || 3;
+        showNotification('Ayarlar uygulandı!','success');
+        addLog('info','⚙️ Ayarlar güncellendi');
+    }
+
+    function resetSim(){
+        if(botState==='running'){ showNotification('Botu önce durdur!','warning'); return; }
+        const nb = parseFloat(document.getElementById('cfg_balance').value) || 500;
+        balance = nb;
+        initialBalance = nb;
+        positions = [];
+        history = [];
+        dailyLoss = 0;
+        consecutiveLosses = 0;
+        tradeCounter = 0;
+        lowBalanceWarned = false;
+        logs = [];
+        lastLossResetDay = '';
+        botState = 'stopped';
+        document.getElementById('botStatus').className = 'status-badge status-stopped';
+        document.getElementById('statusText').textContent = 'DURDU';
+        document.getElementById('btnStart').disabled = false;
+        document.getElementById('btnPause').disabled = true;
+        document.getElementById('btnEmergency').disabled = true;
+        document.getElementById('initialBalanceDisplay').textContent = formatMoney(nb);
+        clearInterval(scanInterval);
+        clearInterval(updateInterval);
+        updateUI();
+        addLog('info', `🔄 Simülasyon sıfırlandı. Yeni bakiye: ${formatMoney(nb)}`);
+        showNotification('Simülasyon sıfırlandı!','success');
+    }
+
+    // -------- BAŞLAT --------
+    window.addEventListener('load', ()=>{
+        renderCoinSelector();
+        document.getElementById('loadingOverlay').style.display = 'none';
+        addLog('info', '🚀 VUR-KAÇ BOT v6.1 Yükleniyor...');
+        addLog('info', '🤖 Claude Sonnet 4.6 - Otonom, 3 aynı coin açabilir');
+        addLog('info', '💰 Min Kasa: 30$ | Min Marjin: 2$ | Max Marjin: 5$');
+        addLog('info', '🎯 Hedef: 0.30-1.50$ | Stop: %1.0-2.5 | Kaldıraç: 10-30x');
+        addLog('info', '🛡️ Komisyon: %0.2 (alış+satış) dahil');
+        addLog('info', '✅ Bot hazır! BAŞLAT butonuna basın.');
+        showNotification('Bot hazır!', 'success');
+        updateUI();
+        (async ()=>{
+            for(const s of CONFIG.COINS.slice(0,5)){
+                const [k1,k5,k15] = await Promise.all([fetchKlines(s,'1m',50), fetchKlines(s,'5m',50), fetchKlines(s,'15m',50)]);
+                coinData[s] = { klines1m:k1, klines5m:k5, klines15m:k15 };
+            }
+            renderChart();
+        })();
+    });
+</script>
+</body>
+</html>
