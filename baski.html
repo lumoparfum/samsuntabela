@@ -10,7 +10,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
     <style>
-        /* ==================== RESET ==================== */
         * {
             margin: 0;
             padding: 0;
@@ -37,14 +36,12 @@
             padding: 0 20px;
         }
 
-        /* SİYAH SCROLLBAR — ana site ile aynı */
         ::-webkit-scrollbar { width: 10px; }
         ::-webkit-scrollbar-track { background: #0a0a0a; }
         ::-webkit-scrollbar-thumb { background: #2a2a2a; border-radius: 5px; }
         ::-webkit-scrollbar-thumb:hover { background: #444; }
         * { scrollbar-color: #2a2a2a #0a0a0a; scrollbar-width: thin; }
 
-        /* Klavye ile gezinme için görünür odak halkası */
         a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible {
             outline: 2px solid var(--neon);
             outline-offset: 3px;
@@ -57,7 +54,7 @@
             }
         }
 
-        /* ==================== NAV (Ana site ile birebir aynı yapı) ==================== */
+        /* ===== NAV ===== */
         nav {
             display: flex;
             justify-content: space-between;
@@ -91,7 +88,7 @@
             font-weight: 600;
             white-space: nowrap;
         }
-        .nav-links { display: flex; align-items: center; gap: 24px; }
+        .nav-links { display: flex; align-items: center; gap: 28px; }
         .nav-links a {
             color: #fff;
             text-decoration: none;
@@ -114,7 +111,7 @@
             .page-body { padding-top: 80px; }
         }
 
-        /* ==================== HERO (Video) ==================== */
+        /* ===== HERO ===== */
         .hero {
             position: relative;
             overflow: hidden;
@@ -161,9 +158,7 @@
             text-transform: uppercase;
             line-height: 1.1;
         }
-        .hero-content h1 span {
-            color: var(--neon);
-        }
+        .hero-content h1 span { color: var(--neon); }
         .hero-content p {
             color: #ddd;
             font-size: 1.1rem;
@@ -186,21 +181,12 @@
             display: inline-block;
             text-decoration: none;
         }
-        .btn-main:hover {
-            transform: scale(1.05);
-            background: #d4ff33;
-        }
-        .btn-main:active {
-            transform: scale(0.97);
-        }
-        .btn-main i {
-            margin-right: 10px;
-        }
+        .btn-main:hover { transform: scale(1.05); background: #d4ff33; }
+        .btn-main:active { transform: scale(0.97); }
+        .btn-main i { margin-right: 10px; }
 
-        /* ==================== NASIL ÇALIŞIR ==================== */
-        .steps {
-            margin: 40px 0;
-        }
+        /* ===== NASIL ÇALIŞIR ===== */
+        .steps { margin: 40px 0; }
         .steps-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -235,7 +221,7 @@
         .step-box h4 { font-size: 0.95rem; margin-bottom: 6px; color: #fff; }
         .step-box p { font-size: 0.8rem; color: var(--gray); line-height: 1.5; }
 
-        /* ==================== HESAPLAYICI ==================== */
+        /* ===== HESAPLAYICI ===== */
         .calculator {
             background: var(--card);
             border: 1px solid var(--border);
@@ -260,9 +246,7 @@
             gap: 20px;
         }
         @media (max-width: 600px) {
-            .calc-grid {
-                grid-template-columns: 1fr;
-            }
+            .calc-grid { grid-template-columns: 1fr; }
         }
         .calc-group {
             display: flex;
@@ -290,9 +274,7 @@
         .calc-group input:focus {
             border-color: var(--neon);
         }
-        .calc-group select option {
-            background: #111;
-        }
+        .calc-group select option { background: #111; }
         .calc-result {
             background: #0a0a0a;
             border: 1px solid #222;
@@ -328,23 +310,16 @@
             margin-top: 12px;
             transition: 0.3s;
         }
-        .calc-result .btn-wa:hover {
-            background: #1ebe57;
-            transform: scale(1.03);
-        }
-        .calc-result .btn-wa:active {
-            transform: scale(0.96);
-        }
-        .calc-result .btn-wa i {
-            margin-right: 10px;
-        }
+        .calc-result .btn-wa:hover { background: #1ebe57; transform: scale(1.03); }
+        .calc-result .btn-wa:active { transform: scale(0.96); }
+        .calc-result .btn-wa i { margin-right: 10px; }
         .calc-note {
             font-size: 0.75rem;
             color: #666;
             margin-top: 15px;
         }
 
-        /* ==================== CANLI ÖLÇÜ ÖNİZLEMESİ ==================== */
+        /* ===== CANLI ÖNİZLEME ===== */
         .preview-wrap {
             display: flex;
             align-items: center;
@@ -356,6 +331,7 @@
             margin-top: 20px;
             height: 130px;
             overflow: hidden;
+            position: relative;
         }
         .preview-box {
             background: rgba(204,255,0,0.12);
@@ -370,18 +346,11 @@
             font-weight: 700;
             min-width: 20px;
             min-height: 14px;
-        }
-        .preview-label {
-            position: absolute;
-            font-size: 0.7rem;
-            color: #666;
-            margin-top: 90px;
+            padding: 4px 8px;
         }
 
-        /* ==================== ÜRÜN KARTLARI (Görselli) ==================== */
-        .products {
-            margin: 50px 0;
-        }
+        /* ===== ÜRÜN KARTLARI ===== */
+        .products { margin: 50px 0; }
         .products h2 {
             color: var(--neon);
             font-size: 1.8rem;
@@ -462,10 +431,8 @@
             color: var(--neon);
         }
 
-        /* ==================== SSS ==================== */
-        .faq {
-            margin: 50px 0;
-        }
+        /* ===== SSS ===== */
+        .faq { margin: 50px 0; }
         .faq h2 {
             color: var(--neon);
             font-size: 1.8rem;
@@ -482,9 +449,7 @@
             cursor: pointer;
             transition: 0.2s;
         }
-        .faq-item:hover {
-            border-color: #333;
-        }
+        .faq-item:hover { border-color: #333; }
         .faq-question {
             display: flex;
             justify-content: space-between;
@@ -511,7 +476,7 @@
             margin-top: 12px;
         }
 
-        /* ==================== FOOTER (ana site ile aynı dil) ==================== */
+        /* ===== FOOTER ===== */
         .footer-box {
             background: var(--card);
             border: 1px solid var(--border);
@@ -521,12 +486,29 @@
             margin-top: 50px;
         }
         .footer-box h3 { color: var(--neon); font-size: 1.1rem; text-transform: uppercase; margin-bottom: 14px; }
-        .contact-info-list { list-style: none; padding: 0; margin: 16px 0 0; text-align: left; max-width: 380px; margin-left: auto; margin-right: auto; }
-        .contact-info-list li { padding: 10px 0; border-bottom: 1px solid var(--border); color: #bbb; display: flex; align-items: center; gap: 14px; font-size: 0.9rem; }
+        .contact-info-list {
+            list-style: none;
+            padding: 0;
+            margin: 16px 0 0;
+            text-align: left;
+            max-width: 380px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .contact-info-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border);
+            color: #bbb;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-size: 0.9rem;
+        }
         .contact-info-list li:last-child { border-bottom: none; }
         .contact-info-list i { color: var(--neon); font-size: 1.05rem; width: 22px; text-align: center; }
         .contact-info-list a { color: #bbb; text-decoration: none; transition: 0.3s; }
         .contact-info-list a:hover { color: var(--neon); }
+
         .footer {
             border-top: 1px solid var(--border);
             padding: 25px 0 30px;
@@ -534,12 +516,9 @@
             color: #555;
             font-size: 0.85rem;
         }
-        .footer a {
-            color: var(--neon);
-            text-decoration: none;
-        }
+        .footer a { color: var(--neon); text-decoration: none; }
 
-        /* ==================== SABİT WHATSAPP ==================== */
+        /* ===== SABİT WHATSAPP + INSTAGRAM ===== */
         .wp-float {
             position: fixed;
             bottom: 25px;
@@ -553,7 +532,6 @@
             width: 60px;
             height: 60px;
             border-radius: 50%;
-            background: #25d366;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -563,33 +541,72 @@
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
             transition: 0.3s;
         }
-        .wp-btn:hover {
-            transform: scale(1.08);
+        .wp-btn:hover { transform: scale(1.08); }
+        .wp-btn.whatsapp { background: #25d366; }
+        .wp-btn.instagram { background: #e4405f; }
+
+        .mobile-nav-texts {
+            display: none;
+            align-items: center;
+            background: rgba(0,0,0,0.75);
+            padding: 0 15px;
+            height: 45px;
+            border-radius: 30px;
+            gap: 12px;
+            backdrop-filter: blur(4px);
         }
-        @media (max-width: 600px) {
-            .wp-btn {
-                width: 50px;
-                height: 50px;
-                font-size: 26px;
-            }
+        .mobile-nav-texts a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            white-space: nowrap;
         }
 
-        /* ==================== MOBİL ==================== */
+        @media (max-width: 600px) {
+            .wp-btn { width: 50px; height: 50px; font-size: 26px; }
+            .mobile-nav-texts { display: flex; }
+        }
         @media (max-width: 480px) {
             .hero {
                 height: 50vh;
                 min-height: 320px;
             }
-            .hero-content h1 {
-                font-size: 1.8rem;
-            }
-            .calculator {
-                padding: 20px;
-            }
-            .calc-result .price {
-                font-size: 1.6rem;
-            }
+            .hero-content h1 { font-size: 1.8rem; }
+            .calculator { padding: 20px; }
+            .calc-result .price { font-size: 1.6rem; }
         }
+
+        /* ===== HİZMET AĞI ===== */
+        .region-links {
+            background: #030303;
+            text-align: center;
+            padding: 20px 5%;
+            border-top: 1px solid #111;
+            border-bottom: 1px solid #111;
+            margin-top: 30px;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+        .region-links span {
+            color: #666;
+            font-size: 0.85rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-right: 15px;
+        }
+        .region-links a {
+            color: var(--neon);
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 0.9rem;
+            transition: 0.3s;
+            margin: 0 8px;
+            display: inline-block;
+        }
+        .region-links a:hover { text-decoration: underline; }
     </style>
 </head>
 <body>
@@ -609,12 +626,12 @@
 
     <div class="container page-body">
 
-        <!-- ========== HEADER INFO (telefon) ========== -->
+        <!-- HEADER INFO (telefon) -->
         <div style="text-align:right; color:var(--gray); font-size:13px; margin-bottom:20px;">
             <i class="fas fa-phone-alt" style="color:var(--neon); margin-right:6px;"></i> 0532 220 46 49 &nbsp;|&nbsp; <i class="fab fa-whatsapp" style="color:var(--neon); margin-right:6px;"></i> 0507 960 50 49
         </div>
 
-        <!-- ========== HERO (VIDEO) ========== -->
+        <!-- HERO (VIDEO) -->
         <section class="hero">
             <video class="hero-video" autoplay muted loop playsinline>
                 <source src="images/fason/hero-fason.mp4" type="video/mp4">
@@ -628,7 +645,7 @@
             </div>
         </section>
 
-        <!-- ========== NASIL ÇALIŞIR ========== -->
+        <!-- NASIL ÇALIŞIR -->
         <section class="steps">
             <div class="steps-grid">
                 <div class="step-box">
@@ -658,7 +675,7 @@
             </div>
         </section>
 
-        <!-- ========== HESAPLAYICI ========== -->
+        <!-- HESAPLAYICI -->
         <section class="calculator" id="hesapla">
             <h2><i class="fas fa-sliders-h"></i> Fiyat Hesaplayıcı</h2>
             <p class="sub">Malzeme seç, en ve boy ölçülerini gir, tahmini fiyatı anında gör.</p>
@@ -683,7 +700,6 @@
                         <option value="canvas">Canvas Baskı</option>
                         <option value="magnet">Magnet Baskı</option>
                         <option value="kagit_baski">Kağıt Baskı</option>
-                        <option value="duvar_tablosu">Duvar Tablosu (Folyo Kaplı MDF)</option>
                     </select>
                 </div>
                 <div class="calc-group">
@@ -718,11 +734,23 @@
             </div>
         </section>
 
-        <!-- ========== ÜRÜN KARTLARI ========== -->
+        <!-- ÜRÜN KARTLARI -->
         <section class="products" id="urunler">
             <h2>Tüm Ürünler</h2>
             <div class="product-grid">
 
+                <!-- Duvar Tablosu 50x70 (SABİT FİYAT) -->
+                <div class="product-card">
+                    <div class="product-badge">🏠 Kolay Uygulama</div>
+                    <img class="card-img" src="images/fason/duvar-tablosu-50x70.jpg" alt="Duvar Tablosu 50x70" loading="lazy">
+                    <div class="card-body">
+                        <h3>Duvar Tablosu 50×70</h3>
+                        <div class="desc">Folyo kaplı 3mm MDF, çift taraflı bant ile asılır</div>
+                        <div class="fiyat">700 TL <small>(sabit)</small></div>
+                    </div>
+                </div>
+
+                <!-- Diğer ürünler -->
                 <div class="product-card">
                     <img class="card-img" src="images/fason/ince-vinil.jpg" alt="İnce Vinil Baskı" loading="lazy">
                     <div class="card-body">
@@ -840,20 +868,10 @@
                     </div>
                 </div>
 
-                <div class="product-card">
-                    <div class="product-badge">🏠 En Kolay Uygulama</div>
-                    <div class="card-icon"><i class="fas fa-image"></i></div>
-                    <div class="card-body">
-                        <h3>Duvar Tablosu</h3>
-                        <div class="desc">Folyo kaplı 3mm MDF, çift taraflı bant ile asılır</div>
-                        <div class="fiyat">~258 TL <small>/m²</small></div>
-                    </div>
-                </div>
-
             </div>
         </section>
 
-        <!-- ========== SSS ========== -->
+        <!-- SSS -->
         <section class="faq" id="sss">
             <h2>Sıkça Sorulan Sorular</h2>
 
@@ -883,7 +901,18 @@
             </div>
         </section>
 
-        <!-- ========== İLETİŞİM ========== -->
+        <!-- HİZMET AĞI -->
+        <div class="region-links">
+            <span>HİZMET AĞIMIZ:</span>
+            <a href="https://samsuntabela.tr/samsun-reklamci-ve-tabelaci.html">SAMSUN</a> |
+            <a href="https://samsuntabela.tr/bafra-reklamci-ve-tabelaci.html">BAFRA</a> |
+            <a href="https://samsuntabela.tr/atakum-reklamci-ve-tabelaci.html">ATAKUM</a> |
+            <a href="https://samsuntabela.tr/ordu-reklamci-ve-tabelaci.html">ORDU</a> |
+            <a href="https://samsuntabela.tr/sinop-reklamci-ve-tabelaci.html">SİNOP</a> |
+            <a href="https://samsuntabela.tr/trabzon-reklamci-ve-tabelaci.html">TRABZON</a>
+        </div>
+
+        <!-- İLETİŞİM -->
         <div class="footer-box">
             <h3>Sorun mu Var? Bize Yaz</h3>
             <ul class="contact-info-list">
@@ -894,27 +923,34 @@
             </ul>
         </div>
 
-        <!-- ========== FOOTER ========== -->
+        <!-- FOOTER -->
         <footer class="footer">
             <p>© 2026 Uzman Reklam — Fason Dijital Baskı &amp; Tabela Fabrikası, Bafra/Samsun</p>
             <p style="margin-top:6px;">
-                <a href="https://samsuntabela.tr/" >Ana Sayfa</a> &nbsp;|&nbsp;
+                <a href="https://samsuntabela.tr/">Ana Sayfa</a> &nbsp;|&nbsp;
                 <a href="https://www.instagram.com/uzman.reklamm/" target="_blank">Instagram</a>
             </p>
         </footer>
 
     </div>
 
-    <!-- ========== SABİT WHATSAPP BUTONU ========== -->
+    <!-- SABİT WHATSAPP + INSTAGRAM -->
     <div class="wp-float">
-        <a href="https://wa.me/905079605049" class="wp-btn" target="_blank">
+        <div class="mobile-nav-texts">
+            <a href="https://samsuntabela.tr/">ANA SAYFA</a>
+            <a href="#hesapla">FİYAT</a>
+            <a href="#urunler">ÜRÜNLER</a>
+            <a href="#sss">SSS</a>
+        </div>
+        <a href="https://www.instagram.com/uzman.reklamm/" class="wp-btn instagram" target="_blank">
+            <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://wa.me/905079605049" class="wp-btn whatsapp" target="_blank">
             <i class="fab fa-whatsapp"></i>
         </a>
     </div>
 
-    <!-- ========== JAVASCRIPT ========== -->
     <script>
-        // Fiyat verileri (11.07.2026 USD: 46.98 TL, EUR: 53.72 TL)
         const fiyatlar = {
             ince_vinil: { ad: 'İnce Vinil', fiyat: 1.80, birim: 'USD' },
             normal_vinil: { ad: 'Normal Vinil', fiyat: 2.35, birim: 'USD' },
@@ -931,8 +967,7 @@
             kumlu_folyo: { ad: 'Kumlu Folyo', fiyat: 4.00, birim: 'USD' },
             canvas: { ad: 'Canvas Baskı', fiyat: 9.50, birim: 'USD' },
             magnet: { ad: 'Magnet Baskı', fiyat: 13.00, birim: 'USD' },
-            kagit_baski: { ad: 'Kağıt Baskı', fiyat: 1.50, birim: 'USD' },
-            duvar_tablosu: { ad: 'Duvar Tablosu (Folyo Kaplı MDF)', fiyat: 5.50, birim: 'USD' } // fiyatı kendine göre düzenle
+            kagit_baski: { ad: 'Kağıt Baskı', fiyat: 1.50, birim: 'USD' }
         };
 
         const kur_usd = 46.98;
@@ -959,12 +994,23 @@
             const en = parseFloat(document.getElementById('en').value) || 0;
             const boy = parseFloat(document.getElementById('boy').value) || 0;
             const kutu = document.getElementById('onizleme');
-            if (en <= 0 || boy <= 0) { kutu.style.width = '20px'; kutu.style.height = '14px'; kutu.textContent=''; return; }
-            const maxGenislik = 220, maxYukseklik = 90;
+            if (en <= 0 || boy <= 0) {
+                kutu.style.width = '20px';
+                kutu.style.height = '14px';
+                kutu.textContent = '';
+                return;
+            }
+            const maxGenislik = 220,
+                maxYukseklik = 90;
             const oran = en / boy;
             let w, h;
-            if (oran >= maxGenislik / maxYukseklik) { w = maxGenislik; h = maxGenislik / oran; }
-            else { h = maxYukseklik; w = maxYukseklik * oran; }
+            if (oran >= maxGenislik / maxYukseklik) {
+                w = maxGenislik;
+                h = maxGenislik / oran;
+            } else {
+                h = maxYukseklik;
+                w = maxYukseklik * oran;
+            }
             kutu.style.width = Math.max(w, 24) + 'px';
             kutu.style.height = Math.max(h, 16) + 'px';
             kutu.textContent = en + '×' + boy + ' cm';
