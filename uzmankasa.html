@@ -21,6 +21,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <style>
+        /* Aynen kalsın, hiç değişmedi */
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         body {
             background: #f5f5f7;
@@ -524,14 +525,13 @@
             .section-header-with-action { margin: 0 16px 10px 16px; }
         }
     </style>
-<base target="_blank">
 </head>
 <body>
 
 <div id="loginContainer" class="login-container" style="display:flex">
     <div class="login-card">
         <div class="login-logo">UZMAN<span>KASA</span></div>
-        <input type="number" id="pinInput" class="login-input" placeholder="Şifre" autocomplete="off" inputmode="numeric" pattern="[0-9]*">
+        <input type="text" id="pinInput" class="login-input" placeholder="Şifre" autocomplete="off" inputmode="numeric" spellcheck="false">
         <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; margin-top: 8px;">
             <label style="font-size: 0.85rem; color: #6c6c70; display: flex; align-items: center; gap: 6px; cursor: pointer;">
                 <input type="checkbox" id="rememberMeCheckbox"> Beni hatırla
@@ -881,7 +881,7 @@
                 '</div>' +
                 '<div class="reminder-actions">' +
                     '<button class="reminder-btn" onclick="markReminderPaid('' + r.id + '')" title="Tamamlandı"><i class="fas fa-check"></i></button>' +
-                    '<button class="reminder-btn delete-reminder" onclick="askDeleteReminder('' + r.id + '')" title="Sil"><i class="fas fa-trash-alt"></i></button>' +
+                    '<button class="reminder-btn delete-reminder" onclick="askDeleteReminder('' + r.id + '")" title="Sil"><i class="fas fa-trash-alt"></i></button>' +
                 '</div>' +
             '</div>';
         });
@@ -1320,9 +1320,10 @@
         });
     };
 
+    // ----- LOGIN FIX -----
     function checkRememberedLogin() {
         const savedPin = localStorage.getItem('rememberedPin');
-        if (savedPin === "5534") {
+        if (savedPin && savedPin.trim() === "5534") {
             document.getElementById('loginContainer').style.display = 'none';
             document.getElementById('appContainer').style.display = 'block';
             loadData();
@@ -1335,20 +1336,36 @@
     }
 
     window.checkPin = () => {
-        const pin = document.getElementById('pinInput').value;
+        const pinInput = document.getElementById('pinInput');
+        const pin = pinInput.value.trim();
         const rememberMe = document.getElementById('rememberMeCheckbox').checked;
+        const loginBtn = document.getElementById('loginBtn');
+
+        if (!pin) {
+            showToast('Lütfen şifrenizi girin', true);
+            return;
+        }
+
         if (pin === "5534") {
             if (rememberMe) {
                 localStorage.setItem('rememberedPin', pin);
             } else {
                 localStorage.removeItem('rememberedPin');
             }
+            // Başarılı giriş
+            loginBtn.disabled = true;
+            loginBtn.innerText = 'Giriş yapılıyor...';
             document.getElementById('loginContainer').style.display = 'none';
             document.getElementById('appContainer').style.display = 'block';
+            // Verileri yükle
             loadData();
             loadReminders();
-        } else { 
-            showToast('Hatali sifre!', true); 
+            loginBtn.disabled = false;
+            loginBtn.innerText = 'Giriş Yap';
+        } else {
+            showToast('Hatalı şifre!', true);
+            pinInput.value = '';
+            pinInput.focus();
         }
     };
 
@@ -1360,8 +1377,12 @@
         allReminders = [];
         document.getElementById('pinInput').value = '';
         document.getElementById('rememberMeCheckbox').checked = false;
+        const loginBtn = document.getElementById('loginBtn');
+        loginBtn.disabled = false;
+        loginBtn.innerText = 'Giriş Yap';
     };
 
+    // Event listeners
     document.getElementById('prevMonthBtn').onclick = () => changeMonth(-1);
     document.getElementById('nextMonthBtn').onclick = () => changeMonth(1);
 
@@ -1369,6 +1390,9 @@
         if (e.key === 'Enter') checkPin(); 
     });
 
+    document.getElementById('loginBtn').addEventListener('click', checkPin);
+
+    // Modal enter tuşu
     ['incomeModal', 'expenseModal', 'reminderModal'].forEach(modalId => {
         const modal = document.getElementById(modalId);
         modal.addEventListener('keypress', (e) => {
@@ -1381,12 +1405,12 @@
         });
     });
 
-    document.getElementById('loginBtn').addEventListener('click', checkPin);
-
+    // Sayfa yüklenince
     window.addEventListener('load', () => {
         checkRememberedLogin();
     });
 
+    // Sayfa görünürlük değişince verileri tazele
     document.addEventListener('visibilitychange', () => {
         if (!document.hidden && document.getElementById('appContainer').style.display === 'block') {
             loadData();
@@ -1433,6 +1457,8 @@
         outline: none;
         font-family: inherit;
         transition: all 0.2s ease;
+        -webkit-appearance: none;
+        appearance: none;
     }
     .login-input:focus {
         border-color: #007aff;
@@ -1453,6 +1479,7 @@
     }
     .login-btn:hover { background: #0056b3; }
     .login-btn:active { transform: scale(0.97); background: #004494; }
+    .login-btn:disabled { opacity: 0.7; cursor: not-allowed; }
 </style>
 </body>
 </html>
