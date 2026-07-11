@@ -44,12 +44,8 @@
         ::-webkit-scrollbar-thumb:hover { background: #444; }
         * { scrollbar-color: #2a2a2a #0a0a0a; scrollbar-width: thin; }
 
-        /* ==================== NAV (ana site ile aynı) ==================== */
+        /* ==================== NAV ==================== */
         nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 18px 5%;
             background: rgba(0,0,0,0.95);
             position: fixed;
             width: 100%;
@@ -57,6 +53,12 @@
             left: 0;
             z-index: 1000;
             border-bottom: 1px solid #222;
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 20px;
         }
         .logo-area { display: flex; align-items: center; gap: 18px; }
         .logo a {
@@ -69,35 +71,31 @@
             white-space: nowrap;
         }
         .logo span { color: var(--neon); }
-        .logo-slogan {
-            font-family: 'Caveat', cursive;
-            color: #ddd;
-            font-size: 18px;
-            border-left: 2px solid var(--neon);
-            padding-left: 16px;
-            font-weight: 600;
-            white-space: nowrap;
+        
+        .nav-contact {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 14px;
         }
-        .nav-links { display: flex; align-items: center; gap: 24px; }
-        .nav-links a {
-            color: #fff;
+        .nav-contact a {
+            color: #aaa;
             text-decoration: none;
-            font-size: 13px;
-            font-weight: 800;
-            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 6px;
             transition: color 0.3s;
         }
-        .nav-links a:hover, .nav-links a.active { color: var(--neon); }
+        .nav-contact a:hover { color: #fff; }
+        .nav-contact i { color: var(--neon); font-size: 15px; }
+        .nav-contact .sep { color: #333; margin: 0 5px; }
 
         .page-body { padding-top: 100px; }
 
-        @media (max-width: 900px) {
-            .logo-slogan { display: none; }
-        }
         @media (max-width: 640px) {
-            nav { padding: 14px 4%; justify-content: center; }
+            .nav-container { justify-content: center; padding: 14px 20px; }
             .logo a { font-size: 20px; }
-            .nav-links { display: none; }
+            .nav-contact { display: none; }
             .page-body { padding-top: 80px; }
         }
 
@@ -492,7 +490,7 @@
             margin-top: 12px;
         }
 
-        /* ==================== FOOTER (ana site ile aynı) ==================== */
+        /* ==================== FOOTER ==================== */
         .footer-box {
             background: var(--card);
             border: 1px solid var(--border);
@@ -577,23 +575,21 @@
 </head>
 <body>
 
-    <!-- ========== NAVBAR (ESKİ ÇALIŞAN DÜZEN) ========== -->
     <nav>
-        <div class="logo-area">
-            <div class="logo"><a href="https://samsuntabela.tr/">UZMAN<span>REKLAM</span></a></div>
-            <div class="logo-slogan">Türkiye'nin Baskı Merkezi</div>
-        </div>
-        <div class="nav-links">
-            <a href="https://samsuntabela.tr/">ANA SAYFA</a>
-            <a href="#hesapla" class="active">FİYAT HESAPLA</a>
-            <a href="#urunler">ÜRÜNLER</a>
-            <a href="#sss">SSS</a>
+        <div class="container nav-container">
+            <div class="logo-area">
+                <div class="logo"><a href="https://samsuntabela.tr/">UZMAN<span>REKLAM</span></a></div>
+            </div>
+            <div class="nav-contact">
+                <a href="tel:05322204649"><i class="fas fa-phone-alt"></i> 0532 220 46 49</a>
+                <span class="sep">|</span>
+                <a href="https://wa.me/905079605049" target="_blank"><i class="fab fa-whatsapp"></i> 0507 960 50 49</a>
+            </div>
         </div>
     </nav>
 
     <div class="container page-body">
 
-        <!-- ========== HERO (VIDEO) ========== -->
         <section class="hero">
             <video class="hero-video" autoplay muted loop playsinline>
                 <source src="images/fason/hero-fason.mp4" type="video/mp4">
@@ -607,7 +603,6 @@
             </div>
         </section>
 
-        <!-- ========== NASIL ÇALIŞIR ========== -->
         <section class="steps">
             <div class="steps-grid">
                 <div class="step-box">
@@ -637,7 +632,6 @@
             </div>
         </section>
 
-        <!-- ========== HESAPLAYICI ========== -->
         <section class="calculator" id="hesapla">
             <h2><i class="fas fa-sliders-h"></i> Fiyat Hesaplayıcı</h2>
             <p class="sub">Malzeme seç, en ve boy ölçülerini gir, tahmini fiyatı anında gör.</p>
@@ -699,7 +693,6 @@
             </div>
         </section>
 
-        <!-- ========== ÜRÜN KARTLARI ========== -->
         <section class="products" id="urunler">
             <h2>Tüm Ürünler</h2>
             <div class="product-grid">
@@ -821,7 +814,6 @@
                     </div>
                 </div>
 
-                <!-- DUVAR TABLOSU 50x70 -->
                 <div class="product-card">
                     <div class="product-badge">🔥 En Çok Tercih</div>
                     <div class="card-icon"><i class="fas fa-image"></i></div>
@@ -832,7 +824,6 @@
                     </div>
                 </div>
 
-                <!-- DUVAR TABLOSU 70x100 -->
                 <div class="product-card">
                     <div class="product-badge">⭐ Popüler</div>
                     <div class="card-icon"><i class="fas fa-image"></i></div>
@@ -843,7 +834,6 @@
                     </div>
                 </div>
 
-                <!-- DUVAR TABLOSU 100x140 -->
                 <div class="product-card">
                     <div class="product-badge">🏆 Dev Boyut</div>
                     <div class="card-icon"><i class="fas fa-image"></i></div>
@@ -857,7 +847,6 @@
             </div>
         </section>
 
-        <!-- ========== SSS ========== -->
         <section class="faq" id="sss">
             <h2>Sıkça Sorulan Sorular</h2>
 
@@ -887,7 +876,6 @@
             </div>
         </section>
 
-        <!-- ========== İLETİŞİM ========== -->
         <div class="footer-box">
             <h3>Sorun mu Var? Bize Yaz</h3>
             <ul class="contact-info-list">
@@ -898,7 +886,6 @@
             </ul>
         </div>
 
-        <!-- ========== FOOTER ========== -->
         <footer class="footer">
             <p>© 2026 Uzman Reklam — Fason Dijital Baskı &amp; Tabela Fabrikası, Bafra/Samsun</p>
             <p style="margin-top:6px;">
@@ -909,7 +896,6 @@
 
     </div>
 
-    <!-- ========== SABİT WHATSAPP + INSTAGRAM ========== -->
     <div class="wp-float">
         <a href="https://www.instagram.com/uzman.reklamm/" class="wp-btn instagram" target="_blank">
             <i class="fab fa-instagram"></i>
@@ -919,7 +905,6 @@
         </a>
     </div>
 
-    <!-- ========== JAVASCRIPT ========== -->
     <script>
         // Fiyat verileri (11.07.2026 USD: 46.98 TL, EUR: 53.72 TL)
         const fiyatlar = {
