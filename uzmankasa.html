@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, shrink-to-fit=no">
     <meta name="robots" content="noindex, nofollow">
     <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="UzmanKasa">
     <meta name="theme-color" content="#ffffff" id="themeColor">
@@ -530,13 +531,13 @@
 <div id="loginContainer" class="login-container" style="display:flex">
     <div class="login-card">
         <div class="login-logo">UZMAN<span>KASA</span></div>
-        <input type="password" id="pinInput" class="login-input" placeholder="Şifre" autocomplete="off" inputmode="numeric">
+        <input type="number" id="pinInput" class="login-input" placeholder="Şifre" autocomplete="off" inputmode="numeric" pattern="[0-9]*">
         <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; margin-top: 8px;">
             <label style="font-size: 0.85rem; color: #6c6c70; display: flex; align-items: center; gap: 6px; cursor: pointer;">
                 <input type="checkbox" id="rememberMeCheckbox"> Beni hatırla
             </label>
         </div>
-        <button class="login-btn" onclick="checkPin()">Giriş Yap</button>
+        <button class="login-btn" id="loginBtn">Giriş Yap</button>
     </div>
 </div>
 
@@ -1321,7 +1322,7 @@
 
     function checkRememberedLogin() {
         const savedPin = localStorage.getItem('rememberedPin');
-        if (savedPin === "talha5534") {
+        if (savedPin === "5534") {
             document.getElementById('loginContainer').style.display = 'none';
             document.getElementById('appContainer').style.display = 'block';
             loadData();
@@ -1336,7 +1337,7 @@
     window.checkPin = () => {
         const pin = document.getElementById('pinInput').value;
         const rememberMe = document.getElementById('rememberMeCheckbox').checked;
-        if (pin === "talha5534") {
+        if (pin === "5534") {
             if (rememberMe) {
                 localStorage.setItem('rememberedPin', pin);
             } else {
@@ -1379,6 +1380,8 @@
             }
         });
     });
+
+    document.getElementById('loginBtn').addEventListener('click', checkPin);
 
     window.addEventListener('load', () => {
         checkRememberedLogin();
