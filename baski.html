@@ -7,7 +7,7 @@
     <meta name="description" content="Türkiye geneline fason dijital baskı. Folyo, branda, one-way vision, vinil, mesh ve daha fazlası. Ölçünü gir, fiyatını gör, WhatsApp'tan sipariş ver." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
     <style>
         * {
@@ -72,7 +72,7 @@
             align-items: center;
             padding: 18px 20px;
         }
-        .logo-area { display: flex; align-items: center; gap: 18px; }
+        .logo-area { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
         .logo a {
             font-weight: 900;
             font-size: 26px;
@@ -83,6 +83,15 @@
             white-space: nowrap;
         }
         .logo span { color: var(--neon); }
+        .logo-slogan {
+            font-size: 14px;
+            font-weight: 300;
+            color: #aaa;
+            letter-spacing: 0.3px;
+            border-left: 1px solid #333;
+            padding-left: 12px;
+            white-space: nowrap;
+        }
         .nav-contact {
             display: flex;
             align-items: center;
@@ -100,27 +109,14 @@
         .nav-contact a:hover { color: #fff; }
         .nav-contact i { color: var(--neon); font-size: 15px; }
         .nav-contact .sep { color: #333; margin: 0 5px; }
-        .nav-mobile-wa { display: none; }
 
         .page-body { padding-top: 100px; }
 
         @media (max-width: 640px) {
-            .nav-container { justify-content: space-between; padding: 14px 20px; }
+            .nav-container { padding: 14px 20px; }
             .logo a { font-size: 20px; }
+            .logo-slogan { font-size: 11px; padding-left: 8px; border-left-width: 1px; }
             .nav-contact { display: none; }
-            .nav-mobile-wa { display: block; }
-            .nav-mobile-wa a {
-                color: #fff;
-                background: #25d366;
-                width: 38px;
-                height: 38px;
-                border-radius: 50%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-size: 20px;
-                text-decoration: none;
-            }
             .page-body { padding-top: 80px; }
         }
 
@@ -170,15 +166,17 @@
             letter-spacing: -1px;
             text-transform: uppercase;
             line-height: 1.1;
+            color: #fff;
+            text-shadow: 0 4px 30px rgba(0,0,0,0.8);
         }
         .hero-content h1 span { color: var(--neon); }
         .hero-content p {
-            color: #ddd;
+            color: #fff;
             font-size: 1.1rem;
             max-width: 700px;
             margin: 15px auto 30px;
             line-height: 1.6;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+            text-shadow: 0 2px 20px rgba(0,0,0,0.9);
         }
         .btn-main {
             background: var(--neon);
@@ -197,6 +195,18 @@
         .btn-main:hover { transform: scale(1.05); background: #d4ff33; }
         .btn-main:active { transform: scale(0.97); }
         .btn-main i { margin-right: 10px; }
+
+        @media (max-width: 640px) {
+            .hero {
+                height: 100vh;
+                min-height: 100%;
+                border-radius: 0;
+                margin: 0 -20px;
+                width: calc(100% + 40px);
+            }
+            .hero-content h1 { font-size: 1.8rem; }
+            .hero-content p { font-size: 0.95rem; }
+        }
 
         /* ===== STEPS ===== */
         .steps { margin: 70px 0; }
@@ -380,6 +390,12 @@
             grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
             gap: 26px;
         }
+        @media (max-width: 640px) {
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 16px;
+            }
+        }
         .product-card {
             background: var(--card);
             border: 1px solid var(--border);
@@ -402,7 +418,14 @@
             display: block;
             background: #eee;
         }
-        .product-card .card-body { padding: 18px 18px 22px; }
+        .product-card .card-body { padding: 14px 12px 18px; }
+        @media (max-width: 640px) {
+            .product-card .card-img { height: 140px; }
+            .product-card .card-body { padding: 10px 8px 14px; }
+            .product-card .card-body h3 { font-size: 0.9rem; }
+            .product-card .card-body .desc { font-size: 0.7rem; }
+            .product-card .card-body .fiyat { font-size: 0.9rem; }
+        }
         .product-card .card-body h3 {
             font-size: 1.1rem;
             text-transform: uppercase;
@@ -439,6 +462,7 @@
             z-index: 2;
         }
         .product-badge.free-design { background: #ff6b35; color: #fff; }
+        .product-badge.multi-design { background: #6f8f00; color: #fff; }
         .card-icon {
             width: 100%;
             height: 180px;
@@ -449,6 +473,7 @@
             font-size: 3rem;
             color: var(--accent);
         }
+        @media (max-width: 640px) { .card-icon { height: 140px; font-size: 2.2rem; } }
 
         /* ===== MODAL ===== */
         .modal-overlay {
@@ -506,7 +531,7 @@
         .modal-box .modal-desc {
             color: var(--gray);
             font-size: 0.95rem;
-            line-height: 1.6;
+            line-height: 1.7;
             margin: 12px 0 16px;
         }
         .modal-box .modal-price {
@@ -522,6 +547,25 @@
             border-radius: 12px;
             margin-bottom: 12px;
         }
+        /* Duvar tablosu thumbnail galerisi */
+        .modal-thumbs {
+            display: flex;
+            gap: 10px;
+            margin: 12px 0 16px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .modal-thumb {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .modal-thumb:hover { border-color: var(--accent); transform: scale(1.05); }
+        .modal-thumb.active-thumb { border-color: var(--neon); }
         .modal-box .btn-wa {
             display: inline-block;
             background: #25d366;
@@ -667,7 +711,6 @@
         }
 
         @media (max-width: 480px) {
-            .hero { height: 50vh; min-height: 320px; }
             .hero-content h1 { font-size: 1.8rem; }
             .calculator { padding: 20px; }
             .calc-result .price { font-size: 1.6rem; }
@@ -681,14 +724,12 @@
         <div class="container nav-container">
             <div class="logo-area">
                 <div class="logo"><a href="https://samsuntabela.tr/">UZMAN<span>REKLAM</span></a></div>
+                <span class="logo-slogan">Dijital Baskı Merkezi</span>
             </div>
             <div class="nav-contact">
                 <a href="tel:05322204649"><i class="fas fa-phone-alt"></i> 0532 220 46 49</a>
                 <span class="sep">|</span>
                 <a href="https://wa.me/905079605049" target="_blank"><i class="fab fa-whatsapp"></i> 0507 960 50 49</a>
-            </div>
-            <div class="nav-mobile-wa">
-                <a href="https://wa.me/905079605049" target="_blank"><i class="fab fa-whatsapp"></i></a>
             </div>
         </div>
     </nav>
@@ -763,16 +804,13 @@
                         <option value="canvas">Canvas Baskı</option>
                         <option value="magnet">Magnet Baskı</option>
                         <option value="kagit_baski">Kağıt Baskı</option>
-                        <option value="duvar_tablosu_50x70">Duvar Tablosu 50x70 cm</option>
-                        <option value="duvar_tablosu_70x100">Duvar Tablosu 70x100 cm</option>
-                        <option value="duvar_tablosu_100x140">Duvar Tablosu 100x140 cm</option>
                     </select>
                 </div>
-                <div class="calc-group" id="en-group">
+                <div class="calc-group">
                     <label for="en">En (cm)</label>
                     <input type="number" id="en" placeholder="Örn: 100" min="1" value="100">
                 </div>
-                <div class="calc-group" id="boy-group">
+                <div class="calc-group">
                     <label for="boy">Boy (cm)</label>
                     <input type="number" id="boy" placeholder="Örn: 50" min="1" value="50">
                 </div>
@@ -917,33 +955,14 @@
                     </div>
                 </div>
 
-                <div class="product-card" onclick="openModal('duvar_tablosu_50x70')">
-                    <div class="product-badge">🔥 En Çok Tercih</div>
+                <!-- DUVAR TABLOSU (SADECE 50x70, 3 RESİMLİ) -->
+                <div class="product-card" onclick="openDuvarModal()">
+                    <div class="product-badge multi-design">🖼️ 3 Tasarım</div>
                     <div class="card-icon"><i class="fas fa-image"></i></div>
                     <div class="card-body">
                         <h3>Duvar Tablosu 50x70</h3>
                         <div class="desc">Folyo kaplı 3mm MDF, çift taraflı bant ile asılır</div>
                         <div class="fiyat">700 TL <small>(KDV Dahil)</small></div>
-                    </div>
-                </div>
-
-                <div class="product-card" onclick="openModal('duvar_tablosu_70x100')">
-                    <div class="product-badge">⭐ Popüler</div>
-                    <div class="card-icon"><i class="fas fa-image"></i></div>
-                    <div class="card-body">
-                        <h3>Duvar Tablosu 70x100</h3>
-                        <div class="desc">Folyo kaplı 3mm MDF, çift taraflı bant ile asılır</div>
-                        <div class="fiyat">950 TL <small>(KDV Dahil)</small></div>
-                    </div>
-                </div>
-
-                <div class="product-card" onclick="openModal('duvar_tablosu_100x140')">
-                    <div class="product-badge">🏆 Dev Boyut</div>
-                    <div class="card-icon"><i class="fas fa-image"></i></div>
-                    <div class="card-body">
-                        <h3>Duvar Tablosu 100x140</h3>
-                        <div class="desc">Folyo kaplı 3mm MDF, çift taraflı bant ile asılır</div>
-                        <div class="fiyat">1.300 TL <small>(KDV Dahil)</small></div>
                     </div>
                 </div>
 
@@ -1004,7 +1023,7 @@
 
     </div>
 
-    <!-- MODAL -->
+    <!-- MODAL (Standart) -->
     <div class="modal-overlay" id="productModal" onclick="if(event.target===this) closeModal()">
         <div class="modal-box">
             <button class="modal-close" onclick="closeModal()">&times;</button>
@@ -1013,6 +1032,23 @@
             <div class="modal-desc" id="modalDesc">Ürün açıklaması burada olacak.</div>
             <div class="modal-price" id="modalPrice">Fiyat</div>
             <a href="#" id="modalWaBtn" class="btn-wa" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp ile Sipariş Ver</a>
+        </div>
+    </div>
+
+    <!-- DUVAR TABLOSU MODAL (3 resimli) -->
+    <div class="modal-overlay" id="duvarModal" onclick="if(event.target===this) closeDuvarModal()">
+        <div class="modal-box">
+            <button class="modal-close" onclick="closeDuvarModal()">&times;</button>
+            <img class="modal-img" id="duvarModalImg" src="images/fason/duvar-tablosu-1.jpg" alt="Duvar Tablosu">
+            <h3>Duvar Tablosu 50x70</h3>
+            <div class="modal-desc">Folyo kaplı 3mm MDF, çift taraflı bant ile kolayca asılır. Hazır boyut, hemen kullanıma hazır. Ofis, mağaza ve ev dekorasyonu için ideal. 3 farklı tasarım seçeneği ile duvarlarınıza renk katın.</div>
+            <div class="modal-thumbs">
+                <img class="modal-thumb active-thumb" src="images/fason/duvar-tablosu-1.jpg" alt="Tasarım 1" onclick="changeDuvarImage('images/fason/duvar-tablosu-1.jpg', this)">
+                <img class="modal-thumb" src="images/fason/duvar-tablosu-2.jpg" alt="Tasarım 2" onclick="changeDuvarImage('images/fason/duvar-tablosu-2.jpg', this)">
+                <img class="modal-thumb" src="images/fason/duvar-tablosu-3.jpg" alt="Tasarım 3" onclick="changeDuvarImage('images/fason/duvar-tablosu-3.jpg', this)">
+            </div>
+            <div class="modal-price">700 TL <small>(KDV Dahil)</small></div>
+            <a href="https://wa.me/905079605049?text=Merhaba,%20Duvar%20Tablosu%2050x70%20için%20sipariş%20vermek%20istiyorum." class="btn-wa" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp ile Sipariş Ver</a>
         </div>
     </div>
 
@@ -1029,49 +1065,35 @@
     <script>
         // Fiyat verileri
         const fiyatlar = {
-            ince_vinil: { ad: 'İnce Vinil', fiyat: 1.80, birim: 'USD', desc: 'Konica Solvent baskı, dış mekan için idealdir. Ekonomik ve dayanıklı.' },
-            normal_vinil: { ad: 'Normal Vinil', fiyat: 2.35, birim: 'USD', desc: 'Konica Solvent, dış mekan. Orta kalite, günlük kullanım için uygun.' },
-            avrupa_vinil: { ad: 'Avrupa Vinil', fiyat: 2.70, birim: 'USD', desc: 'Yüksek kaliteli Avrupa vinili, uzun ömürlü ve UV dayanımlı.' },
-            arkasi_siyah_vinil: { ad: 'Arkası Siyah Vinil', fiyat: 2.95, birim: 'USD', desc: 'Arkası siyah, opak görünümlü. Işık geçirmez, tabelalarda kullanılır.' },
-            mesh_vinil: { ad: 'Mesh Vinil', fiyat: 3.15, birim: 'USD', desc: 'Delikli yapısıyla rüzgarı geçirir, bina cephelerinde idealdir.' },
-            isikli_vinil: { ad: 'Işıklı Vinil', fiyat: 4.75, birim: 'USD', desc: 'Arkadan aydınlatmalı tabelalar için özel üretim, ışığı geçirir.' },
-            frimpeks_folyo: { ad: 'Frimpeks Folyo', fiyat: 2.75, birim: 'EUR', desc: 'Solvent folyo, renkli ve dayanıklı. Araç giydirme ve iç mekan kullanımı.' },
-            frimpeks_gri_folyo: { ad: 'Frimpeks Arkası Gri', fiyat: 2.80, birim: 'EUR', desc: 'Arkası gri, opak folyo. Işık geçirmez, tabelalarda kullanılır.' },
-            unifol_folyo: { ad: 'Unifol Folyo', fiyat: 3.30, birim: 'EUR', desc: 'Kaliteli solvent folyo, parlak ve canlı renkler.' },
-            unifol_gri_folyo: { ad: 'Unifol Arkası Gri', fiyat: 3.35, birim: 'EUR', desc: 'Arkası gri, yüksek kaliteli folyo. Uzun ömürlü.' },
-            one_way_vision: { ad: 'One Way Vision', fiyat: 4.00, birim: 'USD', desc: 'Cam folyosu, içeriden dışarıyı görürsünüz, dışarıdan içeri görünmez. Mağaza vitrinleri ve araç camları için idealdir. Ücretsiz tasarım desteği.' },
-            reflektif_folyo: { ad: 'Reflektif Folyo', fiyat: 12.50, birim: 'USD', desc: 'Gece ışıldayan, yol işaretleri ve acil durum tabelaları için.' },
-            kumlu_folyo: { ad: 'Kumlu Folyo', fiyat: 4.00, birim: 'USD', desc: 'Dekoratif kum efekti, iç mekan duvar kaplamalarında kullanılır.' },
-            canvas: { ad: 'Canvas Baskı', fiyat: 9.50, birim: 'USD', desc: 'Tuval görünümlü, dekoratif baskı. Resim ve sanat baskıları için.' },
-            magnet: { ad: 'Magnet Baskı', fiyat: 13.00, birim: 'USD', desc: 'Manyetik folyo, buzdolabı magneti ve promosyon ürünleri için. Ücretsiz tasarım desteği.' },
-            kagit_baski: { ad: 'Kağıt Baskı', fiyat: 1.50, birim: 'USD', desc: 'İç mekan afiş, poster ve broşür baskıları için ideal.' },
-            duvar_tablosu_50x70: { ad: 'Duvar Tablosu 50x70', fiyat: 700, birim: 'TL', desc: 'Folyo kaplı 3mm MDF, çift taraflı bant ile kolayca asılır. Hazır boyut, hemen kullanıma hazır.' },
-            duvar_tablosu_70x100: { ad: 'Duvar Tablosu 70x100', fiyat: 950, birim: 'TL', desc: 'Folyo kaplı 3mm MDF, çift taraflı bant ile kolayca asılır. Büyük boyut, etkileyici görünüm.' },
-            duvar_tablosu_100x140: { ad: 'Duvar Tablosu 100x140', fiyat: 1300, birim: 'TL', desc: 'Folyo kaplı 3mm MDF, çift taraflı bant ile kolayca asılır. Dev boyut, ofis ve mağazalar için.' }
+            ince_vinil: { ad: 'İnce Vinil', fiyat: 1.80, birim: 'USD', desc: 'İnce vinil, Konica Solvent baskı teknolojisi ile üretilir. Dış mekan reklamlarında, araç giydirmede ve mağaza vitrinlerinde sıklıkla kullanılır. Esnek yapısı sayesinde düz olmayan yüzeylere kolayca uygulanır. Ekonomik fiyatıyla bütçe dostudur, 2-3 yıl dayanıklılık sunar.' },
+            normal_vinil: { ad: 'Normal Vinil', fiyat: 2.35, birim: 'USD', desc: 'Normal vinil, günlük kullanım için ideal bir dış mekan malzemesidir. Konica Solvent baskı ile canlı renkler elde edilir. Tabelalar, araç giydirme ve duvar reklamlarında tercih edilir. Orta kalite segmentinde olup, 3-4 yıl boyunca ilk günkü parlaklığını korur.' },
+            avrupa_vinil: { ad: 'Avrupa Vinil', fiyat: 2.70, birim: 'USD', desc: 'Avrupa vinili, yüksek kaliteli hammaddeden üretilir. UV ışınlarına karşı üstün direnç gösterir, renk solması minimum seviyededir. Uzun ömürlü projeler (4-5 yıl) için idealdir. Kurumsal firmalar, AVM\'ler ve oteller tarafından tercih edilir.' },
+            arkasi_siyah_vinil: { ad: 'Arkası Siyah Vinil', fiyat: 2.95, birim: 'USD', desc: 'Arkası siyah vinil, opak görünümlü ve ışık geçirmez özelliğe sahiptir. Arkadan aydınlatmalı tabelalarda ve ışık sızmasının istenmediği projelerde kullanılır. Mat yüzeyi ile prestijli bir görünüm sunar.' },
+            mesh_vinil: { ad: 'Mesh Vinil', fiyat: 3.15, birim: 'USD', desc: 'Mesh vinil, delikli yapısı sayesinde rüzgarı geçirir, bu nedenle bina cephelerinde ve iskele üzerinde güvenle kullanılır. %30-40 oranında delikli olup, arkasından hava sirkülasyonu sağlar. Aynı zamanda tek yönlü görüş özelliği ile cam giydirmede de tercih edilir.' },
+            isikli_vinil: { ad: 'Işıklı Vinil', fiyat: 4.75, birim: 'USD', desc: 'Işıklı vinil, arkadan aydınlatmalı tabelalar için özel olarak üretilmiştir. LED veya floresan ışık kaynaklarının arkasına yerleştirildiğinde ışığı homojen bir şekilde dağıtır. Gece ve gündüz etkileyici görünüm sağlar. Marka logoları ve vitrin tabelalarında sıklıkla kullanılır.' },
+            frimpeks_folyo: { ad: 'Frimpeks Folyo', fiyat: 2.75, birim: 'EUR', desc: 'Frimpeks folyo, solvent bazlı baskı teknolojisi ile üretilir. Araç giydirme, iç mekan duvar kaplamaları ve vitrin dekorasyonlarında kullanılır. Renk canlılığı ve yapışma gücü yüksektir. 2-3 yıl boyunca solmaya karşı dayanıklıdır.' },
+            frimpeks_gri_folyo: { ad: 'Frimpeks Arkası Gri', fiyat: 2.80, birim: 'EUR', desc: 'Frimpeks arkası gri folyo, ışık geçirmez özelliği ile tabela ve kapalı alan projelerinde kullanılır. Arkası gri opak katman sayesinde ışık sızması engellenir. Ofis içi yönlendirme ve kurumsal kimlik çalışmalarında idealdir.' },
+            unifol_folyo: { ad: 'Unifol Folyo', fiyat: 3.30, birim: 'EUR', desc: 'Unifol folyo, yüksek parlaklık ve renk doygunluğu sunar. Solvent baskı ile canlı ve etkileyici grafikler elde edilir. Araç giydirme, mağaza vitrini ve fuar standlarında tercih edilir. 3-4 yıl dayanıklı, kolay uygulanabilir.' },
+            unifol_gri_folyo: { ad: 'Unifol Arkası Gri', fiyat: 3.35, birim: 'EUR', desc: 'Unifol arkası gri folyo, ışığı tamamen engeller. Reklam panoları, ışıklı kutular ve opak uygulamalar için uygundur. Yapışkan gücü yüksektir, zorlu yüzeylere bile kolayca uygulanır.' },
+            one_way_vision: { ad: 'One Way Vision', fiyat: 4.00, birim: 'USD', desc: 'One Way Vision, delikli cam folyosudur. İçeriden dışarıyı net görürsünüz, dışarıdan içeri bakıldığında ise reklam baskısı görünür. Mağaza vitrinleri, araç camları ve ofis camları için idealdir. Gizlilik sağlarken reklam alanı yaratır. 🎨 Ücretsiz tasarım desteği.' },
+            reflektif_folyo: { ad: 'Reflektif Folyo', fiyat: 12.50, birim: 'USD', desc: 'Reflektif folyo, gece ışıldayan özel bir yapıya sahiptir. Araç farı veya sokak lambası ışığını yansıtarak yüksek görünürlük sağlar. Yol işaretleri, acil durum tabelaları ve gece reklamları için zorunlu malzemedir. Güvenlik ve yönlendirme projelerinde tercih edilir.' },
+            kumlu_folyo: { ad: 'Kumlu Folyo', fiyat: 4.00, birim: 'USD', desc: 'Kumlu folyo, dekoratif kum efekti ile iç mekan duvar kaplamalarında kullanılır. Mat ve dokulu yüzeyi ile şık bir görünüm sunar. Ofis, restoran ve mağaza dekorasyonlarında sıklıkla tercih edilir. Suya ve neme dayanıklıdır.' },
+            canvas: { ad: 'Canvas Baskı', fiyat: 9.50, birim: 'USD', desc: 'Canvas baskı, tuval görünümlü pamuklu kumaş üzerine yapılan dekoratif baskıdır. Resim, fotoğraf ve sanat çalışmaları için idealdir. Ev, ofis ve galeri duvarlarında sanatsal bir hava yaratır. Yüksek çözünürlük ve canlı renkler ile ölümsüzleştirir.' },
+            magnet: { ad: 'Magnet Baskı', fiyat: 13.00, birim: 'USD', desc: 'Magnet baskı, manyetik folyo üzerine yapılan baskıdır. Buzdolabı magneti, promosyon ürünleri ve işletme kartı olarak kullanılır. Kolayca kesilir, istenilen şekle getirilir. 🎨 Ücretsiz tasarım desteği.' },
+            kagit_baski: { ad: 'Kağıt Baskı', fiyat: 1.50, birim: 'USD', desc: 'Kağıt baskı, iç mekan afiş, poster, broşür ve el ilanları için idealdir. 115-300 gr/m² arası kağıt seçenekleri ile mat veya parlak yüzey seçeneği sunar. Ekonomik ve hızlı üretim ile kısa sürede teslim edilir.' }
         };
 
         const kur_usd = 46.98;
         const kur_eur = 53.72;
 
-        // Ürün açıklamaları (modal için)
-        const urunDetay = {
-            ince_vinil: { img: 'images/fason/ince-vinil.jpg', desc: 'Konica Solvent baskı, dış mekan için idealdir. Ekonomik ve dayanıklı.' },
-            normal_vinil: { img: 'images/fason/normal-vinil.jpg', desc: 'Konica Solvent, dış mekan. Orta kalite, günlük kullanım için uygun.' },
-            avrupa_vinil: { img: 'images/fason/avrupa-vinil.jpg', desc: 'Yüksek kaliteli Avrupa vinili, uzun ömürlü ve UV dayanımlı.' },
-            mesh_vinil: { img: 'images/fason/mesh-vinil.jpg', desc: 'Delikli yapısıyla rüzgarı geçirir, bina cephelerinde idealdir.' },
-            isikli_vinil: { img: 'images/fason/isikli-vinil.jpg', desc: 'Arkadan aydınlatmalı tabelalar için özel üretim, ışığı geçirir.' },
-            frimpeks_folyo: { img: 'images/fason/frimpeks-folyo.jpg', desc: 'Solvent folyo, renkli ve dayanıklı. Araç giydirme ve iç mekan kullanımı.' },
-            unifol_folyo: { img: 'images/fason/unifol-folyo.jpg', desc: 'Kaliteli solvent folyo, parlak ve canlı renkler.' },
-            one_way_vision: { img: 'images/fason/one-way-vision.jpg', desc: 'Cam folyosu, içeriden dışarıyı görürsünüz, dışarıdan içeri görünmez. Mağaza vitrinleri ve araç camları için idealdir. 🎨 Ücretsiz tasarım desteği.' },
-            reflektif_folyo: { img: 'images/fason/reflektif-folyo.jpg', desc: 'Gece ışıldayan, yol işaretleri ve acil durum tabelaları için.' },
-            kumlu_folyo: { img: 'images/fason/kumlu-folyo.jpg', desc: 'Dekoratif kum efekti, iç mekan duvar kaplamalarında kullanılır.' },
-            canvas: { img: 'images/fason/canvas.jpg', desc: 'Tuval görünümlü, dekoratif baskı. Resim ve sanat baskıları için.' },
-            magnet: { img: 'images/fason/magnet.jpg', desc: 'Manyetik folyo, buzdolabı magneti ve promosyon ürünleri için. 🎨 Ücretsiz tasarım desteği.' },
-            kagit_baski: { img: 'images/fason/kagit-baski.jpg', desc: 'İç mekan afiş, poster ve broşür baskıları için ideal.' },
-            duvar_tablosu_50x70: { img: '', desc: 'Folyo kaplı 3mm MDF, çift taraflı bant ile kolayca asılır. Hazır boyut, hemen kullanıma hazır.' },
-            duvar_tablosu_70x100: { img: '', desc: 'Folyo kaplı 3mm MDF, çift taraflı bant ile kolayca asılır. Büyük boyut, etkileyici görünüm.' },
-            duvar_tablosu_100x140: { img: '', desc: 'Folyo kaplı 3mm MDF, çift taraflı bant ile kolayca asılır. Dev boyut, ofis ve mağazalar için.' }
-        };
+        // Ürün detayları (modal için)
+        const urunDetay = {};
+        for (const key in fiyatlar) {
+            urunDetay[key] = {
+                img: 'images/fason/' + key + '.jpg',
+                desc: fiyatlar[key].desc
+            };
+        }
 
         function openModal(key) {
             const urun = fiyatlar[key];
@@ -1109,29 +1131,27 @@
             document.body.style.overflow = '';
         }
 
+        // Duvar tablosu modal
+        function openDuvarModal() {
+            document.getElementById('duvarModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeDuvarModal() {
+            document.getElementById('duvarModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function changeDuvarImage(src, thumbEl) {
+            document.getElementById('duvarModalImg').src = src;
+            document.querySelectorAll('.modal-thumb').forEach(el => el.classList.remove('active-thumb'));
+            thumbEl.classList.add('active-thumb');
+        }
+
         // Hesaplayıcı
         function onizlemeGuncelle() {
-            const malzeme = document.getElementById('malzeme').value;
-            const isDuvar = malzeme.startsWith('duvar_tablosu');
-            const enInput = document.getElementById('en');
-            const boyInput = document.getElementById('boy');
-
-            if (isDuvar) {
-                enInput.disabled = true;
-                boyInput.disabled = true;
-                enInput.value = '';
-                boyInput.value = '';
-                document.getElementById('onizleme').textContent = 'Sabit Boyut';
-                document.getElementById('onizleme').style.width = '100px';
-                document.getElementById('onizleme').style.height = '60px';
-                return;
-            } else {
-                enInput.disabled = false;
-                boyInput.disabled = false;
-            }
-
-            const en = parseFloat(enInput.value) || 0;
-            const boy = parseFloat(boyInput.value) || 0;
+            const en = parseFloat(document.getElementById('en').value) || 0;
+            const boy = parseFloat(document.getElementById('boy').value) || 0;
             const kutu = document.getElementById('onizleme');
             if (en <= 0 || boy <= 0) {
                 kutu.style.width = '20px';
@@ -1156,44 +1176,35 @@
 
         document.getElementById('en').addEventListener('input', onizlemeGuncelle);
         document.getElementById('boy').addEventListener('input', onizlemeGuncelle);
-        document.getElementById('malzeme').addEventListener('change', onizlemeGuncelle);
 
         function hesapla() {
             const malzemeKey = document.getElementById('malzeme').value;
             const en = parseFloat(document.getElementById('en').value);
             const boy = parseFloat(document.getElementById('boy').value);
             const urun = fiyatlar[malzemeKey];
-            let toplamTL = 0;
-            let m2 = 0;
-            let fiyatGoster = '';
 
-            if (malzemeKey.startsWith('duvar_tablosu')) {
-                toplamTL = urun.fiyat;
-                fiyatGoster = toplamTL + ' TL (KDV Dahil)';
-            } else {
-                if (!en || !boy || en <= 0 || boy <= 0) {
-                    document.getElementById('sonuc').innerHTML = `
-                        <div class="price" style="color:#ff6b6b;">Hata</div>
-                        <div class="detail">Lütfen geçerli en ve boy girin.</div>
-                        <div class="calc-note">* KDV hariç</div>
-                    `;
-                    return;
-                }
-                m2 = (en * boy) / 10000;
-                let kur = urun.birim === 'EUR' ? kur_eur : kur_usd;
-                let fiyatTL = urun.fiyat * kur;
-                toplamTL = fiyatTL * m2;
-                if (toplamTL < 50) toplamTL = 50;
-                fiyatGoster = toplamTL.toFixed(0) + ' TL (KDV Hariç)';
+            if (!en || !boy || en <= 0 || boy <= 0) {
+                document.getElementById('sonuc').innerHTML = `
+                    <div class="price" style="color:#ff6b6b;">Hata</div>
+                    <div class="detail">Lütfen geçerli en ve boy girin.</div>
+                    <div class="calc-note">* KDV hariç</div>
+                `;
+                return;
             }
+
+            const m2 = (en * boy) / 10000;
+            let kur = urun.birim === 'EUR' ? kur_eur : kur_usd;
+            let fiyatTL = urun.fiyat * kur;
+            let toplamTL = fiyatTL * m2;
+            if (toplamTL < 50) toplamTL = 50;
 
             const sonucDiv = document.getElementById('sonuc');
             sonucDiv.innerHTML = `
                 <div class="price">${toplamTL.toFixed(0)} <small>TL</small></div>
                 <div class="detail">
-                    ${m2 > 0 ? '📐 ' + m2.toFixed(2) + ' m² · ' : ''}${urun.ad}${en && boy ? ' · ' + en + 'x' + boy + ' cm' : ''}
+                    📐 ${m2.toFixed(2)} m² · ${urun.ad} · ${en}x${boy} cm
                 </div>
-                <a href="https://wa.me/905079605049?text=Merhaba,%20fason%20baskı%20için%20teklif%20almak%20istiyorum.%20${urun.ad}%20-%20Tahmini%20Fiyat:%20${toplamTL.toFixed(0)}%20TL" 
+                <a href="https://wa.me/905079605049?text=Merhaba,%20fason%20baskı%20için%20teklif%20almak%20istiyorum.%20${urun.ad}%20-%20${en}x${boy}cm%20-%20Tahmini%20Fiyat:%20${toplamTL.toFixed(0)}%20TL" 
                    target="_blank" class="btn-wa">
                     <i class="fab fa-whatsapp"></i> WhatsApp ile Sipariş Ver
                 </a>
