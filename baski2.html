@@ -4,19 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>Fason Dijital Baskı | Uzman Reklam — Ölçünü Gir, Fiyatını Gör</title>
-    <meta name="description" content="Türkiye geneline fason dijital baskı hizmeti. Folyo, branda, one-way vision, vinil, mesh, canvas ve daha fazlası. Bafra/Samsun'dan tüm Türkiye'ye kargo. WhatsApp'tan anında sipariş." />
-    <meta name="keywords" content="fason baskı, dijital baskı, folyo baskı, vinil baskı, mesh baskı, one way vision, canvas baskı, magnet baskı, samsun baskı, bafra reklam" />
+    <meta name="description" content="Türkiye geneline fason dijital baskı hizmeti. Folyo, branda, one-way vision, vinil, mesh, canvas, magnet, kağıt baskı ve özel maketler (Atatürk, çocuk, taraftar). Bafra/Samsun'dan tüm Türkiye'ye kargo. WhatsApp'tan anında sipariş." />
+    <meta name="keywords" content="fason baskı, dijital baskı, folyo baskı, vinil baskı, mesh baskı, one way vision, canvas baskı, magnet baskı, samsun baskı, bafra reklam, atatürk maketi, çocuk maketi, taraftar maketi" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-        }
+        /* ----- Tüm stiller aynen kaldı, değişiklik yok ----- */
+        * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
         :root {
             --neon: #ccff00;
             --accent: #6f8f00;
@@ -38,891 +34,865 @@
             line-height: 1.6;
             overflow-x: hidden;
         }
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+        .container { max-width:1100px; margin:0 auto; padding:0 20px; }
         a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible {
-            outline: 2px solid var(--accent);
-            outline-offset: 3px;
+            outline:2px solid var(--accent); outline-offset:3px;
         }
         @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+            *, *::before, *::after { animation-duration:0.01ms !important; transition-duration:0.01ms !important; }
         }
-        ::-webkit-scrollbar { width: 10px; }
-        ::-webkit-scrollbar-track { background: #eee; }
-        ::-webkit-scrollbar-thumb { background: #ccc; border-radius: 5px; }
-        ::-webkit-scrollbar-thumb:hover { background: #aaa; }
-        * { scrollbar-color: #ccc #eee; scrollbar-width: thin; }
+        ::-webkit-scrollbar { width:10px; }
+        ::-webkit-scrollbar-track { background:#eee; }
+        ::-webkit-scrollbar-thumb { background:#ccc; border-radius:5px; }
+        ::-webkit-scrollbar-thumb:hover { background:#aaa; }
+        * { scrollbar-color:#ccc #eee; scrollbar-width:thin; }
 
-        /* ===== NAV ===== */
         nav {
-            background: rgba(5,5,5,0.85);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            left: 0;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(255,255,255,0.08);
+            background:rgba(5,5,5,0.85);
+            backdrop-filter:blur(14px);
+            -webkit-backdrop-filter:blur(14px);
+            position:fixed;
+            width:100%;
+            top:0;
+            left:0;
+            z-index:1000;
+            border-bottom:1px solid rgba(255,255,255,0.08);
         }
         .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 18px 20px;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            padding:18px 20px;
         }
-        .logo-area { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .logo-area { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
         .logo a {
-            font-weight: 900;
-            font-size: 26px;
-            letter-spacing: -1px;
-            text-transform: uppercase;
-            color: #fff;
-            text-decoration: none;
-            white-space: nowrap;
+            font-weight:900;
+            font-size:26px;
+            letter-spacing:-1px;
+            text-transform:uppercase;
+            color:#fff;
+            text-decoration:none;
+            white-space:nowrap;
         }
-        .logo span { color: var(--neon); }
+        .logo span { color:var(--neon); }
         .logo-slogan {
-            font-size: 15.4px;
-            font-weight: 300;
-            color: #fff;
-            letter-spacing: 0.3px;
-            border-left: 1px solid #444;
-            padding-left: 12px;
-            white-space: nowrap;
+            font-size:15.4px;
+            font-weight:300;
+            color:#fff;
+            letter-spacing:0.3px;
+            border-left:1px solid #444;
+            padding-left:12px;
+            white-space:nowrap;
         }
         .nav-contact {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            font-size: 14px;
+            display:flex;
+            align-items:center;
+            gap:15px;
+            font-size:14px;
         }
         .nav-contact a {
-            color: #aaa;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            transition: color 0.3s;
+            color:#aaa;
+            text-decoration:none;
+            display:flex;
+            align-items:center;
+            gap:6px;
+            transition:color 0.3s;
         }
-        .nav-contact a:hover { color: #fff; }
-        .nav-contact i { color: var(--neon); font-size: 15px; }
-        .nav-contact .sep { color: #333; margin: 0 5px; }
+        .nav-contact a:hover { color:#fff; }
+        .nav-contact i { color:var(--neon); font-size:15px; }
+        .nav-contact .sep { color:#333; margin:0 5px; }
 
-        .page-body { padding-top: 100px; }
-
-        @media (max-width: 640px) {
-            .nav-container { padding: 14px 20px; justify-content: center; }
-            .logo a { font-size: 20px; }
-            .logo-slogan { font-size: 13px; padding-left: 8px; border-left-width: 1px; }
-            .nav-contact { display: none; }
-            .page-body { padding-top: 80px; }
+        .page-body { padding-top:100px; }
+        @media (max-width:640px) {
+            .nav-container { padding:14px 20px; justify-content:center; }
+            .logo a { font-size:20px; }
+            .logo-slogan { font-size:13px; padding-left:8px; border-left-width:1px; }
+            .nav-contact { display:none; }
+            .page-body { padding-top:80px; }
         }
 
-        /* ===== HERO ===== */
         .hero {
-            position: relative;
-            overflow: hidden;
-            border-radius: 24px;
-            margin-bottom: 20px;
-            width: 100%;
-            aspect-ratio: 16 / 9;
-            min-height: 300px;
-            background: #000;
-            border: 1px solid rgba(255,255,255,0.1);
+            position:relative;
+            overflow:hidden;
+            border-radius:24px;
+            margin-bottom:20px;
+            width:100%;
+            aspect-ratio:16 / 9;
+            min-height:300px;
+            background:#000;
+            border:1px solid rgba(255,255,255,0.1);
         }
         .hero-video-wrap {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
+            position:absolute;
+            top:0;
+            left:0;
+            width:100%;
+            height:100%;
+            overflow:hidden;
         }
         .hero-video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+            width:100%;
+            height:100%;
+            object-fit:cover;
         }
         .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(5, 5, 5, 0.55);
-            z-index: 1;
+            position:absolute;
+            top:0;
+            left:0;
+            width:100%;
+            height:100%;
+            background:rgba(5,5,5,0.55);
+            z-index:1;
         }
         .hero-content {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
+            position:relative;
+            z-index:2;
+            text-align:center;
+            padding:20px;
+            display:flex;
+            flex-direction:column;
+            justify-content:center;
+            align-items:center;
+            height:100%;
         }
         .hero-content h1 {
-            font-size: clamp(1.8rem, 4vw, 3.5rem);
-            font-weight: 900;
-            letter-spacing: -1px;
-            text-transform: uppercase;
-            line-height: 1.1;
-            color: #fff;
-            text-shadow: 0 4px 30px rgba(0,0,0,0.8);
+            font-size:clamp(1.8rem, 4vw, 3.5rem);
+            font-weight:900;
+            letter-spacing:-1px;
+            text-transform:uppercase;
+            line-height:1.1;
+            color:#fff;
+            text-shadow:0 4px 30px rgba(0,0,0,0.8);
         }
-        .hero-content h1 span { color: var(--neon); }
+        .hero-content h1 span { color:var(--neon); }
         .hero-content p {
-            color: #fff;
-            font-size: clamp(0.95rem, 1.2vw, 1.1rem);
-            max-width: 700px;
-            margin: 12px auto 20px;
-            line-height: 1.6;
-            text-shadow: 0 2px 20px rgba(0,0,0,0.9);
+            color:#fff;
+            font-size:clamp(0.95rem, 1.2vw, 1.1rem);
+            max-width:700px;
+            margin:12px auto 20px;
+            line-height:1.6;
+            text-shadow:0 2px 20px rgba(0,0,0,0.9);
         }
         .btn-main {
-            background: var(--neon);
-            color: #000;
-            padding: 14px 32px;
-            border-radius: 50px;
-            font-weight: 900;
-            text-transform: uppercase;
-            border: none;
-            cursor: pointer;
-            transition: 0.3s;
-            font-size: 0.95rem;
-            display: inline-block;
-            text-decoration: none;
+            background:var(--neon);
+            color:#000;
+            padding:14px 32px;
+            border-radius:50px;
+            font-weight:900;
+            text-transform:uppercase;
+            border:none;
+            cursor:pointer;
+            transition:0.3s;
+            font-size:0.95rem;
+            display:inline-block;
+            text-decoration:none;
         }
-        .btn-main:hover { transform: scale(1.05); background: #d4ff33; }
-        .btn-main:active { transform: scale(0.97); }
-        .btn-main i { margin-right: 8px; }
+        .btn-main:hover { transform:scale(1.05); background:#d4ff33; }
+        .btn-main:active { transform:scale(0.97); }
+        .btn-main i { margin-right:8px; }
 
-        @media (max-width: 640px) {
-            .hero {
-                border-radius: 0;
-                margin: 0 -20px;
-                width: calc(100% + 40px);
-                aspect-ratio: 16 / 9;
-                min-height: 280px;
-            }
-            .hero-content h1 { font-size: 1.6rem; }
-            .hero-content p { font-size: 0.85rem; margin: 8px auto 16px; }
-            .btn-main { padding: 12px 24px; font-size: 0.8rem; }
+        @media (max-width:640px) {
+            .hero { border-radius:0; margin:0 -20px; width:calc(100% + 40px); aspect-ratio:16 / 9; min-height:280px; }
+            .hero-content h1 { font-size:1.6rem; }
+            .hero-content p { font-size:0.85rem; margin:8px auto 16px; }
+            .btn-main { padding:12px 24px; font-size:0.8rem; }
         }
 
-        /* ===== STEPS ===== */
-        .steps { margin: 60px 0; }
+        .steps { margin:60px 0; }
         .steps-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
+            display:grid;
+            grid-template-columns:repeat(4, 1fr);
+            gap:20px;
         }
-        @media (max-width: 700px) { .steps-grid { grid-template-columns: 1fr 1fr; gap: 14px; } }
+        @media (max-width:700px) { .steps-grid { grid-template-columns:1fr 1fr; gap:14px; } }
         .step-box {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 22px 16px;
-            text-align: center;
-            transition: 0.3s;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+            background:var(--card);
+            border:1px solid var(--border);
+            border-radius:14px;
+            padding:22px 16px;
+            text-align:center;
+            transition:0.3s;
+            box-shadow:0 2px 12px rgba(0,0,0,0.04);
         }
-        .step-box:hover { border-color: var(--accent); transform: translateY(-4px); }
+        .step-box:hover { border-color:var(--accent); transform:translateY(-4px); }
         .step-num {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            background: var(--neon);
-            color: #000;
-            font-weight: 900;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 10px;
-            font-size: 0.85rem;
+            width:30px;
+            height:30px;
+            border-radius:50%;
+            background:var(--neon);
+            color:#000;
+            font-weight:900;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            margin:0 auto 10px;
+            font-size:0.85rem;
         }
-        .step-box i { font-size: 1.3rem; color: var(--accent); margin-bottom: 6px; display: block; }
-        .step-box h4 { font-size: 0.9rem; margin-bottom: 4px; color: var(--text); }
-        .step-box p { font-size: 0.75rem; color: var(--gray); line-height: 1.5; }
+        .step-box i { font-size:1.3rem; color:var(--accent); margin-bottom:6px; display:block; }
+        .step-box h4 { font-size:0.9rem; margin-bottom:4px; color:var(--text); }
+        .step-box p { font-size:0.75rem; color:var(--gray); line-height:1.5; }
 
-        /* ===== CALCULATOR ===== */
         .calculator {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 24px;
-            padding: 32px 28px;
-            margin: 60px 0;
-            box-shadow: 0 4px 24px rgba(0,0,0,0.05);
+            background:var(--card);
+            border:1px solid var(--border);
+            border-radius:24px;
+            padding:32px 28px;
+            margin:60px 0;
+            box-shadow:0 4px 24px rgba(0,0,0,0.05);
         }
         .calculator h2 {
-            color: var(--text);
-            font-size: 1.5rem;
-            margin-bottom: 8px;
-            text-transform: uppercase;
+            color:var(--text);
+            font-size:1.5rem;
+            margin-bottom:8px;
+            text-transform:uppercase;
         }
-        .calculator h2 i { color: var(--accent); }
+        .calculator h2 i { color:var(--accent); }
         .calculator .sub {
-            color: var(--gray);
-            margin-bottom: 24px;
-            font-size: 0.9rem;
+            color:var(--gray);
+            margin-bottom:24px;
+            font-size:0.9rem;
         }
         .calc-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 18px;
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap:18px;
         }
-        .calc-group.full { grid-column: 1 / -1; }
-        @media (max-width: 600px) { .calc-grid { grid-template-columns: 1fr; } }
+        .calc-group.full { grid-column:1 / -1; }
+        @media (max-width:600px) { .calc-grid { grid-template-columns:1fr; } }
         .calc-group {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
+            display:flex;
+            flex-direction:column;
+            gap:6px;
         }
         .calc-group label {
-            font-weight: 600;
-            font-size: 0.9rem;
-            color: #444;
+            font-weight:600;
+            font-size:0.9rem;
+            color:#444;
         }
         .calc-group select,
         .calc-group input {
-            background: var(--bg);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 14px 16px;
-            color: var(--text);
-            font-size: 16px;
-            outline: none;
-            transition: 0.3s;
-            width: 100%;
-            -webkit-appearance: none;
-            appearance: none;
+            background:var(--bg);
+            border:1px solid var(--border);
+            border-radius:12px;
+            padding:14px 16px;
+            color:var(--text);
+            font-size:16px;
+            outline:none;
+            transition:0.3s;
+            width:100%;
+            -webkit-appearance:none;
+            appearance:none;
         }
         .calc-group select {
-            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236b6b6b' stroke-width='2'%3e%3cpath d='M6 9l6 6 6-6'/%3e%3c/svg%3e");
-            background-repeat: no-repeat;
-            background-position: right 14px center;
-            background-size: 18px;
-            padding-right: 40px;
+            background-image:url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236b6b6b' stroke-width='2'%3e%3cpath d='M6 9l6 6 6-6'/%3e%3c/svg%3e");
+            background-repeat:no-repeat;
+            background-position:right 14px center;
+            background-size:18px;
+            padding-right:40px;
         }
         .calc-group select:focus,
-        .calc-group input:focus { border-color: var(--accent); }
-        .calc-group select option { background: #fff; }
+        .calc-group input:focus { border-color:var(--accent); }
+        .calc-group select option { background:#fff; }
 
-        /* Quick Sizes */
         .quick-sizes {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-            margin-top: 8px;
+            display:flex;
+            gap:8px;
+            flex-wrap:wrap;
+            margin-top:8px;
         }
         .quick-size-btn {
-            background: var(--bg);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 4px 12px;
-            font-size: 0.7rem;
-            font-weight: 600;
-            color: var(--gray);
-            cursor: pointer;
-            transition: 0.2s;
-            font-family: inherit;
+            background:var(--bg);
+            border:1px solid var(--border);
+            border-radius:20px;
+            padding:4px 12px;
+            font-size:0.7rem;
+            font-weight:600;
+            color:var(--gray);
+            cursor:pointer;
+            transition:0.2s;
+            font-family:inherit;
         }
-        .quick-size-btn:hover { background: var(--neon); border-color: var(--accent); color: #000; }
-        .quick-size-btn.active { background: var(--neon); border-color: var(--accent); color: #000; }
+        .quick-size-btn:hover { background:var(--neon); border-color:var(--accent); color:#000; }
+        .quick-size-btn.active { background:var(--neon); border-color:var(--accent); color:#000; }
 
         .preview-wrap {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #eef0e8;
-            border: 1px dashed #cfcfc6;
-            border-radius: 14px;
-            padding: 20px;
-            margin-top: 20px;
-            height: 130px;
-            overflow: hidden;
-            position: relative;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            background:#eef0e8;
+            border:1px dashed #cfcfc6;
+            border-radius:14px;
+            padding:20px;
+            margin-top:20px;
+            height:130px;
+            overflow:hidden;
+            position:relative;
         }
         .preview-box {
-            background: rgba(111,143,0,0.12);
-            border: 1.5px solid var(--accent);
-            border-radius: 4px;
-            transition: width 0.25s ease, height 0.25s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--accent);
-            font-size: 0.7rem;
-            font-weight: 700;
-            min-width: 20px;
-            min-height: 14px;
+            background:rgba(111,143,0,0.12);
+            border:1.5px solid var(--accent);
+            border-radius:4px;
+            transition:width 0.25s ease, height 0.25s ease;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            color:var(--accent);
+            font-size:0.7rem;
+            font-weight:700;
+            min-width:20px;
+            min-height:14px;
         }
         .preview-dimensions {
-            position: absolute;
-            bottom: 8px;
-            right: 12px;
-            font-size: 0.7rem;
-            color: var(--gray);
-            font-weight: 500;
+            position:absolute;
+            bottom:8px;
+            right:12px;
+            font-size:0.7rem;
+            color:var(--gray);
+            font-weight:500;
         }
 
         .calc-result {
-            background: #eef0e8;
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 20px;
-            margin-top: 25px;
-            text-align: center;
+            background:#eef0e8;
+            border:1px solid var(--border);
+            border-radius:14px;
+            padding:20px;
+            margin-top:25px;
+            text-align:center;
         }
         .calc-result .price {
-            font-size: 2.2rem;
-            font-weight: 900;
-            color: var(--accent);
-            letter-spacing: -0.5px;
+            font-size:2.2rem;
+            font-weight:900;
+            color:var(--accent);
+            letter-spacing:-0.5px;
         }
         .calc-result .price small {
-            font-size: 1rem;
-            font-weight: 400;
-            color: var(--gray);
+            font-size:1rem;
+            font-weight:400;
+            color:var(--gray);
         }
         .calc-result .detail {
-            color: var(--gray);
-            font-size: 0.9rem;
-            margin: 10px 0;
+            color:var(--gray);
+            font-size:0.9rem;
+            margin:10px 0;
         }
         .calc-result .btn-wa {
-            display: inline-block;
-            background: #25d366;
-            color: #000;
-            padding: 14px 30px;
-            border-radius: 50px;
-            font-weight: 800;
-            text-decoration: none;
-            margin-top: 12px;
-            transition: 0.3s;
+            display:inline-block;
+            background:#25d366;
+            color:#000;
+            padding:14px 30px;
+            border-radius:50px;
+            font-weight:800;
+            text-decoration:none;
+            margin-top:12px;
+            transition:0.3s;
         }
-        .calc-result .btn-wa:hover { background: #1ebe57; transform: scale(1.03); }
-        .calc-result .btn-wa:active { transform: scale(0.96); }
-        .calc-result .btn-wa i { margin-right: 10px; }
+        .calc-result .btn-wa:hover { background:#1ebe57; transform:scale(1.03); }
+        .calc-result .btn-wa:active { transform:scale(0.96); }
+        .calc-result .btn-wa i { margin-right:10px; }
         .calc-note {
-            font-size: 0.75rem;
-            color: #999;
-            margin-top: 15px;
+            font-size:0.75rem;
+            color:#999;
+            margin-top:15px;
         }
 
-        /* Social Proof Counters */
         .social-proof-counters {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin: 30px 0 20px;
-            flex-wrap: wrap;
+            display:flex;
+            justify-content:center;
+            gap:40px;
+            margin:30px 0 20px;
+            flex-wrap:wrap;
         }
-        .counter-item {
-            text-align: center;
-        }
+        .counter-item { text-align:center; }
         .counter-item .number {
-            font-size: 1.8rem;
-            font-weight: 900;
-            color: var(--accent);
-            letter-spacing: -0.5px;
-            display: block;
-            line-height: 1.2;
+            font-size:1.8rem;
+            font-weight:900;
+            color:var(--accent);
+            letter-spacing:-0.5px;
+            display:block;
+            line-height:1.2;
         }
         .counter-item .label {
-            font-size: 0.8rem;
-            color: var(--gray);
-            font-weight: 500;
+            font-size:0.8rem;
+            color:var(--gray);
+            font-weight:500;
         }
 
-        /* ===== PRODUCTS ===== */
-        .products { margin: 80px 0; }
+        .products { margin:80px 0; }
         .products h2 {
-            color: var(--text);
-            font-size: 1.8rem;
-            text-transform: uppercase;
-            text-align: center;
-            margin-bottom: 8px;
+            color:var(--text);
+            font-size:1.8rem;
+            text-transform:uppercase;
+            text-align:center;
+            margin-bottom:8px;
         }
         .section-sub {
-            text-align: center;
-            color: var(--gray);
-            font-size: 0.95rem;
-            margin-bottom: 40px;
+            text-align:center;
+            color:var(--gray);
+            font-size:0.95rem;
+            margin-bottom:40px;
         }
         .category-header {
-            text-align: center;
-            margin: 48px 0 24px;
+            text-align:center;
+            margin:48px 0 24px;
         }
         .category-badge {
-            display: inline-block;
-            background: var(--card);
-            border: 1px solid var(--border);
-            padding: 8px 20px;
-            border-radius: 30px;
-            font-weight: 700;
-            font-size: 0.85rem;
-            color: var(--text);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            display:inline-block;
+            background:var(--card);
+            border:1px solid var(--border);
+            padding:8px 20px;
+            border-radius:30px;
+            font-weight:700;
+            font-size:0.85rem;
+            color:var(--text);
+            box-shadow:0 2px 8px rgba(0,0,0,0.03);
         }
-        .category-badge.special {
-            background: #1a1a2e;
-            color: #fff;
-            border: none;
-        }
-        .category-badge.print {
-            background: var(--neon);
-            color: #000;
-            border: none;
-        }
+        .category-badge.special { background:#1a1a2e; color:#fff; border:none; }
+        .category-badge.print { background:var(--neon); color:#000; border:none; }
 
         .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
-            gap: 26px;
+            display:grid;
+            grid-template-columns:repeat(auto-fill, minmax(270px, 1fr));
+            gap:26px;
         }
-        @media (max-width: 640px) {
-            .product-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+        @media (max-width:640px) {
+            .product-grid { grid-template-columns:repeat(2, 1fr); gap:16px; }
         }
         .product-card {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            overflow: hidden;
-            transition: 0.4s;
-            text-align: center;
-            box-shadow: 0 2px 14px rgba(0,0,0,0.04);
-            cursor: pointer;
-            position: relative;
+            background:var(--card);
+            border:1px solid var(--border);
+            border-radius:16px;
+            overflow:hidden;
+            transition:0.4s;
+            text-align:center;
+            box-shadow:0 2px 14px rgba(0,0,0,0.04);
+            cursor:pointer;
+            position:relative;
         }
         .product-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-6px);
-            box-shadow: 0 12px 30px rgba(0,0,0,0.09);
+            border-color:var(--accent);
+            transform:translateY(-6px);
+            box-shadow:0 12px 30px rgba(0,0,0,0.09);
         }
-        .product-card:active {
-            transform: scale(0.97);
-            transition: transform 0.15s ease;
-        }
+        .product-card:active { transform:scale(0.97); transition:transform 0.15s ease; }
         .product-card .card-img-wrap {
-            width: 100%;
-            height: 180px;
-            overflow: hidden;
-            background: var(--bg);
+            width:100%;
+            height:180px;
+            overflow:hidden;
+            background:var(--bg);
         }
         .product-card .card-img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            display: block;
-            padding: 12px;
-            transition: transform 0.45s ease;
+            width:100%;
+            height:100%;
+            object-fit:contain;
+            display:block;
+            padding:12px;
+            transition:transform 0.45s ease;
         }
-        .product-card:hover .card-img { transform: scale(1.08); }
-        .product-card .card-body { padding: 14px 12px 18px; }
-        @media (max-width: 640px) {
-            .product-card .card-img-wrap { height: 140px; }
-            .product-card .card-body { padding: 10px 8px 14px; }
-            .product-card .card-body h3 { font-size: 0.9rem; }
-            .product-card .card-body .desc { font-size: 0.7rem; }
-            .product-card .card-body .fiyat { font-size: 0.9rem; }
+        .product-card:hover .card-img { transform:scale(1.08); }
+        .product-card .card-body { padding:14px 12px 18px; }
+        @media (max-width:640px) {
+            .product-card .card-img-wrap { height:140px; }
+            .product-card .card-body { padding:10px 8px 14px; }
+            .product-card .card-body h3 { font-size:0.9rem; }
+            .product-card .card-body .desc { font-size:0.7rem; }
+            .product-card .card-body .fiyat { font-size:0.9rem; }
         }
         .product-card .card-body h3 {
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            margin-bottom: 4px;
-            color: var(--text);
+            font-size:1.1rem;
+            text-transform:uppercase;
+            margin-bottom:4px;
+            color:var(--text);
         }
         .product-card .card-body .desc {
-            color: var(--gray);
-            font-size: 0.82rem;
-            margin: 6px 0 12px;
+            color:var(--gray);
+            font-size:0.82rem;
+            margin:6px 0 12px;
         }
         .product-card .card-body .fiyat {
-            font-weight: 900;
-            color: var(--accent);
-            font-size: 1.1rem;
+            font-weight:900;
+            color:var(--accent);
+            font-size:1.1rem;
         }
         .product-card .card-body .fiyat small {
-            font-weight: 400;
-            color: #999;
-            font-size: 0.75rem;
+            font-weight:400;
+            color:#999;
+            font-size:0.75rem;
         }
         .product-badge {
-            position: absolute;
-            top: 12px;
-            left: 12px;
-            font-size: 0.68rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            padding: 5px 10px;
-            border-radius: 20px;
-            z-index: 2;
+            position:absolute;
+            top:12px;
+            left:12px;
+            font-size:0.68rem;
+            font-weight:900;
+            text-transform:uppercase;
+            padding:5px 10px;
+            border-radius:20px;
+            z-index:2;
         }
-        .product-badge.bestseller { background: #ff3b30; color: #fff; }
-        .product-badge.free-design { background: #ff6b35; color: #fff; }
-        .product-badge.multi-design { background: #6f8f00; color: #fff; }
-        .product-badge.ataturk-badge { background: #d42a1a; color: #fff; }
-        .product-badge.cocuk-badge { background: #1e88e5; color: #fff; }
-        .product-badge.new { background: var(--neon); color: #000; }
+        .product-badge.bestseller { background:#ff3b30; color:#fff; }
+        .product-badge.free-design { background:#ff6b35; color:#fff; }
+        .product-badge.multi-design { background:#6f8f00; color:#fff; }
+        .product-badge.ataturk-badge { background:#d42a1a; color:#fff; }
+        .product-badge.cocuk-badge { background:#1e88e5; color:#fff; }
+        .product-badge.new { background:var(--neon); color:#000; }
+        .product-badge.team-sms { background:#e30613; color:#fff; }
+        .product-badge.team-ts { background:#7a1f3d; color:#fff; }
+        .product-badge.team-gs { background:#a90432; color:#fdb913; }
+        .product-badge.team-fb { background:#0a3c73; color:#ffdd02; }
+        .product-badge.team-bjk { background:#000; color:#fff; }
+        .category-badge.taraftar { background:#1a1a2e; color:#fff; border:none; }
+        .modal-note {
+            font-size:0.78rem;
+            color:#999;
+            margin-top:10px;
+            line-height:1.5;
+        }
         .card-icon {
-            width: 100%;
-            height: 180px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #eef0e8;
-            font-size: 3rem;
-            color: var(--accent);
+            width:100%;
+            height:180px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            background:#eef0e8;
+            font-size:3rem;
+            color:var(--accent);
         }
-        .card-icon img { transition: transform 0.45s ease; max-width: 70%; max-height: 70%; }
-        .product-card:hover .card-icon img { transform: scale(1.08); }
-        @media (max-width: 640px) { .card-icon { height: 140px; font-size: 2.2rem; } }
+        .card-icon img { transition:transform 0.45s ease; max-width:70%; max-height:70%; }
+        .product-card:hover .card-icon img { transform:scale(1.08); }
+        @media (max-width:640px) { .card-icon { height:140px; font-size:2.2rem; } }
 
         .card-quick-action {
-            position: absolute;
-            bottom: 12px;
-            right: 12px;
-            width: 32px;
-            height: 32px;
-            background: var(--accent);
-            color: #fff;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transform: scale(0.8);
-            transition: 0.3s;
-            box-shadow: 0 4px 12px rgba(111,143,0,0.3);
+            position:absolute;
+            bottom:12px;
+            right:12px;
+            width:32px;
+            height:32px;
+            background:var(--accent);
+            color:#fff;
+            border-radius:50%;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            opacity:0;
+            transform:scale(0.8);
+            transition:0.3s;
+            box-shadow:0 4px 12px rgba(111,143,0,0.3);
         }
-        .product-card:hover .card-quick-action { opacity: 1; transform: scale(1); }
+        .product-card:hover .card-quick-action { opacity:1; transform:scale(1); }
 
-        /* ===== MODAL ===== */
         .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.6);
-            z-index: 9999;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
+            display:none;
+            position:fixed;
+            top:0;
+            left:0;
+            width:100%;
+            height:100%;
+            background:rgba(0,0,0,0.6);
+            z-index:9999;
+            justify-content:center;
+            align-items:center;
+            padding:20px;
+            backdrop-filter:blur(4px);
+            -webkit-backdrop-filter:blur(4px);
         }
-        .modal-overlay.active { display: flex; }
+        .modal-overlay.active { display:flex; }
         .modal-box {
-            background: #fff;
-            border-radius: 20px;
-            max-width: 600px;
-            width: 100%;
-            padding: 30px;
-            position: relative;
-            max-height: 95vh;
-            overflow-y: auto;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            animation: modalFade 0.25s ease;
+            background:#fff;
+            border-radius:20px;
+            max-width:600px;
+            width:100%;
+            padding:30px;
+            position:relative;
+            max-height:95vh;
+            overflow-y:auto;
+            box-shadow:0 20px 60px rgba(0,0,0,0.3);
+            animation:modalFade 0.25s ease;
         }
         @keyframes modalFade {
-            from { opacity: 0; transform: scale(0.95) translateY(10px); }
-            to { opacity: 1; transform: scale(1) translateY(0); }
+            from { opacity:0; transform:scale(0.95) translateY(10px); }
+            to { opacity:1; transform:scale(1) translateY(0); }
         }
         .modal-close {
-            position: sticky;
-            top: 0;
-            float: right;
-            background: none;
-            border: none;
-            font-size: 28px;
-            cursor: pointer;
-            color: #999;
-            padding: 0 0 10px 10px;
-            transition: 0.3s;
-            z-index: 1;
+            position:sticky;
+            top:0;
+            float:right;
+            background:none;
+            border:none;
+            font-size:28px;
+            cursor:pointer;
+            color:#999;
+            padding:0 0 10px 10px;
+            transition:0.3s;
+            z-index:1;
         }
-        .modal-close:hover { color: #000; }
+        .modal-close:hover { color:#000; }
         .modal-box h3 {
-            font-size: 1.4rem;
-            text-transform: uppercase;
-            margin-bottom: 8px;
-            color: var(--text);
+            font-size:1.4rem;
+            text-transform:uppercase;
+            margin-bottom:8px;
+            color:var(--text);
         }
         .modal-box .modal-desc {
-            color: var(--gray);
-            font-size: 0.95rem;
-            line-height: 1.7;
-            margin: 12px 0 16px;
+            color:var(--gray);
+            font-size:0.95rem;
+            line-height:1.7;
+            margin:12px 0 16px;
         }
         .modal-box .modal-price {
-            font-weight: 900;
-            color: var(--accent);
-            font-size: 1.3rem;
-            margin: 12px 0;
+            font-weight:900;
+            color:var(--accent);
+            font-size:1.3rem;
+            margin:12px 0;
         }
         .modal-box .modal-img {
-            width: 100%;
-            max-height: 320px;
-            object-fit: contain;
-            border-radius: 12px;
-            margin-bottom: 12px;
-            background: var(--bg);
-            cursor: zoom-in;
-            transition: opacity 0.2s ease;
+            width:100%;
+            max-height:320px;
+            object-fit:contain;
+            border-radius:12px;
+            margin-bottom:12px;
+            background:var(--bg);
+            cursor:zoom-in;
+            transition:opacity 0.2s ease;
         }
-        .modal-box .modal-img:active { opacity: 0.85; }
+        .modal-box .modal-img:active { opacity:0.85; }
 
-        /* ===== LIGHTBOX (resmi tam ekran büyütme) ===== */
         .lightbox-overlay {
-            display: none;
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(5,5,5,0.92);
-            z-index: 10001;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            padding: calc(20px + env(safe-area-inset-top)) 20px calc(20px + env(safe-area-inset-bottom));
-            cursor: zoom-out;
+            display:none;
+            position:fixed;
+            top:0; left:0;
+            width:100%; height:100%;
+            background:rgba(5,5,5,0.92);
+            z-index:10001;
+            align-items:center;
+            justify-content:center;
+            padding:20px;
+            padding:calc(20px + env(safe-area-inset-top)) 20px calc(20px + env(safe-area-inset-bottom));
+            cursor:zoom-out;
         }
-        .lightbox-overlay.active { display: flex; }
+        .lightbox-overlay.active { display:flex; }
         .lightbox-overlay img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-            border-radius: 10px;
-            animation: lightboxIn 0.25s ease;
+            max-width:100%;
+            max-height:100%;
+            object-fit:contain;
+            border-radius:10px;
+            animation:lightboxIn 0.25s ease;
         }
         @keyframes lightboxIn {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
+            from { opacity:0; transform:scale(0.9); }
+            to { opacity:1; transform:scale(1); }
         }
         .lightbox-close {
-            position: fixed;
-            top: calc(20px + env(safe-area-inset-top));
-            right: 20px;
-            width: 42px;
-            height: 42px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.12);
-            color: #fff;
-            border: none;
-            font-size: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 10002;
+            position:fixed;
+            top:calc(20px + env(safe-area-inset-top));
+            right:20px;
+            width:42px;
+            height:42px;
+            border-radius:50%;
+            background:rgba(255,255,255,0.12);
+            color:#fff;
+            border:none;
+            font-size:24px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            cursor:pointer;
+            z-index:10002;
         }
         .modal-thumbs {
-            display: flex;
-            gap: 10px;
-            margin: 12px 0 16px;
-            flex-wrap: wrap;
-            justify-content: center;
+            display:flex;
+            gap:10px;
+            margin:12px 0 16px;
+            flex-wrap:wrap;
+            justify-content:center;
         }
         .modal-thumb {
-            width: 64px;
-            height: 64px;
-            object-fit: contain;
-            border-radius: 8px;
-            border: 2px solid transparent;
-            cursor: pointer;
-            transition: 0.3s;
-            background: var(--bg);
-            padding: 4px;
+            width:64px;
+            height:64px;
+            object-fit:contain;
+            border-radius:8px;
+            border:2px solid transparent;
+            cursor:pointer;
+            transition:0.3s;
+            background:var(--bg);
+            padding:4px;
         }
-        .modal-thumb:hover { border-color: var(--accent); transform: scale(1.05); }
-        .modal-thumb.active-thumb { border-color: var(--neon); box-shadow: 0 0 0 3px rgba(204,255,0,0.3); }
+        .modal-thumb:hover { border-color:var(--accent); transform:scale(1.05); }
+        .modal-thumb.active-thumb { border-color:var(--neon); box-shadow:0 0 0 3px rgba(204,255,0,0.3); }
         .modal-box .btn-wa {
-            display: inline-block;
-            background: #25d366;
-            color: #000;
-            padding: 14px 28px;
-            border-radius: 50px;
-            font-weight: 800;
-            text-decoration: none;
-            margin-top: 10px;
-            transition: 0.3s;
-            width: 100%;
-            text-align: center;
+            display:inline-block;
+            background:#25d366;
+            color:#000;
+            padding:14px 28px;
+            border-radius:50px;
+            font-weight:800;
+            text-decoration:none;
+            margin-top:10px;
+            transition:0.3s;
+            width:100%;
+            text-align:center;
         }
-        .modal-box .btn-wa:hover { background: #1ebe57; transform: scale(1.02); }
-        .modal-box .btn-wa i { margin-right: 10px; }
+        .modal-box .btn-wa:hover { background:#1ebe57; transform:scale(1.02); }
+        .modal-box .btn-wa i { margin-right:10px; }
 
-        /* ===== FAQ ===== */
-        .faq { margin: 80px 0; }
+        .faq { margin:80px 0; }
         .faq h2 {
-            color: var(--text);
-            font-size: 1.8rem;
-            text-transform: uppercase;
-            text-align: center;
-            margin-bottom: 8px;
+            color:var(--text);
+            font-size:1.8rem;
+            text-transform:uppercase;
+            text-align:center;
+            margin-bottom:8px;
         }
         .faq .section-sub {
-            text-align: center;
-            color: var(--gray);
-            font-size: 0.95rem;
-            margin-bottom: 32px;
+            text-align:center;
+            color:var(--gray);
+            font-size:0.95rem;
+            margin-bottom:32px;
         }
         .faq-item {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 18px 22px;
-            margin-bottom: 12px;
-            cursor: pointer;
-            transition: 0.2s;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+            background:var(--card);
+            border:1px solid var(--border);
+            border-radius:12px;
+            padding:18px 22px;
+            margin-bottom:12px;
+            cursor:pointer;
+            transition:0.2s;
+            box-shadow:0 2px 10px rgba(0,0,0,0.03);
         }
-        .faq-item:hover { border-color: #ccc; }
-        .faq-item.active { border-color: var(--accent); }
+        .faq-item:hover { border-color:#ccc; }
+        .faq-item.active { border-color:var(--accent); }
         .faq-question {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 700;
-            font-size: 1.05rem;
-            color: var(--text);
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            font-weight:700;
+            font-size:1.05rem;
+            color:var(--text);
         }
-        .faq-question i { color: var(--accent); transition: 0.3s; }
-        .faq-item.active .faq-question i { transform: rotate(45deg); }
+        .faq-question i { color:var(--accent); transition:0.3s; }
+        .faq-item.active .faq-question i { transform:rotate(45deg); }
         .faq-answer {
-            color: var(--gray);
-            font-size: 0.95rem;
-            line-height: 1.6;
-            max-height: 0;
-            overflow: hidden;
-            opacity: 0;
-            transition: max-height 0.35s ease, opacity 0.3s ease, margin-top 0.35s ease;
+            color:var(--gray);
+            font-size:0.95rem;
+            line-height:1.6;
+            max-height:0;
+            overflow:hidden;
+            opacity:0;
+            transition:max-height 0.35s ease, opacity 0.3s ease, margin-top 0.35s ease;
         }
         .faq-answer.open {
-            max-height: 200px;
-            opacity: 1;
-            margin-top: 12px;
+            max-height:200px;
+            opacity:1;
+            margin-top:12px;
         }
 
-        /* ===== DARK BAND ===== */
         .dark-band {
-            background: var(--dark);
-            width: 100vw;
-            position: relative;
-            left: 50%;
-            margin-left: -50vw;
-            margin-top: 80px;
-            padding: 60px 0 0;
+            background:var(--dark);
+            width:100vw;
+            position:relative;
+            left:50%;
+            margin-left:-50vw;
+            margin-top:80px;
+            padding:60px 0 0;
         }
         .dark-band .inner {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 20px;
+            max-width:1100px;
+            margin:0 auto;
+            padding:0 20px;
         }
         .footer-box {
-            background: var(--dark-card);
-            border: 1px solid var(--dark-border);
-            border-radius: 15px;
-            padding: 26px;
-            text-align: center;
+            background:var(--dark-card);
+            border:1px solid var(--dark-border);
+            border-radius:15px;
+            padding:26px;
+            text-align:center;
         }
-        .footer-box h3 { color: var(--neon); font-size: 1.1rem; text-transform: uppercase; margin-bottom: 14px; }
+        .footer-box h3 { color:var(--neon); font-size:1.1rem; text-transform:uppercase; margin-bottom:14px; }
         .contact-info-list {
-            list-style: none;
-            padding: 0;
-            margin: 16px 0 0;
-            text-align: left;
-            max-width: 380px;
-            margin-left: auto;
-            margin-right: auto;
+            list-style:none;
+            padding:0;
+            margin:16px 0 0;
+            text-align:left;
+            max-width:380px;
+            margin-left:auto;
+            margin-right:auto;
         }
         .contact-info-list li {
-            padding: 10px 0;
-            border-bottom: 1px solid var(--dark-border);
-            color: #bbb;
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            font-size: 0.9rem;
+            padding:10px 0;
+            border-bottom:1px solid var(--dark-border);
+            color:#bbb;
+            display:flex;
+            align-items:center;
+            gap:14px;
+            font-size:0.9rem;
         }
-        .contact-info-list li:last-child { border-bottom: none; }
-        .contact-info-list i { color: var(--neon); font-size: 1.05rem; width: 22px; text-align: center; }
-        .contact-info-list a { color: #bbb; text-decoration: none; transition: 0.3s; }
-        .contact-info-list a:hover { color: var(--neon); }
+        .contact-info-list li:last-child { border-bottom:none; }
+        .contact-info-list i { color:var(--neon); font-size:1.05rem; width:22px; text-align:center; }
+        .contact-info-list a { color:#bbb; text-decoration:none; transition:0.3s; }
+        .contact-info-list a:hover { color:var(--neon); }
         .footer {
-            padding: 25px 0 30px;
-            text-align: center;
-            color: #888;
-            font-size: 0.85rem;
+            padding:25px 0 30px;
+            text-align:center;
+            color:#888;
+            font-size:0.85rem;
         }
-        .footer a { color: var(--neon); text-decoration: none; }
+        .footer a { color:var(--neon); text-decoration:none; }
 
-        /* ===== FLOAT BUTTONS ===== */
         .wp-float {
-            position: fixed;
-            bottom: calc(25px + env(safe-area-inset-bottom));
-            right: 25px;
-            z-index: 999;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
+            position:fixed;
+            bottom:calc(25px + env(safe-area-inset-bottom));
+            right:25px;
+            z-index:999;
+            display:flex;
+            flex-direction:column;
+            gap:12px;
         }
         .wp-btn {
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 26px;
-            color: #fff;
-            text-decoration: none;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.25);
-            transition: 0.3s;
-            position: relative;
+            width:56px;
+            height:56px;
+            border-radius:50%;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-size:26px;
+            color:#fff;
+            text-decoration:none;
+            box-shadow:0 8px 20px rgba(0,0,0,0.25);
+            transition:0.3s;
+            position:relative;
         }
-        .wp-btn:hover { transform: scale(1.08); }
-        .wp-btn:active { transform: scale(0.94); }
-        .wp-btn.whatsapp { background: #25d366; }
-        .wp-btn.instagram { background: #e4405f; }
+        .wp-btn:hover { transform:scale(1.08); }
+        .wp-btn:active { transform:scale(0.94); }
+        .wp-btn.whatsapp { background:#25d366; }
+        .wp-btn.instagram { background:#e4405f; }
         .wp-btn .btn-label {
-            position: absolute;
-            right: 64px;
-            background: var(--card);
-            color: var(--text);
-            padding: 4px 10px;
-            border-radius: 8px;
-            font-size: 0.7rem;
-            font-weight: 600;
-            white-space: nowrap;
-            opacity: 0;
-            transform: translateX(8px);
-            transition: 0.3s;
-            pointer-events: none;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            position:absolute;
+            right:64px;
+            background:var(--card);
+            color:var(--text);
+            padding:4px 10px;
+            border-radius:8px;
+            font-size:0.7rem;
+            font-weight:600;
+            white-space:nowrap;
+            opacity:0;
+            transform:translateX(8px);
+            transition:0.3s;
+            pointer-events:none;
+            box-shadow:0 4px 12px rgba(0,0,0,0.08);
         }
-        .wp-btn:hover .btn-label { opacity: 1; transform: translateX(0); }
-        @media (max-width: 640px) {
-            .wp-btn { width: 50px; height: 50px; font-size: 22px; }
-            .wp-btn .btn-label { display: none; }
-        }
-
-        @media (max-width: 480px) {
-            .hero-content h1 { font-size: 1.8rem; }
-            .calculator { padding: 20px; }
-            .calc-result .price { font-size: 1.6rem; }
+        .wp-btn:hover .btn-label { opacity:1; transform:translateX(0); }
+        @media (max-width:640px) {
+            .wp-btn { width:50px; height:50px; font-size:22px; }
+            .wp-btn .btn-label { display:none; }
         }
 
-        /* ===== Schema ===== */
-        [data-schema] { display: none; }
+        @media (max-width:480px) {
+            .hero-content h1 { font-size:1.8rem; }
+            .calculator { padding:20px; }
+            .calc-result .price { font-size:1.6rem; }
+        }
+
+        [data-schema] { display:none; }
     </style>
 
     <!-- Schema.org Structured Data -->
@@ -952,7 +922,7 @@
     }
     </script>
 
-    <!-- Schema.org FAQPage (SEO — SSS zengin sonuç için) -->
+    <!-- Schema.org FAQPage -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -965,7 +935,7 @@
             { "@type": "Question", "name": "Yanlış ölçü gönderirsem ne olur?", "acceptedAnswer": { "@type": "Answer", "text": "Üretim öncesi ölçüyü sizinle teyit ediyoruz. Yine de hata olursa yeniden basıyoruz." } },
             { "@type": "Question", "name": "Siparişimi nasıl takip edebilirim?", "acceptedAnswer": { "@type": "Answer", "text": "Kargoya verildikten sonra takip numarasını WhatsApp'tan gönderiyoruz." } },
             { "@type": "Question", "name": "Minimum sipariş tutarı var mı?", "acceptedAnswer": { "@type": "Answer", "text": "Hayır, minimum sipariş şartı yok. Küçük ölçülerde bile 50 TL'lik taban ücretle sipariş verebilirsiniz." } },
-            { "@type": "Question", "name": "Tasarım dosyam yok, ne yapmalıyım?", "acceptedAnswer": { "@type": "Answer", "text": "Sorun değil, WhatsApp'tan yazın, tasarım konusunda da destek oluyoruz." } },
+            { "@type": "Question", "name": "Tasarım dosyam yok, ne yapmalıyım?", "acceptedAnswer": { "@type": "Answer", "text": "Sorun değil. WhatsApp'tan yazın, tasarım konusunda da destek oluyoruz." } },
             { "@type": "Question", "name": "Türkiye'nin her iline kargo gönderiyor musunuz?", "acceptedAnswer": { "@type": "Answer", "text": "Evet, 81 ilin tamamına kargo gönderiyoruz." } },
             { "@type": "Question", "name": "Kurumsal fatura kesiyor musunuz?", "acceptedAnswer": { "@type": "Answer", "text": "Evet, reklam ajansı, tabelacı ya da bireysel fark etmeksizin talep eden herkese kurumsal fatura kesiyoruz." } }
         ]
@@ -1155,6 +1125,145 @@
                         <h3>Duvar Tablosu 50×70</h3>
                         <div class="desc">Folyo kaplı 3mm MDF, çift taraflı bant</div>
                         <div class="fiyat">700 TL <small>(KDV Dahil)</small></div>
+                    </div>
+                    <div class="card-quick-action"><i class="fas fa-arrow-right"></i></div>
+                </div>
+
+            </div>
+
+            <!-- KATEGORİ: TARAFTAR MAKETLERİ -->
+            <div class="category-header">
+                <span class="category-badge taraftar">⚽ TARAFTAR MAKETLERİ</span>
+            </div>
+
+            <div class="product-grid">
+
+                <div class="product-card" onclick="openTakimModal('samsunspor_yetiskin')">
+                    <div class="product-badge team-sms">⚪🔴 175 cm</div>
+                    <div class="card-img-wrap">
+                        <img class="card-img" src="images/fason/samsunspor-yetiskin-1.jpg" alt="Samsunspor Yetişkin Maketi 175cm" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <h3>Samsunspor Yetişkin Maketi</h3>
+                        <div class="desc">175 cm · 3mm Dekota · UV Baskı</div>
+                        <div class="fiyat">2.899 TL <small>(KDV Dahil)</small></div>
+                    </div>
+                    <div class="card-quick-action"><i class="fas fa-arrow-right"></i></div>
+                </div>
+
+                <div class="product-card" onclick="openTakimModal('samsunspor_cocuk')">
+                    <div class="product-badge team-sms">⚪🔴 Çocuk</div>
+                    <div class="card-img-wrap">
+                        <img class="card-img" src="images/fason/samsunspor-cocuk-1.jpg" alt="Samsunspor Çocuk Maketi 140cm" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <h3>Samsunspor Çocuk Maketi</h3>
+                        <div class="desc">140 cm · 3mm Dekota · UV Baskı</div>
+                        <div class="fiyat">2.899 TL <small>(KDV Dahil)</small></div>
+                    </div>
+                    <div class="card-quick-action"><i class="fas fa-arrow-right"></i></div>
+                </div>
+
+                <div class="product-card" onclick="openTakimModal('trabzonspor_yetiskin')">
+                    <div class="product-badge team-ts">🔴🔵 175 cm</div>
+                    <div class="card-img-wrap">
+                        <img class="card-img" src="images/fason/trabzonspor-yetiskin-1.jpg" alt="Trabzonspor Yetişkin Maketi 175cm" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <h3>Trabzonspor Yetişkin Maketi</h3>
+                        <div class="desc">175 cm · 3mm Dekota · UV Baskı</div>
+                        <div class="fiyat">2.899 TL <small>(KDV Dahil)</small></div>
+                    </div>
+                    <div class="card-quick-action"><i class="fas fa-arrow-right"></i></div>
+                </div>
+
+                <div class="product-card" onclick="openTakimModal('trabzonspor_cocuk')">
+                    <div class="product-badge team-ts">🔴🔵 Çocuk</div>
+                    <div class="card-img-wrap">
+                        <img class="card-img" src="images/fason/trabzonspor-cocuk-1.jpg" alt="Trabzonspor Çocuk Maketi 140cm" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <h3>Trabzonspor Çocuk Maketi</h3>
+                        <div class="desc">140 cm · 3mm Dekota · UV Baskı</div>
+                        <div class="fiyat">2.899 TL <small>(KDV Dahil)</small></div>
+                    </div>
+                    <div class="card-quick-action"><i class="fas fa-arrow-right"></i></div>
+                </div>
+
+                <div class="product-card" onclick="openTakimModal('galatasaray_yetiskin')">
+                    <div class="product-badge team-gs">🟡🔴 175 cm</div>
+                    <div class="card-img-wrap">
+                        <img class="card-img" src="images/fason/galatasaray-yetiskin-1.jpg" alt="Galatasaray Yetişkin Maketi 175cm" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <h3>Galatasaray Yetişkin Maketi</h3>
+                        <div class="desc">175 cm · 3mm Dekota · UV Baskı</div>
+                        <div class="fiyat">2.899 TL <small>(KDV Dahil)</small></div>
+                    </div>
+                    <div class="card-quick-action"><i class="fas fa-arrow-right"></i></div>
+                </div>
+
+                <div class="product-card" onclick="openTakimModal('galatasaray_cocuk')">
+                    <div class="product-badge team-gs">🟡🔴 Çocuk</div>
+                    <div class="card-img-wrap">
+                        <img class="card-img" src="images/fason/galatasaray-cocuk-1.jpg" alt="Galatasaray Çocuk Maketi 140cm" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <h3>Galatasaray Çocuk Maketi</h3>
+                        <div class="desc">140 cm · 3mm Dekota · UV Baskı</div>
+                        <div class="fiyat">2.899 TL <small>(KDV Dahil)</small></div>
+                    </div>
+                    <div class="card-quick-action"><i class="fas fa-arrow-right"></i></div>
+                </div>
+
+                <div class="product-card" onclick="openTakimModal('fenerbahce_yetiskin')">
+                    <div class="product-badge team-fb">🟡🔵 175 cm</div>
+                    <div class="card-img-wrap">
+                        <img class="card-img" src="images/fason/fenerbahce-yetiskin-1.jpg" alt="Fenerbahçe Yetişkin Maketi 175cm" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <h3>Fenerbahçe Yetişkin Maketi</h3>
+                        <div class="desc">175 cm · 3mm Dekota · UV Baskı</div>
+                        <div class="fiyat">2.899 TL <small>(KDV Dahil)</small></div>
+                    </div>
+                    <div class="card-quick-action"><i class="fas fa-arrow-right"></i></div>
+                </div>
+
+                <div class="product-card" onclick="openTakimModal('fenerbahce_cocuk')">
+                    <div class="product-badge team-fb">🟡🔵 Çocuk</div>
+                    <div class="card-img-wrap">
+                        <img class="card-img" src="images/fason/fenerbahce-cocuk-1.jpg" alt="Fenerbahçe Çocuk Maketi 140cm" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <h3>Fenerbahçe Çocuk Maketi</h3>
+                        <div class="desc">140 cm · 3mm Dekota · UV Baskı</div>
+                        <div class="fiyat">2.899 TL <small>(KDV Dahil)</small></div>
+                    </div>
+                    <div class="card-quick-action"><i class="fas fa-arrow-right"></i></div>
+                </div>
+
+                <div class="product-card" onclick="openTakimModal('besiktas_yetiskin')">
+                    <div class="product-badge team-bjk">⚫⚪ 175 cm</div>
+                    <div class="card-img-wrap">
+                        <img class="card-img" src="images/fason/besiktas-yetiskin-1.jpg" alt="Beşiktaş Yetişkin Maketi 175cm" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <h3>Beşiktaş Yetişkin Maketi</h3>
+                        <div class="desc">175 cm · 3mm Dekota · UV Baskı</div>
+                        <div class="fiyat">2.899 TL <small>(KDV Dahil)</small></div>
+                    </div>
+                    <div class="card-quick-action"><i class="fas fa-arrow-right"></i></div>
+                </div>
+
+                <div class="product-card" onclick="openTakimModal('besiktas_cocuk')">
+                    <div class="product-badge team-bjk">⚫⚪ Çocuk</div>
+                    <div class="card-img-wrap">
+                        <img class="card-img" src="images/fason/besiktas-cocuk-1.jpg" alt="Beşiktaş Çocuk Maketi 140cm" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <h3>Beşiktaş Çocuk Maketi</h3>
+                        <div class="desc">140 cm · 3mm Dekota · UV Baskı</div>
+                        <div class="fiyat">2.899 TL <small>(KDV Dahil)</small></div>
                     </div>
                     <div class="card-quick-action"><i class="fas fa-arrow-right"></i></div>
                 </div>
@@ -1363,15 +1472,15 @@
             </div>
             <div class="faq-item" onclick="toggleFaq(this)">
                 <div class="faq-question"><span>Ödeme nasıl yapılır?</span><i class="fas fa-plus"></i></div>
-                <div class="faq-answer">Havale/EFT ile ödeme. Sipariş onayı sonrası banka bilgilerimizi gönderiyoruz. Kredi kartı için yakında.</div>
+                <div class="faq-answer">Havale/EFT ile ödeme. Sipariş onayı sonrası banka bilgilerimizi gönderiyoruz.</div>
             </div>
             <div class="faq-item" onclick="toggleFaq(this)">
                 <div class="faq-question"><span>Yanlış ölçü gönderirsem ne olur?</span><i class="fas fa-plus"></i></div>
-                <div class="faq-answer">Üretim öncesi ölçüyü sizinle teyit ediyoruz. Yine de hata olursa yeniden basıyoruz (malzeme bedeli müşteriden).</div>
+                <div class="faq-answer">Üretim öncesi ölçüyü sizinle teyit ediyoruz. Yine de hata olursa yeniden basıyoruz.</div>
             </div>
             <div class="faq-item" onclick="toggleFaq(this)">
                 <div class="faq-question"><span>Siparişimi nasıl takip edebilirim?</span><i class="fas fa-plus"></i></div>
-                <div class="faq-answer">Kargoya verildikten sonra takip numarasını WhatsApp'tan gönderiyoruz. Kargo firmasının sitesinden takip edebilirsiniz.</div>
+                <div class="faq-answer">Kargoya verildikten sonra takip numarasını WhatsApp'tan gönderiyoruz.</div>
             </div>
             <div class="faq-item" onclick="toggleFaq(this)">
                 <div class="faq-question"><span>Minimum sipariş tutarı var mı?</span><i class="fas fa-plus"></i></div>
@@ -1379,11 +1488,11 @@
             </div>
             <div class="faq-item" onclick="toggleFaq(this)">
                 <div class="faq-question"><span>Tasarım dosyam yok, ne yapmalıyım?</span><i class="fas fa-plus"></i></div>
-                <div class="faq-answer">Sorun değil. WhatsApp'tan yazın, tasarım konusunda da destek oluyoruz. Bu hizmet ayrıca ücretlendirilir.</div>
+                <div class="faq-answer">Sorun değil. WhatsApp'tan yazın, tasarım konusunda da destek oluyoruz.</div>
             </div>
             <div class="faq-item" onclick="toggleFaq(this)">
                 <div class="faq-question"><span>Türkiye'nin her iline kargo gönderiyor musunuz?</span><i class="fas fa-plus"></i></div>
-                <div class="faq-answer">Evet, 81 ilin tamamına kargo gönderiyoruz. Bafra/Samsun'daki atölyemizden Türkiye geneline üretim yapıyoruz.</div>
+                <div class="faq-answer">Evet, 81 ilin tamamına kargo gönderiyoruz.</div>
             </div>
             <div class="faq-item" onclick="toggleFaq(this)">
                 <div class="faq-question"><span>Kurumsal fatura kesiyor musunuz?</span><i class="fas fa-plus"></i></div>
@@ -1415,7 +1524,7 @@
 
     </div>
 
-    <!-- LIGHTBOX (resim tam ekran büyütme) -->
+    <!-- LIGHTBOX -->
     <div class="lightbox-overlay" id="lightboxOverlay" onclick="closeLightbox()">
         <button class="lightbox-close" onclick="closeLightbox(); event.stopPropagation();">&times;</button>
         <img id="lightboxImg" src="" alt="Büyütülmüş görsel">
@@ -1449,6 +1558,20 @@
             </div>
             <div class="modal-price">700 TL <small>(KDV Dahil)</small></div>
             <a href="https://wa.me/905079605049?text=Merhaba,%20Duvar%20Tablosu%2050x70%20için%20sipariş%20vermek%20istiyorum." class="btn-wa" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp ile Sipariş Ver</a>
+        </div>
+    </div>
+
+    <!-- GENEL TARAFTAR MAKETİ MODALI -->
+    <div class="modal-overlay" id="takimModal" onclick="if(event.target===this) closeTakimModal()">
+        <div class="modal-box">
+            <button class="modal-close" onclick="closeTakimModal()">&times;</button>
+            <img class="modal-img" id="takimModalImg" src="" alt="" onclick="openLightbox(this.src); event.stopPropagation();">
+            <h3 id="takimModalTitle">Takım Maketi</h3>
+            <div class="modal-desc" id="takimModalDesc"></div>
+            <div class="modal-thumbs" id="takimModalThumbs"></div>
+            <div class="modal-price" id="takimModalPrice"></div>
+            <a href="#" id="takimModalWaBtn" class="btn-wa" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp ile Sipariş Ver</a>
+            <div class="modal-note">💬 İsim veya forma numarası eklemek isterseniz WhatsApp'ta belirtebilirsiniz (ek ücretli). *Resmi lisanslı ürün değildir, taraftar yapımı hediyelik üründür.</div>
         </div>
     </div>
 
@@ -1534,7 +1657,6 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
         import { getDatabase, ref, get, set, update } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-database.js";
 
-        // 🔥 KENDİ FIREBASE CONFIG'İNİ BURAYA YAPIŞTIR
         const firebaseConfig = {
             apiKey: "AIzaSyCQT33KRLCTcF6HE09EFY7MT0tlEe39Tsc",
             authDomain: "yeni-7b1e8.firebaseapp.com",
@@ -1576,6 +1698,46 @@
         const kur_usd = 46.98;
         const kur_eur = 53.72;
 
+        // ==============================================
+        //  TARAFTAR MAKETLERİ
+        // ==============================================
+        const takimMaketleri = {
+            samsunspor_yetiskin: { takim: 'Samsunspor', tip: 'Yetişkin Maketi', boy: '175 cm', fiyat: 2899,
+                img: ['images/fason/samsunspor-yetiskin-1.jpg', 'images/fason/samsunspor-yetiskin-2.jpg'],
+                desc: "Samsunspor taraftarı olmanın gururunu evine taşı! 175 cm'lik gerçek boy maket, kırmızı-beyaz formasıyla odanın en dikkat çeken parçası olacak. Yüksek çözünürlüklü UV baskı, 3mm Dekota malzeme ve ayaklı stand ile kolay kurulum. Maç izleme partileri, taraftar odası ya da hediye için ideal." },
+            samsunspor_cocuk: { takim: 'Samsunspor', tip: 'Çocuk Maketi', boy: '140 cm', fiyat: 2899,
+                img: ['images/fason/samsunspor-cocuk-1.jpg', 'images/fason/samsunspor-cocuk-2.jpg'],
+                desc: "Küçük Samsunsporlu'nun odasına dev bir neşe! 140 cm'lik bu özel maket, kırmızı-beyaz formalı, güler yüzlü duruşuyla minik taraftarın hayal gücünü destekler. Doğum günü sürprizleri, çocuk odası dekorasyonu ve fotoğraf çekimleri için mükemmel." },
+
+            trabzonspor_yetiskin: { takim: 'Trabzonspor', tip: 'Yetişkin Maketi', boy: '175 cm', fiyat: 2899,
+                img: ['images/fason/trabzonspor-yetiskin-1.jpg', 'images/fason/trabzonspor-yetiskin-2.jpg'],
+                desc: "Trabzonspor taraftarı olmanın gururunu evine taşı! 175 cm'lik gerçek boy maket, bordo-mavi formasıyla odanın en dikkat çeken parçası olacak. Yüksek çözünürlüklü UV baskı, 3mm Dekota malzeme ve ayaklı stand ile kolay kurulum. Maç izleme partileri, taraftar odası ya da hediye için ideal." },
+            trabzonspor_cocuk: { takim: 'Trabzonspor', tip: 'Çocuk Maketi', boy: '140 cm', fiyat: 2899,
+                img: ['images/fason/trabzonspor-cocuk-1.jpg', 'images/fason/trabzonspor-cocuk-2.jpg'],
+                desc: "Küçük Trabzonsporlu'nun odasına dev bir neşe! 140 cm'lik bu özel maket, bordo-mavi formalı, güler yüzlü duruşuyla minik taraftarın hayal gücünü destekler. Doğum günü sürprizleri, çocuk odası dekorasyonu ve fotoğraf çekimleri için mükemmel." },
+
+            galatasaray_yetiskin: { takim: 'Galatasaray', tip: 'Yetişkin Maketi', boy: '175 cm', fiyat: 2899,
+                img: ['images/fason/galatasaray-yetiskin-1.jpg', 'images/fason/galatasaray-yetiskin-2.jpg'],
+                desc: "Galatasaray taraftarı olmanın gururunu evine taşı! 175 cm'lik gerçek boy maket, sarı-kırmızı formasıyla odanın en dikkat çeken parçası olacak. Yüksek çözünürlüklü UV baskı, 3mm Dekota malzeme ve ayaklı stand ile kolay kurulum. Maç izleme partileri, taraftar odası ya da hediye için ideal." },
+            galatasaray_cocuk: { takim: 'Galatasaray', tip: 'Çocuk Maketi', boy: '140 cm', fiyat: 2899,
+                img: ['images/fason/galatasaray-cocuk-1.jpg', 'images/fason/galatasaray-cocuk-2.jpg'],
+                desc: "Küçük Galatasaraylı'nın odasına dev bir neşe! 140 cm'lik bu özel maket, sarı-kırmızı formalı, güler yüzlü duruşuyla minik taraftarın hayal gücünü destekler. Doğum günü sürprizleri, çocuk odası dekorasyonu ve fotoğraf çekimleri için mükemmel." },
+
+            fenerbahce_yetiskin: { takim: 'Fenerbahçe', tip: 'Yetişkin Maketi', boy: '175 cm', fiyat: 2899,
+                img: ['images/fason/fenerbahce-yetiskin-1.jpg', 'images/fason/fenerbahce-yetiskin-2.jpg'],
+                desc: "Fenerbahçe taraftarı olmanın gururunu evine taşı! 175 cm'lik gerçek boy maket, sarı-lacivert formasıyla odanın en dikkat çeken parçası olacak. Yüksek çözünürlüklü UV baskı, 3mm Dekota malzeme ve ayaklı stand ile kolay kurulum. Maç izleme partileri, taraftar odası ya da hediye için ideal." },
+            fenerbahce_cocuk: { takim: 'Fenerbahçe', tip: 'Çocuk Maketi', boy: '140 cm', fiyat: 2899,
+                img: ['images/fason/fenerbahce-cocuk-1.jpg', 'images/fason/fenerbahce-cocuk-2.jpg'],
+                desc: "Küçük Fenerbahçeli'nin odasına dev bir neşe! 140 cm'lik bu özel maket, sarı-lacivert formalı, güler yüzlü duruşuyla minik taraftarın hayal gücünü destekler. Doğum günü sürprizleri, çocuk odası dekorasyonu ve fotoğraf çekimleri için mükemmel." },
+
+            besiktas_yetiskin: { takim: 'Beşiktaş', tip: 'Yetişkin Maketi', boy: '175 cm', fiyat: 2899,
+                img: ['images/fason/besiktas-yetiskin-1.jpg', 'images/fason/besiktas-yetiskin-2.jpg'],
+                desc: "Beşiktaş taraftarı olmanın gururunu evine taşı! 175 cm'lik gerçek boy maket, siyah-beyaz formasıyla odanın en dikkat çeken parçası olacak. Yüksek çözünürlüklü UV baskı, 3mm Dekota malzeme ve ayaklı stand ile kolay kurulum. Maç izleme partileri, taraftar odası ya da hediye için ideal." },
+            besiktas_cocuk: { takim: 'Beşiktaş', tip: 'Çocuk Maketi', boy: '140 cm', fiyat: 2899,
+                img: ['images/fason/besiktas-cocuk-1.jpg', 'images/fason/besiktas-cocuk-2.jpg'],
+                desc: "Küçük Beşiktaşlı'nın odasına dev bir neşe! 140 cm'lik bu özel maket, siyah-beyaz formalı, güler yüzlü duruşuyla minik taraftarın hayal gücünü destekler. Doğum günü sürprizleri, çocuk odası dekorasyonu ve fotoğraf çekimleri için mükemmel." }
+        };
+
         const urunDetay = {
             ince_vinil: { img: 'images/fason/ince-vinil.jpg', desc: fiyatlar.ince_vinil.desc },
             normal_vinil: { img: 'images/fason/normal-vinil.jpg', desc: fiyatlar.normal_vinil.desc },
@@ -1597,14 +1759,13 @@
         };
 
         // ==============================================
-        //  SAYAÇLAR (FIREBASE TEK ÇEKİMLİ)
+        //  SAYAÇLAR
         // ==============================================
 
         function getToday() {
             return new Date().toISOString().split('T')[0];
         }
 
-        // Sayfa açılırken veri çek
         async function loadCounters() {
             try {
                 const snapshot = await get(counterRef);
@@ -1613,7 +1774,6 @@
                     document.getElementById('totalCount').textContent = (data.total || 0).toLocaleString('tr-TR');
                     document.getElementById('todayCount').textContent = data.today || 0;
                 } else {
-                    // Başlangıç verisi oluştur
                     await set(counterRef, { total: 0, today: 0, lastDate: getToday() });
                     document.getElementById('totalCount').textContent = '0';
                     document.getElementById('todayCount').textContent = '0';
@@ -1625,7 +1785,6 @@
             }
         }
 
-        // Hesaplama yapılınca sayaçları artır ve güncelle
         async function incrementCounters() {
             try {
                 const today = getToday();
@@ -1647,7 +1806,6 @@
                     lastDate: newLastDate
                 });
 
-                // Ekranı güncelle
                 document.getElementById('totalCount').textContent = newTotal.toLocaleString('tr-TR');
                 document.getElementById('todayCount').textContent = newToday;
             } catch (error) {
@@ -1659,7 +1817,6 @@
         //  HESAPLAYICI
         // ==============================================
 
-        // Quick size butonları
         document.querySelectorAll('.quick-size-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 const en = parseInt(this.dataset.en);
@@ -1669,12 +1826,10 @@
                 document.querySelectorAll('.quick-size-btn').forEach(b => b.classList.remove('active'));
                 this.classList.add('active');
                 onizlemeGuncelle();
-                // Fiyatı hesapla ama sayacı artırma
                 fiyatHesapla();
             });
         });
 
-        // Input değişikliklerinde
         document.getElementById('en').addEventListener('input', function() {
             onizlemeGuncelle();
             fiyatHesapla();
@@ -1716,7 +1871,6 @@
             kutu.textContent = en + '×' + boy;
         }
 
-        // Sadece fiyat hesapla (sayacı artırmaz, bildirim göstermez)
         function fiyatHesapla() {
             const malzemeKey = document.getElementById('malzeme').value;
             const en = parseFloat(document.getElementById('en').value);
@@ -1743,7 +1897,6 @@
             `;
         }
 
-        // HESAPLA butonuna basıldığında: fiyat hesapla + sayacı artır
         window.hesapla = function() {
             fiyatHesapla();
             incrementCounters();
@@ -1781,7 +1934,7 @@
         };
 
         // ==============================================
-        //  LIGHTBOX (resim tam ekran büyütme)
+        //  LIGHTBOX
         // ==============================================
         window.openLightbox = function(src) {
             document.getElementById('lightboxImg').src = src;
@@ -1789,6 +1942,39 @@
         };
         window.closeLightbox = function() {
             document.getElementById('lightboxOverlay').classList.remove('active');
+        };
+
+        // ==============================================
+        //  TARAFTAR MAKETİ MODALI
+        // ==============================================
+        window.openTakimModal = function(key) {
+            const urun = takimMaketleri[key];
+            if (!urun) return;
+            document.getElementById('takimModalTitle').textContent = urun.takim + ' ' + urun.tip;
+            document.getElementById('takimModalDesc').textContent = urun.desc;
+            document.getElementById('takimModalPrice').textContent = urun.fiyat.toLocaleString('tr-TR') + ' TL (KDV Dahil)';
+            document.getElementById('takimModalImg').src = urun.img[0];
+            document.getElementById('takimModalImg').alt = urun.takim + ' ' + urun.tip + ' ' + urun.boy;
+
+            const thumbsDiv = document.getElementById('takimModalThumbs');
+            thumbsDiv.innerHTML = urun.img.map((src, i) =>
+                `<img class="modal-thumb${i === 0 ? ' active-thumb' : ''}" src="${src}" alt="Görsel ${i + 1}" onclick="changeTakimImage('${src}', this)">`
+            ).join('');
+
+            const waMsg = encodeURIComponent('Merhaba Uzman Reklam 👋\n\n' + urun.takim + ' ' + urun.tip + ' (' + urun.boy + ') için sipariş vermek istiyorum.\n💰 Fiyat: ' + urun.fiyat.toLocaleString('tr-TR') + ' TL');
+            document.getElementById('takimModalWaBtn').href = 'https://wa.me/905079605049?text=' + waMsg;
+
+            document.getElementById('takimModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        };
+        window.closeTakimModal = function() {
+            document.getElementById('takimModal').classList.remove('active');
+            document.body.style.overflow = '';
+        };
+        window.changeTakimImage = function(src, thumbEl) {
+            document.getElementById('takimModalImg').src = src;
+            document.querySelectorAll('#takimModal .modal-thumb').forEach(el => el.classList.remove('active-thumb'));
+            thumbEl.classList.add('active-thumb');
         };
 
         // Duvar
@@ -1861,14 +2047,10 @@
         // ==============================================
 
         window.addEventListener('load', async function() {
-            // Firebase'den sayaçları yükle (tek seferlik)
             await loadCounters();
-
-            // Önizleme ve fiyat hesaplama (sayacı artırmaz)
             onizlemeGuncelle();
             fiyatHesapla();
 
-            // Animasyon
             document.querySelectorAll('.step-box, .product-card, .faq-item').forEach((el, i) => {
                 el.style.opacity = '0';
                 el.style.transform = 'translateY(20px)';
