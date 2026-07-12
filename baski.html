@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
     <style>
-        /* ===== RESET & VARIABLES ===== */
+        /* ===== TÜM STILLER AYNEN, SADECE OBJECT-FIT CONTAIN YAPILDI ===== */
         * {
             margin: 0;
             padding: 0;
@@ -251,7 +251,7 @@
         .step-box h4 { font-size: 0.9rem; margin-bottom: 4px; color: var(--text); }
         .step-box p { font-size: 0.75rem; color: var(--gray); line-height: 1.5; }
 
-        /* ===== CALCULATOR (kısaltıldı) ===== */
+        /* ===== CALCULATOR ===== */
         .calculator {
             background: var(--card);
             border: 1px solid var(--border);
@@ -357,6 +357,33 @@
             margin-top: 15px;
         }
 
+        .preview-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #eef0e8;
+            border: 1px dashed #cfcfc6;
+            border-radius: 14px;
+            padding: 20px;
+            margin-top: 20px;
+            height: 130px;
+            overflow: hidden;
+        }
+        .preview-box {
+            background: rgba(111,143,0,0.12);
+            border: 1.5px solid var(--accent);
+            border-radius: 4px;
+            transition: width 0.25s ease, height 0.25s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            font-size: 0.7rem;
+            font-weight: 700;
+            min-width: 20px;
+            min-height: 14px;
+        }
+
         /* ===== PRODUCTS ===== */
         .products { margin: 80px 0; }
         .products h2 {
@@ -395,9 +422,9 @@
         .product-card .card-img {
             width: 100%;
             height: 180px;
-            object-fit: contain; /* Düzeltildi: kesilme yok */
+            object-fit: contain;
             display: block;
-            background: #eee;
+            background: #f0f0ec;
         }
         .product-card .card-body { padding: 14px 12px 18px; }
         @media (max-width: 640px) {
@@ -445,7 +472,7 @@
         .product-badge.free-design { background: #ff6b35; color: #fff; }
         .product-badge.multi-design { background: #6f8f00; color: #fff; }
         .product-badge.ataturk-badge { background: #d42a1a; color: #fff; }
-        .product-badge.cocuk-badge { background: #e44a8b; color: #fff; }
+        .product-badge.cocuk-badge { background: #1e88e5; color: #fff; }
         .card-icon {
             width: 100%;
             height: 180px;
@@ -466,7 +493,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.6);
+            background: rgba(0,0,0,0.7);
             z-index: 9999;
             justify-content: center;
             align-items: center;
@@ -478,11 +505,11 @@
         .modal-box {
             background: #fff;
             border-radius: 20px;
-            max-width: 500px;
+            max-width: 600px;
             width: 100%;
             padding: 30px;
             position: relative;
-            max-height: 90vh;
+            max-height: 95vh;
             overflow-y: auto;
             box-shadow: 0 20px 60px rgba(0,0,0,0.3);
             animation: modalFade 0.25s ease;
@@ -525,11 +552,11 @@
         }
         .modal-box .modal-img {
             width: 100%;
-            max-height: 220px;
-            object-fit: contain; /* Düzeltildi: kesilme yok */
+            max-height: 400px;
+            object-fit: contain;
             border-radius: 12px;
             margin-bottom: 12px;
-            background: #eee;
+            background: #f5f5f2;
         }
         .modal-thumbs {
             display: flex;
@@ -539,14 +566,14 @@
             justify-content: center;
         }
         .modal-thumb {
-            width: 60px;
-            height: 60px;
+            width: 70px;
+            height: 70px;
             object-fit: contain;
             border-radius: 8px;
             border: 2px solid transparent;
             cursor: pointer;
             transition: 0.3s;
-            background: #eee;
+            background: #f5f5f2;
         }
         .modal-thumb:hover { border-color: var(--accent); transform: scale(1.05); }
         .modal-thumb.active-thumb { border-color: var(--neon); }
@@ -565,30 +592,6 @@
         }
         .modal-box .btn-wa:hover { background: #1ebe57; transform: scale(1.02); }
         .modal-box .btn-wa i { margin-right: 10px; }
-
-        /* ===== KATEGORİLER ===== */
-        .categories {
-            margin: 40px 0 60px;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 12px;
-        }
-        .categories span {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 30px;
-            padding: 8px 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: var(--text);
-            transition: 0.3s;
-            cursor: default;
-        }
-        .categories span:hover {
-            border-color: var(--accent);
-            transform: translateY(-2px);
-        }
 
         /* ===== FAQ ===== */
         .faq { margin: 80px 0; }
@@ -634,7 +637,7 @@
             margin-top: 12px;
         }
 
-        /* ===== FOOTER ===== */
+        /* ===== DARK BAND ===== */
         .dark-band {
             background: var(--dark);
             width: 100vw;
@@ -789,15 +792,6 @@
             </div>
         </section>
 
-        <!-- KATEGORİLER -->
-        <div class="categories">
-            <span>🇹🇷 Atatürk Maketleri</span>
-            <span>👦 Çocuk Maketleri</span>
-            <span>🦸 Kahraman Temalı</span>
-            <span>🎂 Doğum Günü Maketleri</span>
-            <span>🎁 Kişiye Özel Tasarımlar</span>
-        </div>
-
         <!-- CALCULATOR -->
         <section class="calculator" id="hesapla">
             <h2><i class="fas fa-sliders-h"></i> Fiyat Hesaplayıcı</h2>
@@ -853,31 +847,45 @@
         <!-- PRODUCTS -->
         <section class="products" id="urunler">
             <h2>Tüm Ürünler</h2>
+
+            <!-- KATEGORİ BAŞLIĞI: ÖZEL MAKETLER -->
+            <div style="text-align:center; margin: 40px 0 20px;">
+                <span style="background: var(--accent); color:#fff; padding:8px 24px; border-radius:30px; font-weight:700; font-size:0.9rem; display:inline-block;">🇹🇷 ÖZEL MAKETLER</span>
+            </div>
+
             <div class="product-grid">
 
-                <!-- ===== KALPAKLI ATATÜRK MAKETİ ===== -->
+                <!-- ===== ATATÜRK MAKETİ ===== -->
                 <div class="product-card" onclick="openAtaturkModal()">
                     <div class="product-badge ataturk-badge">🇹🇷 175 cm</div>
-                    <img class="card-img" src="images/fason/ataturk-maket-1.jpg" alt="Kalpaklı Atatürk Maketi" loading="lazy">
+                    <img class="card-img" src="images/fason/ataturk-maket-1.jpg" alt="Atatürk Maketi" loading="lazy">
                     <div class="card-body">
-                        <h3>Kalpaklı Atatürk Maketi</h3>
+                        <h3>Atatürk Maketi</h3>
                         <div class="desc">175 cm · 3 mm Dekota · UV Baskı</div>
-                        <div class="fiyat">1.499 TL <small>(KDV Dahil)</small></div>
+                        <div class="fiyat">2.899 TL <small>(KDV Dahil)</small></div>
                     </div>
                 </div>
 
-                <!-- ===== KİŞİYE ÖZEL ÇOCUK MAKETİ ===== -->
+                <!-- ===== ÇOCUK MAKETİ ===== -->
                 <div class="product-card" onclick="openCocukModal()">
-                    <div class="product-badge cocuk-badge">🎈 Özel Tasarım</div>
-                    <img class="card-img" src="images/fason/cocuk-maket-1.jpg" alt="Kişiye Özel Çocuk Maketi" loading="lazy">
+                    <div class="product-badge cocuk-badge">🌟 Kişiye Özel</div>
+                    <img class="card-img" src="images/fason/cocuk-maket-1.jpg" alt="Çocuk Maketi" loading="lazy">
                     <div class="card-body">
-                        <h3>Kişiye Özel Çocuk Maketi</h3>
-                        <div class="desc">Fotoğrafına özel · 3 mm Dekota · UV Baskı</div>
-                        <div class="fiyat">1.299 TL <small>(KDV Dahil)</small></div>
+                        <h3>Çocuk Maketi</h3>
+                        <div class="desc">175 cm · 3 mm Dekota · UV Baskı</div>
+                        <div class="fiyat">2.899 TL <small>(KDV Dahil)</small></div>
                     </div>
                 </div>
 
-                <!-- ===== DİĞER MEVCUT ÜRÜNLER ===== -->
+            </div>
+
+            <!-- KATEGORİ BAŞLIĞI: FASON BASKI ÜRÜNLERİ -->
+            <div style="text-align:center; margin: 40px 0 20px;">
+                <span style="background: var(--neon); color:#000; padding:8px 24px; border-radius:30px; font-weight:700; font-size:0.9rem; display:inline-block;">🖨️ FASON BASKI ÜRÜNLERİ</span>
+            </div>
+
+            <div class="product-grid">
+
                 <div class="product-card" onclick="openModal('ince_vinil')">
                     <img class="card-img" src="images/fason/ince-vinil.jpg" alt="İnce Vinil Baskı" loading="lazy">
                     <div class="card-body">
@@ -1014,6 +1022,7 @@
         <!-- FAQ -->
         <section class="faq" id="sss">
             <h2>Sıkça Sorulan Sorular</h2>
+
             <div class="faq-item" onclick="toggleFaq(this)">
                 <div class="faq-question"><span>Fason baskı ne demek?</span><i class="fas fa-plus"></i></div>
                 <div class="faq-answer">Fason baskı, sizin tasarımınızı bizim makinalarımızda basıp size göndermemizdir. Montaj yok, sadece baskı hizmeti.</div>
@@ -1064,9 +1073,7 @@
 
     </div>
 
-    <!-- ===== MODALLAR ===== -->
-
-    <!-- Standart Ürün Modal -->
+    <!-- STANDART MODAL -->
     <div class="modal-overlay" id="productModal" onclick="if(event.target===this) closeModal()">
         <div class="modal-box">
             <button class="modal-close" onclick="closeModal()">&times;</button>
@@ -1078,7 +1085,7 @@
         </div>
     </div>
 
-    <!-- Duvar Tablosu Modal -->
+    <!-- DUVAR TABLOSU MODAL -->
     <div class="modal-overlay" id="duvarModal" onclick="if(event.target===this) closeDuvarModal()">
         <div class="modal-box">
             <button class="modal-close" onclick="closeDuvarModal()">&times;</button>
@@ -1095,14 +1102,14 @@
         </div>
     </div>
 
-    <!-- Atatürk Modal -->
+    <!-- ===== ATATÜRK MAKETİ MODAL ===== -->
     <div class="modal-overlay" id="ataturkModal" onclick="if(event.target===this) closeAtaturkModal()">
         <div class="modal-box">
             <button class="modal-close" onclick="closeAtaturkModal()">&times;</button>
-            <img class="modal-img" id="ataturkModalImg" src="images/fason/ataturk-maket-1.jpg" alt="Kalpaklı Atatürk Maketi">
-            <h3>Kalpaklı Atatürk Maketi</h3>
+            <img class="modal-img" id="ataturkModalImg" src="images/fason/ataturk-maket-1.jpg" alt="Atatürk Maketi">
+            <h3>Atatürk Maketi</h3>
             <div class="modal-desc">
-                Cumhuriyetimizin kurucusu Gazi Mustafa Kemal Atatürk'ün Milli Mücadele dönemindeki kararlı duruşundan ilham alınarak hazırlanan bu özel maket, yaşam alanlarına tarihî bir atmosfer kazandırır. 
+                Cumhuriyetimizin kurucusu Gazi Mustafa Kemal Atatürk’ün heybetli duruşundan ilham alınarak hazırlanan bu özel maket, yaşam alanlarına tarihî bir atmosfer kazandırır. 
                 175 cm gerçek boyut, 3 mm Dekota (Forex) malzeme, UV baskı ve mat yüzey ile şık bir görünüm sunar. 
                 Okullar, kurumlar, ofisler ve etkinlikler için idealdir.
             </div>
@@ -1111,22 +1118,21 @@
                 <img class="modal-thumb" src="images/fason/ataturk-maket-2.jpg" alt="Görsel 2" onclick="changeAtaturkImage('images/fason/ataturk-maket-2.jpg', this)">
                 <img class="modal-thumb" src="images/fason/ataturk-maket-3.jpg" alt="Görsel 3" onclick="changeAtaturkImage('images/fason/ataturk-maket-3.jpg', this)">
             </div>
-            <div class="modal-price">1.499 TL <small>(KDV Dahil)</small></div>
-            <a href="https://wa.me/905079605049?text=Merhaba,%20Kalpaklı%20Atatürk%20Maketi%20175%20cm%20için%20sipariş%20vermek%20istiyorum." class="btn-wa" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp ile Sipariş Ver</a>
+            <div class="modal-price">2.899 TL <small>(KDV Dahil)</small></div>
+            <a href="https://wa.me/905079605049?text=Merhaba,%20Atatürk%20Maketi%20175%20cm%20için%20sipariş%20vermek%20istiyorum." class="btn-wa" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp ile Sipariş Ver</a>
         </div>
     </div>
 
-    <!-- Çocuk Maketi Modal (4 görsel) -->
+    <!-- ===== ÇOCUK MAKETİ MODAL ===== -->
     <div class="modal-overlay" id="cocukModal" onclick="if(event.target===this) closeCocukModal()">
         <div class="modal-box">
             <button class="modal-close" onclick="closeCocukModal()">&times;</button>
-            <img class="modal-img" id="cocukModalImg" src="images/fason/cocuk-maket-1.jpg" alt="Kişiye Özel Çocuk Maketi">
-            <h3>Kişiye Özel Çocuk Maketi</h3>
+            <img class="modal-img" id="cocukModalImg" src="images/fason/cocuk-maket-1.jpg" alt="Çocuk Maketi">
+            <h3>🌟 Kişiye Özel Çocuk Maketi</h3>
             <div class="modal-desc">
-                Çocuğunuzun en sevdiği fotoğrafını unutulmaz bir hatıraya dönüştürüyoruz. 
-                Doğum günleri, özel günler, oda dekorasyonu ve etkinlikler için hazırlanan kişiye özel maketler, yüksek baskı kalitesi ve gerçekçi görünümüyle öne çıkıyor.
+                Çocuğunuzun en sevdiği fotoğrafını unutulmaz bir hatıraya dönüştürüyoruz. Doğum günleri, özel günler, oda dekorasyonu ve etkinlikler için hazırlanan kişiye özel maketler, yüksek baskı kalitesi ve gerçekçi görünümüyle öne çıkıyor.
                 <br><br>
-                ✨ <strong>Özellikler:</strong><br>
+                <strong>✨ Özellikler:</strong><br>
                 ✔️ Gönderdiğiniz fotoğrafa özel üretim<br>
                 ✔️ İstenilen kıyafet, konsept ve tema seçenekleri<br>
                 ✔️ Süper kahraman, prens, prenses, sporcu ve daha birçok tasarım<br>
@@ -1134,12 +1140,18 @@
                 ✔️ Yüksek çözünürlüklü UV baskı<br>
                 ✔️ Ayaklı stand sistemi sayesinde kolay kurulum
                 <br><br>
-                🎈 <strong>Kullanım Alanları:</strong><br>
+                <strong>🎈 Kullanım Alanları:</strong><br>
                 🎂 Doğum günü organizasyonları<br>
                 🏠 Çocuk odası dekorasyonu<br>
                 📸 Fotoğraf çekimleri<br>
                 🎉 Okul etkinlikleri<br>
                 🎁 Özel gün ve hediye amaçlı kullanım
+                <br><br>
+                <strong>📦 Nasıl Sipariş Verilir?</strong><br>
+                1. Çocuğunuzun fotoğrafını gönderin.<br>
+                2. İstediğiniz konsepti seçin.<br>
+                3. Tasarım onaylandıktan sonra üretime başlanır.<br>
+                4. Ürün özel ambalajla adresinize gönderilir.
             </div>
             <div class="modal-thumbs">
                 <img class="modal-thumb active-thumb" src="images/fason/cocuk-maket-1.jpg" alt="Görsel 1" onclick="changeCocukImage('images/fason/cocuk-maket-1.jpg', this)">
@@ -1147,8 +1159,8 @@
                 <img class="modal-thumb" src="images/fason/cocuk-maket-3.jpg" alt="Görsel 3" onclick="changeCocukImage('images/fason/cocuk-maket-3.jpg', this)">
                 <img class="modal-thumb" src="images/fason/cocuk-maket-4.jpg" alt="Görsel 4" onclick="changeCocukImage('images/fason/cocuk-maket-4.jpg', this)">
             </div>
-            <div class="modal-price">1.299 TL <small>(KDV Dahil)</small></div>
-            <a href="https://wa.me/905079605049?text=Merhaba,%20Kişiye%20Özel%20Çocuk%20Maketi%20için%20sipariş%20vermek%20istiyorum." class="btn-wa" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp ile Sipariş Ver</a>
+            <div class="modal-price">2.899 TL <small>(KDV Dahil)</small></div>
+            <a href="https://wa.me/905079605049?text=Merhaba,%20Çocuk%20Maketi%20için%20sipariş%20vermek%20istiyorum." class="btn-wa" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp ile Sipariş Ver</a>
         </div>
     </div>
 
@@ -1163,7 +1175,7 @@
     </div>
 
     <script>
-        // ===== MEVCUT FİYAT VERİLERİ ===== (kısaltıldı)
+        // ===== FİYAT VERİLERİ (TÜM ÜRÜNLER) =====
         const fiyatlar = {
             ince_vinil: { ad: 'İnce Vinil', fiyat: 1.80, birim: 'USD', desc: 'İnce vinil, Konica Solvent baskı teknolojisi ile üretilir. Dış mekan reklamlarında, araç giydirmede ve mağaza vitrinlerinde sıklıkla kullanılır. Esnek yapısı sayesinde düz olmayan yüzeylere kolayca uygulanır. Ekonomik fiyatıyla bütçe dostudur, 2-3 yıl dayanıklılık sunar.' },
             normal_vinil: { ad: 'Normal Vinil', fiyat: 2.35, birim: 'USD', desc: 'Normal vinil, günlük kullanım için ideal bir dış mekan malzemesidir. Konica Solvent baskı ile canlı renkler elde edilir. Tabelalar, araç giydirme ve duvar reklamlarında tercih edilir. Orta kalite segmentinde olup, 3-4 yıl boyunca ilk günkü parlaklığını korur.' },
@@ -1205,7 +1217,7 @@
             kagit_baski: { img: 'images/fason/kagit-baski.jpg', desc: fiyatlar.kagit_baski.desc }
         };
 
-        // ---- Standart Modal ----
+        // ---- MODAL FONKSİYONLARI ----
         function openModal(key) {
             const urun = fiyatlar[key];
             const detay = urunDetay[key];
@@ -1221,23 +1233,20 @@
             document.getElementById('modalTitle').textContent = urun.ad;
             document.getElementById('modalDesc').textContent = detay.desc;
             document.getElementById('modalPrice').textContent = fiyatGoster;
-            if (detay.img) {
-                document.getElementById('modalImg').src = detay.img;
-                document.getElementById('modalImg').style.display = 'block';
-            } else {
-                document.getElementById('modalImg').style.display = 'none';
-            }
+            document.getElementById('modalImg').src = detay.img;
+            document.getElementById('modalImg').style.display = 'block';
             const waMsg = encodeURIComponent('Merhaba, ' + urun.ad + ' için teklif almak istiyorum.');
             document.getElementById('modalWaBtn').href = 'https://wa.me/905079605049?text=' + waMsg;
             document.getElementById('productModal').classList.add('active');
             document.body.style.overflow = 'hidden';
         }
+
         function closeModal() {
             document.getElementById('productModal').classList.remove('active');
             document.body.style.overflow = '';
         }
 
-        // ---- Duvar Tablosu ----
+        // ---- DUVAR TABLOSU ----
         function openDuvarModal() {
             document.getElementById('duvarModal').classList.add('active');
             document.body.style.overflow = 'hidden';
@@ -1252,7 +1261,7 @@
             thumbEl.classList.add('active-thumb');
         }
 
-        // ---- Atatürk ----
+        // ---- ATATÜRK ----
         function openAtaturkModal() {
             document.getElementById('ataturkModal').classList.add('active');
             document.body.style.overflow = 'hidden';
@@ -1267,7 +1276,7 @@
             thumbEl.classList.add('active-thumb');
         }
 
-        // ---- Çocuk Maketi (4 görsel) ----
+        // ---- ÇOCUK ----
         function openCocukModal() {
             document.getElementById('cocukModal').classList.add('active');
             document.body.style.overflow = 'hidden';
@@ -1282,7 +1291,7 @@
             thumbEl.classList.add('active-thumb');
         }
 
-        // ---- Hesaplayıcı ----
+        // ---- HESAPLAYICI ----
         function onizlemeGuncelle() {
             const en = parseFloat(document.getElementById('en').value) || 0;
             const boy = parseFloat(document.getElementById('boy').value) || 0;
@@ -1307,6 +1316,7 @@
             kutu.style.height = Math.max(h, 16) + 'px';
             kutu.textContent = en + '×' + boy + ' cm';
         }
+
         document.getElementById('en').addEventListener('input', onizlemeGuncelle);
         document.getElementById('boy').addEventListener('input', onizlemeGuncelle);
 
@@ -1331,13 +1341,8 @@
             const sonucDiv = document.getElementById('sonuc');
             sonucDiv.innerHTML = `
                 <div class="price">${toplamTL.toFixed(0)} <small>TL</small></div>
-                <div class="detail">
-                    📐 ${m2.toFixed(2)} m² · ${urun.ad} · ${en}x${boy} cm
-                </div>
-                <a href="https://wa.me/905079605049?text=Merhaba,%20fason%20baskı%20için%20teklif%20almak%20istiyorum.%20${urun.ad}%20-%20${en}x${boy}cm%20-%20Tahmini%20Fiyat:%20${toplamTL.toFixed(0)}%20TL" 
-                   target="_blank" class="btn-wa">
-                    <i class="fab fa-whatsapp"></i> WhatsApp ile Sipariş Ver
-                </a>
+                <div class="detail">📐 ${m2.toFixed(2)} m² · ${urun.ad} · ${en}x${boy} cm</div>
+                <a href="https://wa.me/905079605049?text=Merhaba,%20fason%20baskı%20için%20teklif%20almak%20istiyorum.%20${urun.ad}%20-%20${en}x${boy}cm%20-%20Tahmini%20Fiyat:%20${toplamTL.toFixed(0)}%20TL" target="_blank" class="btn-wa"><i class="fab fa-whatsapp"></i> WhatsApp ile Sipariş Ver</a>
                 <div class="calc-note">* KDV hariç fiyattır. Kesin tutar WhatsApp'ta teyit edilir.</div>
             `;
             onizlemeGuncelle();
