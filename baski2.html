@@ -810,52 +810,6 @@
         }
         .footer a { color: var(--neon); text-decoration: none; }
 
-        /* ===== STICKY MOBILE BAR ===== */
-        .sticky-mobile-bar {
-            display: none;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(255,255,255,0.95);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-top: 1px solid var(--border);
-            padding: 12px 20px calc(12px + env(safe-area-inset-bottom));
-            z-index: 998;
-            transform: translateY(100%);
-            transition: transform 0.3s ease;
-        }
-        .sticky-mobile-bar.visible { transform: translateY(0); }
-        .sticky-mobile-bar .sticky-content {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 12px;
-        }
-        .sticky-mobile-bar .sticky-price {
-            font-weight: 900;
-            font-size: 1.2rem;
-            color: var(--accent);
-        }
-        .sticky-mobile-bar .sticky-price small {
-            font-size: 0.75rem;
-            color: var(--gray);
-            font-weight: 500;
-        }
-        .sticky-mobile-bar .sticky-btn {
-            background: var(--neon);
-            color: #000;
-            padding: 10px 20px;
-            border-radius: 30px;
-            font-weight: 700;
-            font-size: 0.85rem;
-            text-decoration: none;
-            transition: 0.2s;
-        }
-        .sticky-mobile-bar .sticky-btn:hover { background: #d4ff33; }
-        @media (max-width: 640px) { .sticky-mobile-bar { display: block; } }
-
         /* ===== FLOAT BUTTONS ===== */
         .wp-float {
             position: fixed;
@@ -906,62 +860,6 @@
             .wp-btn .btn-label { display: none; }
         }
 
-        /* ===== TOAST / NOTIFICATIONS ===== */
-        .toast-container {
-            position: fixed;
-            bottom: 100px;
-            left: 20px;
-            z-index: 10000;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            pointer-events: none;
-            max-width: 320px;
-        }
-        .toast {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 10px 14px;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 0.8rem;
-            font-weight: 500;
-            color: var(--text);
-            animation: toastIn 0.4s ease, toastOut 0.4s ease 5s forwards;
-            pointer-events: auto;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            background: rgba(255,255,255,0.92);
-        }
-        .toast-icon {
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            background: rgba(111,143,0,0.12);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--accent);
-            font-size: 11px;
-            flex-shrink: 0;
-        }
-        @keyframes toastIn {
-            from { opacity: 0; transform: translateX(-20px) scale(0.95); }
-            to { opacity: 1; transform: translateX(0) scale(1); }
-        }
-        @keyframes toastOut {
-            from { opacity: 1; transform: translateX(0) scale(1); }
-            to { opacity: 0; transform: translateX(-20px) scale(0.95); }
-        }
-
-        @media (max-width: 640px) {
-            .toast-container { bottom: 90px; left: 12px; max-width: 260px; }
-            .toast { font-size: 0.75rem; padding: 8px 12px; }
-        }
-
         @media (max-width: 480px) {
             .hero-content h1 { font-size: 1.8rem; }
             .calculator { padding: 20px; }
@@ -1000,9 +898,6 @@
     </script>
 </head>
 <body>
-
-    <!-- TOAST CONTAINER -->
-    <div class="toast-container" id="toastContainer"></div>
 
     <!-- NAV -->
     <nav>
@@ -1109,11 +1004,11 @@
                     <label for="en">En (cm)</label>
                     <input type="number" id="en" placeholder="Örn: 100" min="1" value="100">
                     <div class="quick-sizes">
-                        <button class="quick-size-btn" onclick="setSize(50,30)">50×30</button>
-                        <button class="quick-size-btn" onclick="setSize(100,50)">100×50</button>
-                        <button class="quick-size-btn active" onclick="setSize(100,100)">100×100</button>
-                        <button class="quick-size-btn" onclick="setSize(200,100)">200×100</button>
-                        <button class="quick-size-btn" onclick="setSize(300,150)">300×150</button>
+                        <button class="quick-size-btn" data-en="50" data-boy="30">50×30</button>
+                        <button class="quick-size-btn" data-en="100" data-boy="50">100×50</button>
+                        <button class="quick-size-btn active" data-en="100" data-boy="100">100×100</button>
+                        <button class="quick-size-btn" data-en="200" data-boy="100">200×100</button>
+                        <button class="quick-size-btn" data-en="300" data-boy="150">300×150</button>
                     </div>
                 </div>
                 <div class="calc-group">
@@ -1509,16 +1404,6 @@
         </div>
     </div>
 
-    <!-- STICKY MOBILE BAR -->
-    <div class="sticky-mobile-bar" id="stickyBar">
-        <div class="sticky-content">
-            <div class="sticky-price" id="stickyPrice">— <small>TL</small></div>
-            <a href="#hesapla" class="sticky-btn" onclick="document.getElementById('hesapla').scrollIntoView({behavior:'smooth'})">
-                <i class="fas fa-calculator"></i> Hesapla
-            </a>
-        </div>
-    </div>
-
     <!-- FLOAT BUTTONS -->
     <div class="wp-float">
         <a href="https://www.instagram.com/uzman.reklamm/" class="wp-btn instagram" target="_blank">
@@ -1533,16 +1418,13 @@
 
     <script type="module">
         // ==============================================
-        //  FIREBASE ENTEGRASYONU
-        //  Buraya kendi Firebase config'ini yapıştır!
+        //  FIREBASE ENTEGRASYONU (TEK ÇEKİMLİ)
         // ==============================================
 
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
-        import { getDatabase, ref, get, set, update, onValue } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-database.js";
+        import { getDatabase, ref, get, set, update } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-database.js";
 
-        // ==============================================
         // 🔥 KENDİ FIREBASE CONFIG'İNİ BURAYA YAPIŞTIR
-        // ==============================================
         const firebaseConfig = {
             apiKey: "AIzaSyCQT33KRLCTcF6HE09EFY7MT0tlEe39Tsc",
             authDomain: "yeni-7b1e8.firebaseapp.com",
@@ -1554,18 +1436,17 @@
             measurementId: "G-R5082W42VP"
         };
 
-        // Firebase'i başlat
         const app = initializeApp(firebaseConfig);
         const db = getDatabase(app);
         const counterRef = ref(db, 'counter');
 
         // ==============================================
-        //  FİYAT VERİLERİ (MEVCUT)
+        //  FİYAT VERİLERİ
         // ==============================================
         const fiyatlar = {
             ince_vinil: { ad: 'İnce Vinil', fiyat: 1.80, birim: 'USD', desc: 'İnce vinil, Konica Solvent baskı teknolojisi ile üretilir. Dış mekan reklamlarında, araç giydirmede ve mağaza vitrinlerinde sıklıkla kullanılır. Esnek yapısı sayesinde düz olmayan yüzeylere kolayca uygulanır. Ekonomik fiyatıyla bütçe dostudur, 2-3 yıl dayanıklılık sunar.' },
             normal_vinil: { ad: 'Normal Vinil', fiyat: 2.35, birim: 'USD', desc: 'Normal vinil, günlük kullanım için ideal bir dış mekan malzemesidir. Konica Solvent baskı ile canlı renkler elde edilir. Tabelalar, araç giydirme ve duvar reklamlarında tercih edilir. Orta kalite segmentinde olup, 3-4 yıl boyunca ilk günkü parlaklığını korur.' },
-            avrupa_vinil: { ad: 'Avrupa Vinil', fiyat: 2.70, birim: 'USD', desc: 'Avrupa vinili, yüksek kaliteli hammaddeden üretilir. UV ışınlarına karşı üstün direnç gösterir, renk solması minimum seviyededir. Uzun ömürlü projeler (4-5 yıl) için idealdir. Kurumsal firmalar, AVM\'ler ve oteller tarafından tercih edilir.' },
+            avrupa_vinil: { ad: 'Avrupa Vinil', fiyat: 2.70, birim: 'USD', desc: 'Avrupa vinili, yüksek kaliteli hammaddeden üretilir. UV ışınlarına karşı üstün direnç gösterir, renk solması minimum seviyededir. Uzun ömürlü projekler (4-5 yıl) için idealdir. Kurumsal firmalar, AVM\'ler ve oteller tarafından tercih edilir.' },
             arkasi_siyah_vinil: { ad: 'Arkası Siyah Vinil', fiyat: 2.95, birim: 'USD', desc: 'Arkası siyah vinil, opak görünümlü ve ışık geçirmez özelliğe sahiptir. Arkadan aydınlatmalı tabelalarda ve ışık sızmasının istenmediği projelerde kullanılır. Mat yüzeyi ile prestijli bir görünüm sunar.' },
             mesh_vinil: { ad: 'Mesh Vinil', fiyat: 3.15, birim: 'USD', desc: 'Mesh vinil, delikli yapısı sayesinde rüzgarı geçirir, bu nedenle bina cephelerinde ve iskele üzerinde güvenle kullanılır. %30-40 oranında delikli olup, arkasından hava sirkülasyonu sağlar. Aynı zamanda tek yönlü görüş özelliği ile cam giydirmede de tercih edilir.' },
             isikli_vinil: { ad: 'Işıklı Vinil', fiyat: 4.75, birim: 'USD', desc: 'Işıklı vinil, arkadan aydınlatmalı tabelalar için özel olarak üretilmiştir. LED veya floresan ışık kaynaklarının arkasına yerleştirildiğinde ışığı homojen bir şekilde dağıtır. Gece ve gündüz etkileyici görünüm sağlar. Marka logoları ve vitrin tabelalarında sıklıkla kullanılır.' },
@@ -1604,30 +1485,36 @@
         };
 
         // ==============================================
-        //  SAYAÇLAR (FIREBASE)
+        //  SAYAÇLAR (FIREBASE TEK ÇEKİMLİ)
         // ==============================================
 
         function getToday() {
             return new Date().toISOString().split('T')[0];
         }
 
-        async function firebaseSayacOku() {
+        // Sayfa açılırken veri çek
+        async function loadCounters() {
             try {
                 const snapshot = await get(counterRef);
                 if (snapshot.exists()) {
-                    return snapshot.val();
+                    const data = snapshot.val();
+                    document.getElementById('totalCount').textContent = (data.total || 0).toLocaleString('tr-TR');
+                    document.getElementById('todayCount').textContent = data.today || 0;
                 } else {
-                    // İlk kez açılıyorsa başlangıç verisini oluştur
+                    // Başlangıç verisi oluştur
                     await set(counterRef, { total: 0, today: 0, lastDate: getToday() });
-                    return { total: 0, today: 0, lastDate: getToday() };
+                    document.getElementById('totalCount').textContent = '0';
+                    document.getElementById('todayCount').textContent = '0';
                 }
             } catch (error) {
                 console.warn("Firebase okuma hatası:", error);
-                return null;
+                document.getElementById('totalCount').textContent = '—';
+                document.getElementById('todayCount').textContent = '—';
             }
         }
 
-        async function firebaseSayacArtir() {
+        // Hesaplama yapılınca sayaçları artır ve güncelle
+        async function incrementCounters() {
             try {
                 const today = getToday();
                 const snapshot = await get(counterRef);
@@ -1648,98 +1535,45 @@
                     lastDate: newLastDate
                 });
 
-                return { total: newTotal, today: newToday };
+                // Ekranı güncelle
+                document.getElementById('totalCount').textContent = newTotal.toLocaleString('tr-TR');
+                document.getElementById('todayCount').textContent = newToday;
             } catch (error) {
                 console.warn("Firebase güncelleme hatası:", error);
-                return null;
             }
         }
 
         // ==============================================
-        //  ARAYÜZ GÜNCELLEMELERİ
+        //  HESAPLAYICI
         // ==============================================
 
-        function updateUI(total, today) {
-            document.getElementById('totalCount').textContent = total.toLocaleString('tr-TR');
-            document.getElementById('todayCount').textContent = today;
-        }
+        // Quick size butonları
+        document.querySelectorAll('.quick-size-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const en = parseInt(this.dataset.en);
+                const boy = parseInt(this.dataset.boy);
+                document.getElementById('en').value = en;
+                document.getElementById('boy').value = boy;
+                document.querySelectorAll('.quick-size-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                onizlemeGuncelle();
+                // Fiyatı hesapla ama sayacı artırma
+                fiyatHesapla();
+            });
+        });
 
-        // Sayfa yüklendiğinde Firebase'den veri çek
-        async function loadCounters() {
-            const data = await firebaseSayacOku();
-            if (data) {
-                updateUI(data.total, data.today);
-            } else {
-                // Firebase bağlanamazsa statik göster (hata durumu)
-                document.getElementById('totalCount').textContent = "—";
-                document.getElementById('todayCount').textContent = "—";
-            }
-        }
-
-        // Hesapla butonuna basıldığında sayacı artır
-        async function incrementAndUpdate() {
-            const result = await firebaseSayacArtir();
-            if (result) {
-                updateUI(result.total, result.today);
-            } else {
-                // Hata durumunda sessiz kal, kullanıcıya hissettirme
-            }
-        }
-
-        // ==============================================
-        //  BİLDİRİM (TOAST) ve DİĞER FONKSİYONLAR
-        // ==============================================
-
-        const sehirler = [
-            'İstanbul', 'Ankara', 'İzmir', 'Bursa', 'Antalya', 'Adana', 'Konya',
-            'Gaziantep', 'Kayseri', 'Mersin', 'Diyarbakır', 'Samsun', 'Denizli',
-            'Şanlıurfa', 'Eskişehir', 'Malatya', 'Erzurum', 'Kahramanmaraş',
-            'Van', 'Batman', 'Elazığ', 'Trabzon', 'Rize', 'Artvin', 'Edirne',
-            'Tekirdağ', 'Kırklareli', 'Balıkesir', 'Çanakkale', 'Manisa',
-            'Aydın', 'Muğla', 'Bodrum', 'Fethiye', 'Alanya', 'Belek', 'Kemer'
-        ];
-
-        function randomCity() {
-            return sehirler[Math.floor(Math.random() * sehirler.length)];
-        }
-
-        function showActivityToast() {
-            const container = document.getElementById('toastContainer');
-            const city = randomCity();
-            const toast = document.createElement('div');
-            toast.className = 'toast';
-            toast.innerHTML = `
-                <div class="toast-icon"><i class="fas fa-map-pin"></i></div>
-                <span>${city}'den bir ziyaretçi fiyat hesapladı</span>
-            `;
-            container.appendChild(toast);
-            setTimeout(() => toast.remove(), 5500);
-        }
-
-        function showWelcomeToast() {
-            const container = document.getElementById('toastContainer');
-            const toast = document.createElement('div');
-            toast.className = 'toast';
-            toast.innerHTML = `
-                <div class="toast-icon"><i class="fas fa-hand-sparkles"></i></div>
-                <span>👋 Hoş geldiniz! Fiyat hesaplamak için ölçü girin.</span>
-            `;
-            container.appendChild(toast);
-            setTimeout(() => toast.remove(), 5000);
-        }
-
-        // ==============================================
-        //  HESAPLAYICI (MEVCUT)
-        // ==============================================
-
-        function setSize(en, boy) {
-            document.getElementById('en').value = en;
-            document.getElementById('boy').value = boy;
-            document.querySelectorAll('.quick-size-btn').forEach(btn => btn.classList.remove('active'));
-            if (event && event.target) event.target.classList.add('active');
+        // Input değişikliklerinde
+        document.getElementById('en').addEventListener('input', function() {
             onizlemeGuncelle();
-            hesapla();
-        }
+            fiyatHesapla();
+        });
+        document.getElementById('boy').addEventListener('input', function() {
+            onizlemeGuncelle();
+            fiyatHesapla();
+        });
+        document.getElementById('malzeme').addEventListener('change', function() {
+            fiyatHesapla();
+        });
 
         function onizlemeGuncelle() {
             const en = parseFloat(document.getElementById('en').value) || 0;
@@ -1770,11 +1604,8 @@
             kutu.textContent = en + '×' + boy;
         }
 
-        document.getElementById('en').addEventListener('input', function() { onizlemeGuncelle(); hesapla(); });
-        document.getElementById('boy').addEventListener('input', function() { onizlemeGuncelle(); hesapla(); });
-        document.getElementById('malzeme').addEventListener('change', hesapla);
-
-        function hesapla() {
+        // Sadece fiyat hesapla (sayacı artırmaz, bildirim göstermez)
+        function fiyatHesapla() {
             const malzemeKey = document.getElementById('malzeme').value;
             const en = parseFloat(document.getElementById('en').value);
             const boy = parseFloat(document.getElementById('boy').value);
@@ -1785,7 +1616,6 @@
                     <div class="detail">Lütfen geçerli en ve boy girin.</div>
                     <div class="calc-note">* KDV hariç</div>
                 `;
-                updateStickyBar(null);
                 return;
             }
             const m2 = (en * boy) / 10000;
@@ -1799,28 +1629,19 @@
                 <a href="https://wa.me/905079605049?text=${encodeURIComponent('Merhaba Uzman Reklam 👋\n\nFason baskı siparişi vermek istiyorum:\n\n📦 Ürün: ' + urun.ad + '\n📐 Ölçü: ' + en + '×' + boy + ' cm\n📊 Alan: ' + m2.toFixed(2) + ' m²\n💰 Tahmini: ' + toplamTL.toFixed(0) + ' TL (KDV hariç)\n\nTasarım dosyam hazır, gönderebilirim.')}" target="_blank" class="btn-wa"><i class="fab fa-whatsapp"></i> WhatsApp ile Sipariş Ver</a>
                 <div class="calc-note">* KDV hariç fiyattır. Kesin tutar WhatsApp'ta teyit edilir.</div>
             `;
-            updateStickyBar(toplamTL);
-            onizlemeGuncelle();
-
-            // Her hesaplamada sayacı artır
-            incrementAndUpdate();
-            showActivityToast();
         }
 
-        // ===== STICKY BAR =====
-        function updateStickyBar(price) {
-            const bar = document.getElementById('stickyBar');
-            const priceEl = document.getElementById('stickyPrice');
-            if (price) {
-                priceEl.innerHTML = price.toFixed(0) + ' <small>TL</small>';
-                bar.classList.add('visible');
-            } else {
-                bar.classList.remove('visible');
-            }
-        }
+        // HESAPLA butonuna basıldığında: fiyat hesapla + sayacı artır
+        window.hesapla = function() {
+            fiyatHesapla();
+            incrementCounters();
+        };
 
-        // ===== MODAL FONKSİYONLARI =====
-        function openModal(key) {
+        // ==============================================
+        //  MODAL FONKSİYONLARI
+        // ==============================================
+
+        window.openModal = function(key) {
             const urun = fiyatlar[key];
             const detay = urunDetay[key];
             if (!urun) return;
@@ -1840,59 +1661,63 @@
             document.getElementById('modalWaBtn').href = 'https://wa.me/905079605049?text=' + waMsg;
             document.getElementById('productModal').classList.add('active');
             document.body.style.overflow = 'hidden';
-        }
-        function closeModal() {
+        };
+
+        window.closeModal = function() {
             document.getElementById('productModal').classList.remove('active');
             document.body.style.overflow = '';
-        }
+        };
 
         // Duvar
-        function openDuvarModal() {
+        window.openDuvarModal = function() {
             document.getElementById('duvarModal').classList.add('active');
             document.body.style.overflow = 'hidden';
-        }
-        function closeDuvarModal() {
+        };
+        window.closeDuvarModal = function() {
             document.getElementById('duvarModal').classList.remove('active');
             document.body.style.overflow = '';
-        }
-        function changeDuvarImage(src, thumbEl) {
+        };
+        window.changeDuvarImage = function(src, thumbEl) {
             document.getElementById('duvarModalImg').src = src;
             document.querySelectorAll('#duvarModal .modal-thumb').forEach(el => el.classList.remove('active-thumb'));
             thumbEl.classList.add('active-thumb');
-        }
+        };
 
         // Atatürk
-        function openAtaturkModal() {
+        window.openAtaturkModal = function() {
             document.getElementById('ataturkModal').classList.add('active');
             document.body.style.overflow = 'hidden';
-        }
-        function closeAtaturkModal() {
+        };
+        window.closeAtaturkModal = function() {
             document.getElementById('ataturkModal').classList.remove('active');
             document.body.style.overflow = '';
-        }
-        function changeAtaturkImage(src, thumbEl) {
+        };
+        window.changeAtaturkImage = function(src, thumbEl) {
             document.getElementById('ataturkModalImg').src = src;
             document.querySelectorAll('#ataturkModal .modal-thumb').forEach(el => el.classList.remove('active-thumb'));
             thumbEl.classList.add('active-thumb');
-        }
+        };
 
         // Çocuk
-        function openCocukModal() {
+        window.openCocukModal = function() {
             document.getElementById('cocukModal').classList.add('active');
             document.body.style.overflow = 'hidden';
-        }
-        function closeCocukModal() {
+        };
+        window.closeCocukModal = function() {
             document.getElementById('cocukModal').classList.remove('active');
             document.body.style.overflow = '';
-        }
-        function changeCocukImage(src, thumbEl) {
+        };
+        window.changeCocukImage = function(src, thumbEl) {
             document.getElementById('cocukModalImg').src = src;
             document.querySelectorAll('#cocukModal .modal-thumb').forEach(el => el.classList.remove('active-thumb'));
             thumbEl.classList.add('active-thumb');
-        }
+        };
 
-        // ===== FAQ =====
-        function toggleFaq(el) {
+        // ==============================================
+        //  FAQ
+        // ==============================================
+
+        window.toggleFaq = function(el) {
             const answer = el.querySelector('.faq-answer');
             const icon = el.querySelector('.faq-question i');
             const isOpen = answer.classList.contains('open');
@@ -1906,19 +1731,19 @@
                 icon.className = 'fas fa-minus';
                 el.classList.add('active');
             }
-        }
+        };
 
         // ==============================================
-        //  SAYFA YÜKLENİNCE ÇALIŞACAKLAR
+        //  SAYFA YÜKLENİNCE
         // ==============================================
 
-        window.onload = async function() {
-            // Firebase'den sayaçları yükle
+        window.addEventListener('load', async function() {
+            // Firebase'den sayaçları yükle (tek seferlik)
             await loadCounters();
 
-            // Hesaplayıcıyı çalıştır
-            hesapla();
+            // Önizleme ve fiyat hesaplama (sayacı artırmaz)
             onizlemeGuncelle();
+            fiyatHesapla();
 
             // Animasyon
             document.querySelectorAll('.step-box, .product-card, .faq-item').forEach((el, i) => {
@@ -1930,34 +1755,7 @@
                     el.style.transform = 'translateY(0)';
                 }, 100 + i * 50);
             });
-
-            // Hoş geldin toast
-            setTimeout(showWelcomeToast, 2000);
-
-            // Periyodik bildirim (her 30 sn)
-            setInterval(() => {
-                if (document.querySelector('.toast-container .toast')) return;
-                showActivityToast();
-            }, 30000);
-        };
-
-        // Global fonksiyonları window'a bağla (HTML onclick için)
-        window.setSize = setSize;
-        window.hesapla = hesapla;
-        window.openModal = openModal;
-        window.closeModal = closeModal;
-        window.openDuvarModal = openDuvarModal;
-        window.closeDuvarModal = closeDuvarModal;
-        window.changeDuvarImage = changeDuvarImage;
-        window.openAtaturkModal = openAtaturkModal;
-        window.closeAtaturkModal = closeAtaturkModal;
-        window.changeAtaturkImage = changeAtaturkImage;
-        window.openCocukModal = openCocukModal;
-        window.closeCocukModal = closeCocukModal;
-        window.changeCocukImage = changeCocukImage;
-        window.toggleFaq = toggleFaq;
-        window.onizlemeGuncelle = onizlemeGuncelle;
-        window.updateStickyBar = updateStickyBar;
+        });
     </script>
 </body>
 </html>
