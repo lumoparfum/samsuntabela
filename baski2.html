@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
     <style>
-        /* ----- Tüm stiller aynen kaldı, değişiklik yok ----- */
+        /* ----- Tüm stiller aynen kaldı, sadece paylaş butonu değişti ----- */
         * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
         :root {
             --neon: #ccff00;
@@ -389,24 +389,31 @@
         .calc-result .btn-wa:hover { background:#1ebe57; transform:scale(1.03); }
         .calc-result .btn-wa:active { transform:scale(0.96); }
         .calc-result .btn-wa i { margin-right:10px; }
-        /* Yeni paylaş butonu stili */
+
+        /* ===== YENİ PAYLAŞ BUTONU (iOS estetiği) ===== */
         .btn-share {
-            display:inline-block;
-            background:#6f8f00;
-            color:#fff;
-            padding:14px 28px;
-            border-radius:50px;
-            font-weight:800;
+            display:inline-flex;
+            align-items:center;
+            gap:6px;
+            background:transparent;
+            color:var(--gray);
+            padding:6px 14px;
+            border-radius:20px;
+            border:1px solid var(--border);
+            font-size:0.75rem;
+            font-weight:600;
             text-decoration:none;
             margin-top:10px;
             transition:0.3s;
-            width:100%;
-            text-align:center;
-            border:none;
             cursor:pointer;
+            font-family:inherit;
         }
-        .btn-share:hover { background:#5a7400; transform:scale(1.02); }
-        .btn-share i { margin-right:10px; }
+        .btn-share:hover {
+            background:var(--bg);
+            border-color:var(--accent);
+            color:var(--text);
+        }
+        .btn-share i { font-size:0.85rem; color:var(--accent); }
 
         .calc-note {
             font-size:0.75rem;
@@ -1560,10 +1567,8 @@
             <div class="modal-desc" id="modalDesc">Ürün açıklaması burada olacak.</div>
             <div class="modal-price" id="modalPrice">Fiyat</div>
             <a href="#" id="modalWaBtn" class="btn-wa" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp ile Sipariş Ver</a>
-            <!-- PAYLAŞ BUTONU -->
-            <a href="#" onclick="shareProduct(document.getElementById('modalTitle').textContent, document.getElementById('modalDesc').textContent, document.getElementById('modalPrice').textContent, window.location.href); return false;" class="btn-share">
-                <i class="fas fa-share-alt"></i> Paylaş
-            </a>
+            <!-- Paylaş butonu (ürün ID'si ile) -->
+            <button class="btn-share" onclick="shareProductWithUrl('modalTitle', 'modalDesc', 'modalPrice', 'product')"><i class="fas fa-share-alt"></i> Paylaş</button>
         </div>
     </div>
 
@@ -1581,9 +1586,7 @@
             </div>
             <div class="modal-price">700 TL <small>(KDV Dahil)</small></div>
             <a href="https://wa.me/905079605049?text=Merhaba,%20Duvar%20Tablosu%2050x70%20için%20sipariş%20vermek%20istiyorum." class="btn-wa" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp ile Sipariş Ver</a>
-            <a href="#" onclick="shareProduct('Duvar Tablosu 50×70', 'Folyo kaplı 3mm MDF, çift taraflı bant ile kolay asılır. 3 farklı tasarım.', '700 TL (KDV Dahil)', window.location.href); return false;" class="btn-share">
-                <i class="fas fa-share-alt"></i> Paylaş
-            </a>
+            <button class="btn-share" onclick="shareProductStatic('Duvar Tablosu 50×70', 'Folyo kaplı 3mm MDF, çift taraflı bant', '700 TL (KDV Dahil)', 'duvar')"><i class="fas fa-share-alt"></i> Paylaş</button>
         </div>
     </div>
 
@@ -1597,9 +1600,7 @@
             <div class="modal-thumbs" id="takimModalThumbs"></div>
             <div class="modal-price" id="takimModalPrice"></div>
             <a href="#" id="takimModalWaBtn" class="btn-wa" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp ile Sipariş Ver</a>
-            <a href="#" onclick="shareProduct(document.getElementById('takimModalTitle').textContent, document.getElementById('takimModalDesc').textContent, document.getElementById('takimModalPrice').textContent, window.location.href); return false;" class="btn-share">
-                <i class="fas fa-share-alt"></i> Paylaş
-            </a>
+            <button class="btn-share" onclick="shareProductWithUrl('takimModalTitle', 'takimModalDesc', 'takimModalPrice', 'takim')"><i class="fas fa-share-alt"></i> Paylaş</button>
             <div class="modal-note">💬 İsim veya forma numarası eklemek isterseniz WhatsApp'ta belirtebilirsiniz (ek ücretli). *Resmi lisanslı ürün değildir, taraftar yapımı hediyelik üründür.</div>
         </div>
     </div>
@@ -1622,9 +1623,7 @@
             </div>
             <div class="modal-price">2.899 TL <small>(KDV Dahil)</small></div>
             <a href="https://wa.me/905079605049?text=Merhaba,%20Atatürk%20Maketi%20175%20cm%20için%20sipariş%20vermek%20istiyorum." class="btn-wa" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp ile Sipariş Ver</a>
-            <a href="#" onclick="shareProduct('Atatürk Maketi 175 cm', 'Cumhuriyetimizin kurucusu Gazi Mustafa Kemal Atatürk\'ün heybetli duruşu. 3 mm Dekota, UV baskı.', '2.899 TL (KDV Dahil)', window.location.href); return false;" class="btn-share">
-                <i class="fas fa-share-alt"></i> Paylaş
-            </a>
+            <button class="btn-share" onclick="shareProductStatic('Atatürk Maketi 175 cm', 'Cumhuriyetimizin kurucusu Gazi Mustafa Kemal Atatürk\'ün heybetli duruşu. 3 mm Dekota, UV baskı.', '2.899 TL (KDV Dahil)', 'ataturk')"><i class="fas fa-share-alt"></i> Paylaş</button>
         </div>
     </div>
 
@@ -1666,9 +1665,7 @@
             </div>
             <div class="modal-price">2.899 TL <small>(KDV Dahil)</small></div>
             <a href="https://wa.me/905079605049?text=Merhaba,%20Çocuk%20Maketi%20için%20sipariş%20vermek%20istiyorum." class="btn-wa" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp ile Sipariş Ver</a>
-            <a href="#" onclick="shareProduct('Çocuk Maketi (Kişiye Özel)', 'Çocuğunuzun fotoğrafına özel, 175 cm, 3mm Dekota, UV baskı.', '2.899 TL (KDV Dahil)', window.location.href); return false;" class="btn-share">
-                <i class="fas fa-share-alt"></i> Paylaş
-            </a>
+            <button class="btn-share" onclick="shareProductStatic('Çocuk Maketi (Kişiye Özel)', 'Çocuğunuzun fotoğrafına özel, 175 cm, 3mm Dekota, UV baskı.', '2.899 TL (KDV Dahil)', 'cocuk')"><i class="fas fa-share-alt"></i> Paylaş</button>
         </div>
     </div>
 
@@ -1686,13 +1683,12 @@
 
     <script type="module">
         // ==============================================
-        //  FIREBASE ENTEGRASYONU (TEK ÇEKİMLİ)
+        //  FIREBASE ENTEGRASYONU
         // ==============================================
 
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
         import { getDatabase, ref, get, set, update } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-database.js";
 
-        // 🔥 KENDİ FIREBASE CONFIG'İNİ BURAYA YAPIŞTIR
         const firebaseConfig = {
             apiKey: "AIzaSyCQT33KRLCTcF6HE09EFY7MT0tlEe39Tsc",
             authDomain: "yeni-7b1e8.firebaseapp.com",
@@ -1735,7 +1731,7 @@
         const kur_eur = 53.72;
 
         // ==============================================
-        //  TARAFTAR MAKETLERİ (5 takım × yetişkin/çocuk)
+        //  TARAFTAR MAKETLERİ
         // ==============================================
         const takimMaketleri = {
             samsunspor_yetiskin: { takim: 'Samsunspor', tip: 'Yetişkin Maketi', boy: '175 cm', fiyat: 2899,
@@ -1744,28 +1740,24 @@
             samsunspor_cocuk: { takim: 'Samsunspor', tip: 'Çocuk Maketi', boy: '140 cm', fiyat: 2899,
                 img: ['images/fason/samsunspor-cocuk-1.jpg', 'images/fason/samsunspor-cocuk-2.jpg'],
                 desc: "Küçük Samsunsporlu'nun odasına dev bir neşe! 140 cm'lik bu özel maket, kırmızı-beyaz formalı, güler yüzlü duruşuyla minik taraftarın hayal gücünü destekler. Doğum günü sürprizleri, çocuk odası dekorasyonu ve fotoğraf çekimleri için mükemmel." },
-
             trabzonspor_yetiskin: { takim: 'Trabzonspor', tip: 'Yetişkin Maketi', boy: '175 cm', fiyat: 2899,
                 img: ['images/fason/trabzonspor-yetiskin-1.jpg', 'images/fason/trabzonspor-yetiskin-2.jpg'],
                 desc: "Trabzonspor taraftarı olmanın gururunu evine taşı! 175 cm'lik gerçek boy maket, bordo-mavi formasıyla odanın en dikkat çeken parçası olacak. Yüksek çözünürlüklü UV baskı, 3mm Dekota malzeme ve ayaklı stand ile kolay kurulum. Maç izleme partileri, taraftar odası ya da hediye için ideal." },
             trabzonspor_cocuk: { takim: 'Trabzonspor', tip: 'Çocuk Maketi', boy: '140 cm', fiyat: 2899,
                 img: ['images/fason/trabzonspor-cocuk-1.jpg', 'images/fason/trabzonspor-cocuk-2.jpg'],
                 desc: "Küçük Trabzonsporlu'nun odasına dev bir neşe! 140 cm'lik bu özel maket, bordo-mavi formalı, güler yüzlü duruşuyla minik taraftarın hayal gücünü destekler. Doğum günü sürprizleri, çocuk odası dekorasyonu ve fotoğraf çekimleri için mükemmel." },
-
             galatasaray_yetiskin: { takim: 'Galatasaray', tip: 'Yetişkin Maketi', boy: '175 cm', fiyat: 2899,
                 img: ['images/fason/galatasaray-yetiskin-1.jpg', 'images/fason/galatasaray-yetiskin-2.jpg'],
                 desc: "Galatasaray taraftarı olmanın gururunu evine taşı! 175 cm'lik gerçek boy maket, sarı-kırmızı formasıyla odanın en dikkat çeken parçası olacak. Yüksek çözünürlüklü UV baskı, 3mm Dekota malzeme ve ayaklı stand ile kolay kurulum. Maç izleme partileri, taraftar odası ya da hediye için ideal." },
             galatasaray_cocuk: { takim: 'Galatasaray', tip: 'Çocuk Maketi', boy: '140 cm', fiyat: 2899,
                 img: ['images/fason/galatasaray-cocuk-1.jpg', 'images/fason/galatasaray-cocuk-2.jpg'],
                 desc: "Küçük Galatasaraylı'nın odasına dev bir neşe! 140 cm'lik bu özel maket, sarı-kırmızı formalı, güler yüzlü duruşuyla minik taraftarın hayal gücünü destekler. Doğum günü sürprizleri, çocuk odası dekorasyonu ve fotoğraf çekimleri için mükemmel." },
-
             fenerbahce_yetiskin: { takim: 'Fenerbahçe', tip: 'Yetişkin Maketi', boy: '175 cm', fiyat: 2899,
                 img: ['images/fason/fenerbahce-yetiskin-1.jpg', 'images/fason/fenerbahce-yetiskin-2.jpg'],
                 desc: "Fenerbahçe taraftarı olmanın gururunu evine taşı! 175 cm'lik gerçek boy maket, sarı-lacivert formasıyla odanın en dikkat çeken parçası olacak. Yüksek çözünürlüklü UV baskı, 3mm Dekota malzeme ve ayaklı stand ile kolay kurulum. Maç izleme partileri, taraftar odası ya da hediye için ideal." },
             fenerbahce_cocuk: { takim: 'Fenerbahçe', tip: 'Çocuk Maketi', boy: '140 cm', fiyat: 2899,
                 img: ['images/fason/fenerbahce-cocuk-1.jpg', 'images/fason/fenerbahce-cocuk-2.jpg'],
                 desc: "Küçük Fenerbahçeli'nin odasına dev bir neşe! 140 cm'lik bu özel maket, sarı-lacivert formalı, güler yüzlü duruşuyla minik taraftarın hayal gücünü destekler. Doğum günü sürprizleri, çocuk odası dekorasyonu ve fotoğraf çekimleri için mükemmel." },
-
             besiktas_yetiskin: { takim: 'Beşiktaş', tip: 'Yetişkin Maketi', boy: '175 cm', fiyat: 2899,
                 img: ['images/fason/besiktas-yetiskin-1.jpg', 'images/fason/besiktas-yetiskin-2.jpg'],
                 desc: "Beşiktaş taraftarı olmanın gururunu evine taşı! 175 cm'lik gerçek boy maket, siyah-beyaz formasıyla odanın en dikkat çeken parçası olacak. Yüksek çözünürlüklü UV baskı, 3mm Dekota malzeme ve ayaklı stand ile kolay kurulum. Maç izleme partileri, taraftar odası ya da hediye için ideal." },
@@ -1795,12 +1787,10 @@
         };
 
         // ==============================================
-        //  SAYAÇLAR (FIREBASE TEK ÇEKİMLİ)
+        //  SAYAÇLAR
         // ==============================================
 
-        function getToday() {
-            return new Date().toISOString().split('T')[0];
-        }
+        function getToday() { return new Date().toISOString().split('T')[0]; }
 
         async function loadCounters() {
             try {
@@ -1826,46 +1816,69 @@
                 const today = getToday();
                 const snapshot = await get(counterRef);
                 let data = snapshot.exists() ? snapshot.val() : { total: 0, today: 0, lastDate: today };
-
                 let newTotal = (data.total || 0) + 1;
                 let newToday = (data.today || 0) + 1;
                 let newLastDate = data.lastDate || today;
-
-                if (newLastDate !== today) {
-                    newToday = 1;
-                    newLastDate = today;
-                }
-
-                await update(counterRef, {
-                    total: newTotal,
-                    today: newToday,
-                    lastDate: newLastDate
-                });
-
+                if (newLastDate !== today) { newToday = 1; newLastDate = today; }
+                await update(counterRef, { total: newTotal, today: newToday, lastDate: newLastDate });
                 document.getElementById('totalCount').textContent = newTotal.toLocaleString('tr-TR');
                 document.getElementById('todayCount').textContent = newToday;
-            } catch (error) {
-                console.warn("Firebase güncelleme hatası:", error);
-            }
+            } catch (error) { console.warn("Firebase güncelleme hatası:", error); }
         }
 
         // ==============================================
-        //  PAYLAŞIM FONKSİYONLARI
+        //  PAYLAŞIM FONKSİYONLARI (YENİ - URL ile)
         // ==============================================
 
+        // Ürün ID'sine göre paylaş (modal'daki elemanların id'sini alarak)
+        window.shareProductWithUrl = function(titleId, descId, priceId, productType) {
+            const title = document.getElementById(titleId)?.textContent || 'Ürün';
+            const desc = document.getElementById(descId)?.textContent || '';
+            const price = document.getElementById(priceId)?.textContent || '';
+            
+            // Hangi ürün tipine göre URL parametresi oluştur
+            let param = '';
+            if (productType === 'product') {
+                // Standart ürünler için malzeme key'ini bul
+                const malzeme = document.getElementById('malzeme')?.value || 'ince_vinil';
+                param = `product=${malzeme}`;
+            } else if (productType === 'takim') {
+                // Takım modal'ı açıkken, hangi takım olduğunu bul
+                const takimTitle = document.getElementById('takimModalTitle')?.textContent || '';
+                let key = '';
+                for (const [k, v] of Object.entries(takimMaketleri)) {
+                    if (takimTitle.includes(v.takim) && takimTitle.includes(v.tip)) {
+                        key = k;
+                        break;
+                    }
+                }
+                if (key) param = `product=${key}`;
+                else param = 'product=besiktas_yetiskin';
+            } else {
+                // Özel ürünler (ataturk, cocuk, duvar)
+                param = `product=${productType}`;
+            }
+            
+            const url = window.location.origin + window.location.pathname + '?' + param;
+            shareProduct(title, desc, price, url);
+        };
+
+        // Statik paylaşım (manuel title, desc, price, key)
+        window.shareProductStatic = function(title, desc, price, key) {
+            const url = window.location.origin + window.location.pathname + '?product=' + key;
+            shareProduct(title, desc, price, url);
+        };
+
+        // Ana paylaşım fonksiyonu
         window.shareProduct = function(title, desc, price, url) {
             const text = `📦 ${title}\n💰 ${price}\n📝 ${desc}\n🔗 ${url}`;
             
             if (navigator.share) {
-                navigator.share({
-                    title: title,
-                    text: text,
-                    url: url
-                }).catch(() => {});
+                navigator.share({ title, text, url }).catch(() => {});
                 return;
             }
 
-            // Fallback popup
+            // Popup
             const shareOptions = `
                 <div style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:99999; display:flex; align-items:center; justify-content:center; backdrop-filter:blur(4px);">
                     <div style="background:#fff; border-radius:20px; max-width:400px; width:100%; padding:30px; text-align:center; box-shadow:0 20px 60px rgba(0,0,0,0.3);">
@@ -1891,14 +1904,10 @@
         window.shareViaWhatsApp = function(text) {
             window.open(`https://wa.me/?text=${text}`, '_blank');
         };
-
         window.shareViaInstagram = function(text) {
             window.open(`instagram://direct?text=${text}`, '_blank');
-            setTimeout(() => {
-                window.open(`https://www.instagram.com/direct/inbox/`, '_blank');
-            }, 500);
+            setTimeout(() => { window.open(`https://www.instagram.com/direct/inbox/`, '_blank'); }, 500);
         };
-
         window.copyToClipboard = function(text) {
             navigator.clipboard.writeText(decodeURIComponent(text)).then(() => {
                 alert('✅ Metin kopyalandı!');
@@ -1931,17 +1940,9 @@
             });
         });
 
-        document.getElementById('en').addEventListener('input', function() {
-            onizlemeGuncelle();
-            fiyatHesapla();
-        });
-        document.getElementById('boy').addEventListener('input', function() {
-            onizlemeGuncelle();
-            fiyatHesapla();
-        });
-        document.getElementById('malzeme').addEventListener('change', function() {
-            fiyatHesapla();
-        });
+        document.getElementById('en').addEventListener('input', function() { onizlemeGuncelle(); fiyatHesapla(); });
+        document.getElementById('boy').addEventListener('input', function() { onizlemeGuncelle(); fiyatHesapla(); });
+        document.getElementById('malzeme').addEventListener('change', function() { fiyatHesapla(); });
 
         function onizlemeGuncelle() {
             const en = parseFloat(document.getElementById('en').value) || 0;
@@ -1994,7 +1995,7 @@
                 <div class="price">${toplamTL.toFixed(0)} <small>TL</small></div>
                 <div class="detail">📐 ${m2.toFixed(2)} m² · ${urun.ad} · ${en}x${boy} cm</div>
                 <a href="https://wa.me/905079605049?text=${encodeURIComponent('Merhaba Uzman Reklam 👋\n\nFason baskı siparişi vermek istiyorum:\n\n📦 Ürün: ' + urun.ad + '\n📐 Ölçü: ' + en + '×' + boy + ' cm\n📊 Alan: ' + m2.toFixed(2) + ' m²\n💰 Tahmini: ' + toplamTL.toFixed(0) + ' TL (KDV hariç)\n\nTasarım dosyam hazır, gönderebilirim.')}" target="_blank" class="btn-wa"><i class="fab fa-whatsapp"></i> WhatsApp ile Sipariş Ver</a>
-                <a href="#" onclick="shareProduct('${urun.ad}', '${en}x${boy} cm, ${m2.toFixed(2)} m²', '${toplamTL.toFixed(0)} TL (KDV hariç)', window.location.href); return false;" class="btn-share"><i class="fas fa-share-alt"></i> Paylaş</a>
+                <button class="btn-share" onclick="shareProduct('${urun.ad}', '${en}x${boy} cm, ${m2.toFixed(2)} m²', '${toplamTL.toFixed(0)} TL (KDV hariç)', window.location.href + '?product=${malzemeKey}')"><i class="fas fa-share-alt"></i> Paylaş</button>
                 <div class="calc-note">* KDV hariç fiyattır. Kesin tutar WhatsApp'ta teyit edilir.</div>
             `;
         }
@@ -2003,6 +2004,27 @@
             fiyatHesapla();
             incrementCounters();
         };
+
+        // ==============================================
+        //  URL'DEN MODAL AÇMA
+        // ==============================================
+
+        function openModalByKey(key) {
+            // Standart ürünler
+            if (fiyatlar[key]) {
+                openModal(key);
+                return;
+            }
+            // Takım maketleri
+            if (takimMaketleri[key]) {
+                openTakimModal(key);
+                return;
+            }
+            // Özel ürünler
+            if (key === 'ataturk') { openAtaturkModal(); return; }
+            if (key === 'cocuk') { openCocukModal(); return; }
+            if (key === 'duvar') { openDuvarModal(); return; }
+        }
 
         // ==============================================
         //  MODAL FONKSİYONLARI
@@ -2028,11 +2050,18 @@
             document.getElementById('modalWaBtn').href = 'https://wa.me/905079605049?text=' + waMsg;
             document.getElementById('productModal').classList.add('active');
             document.body.style.overflow = 'hidden';
+            // URL'yi güncelle
+            const url = new URL(window.location);
+            url.searchParams.set('product', key);
+            window.history.pushState({}, '', url);
         };
 
         window.closeModal = function() {
             document.getElementById('productModal').classList.remove('active');
             document.body.style.overflow = '';
+            const url = new URL(window.location);
+            url.searchParams.delete('product');
+            window.history.pushState({}, '', url);
         };
 
         // ==============================================
@@ -2068,25 +2097,41 @@
 
             document.getElementById('takimModal').classList.add('active');
             document.body.style.overflow = 'hidden';
+            const url = new URL(window.location);
+            url.searchParams.set('product', key);
+            window.history.pushState({}, '', url);
         };
+
         window.closeTakimModal = function() {
             document.getElementById('takimModal').classList.remove('active');
             document.body.style.overflow = '';
+            const url = new URL(window.location);
+            url.searchParams.delete('product');
+            window.history.pushState({}, '', url);
         };
+
         window.changeTakimImage = function(src, thumbEl) {
             document.getElementById('takimModalImg').src = src;
             document.querySelectorAll('#takimModal .modal-thumb').forEach(el => el.classList.remove('active-thumb'));
             thumbEl.classList.add('active-thumb');
         };
 
-        // Duvar
+        // ==============================================
+        //  DİĞER MODALLAR (Duvar, Atatürk, Çocuk)
+        // ==============================================
         window.openDuvarModal = function() {
             document.getElementById('duvarModal').classList.add('active');
             document.body.style.overflow = 'hidden';
+            const url = new URL(window.location);
+            url.searchParams.set('product', 'duvar');
+            window.history.pushState({}, '', url);
         };
         window.closeDuvarModal = function() {
             document.getElementById('duvarModal').classList.remove('active');
             document.body.style.overflow = '';
+            const url = new URL(window.location);
+            url.searchParams.delete('product');
+            window.history.pushState({}, '', url);
         };
         window.changeDuvarImage = function(src, thumbEl) {
             document.getElementById('duvarModalImg').src = src;
@@ -2094,14 +2139,19 @@
             thumbEl.classList.add('active-thumb');
         };
 
-        // Atatürk
         window.openAtaturkModal = function() {
             document.getElementById('ataturkModal').classList.add('active');
             document.body.style.overflow = 'hidden';
+            const url = new URL(window.location);
+            url.searchParams.set('product', 'ataturk');
+            window.history.pushState({}, '', url);
         };
         window.closeAtaturkModal = function() {
             document.getElementById('ataturkModal').classList.remove('active');
             document.body.style.overflow = '';
+            const url = new URL(window.location);
+            url.searchParams.delete('product');
+            window.history.pushState({}, '', url);
         };
         window.changeAtaturkImage = function(src, thumbEl) {
             document.getElementById('ataturkModalImg').src = src;
@@ -2109,14 +2159,19 @@
             thumbEl.classList.add('active-thumb');
         };
 
-        // Çocuk
         window.openCocukModal = function() {
             document.getElementById('cocukModal').classList.add('active');
             document.body.style.overflow = 'hidden';
+            const url = new URL(window.location);
+            url.searchParams.set('product', 'cocuk');
+            window.history.pushState({}, '', url);
         };
         window.closeCocukModal = function() {
             document.getElementById('cocukModal').classList.remove('active');
             document.body.style.overflow = '';
+            const url = new URL(window.location);
+            url.searchParams.delete('product');
+            window.history.pushState({}, '', url);
         };
         window.changeCocukImage = function(src, thumbEl) {
             document.getElementById('cocukModalImg').src = src;
@@ -2127,7 +2182,6 @@
         // ==============================================
         //  FAQ
         // ==============================================
-
         window.toggleFaq = function(el) {
             const answer = el.querySelector('.faq-answer');
             const icon = el.querySelector('.faq-question i');
@@ -2152,6 +2206,16 @@
             await loadCounters();
             onizlemeGuncelle();
             fiyatHesapla();
+
+            // URL'den product parametresini oku ve modal aç
+            const params = new URLSearchParams(window.location.search);
+            const productKey = params.get('product');
+            if (productKey) {
+                // 500ms bekle ki sayfa tam yüklensin
+                setTimeout(() => {
+                    openModalByKey(productKey);
+                }, 500);
+            }
 
             document.querySelectorAll('.step-box, .product-card, .faq-item').forEach((el, i) => {
                 el.style.opacity = '0';
