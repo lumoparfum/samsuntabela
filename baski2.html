@@ -1039,11 +1039,11 @@
         <!-- SOCIAL PROOF COUNTERS -->
         <div class="social-proof-counters">
             <div class="counter-item">
-                <span class="number" id="totalCount">1.387</span>
+                <span class="number" id="totalCount">0</span>
                 <span class="label">Bugüne kadar hesaplama</span>
             </div>
             <div class="counter-item">
-                <span class="number" id="todayCount">4</span>
+                <span class="number" id="todayCount">0</span>
                 <span class="label">Bugün hesaplama</span>
             </div>
         </div>
@@ -1531,8 +1531,37 @@
         </a>
     </div>
 
-    <script>
-        // ===== FİYAT VERİLERİ =====
+    <script type="module">
+        // ==============================================
+        //  FIREBASE ENTEGRASYONU
+        //  Buraya kendi Firebase config'ini yapıştır!
+        // ==============================================
+
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
+        import { getDatabase, ref, get, set, update, onValue } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-database.js";
+
+        // ==============================================
+        // 🔥 KENDİ FIREBASE CONFIG'İNİ BURAYA YAPIŞTIR
+        // ==============================================
+        const firebaseConfig = {
+            apiKey: "AIzaSyCQT33KRLCTcF6HE09EFY7MT0tlEe39Tsc",
+            authDomain: "yeni-7b1e8.firebaseapp.com",
+            databaseURL: "https://yeni-7b1e8-default-rtdb.europe-west1.firebasedatabase.app",
+            projectId: "yeni-7b1e8",
+            storageBucket: "yeni-7b1e8.firebasestorage.app",
+            messagingSenderId: "716837128419",
+            appId: "1:716837128419:web:c053bfd149ca6aec37ddd6",
+            measurementId: "G-R5082W42VP"
+        };
+
+        // Firebase'i başlat
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+        const counterRef = ref(db, 'counter');
+
+        // ==============================================
+        //  FİYAT VERİLERİ (MEVCUT)
+        // ==============================================
         const fiyatlar = {
             ince_vinil: { ad: 'İnce Vinil', fiyat: 1.80, birim: 'USD', desc: 'İnce vinil, Konica Solvent baskı teknolojisi ile üretilir. Dış mekan reklamlarında, araç giydirmede ve mağaza vitrinlerinde sıklıkla kullanılır. Esnek yapısı sayesinde düz olmayan yüzeylere kolayca uygulanır. Ekonomik fiyatıyla bütçe dostudur, 2-3 yıl dayanıklılık sunar.' },
             normal_vinil: { ad: 'Normal Vinil', fiyat: 2.35, birim: 'USD', desc: 'Normal vinil, günlük kullanım için ideal bir dış mekan malzemesidir. Konica Solvent baskı ile canlı renkler elde edilir. Tabelalar, araç giydirme ve duvar reklamlarında tercih edilir. Orta kalite segmentinde olup, 3-4 yıl boyunca ilk günkü parlaklığını korur.' },
@@ -1574,22 +1603,93 @@
             kagit_baski: { img: 'images/fason/kagit-baski.jpg', desc: fiyatlar.kagit_baski.desc }
         };
 
-        // ===== COUNTERS =====
-        let totalCount = 1387;
-        let todayCount = 4;
+        // ==============================================
+        //  SAYAÇLAR (FIREBASE)
+        // ==============================================
 
-        function updateCounters() {
-            document.getElementById('totalCount').textContent = totalCount.toLocaleString('tr-TR');
-            document.getElementById('todayCount').textContent = todayCount;
+        function getToday() {
+            return new Date().toISOString().split('T')[0];
         }
 
-        function incrementCounters() {
-            totalCount += Math.floor(Math.random() * 3) + 1; // 1-3 arası artış
-            todayCount += 1;
-            updateCounters();
+        async function firebaseSayacOku() {
+            try {
+                const snapshot = await get(counterRef);
+                if (snapshot.exists()) {
+                    return snapshot.val();
+                } else {
+                    // İlk kez açılıyorsa başlangıç verisini oluştur
+                    await set(counterRef, { total: 0, today: 0, lastDate: getToday() });
+                    return { total: 0, today: 0, lastDate: getToday() };
+                }
+            } catch (error) {
+                console.warn("Firebase okuma hatası:", error);
+                return null;
+            }
         }
 
-        // ===== BILDIRIM (TOAST) =====
+        async function firebaseSayacArtir() {
+            try {
+                const today = getToday();
+                const snapshot = await get(counterRef);
+                let data = snapshot.exists() ? snapshot.val() : { total: 0, today: 0, lastDate: today };
+
+                let newTotal = (data.total || 0) + 1;
+                let newToday = (data.today || 0) + 1;
+                let newLastDate = data.lastDate || today;
+
+                if (newLastDate !== today) {
+                    newToday = 1;
+                    newLastDate = today;
+                }
+
+                await update(counterRef, {
+                    total: newTotal,
+                    today: newToday,
+                    lastDate: newLastDate
+                });
+
+                return { total: newTotal, today: newToday };
+            } catch (error) {
+                console.warn("Firebase güncelleme hatası:", error);
+                return null;
+            }
+        }
+
+        // ==============================================
+        //  ARAYÜZ GÜNCELLEMELERİ
+        // ==============================================
+
+        function updateUI(total, today) {
+            document.getElementById('totalCount').textContent = total.toLocaleString('tr-TR');
+            document.getElementById('todayCount').textContent = today;
+        }
+
+        // Sayfa yüklendiğinde Firebase'den veri çek
+        async function loadCounters() {
+            const data = await firebaseSayacOku();
+            if (data) {
+                updateUI(data.total, data.today);
+            } else {
+                // Firebase bağlanamazsa statik göster (hata durumu)
+                document.getElementById('totalCount').textContent = "—";
+                document.getElementById('todayCount').textContent = "—";
+            }
+        }
+
+        // Hesapla butonuna basıldığında sayacı artır
+        async function incrementAndUpdate() {
+            const result = await firebaseSayacArtir();
+            if (result) {
+                updateUI(result.total, result.today);
+            } else {
+                // Hata durumunda sessiz kal, kullanıcıya hissettirme
+            }
+        }
+
+        // ==============================================
+        //  BİLDİRİM (TOAST) ve DİĞER FONKSİYONLAR
+        // ==============================================
+
         const sehirler = [
             'İstanbul', 'Ankara', 'İzmir', 'Bursa', 'Antalya', 'Adana', 'Konya',
             'Gaziantep', 'Kayseri', 'Mersin', 'Diyarbakır', 'Samsun', 'Denizli',
@@ -1616,7 +1716,22 @@
             setTimeout(() => toast.remove(), 5500);
         }
 
-        // ===== HESAPLAYICI =====
+        function showWelcomeToast() {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.innerHTML = `
+                <div class="toast-icon"><i class="fas fa-hand-sparkles"></i></div>
+                <span>👋 Hoş geldiniz! Fiyat hesaplamak için ölçü girin.</span>
+            `;
+            container.appendChild(toast);
+            setTimeout(() => toast.remove(), 5000);
+        }
+
+        // ==============================================
+        //  HESAPLAYICI (MEVCUT)
+        // ==============================================
+
         function setSize(en, boy) {
             document.getElementById('en').value = en;
             document.getElementById('boy').value = boy;
@@ -1687,8 +1802,8 @@
             updateStickyBar(toplamTL);
             onizlemeGuncelle();
 
-            // Her hesaplamada sayacı artır ve bildirim göster
-            incrementCounters();
+            // Her hesaplamada sayacı artır
+            incrementAndUpdate();
             showActivityToast();
         }
 
@@ -1793,24 +1908,17 @@
             }
         }
 
-        // ===== TOAST (Hoş geldin) =====
-        function showWelcomeToast() {
-            const container = document.getElementById('toastContainer');
-            const toast = document.createElement('div');
-            toast.className = 'toast';
-            toast.innerHTML = `
-                <div class="toast-icon"><i class="fas fa-hand-sparkles"></i></div>
-                <span>👋 Hoş geldiniz! Fiyat hesaplamak için ölçü girin.</span>
-            `;
-            container.appendChild(toast);
-            setTimeout(() => toast.remove(), 5000);
-        }
+        // ==============================================
+        //  SAYFA YÜKLENİNCE ÇALIŞACAKLAR
+        // ==============================================
 
-        // ===== INIT =====
-        window.onload = function() {
+        window.onload = async function() {
+            // Firebase'den sayaçları yükle
+            await loadCounters();
+
+            // Hesaplayıcıyı çalıştır
             hesapla();
             onizlemeGuncelle();
-            updateCounters();
 
             // Animasyon
             document.querySelectorAll('.step-box, .product-card, .faq-item').forEach((el, i) => {
@@ -1832,7 +1940,24 @@
                 showActivityToast();
             }, 30000);
         };
-    </script>
 
+        // Global fonksiyonları window'a bağla (HTML onclick için)
+        window.setSize = setSize;
+        window.hesapla = hesapla;
+        window.openModal = openModal;
+        window.closeModal = closeModal;
+        window.openDuvarModal = openDuvarModal;
+        window.closeDuvarModal = closeDuvarModal;
+        window.changeDuvarImage = changeDuvarImage;
+        window.openAtaturkModal = openAtaturkModal;
+        window.closeAtaturkModal = closeAtaturkModal;
+        window.changeAtaturkImage = changeAtaturkImage;
+        window.openCocukModal = openCocukModal;
+        window.closeCocukModal = closeCocukModal;
+        window.changeCocukImage = changeCocukImage;
+        window.toggleFaq = toggleFaq;
+        window.onizlemeGuncelle = onizlemeGuncelle;
+        window.updateStickyBar = updateStickyBar;
+    </script>
 </body>
 </html>
