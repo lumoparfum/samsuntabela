@@ -506,6 +506,10 @@
             transform: translateY(-6px);
             box-shadow: 0 12px 30px rgba(0,0,0,0.09);
         }
+        .product-card:active {
+            transform: scale(0.97);
+            transition: transform 0.15s ease;
+        }
         .product-card .card-img-wrap {
             width: 100%;
             height: 180px;
@@ -518,7 +522,9 @@
             object-fit: contain;
             display: block;
             padding: 12px;
+            transition: transform 0.45s ease;
         }
+        .product-card:hover .card-img { transform: scale(1.08); }
         .product-card .card-body { padding: 14px 12px 18px; }
         @media (max-width: 640px) {
             .product-card .card-img-wrap { height: 140px; }
@@ -575,6 +581,8 @@
             font-size: 3rem;
             color: var(--accent);
         }
+        .card-icon img { transition: transform 0.45s ease; max-width: 70%; max-height: 70%; }
+        .product-card:hover .card-icon img { transform: scale(1.08); }
         @media (max-width: 640px) { .card-icon { height: 140px; font-size: 2.2rem; } }
 
         .card-quick-action {
@@ -668,6 +676,53 @@
             border-radius: 12px;
             margin-bottom: 12px;
             background: var(--bg);
+            cursor: zoom-in;
+            transition: opacity 0.2s ease;
+        }
+        .modal-box .modal-img:active { opacity: 0.85; }
+
+        /* ===== LIGHTBOX (resmi tam ekran büyütme) ===== */
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(5,5,5,0.92);
+            z-index: 10001;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            padding: calc(20px + env(safe-area-inset-top)) 20px calc(20px + env(safe-area-inset-bottom));
+            cursor: zoom-out;
+        }
+        .lightbox-overlay.active { display: flex; }
+        .lightbox-overlay img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 10px;
+            animation: lightboxIn 0.25s ease;
+        }
+        @keyframes lightboxIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .lightbox-close {
+            position: fixed;
+            top: calc(20px + env(safe-area-inset-top));
+            right: 20px;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.12);
+            color: #fff;
+            border: none;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10002;
         }
         .modal-thumbs {
             display: flex;
@@ -894,6 +949,26 @@
         "sameAs": ["https://www.instagram.com/uzman.reklamm/"],
         "priceRange": "$$",
         "paymentAccepted": ["Bank Transfer", "Cash"]
+    }
+    </script>
+
+    <!-- Schema.org FAQPage (SEO — SSS zengin sonuç için) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            { "@type": "Question", "name": "Fason baskı ne demek?", "acceptedAnswer": { "@type": "Answer", "text": "Fason baskı, sizin tasarımınızı bizim makinalarımızda basıp size göndermemizdir. Montaj yok, sadece baskı hizmeti." } },
+            { "@type": "Question", "name": "Hangi dosya formatlarını göndermeliyim?", "acceptedAnswer": { "@type": "Answer", "text": "PDF, JPG, PNG, AI, EPS kabul ediyoruz. Çözünürlük en az 150 dpi olmalı. WhatsApp'tan gönderebilirsiniz." } },
+            { "@type": "Question", "name": "Kargo kaç günde gelir?", "acceptedAnswer": { "@type": "Answer", "text": "Türkiye geneli 1-3 iş günü. İstanbul, Ankara, İzmir 1-2 gün. Takip numarası gönderiyoruz." } },
+            { "@type": "Question", "name": "Ödeme nasıl yapılır?", "acceptedAnswer": { "@type": "Answer", "text": "Havale/EFT ile ödeme. Sipariş onayı sonrası banka bilgilerimizi gönderiyoruz." } },
+            { "@type": "Question", "name": "Yanlış ölçü gönderirsem ne olur?", "acceptedAnswer": { "@type": "Answer", "text": "Üretim öncesi ölçüyü sizinle teyit ediyoruz. Yine de hata olursa yeniden basıyoruz." } },
+            { "@type": "Question", "name": "Siparişimi nasıl takip edebilirim?", "acceptedAnswer": { "@type": "Answer", "text": "Kargoya verildikten sonra takip numarasını WhatsApp'tan gönderiyoruz." } },
+            { "@type": "Question", "name": "Minimum sipariş tutarı var mı?", "acceptedAnswer": { "@type": "Answer", "text": "Hayır, minimum sipariş şartı yok. Küçük ölçülerde bile 50 TL'lik taban ücretle sipariş verebilirsiniz." } },
+            { "@type": "Question", "name": "Tasarım dosyam yok, ne yapmalıyım?", "acceptedAnswer": { "@type": "Answer", "text": "Sorun değil, WhatsApp'tan yazın, tasarım konusunda da destek oluyoruz." } },
+            { "@type": "Question", "name": "Türkiye'nin her iline kargo gönderiyor musunuz?", "acceptedAnswer": { "@type": "Answer", "text": "Evet, 81 ilin tamamına kargo gönderiyoruz." } },
+            { "@type": "Question", "name": "Kurumsal fatura kesiyor musunuz?", "acceptedAnswer": { "@type": "Answer", "text": "Evet, reklam ajansı, tabelacı ya da bireysel fark etmeksizin talep eden herkese kurumsal fatura kesiyoruz." } }
+        ]
     }
     </script>
 </head>
@@ -1253,6 +1328,19 @@
                     <div class="card-quick-action"><i class="fas fa-arrow-right"></i></div>
                 </div>
 
+                <div class="product-card" onclick="openModal('rollup_banner')">
+                    <div class="product-badge multi-design">🎪 Hazır Kurulum</div>
+                    <div class="card-img-wrap">
+                        <img class="card-img" src="data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect x='68' y='24' width='64' height='118' rx='6' fill='none' stroke='%236f8f00' stroke-width='6'/%3E%3Cline x1='100' y1='142' x2='100' y2='172' stroke='%236f8f00' stroke-width='6'/%3E%3Cline x1='72' y1='172' x2='128' y2='172' stroke='%236f8f00' stroke-width='6'/%3E%3Cline x1='100' y1='172' x2='68' y2='188' stroke='%236f8f00' stroke-width='5'/%3E%3Cline x1='100' y1='172' x2='132' y2='188' stroke='%236f8f00' stroke-width='5'/%3E%3C/svg%3E" alt="Roll-Up Banner" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <h3>Roll-Up Banner</h3>
+                        <div class="desc">85x200 cm, ayak + çanta dahil</div>
+                        <div class="fiyat">1.350 TL <small>(KDV Dahil)</small></div>
+                    </div>
+                    <div class="card-quick-action"><i class="fas fa-arrow-right"></i></div>
+                </div>
+
             </div>
         </section>
 
@@ -1285,6 +1373,22 @@
                 <div class="faq-question"><span>Siparişimi nasıl takip edebilirim?</span><i class="fas fa-plus"></i></div>
                 <div class="faq-answer">Kargoya verildikten sonra takip numarasını WhatsApp'tan gönderiyoruz. Kargo firmasının sitesinden takip edebilirsiniz.</div>
             </div>
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-question"><span>Minimum sipariş tutarı var mı?</span><i class="fas fa-plus"></i></div>
+                <div class="faq-answer">Hayır, minimum sipariş şartı yok. Küçük ölçülerde bile 50 TL'lik taban ücretle sipariş verebilirsiniz.</div>
+            </div>
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-question"><span>Tasarım dosyam yok, ne yapmalıyım?</span><i class="fas fa-plus"></i></div>
+                <div class="faq-answer">Sorun değil. WhatsApp'tan yazın, tasarım konusunda da destek oluyoruz. Bu hizmet ayrıca ücretlendirilir.</div>
+            </div>
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-question"><span>Türkiye'nin her iline kargo gönderiyor musunuz?</span><i class="fas fa-plus"></i></div>
+                <div class="faq-answer">Evet, 81 ilin tamamına kargo gönderiyoruz. Bafra/Samsun'daki atölyemizden Türkiye geneline üretim yapıyoruz.</div>
+            </div>
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-question"><span>Kurumsal fatura kesiyor musunuz?</span><i class="fas fa-plus"></i></div>
+                <div class="faq-answer">Evet, reklam ajansı, tabelacı ya da bireysel fark etmeksizin talep eden herkese kurumsal fatura kesiyoruz.</div>
+            </div>
         </section>
 
         <!-- FOOTER -->
@@ -1311,6 +1415,12 @@
 
     </div>
 
+    <!-- LIGHTBOX (resim tam ekran büyütme) -->
+    <div class="lightbox-overlay" id="lightboxOverlay" onclick="closeLightbox()">
+        <button class="lightbox-close" onclick="closeLightbox(); event.stopPropagation();">&times;</button>
+        <img id="lightboxImg" src="" alt="Büyütülmüş görsel">
+    </div>
+
     <!-- ===== MODALLAR ===== -->
 
     <!-- STANDART MODAL -->
@@ -1329,7 +1439,7 @@
     <div class="modal-overlay" id="duvarModal" onclick="if(event.target===this) closeDuvarModal()">
         <div class="modal-box">
             <button class="modal-close" onclick="closeDuvarModal()">&times;</button>
-            <img class="modal-img" id="duvarModalImg" src="images/fason/duvar-tablosu-1.jpg" alt="Duvar Tablosu">
+            <img class="modal-img" id="duvarModalImg" src="images/fason/duvar-tablosu-1.jpg" alt="Duvar Tablosu" onclick="openLightbox(this.src); event.stopPropagation();">
             <h3>Duvar Tablosu 50×70</h3>
             <div class="modal-desc">Folyo kaplı 3mm MDF, çift taraflı bant ile kolayca asılır. Hazır boyut, hemen kullanıma hazır. Ofis, mağaza ve ev dekorasyonu için ideal. 3 farklı tasarım seçeneği ile duvarlarınıza renk katın.</div>
             <div class="modal-thumbs">
@@ -1346,7 +1456,7 @@
     <div class="modal-overlay" id="ataturkModal" onclick="if(event.target===this) closeAtaturkModal()">
         <div class="modal-box">
             <button class="modal-close" onclick="closeAtaturkModal()">&times;</button>
-            <img class="modal-img" id="ataturkModalImg" src="images/fason/ataturk-maket-1.jpg" alt="Atatürk Maketi">
+            <img class="modal-img" id="ataturkModalImg" src="images/fason/ataturk-maket-1.jpg" alt="Atatürk Maketi" onclick="openLightbox(this.src); event.stopPropagation();">
             <h3>Atatürk Maketi</h3>
             <div class="modal-desc">
                 Cumhuriyetimizin kurucusu Gazi Mustafa Kemal Atatürk'ün heybetli duruşundan ilham alınarak hazırlanan bu özel maket, yaşam alanlarına tarihî bir atmosfer kazandırır. 
@@ -1367,7 +1477,7 @@
     <div class="modal-overlay" id="cocukModal" onclick="if(event.target===this) closeCocukModal()">
         <div class="modal-box">
             <button class="modal-close" onclick="closeCocukModal()">&times;</button>
-            <img class="modal-img" id="cocukModalImg" src="images/fason/cocuk-maket-1.jpg" alt="Çocuk Maketi">
+            <img class="modal-img" id="cocukModalImg" src="images/fason/cocuk-maket-1.jpg" alt="Çocuk Maketi" onclick="openLightbox(this.src); event.stopPropagation();">
             <h3>🌟 Kişiye Özel Çocuk Maketi</h3>
             <div class="modal-desc">
                 Çocuğunuzun en sevdiği fotoğrafını unutulmaz bir hatıraya dönüştürüyoruz. Doğum günleri, özel günler, oda dekorasyonu ve etkinlikler için hazırlanan kişiye özel maketler, yüksek baskı kalitesi ve gerçekçi görünümüyle öne çıkıyor.
@@ -1459,7 +1569,8 @@
             kumlu_folyo: { ad: 'Kumlu Folyo', fiyat: 4.00, birim: 'USD', desc: 'Kumlu folyo, dekoratif kum efekti ile iç mekan duvar kaplamalarında kullanılır. Mat ve dokulu yüzeyi ile şık bir görünüm sunar. Ofis, restoran ve mağaza dekorasyonlarında sıklıkla tercih edilir. Suya ve neme dayanıklıdır.' },
             canvas: { ad: 'Canvas Baskı', fiyat: 9.50, birim: 'USD', desc: 'Canvas baskı, tuval görünümlü pamuklu kumaş üzerine yapılan dekoratif baskıdır. Resim, fotoğraf ve sanat çalışmaları için idealdir. Ev, ofis ve galeri duvarlarında sanatsal bir hava yaratır. Yüksek çözünürlük ve canlı renkler ile ölümsüzleştirir.' },
             magnet: { ad: 'Magnet Baskı', fiyat: 13.00, birim: 'USD', desc: 'Magnet baskı, manyetik folyo üzerine yapılan baskıdır. Buzdolabı magneti, promosyon ürünleri ve işletme kartı olarak kullanılır. Kolayca kesilir, istenilen şekle getirilir. 🎨 Ücretsiz tasarım desteği.' },
-            kagit_baski: { ad: 'Kağıt Baskı', fiyat: 1.50, birim: 'USD', desc: 'Kağıt baskı, iç mekan afiş, poster, broşür ve el ilanları için idealdir. 115-300 gr/m² arası kağıt seçenekleri ile mat veya parlak yüzey seçeneği sunar. Ekonomik ve hızlı üretim ile kısa sürede teslim edilir.' }
+            kagit_baski: { ad: 'Kağıt Baskı', fiyat: 1.50, birim: 'USD', desc: 'Kağıt baskı, iç mekan afiş, poster, broşür ve el ilanları için idealdir. 115-300 gr/m² arası kağıt seçenekleri ile mat veya parlak yüzey seçeneği sunar. Ekonomik ve hızlı üretim ile kısa sürede teslim edilir.' },
+            rollup_banner: { ad: 'Roll-Up Banner (85x200 cm)', fiyat: 1350, birim: 'TL', desc: 'Hazır kurulumlu roll-up banner. Alüminyum ayak ve taşıma çantası dahil, kutudan çıkar çıkmaz 30 saniyede kurulur — hiç alet gerekmez. Fuar, etkinlik, mağaza girişi ve tanıtım standlarında kullanılır.' }
         };
 
         const kur_usd = 46.98;
@@ -1481,7 +1592,8 @@
             kumlu_folyo: { img: 'images/fason/kumlu-folyo.jpg', desc: fiyatlar.kumlu_folyo.desc },
             canvas: { img: 'images/fason/canvas.jpg', desc: fiyatlar.canvas.desc },
             magnet: { img: 'images/fason/magnet.jpg', desc: fiyatlar.magnet.desc },
-            kagit_baski: { img: 'images/fason/kagit-baski.jpg', desc: fiyatlar.kagit_baski.desc }
+            kagit_baski: { img: 'images/fason/kagit-baski.jpg', desc: fiyatlar.kagit_baski.desc },
+            rollup_banner: { img: "data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect x='68' y='24' width='64' height='118' rx='6' fill='none' stroke='%236f8f00' stroke-width='6'/%3E%3Cline x1='100' y1='142' x2='100' y2='172' stroke='%236f8f00' stroke-width='6'/%3E%3Cline x1='72' y1='172' x2='128' y2='172' stroke='%236f8f00' stroke-width='6'/%3E%3Cline x1='100' y1='172' x2='68' y2='188' stroke='%236f8f00' stroke-width='5'/%3E%3Cline x1='100' y1='172' x2='132' y2='188' stroke='%236f8f00' stroke-width='5'/%3E%3C/svg%3E", desc: fiyatlar.rollup_banner.desc }
         };
 
         // ==============================================
@@ -1666,6 +1778,17 @@
         window.closeModal = function() {
             document.getElementById('productModal').classList.remove('active');
             document.body.style.overflow = '';
+        };
+
+        // ==============================================
+        //  LIGHTBOX (resim tam ekran büyütme)
+        // ==============================================
+        window.openLightbox = function(src) {
+            document.getElementById('lightboxImg').src = src;
+            document.getElementById('lightboxOverlay').classList.add('active');
+        };
+        window.closeLightbox = function() {
+            document.getElementById('lightboxOverlay').classList.remove('active');
         };
 
         // Duvar
