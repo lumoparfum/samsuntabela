@@ -7,107 +7,135 @@
     <meta name="description" content="Türkiye geneline fason dijital baskı. Folyo, branda, one-way vision, vinil, mesh ve daha fazlası. Ölçünü gir, fiyatını gör, WhatsApp'tan sipariş ver." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
         :root {
             --neon: #ccff00;
-            --bg: #f8f8f8;
+            --accent: #6f8f00;
+            --bg: #f5f5f2;
             --card: #ffffff;
-            --border: #e5e5e5;
-            --text: #1a1a1a;
-            --gray: #666;
-            --shadow: 0 4px 20px rgba(0,0,0,0.06);
+            --border: #e4e4de;
+            --text: #17171a;
+            --gray: #6b6b6b;
+            --dark: #0a0a0d;
+            --dark-card: #17171a;
+            --dark-border: #26262a;
         }
+        html { scroll-behavior: smooth; }
         body {
             background-color: var(--bg);
             color: var(--text);
             font-family: 'Inter', sans-serif;
-            line-height: 1.5;
-            -webkit-font-smoothing: antialiased;
+            line-height: 1.6;
+            overflow-x: hidden;
         }
         .container {
             max-width: 1100px;
             margin: 0 auto;
             padding: 0 20px;
         }
-
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #f0f0f0; }
-        ::-webkit-scrollbar-thumb { background: #ccc; border-radius: 4px; }
+        a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 3px;
+        }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+        }
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #eee; }
+        ::-webkit-scrollbar-thumb { background: #ccc; border-radius: 5px; }
         ::-webkit-scrollbar-thumb:hover { background: #aaa; }
+        * { scrollbar-color: #ccc #eee; scrollbar-width: thin; }
 
-        /* ===== HEADER ===== */
-        .header {
+        /* ===== NAV ===== */
+        nav {
+            background: rgba(5,5,5,0.85);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        .nav-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 16px 0;
-            border-bottom: 1px solid var(--border);
-            flex-wrap: wrap;
-            gap: 12px;
-            background: #fff;
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            padding: 18px 20px;
         }
-        .logo {
+        .logo-area { display: flex; align-items: center; gap: 18px; }
+        .logo a {
             font-weight: 900;
             font-size: 26px;
             letter-spacing: -1px;
             text-transform: uppercase;
-            color: #000;
+            color: #fff;
             text-decoration: none;
+            white-space: nowrap;
         }
         .logo span { color: var(--neon); }
-        .header-badge {
-            background: var(--neon);
-            color: #000;
-            font-size: 11px;
-            font-weight: 800;
-            padding: 6px 14px;
-            border-radius: 30px;
-            letter-spacing: 0.3px;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-        }
-        .header-badge i { font-size: 12px; }
-        .header-info {
-            font-size: 14px;
-            color: var(--gray);
+        .nav-contact {
             display: flex;
             align-items: center;
-            gap: 16px;
+            gap: 15px;
+            font-size: 14px;
         }
-        .header-info i { color: var(--neon); margin-right: 4px; }
-        .header-info a { color: var(--text); text-decoration: none; }
+        .nav-contact a {
+            color: #aaa;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.3s;
+        }
+        .nav-contact a:hover { color: #fff; }
+        .nav-contact i { color: var(--neon); font-size: 15px; }
+        .nav-contact .sep { color: #333; margin: 0 5px; }
+        .nav-mobile-wa { display: none; }
+
+        .page-body { padding-top: 100px; }
 
         @media (max-width: 640px) {
-            .header { justify-content: center; text-align: center; }
-            .logo { font-size: 20px; }
-            .header-badge { font-size: 10px; padding: 4px 10px; }
-            .header-info { font-size: 12px; gap: 10px; flex-wrap: wrap; justify-content: center; }
+            .nav-container { justify-content: space-between; padding: 14px 20px; }
+            .logo a { font-size: 20px; }
+            .nav-contact { display: none; }
+            .nav-mobile-wa { display: block; }
+            .nav-mobile-wa a {
+                color: #fff;
+                background: #25d366;
+                width: 38px;
+                height: 38px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 20px;
+                text-decoration: none;
+            }
+            .page-body { padding-top: 80px; }
         }
 
-        /* ===== HERO (Video) ===== */
+        /* ===== HERO ===== */
         .hero {
             position: relative;
             overflow: hidden;
-            border-radius: 20px;
-            margin: 24px 0 40px;
+            border-radius: 24px;
+            margin-bottom: 20px;
             height: 60vh;
-            min-height: 380px;
+            min-height: 400px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 1px solid var(--border);
-            background: #111;
+            border: 1px solid rgba(255,255,255,0.1);
         }
         .hero-video {
             position: absolute;
@@ -127,18 +155,17 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.55);
+            background: rgba(5, 5, 5, 0.65);
             z-index: 1;
         }
         .hero-content {
             position: relative;
             z-index: 2;
             text-align: center;
-            padding: 30px 20px;
-            color: #fff;
+            padding: 40px 20px;
         }
         .hero-content h1 {
-            font-size: clamp(2.2rem, 5vw, 3.8rem);
+            font-size: clamp(2rem, 5vw, 3.5rem);
             font-weight: 900;
             letter-spacing: -1px;
             text-transform: uppercase;
@@ -146,11 +173,12 @@
         }
         .hero-content h1 span { color: var(--neon); }
         .hero-content p {
+            color: #ddd;
             font-size: 1.1rem;
-            max-width: 650px;
-            margin: 14px auto 28px;
+            max-width: 700px;
+            margin: 15px auto 30px;
             line-height: 1.6;
-            opacity: 0.9;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
         }
         .btn-main {
             background: var(--neon);
@@ -166,35 +194,31 @@
             display: inline-block;
             text-decoration: none;
         }
-        .btn-main:hover { transform: scale(1.04); background: #d8ff2e; }
+        .btn-main:hover { transform: scale(1.05); background: #d4ff33; }
+        .btn-main:active { transform: scale(0.97); }
         .btn-main i { margin-right: 10px; }
 
-        @media (max-width: 600px) {
-            .hero { height: 50vh; min-height: 320px; border-radius: 14px; }
-            .hero-content h1 { font-size: 1.8rem; }
-            .btn-main { padding: 14px 24px; font-size: 0.9rem; }
-        }
-
-        /* ===== NASIL ÇALIŞIR ===== */
-        .steps {
+        /* ===== STEPS ===== */
+        .steps { margin: 70px 0; }
+        .steps-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 18px;
-            margin: 30px 0 50px;
+            gap: 24px;
         }
+        @media (max-width: 700px) { .steps-grid { grid-template-columns: 1fr 1fr; } }
         .step-box {
             background: var(--card);
             border: 1px solid var(--border);
             border-radius: 16px;
-            padding: 24px 16px;
+            padding: 28px 20px;
             text-align: center;
-            box-shadow: var(--shadow);
-            transition: 0.25s;
+            transition: 0.3s;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
         }
-        .step-box:hover { transform: translateY(-4px); border-color: var(--neon); }
+        .step-box:hover { border-color: var(--accent); transform: translateY(-4px); }
         .step-num {
-            width: 36px;
-            height: 36px;
+            width: 34px;
+            height: 34px;
             border-radius: 50%;
             background: var(--neon);
             color: #000;
@@ -205,138 +229,173 @@
             margin: 0 auto 12px;
             font-size: 0.95rem;
         }
-        .step-box i { font-size: 1.6rem; color: var(--neon); margin-bottom: 8px; display: block; }
-        .step-box h4 { font-size: 1rem; font-weight: 700; }
-        .step-box p { font-size: 0.85rem; color: var(--gray); line-height: 1.5; margin-top: 4px; }
+        .step-box i { font-size: 1.4rem; color: var(--accent); margin-bottom: 8px; display: block; }
+        .step-box h4 { font-size: 0.95rem; margin-bottom: 6px; color: var(--text); }
+        .step-box p { font-size: 0.8rem; color: var(--gray); line-height: 1.5; }
 
-        @media (max-width: 700px) { .steps { grid-template-columns: 1fr 1fr; } }
-        @media (max-width: 460px) { .steps { grid-template-columns: 1fr; } }
-
-        /* ===== HESAPLAYICI ===== */
+        /* ===== CALCULATOR ===== */
         .calculator {
             background: var(--card);
             border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 30px;
-            margin: 30px 0 50px;
-            box-shadow: var(--shadow);
+            border-radius: 24px;
+            padding: 40px;
+            margin: 70px 0;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.05);
         }
         .calculator h2 {
-            color: #000;
+            color: var(--text);
             font-size: 1.6rem;
-            font-weight: 800;
+            margin-bottom: 10px;
             text-transform: uppercase;
-            margin-bottom: 6px;
         }
-        .calculator .sub { color: var(--gray); margin-bottom: 24px; font-size: 0.95rem; }
+        .calculator h2 i { color: var(--accent); }
+        .calculator .sub {
+            color: var(--gray);
+            margin-bottom: 30px;
+            font-size: 0.95rem;
+        }
         .calc-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 18px;
+            gap: 22px;
         }
-        .calc-group { display: flex; flex-direction: column; gap: 5px; }
-        .calc-group label { font-weight: 600; font-size: 0.9rem; color: #333; }
+        .calc-group.full { grid-column: 1 / -1; }
+        @media (max-width: 600px) { .calc-grid { grid-template-columns: 1fr; } }
+        .calc-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .calc-group label {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #444;
+        }
         .calc-group select,
         .calc-group input {
             background: var(--bg);
             border: 1px solid var(--border);
             border-radius: 12px;
-            padding: 13px 15px;
-            color: #000;
-            font-size: 1rem;
+            padding: 14px 16px;
+            color: var(--text);
+            font-size: 16px;
             outline: none;
-            transition: 0.25s;
+            transition: 0.3s;
             width: 100%;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+        .calc-group select {
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236b6b6b' stroke-width='2'%3e%3cpath d='M6 9l6 6 6-6'/%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+            background-size: 18px;
+            padding-right: 40px;
         }
         .calc-group select:focus,
-        .calc-group input:focus { border-color: var(--neon); }
+        .calc-group input:focus { border-color: var(--accent); }
         .calc-group select option { background: #fff; }
-
         .calc-result {
-            background: var(--bg);
+            background: #eef0e8;
             border: 1px solid var(--border);
             border-radius: 14px;
-            padding: 22px;
-            margin-top: 24px;
+            padding: 20px;
+            margin-top: 25px;
             text-align: center;
         }
         .calc-result .price {
-            font-size: 2.4rem;
+            font-size: 2.2rem;
             font-weight: 900;
-            color: #000;
+            color: var(--accent);
             letter-spacing: -0.5px;
         }
-        .calc-result .price small { font-size: 1rem; font-weight: 400; color: var(--gray); }
-        .calc-result .detail { color: var(--gray); font-size: 0.9rem; margin: 8px 0 14px; }
+        .calc-result .price small {
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--gray);
+        }
+        .calc-result .detail {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin: 10px 0;
+        }
         .calc-result .btn-wa {
             display: inline-block;
             background: #25d366;
             color: #000;
-            padding: 14px 32px;
+            padding: 14px 30px;
             border-radius: 50px;
             font-weight: 800;
             text-decoration: none;
-            transition: 0.25s;
+            margin-top: 12px;
+            transition: 0.3s;
         }
         .calc-result .btn-wa:hover { background: #1ebe57; transform: scale(1.03); }
+        .calc-result .btn-wa:active { transform: scale(0.96); }
         .calc-result .btn-wa i { margin-right: 10px; }
-        .calc-note { font-size: 0.75rem; color: #999; margin-top: 14px; }
-
-        @media (max-width: 600px) { .calc-grid { grid-template-columns: 1fr; } }
-
-        /* ===== NEDEN BİZ ===== */
-        .why-us {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 18px;
-            margin: 30px 0 50px;
+        .calc-note {
+            font-size: 0.75rem;
+            color: #999;
+            margin-top: 15px;
         }
-        .why-item {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 22px 16px;
-            text-align: center;
-            box-shadow: var(--shadow);
-            transition: 0.25s;
+
+        .preview-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #eef0e8;
+            border: 1px dashed #cfcfc6;
+            border-radius: 14px;
+            padding: 20px;
+            margin-top: 20px;
+            height: 130px;
+            overflow: hidden;
         }
-        .why-item:hover { transform: translateY(-4px); border-color: var(--neon); }
-        .why-item i { font-size: 2rem; color: var(--neon); margin-bottom: 10px; display: block; }
-        .why-item h4 { font-size: 1rem; font-weight: 700; margin-bottom: 4px; }
-        .why-item p { font-size: 0.85rem; color: var(--gray); line-height: 1.5; }
+        .preview-box {
+            background: rgba(111,143,0,0.12);
+            border: 1.5px solid var(--accent);
+            border-radius: 4px;
+            transition: width 0.25s ease, height 0.25s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            font-size: 0.7rem;
+            font-weight: 700;
+            min-width: 20px;
+            min-height: 14px;
+        }
 
-        @media (max-width: 700px) { .why-us { grid-template-columns: 1fr 1fr; } }
-        @media (max-width: 460px) { .why-us { grid-template-columns: 1fr; } }
-
-        /* ===== ÜRÜN KARTLARI (Tıklanabilir) ===== */
-        .products { margin: 40px 0; }
+        /* ===== PRODUCTS ===== */
+        .products { margin: 80px 0; }
         .products h2 {
+            color: var(--text);
             font-size: 1.8rem;
-            font-weight: 800;
             text-transform: uppercase;
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
         }
         .product-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+            gap: 26px;
         }
         .product-card {
             background: var(--card);
             border: 1px solid var(--border);
             border-radius: 16px;
             overflow: hidden;
-            transition: 0.3s;
+            transition: 0.4s;
+            text-align: center;
+            box-shadow: 0 2px 14px rgba(0,0,0,0.04);
             cursor: pointer;
-            box-shadow: var(--shadow);
         }
         .product-card:hover {
+            border-color: var(--accent);
             transform: translateY(-6px);
-            border-color: var(--neon);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.09);
         }
-        .product-card img {
+        .product-card .card-img {
             width: 100%;
             height: 180px;
             object-fit: cover;
@@ -345,25 +404,55 @@
         }
         .product-card .card-body { padding: 18px 18px 22px; }
         .product-card .card-body h3 {
-            font-size: 1.05rem;
-            font-weight: 700;
+            font-size: 1.1rem;
+            text-transform: uppercase;
             margin-bottom: 4px;
-            color: #000;
+            color: var(--text);
         }
         .product-card .card-body .desc {
             color: var(--gray);
             font-size: 0.82rem;
-            margin: 4px 0 10px;
+            margin: 6px 0 12px;
         }
         .product-card .card-body .fiyat {
-            font-weight: 800;
-            color: #000;
+            font-weight: 900;
+            color: var(--accent);
             font-size: 1.1rem;
         }
-        .product-card .card-body .fiyat small { font-weight: 400; color: var(--gray); font-size: 0.75rem; }
+        .product-card .card-body .fiyat small {
+            font-weight: 400;
+            color: #999;
+            font-size: 0.75rem;
+        }
+        .product-card { position: relative; }
+        .product-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: var(--neon);
+            color: #000;
+            font-size: 0.68rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            padding: 5px 10px;
+            border-radius: 20px;
+            z-index: 2;
+        }
+        .product-badge.free-design { background: #ff6b35; color: #fff; }
+        .card-icon {
+            width: 100%;
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #eef0e8;
+            font-size: 3rem;
+            color: var(--accent);
+        }
 
-        /* ===== MODAL (Ürün detay) ===== */
+        /* ===== MODAL ===== */
         .modal-overlay {
+            display: none;
             position: fixed;
             top: 0;
             left: 0;
@@ -371,51 +460,68 @@
             height: 100%;
             background: rgba(0,0,0,0.6);
             z-index: 9999;
-            display: none;
             justify-content: center;
             align-items: center;
             padding: 20px;
             backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
         }
         .modal-overlay.active { display: flex; }
         .modal-box {
             background: #fff;
-            border-radius: 24px;
-            max-width: 560px;
+            border-radius: 20px;
+            max-width: 500px;
             width: 100%;
-            padding: 36px 32px 28px;
+            padding: 30px;
             position: relative;
             max-height: 90vh;
             overflow-y: auto;
-            animation: modalIn 0.3s ease;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            animation: modalFade 0.25s ease;
         }
-        @keyframes modalIn {
-            from { opacity: 0; transform: scale(0.95) translateY(20px); }
+        @keyframes modalFade {
+            from { opacity: 0; transform: scale(0.95) translateY(10px); }
             to { opacity: 1; transform: scale(1) translateY(0); }
         }
         .modal-close {
-            position: absolute;
-            top: 14px;
-            right: 18px;
+            position: sticky;
+            top: 0;
+            float: right;
+            background: none;
+            border: none;
             font-size: 28px;
             cursor: pointer;
             color: #999;
-            transition: 0.2s;
-            background: none;
-            border: none;
+            padding: 0 0 10px 10px;
+            transition: 0.3s;
+            z-index: 1;
         }
-        .modal-close:hover { color: #000; transform: rotate(90deg); }
-        .modal-box img {
+        .modal-close:hover { color: #000; }
+        .modal-box h3 {
+            font-size: 1.4rem;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            color: var(--text);
+        }
+        .modal-box .modal-desc {
+            color: var(--gray);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin: 12px 0 16px;
+        }
+        .modal-box .modal-price {
+            font-weight: 900;
+            color: var(--accent);
+            font-size: 1.3rem;
+            margin: 12px 0;
+        }
+        .modal-box .modal-img {
             width: 100%;
-            height: 220px;
+            max-height: 220px;
             object-fit: cover;
             border-radius: 12px;
-            margin-bottom: 16px;
-            background: #eee;
+            margin-bottom: 12px;
         }
-        .modal-box h2 { font-size: 1.6rem; font-weight: 800; margin-bottom: 8px; }
-        .modal-box .modal-desc { color: var(--gray); line-height: 1.7; font-size: 0.95rem; margin-bottom: 16px; }
-        .modal-box .modal-price { font-size: 1.4rem; font-weight: 800; margin-bottom: 16px; }
         .modal-box .btn-wa {
             display: inline-block;
             background: #25d366;
@@ -424,30 +530,32 @@
             border-radius: 50px;
             font-weight: 800;
             text-decoration: none;
-            transition: 0.25s;
+            margin-top: 10px;
+            transition: 0.3s;
             width: 100%;
             text-align: center;
         }
-        .modal-box .btn-wa:hover { background: #1ebe57; }
+        .modal-box .btn-wa:hover { background: #1ebe57; transform: scale(1.02); }
+        .modal-box .btn-wa i { margin-right: 10px; }
 
-        /* ===== SSS ===== */
-        .faq { margin: 50px 0; }
+        /* ===== FAQ ===== */
+        .faq { margin: 80px 0; }
         .faq h2 {
+            color: var(--text);
             font-size: 1.8rem;
-            font-weight: 800;
             text-transform: uppercase;
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
         }
         .faq-item {
             background: var(--card);
             border: 1px solid var(--border);
             border-radius: 12px;
             padding: 18px 22px;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             cursor: pointer;
             transition: 0.2s;
-            box-shadow: var(--shadow);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
         }
         .faq-item:hover { border-color: #ccc; }
         .faq-question {
@@ -456,9 +564,9 @@
             align-items: center;
             font-weight: 700;
             font-size: 1.05rem;
-            color: #000;
+            color: var(--text);
         }
-        .faq-question i { color: var(--neon); transition: 0.3s; }
+        .faq-question i { color: var(--accent); transition: 0.3s; }
         .faq-answer {
             color: var(--gray);
             font-size: 0.95rem;
@@ -469,613 +577,647 @@
             transition: max-height 0.35s ease, opacity 0.3s ease, margin-top 0.35s ease;
         }
         .faq-answer.open {
-            max-height: 300px;
+            max-height: 200px;
             opacity: 1;
             margin-top: 12px;
         }
 
-        /* ===== FOOTER ===== */
-        .footer {
-            border-top: 1px solid var(--border);
-            padding: 30px 0 20px;
-            text-align: center;
-            color: var(--gray);
-            font-size: 0.85rem;
-            margin-top: 40px;
-            background: #fff;
+        /* ===== DARK BAND ===== */
+        .dark-band {
+            background: var(--dark);
+            width: 100vw;
+            position: relative;
+            left: 50%;
+            margin-left: -50vw;
+            margin-top: 80px;
+            padding: 60px 0 0;
         }
-        .footer a { color: var(--text); text-decoration: none; }
-        .footer a:hover { color: #000; }
+        .dark-band .inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .footer-box {
+            background: var(--dark-card);
+            border: 1px solid var(--dark-border);
+            border-radius: 15px;
+            padding: 26px;
+            text-align: center;
+        }
+        .footer-box h3 { color: var(--neon); font-size: 1.1rem; text-transform: uppercase; margin-bottom: 14px; }
+        .contact-info-list {
+            list-style: none;
+            padding: 0;
+            margin: 16px 0 0;
+            text-align: left;
+            max-width: 380px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .contact-info-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--dark-border);
+            color: #bbb;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-size: 0.9rem;
+        }
+        .contact-info-list li:last-child { border-bottom: none; }
+        .contact-info-list i { color: var(--neon); font-size: 1.05rem; width: 22px; text-align: center; }
+        .contact-info-list a { color: #bbb; text-decoration: none; transition: 0.3s; }
+        .contact-info-list a:hover { color: var(--neon); }
+        .footer {
+            padding: 25px 0 30px;
+            text-align: center;
+            color: #888;
+            font-size: 0.85rem;
+        }
+        .footer a { color: var(--neon); text-decoration: none; }
 
-        /* ===== SABİT WHATSAPP ===== */
+        /* ===== FLOAT BUTTONS ===== */
         .wp-float {
             position: fixed;
-            bottom: 24px;
-            right: 24px;
+            bottom: calc(25px + env(safe-area-inset-bottom));
+            right: 25px;
             z-index: 999;
             display: flex;
             align-items: center;
             gap: 12px;
         }
         .wp-btn {
-            width: 58px;
-            height: 58px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
-            background: #25d366;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 30px;
+            font-size: 32px;
             color: #fff;
             text-decoration: none;
-            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.35);
-            transition: 0.25s;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+            transition: 0.3s;
         }
         .wp-btn:hover { transform: scale(1.08); }
-        .wp-float .mobile-nav {
-            display: flex;
-            align-items: center;
-            background: #fff;
-            padding: 0 14px;
-            height: 44px;
-            border-radius: 30px;
-            gap: 14px;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-            border: 1px solid var(--border);
-        }
-        .wp-float .mobile-nav a {
-            color: #000;
-            text-decoration: none;
-            font-size: 11px;
-            font-weight: 800;
-            text-transform: uppercase;
-            white-space: nowrap;
-        }
-        .wp-float .mobile-nav a:hover { color: var(--neon); }
-
+        .wp-btn:active { transform: scale(0.94); }
+        .wp-btn.whatsapp { background: #25d366; }
+        .wp-btn.instagram { background: #e4405f; }
         @media (max-width: 600px) {
-            .wp-btn { width: 48px; height: 48px; font-size: 24px; }
-            .wp-float .mobile-nav { height: 38px; padding: 0 10px; gap: 10px; }
-            .wp-float .mobile-nav a { font-size: 9px; }
+            .wp-btn { width: 50px; height: 50px; font-size: 26px; }
         }
 
-        /* ===== RESPONSIVE ===== */
         @media (max-width: 480px) {
+            .hero { height: 50vh; min-height: 320px; }
+            .hero-content h1 { font-size: 1.8rem; }
             .calculator { padding: 20px; }
-            .calc-result .price { font-size: 1.8rem; }
-            .modal-box { padding: 24px 18px 20px; }
+            .calc-result .price { font-size: 1.6rem; }
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-
-    <!-- ===== HEADER ===== -->
-    <header class="header">
-        <a href="/" class="logo">UZMAN<span>REKLAM</span></a>
-        <div class="header-badge"><i class="fas fa-truck"></i> Tüm Türkiye'ye Kargo</div>
-        <div class="header-info">
-            <a href="tel:05322204649"><i class="fas fa-phone-alt"></i> 0532 220 46 49</a>
-            <a href="https://wa.me/905079605049" target="_blank"><i class="fab fa-whatsapp"></i> 0507 960 50 49</a>
-        </div>
-    </header>
-
-    <!-- ===== HERO ===== -->
-    <section class="hero">
-        <video class="hero-video" autoplay muted loop playsinline>
-            <source src="images/fason/hero-fason.mp4" type="video/mp4">
-        </video>
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <h1>FASON <span>DİJİTAL BASKI</span></h1>
-            <p>Ölçünü gir, fiyatını gör, WhatsApp'tan sipariş ver. Türkiye'nin her yerine kargo.</p>
-            <a href="#hesapla" class="btn-main"><i class="fas fa-calculator"></i> HEMEN FİYAT HESAPLA</a>
-        </div>
-    </section>
-
-    <!-- ===== NASIL ÇALIŞIR ===== -->
-    <section class="steps">
-        <div class="step-box">
-            <div class="step-num">1</div>
-            <i class="fas fa-ruler-combined"></i>
-            <h4>Ölçünü Gir</h4>
-            <p>Malzeme seç, en ve boy ölçüsünü yaz.</p>
-        </div>
-        <div class="step-box">
-            <div class="step-num">2</div>
-            <i class="fab fa-whatsapp"></i>
-            <h4>WhatsApp'tan Onayla</h4>
-            <p>Tasarımını gönder, ölçü ve fiyatı teyit edelim.</p>
-        </div>
-        <div class="step-box">
-            <div class="step-num">3</div>
-            <i class="fas fa-print"></i>
-            <h4>Biz Basalım</h4>
-            <p>Bafra atölyemizde kaliteli baskı ve özenli paketleme.</p>
-        </div>
-        <div class="step-box">
-            <div class="step-num">4</div>
-            <i class="fas fa-truck"></i>
-            <h4>Kapına Gelsin</h4>
-            <p>Kargo takip numaranı WhatsApp'tan yollarız.</p>
-        </div>
-    </section>
-
-    <!-- ===== HESAPLAYICI ===== -->
-    <section class="calculator" id="hesapla">
-        <h2><i class="fas fa-sliders-h"></i> Fiyat Hesaplayıcı</h2>
-        <p class="sub">Malzeme seç, en ve boy ölçülerini gir, tahmini fiyatı anında gör.</p>
-
-        <div class="calc-grid">
-            <div class="calc-group">
-                <label for="malzeme">Malzeme Seç</label>
-                <select id="malzeme">
-                    <option value="ince_vinil">İnce Vinil</option>
-                    <option value="normal_vinil">Normal Vinil</option>
-                    <option value="avrupa_vinil">Avrupa Vinil</option>
-                    <option value="arkasi_siyah_vinil">Arkası Siyah Vinil</option>
-                    <option value="mesh_vinil">Mesh Vinil</option>
-                    <option value="isikli_vinil">Işıklı Vinil</option>
-                    <option value="frimpeks_folyo">Frimpeks Folyo</option>
-                    <option value="frimpeks_gri_folyo">Frimpeks Arkası Gri Folyo</option>
-                    <option value="unifol_folyo">Unifol Folyo</option>
-                    <option value="unifol_gri_folyo">Unifol Arkası Gri Folyo</option>
-                    <option value="one_way_vision">One Way Vision</option>
-                    <option value="reflektif_folyo">Reflektif Folyo</option>
-                    <option value="kumlu_folyo">Kumlu Folyo</option>
-                    <option value="canvas">Canvas Baskı</option>
-                    <option value="magnet">Magnet Baskı</option>
-                    <option value="kagit_baski">Kağıt Baskı</option>
-                </select>
+    <!-- NAV -->
+    <nav>
+        <div class="container nav-container">
+            <div class="logo-area">
+                <div class="logo"><a href="https://samsuntabela.tr/">UZMAN<span>REKLAM</span></a></div>
             </div>
-            <div class="calc-group">
-                <label for="en">En (cm)</label>
-                <input type="number" id="en" placeholder="Örn: 100" min="1" value="100">
+            <div class="nav-contact">
+                <a href="tel:05322204649"><i class="fas fa-phone-alt"></i> 0532 220 46 49</a>
+                <span class="sep">|</span>
+                <a href="https://wa.me/905079605049" target="_blank"><i class="fab fa-whatsapp"></i> 0507 960 50 49</a>
             </div>
-            <div class="calc-group">
-                <label for="boy">Boy (cm)</label>
-                <input type="number" id="boy" placeholder="Örn: 50" min="1" value="50">
-            </div>
-            <div class="calc-group" style="justify-content:flex-end;">
-                <button class="btn-main" onclick="hesapla()" style="width:100%; text-align:center; padding:14px;">
-                    <i class="fas fa-calculator"></i> HESAPLA
-                </button>
+            <div class="nav-mobile-wa">
+                <a href="https://wa.me/905079605049" target="_blank"><i class="fab fa-whatsapp"></i></a>
             </div>
         </div>
+    </nav>
 
-        <div class="calc-result" id="sonuc">
-            <div class="price">—</div>
-            <div class="detail">Tahmini fiyat görünüyor</div>
-            <div class="calc-note">* KDV hariç, kesin fiyat için WhatsApp'tan teyit alın.</div>
-        </div>
-    </section>
+    <div class="container page-body">
 
-    <!-- ===== NEDEN BİZ ===== -->
-    <section class="why-us">
-        <div class="why-item">
-            <i class="fas fa-industry"></i>
-            <h4>Kendi Fabrikamız</h4>
-            <p>Aracı yok, doğrudan üretici. En uygun fiyat garantisi.</p>
-        </div>
-        <div class="why-item">
-            <i class="fas fa-truck"></i>
-            <h4>Tüm Türkiye'ye Kargo</h4>
-            <p>Nerede olursan ol, siparişin kapına gelsin.</p>
-        </div>
-        <div class="why-item">
-            <i class="fas fa-bolt"></i>
-            <h4>1-2 İş Gününde Kargoda</h4>
-            <p>Hızlı üretim, özenli paketleme, takip numarası.</p>
-        </div>
-        <div class="why-item">
-            <i class="fab fa-whatsapp"></i>
-            <h4>Birebir WhatsApp Desteği</h4>
-            <p>Ölçü, tasarım, soruların için anında yanıt.</p>
-        </div>
-    </section>
+        <!-- HERO -->
+        <section class="hero">
+            <video class="hero-video" autoplay muted loop playsinline>
+                <source src="images/fason/hero-fason.mp4" type="video/mp4">
+            </video>
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <h1>FASON <span>DİJİTAL BASKI</span></h1>
+                <p>Ölçünü gir, fiyatını gör, kapına gelsin. Folyo, branda, one-way vision, vinil, mesh ve daha fazlası.</p>
+                <a href="#hesapla" class="btn-main"><i class="fas fa-calculator"></i> HEMEN FİYAT HESAPLA</a>
+            </div>
+        </section>
 
-    <!-- ===== ÜRÜN KARTLARI (Tıklanabilir) ===== -->
-    <section class="products">
-        <h2>Tüm Ürünler</h2>
-        <div class="product-grid">
+        <!-- STEPS -->
+        <section class="steps">
+            <div class="steps-grid">
+                <div class="step-box">
+                    <div class="step-num">1</div>
+                    <i class="fas fa-ruler-combined"></i>
+                    <h4>Ölçünü Gir</h4>
+                    <p>Malzeme seç, en-boy ölçünü yaz, fiyatı anında gör.</p>
+                </div>
+                <div class="step-box">
+                    <div class="step-num">2</div>
+                    <i class="fab fa-whatsapp"></i>
+                    <h4>WhatsApp'tan Onayla</h4>
+                    <p>Tasarımını gönder, ölçü ve fiyatı birlikte teyit edelim.</p>
+                </div>
+                <div class="step-box">
+                    <div class="step-num">3</div>
+                    <i class="fas fa-print"></i>
+                    <h4>Biz Basalım</h4>
+                    <p>Bafra atölyemizde kaliteli baskı ve özenli paketleme.</p>
+                </div>
+                <div class="step-box">
+                    <div class="step-num">4</div>
+                    <i class="fas fa-truck"></i>
+                    <h4>Kapına Gelsin</h4>
+                    <p>Kargo takip numaranı WhatsApp'tan yollarız.</p>
+                </div>
+            </div>
+        </section>
 
-            <div class="product-card" onclick="openModal('ince_vinil')">
-                <img class="card-img" src="images/fason/ince-vinil.jpg" alt="İnce Vinil Baskı" loading="lazy">
-                <div class="card-body">
-                    <h3>İnce Vinil</h3>
-                    <div class="desc">Konica Solvent, dış mekan</div>
-                    <div class="fiyat">~85 TL <small>/m²</small></div>
+        <!-- CALCULATOR -->
+        <section class="calculator" id="hesapla">
+            <h2><i class="fas fa-sliders-h"></i> Fiyat Hesaplayıcı</h2>
+            <p class="sub">Malzeme seç, en ve boy ölçülerini gir, tahmini fiyatı anında gör.</p>
+
+            <div class="calc-grid">
+                <div class="calc-group full">
+                    <label for="malzeme">Malzeme Seç</label>
+                    <select id="malzeme">
+                        <option value="ince_vinil">İnce Vinil</option>
+                        <option value="normal_vinil">Normal Vinil</option>
+                        <option value="avrupa_vinil">Avrupa Vinil</option>
+                        <option value="arkasi_siyah_vinil">Arkası Siyah Vinil</option>
+                        <option value="mesh_vinil">Mesh Vinil</option>
+                        <option value="isikli_vinil">Işıklı Vinil</option>
+                        <option value="frimpeks_folyo">Frimpeks Folyo</option>
+                        <option value="frimpeks_gri_folyo">Frimpeks Arkası Gri Folyo</option>
+                        <option value="unifol_folyo">Unifol Folyo</option>
+                        <option value="unifol_gri_folyo">Unifol Arkası Gri Folyo</option>
+                        <option value="one_way_vision">One Way Vision</option>
+                        <option value="reflektif_folyo">Reflektif Folyo</option>
+                        <option value="kumlu_folyo">Kumlu Folyo</option>
+                        <option value="canvas">Canvas Baskı</option>
+                        <option value="magnet">Magnet Baskı</option>
+                        <option value="kagit_baski">Kağıt Baskı</option>
+                        <option value="duvar_tablosu_50x70">Duvar Tablosu 50x70 cm</option>
+                        <option value="duvar_tablosu_70x100">Duvar Tablosu 70x100 cm</option>
+                        <option value="duvar_tablosu_100x140">Duvar Tablosu 100x140 cm</option>
+                    </select>
+                </div>
+                <div class="calc-group" id="en-group">
+                    <label for="en">En (cm)</label>
+                    <input type="number" id="en" placeholder="Örn: 100" min="1" value="100">
+                </div>
+                <div class="calc-group" id="boy-group">
+                    <label for="boy">Boy (cm)</label>
+                    <input type="number" id="boy" placeholder="Örn: 50" min="1" value="50">
                 </div>
             </div>
 
-            <div class="product-card" onclick="openModal('normal_vinil')">
-                <img class="card-img" src="images/fason/normal-vinil.jpg" alt="Normal Vinil Baskı" loading="lazy">
-                <div class="card-body">
-                    <h3>Normal Vinil</h3>
-                    <div class="desc">Konica Solvent, dış mekan</div>
-                    <div class="fiyat">~110 TL <small>/m²</small></div>
-                </div>
+            <div class="preview-wrap">
+                <div class="preview-box" id="onizleme">100×50</div>
             </div>
 
-            <div class="product-card" onclick="openModal('avrupa_vinil')">
-                <img class="card-img" src="images/fason/avrupa-vinil.jpg" alt="Avrupa Vinil Baskı" loading="lazy">
-                <div class="card-body">
-                    <h3>Avrupa Vinil</h3>
-                    <div class="desc">Konica Solvent, kaliteli</div>
-                    <div class="fiyat">~127 TL <small>/m²</small></div>
-                </div>
-            </div>
+            <button class="btn-main" onclick="hesapla()" style="width:100%; margin-top:20px; text-align:center;">
+                <i class="fas fa-calculator"></i> HESAPLA
+            </button>
 
-            <div class="product-card" onclick="openModal('mesh_vinil')">
-                <img class="card-img" src="images/fason/mesh-vinil.jpg" alt="Mesh Vinil Baskı" loading="lazy">
-                <div class="card-body">
-                    <h3>Mesh Vinil</h3>
-                    <div class="desc">Delikli, rüzgar geçirgen</div>
-                    <div class="fiyat">~148 TL <small>/m²</small></div>
-                </div>
+            <div class="calc-result" id="sonuc">
+                <div class="price">—</div>
+                <div class="detail">Tahmini fiyat görünüyor</div>
+                <div class="calc-note">* KDV hariç fiyattır. Kesin tutar için WhatsApp'tan yazın.</div>
             </div>
+        </section>
 
-            <div class="product-card" onclick="openModal('isikli_vinil')">
-                <img class="card-img" src="images/fason/isikli-vinil.jpg" alt="Işıklı Vinil Baskı" loading="lazy">
-                <div class="card-body">
-                    <h3>Işıklı Vinil</h3>
-                    <div class="desc">Arkadan aydınlatmalı</div>
-                    <div class="fiyat">~223 TL <small>/m²</small></div>
+        <!-- PRODUCTS -->
+        <section class="products" id="urunler">
+            <h2>Tüm Ürünler</h2>
+            <div class="product-grid">
+
+                <div class="product-card" onclick="openModal('ince_vinil')">
+                    <img class="card-img" src="images/fason/ince-vinil.jpg" alt="İnce Vinil Baskı" loading="lazy">
+                    <div class="card-body">
+                        <h3>İnce Vinil</h3>
+                        <div class="desc">Konica Solvent, dış mekan</div>
+                        <div class="fiyat">~85 TL <small>/m²</small></div>
+                    </div>
                 </div>
-            </div>
 
-            <div class="product-card" onclick="openModal('frimpeks_folyo')">
-                <img class="card-img" src="images/fason/frimpeks-folyo.jpg" alt="Frimpeks Folyo Baskı" loading="lazy">
-                <div class="card-body">
-                    <h3>Frimpeks Folyo</h3>
-                    <div class="desc">Solvent folyo, renkli</div>
-                    <div class="fiyat">~148 TL <small>/m²</small></div>
+                <div class="product-card" onclick="openModal('normal_vinil')">
+                    <img class="card-img" src="images/fason/normal-vinil.jpg" alt="Normal Vinil Baskı" loading="lazy">
+                    <div class="card-body">
+                        <h3>Normal Vinil</h3>
+                        <div class="desc">Konica Solvent, dış mekan</div>
+                        <div class="fiyat">~110 TL <small>/m²</small></div>
+                    </div>
                 </div>
-            </div>
 
-            <div class="product-card" onclick="openModal('unifol_folyo')">
-                <img class="card-img" src="images/fason/unifol-folyo.jpg" alt="Unifol Folyo Baskı" loading="lazy">
-                <div class="card-body">
-                    <h3>Unifol Folyo</h3>
-                    <div class="desc">Solvent folyo, kaliteli</div>
-                    <div class="fiyat">~177 TL <small>/m²</small></div>
+                <div class="product-card" onclick="openModal('avrupa_vinil')">
+                    <img class="card-img" src="images/fason/avrupa-vinil.jpg" alt="Avrupa Vinil Baskı" loading="lazy">
+                    <div class="card-body">
+                        <h3>Avrupa Vinil</h3>
+                        <div class="desc">Konica Solvent, kaliteli</div>
+                        <div class="fiyat">~127 TL <small>/m²</small></div>
+                    </div>
                 </div>
-            </div>
 
-            <div class="product-card" onclick="openModal('one_way_vision')">
-                <img class="card-img" src="images/fason/one-way-vision.jpg" alt="One Way Vision Cam Folyosu" loading="lazy">
-                <div class="card-body">
-                    <h3>One Way Vision</h3>
-                    <div class="desc">Cam folyosu, içerisi görünmez</div>
-                    <div class="fiyat">~188 TL <small>/m²</small></div>
+                <div class="product-card" onclick="openModal('mesh_vinil')">
+                    <img class="card-img" src="images/fason/mesh-vinil.jpg" alt="Mesh Vinil Baskı" loading="lazy">
+                    <div class="card-body">
+                        <h3>Mesh Vinil</h3>
+                        <div class="desc">Delikli, rüzgar geçirgen</div>
+                        <div class="fiyat">~148 TL <small>/m²</small></div>
+                    </div>
                 </div>
-            </div>
 
-            <div class="product-card" onclick="openModal('reflektif_folyo')">
-                <img class="card-img" src="images/fason/reflektif-folyo.jpg" alt="Reflektif Folyo" loading="lazy">
-                <div class="card-body">
-                    <h3>Reflektif Folyo</h3>
-                    <div class="desc">Gece ışıltılı</div>
-                    <div class="fiyat">~587 TL <small>/m²</small></div>
+                <div class="product-card" onclick="openModal('isikli_vinil')">
+                    <img class="card-img" src="images/fason/isikli-vinil.jpg" alt="Işıklı Vinil Baskı" loading="lazy">
+                    <div class="card-body">
+                        <h3>Işıklı Vinil</h3>
+                        <div class="desc">Arkadan aydınlatmalı</div>
+                        <div class="fiyat">~223 TL <small>/m²</small></div>
+                    </div>
                 </div>
-            </div>
 
-            <div class="product-card" onclick="openModal('kumlu_folyo')">
-                <img class="card-img" src="images/fason/kumlu-folyo.jpg" alt="Kumlu Folyo" loading="lazy">
-                <div class="card-body">
-                    <h3>Kumlu Folyo</h3>
-                    <div class="desc">Dekoratif kum efekti</div>
-                    <div class="fiyat">~188 TL <small>/m²</small></div>
+                <div class="product-card" onclick="openModal('frimpeks_folyo')">
+                    <img class="card-img" src="images/fason/frimpeks-folyo.jpg" alt="Frimpeks Folyo Baskı" loading="lazy">
+                    <div class="card-body">
+                        <h3>Frimpeks Folyo</h3>
+                        <div class="desc">Solvent folyo, renkli</div>
+                        <div class="fiyat">~148 TL <small>/m²</small></div>
+                    </div>
                 </div>
-            </div>
 
-            <div class="product-card" onclick="openModal('canvas')">
-                <img class="card-img" src="images/fason/canvas.jpg" alt="Canvas Baskı" loading="lazy">
-                <div class="card-body">
-                    <h3>Canvas Baskı</h3>
-                    <div class="desc">Tuval görünümlü, dekoratif</div>
-                    <div class="fiyat">~446 TL <small>/m²</small></div>
+                <div class="product-card" onclick="openModal('unifol_folyo')">
+                    <img class="card-img" src="images/fason/unifol-folyo.jpg" alt="Unifol Folyo Baskı" loading="lazy">
+                    <div class="card-body">
+                        <h3>Unifol Folyo</h3>
+                        <div class="desc">Solvent folyo, kaliteli</div>
+                        <div class="fiyat">~177 TL <small>/m²</small></div>
+                    </div>
                 </div>
-            </div>
 
-            <div class="product-card" onclick="openModal('magnet')">
-                <img class="card-img" src="images/fason/magnet.jpg" alt="Magnet Baskı" loading="lazy">
-                <div class="card-body">
-                    <h3>Magnet Baskı</h3>
-                    <div class="desc">Manyetik folyo</div>
-                    <div class="fiyat">~611 TL <small>/m²</small></div>
+                <div class="product-card" onclick="openModal('one_way_vision')">
+                    <div class="product-badge free-design">🎨 Ücretsiz Tasarım</div>
+                    <img class="card-img" src="images/fason/one-way-vision.jpg" alt="One Way Vision Cam Folyosu" loading="lazy">
+                    <div class="card-body">
+                        <h3>One Way Vision</h3>
+                        <div class="desc">Cam folyosu, içerisi görünmez</div>
+                        <div class="fiyat">~188 TL <small>/m²</small></div>
+                    </div>
                 </div>
-            </div>
 
-            <div class="product-card" onclick="openModal('kagit_baski')">
-                <img class="card-img" src="images/fason/kagit-baski.jpg" alt="Kağıt Baskı" loading="lazy">
-                <div class="card-body">
-                    <h3>Kağıt Baskı</h3>
-                    <div class="desc">İç mekan afiş, poster</div>
-                    <div class="fiyat">~70 TL <small>/m²</small></div>
+                <div class="product-card" onclick="openModal('reflektif_folyo')">
+                    <img class="card-img" src="images/fason/reflektif-folyo.jpg" alt="Reflektif Folyo" loading="lazy">
+                    <div class="card-body">
+                        <h3>Reflektif Folyo</h3>
+                        <div class="desc">Gece ışıltılı</div>
+                        <div class="fiyat">~587 TL <small>/m²</small></div>
+                    </div>
                 </div>
-            </div>
 
+                <div class="product-card" onclick="openModal('kumlu_folyo')">
+                    <img class="card-img" src="images/fason/kumlu-folyo.jpg" alt="Kumlu Folyo" loading="lazy">
+                    <div class="card-body">
+                        <h3>Kumlu Folyo</h3>
+                        <div class="desc">Dekoratif kum efekti</div>
+                        <div class="fiyat">~188 TL <small>/m²</small></div>
+                    </div>
+                </div>
+
+                <div class="product-card" onclick="openModal('canvas')">
+                    <img class="card-img" src="images/fason/canvas.jpg" alt="Canvas Baskı" loading="lazy">
+                    <div class="card-body">
+                        <h3>Canvas Baskı</h3>
+                        <div class="desc">Tuval görünümlü, dekoratif</div>
+                        <div class="fiyat">~446 TL <small>/m²</small></div>
+                    </div>
+                </div>
+
+                <div class="product-card" onclick="openModal('magnet')">
+                    <div class="product-badge free-design">🎨 Ücretsiz Tasarım</div>
+                    <img class="card-img" src="images/fason/magnet.jpg" alt="Magnet Baskı" loading="lazy">
+                    <div class="card-body">
+                        <h3>Magnet Baskı</h3>
+                        <div class="desc">Manyetik folyo</div>
+                        <div class="fiyat">~611 TL <small>/m²</small></div>
+                    </div>
+                </div>
+
+                <div class="product-card" onclick="openModal('kagit_baski')">
+                    <img class="card-img" src="images/fason/kagit-baski.jpg" alt="Kağıt Baskı" loading="lazy">
+                    <div class="card-body">
+                        <h3>Kağıt Baskı</h3>
+                        <div class="desc">İç mekan afiş, poster</div>
+                        <div class="fiyat">~70 TL <small>/m²</small></div>
+                    </div>
+                </div>
+
+                <div class="product-card" onclick="openModal('duvar_tablosu_50x70')">
+                    <div class="product-badge">🔥 En Çok Tercih</div>
+                    <div class="card-icon"><i class="fas fa-image"></i></div>
+                    <div class="card-body">
+                        <h3>Duvar Tablosu 50x70</h3>
+                        <div class="desc">Folyo kaplı 3mm MDF, çift taraflı bant ile asılır</div>
+                        <div class="fiyat">700 TL <small>(KDV Dahil)</small></div>
+                    </div>
+                </div>
+
+                <div class="product-card" onclick="openModal('duvar_tablosu_70x100')">
+                    <div class="product-badge">⭐ Popüler</div>
+                    <div class="card-icon"><i class="fas fa-image"></i></div>
+                    <div class="card-body">
+                        <h3>Duvar Tablosu 70x100</h3>
+                        <div class="desc">Folyo kaplı 3mm MDF, çift taraflı bant ile asılır</div>
+                        <div class="fiyat">950 TL <small>(KDV Dahil)</small></div>
+                    </div>
+                </div>
+
+                <div class="product-card" onclick="openModal('duvar_tablosu_100x140')">
+                    <div class="product-badge">🏆 Dev Boyut</div>
+                    <div class="card-icon"><i class="fas fa-image"></i></div>
+                    <div class="card-body">
+                        <h3>Duvar Tablosu 100x140</h3>
+                        <div class="desc">Folyo kaplı 3mm MDF, çift taraflı bant ile asılır</div>
+                        <div class="fiyat">1.300 TL <small>(KDV Dahil)</small></div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="faq" id="sss">
+            <h2>Sıkça Sorulan Sorular</h2>
+
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-question"><span>Fason baskı ne demek?</span><i class="fas fa-plus"></i></div>
+                <div class="faq-answer">Fason baskı, sizin tasarımınızı bizim makinalarımızda basıp size göndermemizdir. Montaj yok, sadece baskı hizmeti.</div>
+            </div>
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-question"><span>Hangi dosya formatlarını göndermeliyim?</span><i class="fas fa-plus"></i></div>
+                <div class="faq-answer">PDF, JPG, PNG, AI, EPS kabul ediyoruz. Çözünürlük en az 150 dpi olmalı. WhatsApp'tan gönderebilirsiniz.</div>
+            </div>
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-question"><span>Kargo kaç günde gelir?</span><i class="fas fa-plus"></i></div>
+                <div class="faq-answer">Türkiye geneli 1-3 iş günü. İstanbul, Ankara, İzmir 1-2 gün. Takip numarası gönderiyoruz.</div>
+            </div>
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-question"><span>Ödeme nasıl yapılır?</span><i class="fas fa-plus"></i></div>
+                <div class="faq-answer">Havale/EFT ile ödeme. Sipariş onayı sonrası banka bilgilerimizi gönderiyoruz. Kredi kartı için yakında.</div>
+            </div>
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-question"><span>Yanlış ölçü gönderirsem ne olur?</span><i class="fas fa-plus"></i></div>
+                <div class="faq-answer">Üretim öncesi ölçüyü sizinle teyit ediyoruz. Yine de hata olursa yeniden basıyoruz (malzeme bedeli müşteriden).</div>
+            </div>
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-question"><span>Siparişimi nasıl takip edebilirim?</span><i class="fas fa-plus"></i></div>
+                <div class="faq-answer">Kargoya verildikten sonra takip numarasını WhatsApp'tan gönderiyoruz. Kargo firmasının sitesinden takip edebilirsiniz.</div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <div class="dark-band">
+            <div class="inner">
+                <div class="footer-box">
+                    <h3>Sorun mu Var? Bize Yaz</h3>
+                    <ul class="contact-info-list">
+                        <li><i class="fas fa-phone-alt"></i> <a href="tel:05322204649">0532 220 46 49</a></li>
+                        <li><i class="fab fa-whatsapp"></i> <a href="https://wa.me/905079605049" target="_blank">0507 960 50 49 — WhatsApp'tan yaz</a></li>
+                        <li><i class="fas fa-envelope"></i> <a href="mailto:uzmandosya@hotmail.com">uzmandosya@hotmail.com</a></li>
+                        <li><i class="fas fa-map-marker-alt"></i> Emirefendi Mh. Çizmeli 2.Sk. No:33, Bafra/Samsun</li>
+                    </ul>
+                </div>
+                <footer class="footer">
+                    <p>© 2026 Uzman Reklam — Fason Dijital Baskı &amp; Tabela Fabrikası, Bafra/Samsun</p>
+                    <p style="margin-top:6px;">
+                        <a href="https://samsuntabela.tr/" >Ana Sayfa</a> &nbsp;|&nbsp;
+                        <a href="https://www.instagram.com/uzman.reklamm/" target="_blank">Instagram</a>
+                    </p>
+                </footer>
+            </div>
         </div>
-    </section>
 
-    <!-- ===== SSS ===== -->
-    <section class="faq">
-        <h2>Sıkça Sorulan Sorular</h2>
-
-        <div class="faq-item" onclick="toggleFaq(this)">
-            <div class="faq-question"><span>Fason baskı ne demek?</span><i class="fas fa-plus"></i></div>
-            <div class="faq-answer">Fason baskı, sizin tasarımınızı bizim makinalarımızda basıp size göndermemizdir. Montaj yok, sadece baskı hizmeti.</div>
-        </div>
-        <div class="faq-item" onclick="toggleFaq(this)">
-            <div class="faq-question"><span>Hangi dosya formatlarını göndermeliyim?</span><i class="fas fa-plus"></i></div>
-            <div class="faq-answer">PDF, JPG, PNG, AI, EPS kabul ediyoruz. Çözünürlük en az 150 dpi olmalı. WhatsApp'tan gönderebilirsiniz.</div>
-        </div>
-        <div class="faq-item" onclick="toggleFaq(this)">
-            <div class="faq-question"><span>Kargo kaç günde gelir?</span><i class="fas fa-plus"></i></div>
-            <div class="faq-answer">Türkiye geneli 1-3 iş günü. İstanbul, Ankara, İzmir 1-2 gün. Takip numarası gönderiyoruz.</div>
-        </div>
-        <div class="faq-item" onclick="toggleFaq(this)">
-            <div class="faq-question"><span>Ödeme nasıl yapılır?</span><i class="fas fa-plus"></i></div>
-            <div class="faq-answer">Havale/EFT ile ödeme. Sipariş onayı sonrası banka bilgilerimizi gönderiyoruz.</div>
-        </div>
-        <div class="faq-item" onclick="toggleFaq(this)">
-            <div class="faq-question"><span>Yanlış ölçü gönderirsem ne olur?</span><i class="fas fa-plus"></i></div>
-            <div class="faq-answer">Üretim öncesi ölçüyü sizinle teyit ediyoruz. Yine de hata olursa yeniden basıyoruz (malzeme bedeli müşteriden).</div>
-        </div>
-        <div class="faq-item" onclick="toggleFaq(this)">
-            <div class="faq-question"><span>Hangi malzemeleri basıyorsunuz?</span><i class="fas fa-plus"></i></div>
-            <div class="faq-answer">Folyo, branda, one-way vision, vinil, mesh, canvas, magnet ve kağıt. Hepsini tek tek seçip hesaplayabilirsiniz.</div>
-        </div>
-        <div class="faq-item" onclick="toggleFaq(this)">
-            <div class="faq-question"><span>Özel boyut baskı yapıyor musunuz?</span><i class="fas fa-plus"></i></div>
-            <div class="faq-answer">Evet, her ölçüde baskı yapıyoruz. Hesaplayıcıya en ve boy ölçülerini girerek fiyatı görebilirsiniz.</div>
-        </div>
-        <div class="faq-item" onclick="toggleFaq(this)">
-            <div class="faq-question"><span>Siparişimi nasıl takip edebilirim?</span><i class="fas fa-plus"></i></div>
-            <div class="faq-answer">Kargoya verildikten sonra takip numarasını WhatsApp'tan gönderiyoruz. Kargo firmasının sitesinden takip edebilirsiniz.</div>
-        </div>
-        <div class="faq-item" onclick="toggleFaq(this)">
-            <div class="faq-question"><span>Toplu siparişte indirim var mı?</span><i class="fas fa-plus"></i></div>
-            <div class="faq-answer">Evet, 5 m² ve üzeri siparişlerde indirim sağlıyoruz. WhatsApp'tan detayları konuşabiliriz.</div>
-        </div>
-        <div class="faq-item" onclick="toggleFaq(this)">
-            <div class="faq-question"><span>Hangi şehirlere kargo yapıyorsunuz?</span><i class="fas fa-plus"></i></div>
-            <div class="faq-answer">Tüm Türkiye'ye kargo yapıyoruz. Bafra/Samsun'dan tüm illere hızlı teslimat.</div>
-        </div>
-    </section>
-
-    <!-- ===== FOOTER ===== -->
-    <footer class="footer">
-        <p>© 2026 Uzman Reklam — Fason Dijital Baskı &amp; Tabela Fabrikası, Bafra/Samsun</p>
-        <p style="margin-top:6px;">
-            <a href="https://wa.me/905079605049" target="_blank">WhatsApp</a> &nbsp;|&nbsp;
-            <a href="mailto:uzmandosya@hotmail.com">E-posta</a> &nbsp;|&nbsp;
-            <a href="https://www.instagram.com/uzman.reklamm/" target="_blank">Instagram</a>
-        </p>
-    </footer>
-
-</div>
-
-<!-- ===== MODAL ===== -->
-<div class="modal-overlay" id="productModal">
-    <div class="modal-box">
-        <button class="modal-close" onclick="closeModal()">&times;</button>
-        <img id="modalImg" src="" alt="Ürün görseli">
-        <h2 id="modalTitle">Ürün Adı</h2>
-        <div class="modal-desc" id="modalDesc">Açıklama burada.</div>
-        <div class="modal-price" id="modalPrice">Fiyat</div>
-        <a href="#" id="modalWaBtn" class="btn-wa" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp ile Sipariş Ver</a>
     </div>
-</div>
 
-<!-- ===== SABİT WHATSAPP ===== -->
-<div class="wp-float">
-    <div class="mobile-nav">
-        <a href="#hesapla">HESAPLA</a>
-        <a href="#products">ÜRÜNLER</a>
-        <a href="#faq">SSS</a>
+    <!-- MODAL -->
+    <div class="modal-overlay" id="productModal" onclick="if(event.target===this) closeModal()">
+        <div class="modal-box">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <img class="modal-img" id="modalImg" src="" alt="">
+            <h3 id="modalTitle">Ürün Adı</h3>
+            <div class="modal-desc" id="modalDesc">Ürün açıklaması burada olacak.</div>
+            <div class="modal-price" id="modalPrice">Fiyat</div>
+            <a href="#" id="modalWaBtn" class="btn-wa" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp ile Sipariş Ver</a>
+        </div>
     </div>
-    <a href="https://wa.me/905079605049" class="wp-btn" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-</div>
 
-<!-- ===== JAVASCRIPT ===== -->
-<script>
-    // ===== HESAPLAYICI =====
-    const fiyatlar = {
-        ince_vinil: { ad: 'İnce Vinil', fiyat: 1.80, birim: 'USD' },
-        normal_vinil: { ad: 'Normal Vinil', fiyat: 2.35, birim: 'USD' },
-        avrupa_vinil: { ad: 'Avrupa Vinil', fiyat: 2.70, birim: 'USD' },
-        arkasi_siyah_vinil: { ad: 'Arkası Siyah Vinil', fiyat: 2.95, birim: 'USD' },
-        mesh_vinil: { ad: 'Mesh Vinil', fiyat: 3.15, birim: 'USD' },
-        isikli_vinil: { ad: 'Işıklı Vinil', fiyat: 4.75, birim: 'USD' },
-        frimpeks_folyo: { ad: 'Frimpeks Folyo', fiyat: 2.75, birim: 'EUR' },
-        frimpeks_gri_folyo: { ad: 'Frimpeks Arkası Gri Folyo', fiyat: 2.80, birim: 'EUR' },
-        unifol_folyo: { ad: 'Unifol Folyo', fiyat: 3.30, birim: 'EUR' },
-        unifol_gri_folyo: { ad: 'Unifol Arkası Gri Folyo', fiyat: 3.35, birim: 'EUR' },
-        one_way_vision: { ad: 'One Way Vision', fiyat: 4.00, birim: 'USD' },
-        reflektif_folyo: { ad: 'Reflektif Folyo', fiyat: 12.50, birim: 'USD' },
-        kumlu_folyo: { ad: 'Kumlu Folyo', fiyat: 4.00, birim: 'USD' },
-        canvas: { ad: 'Canvas Baskı', fiyat: 9.50, birim: 'USD' },
-        magnet: { ad: 'Magnet Baskı', fiyat: 13.00, birim: 'USD' },
-        kagit_baski: { ad: 'Kağıt Baskı', fiyat: 1.50, birim: 'USD' }
-    };
-    const kur_usd = 46.98;
-    const kur_eur = 53.72;
+    <!-- FLOAT BUTTONS -->
+    <div class="wp-float">
+        <a href="https://www.instagram.com/uzman.reklamm/" class="wp-btn instagram" target="_blank">
+            <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://wa.me/905079605049" class="wp-btn whatsapp" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
 
-    function hesapla() {
-        const malzemeKey = document.getElementById('malzeme').value;
-        const en = parseFloat(document.getElementById('en').value);
-        const boy = parseFloat(document.getElementById('boy').value);
+    <script>
+        // Fiyat verileri
+        const fiyatlar = {
+            ince_vinil: { ad: 'İnce Vinil', fiyat: 1.80, birim: 'USD', desc: 'Konica Solvent baskı, dış mekan için idealdir. Ekonomik ve dayanıklı.' },
+            normal_vinil: { ad: 'Normal Vinil', fiyat: 2.35, birim: 'USD', desc: 'Konica Solvent, dış mekan. Orta kalite, günlük kullanım için uygun.' },
+            avrupa_vinil: { ad: 'Avrupa Vinil', fiyat: 2.70, birim: 'USD', desc: 'Yüksek kaliteli Avrupa vinili, uzun ömürlü ve UV dayanımlı.' },
+            arkasi_siyah_vinil: { ad: 'Arkası Siyah Vinil', fiyat: 2.95, birim: 'USD', desc: 'Arkası siyah, opak görünümlü. Işık geçirmez, tabelalarda kullanılır.' },
+            mesh_vinil: { ad: 'Mesh Vinil', fiyat: 3.15, birim: 'USD', desc: 'Delikli yapısıyla rüzgarı geçirir, bina cephelerinde idealdir.' },
+            isikli_vinil: { ad: 'Işıklı Vinil', fiyat: 4.75, birim: 'USD', desc: 'Arkadan aydınlatmalı tabelalar için özel üretim, ışığı geçirir.' },
+            frimpeks_folyo: { ad: 'Frimpeks Folyo', fiyat: 2.75, birim: 'EUR', desc: 'Solvent folyo, renkli ve dayanıklı. Araç giydirme ve iç mekan kullanımı.' },
+            frimpeks_gri_folyo: { ad: 'Frimpeks Arkası Gri', fiyat: 2.80, birim: 'EUR', desc: 'Arkası gri, opak folyo. Işık geçirmez, tabelalarda kullanılır.' },
+            unifol_folyo: { ad: 'Unifol Folyo', fiyat: 3.30, birim: 'EUR', desc: 'Kaliteli solvent folyo, parlak ve canlı renkler.' },
+            unifol_gri_folyo: { ad: 'Unifol Arkası Gri', fiyat: 3.35, birim: 'EUR', desc: 'Arkası gri, yüksek kaliteli folyo. Uzun ömürlü.' },
+            one_way_vision: { ad: 'One Way Vision', fiyat: 4.00, birim: 'USD', desc: 'Cam folyosu, içeriden dışarıyı görürsünüz, dışarıdan içeri görünmez. Mağaza vitrinleri ve araç camları için idealdir. Ücretsiz tasarım desteği.' },
+            reflektif_folyo: { ad: 'Reflektif Folyo', fiyat: 12.50, birim: 'USD', desc: 'Gece ışıldayan, yol işaretleri ve acil durum tabelaları için.' },
+            kumlu_folyo: { ad: 'Kumlu Folyo', fiyat: 4.00, birim: 'USD', desc: 'Dekoratif kum efekti, iç mekan duvar kaplamalarında kullanılır.' },
+            canvas: { ad: 'Canvas Baskı', fiyat: 9.50, birim: 'USD', desc: 'Tuval görünümlü, dekoratif baskı. Resim ve sanat baskıları için.' },
+            magnet: { ad: 'Magnet Baskı', fiyat: 13.00, birim: 'USD', desc: 'Manyetik folyo, buzdolabı magneti ve promosyon ürünleri için. Ücretsiz tasarım desteği.' },
+            kagit_baski: { ad: 'Kağıt Baskı', fiyat: 1.50, birim: 'USD', desc: 'İç mekan afiş, poster ve broşür baskıları için ideal.' },
+            duvar_tablosu_50x70: { ad: 'Duvar Tablosu 50x70', fiyat: 700, birim: 'TL', desc: 'Folyo kaplı 3mm MDF, çift taraflı bant ile kolayca asılır. Hazır boyut, hemen kullanıma hazır.' },
+            duvar_tablosu_70x100: { ad: 'Duvar Tablosu 70x100', fiyat: 950, birim: 'TL', desc: 'Folyo kaplı 3mm MDF, çift taraflı bant ile kolayca asılır. Büyük boyut, etkileyici görünüm.' },
+            duvar_tablosu_100x140: { ad: 'Duvar Tablosu 100x140', fiyat: 1300, birim: 'TL', desc: 'Folyo kaplı 3mm MDF, çift taraflı bant ile kolayca asılır. Dev boyut, ofis ve mağazalar için.' }
+        };
 
-        if (!en || !boy || en <= 0 || boy <= 0) {
-            document.getElementById('sonuc').innerHTML = `
-                <div class="price" style="color:#e74c3c;">Hata</div>
-                <div class="detail">Lütfen geçerli en ve boy girin.</div>
-                <div class="calc-note">* KDV hariç</div>
+        const kur_usd = 46.98;
+        const kur_eur = 53.72;
+
+        // Ürün açıklamaları (modal için)
+        const urunDetay = {
+            ince_vinil: { img: 'images/fason/ince-vinil.jpg', desc: 'Konica Solvent baskı, dış mekan için idealdir. Ekonomik ve dayanıklı.' },
+            normal_vinil: { img: 'images/fason/normal-vinil.jpg', desc: 'Konica Solvent, dış mekan. Orta kalite, günlük kullanım için uygun.' },
+            avrupa_vinil: { img: 'images/fason/avrupa-vinil.jpg', desc: 'Yüksek kaliteli Avrupa vinili, uzun ömürlü ve UV dayanımlı.' },
+            mesh_vinil: { img: 'images/fason/mesh-vinil.jpg', desc: 'Delikli yapısıyla rüzgarı geçirir, bina cephelerinde idealdir.' },
+            isikli_vinil: { img: 'images/fason/isikli-vinil.jpg', desc: 'Arkadan aydınlatmalı tabelalar için özel üretim, ışığı geçirir.' },
+            frimpeks_folyo: { img: 'images/fason/frimpeks-folyo.jpg', desc: 'Solvent folyo, renkli ve dayanıklı. Araç giydirme ve iç mekan kullanımı.' },
+            unifol_folyo: { img: 'images/fason/unifol-folyo.jpg', desc: 'Kaliteli solvent folyo, parlak ve canlı renkler.' },
+            one_way_vision: { img: 'images/fason/one-way-vision.jpg', desc: 'Cam folyosu, içeriden dışarıyı görürsünüz, dışarıdan içeri görünmez. Mağaza vitrinleri ve araç camları için idealdir. 🎨 Ücretsiz tasarım desteği.' },
+            reflektif_folyo: { img: 'images/fason/reflektif-folyo.jpg', desc: 'Gece ışıldayan, yol işaretleri ve acil durum tabelaları için.' },
+            kumlu_folyo: { img: 'images/fason/kumlu-folyo.jpg', desc: 'Dekoratif kum efekti, iç mekan duvar kaplamalarında kullanılır.' },
+            canvas: { img: 'images/fason/canvas.jpg', desc: 'Tuval görünümlü, dekoratif baskı. Resim ve sanat baskıları için.' },
+            magnet: { img: 'images/fason/magnet.jpg', desc: 'Manyetik folyo, buzdolabı magneti ve promosyon ürünleri için. 🎨 Ücretsiz tasarım desteği.' },
+            kagit_baski: { img: 'images/fason/kagit-baski.jpg', desc: 'İç mekan afiş, poster ve broşür baskıları için ideal.' },
+            duvar_tablosu_50x70: { img: '', desc: 'Folyo kaplı 3mm MDF, çift taraflı bant ile kolayca asılır. Hazır boyut, hemen kullanıma hazır.' },
+            duvar_tablosu_70x100: { img: '', desc: 'Folyo kaplı 3mm MDF, çift taraflı bant ile kolayca asılır. Büyük boyut, etkileyici görünüm.' },
+            duvar_tablosu_100x140: { img: '', desc: 'Folyo kaplı 3mm MDF, çift taraflı bant ile kolayca asılır. Dev boyut, ofis ve mağazalar için.' }
+        };
+
+        function openModal(key) {
+            const urun = fiyatlar[key];
+            const detay = urunDetay[key];
+            if (!urun) return;
+
+            let fiyatGoster = '';
+            if (urun.birim === 'TL') {
+                fiyatGoster = urun.fiyat + ' TL (KDV Dahil)';
+            } else {
+                let kur = urun.birim === 'EUR' ? kur_eur : kur_usd;
+                let tl = (urun.fiyat * kur).toFixed(0);
+                fiyatGoster = '~' + tl + ' TL /m² (KDV Hariç)';
+            }
+
+            document.getElementById('modalTitle').textContent = urun.ad;
+            document.getElementById('modalDesc').textContent = detay.desc;
+            document.getElementById('modalPrice').textContent = fiyatGoster;
+            if (detay.img) {
+                document.getElementById('modalImg').src = detay.img;
+                document.getElementById('modalImg').style.display = 'block';
+            } else {
+                document.getElementById('modalImg').style.display = 'none';
+            }
+
+            const waMsg = encodeURIComponent('Merhaba, ' + urun.ad + ' için teklif almak istiyorum.');
+            document.getElementById('modalWaBtn').href = 'https://wa.me/905079605049?text=' + waMsg;
+
+            document.getElementById('productModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('productModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Hesaplayıcı
+        function onizlemeGuncelle() {
+            const malzeme = document.getElementById('malzeme').value;
+            const isDuvar = malzeme.startsWith('duvar_tablosu');
+            const enInput = document.getElementById('en');
+            const boyInput = document.getElementById('boy');
+
+            if (isDuvar) {
+                enInput.disabled = true;
+                boyInput.disabled = true;
+                enInput.value = '';
+                boyInput.value = '';
+                document.getElementById('onizleme').textContent = 'Sabit Boyut';
+                document.getElementById('onizleme').style.width = '100px';
+                document.getElementById('onizleme').style.height = '60px';
+                return;
+            } else {
+                enInput.disabled = false;
+                boyInput.disabled = false;
+            }
+
+            const en = parseFloat(enInput.value) || 0;
+            const boy = parseFloat(boyInput.value) || 0;
+            const kutu = document.getElementById('onizleme');
+            if (en <= 0 || boy <= 0) {
+                kutu.style.width = '20px';
+                kutu.style.height = '14px';
+                kutu.textContent = '';
+                return;
+            }
+            const maxGenislik = 220, maxYukseklik = 90;
+            const oran = en / boy;
+            let w, h;
+            if (oran >= maxGenislik / maxYukseklik) {
+                w = maxGenislik;
+                h = maxGenislik / oran;
+            } else {
+                h = maxYukseklik;
+                w = maxYukseklik * oran;
+            }
+            kutu.style.width = Math.max(w, 24) + 'px';
+            kutu.style.height = Math.max(h, 16) + 'px';
+            kutu.textContent = en + '×' + boy + ' cm';
+        }
+
+        document.getElementById('en').addEventListener('input', onizlemeGuncelle);
+        document.getElementById('boy').addEventListener('input', onizlemeGuncelle);
+        document.getElementById('malzeme').addEventListener('change', onizlemeGuncelle);
+
+        function hesapla() {
+            const malzemeKey = document.getElementById('malzeme').value;
+            const en = parseFloat(document.getElementById('en').value);
+            const boy = parseFloat(document.getElementById('boy').value);
+            const urun = fiyatlar[malzemeKey];
+            let toplamTL = 0;
+            let m2 = 0;
+            let fiyatGoster = '';
+
+            if (malzemeKey.startsWith('duvar_tablosu')) {
+                toplamTL = urun.fiyat;
+                fiyatGoster = toplamTL + ' TL (KDV Dahil)';
+            } else {
+                if (!en || !boy || en <= 0 || boy <= 0) {
+                    document.getElementById('sonuc').innerHTML = `
+                        <div class="price" style="color:#ff6b6b;">Hata</div>
+                        <div class="detail">Lütfen geçerli en ve boy girin.</div>
+                        <div class="calc-note">* KDV hariç</div>
+                    `;
+                    return;
+                }
+                m2 = (en * boy) / 10000;
+                let kur = urun.birim === 'EUR' ? kur_eur : kur_usd;
+                let fiyatTL = urun.fiyat * kur;
+                toplamTL = fiyatTL * m2;
+                if (toplamTL < 50) toplamTL = 50;
+                fiyatGoster = toplamTL.toFixed(0) + ' TL (KDV Hariç)';
+            }
+
+            const sonucDiv = document.getElementById('sonuc');
+            sonucDiv.innerHTML = `
+                <div class="price">${toplamTL.toFixed(0)} <small>TL</small></div>
+                <div class="detail">
+                    ${m2 > 0 ? '📐 ' + m2.toFixed(2) + ' m² · ' : ''}${urun.ad}${en && boy ? ' · ' + en + 'x' + boy + ' cm' : ''}
+                </div>
+                <a href="https://wa.me/905079605049?text=Merhaba,%20fason%20baskı%20için%20teklif%20almak%20istiyorum.%20${urun.ad}%20-%20Tahmini%20Fiyat:%20${toplamTL.toFixed(0)}%20TL" 
+                   target="_blank" class="btn-wa">
+                    <i class="fab fa-whatsapp"></i> WhatsApp ile Sipariş Ver
+                </a>
+                <div class="calc-note">* KDV hariç fiyattır. Kesin tutar WhatsApp'ta teyit edilir.</div>
             `;
-            return;
+            onizlemeGuncelle();
         }
 
-        const urun = fiyatlar[malzemeKey];
-        const m2 = (en * boy) / 10000;
-        let fiyatDoviz = urun.fiyat;
-        let kur = urun.birim === 'EUR' ? kur_eur : kur_usd;
-        let fiyatTL = fiyatDoviz * kur;
-        let toplamTL = fiyatTL * m2;
-
-        if (toplamTL < 50) toplamTL = 50;
-
-        const sonucDiv = document.getElementById('sonuc');
-        sonucDiv.innerHTML = `
-            <div class="price">${toplamTL.toFixed(0)} <small>TL</small></div>
-            <div class="detail">
-                📐 ${m2.toFixed(2)} m² · ${urun.ad} · ${en}x${boy} cm<br>
-                <span style="color:#888;font-size:0.85rem;">KDV hariç · Kargo dahil değil</span>
-            </div>
-            <a href="https://wa.me/905079605049?text=Merhaba,%20fason%20baskı%20için%20teklif%20almak%20istiyorum.%20${urun.ad}%20-%20${en}x${boy}cm%20-%20Tahmini%20Fiyat:%20${toplamTL.toFixed(0)}%20TL%20(KDV%20hariç)" 
-               target="_blank" class="btn-wa">
-                <i class="fab fa-whatsapp"></i> WhatsApp ile Sipariş Ver
-            </a>
-            <div class="calc-note">* KDV hariç, kesin fiyat WhatsApp'ta teyit edilir. Kargo dahil değildir.</div>
-        `;
-    }
-
-    // ===== MODAL =====
-    const modalData = {
-        ince_vinil: { 
-            title: 'İnce Vinil', 
-            desc: 'Konica Solvent baskı makinesi ile dış mekanda kullanıma uygun, esnek ve dayanıklı vinil malzeme. Dükkan camları, araç giydirme ve iç mekan uygulamaları için idealdir.',
-            price: '~85 TL/m²',
-            img: 'images/fason/ince-vinil.jpg',
-            wa: 'https://wa.me/905079605049?text=Merhaba,%20İnce%20Vinil%20baskı%20için%20teklif%20almak%20istiyorum.'
-        },
-        normal_vinil: {
-            title: 'Normal Vinil',
-            desc: 'Konica Solvent ile üretilen standart kalitede vinil. Dış mekan reklam, vitrin süslemeleri ve genel kullanım için uygun fiyatlı çözüm.',
-            price: '~110 TL/m²',
-            img: 'images/fason/normal-vinil.jpg',
-            wa: 'https://wa.me/905079605049?text=Merhaba,%20Normal%20Vinil%20baskı%20için%20teklif%20almak%20istiyorum.'
-        },
-        avrupa_vinil: {
-            title: 'Avrupa Vinil',
-            desc: 'Avrupa menşeli yüksek kalite vinil. Solmaz renkler, uzun ömürlü dayanıklılık. Kurumsal firmalar ve prestijli projeler için ideal.',
-            price: '~127 TL/m²',
-            img: 'images/fason/avrupa-vinil.jpg',
-            wa: 'https://wa.me/905079605049?text=Merhaba,%20Avrupa%20Vinil%20baskı%20için%20teklif%20almak%20istiyorum.'
-        },
-        mesh_vinil: {
-            title: 'Mesh Vinil',
-            desc: 'Delikli vinil, rüzgarı geçirir, cephelerde ve büyük yüzeylerde kullanılır. Dış mekan reklamlarında tercih edilir.',
-            price: '~148 TL/m²',
-            img: 'images/fason/mesh-vinil.jpg',
-            wa: 'https://wa.me/905079605049?text=Merhaba,%20Mesh%20Vinil%20baskı%20için%20teklif%20almak%20istiyorum.'
-        },
-        isikli_vinil: {
-            title: 'Işıklı Vinil',
-            desc: 'Arkadan aydınlatmalı tabelalar için özel vinil. Işık kutusu ve ışıklı panolarda kullanılır. Yüksek parlaklık ve canlı renkler.',
-            price: '~223 TL/m²',
-            img: 'images/fason/isikli-vinil.jpg',
-            wa: 'https://wa.me/905079605049?text=Merhaba,%20Işıklı%20Vinil%20baskı%20için%20teklif%20almak%20istiyorum.'
-        },
-        frimpeks_folyo: {
-            title: 'Frimpeks Folyo',
-            desc: 'Solvent baskıya uygun, renkli ve esnek folyo. İç ve dış mekan uygulamalarında kullanılır. Fiyat/performans ürünü.',
-            price: '~148 TL/m²',
-            img: 'images/fason/frimpeks-folyo.jpg',
-            wa: 'https://wa.me/905079605049?text=Merhaba,%20Frimpeks%20Folyo%20baskı%20için%20teklif%20almak%20istiyorum.'
-        },
-        unifol_folyo: {
-            title: 'Unifol Folyo',
-            desc: 'Kaliteli solvent folyo, renk seçenekleri geniş. Dış mekan reklam, araç giydirme ve tabela uygulamaları için uygun.',
-            price: '~177 TL/m²',
-            img: 'images/fason/unifol-folyo.jpg',
-            wa: 'https://wa.me/905079605049?text=Merhaba,%20Unifol%20Folyo%20baskı%20için%20teklif%20almak%20istiyorum.'
-        },
-        one_way_vision: {
-            title: 'One Way Vision',
-            desc: 'Delikli cam folyosu. Dışarıdan reklam görünür, içeriden dışarı net görünür. Mağaza ve araç camları için ideal.',
-            price: '~188 TL/m²',
-            img: 'images/fason/one-way-vision.jpg',
-            wa: 'https://wa.me/905079605049?text=Merhaba,%20One%20Way%20Vision%20baskı%20için%20teklif%20almak%20istiyorum.'
-        },
-        reflektif_folyo: {
-            title: 'Reflektif Folyo',
-            desc: 'Gece ışıltılı, yansıtıcı özellikli folyo. Gece görünürlüğü artırır, acil durum, trafik ve yönlendirme levhalarında kullanılır.',
-            price: '~587 TL/m²',
-            img: 'images/fason/reflektif-folyo.jpg',
-            wa: 'https://wa.me/905079605049?text=Merhaba,%20Reflektif%20Folyo%20baskı%20için%20teklif%20almak%20istiyorum.'
-        },
-        kumlu_folyo: {
-            title: 'Kumlu Folyo',
-            desc: 'Dekoratif kum efekti veren folyo. İç mekan tasarımları, dekorasyon projeleri ve özel uygulamalar için tercih edilir.',
-            price: '~188 TL/m²',
-            img: 'images/fason/kumlu-folyo.jpg',
-            wa: 'https://wa.me/905079605049?text=Merhaba,%20Kumlu%20Folyo%20baskı%20için%20teklif%20almak%20istiyorum.'
-        },
-        canvas: {
-            title: 'Canvas Baskı',
-            desc: 'Tuval görünümlü, dekoratif baskı. Fotoğraflar, sanat eserleri ve duvar süsleri için ideal. Canlı renkler ve dokulu yüzey.',
-            price: '~446 TL/m²',
-            img: 'images/fason/canvas.jpg',
-            wa: 'https://wa.me/905079605049?text=Merhaba,%20Canvas%20baskı%20için%20teklif%20almak%20istiyorum.'
-        },
-        magnet: {
-            title: 'Magnet Baskı',
-            desc: 'Manyetik folyo üzerine baskı. Buzdolabı magnetleri, promosyon ürünleri ve reklam magnetleri için uygundur.',
-            price: '~611 TL/m²',
-            img: 'images/fason/magnet.jpg',
-            wa: 'https://wa.me/905079605049?text=Merhaba,%20Magnet%20baskı%20için%20teklif%20almak%20istiyorum.'
-        },
-        kagit_baski: {
-            title: 'Kağıt Baskı',
-            desc: 'İç mekan afiş, poster ve broşür baskıları için uygun. Mat veya parlak kağıt seçenekleri. Uygun fiyatlı çözüm.',
-            price: '~70 TL/m²',
-            img: 'images/fason/kagit-baski.jpg',
-            wa: 'https://wa.me/905079605049?text=Merhaba,%20Kağıt%20baskı%20için%20teklif%20almak%20istiyorum.'
+        function toggleFaq(el) {
+            const answer = el.querySelector('.faq-answer');
+            const icon = el.querySelector('.faq-question i');
+            if (answer.classList.contains('open')) {
+                answer.classList.remove('open');
+                icon.className = 'fas fa-plus';
+            } else {
+                answer.classList.add('open');
+                icon.className = 'fas fa-minus';
+            }
         }
-    };
 
-    function openModal(key) {
-        const data = modalData[key];
-        if (!data) return;
-        document.getElementById('modalImg').src = data.img;
-        document.getElementById('modalTitle').textContent = data.title;
-        document.getElementById('modalDesc').textContent = data.desc;
-        document.getElementById('modalPrice').textContent = data.price;
-        document.getElementById('modalWaBtn').href = data.wa;
-        document.getElementById('productModal').classList.add('active');
-        document.body.style.overflow = 'hidden';
-    }
-
-    function closeModal() {
-        document.getElementById('productModal').classList.remove('active');
-        document.body.style.overflow = 'auto';
-    }
-
-    document.getElementById('productModal').addEventListener('click', function(e) {
-        if (e.target === this) closeModal();
-    });
-
-    // ===== SSS =====
-    function toggleFaq(el) {
-        const answer = el.querySelector('.faq-answer');
-        const icon = el.querySelector('.faq-question i');
-        if (answer.classList.contains('open')) {
-            answer.classList.remove('open');
-            icon.className = 'fas fa-plus';
-        } else {
-            answer.classList.add('open');
-            icon.className = 'fas fa-minus';
-        }
-    }
-
-    // ===== SAYFA YÜKLENİNCE HESAPLA =====
-    window.onload = function() { hesapla(); };
-</script>
+        window.onload = function() {
+            hesapla();
+        };
+    </script>
 
 </body>
 </html>
