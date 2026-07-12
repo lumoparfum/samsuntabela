@@ -389,6 +389,25 @@
         .calc-result .btn-wa:hover { background:#1ebe57; transform:scale(1.03); }
         .calc-result .btn-wa:active { transform:scale(0.96); }
         .calc-result .btn-wa i { margin-right:10px; }
+        /* Yeni paylaş butonu stili */
+        .btn-share {
+            display:inline-block;
+            background:#6f8f00;
+            color:#fff;
+            padding:14px 28px;
+            border-radius:50px;
+            font-weight:800;
+            text-decoration:none;
+            margin-top:10px;
+            transition:0.3s;
+            width:100%;
+            text-align:center;
+            border:none;
+            cursor:pointer;
+        }
+        .btn-share:hover { background:#5a7400; transform:scale(1.02); }
+        .btn-share i { margin-right:10px; }
+
         .calc-note {
             font-size:0.75rem;
             color:#999;
@@ -935,8 +954,8 @@
             { "@type": "Question", "name": "Yanlış ölçü gönderirsem ne olur?", "acceptedAnswer": { "@type": "Answer", "text": "Üretim öncesi ölçüyü sizinle teyit ediyoruz. Yine de hata olursa yeniden basıyoruz." } },
             { "@type": "Question", "name": "Siparişimi nasıl takip edebilirim?", "acceptedAnswer": { "@type": "Answer", "text": "Kargoya verildikten sonra takip numarasını WhatsApp'tan gönderiyoruz." } },
             { "@type": "Question", "name": "Minimum sipariş tutarı var mı?", "acceptedAnswer": { "@type": "Answer", "text": "Hayır, minimum sipariş şartı yok. Küçük ölçülerde bile 50 TL'lik taban ücretle sipariş verebilirsiniz." } },
-            { "@type": "Question", "name": "Tasarım dosyam yok, ne yapmalıyım?", "acceptedAnswer": { "@type": "Answer", "text": "Sorun değil. WhatsApp'tan yazın, tasarım konusunda da destek oluyoruz." } },
-            { "@type": "Question", "name": "Türkiye'nin her iline kargo gönderiyor musunuz?", "acceptedAnswer": { "@type": "Answer", "text": "Evet, 81 ilin tamamına kargo gönderiyoruz." } },
+            { "@type": "Question", "name": "Tasarım dosyam yok, ne yapmalıyım?", "acceptedAnswer": { "@type": "Answer", "text": "Sorun değil. WhatsApp'tan yazın, tasarım konusunda da destek oluyoruz. Bu hizmet ayrıca ücretlendirilir." } },
+            { "@type": "Question", "name": "Türkiye'nin her iline kargo gönderiyor musunuz?", "acceptedAnswer": { "@type": "Answer", "text": "Evet, 81 ilin tamamına kargo gönderiyoruz. Bafra/Samsun'daki atölyemizden Türkiye geneline üretim yapıyoruz." } },
             { "@type": "Question", "name": "Kurumsal fatura kesiyor musunuz?", "acceptedAnswer": { "@type": "Answer", "text": "Evet, reklam ajansı, tabelacı ya da bireysel fark etmeksizin talep eden herkese kurumsal fatura kesiyoruz." } }
         ]
     }
@@ -1476,11 +1495,11 @@
             </div>
             <div class="faq-item" onclick="toggleFaq(this)">
                 <div class="faq-question"><span>Yanlış ölçü gönderirsem ne olur?</span><i class="fas fa-plus"></i></div>
-                <div class="faq-answer">Üretim öncesi ölçüyü sizinle teyit ediyoruz. Yine de hata olursa yeniden basıyoruz.</div>
+                <div class="faq-answer">Üretim öncesi ölçüyü sizinle teyit ediyoruz. Yine de hata olursa yeniden basıyoruz (malzeme bedeli müşteriden).</div>
             </div>
             <div class="faq-item" onclick="toggleFaq(this)">
                 <div class="faq-question"><span>Siparişimi nasıl takip edebilirim?</span><i class="fas fa-plus"></i></div>
-                <div class="faq-answer">Kargoya verildikten sonra takip numarasını WhatsApp'tan gönderiyoruz.</div>
+                <div class="faq-answer">Kargoya verildikten sonra takip numarasını WhatsApp'tan gönderiyoruz. Kargo firmasının sitesinden takip edebilirsiniz.</div>
             </div>
             <div class="faq-item" onclick="toggleFaq(this)">
                 <div class="faq-question"><span>Minimum sipariş tutarı var mı?</span><i class="fas fa-plus"></i></div>
@@ -1488,11 +1507,11 @@
             </div>
             <div class="faq-item" onclick="toggleFaq(this)">
                 <div class="faq-question"><span>Tasarım dosyam yok, ne yapmalıyım?</span><i class="fas fa-plus"></i></div>
-                <div class="faq-answer">Sorun değil. WhatsApp'tan yazın, tasarım konusunda da destek oluyoruz.</div>
+                <div class="faq-answer">Sorun değil. WhatsApp'tan yazın, tasarım konusunda da destek oluyoruz. Bu hizmet ayrıca ücretlendirilir.</div>
             </div>
             <div class="faq-item" onclick="toggleFaq(this)">
                 <div class="faq-question"><span>Türkiye'nin her iline kargo gönderiyor musunuz?</span><i class="fas fa-plus"></i></div>
-                <div class="faq-answer">Evet, 81 ilin tamamına kargo gönderiyoruz.</div>
+                <div class="faq-answer">Evet, 81 ilin tamamına kargo gönderiyoruz. Bafra/Samsun'daki atölyemizden Türkiye geneline üretim yapıyoruz.</div>
             </div>
             <div class="faq-item" onclick="toggleFaq(this)">
                 <div class="faq-question"><span>Kurumsal fatura kesiyor musunuz?</span><i class="fas fa-plus"></i></div>
@@ -1536,11 +1555,15 @@
     <div class="modal-overlay" id="productModal" onclick="if(event.target===this) closeModal()">
         <div class="modal-box">
             <button class="modal-close" onclick="closeModal()">&times;</button>
-            <img class="modal-img" id="modalImg" src="" alt="">
+            <img class="modal-img" id="modalImg" src="" alt="" onclick="openLightbox(this.src); event.stopPropagation();">
             <h3 id="modalTitle">Ürün Adı</h3>
             <div class="modal-desc" id="modalDesc">Ürün açıklaması burada olacak.</div>
             <div class="modal-price" id="modalPrice">Fiyat</div>
             <a href="#" id="modalWaBtn" class="btn-wa" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp ile Sipariş Ver</a>
+            <!-- PAYLAŞ BUTONU -->
+            <a href="#" onclick="shareProduct(document.getElementById('modalTitle').textContent, document.getElementById('modalDesc').textContent, document.getElementById('modalPrice').textContent, window.location.href); return false;" class="btn-share">
+                <i class="fas fa-share-alt"></i> Paylaş
+            </a>
         </div>
     </div>
 
@@ -1558,10 +1581,13 @@
             </div>
             <div class="modal-price">700 TL <small>(KDV Dahil)</small></div>
             <a href="https://wa.me/905079605049?text=Merhaba,%20Duvar%20Tablosu%2050x70%20için%20sipariş%20vermek%20istiyorum." class="btn-wa" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp ile Sipariş Ver</a>
+            <a href="#" onclick="shareProduct('Duvar Tablosu 50×70', 'Folyo kaplı 3mm MDF, çift taraflı bant ile kolay asılır. 3 farklı tasarım.', '700 TL (KDV Dahil)', window.location.href); return false;" class="btn-share">
+                <i class="fas fa-share-alt"></i> Paylaş
+            </a>
         </div>
     </div>
 
-    <!-- GENEL TARAFTAR MAKETİ MODALI -->
+    <!-- TARAFTAR MAKETİ MODALI -->
     <div class="modal-overlay" id="takimModal" onclick="if(event.target===this) closeTakimModal()">
         <div class="modal-box">
             <button class="modal-close" onclick="closeTakimModal()">&times;</button>
@@ -1571,6 +1597,9 @@
             <div class="modal-thumbs" id="takimModalThumbs"></div>
             <div class="modal-price" id="takimModalPrice"></div>
             <a href="#" id="takimModalWaBtn" class="btn-wa" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp ile Sipariş Ver</a>
+            <a href="#" onclick="shareProduct(document.getElementById('takimModalTitle').textContent, document.getElementById('takimModalDesc').textContent, document.getElementById('takimModalPrice').textContent, window.location.href); return false;" class="btn-share">
+                <i class="fas fa-share-alt"></i> Paylaş
+            </a>
             <div class="modal-note">💬 İsim veya forma numarası eklemek isterseniz WhatsApp'ta belirtebilirsiniz (ek ücretli). *Resmi lisanslı ürün değildir, taraftar yapımı hediyelik üründür.</div>
         </div>
     </div>
@@ -1593,6 +1622,9 @@
             </div>
             <div class="modal-price">2.899 TL <small>(KDV Dahil)</small></div>
             <a href="https://wa.me/905079605049?text=Merhaba,%20Atatürk%20Maketi%20175%20cm%20için%20sipariş%20vermek%20istiyorum." class="btn-wa" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp ile Sipariş Ver</a>
+            <a href="#" onclick="shareProduct('Atatürk Maketi 175 cm', 'Cumhuriyetimizin kurucusu Gazi Mustafa Kemal Atatürk\'ün heybetli duruşu. 3 mm Dekota, UV baskı.', '2.899 TL (KDV Dahil)', window.location.href); return false;" class="btn-share">
+                <i class="fas fa-share-alt"></i> Paylaş
+            </a>
         </div>
     </div>
 
@@ -1634,6 +1666,9 @@
             </div>
             <div class="modal-price">2.899 TL <small>(KDV Dahil)</small></div>
             <a href="https://wa.me/905079605049?text=Merhaba,%20Çocuk%20Maketi%20için%20sipariş%20vermek%20istiyorum." class="btn-wa" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp ile Sipariş Ver</a>
+            <a href="#" onclick="shareProduct('Çocuk Maketi (Kişiye Özel)', 'Çocuğunuzun fotoğrafına özel, 175 cm, 3mm Dekota, UV baskı.', '2.899 TL (KDV Dahil)', window.location.href); return false;" class="btn-share">
+                <i class="fas fa-share-alt"></i> Paylaş
+            </a>
         </div>
     </div>
 
@@ -1657,6 +1692,7 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
         import { getDatabase, ref, get, set, update } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-database.js";
 
+        // 🔥 KENDİ FIREBASE CONFIG'İNİ BURAYA YAPIŞTIR
         const firebaseConfig = {
             apiKey: "AIzaSyCQT33KRLCTcF6HE09EFY7MT0tlEe39Tsc",
             authDomain: "yeni-7b1e8.firebaseapp.com",
@@ -1699,7 +1735,7 @@
         const kur_eur = 53.72;
 
         // ==============================================
-        //  TARAFTAR MAKETLERİ
+        //  TARAFTAR MAKETLERİ (5 takım × yetişkin/çocuk)
         // ==============================================
         const takimMaketleri = {
             samsunspor_yetiskin: { takim: 'Samsunspor', tip: 'Yetişkin Maketi', boy: '175 cm', fiyat: 2899,
@@ -1759,7 +1795,7 @@
         };
 
         // ==============================================
-        //  SAYAÇLAR
+        //  SAYAÇLAR (FIREBASE TEK ÇEKİMLİ)
         // ==============================================
 
         function getToday() {
@@ -1812,6 +1848,71 @@
                 console.warn("Firebase güncelleme hatası:", error);
             }
         }
+
+        // ==============================================
+        //  PAYLAŞIM FONKSİYONLARI
+        // ==============================================
+
+        window.shareProduct = function(title, desc, price, url) {
+            const text = `📦 ${title}\n💰 ${price}\n📝 ${desc}\n🔗 ${url}`;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: title,
+                    text: text,
+                    url: url
+                }).catch(() => {});
+                return;
+            }
+
+            // Fallback popup
+            const shareOptions = `
+                <div style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:99999; display:flex; align-items:center; justify-content:center; backdrop-filter:blur(4px);">
+                    <div style="background:#fff; border-radius:20px; max-width:400px; width:100%; padding:30px; text-align:center; box-shadow:0 20px 60px rgba(0,0,0,0.3);">
+                        <h3 style="margin-bottom:16px;">📤 Paylaş</h3>
+                        <button onclick="shareViaWhatsApp('${encodeURIComponent(text)}')" style="display:block; width:100%; padding:12px; margin-bottom:10px; border:none; border-radius:12px; background:#25d366; color:#fff; font-weight:bold; font-size:1rem; cursor:pointer;">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </button>
+                        <button onclick="shareViaInstagram('${encodeURIComponent(text)}')" style="display:block; width:100%; padding:12px; margin-bottom:10px; border:none; border-radius:12px; background:#e4405f; color:#fff; font-weight:bold; font-size:1rem; cursor:pointer;">
+                            <i class="fab fa-instagram"></i> Instagram DM
+                        </button>
+                        <button onclick="copyToClipboard('${encodeURIComponent(text)}')" style="display:block; width:100%; padding:12px; margin-bottom:10px; border:none; border-radius:12px; background:#6f8f00; color:#fff; font-weight:bold; font-size:1rem; cursor:pointer;">
+                            <i class="fas fa-copy"></i> Metni Kopyala
+                        </button>
+                        <button onclick="this.closest('div[style]').remove()" style="display:block; width:100%; padding:12px; border:none; border-radius:12px; background:#eee; color:#333; font-weight:bold; font-size:1rem; cursor:pointer;">
+                            Kapat
+                        </button>
+                    </div>
+                </div>
+            `;
+            document.body.insertAdjacentHTML('beforeend', shareOptions);
+        };
+
+        window.shareViaWhatsApp = function(text) {
+            window.open(`https://wa.me/?text=${text}`, '_blank');
+        };
+
+        window.shareViaInstagram = function(text) {
+            window.open(`instagram://direct?text=${text}`, '_blank');
+            setTimeout(() => {
+                window.open(`https://www.instagram.com/direct/inbox/`, '_blank');
+            }, 500);
+        };
+
+        window.copyToClipboard = function(text) {
+            navigator.clipboard.writeText(decodeURIComponent(text)).then(() => {
+                alert('✅ Metin kopyalandı!');
+            }).catch(() => {
+                const ta = document.createElement('textarea');
+                ta.value = decodeURIComponent(text);
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand('copy');
+                ta.remove();
+                alert('✅ Metin kopyalandı!');
+            });
+            document.querySelector('div[style*="position:fixed"][style*="z-index:99999"]')?.remove();
+        };
 
         // ==============================================
         //  HESAPLAYICI
@@ -1893,6 +1994,7 @@
                 <div class="price">${toplamTL.toFixed(0)} <small>TL</small></div>
                 <div class="detail">📐 ${m2.toFixed(2)} m² · ${urun.ad} · ${en}x${boy} cm</div>
                 <a href="https://wa.me/905079605049?text=${encodeURIComponent('Merhaba Uzman Reklam 👋\n\nFason baskı siparişi vermek istiyorum:\n\n📦 Ürün: ' + urun.ad + '\n📐 Ölçü: ' + en + '×' + boy + ' cm\n📊 Alan: ' + m2.toFixed(2) + ' m²\n💰 Tahmini: ' + toplamTL.toFixed(0) + ' TL (KDV hariç)\n\nTasarım dosyam hazır, gönderebilirim.')}" target="_blank" class="btn-wa"><i class="fab fa-whatsapp"></i> WhatsApp ile Sipariş Ver</a>
+                <a href="#" onclick="shareProduct('${urun.ad}', '${en}x${boy} cm, ${m2.toFixed(2)} m²', '${toplamTL.toFixed(0)} TL (KDV hariç)', window.location.href); return false;" class="btn-share"><i class="fas fa-share-alt"></i> Paylaş</a>
                 <div class="calc-note">* KDV hariç fiyattır. Kesin tutar WhatsApp'ta teyit edilir.</div>
             `;
         }
