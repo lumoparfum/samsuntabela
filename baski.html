@@ -721,6 +721,12 @@
             .calculator { padding: 20px; }
             .calc-result .price { font-size: 1.6rem; }
         }
+
+        /* Atatürk maketi özel badge rengi */
+        .product-badge.ataturk-badge {
+            background: #d42a1a;
+            color: #fff;
+        }
     </style>
 </head>
 <body>
@@ -843,6 +849,17 @@
         <section class="products" id="urunler">
             <h2>Tüm Ürünler</h2>
             <div class="product-grid">
+
+                <!-- ===== YENİ: KALPAKLI ATATÜRK MAKETİ ===== -->
+                <div class="product-card" onclick="openAtaturkModal()">
+                    <div class="product-badge ataturk-badge">🇹🇷 175 cm</div>
+                    <img class="card-img" src="images/ataturk-maket-1.jpg" alt="Kalpaklı Atatürk Maketi" loading="lazy">
+                    <div class="card-body">
+                        <h3>Kalpaklı Atatürk Maketi</h3>
+                        <div class="desc">175 cm · 3 mm Dekota · UV Baskı</div>
+                        <div class="fiyat">1.499 TL <small>(KDV Dahil)</small></div>
+                    </div>
+                </div>
 
                 <div class="product-card" onclick="openModal('ince_vinil')">
                     <img class="card-img" src="images/fason/ince-vinil.jpg" alt="İnce Vinil Baskı" loading="lazy">
@@ -1060,6 +1077,27 @@
         </div>
     </div>
 
+    <!-- ===== YENİ: ATATÜRK MAKETİ MODAL (3 görsel) ===== -->
+    <div class="modal-overlay" id="ataturkModal" onclick="if(event.target===this) closeAtaturkModal()">
+        <div class="modal-box">
+            <button class="modal-close" onclick="closeAtaturkModal()">&times;</button>
+            <img class="modal-img" id="ataturkModalImg" src="images/ataturk-maket-1.jpg" alt="Kalpaklı Atatürk Maketi">
+            <h3>Kalpaklı Atatürk Maketi</h3>
+            <div class="modal-desc">
+                Cumhuriyetimizin kurucusu Gazi Mustafa Kemal Atatürk’ün Milli Mücadele dönemindeki kararlı duruşundan ilham alınarak hazırlanan bu özel maket, yaşam alanlarına tarihî bir atmosfer kazandırır. 
+                175 cm gerçek boyut, 3 mm Dekota (Forex) malzeme, UV baskı ve mat yüzey ile şık bir görünüm sunar. 
+                Okullar, kurumlar, ofisler ve etkinlikler için idealdir.
+            </div>
+            <div class="modal-thumbs">
+                <img class="modal-thumb active-thumb" src="images/ataturk-maket-1.jpg" alt="Görsel 1" onclick="changeAtaturkImage('images/ataturk-maket-1.jpg', this)">
+                <img class="modal-thumb" src="images/ataturk-maket-2.jpg" alt="Görsel 2" onclick="changeAtaturkImage('images/ataturk-maket-2.jpg', this)">
+                <img class="modal-thumb" src="images/ataturk-maket-3.jpg" alt="Görsel 3" onclick="changeAtaturkImage('images/ataturk-maket-3.jpg', this)">
+            </div>
+            <div class="modal-price">1.499 TL <small>(KDV Dahil)</small></div>
+            <a href="https://wa.me/905079605049?text=Merhaba,%20Kalpaklı%20Atatürk%20Maketi%20175%20cm%20için%20sipariş%20vermek%20istiyorum." class="btn-wa" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp ile Sipariş Ver</a>
+        </div>
+    </div>
+
     <!-- FLOAT BUTTONS -->
     <div class="wp-float">
         <a href="https://www.instagram.com/uzman.reklamm/" class="wp-btn instagram" target="_blank">
@@ -1071,7 +1109,7 @@
     </div>
 
     <script>
-        // Fiyat verileri
+        // Fiyat verileri (mevcut)
         const fiyatlar = {
             ince_vinil: { ad: 'İnce Vinil', fiyat: 1.80, birim: 'USD', desc: 'İnce vinil, Konica Solvent baskı teknolojisi ile üretilir. Dış mekan reklamlarında, araç giydirmede ve mağaza vitrinlerinde sıklıkla kullanılır. Esnek yapısı sayesinde düz olmayan yüzeylere kolayca uygulanır. Ekonomik fiyatıyla bütçe dostudur, 2-3 yıl dayanıklılık sunar.' },
             normal_vinil: { ad: 'Normal Vinil', fiyat: 2.35, birim: 'USD', desc: 'Normal vinil, günlük kullanım için ideal bir dış mekan malzemesidir. Konica Solvent baskı ile canlı renkler elde edilir. Tabelalar, araç giydirme ve duvar reklamlarında tercih edilir. Orta kalite segmentinde olup, 3-4 yıl boyunca ilk günkü parlaklığını korur.' },
@@ -1114,6 +1152,7 @@
             kagit_baski: { img: 'images/fason/kagit-baski.jpg', desc: fiyatlar.kagit_baski.desc }
         };
 
+        // ---- Mevcut modal fonksiyonları ----
         function openModal(key) {
             const urun = fiyatlar[key];
             const detay = urunDetay[key];
@@ -1150,7 +1189,7 @@
             document.body.style.overflow = '';
         }
 
-        // Duvar tablosu modal
+        // ---- Duvar tablosu modal ----
         function openDuvarModal() {
             document.getElementById('duvarModal').classList.add('active');
             document.body.style.overflow = 'hidden';
@@ -1167,7 +1206,24 @@
             thumbEl.classList.add('active-thumb');
         }
 
-        // Hesaplayıcı
+        // ---- YENİ: Atatürk modal ----
+        function openAtaturkModal() {
+            document.getElementById('ataturkModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeAtaturkModal() {
+            document.getElementById('ataturkModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function changeAtaturkImage(src, thumbEl) {
+            document.getElementById('ataturkModalImg').src = src;
+            document.querySelectorAll('.modal-thumb').forEach(el => el.classList.remove('active-thumb'));
+            thumbEl.classList.add('active-thumb');
+        }
+
+        // ---- Hesaplayıcı ----
         function onizlemeGuncelle() {
             const en = parseFloat(document.getElementById('en').value) || 0;
             const boy = parseFloat(document.getElementById('boy').value) || 0;
@@ -1232,6 +1288,7 @@
             onizlemeGuncelle();
         }
 
+        // ---- FAQ ----
         function toggleFaq(el) {
             const answer = el.querySelector('.faq-answer');
             const icon = el.querySelector('.faq-question i');
