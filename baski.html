@@ -33,6 +33,7 @@
             background-color: var(--bg);
             color: var(--text);
             font-family: 'Inter', sans-serif;
+            font-size: 110%;
             line-height: 1.6;
             overflow-x: hidden;
         }
@@ -84,11 +85,11 @@
         }
         .logo span { color: var(--neon); }
         .logo-slogan {
-            font-size: 14px;
+            font-size: 15.4px;
             font-weight: 300;
-            color: #aaa;
+            color: #fff;
             letter-spacing: 0.3px;
-            border-left: 1px solid #333;
+            border-left: 1px solid #444;
             padding-left: 12px;
             white-space: nowrap;
         }
@@ -113,37 +114,37 @@
         .page-body { padding-top: 100px; }
 
         @media (max-width: 640px) {
-            .nav-container { padding: 14px 20px; }
+            .nav-container { padding: 14px 20px; justify-content: center; }
             .logo a { font-size: 20px; }
-            .logo-slogan { font-size: 11px; padding-left: 8px; border-left-width: 1px; }
+            .logo-slogan { font-size: 13px; padding-left: 8px; border-left-width: 1px; }
             .nav-contact { display: none; }
             .page-body { padding-top: 80px; }
         }
 
-        /* ===== HERO ===== */
+        /* ===== HERO (VIDEO KUTULU) ===== */
         .hero {
             position: relative;
             overflow: hidden;
             border-radius: 24px;
             margin-bottom: 20px;
-            height: 60vh;
-            min-height: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            min-height: 300px;
+            background: #000;
             border: 1px solid rgba(255,255,255,0.1);
         }
-        .hero-video {
+        .hero-video-wrap {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
-            transform: translate(-50%, -50%);
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        .hero-video {
+            width: 100%;
+            height: 100%;
             object-fit: cover;
-            z-index: 0;
         }
         .hero-overlay {
             position: absolute;
@@ -151,17 +152,22 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(5, 5, 5, 0.65);
+            background: rgba(5, 5, 5, 0.55);
             z-index: 1;
         }
         .hero-content {
             position: relative;
             z-index: 2;
             text-align: center;
-            padding: 40px 20px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
         }
         .hero-content h1 {
-            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-size: clamp(1.8rem, 4vw, 3.5rem);
             font-weight: 900;
             letter-spacing: -1px;
             text-transform: uppercase;
@@ -172,63 +178,64 @@
         .hero-content h1 span { color: var(--neon); }
         .hero-content p {
             color: #fff;
-            font-size: 1.1rem;
+            font-size: clamp(0.95rem, 1.2vw, 1.1rem);
             max-width: 700px;
-            margin: 15px auto 30px;
+            margin: 12px auto 20px;
             line-height: 1.6;
             text-shadow: 0 2px 20px rgba(0,0,0,0.9);
         }
         .btn-main {
             background: var(--neon);
             color: #000;
-            padding: 16px 40px;
+            padding: 14px 32px;
             border-radius: 50px;
             font-weight: 900;
             text-transform: uppercase;
             border: none;
             cursor: pointer;
             transition: 0.3s;
-            font-size: 1rem;
+            font-size: 0.95rem;
             display: inline-block;
             text-decoration: none;
         }
         .btn-main:hover { transform: scale(1.05); background: #d4ff33; }
         .btn-main:active { transform: scale(0.97); }
-        .btn-main i { margin-right: 10px; }
+        .btn-main i { margin-right: 8px; }
 
         @media (max-width: 640px) {
             .hero {
-                height: 100vh;
-                min-height: 100%;
                 border-radius: 0;
                 margin: 0 -20px;
                 width: calc(100% + 40px);
+                aspect-ratio: 16 / 9;
+                min-height: 280px;
             }
-            .hero-content h1 { font-size: 1.8rem; }
-            .hero-content p { font-size: 0.95rem; }
+            .hero-content h1 { font-size: 1.6rem; }
+            .hero-content p { font-size: 0.85rem; margin: 8px auto 16px; }
+            .btn-main { padding: 12px 24px; font-size: 0.8rem; }
         }
 
         /* ===== STEPS ===== */
-        .steps { margin: 70px 0; }
+        .steps { margin: 60px 0; }
         .steps-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 24px;
+            gap: 20px;
         }
-        @media (max-width: 700px) { .steps-grid { grid-template-columns: 1fr 1fr; } }
+        @media (max-width: 700px) { .steps-grid { grid-template-columns: 1fr 1fr; gap: 14px; } }
         .step-box {
             background: var(--card);
             border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 28px 20px;
+            border-radius: 14px;
+            padding: 22px 16px;
             text-align: center;
             transition: 0.3s;
             box-shadow: 0 2px 12px rgba(0,0,0,0.04);
         }
         .step-box:hover { border-color: var(--accent); transform: translateY(-4px); }
         .step-num {
-            width: 34px;
-            height: 34px;
+            width: 30px;
+            height: 30px;
             border-radius: 50%;
             background: var(--neon);
             color: #000;
@@ -236,38 +243,38 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 12px;
-            font-size: 0.95rem;
+            margin: 0 auto 10px;
+            font-size: 0.85rem;
         }
-        .step-box i { font-size: 1.4rem; color: var(--accent); margin-bottom: 8px; display: block; }
-        .step-box h4 { font-size: 0.95rem; margin-bottom: 6px; color: var(--text); }
-        .step-box p { font-size: 0.8rem; color: var(--gray); line-height: 1.5; }
+        .step-box i { font-size: 1.3rem; color: var(--accent); margin-bottom: 6px; display: block; }
+        .step-box h4 { font-size: 0.9rem; margin-bottom: 4px; color: var(--text); }
+        .step-box p { font-size: 0.75rem; color: var(--gray); line-height: 1.5; }
 
         /* ===== CALCULATOR ===== */
         .calculator {
             background: var(--card);
             border: 1px solid var(--border);
             border-radius: 24px;
-            padding: 40px;
-            margin: 70px 0;
+            padding: 32px 28px;
+            margin: 60px 0;
             box-shadow: 0 4px 24px rgba(0,0,0,0.05);
         }
         .calculator h2 {
             color: var(--text);
-            font-size: 1.6rem;
-            margin-bottom: 10px;
+            font-size: 1.5rem;
+            margin-bottom: 8px;
             text-transform: uppercase;
         }
         .calculator h2 i { color: var(--accent); }
         .calculator .sub {
             color: var(--gray);
-            margin-bottom: 30px;
-            font-size: 0.95rem;
+            margin-bottom: 24px;
+            font-size: 0.9rem;
         }
         .calc-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 22px;
+            gap: 18px;
         }
         .calc-group.full { grid-column: 1 / -1; }
         @media (max-width: 600px) { .calc-grid { grid-template-columns: 1fr; } }
@@ -547,7 +554,6 @@
             border-radius: 12px;
             margin-bottom: 12px;
         }
-        /* Duvar tablosu thumbnail galerisi */
         .modal-thumbs {
             display: flex;
             gap: 10px;
@@ -738,9 +744,11 @@
 
         <!-- HERO -->
         <section class="hero">
-            <video class="hero-video" autoplay muted loop playsinline>
-                <source src="images/fason/hero-fason.mp4" type="video/mp4">
-            </video>
+            <div class="hero-video-wrap">
+                <video class="hero-video" autoplay muted loop playsinline>
+                    <source src="images/fason/hero-fason.mp4" type="video/mp4">
+                </video>
+            </div>
             <div class="hero-overlay"></div>
             <div class="hero-content">
                 <h1>FASON <span>DİJİTAL BASKI</span></h1>
@@ -958,7 +966,7 @@
                 <!-- DUVAR TABLOSU (SADECE 50x70, 3 RESİMLİ) -->
                 <div class="product-card" onclick="openDuvarModal()">
                     <div class="product-badge multi-design">🖼️ 3 Tasarım</div>
-                    <div class="card-icon"><i class="fas fa-image"></i></div>
+                    <img class="card-img" src="images/fason/duvar-tablosu-1.jpg" alt="Duvar Tablosu" loading="lazy">
                     <div class="card-body">
                         <h3>Duvar Tablosu 50x70</h3>
                         <div class="desc">Folyo kaplı 3mm MDF, çift taraflı bant ile asılır</div>
@@ -1023,7 +1031,7 @@
 
     </div>
 
-    <!-- MODAL (Standart) -->
+    <!-- STANDART MODAL -->
     <div class="modal-overlay" id="productModal" onclick="if(event.target===this) closeModal()">
         <div class="modal-box">
             <button class="modal-close" onclick="closeModal()">&times;</button>
@@ -1087,13 +1095,24 @@
         const kur_eur = 53.72;
 
         // Ürün detayları (modal için)
-        const urunDetay = {};
-        for (const key in fiyatlar) {
-            urunDetay[key] = {
-                img: 'images/fason/' + key + '.jpg',
-                desc: fiyatlar[key].desc
-            };
-        }
+        const urunDetay = {
+            ince_vinil: { img: 'images/fason/ince-vinil.jpg', desc: fiyatlar.ince_vinil.desc },
+            normal_vinil: { img: 'images/fason/normal-vinil.jpg', desc: fiyatlar.normal_vinil.desc },
+            avrupa_vinil: { img: 'images/fason/avrupa-vinil.jpg', desc: fiyatlar.avrupa_vinil.desc },
+            arkasi_siyah_vinil: { img: 'images/fason/arkasi-siyah-vinil.jpg', desc: fiyatlar.arkasi_siyah_vinil.desc },
+            mesh_vinil: { img: 'images/fason/mesh-vinil.jpg', desc: fiyatlar.mesh_vinil.desc },
+            isikli_vinil: { img: 'images/fason/isikli-vinil.jpg', desc: fiyatlar.isikli_vinil.desc },
+            frimpeks_folyo: { img: 'images/fason/frimpeks-folyo.jpg', desc: fiyatlar.frimpeks_folyo.desc },
+            frimpeks_gri_folyo: { img: 'images/fason/frimpeks-gri-folyo.jpg', desc: fiyatlar.frimpeks_gri_folyo.desc },
+            unifol_folyo: { img: 'images/fason/unifol-folyo.jpg', desc: fiyatlar.unifol_folyo.desc },
+            unifol_gri_folyo: { img: 'images/fason/unifol-gri-folyo.jpg', desc: fiyatlar.unifol_gri_folyo.desc },
+            one_way_vision: { img: 'images/fason/one-way-vision.jpg', desc: fiyatlar.one_way_vision.desc },
+            reflektif_folyo: { img: 'images/fason/reflektif-folyo.jpg', desc: fiyatlar.reflektif_folyo.desc },
+            kumlu_folyo: { img: 'images/fason/kumlu-folyo.jpg', desc: fiyatlar.kumlu_folyo.desc },
+            canvas: { img: 'images/fason/canvas.jpg', desc: fiyatlar.canvas.desc },
+            magnet: { img: 'images/fason/magnet.jpg', desc: fiyatlar.magnet.desc },
+            kagit_baski: { img: 'images/fason/kagit-baski.jpg', desc: fiyatlar.kagit_baski.desc }
+        };
 
         function openModal(key) {
             const urun = fiyatlar[key];
