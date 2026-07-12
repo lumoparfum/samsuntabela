@@ -3,389 +3,998 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <title>Fason Dijital Baskı | Uzman Reklam — Ölçünü Gir, Fiyatını Gör</title>
-    <meta name="description" content="Türkiye geneline fason dijital baskı hizmeti. Folyo, branda, one-way vision, vinil, mesh, canvas ve daha fazlası. Bafra/Samsun'dan tüm Türkiye'ye kargo. WhatsApp'tan anında sipariş." />
-    <meta name="keywords" content="fason baskı, dijital baskı, folyo baskı, vinil baskı, mesh baskı, one way vision, canvas baskı, magnet baskı, samsun baskı, bafra reklam" />
-    <meta name="author" content="Uzman Reklam" />
-    <meta name="robots" content="index, follow" />
-    
-    <!-- Open Graph -->
-    <meta property="og:title" content="Fason Dijital Baskı | Uzman Reklam" />
-    <meta property="og:description" content="Ölçünü gir, fiyatını gör, kapına gelsin. Folyo, vinil, mesh, canvas ve daha fazlası." />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://samsuntabela.tr/fason-baski" />
-    <meta property="og:site_name" content="Uzman Reklam" />
-    <meta property="og:locale" content="tr_TR" />
-    
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Fason Dijital Baskı | Uzman Reklam" />
-    <meta name="twitter:description" content="Ölçünü gir, fiyatını gör, kapına gelsin." />
-    
-    <!-- Fonts -->
+    <title>Fason Baskı & Dijital Baskı | Uzman Reklam</title>
+    <meta name="description" content="Türkiye geneline fason dijital baskı. Folyo, branda, one-way vision, vinil, mesh ve daha fazlası. Ölçünü gir, fiyatını gör, WhatsApp'tan sipariş ver." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖨️</text></svg>" />
-    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
     <style>
-        /* ============================================
-           iOS ESTETIĞI — UZMAN REKLAM FASON BASKI
-           ============================================ */
-        
+        /* === SENİN ORİJİNAL STİLLERİN AYNEN KORUNDU, SADECE EKLENEN YENİ ÖĞELER İÇİN EKLEMELER YAPILDI === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
         :root {
-            --ios-bg: #f2f2f7;
-            --ios-card: #ffffff;
-            --ios-text: #000000;
-            --ios-text-secondary: #6c6c70;
-            --ios-text-tertiary: #8e8e93;
-            --ios-separator: #e5e5ea;
-            --ios-border: #d1d1d6;
-            --accent: #34c759;
-            --accent-dark: #30b350;
-            --accent-light: #e8f5e9;
-            --accent-glow: rgba(52, 199, 89, 0.15);
-            --dark: #1c1c1e;
-            --dark-card: #2c2c2e;
-            --dark-elevated: #3a3a3c;
-            --error: #ff3b30;
-            --warning: #ff9500;
-            --info: #007aff;
-            --shadow-sm: 0 1px 2px rgba(0,0,0,0.04), 0 1px 3px rgba(0,0,0,0.02);
-            --shadow-md: 0 4px 16px rgba(0,0,0,0.06), 0 2px 8px rgba(0,0,0,0.04);
-            --shadow-lg: 0 12px 40px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.04);
-            --shadow-xl: 0 24px 60px rgba(0,0,0,0.12), 0 8px 20px rgba(0,0,0,0.06);
-            --radius-sm: 8px;
-            --radius-md: 12px;
-            --radius-lg: 16px;
-            --radius-xl: 20px;
-            --radius-2xl: 24px;
-            --radius-full: 9999px;
-            --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
-            --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
-            --text-xs: 0.75rem;
-            --text-sm: 0.8125rem;
-            --text-base: 0.9375rem;
-            --text-lg: 1.0625rem;
-            --text-xl: 1.25rem;
-            --text-2xl: 1.5rem;
-            --text-3xl: 1.875rem;
-            --text-4xl: 2.25rem;
+            --neon: #ccff00;
+            --accent: #6f8f00;
+            --bg: #f5f5f2;
+            --card: #ffffff;
+            --border: #e4e4de;
+            --text: #17171a;
+            --gray: #6b6b6b;
+            --dark: #0a0a0d;
+            --dark-card: #17171a;
+            --dark-border: #26262a;
         }
-        
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --ios-bg: #000000;
-                --ios-card: #1c1c1e;
-                --ios-text: #ffffff;
-                --ios-text-secondary: #98989d;
-                --ios-text-tertiary: #6c6c70;
-                --ios-separator: #38383a;
-                --shadow-sm: 0 1px 2px rgba(0,0,0,0.3);
-                --shadow-md: 0 4px 16px rgba(0,0,0,0.4);
-                --shadow-lg: 0 12px 40px rgba(0,0,0,0.5);
-            }
-        }
-        
-        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-        
+        html { scroll-behavior: smooth; }
         body {
-            background-color: var(--ios-bg);
-            color: var(--ios-text);
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
-            font-size: var(--text-base);
-            line-height: 1.47059;
-            font-weight: 400;
-            letter-spacing: -0.022em;
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            font-size: 110%;
+            line-height: 1.6;
             overflow-x: hidden;
-            min-height: 100vh;
         }
-        
-        ::-webkit-scrollbar { width: 0; height: 0; }
-        @supports (scrollbar-width: none) { * { scrollbar-width: none; } }
-        
-        ::selection { background: var(--accent-glow); color: var(--accent-dark); }
-        
-        :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: var(--radius-md); }
-        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 3px;
+        }
         @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+            *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
         }
-        
-        .container { max-width: 980px; margin: 0 auto; padding: 0 20px; }
-        @media (min-width: 768px) { .container { padding: 0 32px; } }
-        
-        /* NAV */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #eee; }
+        ::-webkit-scrollbar-thumb { background: #ccc; border-radius: 5px; }
+        ::-webkit-scrollbar-thumb:hover { background: #aaa; }
+        * { scrollbar-color: #ccc #eee; scrollbar-width: thin; }
+
+        /* ===== NAV ===== */
         nav {
-            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-            background: rgba(255,255,255,0.72);
-            backdrop-filter: saturate(180%) blur(20px);
-            -webkit-backdrop-filter: saturate(180%) blur(20px);
-            border-bottom: 0.5px solid rgba(0,0,0,0.08);
-            transition: all 0.3s var(--ease-smooth);
+            background: rgba(5,5,5,0.85);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
         }
-        @media (prefers-color-scheme: dark) {
-            nav { background: rgba(28,28,30,0.72); border-bottom-color: rgba(255,255,255,0.08); }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 20px;
         }
-        
-        .nav-container { display: flex; justify-content: space-between; align-items: center; padding: 14px 20px; max-width: 980px; margin: 0 auto; }
-        .logo-area { display: flex; align-items: center; gap: 10px; }
-        .logo a { font-weight: 800; font-size: 20px; letter-spacing: -0.5px; color: var(--ios-text); text-decoration: none; display: flex; align-items: center; gap: 6px; }
-        .logo-icon { width: 28px; height: 28px; background: var(--accent); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; color: white; font-size: 14px; }
-        .logo span { color: var(--accent); font-weight: 900; }
-        .logo-slogan { font-size: var(--text-sm); font-weight: 500; color: var(--ios-text-secondary); letter-spacing: -0.01em; padding-left: 10px; border-left: 1px solid var(--ios-separator); }
-        .nav-contact { display: flex; align-items: center; gap: 16px; }
-        .nav-contact a { color: var(--ios-text-secondary); text-decoration: none; font-size: var(--text-sm); font-weight: 500; display: flex; align-items: center; gap: 6px; transition: all 0.2s; padding: 6px 12px; border-radius: var(--radius-full); }
-        .nav-contact a:hover { color: var(--ios-text); background: var(--ios-bg); }
-        .nav-contact i { color: var(--accent); font-size: 14px; }
-        .nav-cta { background: var(--accent) !important; color: white !important; padding: 8px 16px !important; font-weight: 600 !important; transition: all 0.2s var(--ease-spring) !important; }
-        .nav-cta:hover { background: var(--accent-dark) !important; transform: scale(1.02); }
-        
+        .logo-area { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .logo a {
+            font-weight: 900;
+            font-size: 26px;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+            color: #fff;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+        .logo span { color: var(--neon); }
+        .logo-slogan {
+            font-size: 15.4px;
+            font-weight: 300;
+            color: #fff;
+            letter-spacing: 0.3px;
+            border-left: 1px solid #444;
+            padding-left: 12px;
+            white-space: nowrap;
+        }
+        .nav-contact {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 14px;
+        }
+        .nav-contact a {
+            color: #aaa;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.3s;
+        }
+        .nav-contact a:hover { color: #fff; }
+        .nav-contact i { color: var(--neon); font-size: 15px; }
+        .nav-contact .sep { color: #333; margin: 0 5px; }
+
+        .page-body { padding-top: 100px; }
+
         @media (max-width: 640px) {
-            .nav-container { padding: 12px 16px; }
-            .logo a { font-size: 18px; }
-            .logo-slogan { display: none; }
-            .nav-contact a:not(.nav-cta) { display: none; }
-            .nav-cta { padding: 8px 14px !important; font-size: 13px !important; }
+            .nav-container { padding: 14px 20px; justify-content: center; }
+            .logo a { font-size: 20px; }
+            .logo-slogan { font-size: 13px; padding-left: 8px; border-left-width: 1px; }
+            .nav-contact { display: none; }
+            .page-body { padding-top: 80px; }
         }
-        
-        .page-body { padding-top: 72px; }
-        @media (max-width: 640px) { .page-body { padding-top: 64px; } }
-        
-        /* HERO */
+
+        /* ===== HERO (VIDEO KUTULU) ===== */
         .hero {
-            position: relative; border-radius: var(--radius-2xl); margin: 20px 0 32px; overflow: hidden;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-            min-height: 420px; display: flex; align-items: center; justify-content: center;
+            position: relative;
+            overflow: hidden;
+            border-radius: 24px;
+            margin-bottom: 20px;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            min-height: 300px;
+            background: #000;
+            border: 1px solid rgba(255,255,255,0.1);
         }
-        .hero::before {
-            content: ''; position: absolute; inset: 0;
-            background: radial-gradient(ellipse at 20% 50%, rgba(52,199,89,0.15) 0%, transparent 50%),
-                        radial-gradient(ellipse at 80% 20%, rgba(0,122,255,0.1) 0%, transparent 40%);
+        .hero-video-wrap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        .hero-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(5, 5, 5, 0.55);
+            z-index: 1;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        .hero-content h1 {
+            font-size: clamp(1.8rem, 4vw, 3.5rem);
+            font-weight: 900;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+            line-height: 1.1;
+            color: #fff;
+            text-shadow: 0 4px 30px rgba(0,0,0,0.8);
+        }
+        .hero-content h1 span { color: var(--neon); }
+        .hero-content p {
+            color: #fff;
+            font-size: clamp(0.95rem, 1.2vw, 1.1rem);
+            max-width: 700px;
+            margin: 12px auto 20px;
+            line-height: 1.6;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.9);
+        }
+        .btn-main {
+            background: var(--neon);
+            color: #000;
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-weight: 900;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 0.95rem;
+            display: inline-block;
+            text-decoration: none;
+        }
+        .btn-main:hover { transform: scale(1.05); background: #d4ff33; }
+        .btn-main:active { transform: scale(0.97); }
+        .btn-main i { margin-right: 8px; }
+
+        @media (max-width: 640px) {
+            .hero {
+                border-radius: 0;
+                margin: 0 -20px;
+                width: calc(100% + 40px);
+                aspect-ratio: 16 / 9;
+                min-height: 280px;
+            }
+            .hero-content h1 { font-size: 1.6rem; }
+            .hero-content p { font-size: 0.85rem; margin: 8px auto 16px; }
+            .btn-main { padding: 12px 24px; font-size: 0.8rem; }
+        }
+
+        /* ===== SOCIAL PROOF (YENİ) ===== */
+        .social-proof {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 14px 20px;
+            margin: -16px auto 40px;
+            max-width: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+            flex-wrap: wrap;
+        }
+        .social-proof-avatars {
+            display: flex;
+        }
+        .social-proof-avatars img {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 2px solid var(--card);
+            margin-left: -8px;
+            object-fit: cover;
+        }
+        .social-proof-avatars img:first-child { margin-left: 0; }
+        .social-proof-text {
+            font-size: 0.85rem;
+            color: var(--gray);
+            font-weight: 500;
+        }
+        .social-proof-text strong { color: var(--text); font-weight: 700; }
+
+        /* ===== STEPS ===== */
+        .steps { margin: 60px 0; }
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        @media (max-width: 700px) { .steps-grid { grid-template-columns: 1fr 1fr; gap: 14px; } }
+        .step-box {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 22px 16px;
+            text-align: center;
+            transition: 0.3s;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+        }
+        .step-box:hover { border-color: var(--accent); transform: translateY(-4px); }
+        .step-num {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: var(--neon);
+            color: #000;
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            font-size: 0.85rem;
+        }
+        .step-box i { font-size: 1.3rem; color: var(--accent); margin-bottom: 6px; display: block; }
+        .step-box h4 { font-size: 0.9rem; margin-bottom: 4px; color: var(--text); }
+        .step-box p { font-size: 0.75rem; color: var(--gray); line-height: 1.5; }
+
+        /* ===== CALCULATOR ===== */
+        .calculator {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 32px 28px;
+            margin: 60px 0;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.05);
+        }
+        .calculator h2 {
+            color: var(--text);
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+        .calculator h2 i { color: var(--accent); }
+        .calculator .sub {
+            color: var(--gray);
+            margin-bottom: 24px;
+            font-size: 0.9rem;
+        }
+        .calc-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+        .calc-group.full { grid-column: 1 / -1; }
+        @media (max-width: 600px) { .calc-grid { grid-template-columns: 1fr; } }
+        .calc-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .calc-group label {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #444;
+        }
+        .calc-group select,
+        .calc-group input {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 14px 16px;
+            color: var(--text);
+            font-size: 16px;
+            outline: none;
+            transition: 0.3s;
+            width: 100%;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+        .calc-group select {
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236b6b6b' stroke-width='2'%3e%3cpath d='M6 9l6 6 6-6'/%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+            background-size: 18px;
+            padding-right: 40px;
+        }
+        .calc-group select:focus,
+        .calc-group input:focus { border-color: var(--accent); }
+        .calc-group select option { background: #fff; }
+
+        /* --- QUICK SIZES (YENİ) --- */
+        .quick-sizes {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 8px;
+        }
+        .quick-size-btn {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 4px 12px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--gray);
+            cursor: pointer;
+            transition: 0.2s;
+            font-family: inherit;
+        }
+        .quick-size-btn:hover { background: var(--neon); border-color: var(--accent); color: #000; }
+        .quick-size-btn.active { background: var(--neon); border-color: var(--accent); color: #000; }
+
+        /* --- EXTRA OPTIONS (YENİ) --- */
+        .calc-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 8px;
+        }
+        @media (max-width: 640px) { .calc-options { grid-template-columns: 1fr; } }
+        .option-card {
+            background: var(--bg);
+            border: 2px solid transparent;
+            border-radius: 12px;
+            padding: 10px 12px;
+            cursor: pointer;
+            transition: 0.2s;
+            text-align: center;
+        }
+        .option-card:hover { border-color: var(--border); }
+        .option-card.selected { border-color: var(--accent); background: rgba(111,143,0,0.08); }
+        .option-card .option-label { font-size: 0.7rem; font-weight: 600; color: var(--gray); }
+        .option-card.selected .option-label { color: var(--accent); }
+        .option-card .option-value { font-size: 0.85rem; font-weight: 700; color: var(--text); }
+
+        .preview-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #eef0e8;
+            border: 1px dashed #cfcfc6;
+            border-radius: 14px;
+            padding: 20px;
+            margin-top: 20px;
+            height: 130px;
+            overflow: hidden;
+            position: relative;
+        }
+        .preview-box {
+            background: rgba(111,143,0,0.12);
+            border: 1.5px solid var(--accent);
+            border-radius: 4px;
+            transition: width 0.25s ease, height 0.25s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            font-size: 0.7rem;
+            font-weight: 700;
+            min-width: 20px;
+            min-height: 14px;
+        }
+        .preview-dimensions {
+            position: absolute;
+            bottom: 8px;
+            right: 12px;
+            font-size: 0.7rem;
+            color: var(--gray);
+            font-weight: 500;
+        }
+
+        .calc-result {
+            background: #eef0e8;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 20px;
+            margin-top: 25px;
+            text-align: center;
+        }
+        .calc-result .price {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: var(--accent);
+            letter-spacing: -0.5px;
+        }
+        .calc-result .price small {
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--gray);
+        }
+        .calc-result .detail {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin: 10px 0;
+        }
+        .calc-result .btn-wa {
+            display: inline-block;
+            background: #25d366;
+            color: #000;
+            padding: 14px 30px;
+            border-radius: 50px;
+            font-weight: 800;
+            text-decoration: none;
+            margin-top: 12px;
+            transition: 0.3s;
+        }
+        .calc-result .btn-wa:hover { background: #1ebe57; transform: scale(1.03); }
+        .calc-result .btn-wa:active { transform: scale(0.96); }
+        .calc-result .btn-wa i { margin-right: 10px; }
+        .calc-note {
+            font-size: 0.75rem;
+            color: #999;
+            margin-top: 15px;
+        }
+
+        /* ===== PRODUCTS ===== */
+        .products { margin: 80px 0; }
+        .products h2 {
+            color: var(--text);
+            font-size: 1.8rem;
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 8px;
+        }
+        .section-sub {
+            text-align: center;
+            color: var(--gray);
+            font-size: 0.95rem;
+            margin-bottom: 40px;
+        }
+        .category-header {
+            text-align: center;
+            margin: 48px 0 24px;
+        }
+        .category-badge {
+            display: inline-block;
+            background: var(--card);
+            border: 1px solid var(--border);
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: var(--text);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+        }
+        .category-badge.special {
+            background: #1a1a2e;
+            color: #fff;
+            border: none;
+        }
+        .category-badge.print {
+            background: var(--neon);
+            color: #000;
+            border: none;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+            gap: 26px;
+        }
+        @media (max-width: 640px) {
+            .product-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+        }
+        .product-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: 0.4s;
+            text-align: center;
+            box-shadow: 0 2px 14px rgba(0,0,0,0.04);
+            cursor: pointer;
+            position: relative;
+        }
+        .product-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-6px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.09);
+        }
+        .product-card .card-img-wrap {
+            width: 100%;
+            height: 180px;
+            overflow: hidden;
+            background: var(--bg);
+        }
+        .product-card .card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+            padding: 12px;
+        }
+        .product-card .card-body { padding: 14px 12px 18px; }
+        @media (max-width: 640px) {
+            .product-card .card-img-wrap { height: 140px; }
+            .product-card .card-body { padding: 10px 8px 14px; }
+            .product-card .card-body h3 { font-size: 0.9rem; }
+            .product-card .card-body .desc { font-size: 0.7rem; }
+            .product-card .card-body .fiyat { font-size: 0.9rem; }
+        }
+        .product-card .card-body h3 {
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+            color: var(--text);
+        }
+        .product-card .card-body .desc {
+            color: var(--gray);
+            font-size: 0.82rem;
+            margin: 6px 0 12px;
+        }
+        .product-card .card-body .fiyat {
+            font-weight: 900;
+            color: var(--accent);
+            font-size: 1.1rem;
+        }
+        .product-card .card-body .fiyat small {
+            font-weight: 400;
+            color: #999;
+            font-size: 0.75rem;
+        }
+        .product-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            font-size: 0.68rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            padding: 5px 10px;
+            border-radius: 20px;
+            z-index: 2;
+        }
+        .product-badge.bestseller { background: #ff3b30; color: #fff; }
+        .product-badge.free-design { background: #ff6b35; color: #fff; }
+        .product-badge.multi-design { background: #6f8f00; color: #fff; }
+        .product-badge.ataturk-badge { background: #d42a1a; color: #fff; }
+        .product-badge.cocuk-badge { background: #1e88e5; color: #fff; }
+        .product-badge.new { background: var(--neon); color: #000; }
+        .card-icon {
+            width: 100%;
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #eef0e8;
+            font-size: 3rem;
+            color: var(--accent);
+        }
+        @media (max-width: 640px) { .card-icon { height: 140px; font-size: 2.2rem; } }
+
+        .card-quick-action {
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            width: 32px;
+            height: 32px;
+            background: var(--accent);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: 0.3s;
+            box-shadow: 0 4px 12px rgba(111,143,0,0.3);
+        }
+        .product-card:hover .card-quick-action { opacity: 1; transform: scale(1); }
+
+        /* ===== MODAL ===== */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+        }
+        .modal-overlay.active { display: flex; }
+        .modal-box {
+            background: #fff;
+            border-radius: 20px;
+            max-width: 600px;
+            width: 100%;
+            padding: 30px;
+            position: relative;
+            max-height: 95vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            animation: modalFade 0.25s ease;
+        }
+        @keyframes modalFade {
+            from { opacity: 0; transform: scale(0.95) translateY(10px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        .modal-close {
+            position: sticky;
+            top: 0;
+            float: right;
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: #999;
+            padding: 0 0 10px 10px;
+            transition: 0.3s;
+            z-index: 1;
+        }
+        .modal-close:hover { color: #000; }
+        .modal-box h3 {
+            font-size: 1.4rem;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            color: var(--text);
+        }
+        .modal-box .modal-desc {
+            color: var(--gray);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin: 12px 0 16px;
+        }
+        .modal-box .modal-price {
+            font-weight: 900;
+            color: var(--accent);
+            font-size: 1.3rem;
+            margin: 12px 0;
+        }
+        .modal-box .modal-img {
+            width: 100%;
+            max-height: 320px;
+            object-fit: contain;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            background: var(--bg);
+        }
+        .modal-thumbs {
+            display: flex;
+            gap: 10px;
+            margin: 12px 0 16px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .modal-thumb {
+            width: 64px;
+            height: 64px;
+            object-fit: contain;
+            border-radius: 8px;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: 0.3s;
+            background: var(--bg);
+            padding: 4px;
+        }
+        .modal-thumb:hover { border-color: var(--accent); transform: scale(1.05); }
+        .modal-thumb.active-thumb { border-color: var(--neon); box-shadow: 0 0 0 3px rgba(204,255,0,0.3); }
+        .modal-box .btn-wa {
+            display: inline-block;
+            background: #25d366;
+            color: #000;
+            padding: 14px 28px;
+            border-radius: 50px;
+            font-weight: 800;
+            text-decoration: none;
+            margin-top: 10px;
+            transition: 0.3s;
+            width: 100%;
+            text-align: center;
+        }
+        .modal-box .btn-wa:hover { background: #1ebe57; transform: scale(1.02); }
+        .modal-box .btn-wa i { margin-right: 10px; }
+
+        /* ===== FAQ ===== */
+        .faq { margin: 80px 0; }
+        .faq h2 {
+            color: var(--text);
+            font-size: 1.8rem;
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 8px;
+        }
+        .faq .section-sub {
+            text-align: center;
+            color: var(--gray);
+            font-size: 0.95rem;
+            margin-bottom: 32px;
+        }
+        .faq-item {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 18px 22px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+        }
+        .faq-item:hover { border-color: #ccc; }
+        .faq-item.active { border-color: var(--accent); }
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: var(--text);
+        }
+        .faq-question i { color: var(--accent); transition: 0.3s; }
+        .faq-item.active .faq-question i { transform: rotate(45deg); }
+        .faq-answer {
+            color: var(--gray);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: max-height 0.35s ease, opacity 0.3s ease, margin-top 0.35s ease;
+        }
+        .faq-answer.open {
+            max-height: 200px;
+            opacity: 1;
+            margin-top: 12px;
+        }
+
+        /* ===== DARK BAND ===== */
+        .dark-band {
+            background: var(--dark);
+            width: 100vw;
+            position: relative;
+            left: 50%;
+            margin-left: -50vw;
+            margin-top: 80px;
+            padding: 60px 0 0;
+        }
+        .dark-band .inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .footer-box {
+            background: var(--dark-card);
+            border: 1px solid var(--dark-border);
+            border-radius: 15px;
+            padding: 26px;
+            text-align: center;
+        }
+        .footer-box h3 { color: var(--neon); font-size: 1.1rem; text-transform: uppercase; margin-bottom: 14px; }
+        .contact-info-list {
+            list-style: none;
+            padding: 0;
+            margin: 16px 0 0;
+            text-align: left;
+            max-width: 380px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .contact-info-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--dark-border);
+            color: #bbb;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-size: 0.9rem;
+        }
+        .contact-info-list li:last-child { border-bottom: none; }
+        .contact-info-list i { color: var(--neon); font-size: 1.05rem; width: 22px; text-align: center; }
+        .contact-info-list a { color: #bbb; text-decoration: none; transition: 0.3s; }
+        .contact-info-list a:hover { color: var(--neon); }
+        .footer {
+            padding: 25px 0 30px;
+            text-align: center;
+            color: #888;
+            font-size: 0.85rem;
+        }
+        .footer a { color: var(--neon); text-decoration: none; }
+
+        /* ===== STICKY MOBILE BAR (YENİ) ===== */
+        .sticky-mobile-bar {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-top: 1px solid var(--border);
+            padding: 12px 20px calc(12px + env(safe-area-inset-bottom));
+            z-index: 998;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        .sticky-mobile-bar.visible { transform: translateY(0); }
+        .sticky-mobile-bar .sticky-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+        .sticky-mobile-bar .sticky-price {
+            font-weight: 900;
+            font-size: 1.2rem;
+            color: var(--accent);
+        }
+        .sticky-mobile-bar .sticky-price small {
+            font-size: 0.75rem;
+            color: var(--gray);
+            font-weight: 500;
+        }
+        .sticky-mobile-bar .sticky-btn {
+            background: var(--neon);
+            color: #000;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+        .sticky-mobile-bar .sticky-btn:hover { background: #d4ff33; }
+        @media (max-width: 640px) { .sticky-mobile-bar { display: block; } }
+
+        /* ===== FLOAT BUTTONS ===== */
+        .wp-float {
+            position: fixed;
+            bottom: calc(25px + env(safe-area-inset-bottom));
+            right: 25px;
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .wp-btn {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            color: #fff;
+            text-decoration: none;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+            transition: 0.3s;
+            position: relative;
+        }
+        .wp-btn:hover { transform: scale(1.08); }
+        .wp-btn:active { transform: scale(0.94); }
+        .wp-btn.whatsapp { background: #25d366; }
+        .wp-btn.instagram { background: #e4405f; }
+        .wp-btn .btn-label {
+            position: absolute;
+            right: 64px;
+            background: var(--card);
+            color: var(--text);
+            padding: 4px 10px;
+            border-radius: 8px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            white-space: nowrap;
+            opacity: 0;
+            transform: translateX(8px);
+            transition: 0.3s;
+            pointer-events: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        .wp-btn:hover .btn-label { opacity: 1; transform: translateX(0); }
+        @media (max-width: 640px) {
+            .wp-btn { width: 50px; height: 50px; font-size: 22px; }
+            .wp-btn .btn-label { display: none; }
+        }
+
+        /* ===== TOAST (YENİ) ===== */
+        .toast-container {
+            position: fixed;
+            top: 90px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
             pointer-events: none;
         }
-        .hero-pattern { position: absolute; inset: 0; opacity: 0.03; background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); }
-        .hero-content { position: relative; z-index: 2; text-align: center; padding: 48px 32px; max-width: 640px; }
-        .hero-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(52,199,89,0.15); color: var(--accent); padding: 6px 14px; border-radius: var(--radius-full); font-size: var(--text-xs); font-weight: 600; letter-spacing: 0.02em; margin-bottom: 20px; border: 1px solid rgba(52,199,89,0.2); animation: fadeInUp 0.6s ease-out 0.2s both; }
-        .hero-badge::before { content: ''; width: 6px; height: 6px; background: var(--accent); border-radius: 50%; animation: pulse 2s infinite; }
-        @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(0.8); } }
-        .hero-content h1 { font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; color: #fff; margin-bottom: 16px; animation: fadeInUp 0.6s ease-out 0.3s both; }
-        .hero-content h1 .highlight { background: linear-gradient(135deg, var(--accent) 0%, #5ee87a 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-        .hero-content p { color: rgba(255,255,255,0.7); font-size: clamp(1rem, 1.5vw, 1.125rem); max-width: 520px; margin: 0 auto 28px; line-height: 1.6; font-weight: 400; animation: fadeInUp 0.6s ease-out 0.4s both; }
-        .hero-stats { display: flex; justify-content: center; gap: 32px; margin-bottom: 32px; animation: fadeInUp 0.6s ease-out 0.5s both; }
-        .hero-stat { text-align: center; }
-        .hero-stat-value { font-size: var(--text-2xl); font-weight: 800; color: #fff; letter-spacing: -0.02em; }
-        .hero-stat-label { font-size: var(--text-xs); color: rgba(255,255,255,0.5); font-weight: 500; margin-top: 2px; }
-        .btn-main { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: #fff; padding: 16px 32px; border-radius: var(--radius-full); font-weight: 700; font-size: var(--text-base); border: none; cursor: pointer; transition: all 0.3s var(--ease-spring); text-decoration: none; box-shadow: 0 4px 20px rgba(52,199,89,0.3); animation: fadeInUp 0.6s ease-out 0.6s both; }
-        .btn-main:hover { background: var(--accent-dark); transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 30px rgba(52,199,89,0.4); }
-        .btn-main:active { transform: translateY(0) scale(0.98); box-shadow: 0 2px 10px rgba(52,199,89,0.3); }
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        
-        @media (max-width: 640px) {
-            .hero { border-radius: 0; margin: 0 -20px 24px; width: calc(100% + 40px); min-height: 380px; }
-            .hero-content { padding: 40px 24px; }
-            .hero-stats { gap: 24px; }
-            .hero-stat-value { font-size: var(--text-xl); }
+        .toast {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 12px 18px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text);
+            animation: toastIn 0.4s ease, toastOut 0.4s ease 4s forwards;
+            pointer-events: auto;
+            max-width: 340px;
         }
-        
-        /* SOCIAL PROOF */
-        .social-proof { background: var(--ios-card); border: 1px solid var(--ios-separator); border-radius: var(--radius-xl); padding: 16px 24px; margin: -16px auto 40px; max-width: 600px; display: flex; align-items: center; justify-content: center; gap: 12px; box-shadow: var(--shadow-md); position: relative; z-index: 10; }
-        .social-proof-avatars { display: flex; }
-        .social-proof-avatars img { width: 32px; height: 32px; border-radius: 50%; border: 2px solid var(--ios-card); margin-left: -8px; object-fit: cover; }
-        .social-proof-avatars img:first-child { margin-left: 0; }
-        .social-proof-text { font-size: var(--text-sm); color: var(--ios-text-secondary); font-weight: 500; }
-        .social-proof-text strong { color: var(--ios-text); font-weight: 700; }
-        @media (max-width: 640px) { .social-proof { margin: -12px 0 32px; padding: 12px 16px; } .social-proof-text { font-size: 12px; } }
-        
-        /* STEPS */
-        .steps { margin: 48px 0; }
-        .steps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
-        @media (max-width: 768px) { .steps-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; } }
-        .step-box { background: var(--ios-card); border: 1px solid var(--ios-separator); border-radius: var(--radius-xl); padding: 24px 16px; text-align: center; transition: all 0.4s var(--ease-spring); box-shadow: var(--shadow-sm); position: relative; overflow: hidden; }
-        .step-box::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--accent), #5ee87a); opacity: 0; transition: opacity 0.3s; }
-        .step-box:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: var(--accent); }
-        .step-box:hover::before { opacity: 1; }
-        .step-num { width: 36px; height: 36px; border-radius: var(--radius-md); background: var(--accent-light); color: var(--accent-dark); font-weight: 800; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; font-size: var(--text-sm); }
-        .step-box i { font-size: 1.5rem; color: var(--accent); margin-bottom: 10px; display: block; }
-        .step-box h4 { font-size: var(--text-sm); font-weight: 700; margin-bottom: 4px; color: var(--ios-text); letter-spacing: -0.01em; }
-        .step-box p { font-size: var(--text-xs); color: var(--ios-text-secondary); line-height: 1.5; font-weight: 500; }
-        
-        /* CALCULATOR */
-        .calculator { background: var(--ios-card); border: 1px solid var(--ios-separator); border-radius: var(--radius-2xl); padding: 32px; margin: 48px 0; box-shadow: var(--shadow-md); }
-        .calculator-header { margin-bottom: 24px; }
-        .calculator h2 { font-size: var(--text-2xl); font-weight: 800; letter-spacing: -0.03em; margin-bottom: 6px; display: flex; align-items: center; gap: 10px; }
-        .calculator h2 i { color: var(--accent); font-size: 1.3rem; }
-        .calculator .sub { color: var(--ios-text-secondary); font-size: var(--text-base); font-weight: 500; }
-        .calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-        .calc-group.full { grid-column: 1 / -1; }
-        @media (max-width: 640px) { .calculator { padding: 24px 20px; } .calc-grid { grid-template-columns: 1fr; gap: 14px; } }
-        .calc-group { display: flex; flex-direction: column; gap: 6px; }
-        .calc-group label { font-weight: 600; font-size: var(--text-sm); color: var(--ios-text-secondary); letter-spacing: -0.01em; }
-        .calc-group select, .calc-group input { background: var(--ios-bg); border: 1px solid var(--ios-border); border-radius: var(--radius-lg); padding: 14px 16px; color: var(--ios-text); font-size: 16px; font-weight: 500; outline: none; transition: all 0.2s var(--ease-smooth); width: 100%; -webkit-appearance: none; appearance: none; font-family: inherit; }
-        .calc-group select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%238e8e93' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; background-size: 16px; padding-right: 42px; }
-        .calc-group select:focus, .calc-group input:focus { border-color: var(--accent); box-shadow: 0 0 0 4px var(--accent-glow); }
-        .calc-group select option { background: var(--ios-card); color: var(--ios-text); }
-        
-        .quick-sizes { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
-        .quick-size-btn { background: var(--ios-bg); border: 1px solid var(--ios-border); border-radius: var(--radius-full); padding: 6px 14px; font-size: var(--text-xs); font-weight: 600; color: var(--ios-text-secondary); cursor: pointer; transition: all 0.2s var(--ease-spring); font-family: inherit; }
-        .quick-size-btn:hover { background: var(--accent-light); border-color: var(--accent); color: var(--accent-dark); }
-        .quick-size-btn.active { background: var(--accent); border-color: var(--accent); color: white; }
-        
-        .calc-options { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 8px; }
-        @media (max-width: 640px) { .calc-options { grid-template-columns: 1fr; } }
-        .option-card { background: var(--ios-bg); border: 2px solid transparent; border-radius: var(--radius-lg); padding: 14px; cursor: pointer; transition: all 0.2s var(--ease-spring); text-align: center; }
-        .option-card:hover { border-color: var(--ios-border); }
-        .option-card.selected { border-color: var(--accent); background: var(--accent-light); }
-        .option-card .option-label { font-size: var(--text-xs); font-weight: 600; color: var(--ios-text-secondary); margin-bottom: 2px; }
-        .option-card.selected .option-label { color: var(--accent-dark); }
-        .option-card .option-value { font-size: var(--text-sm); font-weight: 700; color: var(--ios-text); }
-        
-        .preview-wrap { display: flex; align-items: center; justify-content: center; background: var(--ios-bg); border: 1.5px dashed var(--ios-border); border-radius: var(--radius-xl); padding: 24px; margin-top: 20px; min-height: 140px; position: relative; overflow: hidden; }
-        .preview-box { background: linear-gradient(135deg, var(--accent-light), rgba(52,199,89,0.05)); border: 2px solid var(--accent); border-radius: var(--radius-md); transition: all 0.4s var(--ease-spring); display: flex; align-items: center; justify-content: center; color: var(--accent-dark); font-size: var(--text-xs); font-weight: 700; min-width: 28px; min-height: 20px; box-shadow: 0 4px 16px var(--accent-glow); }
-        .preview-dimensions { position: absolute; bottom: 8px; right: 12px; font-size: var(--text-xs); color: var(--ios-text-tertiary); font-weight: 500; }
-        
-        .calc-btn { width: 100%; margin-top: 20px; justify-content: center; font-size: var(--text-lg); padding: 18px 32px; }
-        
-        .calc-result { background: linear-gradient(135deg, var(--accent-light), rgba(52,199,89,0.05)); border: 1px solid rgba(52,199,89,0.2); border-radius: var(--radius-xl); padding: 28px; margin-top: 20px; text-align: center; position: relative; overflow: hidden; }
-        .calc-result::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--accent), #5ee87a); }
-        .calc-result .price { font-size: 3rem; font-weight: 900; color: var(--accent-dark); letter-spacing: -0.03em; line-height: 1; }
-        .calc-result .price small { font-size: 1.25rem; font-weight: 600; color: var(--accent); }
-        .calc-result .detail { color: var(--ios-text-secondary); font-size: var(--text-sm); margin: 12px 0 16px; font-weight: 500; }
-        .calc-result .btn-wa { display: inline-flex; align-items: center; gap: 10px; background: #25d366; color: #fff; padding: 16px 32px; border-radius: var(--radius-full); font-weight: 700; text-decoration: none; transition: all 0.3s var(--ease-spring); box-shadow: 0 4px 16px rgba(37,211,102,0.3); font-size: var(--text-base); }
-        .calc-result .btn-wa:hover { background: #1da851; transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(37,211,102,0.4); }
-        .calc-result .btn-wa:active { transform: translateY(0) scale(0.98); }
-        .calc-note { font-size: var(--text-xs); color: var(--ios-text-tertiary); margin-top: 14px; font-weight: 500; }
-        @media (max-width: 640px) { .calc-result .price { font-size: 2.2rem; } .calc-result { padding: 20px; } }
-        
-        /* PRODUCTS */
-        .products { margin: 64px 0; }
-        .products h2 { font-size: var(--text-3xl); font-weight: 800; letter-spacing: -0.03em; text-align: center; margin-bottom: 8px; }
-        .products .section-sub { text-align: center; color: var(--ios-text-secondary); font-size: var(--text-base); font-weight: 500; margin-bottom: 40px; }
-        .category-header { text-align: center; margin: 48px 0 24px; }
-        .category-badge { display: inline-flex; align-items: center; gap: 8px; background: var(--ios-card); border: 1px solid var(--ios-separator); padding: 10px 24px; border-radius: var(--radius-full); font-weight: 700; font-size: var(--text-sm); color: var(--ios-text); box-shadow: var(--shadow-sm); letter-spacing: -0.01em; }
-        .category-badge.special { background: linear-gradient(135deg, #1a1a2e, #0f3460); color: #fff; border: none; }
-        .category-badge.print { background: linear-gradient(135deg, var(--accent), #30b350); color: #fff; border: none; }
-        
-        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
-        @media (max-width: 640px) { .product-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; } }
-        
-        .product-card { background: var(--ios-card); border: 1px solid var(--ios-separator); border-radius: var(--radius-xl); overflow: hidden; transition: all 0.4s var(--ease-spring); box-shadow: var(--shadow-sm); cursor: pointer; position: relative; }
-        .product-card:hover { transform: translateY(-6px) scale(1.01); box-shadow: var(--shadow-xl); border-color: var(--accent); }
-        .product-card .card-img-wrap { position: relative; width: 100%; height: 180px; overflow: hidden; background: var(--ios-bg); }
-        .product-card .card-img { width: 100%; height: 100%; object-fit: contain; display: block; transition: transform 0.5s var(--ease-smooth); padding: 12px; }
-        .product-card:hover .card-img { transform: scale(1.05); }
-        .product-card .card-body { padding: 16px; }
-        @media (max-width: 640px) { .product-card .card-img-wrap { height: 140px; } .product-card .card-body { padding: 12px; } .product-card .card-body h3 { font-size: var(--text-sm); } .product-card .card-body .desc { font-size: 11px; } .product-card .card-body .fiyat { font-size: var(--text-sm); } }
-        .product-card .card-body h3 { font-size: var(--text-base); font-weight: 700; margin-bottom: 4px; color: var(--ios-text); letter-spacing: -0.01em; }
-        .product-card .card-body .desc { color: var(--ios-text-secondary); font-size: var(--text-xs); margin: 4px 0 10px; font-weight: 500; line-height: 1.4; }
-        .product-card .card-body .fiyat { font-weight: 800; color: var(--accent-dark); font-size: var(--text-lg); letter-spacing: -0.02em; }
-        .product-card .card-body .fiyat small { font-weight: 500; color: var(--ios-text-tertiary); font-size: var(--text-xs); }
-        
-        .product-badge { position: absolute; top: 12px; left: 12px; font-size: 10px; font-weight: 800; text-transform: uppercase; padding: 5px 10px; border-radius: var(--radius-full); z-index: 2; letter-spacing: 0.02em; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
-        .product-badge.bestseller { background: rgba(255,59,48,0.9); color: #fff; }
-        .product-badge.free-design { background: rgba(0,122,255,0.9); color: #fff; }
-        .product-badge.multi-design { background: rgba(175,82,222,0.9); color: #fff; }
-        .product-badge.ataturk-badge { background: rgba(212,42,26,0.9); color: #fff; }
-        .product-badge.cocuk-badge { background: rgba(30,136,229,0.9); color: #fff; }
-        .product-badge.new { background: rgba(52,199,89,0.9); color: #fff; }
-        
-        .card-icon { width: 100%; height: 180px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, var(--ios-bg), var(--ios-card)); font-size: 2.5rem; color: var(--accent); }
-        @media (max-width: 640px) { .card-icon { height: 140px; font-size: 2rem; } }
-        
-        .card-quick-action { position: absolute; bottom: 12px; right: 12px; width: 36px; height: 36px; background: var(--accent); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; opacity: 0; transform: scale(0.8); transition: all 0.3s var(--ease-spring); box-shadow: 0 4px 12px rgba(52,199,89,0.3); }
-        .product-card:hover .card-quick-action { opacity: 1; transform: scale(1); }
-        
-        /* MODAL */
-        .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 9999; justify-content: center; align-items: flex-end; padding: 0; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); opacity: 0; transition: opacity 0.3s var(--ease-smooth); }
-        .modal-overlay.active { display: flex; opacity: 1; }
-        .modal-box { background: var(--ios-card); border-radius: var(--radius-2xl) var(--radius-2xl) 0 0; max-width: 600px; width: 100%; max-height: 90vh; overflow-y: auto; position: relative; box-shadow: 0 -10px 40px rgba(0,0,0,0.2); transform: translateY(100%); transition: transform 0.4s var(--ease-spring); }
-        .modal-overlay.active .modal-box { transform: translateY(0); }
-        @media (min-width: 640px) { .modal-overlay { align-items: center; padding: 20px; } .modal-box { border-radius: var(--radius-2xl); transform: scale(0.9) translateY(20px); } .modal-overlay.active .modal-box { transform: scale(1) translateY(0); } }
-        .modal-handle { width: 36px; height: 4px; background: var(--ios-border); border-radius: 2px; margin: 12px auto; }
-        @media (min-width: 640px) { .modal-handle { display: none; } }
-        .modal-close { position: absolute; top: 16px; right: 16px; width: 32px; height: 32px; background: var(--ios-bg); border: none; border-radius: 50%; font-size: 18px; cursor: pointer; color: var(--ios-text-secondary); display: flex; align-items: center; justify-content: center; transition: all 0.2s; z-index: 10; }
-        .modal-close:hover { background: var(--ios-separator); color: var(--ios-text); }
-        .modal-box h3 { font-size: var(--text-xl); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 8px; color: var(--ios-text); padding: 0 8px; }
-        .modal-box .modal-desc { color: var(--ios-text-secondary); font-size: var(--text-sm); line-height: 1.6; margin: 12px 0 16px; padding: 0 8px; }
-        .modal-box .modal-price { font-weight: 900; color: var(--accent-dark); font-size: var(--text-2xl); margin: 16px 0; padding: 0 8px; letter-spacing: -0.02em; }
-        .modal-box .modal-price small { font-weight: 500; color: var(--ios-text-tertiary); font-size: var(--text-sm); }
-        .modal-img { width: 100%; max-height: 320px; object-fit: contain; border-radius: var(--radius-lg); margin-bottom: 16px; background: var(--ios-bg); }
-        .modal-thumbs { display: flex; gap: 10px; margin: 16px 0; flex-wrap: wrap; justify-content: center; padding: 0 8px; }
-        .modal-thumb { width: 64px; height: 64px; object-fit: contain; border-radius: var(--radius-md); border: 2px solid transparent; cursor: pointer; transition: all 0.2s var(--ease-spring); background: var(--ios-bg); padding: 4px; }
-        .modal-thumb:hover { border-color: var(--ios-border); transform: scale(1.05); }
-        .modal-thumb.active-thumb { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-glow); }
-        .modal-box .btn-wa { display: flex; align-items: center; justify-content: center; gap: 10px; background: #25d366; color: #fff; padding: 16px; border-radius: var(--radius-xl); font-weight: 700; text-decoration: none; margin-top: 16px; transition: all 0.3s var(--ease-spring); box-shadow: 0 4px 16px rgba(37,211,102,0.3); font-size: var(--text-base); }
-        .modal-box .btn-wa:hover { background: #1da851; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(37,211,102,0.4); }
-        .modal-content { padding: 8px 24px 32px; }
-        @media (max-width: 640px) { .modal-content { padding: 8px 20px 24px; } }
-        
-        /* FAQ */
-        .faq { margin: 64px 0; }
-        .faq h2 { font-size: var(--text-3xl); font-weight: 800; letter-spacing: -0.03em; text-align: center; margin-bottom: 8px; }
-        .faq .section-sub { text-align: center; color: var(--ios-text-secondary); font-size: var(--text-base); font-weight: 500; margin-bottom: 32px; }
-        .faq-item { background: var(--ios-card); border: 1px solid var(--ios-separator); border-radius: var(--radius-xl); margin-bottom: 10px; cursor: pointer; transition: all 0.3s var(--ease-smooth); box-shadow: var(--shadow-sm); overflow: hidden; }
-        .faq-item:hover { border-color: var(--ios-border); box-shadow: var(--shadow-md); }
-        .faq-item.active { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-glow); }
-        .faq-question { display: flex; justify-content: space-between; align-items: center; font-weight: 700; font-size: var(--text-base); color: var(--ios-text); padding: 18px 22px; letter-spacing: -0.01em; }
-        .faq-question i { color: var(--accent); transition: all 0.3s var(--ease-spring); font-size: 14px; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: var(--accent-light); }
-        .faq-item.active .faq-question i { transform: rotate(45deg); }
-        .faq-answer { color: var(--ios-text-secondary); font-size: var(--text-sm); line-height: 1.6; max-height: 0; overflow: hidden; opacity: 0; transition: max-height 0.4s var(--ease-smooth), opacity 0.3s, padding 0.4s; padding: 0 22px; }
-        .faq-answer.open { max-height: 300px; opacity: 1; padding: 0 22px 18px; }
-        
-        /* DARK BAND */
-        .dark-band { background: linear-gradient(180deg, var(--dark) 0%, #0a0a0a 100%); width: 100vw; position: relative; left: 50%; margin-left: -50vw; margin-top: 80px; padding: 60px 0 0; }
-        .dark-band .inner { max-width: 980px; margin: 0 auto; padding: 0 20px; }
-        .footer-box { background: var(--dark-card); border: 1px solid var(--dark-elevated); border-radius: var(--radius-xl); padding: 32px; text-align: center; }
-        .footer-box h3 { color: var(--accent); font-size: var(--text-lg); font-weight: 800; text-transform: uppercase; margin-bottom: 20px; letter-spacing: -0.01em; }
-        .contact-info-list { list-style: none; padding: 0; margin: 20px auto 0; text-align: left; max-width: 400px; }
-        .contact-info-list li { padding: 12px 0; border-bottom: 1px solid var(--dark-elevated); color: #a0a0a0; display: flex; align-items: center; gap: 14px; font-size: var(--text-sm); font-weight: 500; transition: color 0.2s; }
-        .contact-info-list li:last-child { border-bottom: none; }
-        .contact-info-list i { color: var(--accent); font-size: 16px; width: 24px; text-align: center; }
-        .contact-info-list a { color: #a0a0a0; text-decoration: none; transition: color 0.2s; }
-        .contact-info-list a:hover { color: var(--accent); }
-        .footer { padding: 32px 0 40px; text-align: center; color: #666; font-size: var(--text-xs); font-weight: 500; }
-        .footer a { color: var(--accent); text-decoration: none; font-weight: 600; }
-        
-        /* FLOAT BUTTONS */
-        .wp-float { position: fixed; bottom: calc(24px + env(safe-area-inset-bottom)); right: 24px; z-index: 999; display: flex; flex-direction: column; gap: 12px; }
-        .wp-btn { width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 26px; color: #fff; text-decoration: none; box-shadow: 0 8px 24px rgba(0,0,0,0.2); transition: all 0.3s var(--ease-spring); position: relative; }
-        .wp-btn::after { content: ''; position: absolute; inset: -2px; border-radius: 50%; border: 2px solid transparent; transition: all 0.3s; }
-        .wp-btn:hover { transform: scale(1.1) translateY(-2px); box-shadow: 0 12px 32px rgba(0,0,0,0.3); }
-        .wp-btn:hover::after { border-color: rgba(255,255,255,0.3); }
-        .wp-btn.whatsapp { background: linear-gradient(135deg, #25d366, #128c7e); }
-        .wp-btn.instagram { background: linear-gradient(135deg, #e4405f, #c13584, #833ab4); }
-        .wp-btn .btn-label { position: absolute; right: 64px; background: var(--ios-card); color: var(--ios-text); padding: 6px 12px; border-radius: var(--radius-md); font-size: 12px; font-weight: 600; white-space: nowrap; opacity: 0; transform: translateX(8px); transition: all 0.3s var(--ease-smooth); pointer-events: none; box-shadow: var(--shadow-md); }
-        .wp-btn:hover .btn-label { opacity: 1; transform: translateX(0); }
-        @media (max-width: 640px) { .wp-btn { width: 50px; height: 50px; font-size: 22px; } .wp-btn .btn-label { display: none; } }
-        
-        /* TOAST */
-        .toast-container { position: fixed; top: 90px; left: 50%; transform: translateX(-50%); z-index: 10000; display: flex; flex-direction: column; gap: 8px; pointer-events: none; }
-        .toast { background: var(--ios-card); border: 1px solid var(--ios-separator); border-radius: var(--radius-xl); padding: 14px 20px; box-shadow: var(--shadow-lg); display: flex; align-items: center; gap: 12px; font-size: var(--text-sm); font-weight: 500; color: var(--ios-text); animation: toastIn 0.4s var(--ease-spring), toastOut 0.4s var(--ease-smooth) 4s forwards; pointer-events: auto; max-width: 340px; }
-        .toast-icon { width: 32px; height: 32px; border-radius: 50%; background: var(--accent-light); display: flex; align-items: center; justify-content: center; color: var(--accent); font-size: 14px; flex-shrink: 0; }
-        @keyframes toastIn { from { opacity: 0; transform: translateY(-20px) scale(0.95); } to { opacity: 1; transform: translateY(0) scale(1); } }
-        @keyframes toastOut { from { opacity: 1; transform: translateY(0) scale(1); } to { opacity: 0; transform: translateY(-20px) scale(0.95); } }
-        
-        /* STICKY BAR */
-        .sticky-mobile-bar { display: none; position: fixed; bottom: 0; left: 0; right: 0; background: rgba(255,255,255,0.92); backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px); border-top: 0.5px solid var(--ios-separator); padding: 12px 20px calc(12px + env(safe-area-inset-bottom)); z-index: 998; transform: translateY(100%); transition: transform 0.3s var(--ease-smooth); }
-        .sticky-mobile-bar.visible { transform: translateY(0); }
-        .sticky-mobile-bar .sticky-content { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-        .sticky-mobile-bar .sticky-price { font-weight: 800; font-size: var(--text-lg); color: var(--accent-dark); }
-        .sticky-mobile-bar .sticky-price small { font-size: var(--text-xs); color: var(--ios-text-tertiary); font-weight: 500; }
-        .sticky-mobile-bar .sticky-btn { background: var(--accent); color: white; padding: 10px 20px; border-radius: var(--radius-full); font-weight: 700; font-size: var(--text-sm); text-decoration: none; transition: all 0.2s; white-space: nowrap; }
-        @media (max-width: 640px) { .sticky-mobile-bar { display: block; } }
-        @media (prefers-color-scheme: dark) { .sticky-mobile-bar { background: rgba(28,28,30,0.92); border-top-color: var(--dark-elevated); } }
-        
-        /* UTILITIES */
-        .section-divider { height: 1px; background: linear-gradient(90deg, transparent, var(--ios-separator), transparent); margin: 48px 0; }
-        @media (max-width: 480px) { .hero-content h1 { font-size: 1.8rem; } .calculator { padding: 20px; } .calc-result .price { font-size: 2.2rem; } }
-        @media print { nav, .wp-float, .sticky-mobile-bar, .toast-container { display: none !important; } .hero { min-height: auto; } .modal-overlay { display: none !important; } }
+        .toast-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: rgba(111,143,0,0.12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            font-size: 13px;
+            flex-shrink: 0;
+        }
+        @keyframes toastIn {
+            from { opacity: 0; transform: translateY(-20px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        @keyframes toastOut {
+            from { opacity: 1; transform: translateY(0) scale(1); }
+            to { opacity: 0; transform: translateY(-20px) scale(0.95); }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 { font-size: 1.8rem; }
+            .calculator { padding: 20px; }
+            .calc-result .price { font-size: 1.6rem; }
+        }
     </style>
-    
-    <!-- Schema.org Structured Data -->
+
+    <!-- Schema.org Structured Data (YENİ) -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -402,24 +1011,9 @@
             "addressRegion": "Samsun",
             "addressCountry": "TR"
         },
-        "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": "41.5678",
-            "longitude": "35.9012"
-        },
         "openingHoursSpecification": [
-            {
-                "@type": "OpeningHoursSpecification",
-                "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-                "opens": "08:30",
-                "closes": "18:00"
-            },
-            {
-                "@type": "OpeningHoursSpecification",
-                "dayOfWeek": "Saturday",
-                "opens": "09:00",
-                "closes": "14:00"
-            }
+            { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "08:30", "closes": "18:00" },
+            { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "09:00", "closes": "14:00" }
         ],
         "sameAs": ["https://www.instagram.com/uzman.reklamm/"],
         "priceRange": "$$",
@@ -427,36 +1021,14 @@
         "currenciesAccepted": "TRY"
     }
     </script>
-    
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "FAQPage",
         "mainEntity": [
-            {
-                "@type": "Question",
-                "name": "Fason baskı ne demek?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Fason baskı, sizin tasarımınızı bizim makinalarımızda basıp size göndermemizdir. Montaj yok, sadece baskı hizmeti."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "Hangi dosya formatlarını göndermeliyim?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "PDF, JPG, PNG, AI, EPS kabul ediyoruz. Çözünürlük en az 150 dpi olmalı. WhatsApp'tan gönderebilirsiniz."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "Kargo kaç günde gelir?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Türkiye geneli 1-3 iş günü. İstanbul, Ankara, İzmir 1-2 gün. Takip numarası gönderiyoruz."
-                }
-            }
+            { "@type": "Question", "name": "Fason baskı ne demek?", "acceptedAnswer": { "@type": "Answer", "text": "Fason baskı, sizin tasarımınızı bizim makinalarımızda basıp size göndermemizdir. Montaj yok, sadece baskı hizmeti." } },
+            { "@type": "Question", "name": "Hangi dosya formatlarını göndermeliyim?", "acceptedAnswer": { "@type": "Answer", "text": "PDF, JPG, PNG, AI, EPS kabul ediyoruz. Çözünürlük en az 150 dpi olmalı. WhatsApp'tan gönderebilirsiniz." } },
+            { "@type": "Question", "name": "Kargo kaç günde gelir?", "acceptedAnswer": { "@type": "Answer", "text": "Türkiye geneli 1-3 iş günü. İstanbul, Ankara, İzmir 1-2 gün. Takip numarası gönderiyoruz." } }
         ]
     }
     </script>
@@ -466,23 +1038,17 @@
     <!-- TOAST CONTAINER -->
     <div class="toast-container" id="toastContainer"></div>
 
-    <!-- NAVIGATION -->
+    <!-- NAV -->
     <nav>
-        <div class="nav-container">
+        <div class="container nav-container">
             <div class="logo-area">
-                <div class="logo">
-                    <a href="https://samsuntabela.tr/">
-                        <span class="logo-icon"><i class="fas fa-print"></i></span>
-                        UZMAN<span>REKLAM</span>
-                    </a>
-                </div>
+                <div class="logo"><a href="https://samsuntabela.tr/">UZMAN<span>REKLAM</span></a></div>
                 <span class="logo-slogan">Dijital Baskı Merkezi</span>
             </div>
             <div class="nav-contact">
                 <a href="tel:05322204649"><i class="fas fa-phone-alt"></i> 0532 220 46 49</a>
-                <a href="https://wa.me/905079605049" target="_blank" class="nav-cta">
-                    <i class="fab fa-whatsapp"></i> WhatsApp
-                </a>
+                <span class="sep">|</span>
+                <a href="https://wa.me/905079605049" target="_blank"><i class="fab fa-whatsapp"></i> 0507 960 50 49</a>
             </div>
         </div>
     </nav>
@@ -491,32 +1057,20 @@
 
         <!-- HERO -->
         <section class="hero">
-            <div class="hero-pattern"></div>
+            <div class="hero-video-wrap">
+                <video class="hero-video" autoplay muted loop playsinline>
+                    <source src="images/fason/hero-fason.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="hero-overlay"></div>
             <div class="hero-content">
-                <div class="hero-badge"><i class="fas fa-bolt" style="font-size:10px;"></i> Hemen Teslimat</div>
-                <h1>FASON <span class="highlight">DİJİTAL BASKI</span></h1>
+                <h1>FASON <span>DİJİTAL BASKI</span></h1>
                 <p>Ölçünü gir, fiyatını gör, kapına gelsin. Folyo, branda, one-way vision, vinil, mesh ve daha fazlası.</p>
-                <div class="hero-stats">
-                    <div class="hero-stat">
-                        <div class="hero-stat-value">15+</div>
-                        <div class="hero-stat-label">Yıllık Deneyim</div>
-                    </div>
-                    <div class="hero-stat">
-                        <div class="hero-stat-value">81</div>
-                        <div class="hero-stat-label">İle Gönderim</div>
-                    </div>
-                    <div class="hero-stat">
-                        <div class="hero-stat-value">50K+</div>
-                        <div class="hero-stat-label">m² Baskı</div>
-                    </div>
-                </div>
-                <a href="#hesapla" class="btn-main">
-                    <i class="fas fa-calculator"></i> HEMEN FİYAT HESAPLA
-                </a>
+                <a href="#hesapla" class="btn-main"><i class="fas fa-calculator"></i> HEMEN FİYAT HESAPLA</a>
             </div>
         </section>
 
-        <!-- SOCIAL PROOF -->
+        <!-- SOCIAL PROOF (YENİ) -->
         <div class="social-proof">
             <div class="social-proof-avatars">
                 <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=1" alt="">
@@ -525,9 +1079,7 @@
                 <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=4" alt="">
                 <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=5" alt="">
             </div>
-            <div class="social-proof-text">
-                <strong>2.847 kişi</strong> bu ay fiyat hesapladı
-            </div>
+            <div class="social-proof-text"><strong>2.847 kişi</strong> bu ay fiyat hesapladı</div>
         </div>
 
         <!-- STEPS -->
@@ -560,14 +1112,10 @@
             </div>
         </section>
 
-        <div class="section-divider"></div>
-
-        <!-- CALCULATOR -->
+        <!-- CALCULATOR (GÜNCELLENMİŞ) -->
         <section class="calculator" id="hesapla">
-            <div class="calculator-header">
-                <h2><i class="fas fa-sliders-h"></i> Fiyat Hesaplayıcı</h2>
-                <p class="sub">Malzeme seç, en ve boy ölçülerini gir, tahmini fiyatı anında gör.</p>
-            </div>
+            <h2><i class="fas fa-sliders-h"></i> Fiyat Hesaplayıcı</h2>
+            <p class="sub">Malzeme seç, en ve boy ölçülerini gir, tahmini fiyatı anında gör.</p>
 
             <div class="calc-grid">
                 <div class="calc-group full">
@@ -594,6 +1142,7 @@
                 <div class="calc-group">
                     <label for="en">En (cm)</label>
                     <input type="number" id="en" placeholder="Örn: 100" min="1" value="100">
+                    <!-- QUICK SIZES (YENİ) -->
                     <div class="quick-sizes">
                         <button class="quick-size-btn" onclick="setSize(50,30)">50×30</button>
                         <button class="quick-size-btn" onclick="setSize(100,50)">100×50</button>
@@ -607,9 +1156,10 @@
                     <input type="number" id="boy" placeholder="Örn: 50" min="1" value="100">
                 </div>
             </div>
-            
+
+            <!-- EXTRA OPTIONS (YENİ) -->
             <div style="margin-top: 16px;">
-                <label style="font-weight: 600; font-size: var(--text-sm); color: var(--ios-text-secondary); margin-bottom: 8px; display: block;">Ek Seçenekler</label>
+                <label style="font-weight:600; font-size:0.85rem; color:var(--gray); margin-bottom:8px; display:block;">Ek Seçenekler</label>
                 <div class="calc-options">
                     <div class="option-card" id="optLaminasyon" onclick="toggleOption('laminasyon')">
                         <div class="option-label">Laminasyon</div>
@@ -631,7 +1181,7 @@
                 <div class="preview-dimensions" id="previewDimensions">1.00 m²</div>
             </div>
 
-            <button class="btn-main calc-btn" onclick="hesapla()">
+            <button class="btn-main" onclick="hesapla()" style="width:100%; margin-top:20px; text-align:center;">
                 <i class="fas fa-calculator"></i> HESAPLA
             </button>
 
@@ -642,9 +1192,7 @@
             </div>
         </section>
 
-        <div class="section-divider"></div>
-
-        <!-- PRODUCTS -->
+        <!-- PRODUCTS (KATEGORİ BAŞLIKLI) -->
         <section class="products" id="urunler">
             <h2>Tüm Ürünler</h2>
             <p class="section-sub">Profesyonel dijital baskı çözümleri ve özel maketler</p>
@@ -656,11 +1204,11 @@
 
             <div class="product-grid">
 
-                <!-- ATATÜRK MAKETİ -->
+                <!-- ATATÜRK -->
                 <div class="product-card" onclick="openAtaturkModal()">
                     <div class="product-badge ataturk-badge">🇹🇷 175 cm</div>
                     <div class="card-img-wrap">
-                        <img class="card-img" src="images/fason/ataturk-maket-1.jpg" alt="Atatürk Maketi - 175 cm, 3mm Dekota, UV Baskı" loading="lazy">
+                        <img class="card-img" src="images/fason/ataturk-maket-1.jpg" alt="Atatürk Maketi" loading="lazy">
                     </div>
                     <div class="card-body">
                         <h3>Atatürk Maketi</h3>
@@ -670,11 +1218,11 @@
                     <div class="card-quick-action"><i class="fas fa-arrow-right"></i></div>
                 </div>
 
-                <!-- ÇOCUK MAKETİ -->
+                <!-- ÇOCUK -->
                 <div class="product-card" onclick="openCocukModal()">
                     <div class="product-badge cocuk-badge">🌟 Kişiye Özel</div>
                     <div class="card-img-wrap">
-                        <img class="card-img" src="images/fason/cocuk-maket-1.jpg" alt="Çocuk Maketi - Kişiye Özel, 175 cm, 3mm Dekota" loading="lazy">
+                        <img class="card-img" src="images/fason/cocuk-maket-1.jpg" alt="Çocuk Maketi" loading="lazy">
                     </div>
                     <div class="card-body">
                         <h3>Çocuk Maketi</h3>
@@ -688,7 +1236,7 @@
                 <div class="product-card" onclick="openDuvarModal()">
                     <div class="product-badge multi-design">🖼️ 3 Tasarım</div>
                     <div class="card-img-wrap">
-                        <img class="card-img" src="images/fason/duvar-tablosu-1.jpg" alt="Duvar Tablosu 50x70 - Folyo kaplı 3mm MDF" loading="lazy">
+                        <img class="card-img" src="images/fason/duvar-tablosu-1.jpg" alt="Duvar Tablosu" loading="lazy">
                     </div>
                     <div class="card-body">
                         <h3>Duvar Tablosu 50×70</h3>
@@ -710,7 +1258,7 @@
                 <div class="product-card" onclick="openModal('ince_vinil')">
                     <div class="product-badge bestseller">🔥 Çok Satan</div>
                     <div class="card-img-wrap">
-                        <img class="card-img" src="images/fason/ince-vinil.jpg" alt="İnce Vinil Baskı - Konica Solvent, Dış Mekan" loading="lazy">
+                        <img class="card-img" src="images/fason/ince-vinil.jpg" alt="İnce Vinil" loading="lazy">
                     </div>
                     <div class="card-body">
                         <h3>İnce Vinil</h3>
@@ -722,7 +1270,7 @@
 
                 <div class="product-card" onclick="openModal('normal_vinil')">
                     <div class="card-img-wrap">
-                        <img class="card-img" src="images/fason/normal-vinil.jpg" alt="Normal Vinil Baskı - Konica Solvent, Dış Mekan" loading="lazy">
+                        <img class="card-img" src="images/fason/normal-vinil.jpg" alt="Normal Vinil" loading="lazy">
                     </div>
                     <div class="card-body">
                         <h3>Normal Vinil</h3>
@@ -734,7 +1282,7 @@
 
                 <div class="product-card" onclick="openModal('avrupa_vinil')">
                     <div class="card-img-wrap">
-                        <img class="card-img" src="images/fason/avrupa-vinil.jpg" alt="Avrupa Vinil Baskı - Yüksek Kalite, Konica Solvent" loading="lazy">
+                        <img class="card-img" src="images/fason/avrupa-vinil.jpg" alt="Avrupa Vinil" loading="lazy">
                     </div>
                     <div class="card-body">
                         <h3>Avrupa Vinil</h3>
@@ -746,7 +1294,7 @@
 
                 <div class="product-card" onclick="openModal('mesh_vinil')">
                     <div class="card-img-wrap">
-                        <img class="card-img" src="images/fason/mesh-vinil.jpg" alt="Mesh Vinil Baskı - Delikli, Rüzgar Geçirgen" loading="lazy">
+                        <img class="card-img" src="images/fason/mesh-vinil.jpg" alt="Mesh Vinil" loading="lazy">
                     </div>
                     <div class="card-body">
                         <h3>Mesh Vinil</h3>
@@ -758,7 +1306,7 @@
 
                 <div class="product-card" onclick="openModal('isikli_vinil')">
                     <div class="card-img-wrap">
-                        <img class="card-img" src="images/fason/isikli-vinil.jpg" alt="Işıklı Vinil Baskı - Arkadan Aydınlatmalı" loading="lazy">
+                        <img class="card-img" src="images/fason/isikli-vinil.jpg" alt="Işıklı Vinil" loading="lazy">
                     </div>
                     <div class="card-body">
                         <h3>Işıklı Vinil</h3>
@@ -770,7 +1318,7 @@
 
                 <div class="product-card" onclick="openModal('frimpeks_folyo')">
                     <div class="card-img-wrap">
-                        <img class="card-img" src="images/fason/frimpeks-folyo.jpg" alt="Frimpeks Folyo Baskı - Solvent Folyo, Renkli" loading="lazy">
+                        <img class="card-img" src="images/fason/frimpeks-folyo.jpg" alt="Frimpeks Folyo" loading="lazy">
                     </div>
                     <div class="card-body">
                         <h3>Frimpeks Folyo</h3>
@@ -782,7 +1330,7 @@
 
                 <div class="product-card" onclick="openModal('unifol_folyo')">
                     <div class="card-img-wrap">
-                        <img class="card-img" src="images/fason/unifol-folyo.jpg" alt="Unifol Folyo Baskı - Solvent Folyo, Kaliteli" loading="lazy">
+                        <img class="card-img" src="images/fason/unifol-folyo.jpg" alt="Unifol Folyo" loading="lazy">
                     </div>
                     <div class="card-body">
                         <h3>Unifol Folyo</h3>
@@ -795,7 +1343,7 @@
                 <div class="product-card" onclick="openModal('one_way_vision')">
                     <div class="product-badge free-design">🎨 Ücretsiz Tasarım</div>
                     <div class="card-img-wrap">
-                        <img class="card-img" src="images/fason/one-way-vision.jpg" alt="One Way Vision Cam Folyosu - İçerisi Görünmez" loading="lazy">
+                        <img class="card-img" src="images/fason/one-way-vision.jpg" alt="One Way Vision" loading="lazy">
                     </div>
                     <div class="card-body">
                         <h3>One Way Vision</h3>
@@ -807,7 +1355,7 @@
 
                 <div class="product-card" onclick="openModal('reflektif_folyo')">
                     <div class="card-img-wrap">
-                        <img class="card-img" src="images/fason/reflektif-folyo.jpg" alt="Reflektif Folyo - Gece Işıltılı" loading="lazy">
+                        <img class="card-img" src="images/fason/reflektif-folyo.jpg" alt="Reflektif Folyo" loading="lazy">
                     </div>
                     <div class="card-body">
                         <h3>Reflektif Folyo</h3>
@@ -819,7 +1367,7 @@
 
                 <div class="product-card" onclick="openModal('kumlu_folyo')">
                     <div class="card-img-wrap">
-                        <img class="card-img" src="images/fason/kumlu-folyo.jpg" alt="Kumlu Folyo - Dekoratif Kum Efekti" loading="lazy">
+                        <img class="card-img" src="images/fason/kumlu-folyo.jpg" alt="Kumlu Folyo" loading="lazy">
                     </div>
                     <div class="card-body">
                         <h3>Kumlu Folyo</h3>
@@ -831,7 +1379,7 @@
 
                 <div class="product-card" onclick="openModal('canvas')">
                     <div class="card-img-wrap">
-                        <img class="card-img" src="images/fason/canvas.jpg" alt="Canvas Baskı - Tuval Görünümlü, Dekoratif" loading="lazy">
+                        <img class="card-img" src="images/fason/canvas.jpg" alt="Canvas" loading="lazy">
                     </div>
                     <div class="card-body">
                         <h3>Canvas Baskı</h3>
@@ -844,7 +1392,7 @@
                 <div class="product-card" onclick="openModal('magnet')">
                     <div class="product-badge free-design">🎨 Ücretsiz Tasarım</div>
                     <div class="card-img-wrap">
-                        <img class="card-img" src="images/fason/magnet.jpg" alt="Magnet Baskı - Manyetik Folyo" loading="lazy">
+                        <img class="card-img" src="images/fason/magnet.jpg" alt="Magnet" loading="lazy">
                     </div>
                     <div class="card-body">
                         <h3>Magnet Baskı</h3>
@@ -857,7 +1405,7 @@
                 <div class="product-card" onclick="openModal('kagit_baski')">
                     <div class="product-badge new">✨ Yeni</div>
                     <div class="card-img-wrap">
-                        <img class="card-img" src="images/fason/kagit-baski.jpg" alt="Kağıt Baskı - İç Mekan Afiş, Poster" loading="lazy">
+                        <img class="card-img" src="images/fason/kagit-baski.jpg" alt="Kağıt Baskı" loading="lazy">
                     </div>
                     <div class="card-body">
                         <h3>Kağıt Baskı</h3>
@@ -870,8 +1418,6 @@
             </div>
         </section>
 
-        <div class="section-divider"></div>
-
         <!-- FAQ -->
         <section class="faq" id="sss">
             <h2>Sıkça Sorulan Sorular</h2>
@@ -879,15 +1425,15 @@
 
             <div class="faq-item" onclick="toggleFaq(this)">
                 <div class="faq-question"><span>Fason baskı ne demek?</span><i class="fas fa-plus"></i></div>
-                <div class="faq-answer">Fason baskı, sizin tasarımınızı bizim makinalarımızda basıp size göndermemizdir. Montaj yok, sadece baskı hizmeti. Siz tasarımı hazırlarsınız, biz kaliteli malzemeye basar ve kargolarız.</div>
+                <div class="faq-answer">Fason baskı, sizin tasarımınızı bizim makinalarımızda basıp size göndermemizdir. Montaj yok, sadece baskı hizmeti.</div>
             </div>
             <div class="faq-item" onclick="toggleFaq(this)">
                 <div class="faq-question"><span>Hangi dosya formatlarını göndermeliyim?</span><i class="fas fa-plus"></i></div>
-                <div class="faq-answer">PDF, JPG, PNG, AI, EPS kabul ediyoruz. Çözünürlük en az 150 dpi olmalı. WhatsApp'tan gönderebilirsiniz. Büyük dosyalar için WeTransfer veya Google Drive linki de paylaşabilirsiniz.</div>
+                <div class="faq-answer">PDF, JPG, PNG, AI, EPS kabul ediyoruz. Çözünürlük en az 150 dpi olmalı. WhatsApp'tan gönderebilirsiniz.</div>
             </div>
             <div class="faq-item" onclick="toggleFaq(this)">
                 <div class="faq-question"><span>Kargo kaç günde gelir?</span><i class="fas fa-plus"></i></div>
-                <div class="faq-answer">Türkiye geneli 1-3 iş günü. İstanbul, Ankara, İzmir 1-2 gün. Takip numarası gönderiyoruz. 5 m² üzeri siparişlerde kargo bedava!</div>
+                <div class="faq-answer">Türkiye geneli 1-3 iş günü. İstanbul, Ankara, İzmir 1-2 gün. Takip numarası gönderiyoruz.</div>
             </div>
             <div class="faq-item" onclick="toggleFaq(this)">
                 <div class="faq-question"><span>Ödeme nasıl yapılır?</span><i class="fas fa-plus"></i></div>
@@ -917,8 +1463,8 @@
                 </div>
                 <footer class="footer">
                     <p>© 2026 Uzman Reklam — Fason Dijital Baskı &amp; Tabela Fabrikası, Bafra/Samsun</p>
-                    <p style="margin-top:8px;">
-                        <a href="https://samsuntabela.tr/">Ana Sayfa</a> &nbsp;·&nbsp;
+                    <p style="margin-top:6px;">
+                        <a href="https://samsuntabela.tr/">Ana Sayfa</a> &nbsp;|&nbsp;
                         <a href="https://www.instagram.com/uzman.reklamm/" target="_blank">Instagram</a>
                     </p>
                 </footer>
@@ -927,110 +1473,100 @@
 
     </div>
 
+    <!-- ===== MODALLAR ===== -->
+
     <!-- STANDART MODAL -->
     <div class="modal-overlay" id="productModal" onclick="if(event.target===this) closeModal()">
         <div class="modal-box">
-            <div class="modal-handle"></div>
             <button class="modal-close" onclick="closeModal()">&times;</button>
-            <div class="modal-content">
-                <img class="modal-img" id="modalImg" src="" alt="">
-                <h3 id="modalTitle">Ürün Adı</h3>
-                <div class="modal-desc" id="modalDesc">Ürün açıklaması burada olacak.</div>
-                <div class="modal-price" id="modalPrice">Fiyat</div>
-                <a href="#" id="modalWaBtn" class="btn-wa" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp ile Sipariş Ver</a>
-            </div>
+            <img class="modal-img" id="modalImg" src="" alt="">
+            <h3 id="modalTitle">Ürün Adı</h3>
+            <div class="modal-desc" id="modalDesc">Ürün açıklaması burada olacak.</div>
+            <div class="modal-price" id="modalPrice">Fiyat</div>
+            <a href="#" id="modalWaBtn" class="btn-wa" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp ile Sipariş Ver</a>
         </div>
     </div>
 
     <!-- DUVAR TABLOSU MODAL -->
     <div class="modal-overlay" id="duvarModal" onclick="if(event.target===this) closeDuvarModal()">
         <div class="modal-box">
-            <div class="modal-handle"></div>
             <button class="modal-close" onclick="closeDuvarModal()">&times;</button>
-            <div class="modal-content">
-                <img class="modal-img" id="duvarModalImg" src="images/fason/duvar-tablosu-1.jpg" alt="Duvar Tablosu">
-                <h3>Duvar Tablosu 50×70</h3>
-                <div class="modal-desc">Folyo kaplı 3mm MDF, çift taraflı bant ile kolayca asılır. Hazır boyut, hemen kullanıma hazır. Ofis, mağaza ve ev dekorasyonu için ideal. 3 farklı tasarım seçeneği ile duvarlarınıza renk katın.</div>
-                <div class="modal-thumbs">
-                    <img class="modal-thumb active-thumb" src="images/fason/duvar-tablosu-1.jpg" alt="Tasarım 1" onclick="changeDuvarImage('images/fason/duvar-tablosu-1.jpg', this)">
-                    <img class="modal-thumb" src="images/fason/duvar-tablosu-2.jpg" alt="Tasarım 2" onclick="changeDuvarImage('images/fason/duvar-tablosu-2.jpg', this)">
-                    <img class="modal-thumb" src="images/fason/duvar-tablosu-3.jpg" alt="Tasarım 3" onclick="changeDuvarImage('images/fason/duvar-tablosu-3.jpg', this)">
-                </div>
-                <div class="modal-price">700 TL <small>(KDV Dahil)</small></div>
-                <a href="https://wa.me/905079605049?text=Merhaba,%20Duvar%20Tablosu%2050x70%20için%20sipariş%20vermek%20istiyorum." class="btn-wa" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp ile Sipariş Ver</a>
+            <img class="modal-img" id="duvarModalImg" src="images/fason/duvar-tablosu-1.jpg" alt="Duvar Tablosu">
+            <h3>Duvar Tablosu 50×70</h3>
+            <div class="modal-desc">Folyo kaplı 3mm MDF, çift taraflı bant ile kolayca asılır. Hazır boyut, hemen kullanıma hazır. Ofis, mağaza ve ev dekorasyonu için ideal. 3 farklı tasarım seçeneği ile duvarlarınıza renk katın.</div>
+            <div class="modal-thumbs">
+                <img class="modal-thumb active-thumb" src="images/fason/duvar-tablosu-1.jpg" alt="Tasarım 1" onclick="changeDuvarImage('images/fason/duvar-tablosu-1.jpg', this)">
+                <img class="modal-thumb" src="images/fason/duvar-tablosu-2.jpg" alt="Tasarım 2" onclick="changeDuvarImage('images/fason/duvar-tablosu-2.jpg', this)">
+                <img class="modal-thumb" src="images/fason/duvar-tablosu-3.jpg" alt="Tasarım 3" onclick="changeDuvarImage('images/fason/duvar-tablosu-3.jpg', this)">
             </div>
+            <div class="modal-price">700 TL <small>(KDV Dahil)</small></div>
+            <a href="https://wa.me/905079605049?text=Merhaba,%20Duvar%20Tablosu%2050x70%20için%20sipariş%20vermek%20istiyorum." class="btn-wa" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp ile Sipariş Ver</a>
         </div>
     </div>
 
     <!-- ATATÜRK MAKETİ MODAL -->
     <div class="modal-overlay" id="ataturkModal" onclick="if(event.target===this) closeAtaturkModal()">
         <div class="modal-box">
-            <div class="modal-handle"></div>
             <button class="modal-close" onclick="closeAtaturkModal()">&times;</button>
-            <div class="modal-content">
-                <img class="modal-img" id="ataturkModalImg" src="images/fason/ataturk-maket-1.jpg" alt="Atatürk Maketi">
-                <h3>Atatürk Maketi</h3>
-                <div class="modal-desc">
-                    Cumhuriyetimizin kurucusu Gazi Mustafa Kemal Atatürk'ün heybetli duruşundan ilham alınarak hazırlanan bu özel maket, yaşam alanlarına tarihî bir atmosfer kazandırır. 
-                    175 cm gerçek boyut, 3 mm Dekota (Forex) malzeme, UV baskı ve mat yüzey ile şık bir görünüm sunar. 
-                    Okullar, kurumlar, ofisler ve etkinlikler için idealdir.
-                </div>
-                <div class="modal-thumbs">
-                    <img class="modal-thumb active-thumb" src="images/fason/ataturk-maket-1.jpg" alt="Görsel 1" onclick="changeAtaturkImage('images/fason/ataturk-maket-1.jpg', this)">
-                    <img class="modal-thumb" src="images/fason/ataturk-maket-2.jpg" alt="Görsel 2" onclick="changeAtaturkImage('images/fason/ataturk-maket-2.jpg', this)">
-                    <img class="modal-thumb" src="images/fason/ataturk-maket-3.jpg" alt="Görsel 3" onclick="changeAtaturkImage('images/fason/ataturk-maket-3.jpg', this)">
-                </div>
-                <div class="modal-price">2.899 TL <small>(KDV Dahil)</small></div>
-                <a href="https://wa.me/905079605049?text=Merhaba,%20Atatürk%20Maketi%20175%20cm%20için%20sipariş%20vermek%20istiyorum." class="btn-wa" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp ile Sipariş Ver</a>
+            <img class="modal-img" id="ataturkModalImg" src="images/fason/ataturk-maket-1.jpg" alt="Atatürk Maketi">
+            <h3>Atatürk Maketi</h3>
+            <div class="modal-desc">
+                Cumhuriyetimizin kurucusu Gazi Mustafa Kemal Atatürk'ün heybetli duruşundan ilham alınarak hazırlanan bu özel maket, yaşam alanlarına tarihî bir atmosfer kazandırır. 
+                175 cm gerçek boyut, 3 mm Dekota (Forex) malzeme, UV baskı ve mat yüzey ile şık bir görünüm sunar. 
+                Okullar, kurumlar, ofisler ve etkinlikler için idealdir.
             </div>
+            <div class="modal-thumbs">
+                <img class="modal-thumb active-thumb" src="images/fason/ataturk-maket-1.jpg" alt="Görsel 1" onclick="changeAtaturkImage('images/fason/ataturk-maket-1.jpg', this)">
+                <img class="modal-thumb" src="images/fason/ataturk-maket-2.jpg" alt="Görsel 2" onclick="changeAtaturkImage('images/fason/ataturk-maket-2.jpg', this)">
+                <img class="modal-thumb" src="images/fason/ataturk-maket-3.jpg" alt="Görsel 3" onclick="changeAtaturkImage('images/fason/ataturk-maket-3.jpg', this)">
+            </div>
+            <div class="modal-price">2.899 TL <small>(KDV Dahil)</small></div>
+            <a href="https://wa.me/905079605049?text=Merhaba,%20Atatürk%20Maketi%20175%20cm%20için%20sipariş%20vermek%20istiyorum." class="btn-wa" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp ile Sipariş Ver</a>
         </div>
     </div>
 
     <!-- ÇOCUK MAKETİ MODAL -->
     <div class="modal-overlay" id="cocukModal" onclick="if(event.target===this) closeCocukModal()">
         <div class="modal-box">
-            <div class="modal-handle"></div>
             <button class="modal-close" onclick="closeCocukModal()">&times;</button>
-            <div class="modal-content">
-                <img class="modal-img" id="cocukModalImg" src="images/fason/cocuk-maket-1.jpg" alt="Çocuk Maketi">
-                <h3>🌟 Kişiye Özel Çocuk Maketi</h3>
-                <div class="modal-desc">
-                    Çocuğunuzun en sevdiği fotoğrafını unutulmaz bir hatıraya dönüştürüyoruz. Doğum günleri, özel günler, oda dekorasyonu ve etkinlikler için hazırlanan kişiye özel maketler, yüksek baskı kalitesi ve gerçekçi görünümüyle öne çıkıyor.
-                    <br><br>
-                    <strong>✨ Özellikler:</strong><br>
-                    ✔️ Gönderdiğiniz fotoğrafa özel üretim<br>
-                    ✔️ İstenilen kıyafet, konsept ve tema seçenekleri<br>
-                    ✔️ Süper kahraman, prens, prenses, sporcu ve daha birçok tasarım<br>
-                    ✔️ Dayanıklı 3 mm Dekota / Forex malzeme<br>
-                    ✔️ Yüksek çözünürlüklü UV baskı<br>
-                    ✔️ Ayaklı stand sistemi sayesinde kolay kurulum
-                    <br><br>
-                    <strong>🎈 Kullanım Alanları:</strong><br>
-                    🎂 Doğum günü organizasyonları<br>
-                    🏠 Çocuk odası dekorasyonu<br>
-                    📸 Fotoğraf çekimleri<br>
-                    🎉 Okul etkinlikleri<br>
-                    🎁 Özel gün ve hediye amaçlı kullanım
-                    <br><br>
-                    <strong>📦 Nasıl Sipariş Verilir?</strong><br>
-                    1. Çocuğunuzun fotoğrafını gönderin.<br>
-                    2. İstediğiniz konsepti seçin.<br>
-                    3. Tasarım onaylandıktan sonra üretime başlanır.<br>
-                    4. Ürün özel ambalajla adresinize gönderilir.
-                </div>
-                <div class="modal-thumbs">
-                    <img class="modal-thumb active-thumb" src="images/fason/cocuk-maket-1.jpg" alt="Görsel 1" onclick="changeCocukImage('images/fason/cocuk-maket-1.jpg', this)">
-                    <img class="modal-thumb" src="images/fason/cocuk-maket-2.jpg" alt="Görsel 2" onclick="changeCocukImage('images/fason/cocuk-maket-2.jpg', this)">
-                    <img class="modal-thumb" src="images/fason/cocuk-maket-3.jpg" alt="Görsel 3" onclick="changeCocukImage('images/fason/cocuk-maket-3.jpg', this)">
-                    <img class="modal-thumb" src="images/fason/cocuk-maket-4.jpg" alt="Görsel 4" onclick="changeCocukImage('images/fason/cocuk-maket-4.jpg', this)">
-                </div>
-                <div class="modal-price">2.899 TL <small>(KDV Dahil)</small></div>
-                <a href="https://wa.me/905079605049?text=Merhaba,%20Çocuk%20Maketi%20için%20sipariş%20vermek%20istiyorum." class="btn-wa" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp ile Sipariş Ver</a>
+            <img class="modal-img" id="cocukModalImg" src="images/fason/cocuk-maket-1.jpg" alt="Çocuk Maketi">
+            <h3>🌟 Kişiye Özel Çocuk Maketi</h3>
+            <div class="modal-desc">
+                Çocuğunuzun en sevdiği fotoğrafını unutulmaz bir hatıraya dönüştürüyoruz. Doğum günleri, özel günler, oda dekorasyonu ve etkinlikler için hazırlanan kişiye özel maketler, yüksek baskı kalitesi ve gerçekçi görünümüyle öne çıkıyor.
+                <br><br>
+                <strong>✨ Özellikler:</strong><br>
+                ✔️ Gönderdiğiniz fotoğrafa özel üretim<br>
+                ✔️ İstenilen kıyafet, konsept ve tema seçenekleri<br>
+                ✔️ Süper kahraman, prens, prenses, sporcu ve daha birçok tasarım<br>
+                ✔️ Dayanıklı 3 mm Dekota / Forex malzeme<br>
+                ✔️ Yüksek çözünürlüklü UV baskı<br>
+                ✔️ Ayaklı stand sistemi sayesinde kolay kurulum
+                <br><br>
+                <strong>🎈 Kullanım Alanları:</strong><br>
+                🎂 Doğum günü organizasyonları<br>
+                🏠 Çocuk odası dekorasyonu<br>
+                📸 Fotoğraf çekimleri<br>
+                🎉 Okul etkinlikleri<br>
+                🎁 Özel gün ve hediye amaçlı kullanım
+                <br><br>
+                <strong>📦 Nasıl Sipariş Verilir?</strong><br>
+                1. Çocuğunuzun fotoğrafını gönderin.<br>
+                2. İstediğiniz konsepti seçin.<br>
+                3. Tasarım onaylandıktan sonra üretime başlanır.<br>
+                4. Ürün özel ambalajla adresinize gönderilir.
             </div>
+            <div class="modal-thumbs">
+                <img class="modal-thumb active-thumb" src="images/fason/cocuk-maket-1.jpg" alt="Görsel 1" onclick="changeCocukImage('images/fason/cocuk-maket-1.jpg', this)">
+                <img class="modal-thumb" src="images/fason/cocuk-maket-2.jpg" alt="Görsel 2" onclick="changeCocukImage('images/fason/cocuk-maket-2.jpg', this)">
+                <img class="modal-thumb" src="images/fason/cocuk-maket-3.jpg" alt="Görsel 3" onclick="changeCocukImage('images/fason/cocuk-maket-3.jpg', this)">
+                <img class="modal-thumb" src="images/fason/cocuk-maket-4.jpg" alt="Görsel 4" onclick="changeCocukImage('images/fason/cocuk-maket-4.jpg', this)">
+            </div>
+            <div class="modal-price">2.899 TL <small>(KDV Dahil)</small></div>
+            <a href="https://wa.me/905079605049?text=Merhaba,%20Çocuk%20Maketi%20için%20sipariş%20vermek%20istiyorum." class="btn-wa" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp ile Sipariş Ver</a>
         </div>
     </div>
 
-    <!-- STICKY MOBILE BAR -->
+    <!-- STICKY MOBILE BAR (YENİ) -->
     <div class="sticky-mobile-bar" id="stickyBar">
         <div class="sticky-content">
             <div class="sticky-price" id="stickyPrice">— <small>TL</small></div>
@@ -1053,7 +1589,7 @@
     </div>
 
     <script>
-        // ===== FİYAT VERİLERİ =====
+        // ===== FİYAT VERİLERİ (ORİJİNAL) =====
         const fiyatlar = {
             ince_vinil: { ad: 'İnce Vinil', fiyat: 1.80, birim: 'USD', desc: 'İnce vinil, Konica Solvent baskı teknolojisi ile üretilir. Dış mekan reklamlarında, araç giydirmede ve mağaza vitrinlerinde sıklıkla kullanılır. Esnek yapısı sayesinde düz olmayan yüzeylere kolayca uygulanır. Ekonomik fiyatıyla bütçe dostudur, 2-3 yıl dayanıklılık sunar.' },
             normal_vinil: { ad: 'Normal Vinil', fiyat: 2.35, birim: 'USD', desc: 'Normal vinil, günlük kullanım için ideal bir dış mekan malzemesidir. Konica Solvent baskı ile canlı renkler elde edilir. Tabelalar, araç giydirme ve duvar reklamlarında tercih edilir. Orta kalite segmentinde olup, 3-4 yıl boyunca ilk günkü parlaklığını korur.' },
@@ -1116,19 +1652,17 @@
             document.getElementById('modalDesc').textContent = detay.desc;
             document.getElementById('modalPrice').textContent = fiyatGoster;
             document.getElementById('modalImg').src = detay.img;
-            document.getElementById('modalImg').style.display = 'block';
             const waMsg = encodeURIComponent('Merhaba Uzman Reklam 👋\n\nFason baskı siparişi vermek istiyorum:\n\n📦 Ürün: ' + urun.ad + '\n📐 Ölçü: Belirtilecek\n💰 Fiyat: ' + fiyatGoster + '\n\nTasarım dosyam hazır, gönderebilirim.');
             document.getElementById('modalWaBtn').href = 'https://wa.me/905079605049?text=' + waMsg;
             document.getElementById('productModal').classList.add('active');
             document.body.style.overflow = 'hidden';
         }
-
         function closeModal() {
             document.getElementById('productModal').classList.remove('active');
             document.body.style.overflow = '';
         }
 
-        // ===== DUVAR TABLOSU =====
+        // Duvar
         function openDuvarModal() {
             document.getElementById('duvarModal').classList.add('active');
             document.body.style.overflow = 'hidden';
@@ -1143,7 +1677,7 @@
             thumbEl.classList.add('active-thumb');
         }
 
-        // ===== ATATÜRK =====
+        // Atatürk
         function openAtaturkModal() {
             document.getElementById('ataturkModal').classList.add('active');
             document.body.style.overflow = 'hidden';
@@ -1158,7 +1692,7 @@
             thumbEl.classList.add('active-thumb');
         }
 
-        // ===== ÇOCUK =====
+        // Çocuk
         function openCocukModal() {
             document.getElementById('cocukModal').classList.add('active');
             document.body.style.overflow = 'hidden';
@@ -1178,7 +1712,7 @@
             document.getElementById('en').value = en;
             document.getElementById('boy').value = boy;
             document.querySelectorAll('.quick-size-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
+            if (event && event.target) event.target.classList.add('active');
             onizlemeGuncelle();
             hesapla();
         }
@@ -1213,18 +1747,15 @@
             const boy = parseFloat(document.getElementById('boy').value) || 0;
             const kutu = document.getElementById('onizleme');
             const dimText = document.getElementById('previewDimensions');
-            
             if (en <= 0 || boy <= 0) {
-                kutu.style.width = '28px';
-                kutu.style.height = '20px';
+                kutu.style.width = '20px';
+                kutu.style.height = '14px';
                 kutu.textContent = '';
                 dimText.textContent = '0.00 m²';
                 return;
             }
-            
             const m2 = (en * boy) / 10000;
             dimText.textContent = m2.toFixed(2) + ' m²';
-            
             const maxGenislik = 220, maxYukseklik = 90;
             const oran = en / boy;
             let w, h;
@@ -1235,19 +1766,12 @@
                 h = maxYukseklik;
                 w = maxYukseklik * oran;
             }
-            kutu.style.width = Math.max(w, 28) + 'px';
-            kutu.style.height = Math.max(h, 20) + 'px';
+            kutu.style.width = Math.max(w, 24) + 'px';
+            kutu.style.height = Math.max(h, 16) + 'px';
             kutu.textContent = en + '×' + boy;
         }
-
-        document.getElementById('en').addEventListener('input', function() {
-            onizlemeGuncelle();
-            hesapla();
-        });
-        document.getElementById('boy').addEventListener('input', function() {
-            onizlemeGuncelle();
-            hesapla();
-        });
+        document.getElementById('en').addEventListener('input', function() { onizlemeGuncelle(); hesapla(); });
+        document.getElementById('boy').addEventListener('input', function() { onizlemeGuncelle(); hesapla(); });
         document.getElementById('malzeme').addEventListener('change', hesapla);
 
         // ===== HESAPLAYICI =====
@@ -1256,39 +1780,31 @@
             const en = parseFloat(document.getElementById('en').value);
             const boy = parseFloat(document.getElementById('boy').value);
             const urun = fiyatlar[malzemeKey];
-            
             if (!en || !boy || en <= 0 || boy <= 0) {
                 document.getElementById('sonuc').innerHTML = `
-                    <div class="price" style="color:var(--error);">—</div>
+                    <div class="price" style="color:#ff6b6b;">—</div>
                     <div class="detail">Lütfen geçerli en ve boy girin.</div>
                     <div class="calc-note">* KDV hariç</div>
                 `;
                 updateStickyBar(null);
                 return;
             }
-            
             const m2 = (en * boy) / 10000;
             let kur = urun.birim === 'EUR' ? kur_eur : kur_usd;
             let fiyatTL = urun.fiyat * kur;
             let toplamTL = fiyatTL * m2 * secenekler.adet;
-            
             toplamTL += laminasyonFiyat[secenekler.laminasyon] * m2 * secenekler.adet;
             toplamTL += kesimFiyat[secenekler.kesim] * secenekler.adet;
-            
             if (toplamTL < 50) toplamTL = 50;
-            
             const lamText = secenekler.laminasyon !== 'Yok' ? ' + ' + secenekler.laminasyon + ' laminasyon' : '';
             const kesText = secenekler.kesim !== 'Düz' ? ' + ' + secenekler.kesim + ' kesim' : '';
             const adetText = secenekler.adet > 1 ? ' ×' + secenekler.adet + ' adet' : '';
-            
-            const sonucDiv = document.getElementById('sonuc');
-            sonucDiv.innerHTML = `
+            document.getElementById('sonuc').innerHTML = `
                 <div class="price">${toplamTL.toFixed(0)} <small>TL</small></div>
                 <div class="detail">📐 ${m2.toFixed(2)} m² · ${urun.ad}${adetText}${lamText}${kesText}</div>
                 <a href="https://wa.me/905079605049?text=${encodeURIComponent('Merhaba Uzman Reklam 👋\n\nFason baskı siparişi vermek istiyorum:\n\n📦 Ürün: ' + urun.ad + '\n📐 Ölçü: ' + en + '×' + boy + ' cm\n📊 Alan: ' + m2.toFixed(2) + ' m²\n🔢 Adet: ' + secenekler.adet + '\n🎨 Laminasyon: ' + secenekler.laminasyon + '\n✂️ Kesim: ' + secenekler.kesim + '\n💰 Tahmini: ' + toplamTL.toFixed(0) + ' TL (KDV hariç)\n\nTasarım dosyam hazır, gönderebilirim.')}" target="_blank" class="btn-wa"><i class="fab fa-whatsapp"></i> WhatsApp ile Sipariş Ver</a>
                 <div class="calc-note">* KDV hariç fiyattır. Kesin tutar WhatsApp'ta teyit edilir.</div>
             `;
-            
             updateStickyBar(toplamTL);
             onizlemeGuncelle();
         }
@@ -1310,13 +1826,11 @@
             const answer = el.querySelector('.faq-answer');
             const icon = el.querySelector('.faq-question i');
             const isOpen = answer.classList.contains('open');
-            
             document.querySelectorAll('.faq-item').forEach(item => {
                 item.classList.remove('active');
                 item.querySelector('.faq-answer').classList.remove('open');
                 item.querySelector('.faq-question i').className = 'fas fa-plus';
             });
-            
             if (!isOpen) {
                 answer.classList.add('open');
                 icon.className = 'fas fa-minus';
@@ -1338,44 +1852,29 @@
         }
 
         // ===== INIT =====
-        window.addEventListener('load', function() {
+        window.onload = function() {
             hesapla();
             onizlemeGuncelle();
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-            
+
+            // Animasyon
             document.querySelectorAll('.step-box, .product-card, .faq-item').forEach((el, i) => {
                 el.style.opacity = '0';
                 el.style.transform = 'translateY(20px)';
-                el.style.transition = `all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) ${i * 0.05}s`;
-                observer.observe(el);
+                el.style.transition = `all 0.5s ease ${i * 0.05}s`;
+                setTimeout(() => {
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                }, 100 + i * 50);
             });
-            
-            setTimeout(() => showToast('👋 Hoş geldiniz! Fiyat hesaplamak için ölçü girin.', 'fa-hand-sparkles'), 3000);
-            
+
+            // Toast'lar
+            setTimeout(() => showToast('👋 Hoş geldiniz! Fiyat hesaplamak için ölçü girin.', 'fa-hand-sparkles'), 1500);
             setTimeout(() => {
                 const cities = ['İstanbul', 'Ankara', 'İzmir', 'Bursa', 'Antalya', 'Adana', 'Konya'];
                 const city = cities[Math.floor(Math.random() * cities.length)];
                 showToast(`📦 Son sipariş: ${city}'dan 2 saat önce`, 'fa-truck');
-            }, 8000);
-        });
-
-        // Keyboard shortcuts
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                closeModal();
-                closeDuvarModal();
-                closeAtaturkModal();
-                closeCocukModal();
-            }
-        });
+            }, 6000);
+        };
     </script>
 
 </body>
