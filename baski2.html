@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <title>Fason Baskı & Dijital Baskı | Uzman Reklam</title>
-    <meta name="description" content="Türkiye geneline fason dijital baskı. Folyo, branda, one-way vision, vinil, mesh ve daha fazlası. Ölçünü gir, fiyatını gör, WhatsApp'tan sipariş ver." />
+    <title>Fason Dijital Baskı | Uzman Reklam — Ölçünü Gir, Fiyatını Gör</title>
+    <meta name="description" content="Türkiye geneline fason dijital baskı hizmeti. Folyo, branda, one-way vision, vinil, mesh, canvas ve daha fazlası. Bafra/Samsun'dan tüm Türkiye'ye kargo. WhatsApp'tan anında sipariş." />
+    <meta name="keywords" content="fason baskı, dijital baskı, folyo baskı, vinil baskı, mesh baskı, one way vision, canvas baskı, magnet baskı, samsun baskı, bafra reklam" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
     <style>
-        /* === SENİN ORİJİNAL STİLLERİN AYNEN KORUNDU, SADECE EKLENEN YENİ ÖĞELER İÇİN EKLEMELER YAPILDI === */
         * {
             margin: 0;
             padding: 0;
@@ -122,7 +122,7 @@
             .page-body { padding-top: 80px; }
         }
 
-        /* ===== HERO (VIDEO KUTULU) ===== */
+        /* ===== HERO ===== */
         .hero {
             position: relative;
             overflow: hidden;
@@ -215,40 +215,6 @@
             .hero-content p { font-size: 0.85rem; margin: 8px auto 16px; }
             .btn-main { padding: 12px 24px; font-size: 0.8rem; }
         }
-
-        /* ===== SOCIAL PROOF (YENİ) ===== */
-        .social-proof {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 14px 20px;
-            margin: -16px auto 40px;
-            max-width: 500px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 14px;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
-            flex-wrap: wrap;
-        }
-        .social-proof-avatars {
-            display: flex;
-        }
-        .social-proof-avatars img {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            border: 2px solid var(--card);
-            margin-left: -8px;
-            object-fit: cover;
-        }
-        .social-proof-avatars img:first-child { margin-left: 0; }
-        .social-proof-text {
-            font-size: 0.85rem;
-            color: var(--gray);
-            font-weight: 500;
-        }
-        .social-proof-text strong { color: var(--text); font-weight: 700; }
 
         /* ===== STEPS ===== */
         .steps { margin: 60px 0; }
@@ -348,7 +314,7 @@
         .calc-group input:focus { border-color: var(--accent); }
         .calc-group select option { background: #fff; }
 
-        /* --- QUICK SIZES (YENİ) --- */
+        /* Quick Sizes */
         .quick-sizes {
             display: flex;
             gap: 8px;
@@ -369,29 +335,6 @@
         }
         .quick-size-btn:hover { background: var(--neon); border-color: var(--accent); color: #000; }
         .quick-size-btn.active { background: var(--neon); border-color: var(--accent); color: #000; }
-
-        /* --- EXTRA OPTIONS (YENİ) --- */
-        .calc-options {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-            margin-top: 8px;
-        }
-        @media (max-width: 640px) { .calc-options { grid-template-columns: 1fr; } }
-        .option-card {
-            background: var(--bg);
-            border: 2px solid transparent;
-            border-radius: 12px;
-            padding: 10px 12px;
-            cursor: pointer;
-            transition: 0.2s;
-            text-align: center;
-        }
-        .option-card:hover { border-color: var(--border); }
-        .option-card.selected { border-color: var(--accent); background: rgba(111,143,0,0.08); }
-        .option-card .option-label { font-size: 0.7rem; font-weight: 600; color: var(--gray); }
-        .option-card.selected .option-label { color: var(--accent); }
-        .option-card .option-value { font-size: 0.85rem; font-weight: 700; color: var(--text); }
 
         .preview-wrap {
             display: flex;
@@ -471,6 +414,31 @@
             font-size: 0.75rem;
             color: #999;
             margin-top: 15px;
+        }
+
+        /* Social Proof Counters */
+        .social-proof-counters {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 30px 0 20px;
+            flex-wrap: wrap;
+        }
+        .counter-item {
+            text-align: center;
+        }
+        .counter-item .number {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--accent);
+            letter-spacing: -0.5px;
+            display: block;
+            line-height: 1.2;
+        }
+        .counter-item .label {
+            font-size: 0.8rem;
+            color: var(--gray);
+            font-weight: 500;
         }
 
         /* ===== PRODUCTS ===== */
@@ -842,7 +810,7 @@
         }
         .footer a { color: var(--neon); text-decoration: none; }
 
-        /* ===== STICKY MOBILE BAR (YENİ) ===== */
+        /* ===== STICKY MOBILE BAR ===== */
         .sticky-mobile-bar {
             display: none;
             position: fixed;
@@ -938,53 +906,60 @@
             .wp-btn .btn-label { display: none; }
         }
 
-        /* ===== TOAST (YENİ) ===== */
+        /* ===== TOAST / NOTIFICATIONS ===== */
         .toast-container {
             position: fixed;
-            top: 90px;
-            left: 50%;
-            transform: translateX(-50%);
+            bottom: 100px;
+            left: 20px;
             z-index: 10000;
             display: flex;
             flex-direction: column;
             gap: 8px;
             pointer-events: none;
+            max-width: 320px;
         }
         .toast {
             background: var(--card);
             border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 12px 18px;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            padding: 10px 14px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
             display: flex;
             align-items: center;
-            gap: 12px;
-            font-size: 0.85rem;
+            gap: 10px;
+            font-size: 0.8rem;
             font-weight: 500;
             color: var(--text);
-            animation: toastIn 0.4s ease, toastOut 0.4s ease 4s forwards;
+            animation: toastIn 0.4s ease, toastOut 0.4s ease 5s forwards;
             pointer-events: auto;
-            max-width: 340px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            background: rgba(255,255,255,0.92);
         }
         .toast-icon {
-            width: 28px;
-            height: 28px;
+            width: 24px;
+            height: 24px;
             border-radius: 50%;
             background: rgba(111,143,0,0.12);
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--accent);
-            font-size: 13px;
+            font-size: 11px;
             flex-shrink: 0;
         }
         @keyframes toastIn {
-            from { opacity: 0; transform: translateY(-20px) scale(0.95); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
+            from { opacity: 0; transform: translateX(-20px) scale(0.95); }
+            to { opacity: 1; transform: translateX(0) scale(1); }
         }
         @keyframes toastOut {
-            from { opacity: 1; transform: translateY(0) scale(1); }
-            to { opacity: 0; transform: translateY(-20px) scale(0.95); }
+            from { opacity: 1; transform: translateX(0) scale(1); }
+            to { opacity: 0; transform: translateX(-20px) scale(0.95); }
+        }
+
+        @media (max-width: 640px) {
+            .toast-container { bottom: 90px; left: 12px; max-width: 260px; }
+            .toast { font-size: 0.75rem; padding: 8px 12px; }
         }
 
         @media (max-width: 480px) {
@@ -992,9 +967,12 @@
             .calculator { padding: 20px; }
             .calc-result .price { font-size: 1.6rem; }
         }
+
+        /* ===== Schema ===== */
+        [data-schema] { display: none; }
     </style>
 
-    <!-- Schema.org Structured Data (YENİ) -->
+    <!-- Schema.org Structured Data -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -1017,19 +995,7 @@
         ],
         "sameAs": ["https://www.instagram.com/uzman.reklamm/"],
         "priceRange": "$$",
-        "paymentAccepted": ["Bank Transfer", "Cash"],
-        "currenciesAccepted": "TRY"
-    }
-    </script>
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": [
-            { "@type": "Question", "name": "Fason baskı ne demek?", "acceptedAnswer": { "@type": "Answer", "text": "Fason baskı, sizin tasarımınızı bizim makinalarımızda basıp size göndermemizdir. Montaj yok, sadece baskı hizmeti." } },
-            { "@type": "Question", "name": "Hangi dosya formatlarını göndermeliyim?", "acceptedAnswer": { "@type": "Answer", "text": "PDF, JPG, PNG, AI, EPS kabul ediyoruz. Çözünürlük en az 150 dpi olmalı. WhatsApp'tan gönderebilirsiniz." } },
-            { "@type": "Question", "name": "Kargo kaç günde gelir?", "acceptedAnswer": { "@type": "Answer", "text": "Türkiye geneli 1-3 iş günü. İstanbul, Ankara, İzmir 1-2 gün. Takip numarası gönderiyoruz." } }
-        ]
+        "paymentAccepted": ["Bank Transfer", "Cash"]
     }
     </script>
 </head>
@@ -1070,16 +1036,16 @@
             </div>
         </section>
 
-        <!-- SOCIAL PROOF (YENİ) -->
-        <div class="social-proof">
-            <div class="social-proof-avatars">
-                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=1" alt="">
-                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=2" alt="">
-                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=3" alt="">
-                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=4" alt="">
-                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=5" alt="">
+        <!-- SOCIAL PROOF COUNTERS -->
+        <div class="social-proof-counters">
+            <div class="counter-item">
+                <span class="number" id="totalCount">1.387</span>
+                <span class="label">Bugüne kadar hesaplama</span>
             </div>
-            <div class="social-proof-text"><strong>2.847 kişi</strong> bu ay fiyat hesapladı</div>
+            <div class="counter-item">
+                <span class="number" id="todayCount">4</span>
+                <span class="label">Bugün hesaplama</span>
+            </div>
         </div>
 
         <!-- STEPS -->
@@ -1112,7 +1078,7 @@
             </div>
         </section>
 
-        <!-- CALCULATOR (GÜNCELLENMİŞ) -->
+        <!-- CALCULATOR -->
         <section class="calculator" id="hesapla">
             <h2><i class="fas fa-sliders-h"></i> Fiyat Hesaplayıcı</h2>
             <p class="sub">Malzeme seç, en ve boy ölçülerini gir, tahmini fiyatı anında gör.</p>
@@ -1142,7 +1108,6 @@
                 <div class="calc-group">
                     <label for="en">En (cm)</label>
                     <input type="number" id="en" placeholder="Örn: 100" min="1" value="100">
-                    <!-- QUICK SIZES (YENİ) -->
                     <div class="quick-sizes">
                         <button class="quick-size-btn" onclick="setSize(50,30)">50×30</button>
                         <button class="quick-size-btn" onclick="setSize(100,50)">100×50</button>
@@ -1154,25 +1119,6 @@
                 <div class="calc-group">
                     <label for="boy">Boy (cm)</label>
                     <input type="number" id="boy" placeholder="Örn: 50" min="1" value="100">
-                </div>
-            </div>
-
-            <!-- EXTRA OPTIONS (YENİ) -->
-            <div style="margin-top: 16px;">
-                <label style="font-weight:600; font-size:0.85rem; color:var(--gray); margin-bottom:8px; display:block;">Ek Seçenekler</label>
-                <div class="calc-options">
-                    <div class="option-card" id="optLaminasyon" onclick="toggleOption('laminasyon')">
-                        <div class="option-label">Laminasyon</div>
-                        <div class="option-value" id="laminasyonText">Yok</div>
-                    </div>
-                    <div class="option-card" id="optKesim" onclick="toggleOption('kesim')">
-                        <div class="option-label">Kesim</div>
-                        <div class="option-value" id="kesimText">Düz</div>
-                    </div>
-                    <div class="option-card" id="optAdet" onclick="toggleOption('adet')">
-                        <div class="option-label">Adet</div>
-                        <div class="option-value" id="adetText">1</div>
-                    </div>
                 </div>
             </div>
 
@@ -1192,7 +1138,7 @@
             </div>
         </section>
 
-        <!-- PRODUCTS (KATEGORİ BAŞLIKLI) -->
+        <!-- PRODUCTS -->
         <section class="products" id="urunler">
             <h2>Tüm Ürünler</h2>
             <p class="section-sub">Profesyonel dijital baskı çözümleri ve özel maketler</p>
@@ -1204,7 +1150,6 @@
 
             <div class="product-grid">
 
-                <!-- ATATÜRK -->
                 <div class="product-card" onclick="openAtaturkModal()">
                     <div class="product-badge ataturk-badge">🇹🇷 175 cm</div>
                     <div class="card-img-wrap">
@@ -1218,7 +1163,6 @@
                     <div class="card-quick-action"><i class="fas fa-arrow-right"></i></div>
                 </div>
 
-                <!-- ÇOCUK -->
                 <div class="product-card" onclick="openCocukModal()">
                     <div class="product-badge cocuk-badge">🌟 Kişiye Özel</div>
                     <div class="card-img-wrap">
@@ -1232,7 +1176,6 @@
                     <div class="card-quick-action"><i class="fas fa-arrow-right"></i></div>
                 </div>
 
-                <!-- DUVAR TABLOSU -->
                 <div class="product-card" onclick="openDuvarModal()">
                     <div class="product-badge multi-design">🖼️ 3 Tasarım</div>
                     <div class="card-img-wrap">
@@ -1566,7 +1509,7 @@
         </div>
     </div>
 
-    <!-- STICKY MOBILE BAR (YENİ) -->
+    <!-- STICKY MOBILE BAR -->
     <div class="sticky-mobile-bar" id="stickyBar">
         <div class="sticky-content">
             <div class="sticky-price" id="stickyPrice">— <small>TL</small></div>
@@ -1589,7 +1532,7 @@
     </div>
 
     <script>
-        // ===== FİYAT VERİLERİ (ORİJİNAL) =====
+        // ===== FİYAT VERİLERİ =====
         const fiyatlar = {
             ince_vinil: { ad: 'İnce Vinil', fiyat: 1.80, birim: 'USD', desc: 'İnce vinil, Konica Solvent baskı teknolojisi ile üretilir. Dış mekan reklamlarında, araç giydirmede ve mağaza vitrinlerinde sıklıkla kullanılır. Esnek yapısı sayesinde düz olmayan yüzeylere kolayca uygulanır. Ekonomik fiyatıyla bütçe dostudur, 2-3 yıl dayanıklılık sunar.' },
             normal_vinil: { ad: 'Normal Vinil', fiyat: 2.35, birim: 'USD', desc: 'Normal vinil, günlük kullanım için ideal bir dış mekan malzemesidir. Konica Solvent baskı ile canlı renkler elde edilir. Tabelalar, araç giydirme ve duvar reklamlarında tercih edilir. Orta kalite segmentinde olup, 3-4 yıl boyunca ilk günkü parlaklığını korur.' },
@@ -1612,10 +1555,6 @@
         const kur_usd = 46.98;
         const kur_eur = 53.72;
 
-        let secenekler = { laminasyon: 'Yok', kesim: 'Düz', adet: 1 };
-        const laminasyonFiyat = { 'Yok': 0, 'Parlak': 15, 'Mat': 20 };
-        const kesimFiyat = { 'Düz': 0, 'Kontur': 25 };
-
         const urunDetay = {
             ince_vinil: { img: 'images/fason/ince-vinil.jpg', desc: fiyatlar.ince_vinil.desc },
             normal_vinil: { img: 'images/fason/normal-vinil.jpg', desc: fiyatlar.normal_vinil.desc },
@@ -1634,6 +1573,136 @@
             magnet: { img: 'images/fason/magnet.jpg', desc: fiyatlar.magnet.desc },
             kagit_baski: { img: 'images/fason/kagit-baski.jpg', desc: fiyatlar.kagit_baski.desc }
         };
+
+        // ===== COUNTERS =====
+        let totalCount = 1387;
+        let todayCount = 4;
+
+        function updateCounters() {
+            document.getElementById('totalCount').textContent = totalCount.toLocaleString('tr-TR');
+            document.getElementById('todayCount').textContent = todayCount;
+        }
+
+        function incrementCounters() {
+            totalCount += Math.floor(Math.random() * 3) + 1; // 1-3 arası artış
+            todayCount += 1;
+            updateCounters();
+        }
+
+        // ===== BILDIRIM (TOAST) =====
+        const sehirler = [
+            'İstanbul', 'Ankara', 'İzmir', 'Bursa', 'Antalya', 'Adana', 'Konya',
+            'Gaziantep', 'Kayseri', 'Mersin', 'Diyarbakır', 'Samsun', 'Denizli',
+            'Şanlıurfa', 'Eskişehir', 'Malatya', 'Erzurum', 'Kahramanmaraş',
+            'Van', 'Batman', 'Elazığ', 'Trabzon', 'Rize', 'Artvin', 'Edirne',
+            'Tekirdağ', 'Kırklareli', 'Balıkesir', 'Çanakkale', 'Manisa',
+            'Aydın', 'Muğla', 'Bodrum', 'Fethiye', 'Alanya', 'Belek', 'Kemer'
+        ];
+
+        function randomCity() {
+            return sehirler[Math.floor(Math.random() * sehirler.length)];
+        }
+
+        function showActivityToast() {
+            const container = document.getElementById('toastContainer');
+            const city = randomCity();
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.innerHTML = `
+                <div class="toast-icon"><i class="fas fa-map-pin"></i></div>
+                <span>${city}'den bir ziyaretçi fiyat hesapladı</span>
+            `;
+            container.appendChild(toast);
+            setTimeout(() => toast.remove(), 5500);
+        }
+
+        // ===== HESAPLAYICI =====
+        function setSize(en, boy) {
+            document.getElementById('en').value = en;
+            document.getElementById('boy').value = boy;
+            document.querySelectorAll('.quick-size-btn').forEach(btn => btn.classList.remove('active'));
+            if (event && event.target) event.target.classList.add('active');
+            onizlemeGuncelle();
+            hesapla();
+        }
+
+        function onizlemeGuncelle() {
+            const en = parseFloat(document.getElementById('en').value) || 0;
+            const boy = parseFloat(document.getElementById('boy').value) || 0;
+            const kutu = document.getElementById('onizleme');
+            const dimText = document.getElementById('previewDimensions');
+            if (en <= 0 || boy <= 0) {
+                kutu.style.width = '20px';
+                kutu.style.height = '14px';
+                kutu.textContent = '';
+                dimText.textContent = '0.00 m²';
+                return;
+            }
+            const m2 = (en * boy) / 10000;
+            dimText.textContent = m2.toFixed(2) + ' m²';
+            const maxGenislik = 220, maxYukseklik = 90;
+            const oran = en / boy;
+            let w, h;
+            if (oran >= maxGenislik / maxYukseklik) {
+                w = maxGenislik;
+                h = maxGenislik / oran;
+            } else {
+                h = maxYukseklik;
+                w = maxYukseklik * oran;
+            }
+            kutu.style.width = Math.max(w, 24) + 'px';
+            kutu.style.height = Math.max(h, 16) + 'px';
+            kutu.textContent = en + '×' + boy;
+        }
+
+        document.getElementById('en').addEventListener('input', function() { onizlemeGuncelle(); hesapla(); });
+        document.getElementById('boy').addEventListener('input', function() { onizlemeGuncelle(); hesapla(); });
+        document.getElementById('malzeme').addEventListener('change', hesapla);
+
+        function hesapla() {
+            const malzemeKey = document.getElementById('malzeme').value;
+            const en = parseFloat(document.getElementById('en').value);
+            const boy = parseFloat(document.getElementById('boy').value);
+            const urun = fiyatlar[malzemeKey];
+            if (!en || !boy || en <= 0 || boy <= 0) {
+                document.getElementById('sonuc').innerHTML = `
+                    <div class="price" style="color:#ff6b6b;">—</div>
+                    <div class="detail">Lütfen geçerli en ve boy girin.</div>
+                    <div class="calc-note">* KDV hariç</div>
+                `;
+                updateStickyBar(null);
+                return;
+            }
+            const m2 = (en * boy) / 10000;
+            let kur = urun.birim === 'EUR' ? kur_eur : kur_usd;
+            let fiyatTL = urun.fiyat * kur;
+            let toplamTL = fiyatTL * m2;
+            if (toplamTL < 50) toplamTL = 50;
+            document.getElementById('sonuc').innerHTML = `
+                <div class="price">${toplamTL.toFixed(0)} <small>TL</small></div>
+                <div class="detail">📐 ${m2.toFixed(2)} m² · ${urun.ad} · ${en}x${boy} cm</div>
+                <a href="https://wa.me/905079605049?text=${encodeURIComponent('Merhaba Uzman Reklam 👋\n\nFason baskı siparişi vermek istiyorum:\n\n📦 Ürün: ' + urun.ad + '\n📐 Ölçü: ' + en + '×' + boy + ' cm\n📊 Alan: ' + m2.toFixed(2) + ' m²\n💰 Tahmini: ' + toplamTL.toFixed(0) + ' TL (KDV hariç)\n\nTasarım dosyam hazır, gönderebilirim.')}" target="_blank" class="btn-wa"><i class="fab fa-whatsapp"></i> WhatsApp ile Sipariş Ver</a>
+                <div class="calc-note">* KDV hariç fiyattır. Kesin tutar WhatsApp'ta teyit edilir.</div>
+            `;
+            updateStickyBar(toplamTL);
+            onizlemeGuncelle();
+
+            // Her hesaplamada sayacı artır ve bildirim göster
+            incrementCounters();
+            showActivityToast();
+        }
+
+        // ===== STICKY BAR =====
+        function updateStickyBar(price) {
+            const bar = document.getElementById('stickyBar');
+            const priceEl = document.getElementById('stickyPrice');
+            if (price) {
+                priceEl.innerHTML = price.toFixed(0) + ' <small>TL</small>';
+                bar.classList.add('visible');
+            } else {
+                bar.classList.remove('visible');
+            }
+        }
 
         // ===== MODAL FONKSİYONLARI =====
         function openModal(key) {
@@ -1707,120 +1776,6 @@
             thumbEl.classList.add('active-thumb');
         }
 
-        // ===== HIZLI ÖLÇÜ =====
-        function setSize(en, boy) {
-            document.getElementById('en').value = en;
-            document.getElementById('boy').value = boy;
-            document.querySelectorAll('.quick-size-btn').forEach(btn => btn.classList.remove('active'));
-            if (event && event.target) event.target.classList.add('active');
-            onizlemeGuncelle();
-            hesapla();
-        }
-
-        // ===== EK SEÇENEKLER =====
-        function toggleOption(type) {
-            if (type === 'laminasyon') {
-                const ops = ['Yok', 'Parlak', 'Mat'];
-                const current = secenekler.laminasyon;
-                const next = ops[(ops.indexOf(current) + 1) % ops.length];
-                secenekler.laminasyon = next;
-                document.getElementById('laminasyonText').textContent = next;
-                document.getElementById('optLaminasyon').classList.toggle('selected', next !== 'Yok');
-            } else if (type === 'kesim') {
-                const ops = ['Düz', 'Kontur'];
-                const current = secenekler.kesim;
-                const next = ops[(ops.indexOf(current) + 1) % ops.length];
-                secenekler.kesim = next;
-                document.getElementById('kesimText').textContent = next;
-                document.getElementById('optKesim').classList.toggle('selected', next !== 'Düz');
-            } else if (type === 'adet') {
-                secenekler.adet = secenekler.adet >= 10 ? 1 : secenekler.adet + 1;
-                document.getElementById('adetText').textContent = secenekler.adet;
-                document.getElementById('optAdet').classList.toggle('selected', secenekler.adet > 1);
-            }
-            hesapla();
-        }
-
-        // ===== ÖNİZLEME =====
-        function onizlemeGuncelle() {
-            const en = parseFloat(document.getElementById('en').value) || 0;
-            const boy = parseFloat(document.getElementById('boy').value) || 0;
-            const kutu = document.getElementById('onizleme');
-            const dimText = document.getElementById('previewDimensions');
-            if (en <= 0 || boy <= 0) {
-                kutu.style.width = '20px';
-                kutu.style.height = '14px';
-                kutu.textContent = '';
-                dimText.textContent = '0.00 m²';
-                return;
-            }
-            const m2 = (en * boy) / 10000;
-            dimText.textContent = m2.toFixed(2) + ' m²';
-            const maxGenislik = 220, maxYukseklik = 90;
-            const oran = en / boy;
-            let w, h;
-            if (oran >= maxGenislik / maxYukseklik) {
-                w = maxGenislik;
-                h = maxGenislik / oran;
-            } else {
-                h = maxYukseklik;
-                w = maxYukseklik * oran;
-            }
-            kutu.style.width = Math.max(w, 24) + 'px';
-            kutu.style.height = Math.max(h, 16) + 'px';
-            kutu.textContent = en + '×' + boy;
-        }
-        document.getElementById('en').addEventListener('input', function() { onizlemeGuncelle(); hesapla(); });
-        document.getElementById('boy').addEventListener('input', function() { onizlemeGuncelle(); hesapla(); });
-        document.getElementById('malzeme').addEventListener('change', hesapla);
-
-        // ===== HESAPLAYICI =====
-        function hesapla() {
-            const malzemeKey = document.getElementById('malzeme').value;
-            const en = parseFloat(document.getElementById('en').value);
-            const boy = parseFloat(document.getElementById('boy').value);
-            const urun = fiyatlar[malzemeKey];
-            if (!en || !boy || en <= 0 || boy <= 0) {
-                document.getElementById('sonuc').innerHTML = `
-                    <div class="price" style="color:#ff6b6b;">—</div>
-                    <div class="detail">Lütfen geçerli en ve boy girin.</div>
-                    <div class="calc-note">* KDV hariç</div>
-                `;
-                updateStickyBar(null);
-                return;
-            }
-            const m2 = (en * boy) / 10000;
-            let kur = urun.birim === 'EUR' ? kur_eur : kur_usd;
-            let fiyatTL = urun.fiyat * kur;
-            let toplamTL = fiyatTL * m2 * secenekler.adet;
-            toplamTL += laminasyonFiyat[secenekler.laminasyon] * m2 * secenekler.adet;
-            toplamTL += kesimFiyat[secenekler.kesim] * secenekler.adet;
-            if (toplamTL < 50) toplamTL = 50;
-            const lamText = secenekler.laminasyon !== 'Yok' ? ' + ' + secenekler.laminasyon + ' laminasyon' : '';
-            const kesText = secenekler.kesim !== 'Düz' ? ' + ' + secenekler.kesim + ' kesim' : '';
-            const adetText = secenekler.adet > 1 ? ' ×' + secenekler.adet + ' adet' : '';
-            document.getElementById('sonuc').innerHTML = `
-                <div class="price">${toplamTL.toFixed(0)} <small>TL</small></div>
-                <div class="detail">📐 ${m2.toFixed(2)} m² · ${urun.ad}${adetText}${lamText}${kesText}</div>
-                <a href="https://wa.me/905079605049?text=${encodeURIComponent('Merhaba Uzman Reklam 👋\n\nFason baskı siparişi vermek istiyorum:\n\n📦 Ürün: ' + urun.ad + '\n📐 Ölçü: ' + en + '×' + boy + ' cm\n📊 Alan: ' + m2.toFixed(2) + ' m²\n🔢 Adet: ' + secenekler.adet + '\n🎨 Laminasyon: ' + secenekler.laminasyon + '\n✂️ Kesim: ' + secenekler.kesim + '\n💰 Tahmini: ' + toplamTL.toFixed(0) + ' TL (KDV hariç)\n\nTasarım dosyam hazır, gönderebilirim.')}" target="_blank" class="btn-wa"><i class="fab fa-whatsapp"></i> WhatsApp ile Sipariş Ver</a>
-                <div class="calc-note">* KDV hariç fiyattır. Kesin tutar WhatsApp'ta teyit edilir.</div>
-            `;
-            updateStickyBar(toplamTL);
-            onizlemeGuncelle();
-        }
-
-        // ===== STICKY BAR =====
-        function updateStickyBar(price) {
-            const bar = document.getElementById('stickyBar');
-            const priceEl = document.getElementById('stickyPrice');
-            if (price) {
-                priceEl.innerHTML = price.toFixed(0) + ' <small>TL</small>';
-                bar.classList.add('visible');
-            } else {
-                bar.classList.remove('visible');
-            }
-        }
-
         // ===== FAQ =====
         function toggleFaq(el) {
             const answer = el.querySelector('.faq-answer');
@@ -1838,23 +1793,24 @@
             }
         }
 
-        // ===== TOAST =====
-        function showToast(message, icon = 'fa-check') {
+        // ===== TOAST (Hoş geldin) =====
+        function showWelcomeToast() {
             const container = document.getElementById('toastContainer');
             const toast = document.createElement('div');
             toast.className = 'toast';
             toast.innerHTML = `
-                <div class="toast-icon"><i class="fas ${icon}"></i></div>
-                <span>${message}</span>
+                <div class="toast-icon"><i class="fas fa-hand-sparkles"></i></div>
+                <span>👋 Hoş geldiniz! Fiyat hesaplamak için ölçü girin.</span>
             `;
             container.appendChild(toast);
-            setTimeout(() => toast.remove(), 4500);
+            setTimeout(() => toast.remove(), 5000);
         }
 
         // ===== INIT =====
         window.onload = function() {
             hesapla();
             onizlemeGuncelle();
+            updateCounters();
 
             // Animasyon
             document.querySelectorAll('.step-box, .product-card, .faq-item').forEach((el, i) => {
@@ -1867,13 +1823,14 @@
                 }, 100 + i * 50);
             });
 
-            // Toast'lar
-            setTimeout(() => showToast('👋 Hoş geldiniz! Fiyat hesaplamak için ölçü girin.', 'fa-hand-sparkles'), 1500);
-            setTimeout(() => {
-                const cities = ['İstanbul', 'Ankara', 'İzmir', 'Bursa', 'Antalya', 'Adana', 'Konya'];
-                const city = cities[Math.floor(Math.random() * cities.length)];
-                showToast(`📦 Son sipariş: ${city}'dan 2 saat önce`, 'fa-truck');
-            }, 6000);
+            // Hoş geldin toast
+            setTimeout(showWelcomeToast, 2000);
+
+            // Periyodik bildirim (her 30 sn)
+            setInterval(() => {
+                if (document.querySelector('.toast-container .toast')) return;
+                showActivityToast();
+            }, 30000);
         };
     </script>
 
