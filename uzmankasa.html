@@ -2,13 +2,11 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <meta name="robots" content="noindex, nofollow">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="UzmanKasa">
-    <meta name="theme-color" content="#ffffff" id="themeColor">
     <title>UzmanKasa</title>
     <link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
@@ -50,9 +48,7 @@
             border-color: #3a3a3c;
             color: #0a84ff;
         }
-        body.dark .icon-btn:hover { background: #3a3a3c; }
         body.dark .logout-btn { color: #ff453a; }
-        body.dark .logout-btn:hover { background: #3a1e1e; }
         body.dark .month-panel { background: #2c2c2e; }
         body.dark .current-month { color: #ffffff; }
         body.dark .month-select-dropdown {
@@ -65,16 +61,11 @@
         body.dark .chart-section { background: #1c1c1e; border-color: #2c2c2e; }
         body.dark .section-title { color: #ffffff; }
         body.dark .btn-income { background: #1e3a2a; color: #34c759; }
-        body.dark .btn-income:hover { background: #2a4a3a; }
-        body.dark .btn-income:active { transform: scale(0.97); background: #1e3a2a; }
         body.dark .btn-expense { background: #3a1e1e; color: #ff453a; }
-        body.dark .btn-expense:hover { background: #4a2e2e; }
-        body.dark .btn-expense:active { transform: scale(0.97); background: #3a1e1e; }
         body.dark .transaction-item { background: #1c1c1e; border-color: #2c2c2e; }
         body.dark .trans-cat { background: #2c2c2e; color: #98989e; }
         body.dark .trans-date { color: #98989e; }
         body.dark .delete-trans { color: #636366; }
-        body.dark .delete-trans:hover { color: #ff453a; background: rgba(255, 69, 58, 0.15); }
         body.dark .modal-card { background: #1c1c1e; }
         body.dark .form-control {
             background: #2c2c2e;
@@ -89,17 +80,42 @@
             border-color: #3a3a3c;
             color: white;
         }
-        body.dark .reminder-item { background: #1c1c1e; border-color: #2c2c2e; }
-        body.dark .reminder-badge { background: #2c2c2e; color: #ff9500; }
-        body.dark .reminder-badge.urgent { background: #3a1e1e; color: #ff453a; }
-        body.dark .reminder-badge.overdue { background: #3a1e1e; color: #ff453a; }
-        body.dark .reminder-badge.paid { background: #1e3a2a; color: #34c759; }
-        body.dark .reminder-title { color: #ffffff; }
-        body.dark .reminder-desc { color: #98989e; }
-        body.dark .reminder-amount { color: #ffffff; }
-        body.dark .btn-reminder { background: #2c2c2e; color: #ff9500; border-color: #3a3a3c; }
-        body.dark .btn-reminder:hover { background: #3a3a3c; }
-        body.dark .btn-reminder:active { transform: scale(0.97); background: #2c2c2e; }
+        /* Custom toggle switch (iOS stili) */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 44px;
+            height: 28px;
+            flex-shrink: 0;
+        }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #e9e9ef;
+            transition: .2s;
+            border-radius: 28px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 24px;
+            width: 24px;
+            left: 2px;
+            bottom: 2px;
+            background: white;
+            transition: .2s;
+            border-radius: 50%;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        input:checked + .slider { background: #34c759; }
+        input:checked + .slider:before { transform: translateX(16px); }
+        body.dark .slider { background: #3a3a3c; }
+        body.dark input:checked + .slider { background: #34c759; }
 
         .app-container {
             max-width: 1000px;
@@ -142,10 +158,10 @@
             align-items: center;
             gap: 6px;
             box-shadow: 0 1px 2px rgba(0,0,0,0.02);
-            transition: all 0.15s ease;
             min-height: 44px;
             min-width: 44px;
             justify-content: center;
+            transition: all 0.15s ease;
         }
         .icon-btn:hover { background: #f5f5f7; transform: translateY(-1px); }
         .icon-btn:active { transform: scale(0.95); background: #e9e9ef; }
@@ -187,10 +203,10 @@
             color: #007aff;
             font-size: 1.1rem;
             cursor: pointer;
-            transition: all 0.15s ease;
             display: flex;
             align-items: center;
             justify-content: center;
+            transition: all 0.15s ease;
         }
         .month-nav-btn:hover { background: rgba(0, 122, 255, 0.1); }
         .month-nav-btn:active { transform: scale(0.9); background: rgba(0, 122, 255, 0.2); }
@@ -211,6 +227,7 @@
             cursor: pointer;
             font-family: inherit;
             font-size: 0.9rem;
+            min-height: 44px;
         }
 
         .kpi-grid {
@@ -246,7 +263,7 @@
             border: 0.5px solid #e9e9ef;
         }
         .section-title { font-size: 0.9rem; font-weight: 600; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; color: #1c1c1e; }
-        canvas { max-height: 200px; width: 100% !important; }
+        canvas { max-height: 220px; width: 100% !important; }
 
         .action-buttons {
             display: flex;
@@ -254,9 +271,9 @@
             margin: 0 24px 24px 24px;
             flex-wrap: wrap;
         }
-        .btn-income, .btn-expense, .btn-reminder {
+        .btn-income, .btn-expense {
             flex: 1;
-            padding: 18px;
+            padding: 14px;
             border-radius: 60px;
             font-weight: 600;
             font-size: 1rem;
@@ -265,19 +282,16 @@
             justify-content: center;
             gap: 8px;
             cursor: pointer;
-            transition: all 0.15s ease;
-            border: none;
+            transition: 0.2s;
             min-height: 56px;
+            border: none;
         }
         .btn-income { background: #e5f5e8; color: #2c6e3c; }
         .btn-income:hover { background: #d4f0d8; }
-        .btn-income:active { transform: scale(0.97); background: #c4ebc8; }
+        .btn-income:active { transform: scale(0.97); }
         .btn-expense { background: #ffe8e8; color: #c41e1e; }
         .btn-expense:hover { background: #ffd8d8; }
-        .btn-expense:active { transform: scale(0.97); background: #ffc8c8; }
-        .btn-reminder { background: #fff8e5; color: #b38600; border: 0.5px solid #ffe0b2; }
-        .btn-reminder:hover { background: #fff0cc; }
-        .btn-reminder:active { transform: scale(0.97); background: #ffe8b2; }
+        .btn-expense:active { transform: scale(0.97); }
 
         .transactions-header {
             display: flex;
@@ -312,9 +326,9 @@
         .transaction-item.income-trans { border-left: 4px solid #34c759; }
         .transaction-item.expense-trans { border-left: 4px solid #ff3b30; }
         .trans-detail { flex: 2; }
-        .trans-title { font-weight: 600; font-size: 0.95rem; margin-bottom: 4px; }
-        .trans-cat { font-size: 0.75rem; color: #8e8e93; background: #f2f2f5; display: inline-block; padding: 3px 12px; border-radius: 30px; font-weight: 500; }
-        .trans-date { font-size: 0.75rem; color: #8e8e93; margin-top: 4px; font-weight: 400; }
+        .trans-title { font-weight: 600; font-size: 0.9rem; margin-bottom: 4px; }
+        .trans-cat { font-size: 0.7rem; color: #8e8e93; background: #f2f2f5; display: inline-block; padding: 3px 12px; border-radius: 30px; font-weight: 500; }
+        .trans-date { font-size: 0.7rem; color: #8e8e93; margin-top: 4px; }
         .trans-amount { font-weight: 700; font-size: 1rem; min-width: 100px; text-align: right; }
         .income-amount { color: #34c759; }
         .expense-amount { color: #ff3b30; }
@@ -326,12 +340,12 @@
             cursor: pointer;
             padding: 8px;
             border-radius: 30px;
-            transition: all 0.15s ease;
             min-width: 44px;
             min-height: 44px;
             display: flex;
             align-items: center;
             justify-content: center;
+            transition: all 0.15s ease;
         }
         .delete-trans:hover { color: #ff3b30; background: rgba(255,59,48,0.1); }
         .delete-trans:active { transform: scale(0.9); }
@@ -363,7 +377,19 @@
             to { transform: translateY(0); opacity: 1; }
         }
         .modal-header { display: flex; justify-content: space-between; font-weight: 700; font-size: 1.2rem; margin-bottom: 24px; align-items: center; }
-        .modal-close { font-size: 1.5rem; cursor: pointer; color: #8e8e93; transition: all 0.15s ease; padding: 4px; border-radius: 50%; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; }
+        .modal-close {
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #8e8e93;
+            padding: 4px;
+            border-radius: 50%;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.15s ease;
+        }
         .modal-close:hover { color: #ff3b30; background: rgba(255,59,48,0.1); }
         .modal-close:active { transform: scale(0.9); }
         .form-group { margin-bottom: 20px; }
@@ -378,6 +404,7 @@
             outline: none;
             font-family: inherit;
             transition: all 0.2s ease;
+            min-height: 50px;
         }
         .form-control:focus {
             border-color: #007aff;
@@ -394,8 +421,8 @@
             font-size: 1rem;
             cursor: pointer;
             margin-top: 12px;
-            transition: all 0.15s ease;
             min-height: 50px;
+            transition: all 0.15s ease;
         }
         .modal-save:hover { background: #0056b3; }
         .modal-save:active { transform: scale(0.97); background: #004494; }
@@ -422,122 +449,68 @@
             to { transform: translateX(0); opacity: 1; }
         }
 
-        /* Reminder Styles */
-        .reminders-section { margin: 0 24px 24px 24px; }
-        .reminders-list {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            max-height: 300px;
-            overflow-y: auto;
-            -webkit-overflow-scrolling: touch;
-        }
-        .reminder-item {
-            background: #ffffff;
-            border-radius: 20px;
-            padding: 14px 16px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 10px;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.02);
-            border: 0.5px solid #e9e9ef;
-            border-left: 4px solid #ff9500;
-            transition: all 0.15s ease;
-        }
-        .reminder-item:hover { transform: translateX(4px); box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
-        .reminder-item.urgent { border-left-color: #ff3b30; }
-        .reminder-item.urgent .reminder-badge { background: #ffe8e8; color: #ff3b30; }
-        .reminder-item.overdue { border-left-color: #ff3b30; opacity: 0.7; }
-        .reminder-item.overdue .reminder-badge { background: #ffe8e8; color: #ff3b30; }
-        .reminder-item.paid { border-left-color: #34c759; opacity: 0.6; }
-        .reminder-item.paid .reminder-badge { background: #e5f5e8; color: #34c759; }
-        .reminder-detail { flex: 2; }
-        .reminder-title { font-weight: 600; font-size: 0.95rem; margin-bottom: 4px; }
-        .reminder-desc { font-size: 0.75rem; color: #8e8e93; margin-top: 2px; }
-        .reminder-amount { font-weight: 700; font-size: 1rem; min-width: 100px; text-align: right; color: #1c1c1e; }
-        .reminder-badge {
-            font-size: 0.7rem;
-            font-weight: 600;
-            padding: 3px 10px;
-            border-radius: 30px;
-            background: #fff8e5;
-            color: #b38600;
-            white-space: nowrap;
-        }
-        .reminder-actions { display: flex; gap: 6px; }
-        .reminder-btn {
-            background: transparent;
-            border: none;
-            color: #8e8e93;
-            font-size: 0.9rem;
-            cursor: pointer;
-            padding: 8px;
-            border-radius: 30px;
-            transition: all 0.15s ease;
-            min-width: 44px;
-            min-height: 44px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .reminder-btn:hover { color: #007aff; background: rgba(0, 122, 255, 0.1); }
-        .reminder-btn.delete-reminder:hover { color: #ff3b30; background: rgba(255, 59, 48, 0.1); }
-        .reminder-btn:active { transform: scale(0.9); }
-
-        .section-header-with-action {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin: 0 24px 12px 24px;
-        }
-        .section-header-with-action .section-title { margin: 0; }
-        .badge-count {
-            background: #ff3b30;
-            color: white;
-            font-size: 0.7rem;
-            font-weight: 700;
-            padding: 2px 8px;
-            border-radius: 20px;
-            min-width: 20px;
-            text-align: center;
-        }
-
         @media (max-width: 680px) {
             body { padding: 12px; }
             .app-header { padding: 16px; flex-direction: column; align-items: center; gap: 12px; }
             .logo-area { text-align: center; }
-            .header-actions { justify-content: center; width: 100%; }
+            .header-actions { justify-content: center; width: 100%; flex-wrap: wrap; }
             .month-panel { margin: 12px 16px; padding: 6px 10px; gap: 8px; }
             .month-nav { gap: 12px; }
             .month-nav-btn { width: 44px; height: 44px; font-size: 0.9rem; }
             .current-month { font-size: 1rem; min-width: 140px; }
             .month-select-dropdown { display: none; }
-            .kpi-grid { gap: 10px; margin: 0 16px 20px 16px; }
-            .kpi-value { font-size: 1.4rem; }
-            .action-buttons { margin: 0 16px 20px 16px; }
+
+            /* KPI - tek sütun, yatay hizalı, font küçültüldü */
+            .kpi-grid {
+                grid-template-columns: 1fr;
+                gap: 8px;
+                margin: 0 16px 16px 16px;
+            }
+            .kpi-card {
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+                padding: 12px 16px;
+                border-radius: 16px;
+            }
+            .kpi-value {
+                font-size: 1.25rem !important;
+                letter-spacing: -0.3px;
+            }
+            .kpi-title {
+                font-size: 0.65rem;
+                margin-bottom: 0;
+            }
+
+            .action-buttons { margin: 0 16px 16px 16px; }
             .transactions-header { margin: 0 16px 10px 16px; }
-            .transaction-list { margin: 0 16px 20px 16px; }
-            .chart-section { margin: 0 16px 20px 16px; }
-            .reminders-section { margin: 0 16px 20px 16px; }
-            .section-header-with-action { margin: 0 16px 10px 16px; }
+            .transaction-list { margin: 0 16px 16px 16px; max-height: 50vh; }
+            .chart-section { margin: 0 16px 16px 16px; }
+            canvas { max-height: 250px; }
+
+            /* Mobilde letter-spacing hafiflet */
+            .logo-area h1, .current-month, .kpi-value, .trans-amount {
+                letter-spacing: -0.3px;
+            }
         }
     </style>
-<base target="_blank">
 </head>
 <body>
 
 <div id="loginContainer" class="login-container" style="display:flex">
     <div class="login-card">
         <div class="login-logo">UZMAN<span>KASA</span></div>
-        <input type="number" id="pinInput" class="login-input" placeholder="Şifre" autocomplete="off" inputmode="numeric" pattern="[0-9]*">
+        <input type="password" id="pinInput" class="login-input" placeholder="Şifre" autocomplete="off">
         <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; margin-top: 8px;">
-            <label style="font-size: 0.85rem; color: #6c6c70; display: flex; align-items: center; gap: 6px; cursor: pointer;">
-                <input type="checkbox" id="rememberMeCheckbox"> Beni hatırla
+            <label style="font-size: 0.85rem; color: #6c6c70; display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                <span class="switch">
+                    <input type="checkbox" id="rememberMeCheckbox">
+                    <span class="slider"></span>
+                </span>
+                Beni hatırla
             </label>
         </div>
-        <button class="login-btn" onclick="checkPin()">Giriş Yap</button>
+        <button class="login-btn" id="loginBtn">Giriş Yap</button>
     </div>
 </div>
 
@@ -545,25 +518,25 @@
     <div class="app-header">
         <div class="logo-area"><h1>UZMAN<span>KASA</span></h1></div>
         <div class="header-actions">
-            <button class="icon-btn theme-toggle" onclick="toggleTheme()" title="Tema Değiştir"><i class="fas fa-moon"></i></button>
-            <button class="icon-btn" onclick="exportToPDF()" title="PDF Rapor"><i class="fas fa-file-pdf"></i> PDF</button>
-            <button class="icon-btn logout-btn" onclick="logout()" title="Çıkış Yap"><i class="fas fa-sign-out-alt"></i> Çıkış</button>
+            <button class="icon-btn theme-toggle" id="themeToggleBtn" onclick="toggleTheme()"><i class="fas fa-moon"></i></button>
+            <button class="icon-btn" onclick="exportToPDF()"><i class="fas fa-file-pdf"></i> PDF</button>
+            <button class="icon-btn logout-btn" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Çıkış</button>
         </div>
     </div>
 
     <div class="month-panel">
         <div class="month-nav">
-            <button class="month-nav-btn" id="prevMonthBtn" title="Önceki Ay"><i class="fas fa-chevron-left"></i></button>
+            <button class="month-nav-btn" id="prevMonthBtn"><i class="fas fa-chevron-left"></i></button>
             <div class="current-month" id="currentMonthDisplay">Haziran 2026</div>
-            <button class="month-nav-btn" id="nextMonthBtn" title="Sonraki Ay"><i class="fas fa-chevron-right"></i></button>
+            <button class="month-nav-btn" id="nextMonthBtn"><i class="fas fa-chevron-right"></i></button>
         </div>
         <select id="monthSelect" class="month-select-dropdown"></select>
     </div>
 
     <div class="kpi-grid">
-        <div class="kpi-card"><div class="kpi-title">Toplam Gelir</div><div class="kpi-value income-value" id="totalIncome">0 TL</div></div>
-        <div class="kpi-card"><div class="kpi-title">Toplam Gider</div><div class="kpi-value expense-value" id="totalExpense">0 TL</div></div>
-        <div class="kpi-card"><div class="kpi-title">Net Kasa</div><div class="kpi-value balance-value" id="netBalance">0 TL</div></div>
+        <div class="kpi-card"><div class="kpi-title">Toplam Gelir</div><div class="kpi-value income-value" id="totalIncome">₺0</div></div>
+        <div class="kpi-card"><div class="kpi-title">Toplam Gider</div><div class="kpi-value expense-value" id="totalExpense">₺0</div></div>
+        <div class="kpi-card"><div class="kpi-title">Net Kasa</div><div class="kpi-value balance-value" id="netBalance">₺0</div></div>
     </div>
 
     <div class="chart-section">
@@ -572,21 +545,12 @@
     </div>
 
     <div class="action-buttons">
-        <button class="btn-income" onclick="openModal('incomeModal')" title="Gelir Ekle"><i class="fas fa-plus-circle"></i> Gelir Ekle</button>
-        <button class="btn-expense" onclick="openModal('expenseModal')" title="Gider Ekle"><i class="fas fa-minus-circle"></i> Gider Ekle</button>
-        <button class="btn-reminder" onclick="openModal('reminderModal')" title="Hatırlatıcı Ekle"><i class="fas fa-bell"></i> Hatırlatıcı</button>
-    </div>
-
-    <div class="section-header-with-action">
-        <div class="section-title" style="margin:0"><i class="fas fa-bell" style="color:#ff9500"></i> Bekleyen Hatırlatıcılar</div>
-        <span class="badge-count" id="reminderCount">0</span>
-    </div>
-    <div class="reminders-section">
-        <div id="reminderList" class="reminders-list">Yükleniyor...</div>
+        <button class="btn-income" onclick="openModal('incomeModal')"><i class="fas fa-plus-circle"></i> Gelir Ekle</button>
+        <button class="btn-expense" onclick="openModal('expenseModal')"><i class="fas fa-minus-circle"></i> Gider Ekle</button>
     </div>
 
     <div class="transactions-header">
-        <div class="section-title" style="margin:0"><i class="fas fa-list" style="color:#007aff"></i> İşlem Geçmişi</div>
+        <div class="section-title" style="margin:0">İşlem Geçmişi</div>
         <div id="transactionCount" style="color:#8e8e93">0 işlem</div>
     </div>
     <div id="transactionList" class="transaction-list">Yükleniyor...</div>
@@ -597,7 +561,7 @@
         <div class="modal-header"><span>Gelir Ekle</span><span class="modal-close" onclick="closeModal('incomeModal')">&times;</span></div>
         <div class="form-group"><label>İş / Müşteri Adı</label><input type="text" id="incomeTitle" class="form-control" placeholder="Örn: Medical Park Totem"></div>
         <div class="form-group"><label>Kategori</label><select id="incomeCat" class="form-control"><option>Tabela İmalatı</option><option>Cephe Giydirme</option><option>Dijital Baskı</option><option>Araç Giydirme</option><option>Fason Kesim</option></select></div>
-        <div class="form-group"><label>Tutar (TL)</label><input type="number" id="incomeAmount" class="form-control" placeholder="0" inputmode="decimal" step="0.01" min="0.01" max="999999999"></div>
+        <div class="form-group"><label>Tutar (₺)</label><input type="number" id="incomeAmount" class="form-control" placeholder="0"></div>
         <button class="modal-save" id="incomeSaveBtn" onclick="addIncome()">Kaydet</button>
     </div>
 </div>
@@ -607,20 +571,8 @@
         <div class="modal-header"><span>Gider Ekle</span><span class="modal-close" onclick="closeModal('expenseModal')">&times;</span></div>
         <div class="form-group"><label>Harcama Açıklaması</label><input type="text" id="expenseTitle" class="form-control" placeholder="Örn: Malzeme Alımı"></div>
         <div class="form-group"><label>Kategori</label><select id="expenseCat" class="form-control"><option>Malzeme Alımı</option><option>Personel Gideri</option><option>Araç Yakıt & Nakliye</option><option>Atölye (Kira/Elektrik)</option><option>Diğer</option></select></div>
-        <div class="form-group"><label>Tutar (TL)</label><input type="number" id="expenseAmount" class="form-control" placeholder="0" inputmode="decimal" step="0.01" min="0.01" max="999999999"></div>
+        <div class="form-group"><label>Tutar (₺)</label><input type="number" id="expenseAmount" class="form-control" placeholder="0"></div>
         <button class="modal-save" id="expenseSaveBtn" onclick="addExpense()">Kaydet</button>
-    </div>
-</div>
-
-<div id="reminderModal" class="modal">
-    <div class="modal-card">
-        <div class="modal-header"><span>Hatırlatıcı Ekle</span><span class="modal-close" onclick="closeModal('reminderModal')">&times;</span></div>
-        <div class="form-group"><label>Firma / Kişi Adı</label><input type="text" id="reminderTitle" class="form-control" placeholder="Örn: Efe Market"></div>
-        <div class="form-group"><label>Açıklama</label><input type="text" id="reminderDesc" class="form-control" placeholder="Örn: Tabela işi ödemesi"></div>
-        <div class="form-group"><label>Tutar (TL)</label><input type="number" id="reminderAmount" class="form-control" placeholder="0" inputmode="decimal" step="0.01" min="0.01" max="999999999"></div>
-        <div class="form-group"><label>Vade Tarihi</label><input type="date" id="reminderDate" class="form-control"></div>
-        <div class="form-group"><label>Tür</label><select id="reminderType" class="form-control"><option value="alacak">Alınacak (Bana Gelecek)</option><option value="verecek">Verilecek (Ben Ödeyeceğim)</option></select></div>
-        <button class="modal-save" id="reminderSaveBtn" onclick="addReminder()" style="background:#ff9500">Kaydet</button>
     </div>
 </div>
 
@@ -632,17 +584,9 @@
     </div>
 </div>
 
-<div id="reminderConfirmModal" class="modal">
-    <div class="modal-card" style="max-width:360px">
-        <div class="modal-header"><span>Hatırlatıcıyı Sil</span><span class="modal-close" onclick="closeModal('reminderConfirmModal')">&times;</span></div>
-        <p style="margin-bottom:24px">Bu hatırlatıcı kalıcı olarak silinecek. Devam etmek istiyor musunuz?</p>
-        <button class="modal-save" id="confirmReminderDeleteBtn" style="background:#ff3b30">Evet, Sil</button>
-    </div>
-</div>
-
 <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-    import { getFirestore, collection, addDoc, getDocs, query, orderBy, deleteDoc, doc, updateDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js";
+    import { getFirestore, collection, addDoc, getDocs, query, orderBy, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-firestore.js";
 
     const firebaseConfig = {
         apiKey: "AIzaSyAhBlHB0kZRB-IpEIGdHrS7ntzM17YpAWM",
@@ -656,41 +600,38 @@
     const db = getFirestore(app);
 
     let allTransactions = [];
-    let allReminders = [];
     let currentYear = new Date().getFullYear();
     let currentMonth = new Date().getMonth();
     let chartInstance = null;
     let deleteId = null;
-    let deleteReminderId = null;
-    let monthSelectListenerAdded = false;
 
     function setThemeBasedOnSystem() {
         const darkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
         if (darkMode) {
             document.body.classList.add('dark');
-            document.getElementById('themeColor').content = '#000000';
+            document.querySelector('#themeToggleBtn i').className = 'fas fa-sun';
         } else {
             document.body.classList.remove('dark');
-            document.getElementById('themeColor').content = '#ffffff';
+            document.querySelector('#themeToggleBtn i').className = 'fas fa-moon';
         }
     }
-
     window.toggleTheme = () => {
         document.body.classList.toggle('dark');
-        const isDark = document.body.classList.contains('dark');
-        document.getElementById('themeColor').content = isDark ? '#000000' : '#ffffff';
-        localStorage.setItem('manualTheme', isDark ? 'dark' : 'light');
-        updateChart();
+        const icon = document.querySelector('#themeToggleBtn i');
+        if (document.body.classList.contains('dark')) {
+            icon.className = 'fas fa-sun';
+        } else {
+            icon.className = 'fas fa-moon';
+        }
     };
-
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
         if (!localStorage.getItem('manualTheme')) {
             if (e.matches) {
                 document.body.classList.add('dark');
-                document.getElementById('themeColor').content = '#000000';
+                document.querySelector('#themeToggleBtn i').className = 'fas fa-sun';
             } else {
                 document.body.classList.remove('dark');
-                document.getElementById('themeColor').content = '#ffffff';
+                document.querySelector('#themeToggleBtn i').className = 'fas fa-moon';
             }
             updateChart();
         }
@@ -698,96 +639,21 @@
     setThemeBasedOnSystem();
 
     function showToast(msg, isError = false) {
-        const existing = document.querySelector('.toast');
-        if (existing) existing.remove();
         const toast = document.createElement('div');
         toast.className = 'toast';
         toast.style.background = isError ? '#ff3b30' : '#1c1c1e';
-        toast.innerHTML = '<i class="fas ' + (isError ? 'fa-exclamation-circle' : 'fa-check-circle') + '" style="margin-right:8px"></i>' + msg;
+        toast.innerHTML = msg;
         document.body.appendChild(toast);
-        setTimeout(() => {
-            toast.style.animation = 'slideIn 0.3s ease reverse';
-            setTimeout(() => toast.remove(), 300);
-        }, 3000);
+        setTimeout(() => toast.remove(), 3000);
     }
-
-    function formatMoney(amount) { 
-        return amount.toLocaleString('tr-TR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' TL'; 
-    }
-
-    function formatMoneyShort(amount) {
-        return amount.toLocaleString('tr-TR', { minimumFractionDigits: 0, maximumFractionDigits: 2 }) + ' TL';
-    }
-
-    function escapeHtml(str) { 
-        if (!str) return ''; 
-        return str.replace(/[&<>"']/g, function(m) { 
-            if (m === '&') return '&amp;'; 
-            if (m === '<') return '&lt;'; 
-            if (m === '>') return '&gt;'; 
-            if (m === '"') return '&quot;'; 
-            if (m === "'") return '&#039;'; 
-            return m; 
-        }); 
-    }
-
-    function getTurkeyDate() {
-        const now = new Date();
-        return new Date(now.getTime() + (now.getTimezoneOffset() + 180) * 60000);
-    }
-
-    function getMonthName(year, month) {
-        const names = ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"];
-        return names[month] + ' ' + year;
-    }
-
-    function getLast6Months() {
-        let result = [];
-        let year = currentYear, month = currentMonth;
-        for (let i = 0; i < 6; i++) {
-            result.unshift({ year: year, month: month });
-            month--;
-            if (month < 0) { month = 11; year--; }
-        }
-        return result;
-    }
-
-    function getFilteredTransactions() {
-        return allTransactions.filter(t => {
-            let d = new Date(t.tarih);
-            return d.getFullYear() === currentYear && d.getMonth() === currentMonth;
-        });
-    }
-
-    function getDaysUntil(dateStr) {
-        const target = new Date(dateStr);
-        const today = new Date();
-        today.setHours(0, 0, 0, 0);
-        target.setHours(0, 0, 0, 0);
-        const diffTime = target - today;
-        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-        return diffDays;
-    }
-
-    function getReminderStatus(reminder) {
-        if (reminder.durum === 'tamamlandi') return { status: 'paid', text: 'Tamamlandı', badgeClass: 'paid' };
-        const days = getDaysUntil(reminder.vadeTarihi);
-        if (days < 0) return { status: 'overdue', text: Math.abs(days) + ' gün gecikme', badgeClass: 'overdue' };
-        if (days === 0) return { status: 'urgent', text: 'Bugün', badgeClass: 'urgent' };
-        if (days <= 3) return { status: 'urgent', text: days + ' gün kaldı', badgeClass: 'urgent' };
-        return { status: 'normal', text: days + ' gün kaldı', badgeClass: '' };
-    }
+    function formatMoney(amount) { return '₺' + amount.toLocaleString('tr-TR'); }
 
     async function loadData() {
         try {
             const q = query(collection(db, "islemler"), orderBy("tarih", "desc"));
             const snap = await getDocs(q);
             allTransactions = [];
-            snap.forEach(docSnap => { 
-                let data = docSnap.data(); 
-                data.id = docSnap.id; 
-                allTransactions.push(data); 
-            });
+            snap.forEach(docSnap => { let data = docSnap.data(); data.id = docSnap.id; allTransactions.push(data); });
             renderCurrentMonth();
             updateChart();
         } catch (error) {
@@ -796,20 +662,11 @@
         }
     }
 
-    async function loadReminders() {
-        try {
-            const q = query(collection(db, "hatirlatmalar"), orderBy("vadeTarihi", "asc"));
-            const snap = await getDocs(q);
-            allReminders = [];
-            snap.forEach(docSnap => {
-                let data = docSnap.data();
-                data.id = docSnap.id;
-                allReminders.push(data);
-            });
-            renderReminders();
-        } catch (error) {
-            console.error("Hatırlatıcılar yüklenirken hata:", error);
-        }
+    function getFilteredTransactions() {
+        return allTransactions.filter(t => {
+            let d = new Date(t.tarih);
+            return d.getFullYear() === currentYear && d.getMonth() === currentMonth;
+        });
     }
 
     function renderCurrentMonth() {
@@ -822,20 +679,24 @@
             let dateObj = new Date(t.tarih);
             const gunAdi = dateObj.toLocaleDateString('tr-TR', { weekday: 'long' });
             const tarihGoster = dateObj.toLocaleDateString('tr-TR');
-            const saatGoster = dateObj.toLocaleTimeString('tr-TR', { hour: '2-digit', minute: '2-digit' });
-            const dateStr = gunAdi + ', ' + tarihGoster + ' ' + saatGoster;
+            const saatGoster = dateObj.toLocaleTimeString('tr-TR', {hour:'2-digit', minute:'2-digit'});
+            const dateStr = `${gunAdi}, ${tarihGoster} ${saatGoster}`;
             const transClass = t.tip === 'gelir' ? 'income-trans' : 'expense-trans';
             const amountClass = t.tip === 'gelir' ? 'income-amount' : 'expense-amount';
             const sign = t.tip === 'gelir' ? '+' : '-';
-            html += '<div class="transaction-item ' + transClass + '">' +
-                '<div class="trans-detail">' +
-                    '<div class="trans-title">' + escapeHtml(t.baslik) + '</div>' +
-                    '<div><span class="trans-cat">' + escapeHtml(t.kategori) + '</span></div>' +
-                    '<div class="trans-date">' + dateStr + '</div>' +
-                '</div>' +
-                '<div class="trans-amount ' + amountClass + '">' + sign + ' ' + formatMoney(t.tutar) + '</div>' +
-                '<button class="delete-trans" onclick="askDelete(' + "'" + t.id + "'" + ')" title="Sil"><i class="fas fa-trash-alt"></i></button>' +
-            '</div>';
+            html += `
+                <div class="transaction-item ${transClass}">
+                    <div class="trans-detail">
+                        <div class="trans-title">${escapeHtml(t.baslik)}</div>
+                        <div><span class="trans-cat">${escapeHtml(t.kategori)}</span></div>
+                        <div class="trans-date">${dateStr}</div>
+                    </div>
+                    <div class="trans-amount ${amountClass}">
+                        ${sign} ${formatMoney(t.tutar)}
+                    </div>
+                    <button class="delete-trans" onclick="askDelete('${t.id}')"><i class="fas fa-trash-alt"></i></button>
+                </div>
+            `;
         });
         document.getElementById('totalIncome').innerHTML = formatMoney(totalInc);
         document.getElementById('totalExpense').innerHTML = formatMoney(totalExp);
@@ -846,110 +707,62 @@
         populateMonthSelect();
     }
 
-    function renderReminders() {
-        const activeReminders = allReminders.filter(r => r.durum !== 'tamamlandi');
-        const overdueCount = activeReminders.filter(r => getDaysUntil(r.vadeTarihi) < 0).length;
-
-        document.getElementById('reminderCount').innerText = activeReminders.length;
-        if (overdueCount > 0) {
-            document.getElementById('reminderCount').style.background = '#ff3b30';
-        } else {
-            document.getElementById('reminderCount').style.background = '#ff9500';
-        }
-
-        const sorted = [...activeReminders].sort((a, b) => {
-            const daysA = getDaysUntil(a.vadeTarihi);
-            const daysB = getDaysUntil(b.vadeTarihi);
-            return daysA - daysB;
-        });
-
-        let html = '';
-        sorted.forEach(r => {
-            const status = getReminderStatus(r);
-            const typeText = r.tur === 'alacak' ? 'Alınacak' : 'Verilecek';
-            const typeIcon = r.tur === 'alacak' ? 'fa-arrow-down' : 'fa-arrow-up';
-            const typeColor = r.tur === 'alacak' ? '#34c759' : '#ff3b30';
-            html += '<div class="reminder-item ' + status.badgeClass + '">' +
-                '<div class="reminder-detail">' +
-                    '<div class="reminder-title">' + escapeHtml(r.baslik) + '</div>' +
-                    '<div class="reminder-desc">' + escapeHtml(r.aciklama || '') + ' &bull; ' + typeText + '</div>' +
-                    '<div class="trans-date">Vade: ' + new Date(r.vadeTarihi).toLocaleDateString('tr-TR') + '</div>' +
-                '</div>' +
-                '<div style="text-align:right">' +
-                    '<div class="reminder-amount" style="color:' + typeColor + '"><i class="fas ' + typeIcon + '" style="margin-right:4px;font-size:0.75rem"></i>' + formatMoneyShort(r.tutar) + '</div>' +
-                    '<div class="reminder-badge ' + status.badgeClass + '">' + status.text + '</div>' +
-                '</div>' +
-                '<div class="reminder-actions">' +
-                    '<button class="reminder-btn" onclick="markReminderPaid(' + "'" + r.id + "'" + ')" title="Tamamlandı"><i class="fas fa-check"></i></button>' +
-                    '<button class="reminder-btn delete-reminder" onclick="askDeleteReminder(' + "'" + r.id + "'" + ')" title="Sil"><i class="fas fa-trash-alt"></i></button>' +
-                '</div>' +
-            '</div>';
-        });
-
-        const completed = allReminders.filter(r => r.durum === 'tamamlandi');
-        if (completed.length > 0) {
-            html += '<div style="text-align:center;padding:12px;color:#8e8e93;font-size:0.8rem;margin-top:8px">' + completed.length + ' tamamlanmış hatırlatıcı</div>';
-        }
-
-        document.getElementById('reminderList').innerHTML = html || '<div style="text-align:center;padding:40px;color:#8e8e93">Bekleyen hatırlatıcı yok</div>';
-    }
-
     function updateChart() {
         const months = [];
         const incomeData = [];
         const expenseData = [];
         const last6 = getLast6Months();
         for (let i = 0; i < last6.length; i++) {
-            const y = last6[i].year, m = last6[i].month;
+            const { year, month } = last6[i];
             const filtered = allTransactions.filter(t => {
                 let d = new Date(t.tarih);
-                return d.getFullYear() === y && d.getMonth() === m;
+                return d.getFullYear() === year && d.getMonth() === month;
             });
             let inc = 0, exp = 0;
-            filtered.forEach(t => { if (t.tip === 'gelir') inc += t.tutar; else exp += t.tutar; });
-            months.push((m + 1) + '/' + y.toString().slice(-2));
+            filtered.forEach(t => { if(t.tip === 'gelir') inc += t.tutar; else exp += t.tutar; });
+            months.push(`${month+1}/${year.toString().slice(-2)}`);
             incomeData.push(inc);
             expenseData.push(exp);
         }
         const ctx = document.getElementById('monthlyChart').getContext('2d');
         if (chartInstance) chartInstance.destroy();
-
         const isDark = document.body.classList.contains('dark');
         const textColor = isDark ? '#ffffff' : '#1c1c1e';
         const gridColor = isDark ? '#2c2c2e' : '#e9e9ef';
-
         chartInstance = new Chart(ctx, {
             type: 'bar',
-            data: { 
-                labels: months, 
-                datasets: [
-                    { label: 'Gelir', data: incomeData, backgroundColor: '#34c759', borderRadius: 8 },
-                    { label: 'Gider', data: expenseData, backgroundColor: '#ff3b30', borderRadius: 8 }
-                ]
-            },
+            data: { labels: months, datasets: [
+                { label: 'Gelir', data: incomeData, backgroundColor: '#34c759', borderRadius: 8 },
+                { label: 'Gider', data: expenseData, backgroundColor: '#ff3b30', borderRadius: 8 }
+            ]},
             options: { 
                 responsive: true, 
                 maintainAspectRatio: true, 
                 plugins: { 
-                    legend: { 
-                        labels: { 
-                            color: textColor, 
-                            font: { weight: '500', family: 'Inter' } 
-                        } 
-                    } 
+                    legend: { labels: { color: textColor, font: { weight: '500' } } } 
                 },
                 scales: {
-                    x: {
-                        ticks: { color: textColor, font: { family: 'Inter' } },
-                        grid: { color: gridColor }
-                    },
-                    y: {
-                        ticks: { color: textColor, font: { family: 'Inter' } },
-                        grid: { color: gridColor }
-                    }
+                    x: { ticks: { color: textColor }, grid: { color: gridColor } },
+                    y: { ticks: { color: textColor }, grid: { color: gridColor } }
                 }
             }
         });
+    }
+
+    function getLast6Months() {
+        let result = [];
+        let year = currentYear, month = currentMonth;
+        for (let i = 0; i < 6; i++) {
+            result.unshift({ year, month });
+            month--;
+            if (month < 0) { month = 11; year--; }
+        }
+        return result;
+    }
+
+    function getMonthName(year, month) {
+        const names = ["Ocak","Şubat","Mart","Nisan","Mayıs","Haziran","Temmuz","Ağustos","Eylül","Ekim","Kasım","Aralık"];
+        return `${names[month]} ${year}`;
     }
 
     function populateMonthSelect() {
@@ -957,33 +770,27 @@
         const available = new Set();
         allTransactions.forEach(t => {
             let d = new Date(t.tarih);
-            available.add(d.getFullYear() + '-' + d.getMonth());
+            available.add(`${d.getFullYear()}-${d.getMonth()}`);
         });
-        if (available.size === 0) available.add(currentYear + '-' + currentMonth);
+        if (available.size === 0) available.add(`${currentYear}-${currentMonth}`);
         let options = Array.from(available).map(key => {
-            let parts = key.split('-');
-            let y = parseInt(parts[0]), m = parseInt(parts[1]);
-            return { year: y, month: m, label: getMonthName(y, m) };
-        }).sort((a, b) => b.year - a.year || b.month - a.month);
+            let [y,m] = key.split('-');
+            return { year: parseInt(y), month: parseInt(m), label: getMonthName(parseInt(y), parseInt(m)) };
+        }).sort((a,b) => b.year - a.year || b.month - a.month);
         select.innerHTML = '';
         options.forEach(opt => {
             let option = document.createElement('option');
-            option.value = opt.year + '-' + opt.month;
+            option.value = `${opt.year}-${opt.month}`;
             option.textContent = opt.label;
             if (opt.year === currentYear && opt.month === currentMonth) option.selected = true;
             select.appendChild(option);
         });
-
-        if (!monthSelectListenerAdded) {
-            select.addEventListener('change', (e) => {
-                let parts = e.target.value.split('-');
-                currentYear = parseInt(parts[0]); 
-                currentMonth = parseInt(parts[1]);
-                renderCurrentMonth();
-                updateChart();
-            });
-            monthSelectListenerAdded = true;
-        }
+        select.onchange = () => {
+            let [y,m] = select.value.split('-');
+            currentYear = parseInt(y); currentMonth = parseInt(m);
+            renderCurrentMonth();
+            updateChart();
+        };
     }
 
     window.changeMonth = (delta) => {
@@ -991,8 +798,7 @@
         let newYear = currentYear;
         if (newMonth < 0) { newMonth = 11; newYear--; }
         if (newMonth > 11) { newMonth = 0; newYear++; }
-        currentYear = newYear; 
-        currentMonth = newMonth;
+        currentYear = newYear; currentMonth = newMonth;
         renderCurrentMonth();
         updateChart();
     };
@@ -1002,38 +808,16 @@
         const originalText = btn.innerText;
         btn.innerText = 'Kaydediliyor...';
         btn.disabled = true;
-
         try {
             const baslik = document.getElementById('incomeTitle').value.trim();
             const kategori = document.getElementById('incomeCat').value;
             const tutar = parseFloat(document.getElementById('incomeAmount').value);
-            if (!baslik || tutar <= 0 || tutar > 999999999) { 
-                showToast('Lütfen geçerli bir tutar girin', true); 
-                return; 
-            }
-
-            const newDoc = await addDoc(collection(db, "islemler"), { 
-                tip: "gelir", 
-                baslik: baslik, 
-                kategori: kategori, 
-                tutar: tutar, 
-                tarih: getTurkeyDate().toISOString() 
-            });
-
-            allTransactions.unshift({ 
-                id: newDoc.id, 
-                tip: "gelir", 
-                baslik: baslik, 
-                kategori: kategori, 
-                tutar: tutar, 
-                tarih: getTurkeyDate().toISOString() 
-            });
-
+            if (!baslik || tutar <= 0) { showToast('Lütfen tüm alanları doldurun', true); return; }
+            await addDoc(collection(db, "islemler"), { tip: "gelir", baslik, kategori, tutar, tarih: new Date().toISOString() });
             closeModal('incomeModal');
             document.getElementById('incomeTitle').value = '';
             document.getElementById('incomeAmount').value = '';
-            renderCurrentMonth();
-            updateChart();
+            await loadData();
             showToast('Gelir eklendi');
         } catch (err) {
             console.error("Gelir ekleme hatası:", err);
@@ -1049,38 +833,16 @@
         const originalText = btn.innerText;
         btn.innerText = 'Kaydediliyor...';
         btn.disabled = true;
-
         try {
             const baslik = document.getElementById('expenseTitle').value.trim();
             const kategori = document.getElementById('expenseCat').value;
             const tutar = parseFloat(document.getElementById('expenseAmount').value);
-            if (!baslik || tutar <= 0 || tutar > 999999999) { 
-                showToast('Lütfen geçerli bir tutar girin', true); 
-                return; 
-            }
-
-            const newDoc = await addDoc(collection(db, "islemler"), { 
-                tip: "gider", 
-                baslik: baslik, 
-                kategori: kategori, 
-                tutar: tutar, 
-                tarih: getTurkeyDate().toISOString() 
-            });
-
-            allTransactions.unshift({ 
-                id: newDoc.id, 
-                tip: "gider", 
-                baslik: baslik, 
-                kategori: kategori, 
-                tutar: tutar, 
-                tarih: getTurkeyDate().toISOString() 
-            });
-
+            if (!baslik || tutar <= 0) { showToast('Lütfen tüm alanları doldurun', true); return; }
+            await addDoc(collection(db, "islemler"), { tip: "gider", baslik, kategori, tutar, tarih: new Date().toISOString() });
             closeModal('expenseModal');
             document.getElementById('expenseTitle').value = '';
             document.getElementById('expenseAmount').value = '';
-            renderCurrentMonth();
-            updateChart();
+            await loadData();
             showToast('Gider eklendi');
         } catch (err) {
             console.error("Gider ekleme hatası:", err);
@@ -1091,77 +853,7 @@
         }
     };
 
-    window.addReminder = async () => {
-        const btn = document.getElementById('reminderSaveBtn');
-        const originalText = btn.innerText;
-        btn.innerText = 'Kaydediliyor...';
-        btn.disabled = true;
-
-        try {
-            const baslik = document.getElementById('reminderTitle').value.trim();
-            const aciklama = document.getElementById('reminderDesc').value.trim();
-            const tutar = parseFloat(document.getElementById('reminderAmount').value);
-            const vadeTarihi = document.getElementById('reminderDate').value;
-            const tur = document.getElementById('reminderType').value;
-
-            if (!baslik || !vadeTarihi || tutar <= 0 || tutar > 999999999) { 
-                showToast('Lütfen tüm zorunlu alanları doldurun', true); 
-                return; 
-            }
-
-            const newDoc = await addDoc(collection(db, "hatirlatmalar"), { 
-                baslik: baslik, 
-                aciklama: aciklama, 
-                tutar: tutar, 
-                vadeTarihi: vadeTarihi, 
-                tur: tur, 
-                durum: 'beklemede',
-                olusturmaTarihi: getTurkeyDate().toISOString()
-            });
-
-            allReminders.push({ 
-                id: newDoc.id, 
-                baslik: baslik, 
-                aciklama: aciklama, 
-                tutar: tutar, 
-                vadeTarihi: vadeTarihi, 
-                tur: tur, 
-                durum: 'beklemede',
-                olusturmaTarihi: getTurkeyDate().toISOString()
-            });
-
-            closeModal('reminderModal');
-            document.getElementById('reminderTitle').value = '';
-            document.getElementById('reminderDesc').value = '';
-            document.getElementById('reminderAmount').value = '';
-            document.getElementById('reminderDate').value = '';
-            renderReminders();
-            showToast('Hatırlatıcı eklendi');
-        } catch (err) {
-            console.error("Hatırlatıcı ekleme hatası:", err);
-            showToast('Hatırlatıcı eklenirken hata oluştu', true);
-        } finally {
-            btn.innerText = originalText;
-            btn.disabled = false;
-        }
-    };
-
-    window.markReminderPaid = async (id) => {
-        try {
-            await updateDoc(doc(db, "hatirlatmalar", id), { durum: 'tamamlandi' });
-            const idx = allReminders.findIndex(r => r.id === id);
-            if (idx !== -1) allReminders[idx].durum = 'tamamlandi';
-            renderReminders();
-            showToast('Hatırlatıcı tamamlandı olarak işaretlendi');
-        } catch (err) {
-            console.error("Hatırlatıcı güncelleme hatası:", err);
-            showToast('İşlem sırasında hata oluştu', true);
-        }
-    };
-
     window.askDelete = (id) => { deleteId = id; openModal('confirmModal'); };
-    window.askDeleteReminder = (id) => { deleteReminderId = id; openModal('reminderConfirmModal'); };
-
     document.getElementById('confirmDeleteBtn').onclick = async () => {
         if (deleteId) {
             const btn = document.getElementById('confirmDeleteBtn');
@@ -1170,9 +862,7 @@
             btn.disabled = true;
             try {
                 await deleteDoc(doc(db, "islemler", deleteId));
-                allTransactions = allTransactions.filter(t => t.id !== deleteId);
-                renderCurrentMonth();
-                updateChart();
+                await loadData();
                 showToast('İşlem silindi');
                 deleteId = null;
                 closeModal('confirmModal');
@@ -1186,53 +876,8 @@
         }
     };
 
-    document.getElementById('confirmReminderDeleteBtn').onclick = async () => {
-        if (deleteReminderId) {
-            const btn = document.getElementById('confirmReminderDeleteBtn');
-            const originalText = btn.innerText;
-            btn.innerText = 'Siliniyor...';
-            btn.disabled = true;
-            try {
-                await deleteDoc(doc(db, "hatirlatmalar", deleteReminderId));
-                allReminders = allReminders.filter(r => r.id !== deleteReminderId);
-                renderReminders();
-                showToast('Hatırlatıcı silindi');
-                deleteReminderId = null;
-                closeModal('reminderConfirmModal');
-            } catch (err) {
-                console.error("Hatırlatıcı silme hatası:", err);
-                showToast('Silme sırasında hata oluştu', true);
-            } finally {
-                btn.innerText = originalText;
-                btn.disabled = false;
-            }
-        }
-    };
-
-    window.openModal = (id) => {
-        const modal = document.getElementById(id);
-        modal.style.display = 'flex';
-        const firstInput = modal.querySelector('input, select');
-        if (firstInput) setTimeout(() => firstInput.focus(), 100);
-    };
-
-    window.closeModal = (id) => {
-        document.getElementById(id).style.display = 'none';
-    };
-
-    document.querySelectorAll('.modal').forEach(modal => {
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) closeModal(modal.id);
-        });
-    });
-
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-            document.querySelectorAll('.modal').forEach(modal => {
-                if (modal.style.display === 'flex') closeModal(modal.id);
-            });
-        }
-    });
+    window.openModal = (id) => document.getElementById(id).style.display = 'flex';
+    window.closeModal = (id) => document.getElementById(id).style.display = 'none';
 
     window.exportToPDF = () => {
         const data = getFilteredTransactions();
@@ -1240,7 +885,7 @@
 
         let totalInc = 0, totalExp = 0;
         data.forEach(t => {
-            if (t.tip === 'gelir') totalInc += t.tutar;
+            if(t.tip === 'gelir') totalInc += t.tutar;
             else totalExp += t.tutar;
         });
 
@@ -1251,82 +896,90 @@
         pdfContent.style.backgroundColor = '#ffffff';
         pdfContent.style.color = '#000000';
 
-        let tableRows = '';
-        data.forEach(t => {
-            const dateObj = new Date(t.tarih);
-            const gunler = ["Pazar", "Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi"];
-            const tarihStr = dateObj.toLocaleDateString('tr-TR') + ' ' + gunler[dateObj.getDay()] + ' ' + 
-                            dateObj.toLocaleTimeString('tr-TR', { hour: '2-digit', minute: '2-digit' });
-            const rowBg = t.tip === 'gelir' ? '#f0fff0' : '#fff0f0';
-            tableRows += '<tr style="background:' + rowBg + ';">' +
-                '<td style="padding:10px; border:0.5px solid #e9e9ef;">' + tarihStr + '</td>' +
-                '<td style="padding:10px; border:0.5px solid #e9e9ef;">' + (t.tip === 'gelir' ? 'Gelir' : 'Gider') + '</td>' +
-                '<td style="padding:10px; border:0.5px solid #e9e9ef;">' + escapeHtml(t.baslik) + '</td>' +
-                '<td style="padding:10px; border:0.5px solid #e9e9ef;">' + escapeHtml(t.kategori) + '</td>' +
-                '<td style="padding:10px; border:0.5px solid #e9e9ef; text-align:right; font-weight:600;">' + formatMoney(t.tutar) + '</td>' +
-            '</tr>';
-        });
-
-        pdfContent.innerHTML = '<div style="text-align:center; margin-bottom:24px;">' +
-            '<h1 style="font-size:28px; font-weight:700; letter-spacing:-0.5px; margin:0;">UZMAN REKLAM KASA RAPORU</h1>' +
-            '<p style="font-size:14px; color:#6c6c70; margin-top:6px;">' + getMonthName(currentYear, currentMonth) + '</p>' +
-        '</div>' +
-        '<div style="display:flex; gap:16px; margin-bottom:28px; flex-wrap:wrap;">' +
-            '<div style="flex:1; background:#ffffff; border-radius:24px; padding:16px; box-shadow:0 4px 12px rgba(0,0,0,0.08); border:0.5px solid #e9e9ef;">' +
-                '<div style="font-size:12px; font-weight:600; color:#8e8e93; letter-spacing:0.5px;">Toplam Gelir</div>' +
-                '<div style="font-size:28px; font-weight:700; color:#34c759;">' + formatMoney(totalInc) + '</div>' +
-            '</div>' +
-            '<div style="flex:1; background:#ffffff; border-radius:24px; padding:16px; box-shadow:0 4px 12px rgba(0,0,0,0.08); border:0.5px solid #e9e9ef;">' +
-                '<div style="font-size:12px; font-weight:600; color:#8e8e93; letter-spacing:0.5px;">Toplam Gider</div>' +
-                '<div style="font-size:28px; font-weight:700; color:#ff3b30;">' + formatMoney(totalExp) + '</div>' +
-            '</div>' +
-            '<div style="flex:1; background:#ffffff; border-radius:24px; padding:16px; box-shadow:0 4px 12px rgba(0,0,0,0.08); border:0.5px solid #e9e9ef;">' +
-                '<div style="font-size:12px; font-weight:600; color:#8e8e93; letter-spacing:0.5px;">Net Kasa</div>' +
-                '<div style="font-size:28px; font-weight:700; color:#007aff;">' + formatMoney(totalInc - totalExp) + '</div>' +
-            '</div>' +
-        '</div>' +
-        '<table style="width:100%; border-collapse:collapse; font-size:12px;">' +
-            '<thead>' +
-                '<tr style="background:#f5f5f7;">' +
-                    '<th style="padding:12px; text-align:left; border:0.5px solid #e9e9ef;">Tarih (Gun & Saat)</th>' +
-                    '<th style="padding:12px; text-align:left; border:0.5px solid #e9e9ef;">Tip</th>' +
-                    '<th style="padding:12px; text-align:left; border:0.5px solid #e9e9ef;">Baslik</th>' +
-                    '<th style="padding:12px; text-align:left; border:0.5px solid #e9e9ef;">Kategori</th>' +
-                    '<th style="padding:12px; text-align:right; border:0.5px solid #e9e9ef;">Tutar</th>' +
-                '</tr>' +
-            '</thead>' +
-            '<tbody>' + tableRows + '</tbody>' +
-        '</table>' +
-        '<div style="margin-top:24px; padding:16px; background:#f9f9fb; border-radius:20px; display:flex; justify-content:space-between; font-weight:600;">' +
-            '<div>Toplam Gelir: <span style="color:#34c759;">' + formatMoney(totalInc) + '</span></div>' +
-            '<div>Toplam Gider: <span style="color:#ff3b30;">' + formatMoney(totalExp) + '</span></div>' +
-            '<div>Net Kasa: <span style="color:#007aff;">' + formatMoney(totalInc - totalExp) + '</span></div>' +
-        '</div>';
+        pdfContent.innerHTML = `
+            <div style="text-align:center; margin-bottom:24px;">
+                <h1 style="font-size:28px; font-weight:700; letter-spacing:-0.5px; margin:0;">UZMAN REKLAM KASA RAPORU</h1>
+                <p style="font-size:14px; color:#6c6c70; margin-top:6px;">${getMonthName(currentYear, currentMonth)}</p>
+            </div>
+            
+            <div style="display:flex; gap:16px; margin-bottom:28px; flex-wrap:wrap;">
+                <div style="flex:1; background:#ffffff; border-radius:24px; padding:16px; box-shadow:0 4px 12px rgba(0,0,0,0.08); border:0.5px solid #e9e9ef;">
+                    <div style="font-size:12px; font-weight:600; color:#8e8e93; letter-spacing:0.5px;">Toplam Gelir</div>
+                    <div style="font-size:28px; font-weight:700; color:#34c759;">${formatMoney(totalInc)}</div>
+                </div>
+                <div style="flex:1; background:#ffffff; border-radius:24px; padding:16px; box-shadow:0 4px 12px rgba(0,0,0,0.08); border:0.5px solid #e9e9ef;">
+                    <div style="font-size:12px; font-weight:600; color:#8e8e93; letter-spacing:0.5px;">Toplam Gider</div>
+                    <div style="font-size:28px; font-weight:700; color:#ff3b30;">${formatMoney(totalExp)}</div>
+                </div>
+                <div style="flex:1; background:#ffffff; border-radius:24px; padding:16px; box-shadow:0 4px 12px rgba(0,0,0,0.08); border:0.5px solid #e9e9ef;">
+                    <div style="font-size:12px; font-weight:600; color:#8e8e93; letter-spacing:0.5px;">Net Kasa</div>
+                    <div style="font-size:28px; font-weight:700; color:#007aff;">${formatMoney(totalInc - totalExp)}</div>
+                </div>
+            </div>
+            
+            <table style="width:100%; border-collapse:collapse; font-size:12px;">
+                <thead>
+                    <tr style="background:#f5f5f7;">
+                        <th style="padding:12px; text-align:left; border:0.5px solid #e9e9ef;">Tarih (Gün & Saat)</th>
+                        <th style="padding:12px; text-align:left; border:0.5px solid #e9e9ef;">Tip</th>
+                        <th style="padding:12px; text-align:left; border:0.5px solid #e9e9ef;">Başlık</th>
+                        <th style="padding:12px; text-align:left; border:0.5px solid #e9e9ef;">Kategori</th>
+                        <th style="padding:12px; text-align:right; border:0.5px solid #e9e9ef;">Tutar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${data.map(t => {
+                        const dateObj = new Date(t.tarih);
+                        const gunler = ["Pazar","Pazartesi","Salı","Çarşamba","Perşembe","Cuma","Cumartesi"];
+                        const tarihStr = dateObj.toLocaleDateString('tr-TR') + ' ' + gunler[dateObj.getDay()] + ' ' + 
+                                        dateObj.toLocaleTimeString('tr-TR', {hour:'2-digit', minute:'2-digit'});
+                        const rowBg = t.tip === 'gelir' ? '#f0fff0' : '#fff0f0';
+                        return `
+                            <tr style="background:${rowBg};">
+                                <td style="padding:10px; border:0.5px solid #e9e9ef;">${tarihStr}</td>
+                                <td style="padding:10px; border:0.5px solid #e9e9ef;">${t.tip === 'gelir' ? 'Gelir' : 'Gider'}</td>
+                                <td style="padding:10px; border:0.5px solid #e9e9ef;">${escapeHtml(t.baslik)}</td>
+                                <td style="padding:10px; border:0.5px solid #e9e9ef;">${escapeHtml(t.kategori)}</td>
+                                <td style="padding:10px; border:0.5px solid #e9e9ef; text-align:right; font-weight:600;">${formatMoney(t.tutar)}</td>
+                            </tr>
+                        `;
+                    }).join('')}
+                </tbody>
+            </table>
+            
+            <div style="margin-top:24px; padding:16px; background:#f9f9fb; border-radius:20px; display:flex; justify-content:space-between; font-weight:600;">
+                <div>Toplam Gelir: <span style="color:#34c759;">${formatMoney(totalInc)}</span></div>
+                <div>Toplam Gider: <span style="color:#ff3b30;">${formatMoney(totalExp)}</span></div>
+                <div>Net Kasa: <span style="color:#007aff;">${formatMoney(totalInc - totalExp)}</span></div>
+            </div>
+        `;
 
         document.body.appendChild(pdfContent);
         const opt = {
             margin: [0.5, 0.5, 0.5, 0.5],
-            filename: 'kasa_' + getMonthName(currentYear, currentMonth) + '.pdf',
+            filename: `kasa_${getMonthName(currentYear, currentMonth)}.pdf`,
             image: { type: 'jpeg', quality: 0.98 },
             html2canvas: { scale: 2, letterRendering: true, useCORS: true },
             jsPDF: { unit: 'in', format: 'a4', orientation: 'landscape' }
         };
         html2pdf().set(opt).from(pdfContent).save().then(() => {
             document.body.removeChild(pdfContent);
-            showToast('PDF raporu hazir');
+            showToast('PDF raporu hazır');
         }).catch(err => {
             document.body.removeChild(pdfContent);
-            showToast('PDF olusturulamadi', true);
+            showToast('PDF oluşturulamadı', true);
         });
     };
 
+    function escapeHtml(str) { if(!str) return ''; return str.replace(/[&<>]/g, function(m){ if(m==='&') return '&amp;'; if(m==='<') return '&lt;'; if(m==='>') return '&gt;'; return m;}); }
+
+    // ----- LOGIN -----
     function checkRememberedLogin() {
         const savedPin = localStorage.getItem('rememberedPin');
         if (savedPin === "5534") {
             document.getElementById('loginContainer').style.display = 'none';
             document.getElementById('appContainer').style.display = 'block';
             loadData();
-            loadReminders();
         } else {
             document.getElementById('loginContainer').style.display = 'flex';
             document.getElementById('appContainer').style.display = 'none';
@@ -1337,8 +990,8 @@
     window.checkPin = () => {
         const pin = document.getElementById('pinInput').value;
         const rememberMe = document.getElementById('rememberMeCheckbox').checked;
-        if (pin === "5534") {
-            if (rememberMe) {
+        if(pin === "5534") {
+            if(rememberMe) {
                 localStorage.setItem('rememberedPin', pin);
             } else {
                 localStorage.removeItem('rememberedPin');
@@ -1346,9 +999,8 @@
             document.getElementById('loginContainer').style.display = 'none';
             document.getElementById('appContainer').style.display = 'block';
             loadData();
-            loadReminders();
         } else { 
-            showToast('Hatali sifre!', true); 
+            showToast('Hatalı şifre!', true); 
         }
     };
 
@@ -1357,7 +1009,6 @@
         document.getElementById('loginContainer').style.display = 'flex';
         document.getElementById('appContainer').style.display = 'none';
         allTransactions = [];
-        allReminders = [];
         document.getElementById('pinInput').value = '';
         document.getElementById('rememberMeCheckbox').checked = false;
     };
@@ -1365,33 +1016,14 @@
     document.getElementById('prevMonthBtn').onclick = () => changeMonth(-1);
     document.getElementById('nextMonthBtn').onclick = () => changeMonth(1);
 
-    ['incomeModal', 'expenseModal', 'reminderModal'].forEach(modalId => {
-        const modal = document.getElementById(modalId);
-        modal.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                e.preventDefault();
-                if (modalId === 'incomeModal') addIncome();
-                else if (modalId === 'expenseModal') addExpense();
-                else if (modalId === 'reminderModal') addReminder();
-            }
-        });
-    });
+    // Login butonuna hem onclick hem event listener (onclick zaten var, ekstradan bir şey yapmaya gerek yok)
+    document.getElementById('loginBtn').addEventListener('click', window.checkPin);
 
-    document.getElementById('loginBtn').addEventListener('click', checkPin);
+    document.getElementById('pinInput').addEventListener('keypress', (e) => { if(e.key === 'Enter') checkPin(); });
 
     window.onload = () => {
-        document.getElementById('pinInput').addEventListener('keypress', (e) => { 
-            if (e.key === 'Enter') checkPin(); 
-        });
         checkRememberedLogin();
     };
-
-    document.addEventListener('visibilitychange', () => {
-        if (!document.hidden && document.getElementById('appContainer').style.display === 'block') {
-            loadData();
-            loadReminders();
-        }
-    });
 </script>
 
 <style>
@@ -1430,8 +1062,7 @@
         text-align: center;
         margin-bottom: 8px;
         outline: none;
-        font-family: inherit;
-        transition: all 0.2s ease;
+        min-height: 50px;
     }
     .login-input:focus {
         border-color: #007aff;
@@ -1447,8 +1078,8 @@
         border-radius: 60px;
         font-size: 1rem;
         cursor: pointer;
-        transition: all 0.15s ease;
         min-height: 50px;
+        transition: all 0.15s ease;
     }
     .login-btn:hover { background: #0056b3; }
     .login-btn:active { transform: scale(0.97); background: #004494; }
