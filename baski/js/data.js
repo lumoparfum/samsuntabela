@@ -56,7 +56,7 @@ const urunler = {
     dogum_gunu_afisi: {
         kategori: 'ozelgun',
         ad: 'Doğum Günü Afişi',
-        img: 'images/dogum-gunu.svg',
+        img: 'images/dogum-gunu.webp',
         badge: 'Çok Satan',
         badgeColor: '#ff3b30',
         kisaDesc: 'Fotoğraflı & isimli · Branda veya Poster',
@@ -74,7 +74,7 @@ const urunler = {
     evlilik_teklifi: {
         kategori: 'ozelgun',
         ad: 'Evlilik Teklifi Pankartı',
-        img: 'images/evlilik-teklifi.svg',
+        img: 'images/evlilik-teklifi.webp',
         badge: 'Benimle Evlenir misin?',
         badgeColor: '#ec008c',
         kisaDesc: 'Fotoğraflı & isimli · Kuşgözü + ip dahil',
@@ -92,7 +92,7 @@ const urunler = {
     hosgeldin_bebek: {
         kategori: 'ozelgun',
         ad: 'Hoşgeldin Bebek / Hastane Odası Afişi',
-        img: 'images/hosgeldin-bebek.svg',
+        img: 'images/hosgeldin-bebek.webp',
         badge: 'Yeni',
         badgeColor: '#00aeef',
         kisaDesc: 'İsimli · Kız/Erkek temalı · Hastane odası boyu',
@@ -109,7 +109,7 @@ const urunler = {
     karsilama_panosu: {
         kategori: 'ozelgun',
         ad: 'Düğün / Nişan / Kına Karşılama Panosu',
-        img: 'images/karsilama-panosu.svg',
+        img: 'images/karsilama-panosu.webp',
         badge: 'Sezon',
         badgeColor: '#c2185b',
         kisaDesc: 'İsme özel · Dekota sıvama · Ayaklı seçenek',
@@ -127,7 +127,7 @@ const urunler = {
     mezuniyet: {
         kategori: 'ozelgun',
         ad: 'Mezuniyet Pankartı',
-        img: 'images/mezuniyet.svg',
+        img: 'images/mezuniyet.webp',
         badge: 'Mayıs-Haziran',
         badgeColor: '#7b1fa2',
         kisaDesc: 'Fotoğraflı & isimli · Okul/bölüm yazılı',
@@ -144,7 +144,7 @@ const urunler = {
     asker_ugurlama: {
         kategori: 'ozelgun',
         ad: 'Asker Uğurlama Pankartı',
-        img: 'images/asker-ugurlama.svg',
+        img: 'images/asker-ugurlama.webp',
         badge: 'Her Celp Dönemi',
         badgeColor: '#33691e',
         kisaDesc: 'Fotoğraflı & isimli · "En Büyük Asker Bizim Asker"',
@@ -162,7 +162,7 @@ const urunler = {
     foto_arka_fon: {
         kategori: 'ozelgun',
         ad: 'Fotoğraf Köşesi Arka Fonu (Backdrop)',
-        img: 'images/backdrop.svg',
+        img: 'images/backdrop.webp',
         badge: 'Etkinlik',
         badgeColor: '#f7941d',
         kisaDesc: 'Parti & organizasyon · Büyük boy branda',
@@ -251,7 +251,7 @@ const urunler = {
     yilbasi_set: {
         kategori: 'hediye',
         ad: 'Yılbaşı Maket Seti',
-        img: 'images/yilbasi.svg',
+        img: 'images/yilbasi.webp',
         badge: 'Aralık',
         badgeColor: '#c62828',
         kisaDesc: 'Noel baba + ağaç + yıl yazısı · Vitrin & ev',
@@ -268,7 +268,7 @@ const urunler = {
     rakam_pano: {
         kategori: 'ozelgun',
         ad: 'Ayaklı Rakam Pano (Yaş Panosu)',
-        img: 'images/karsilama-panosu.svg',
+        img: 'images/karsilama-panosu.webp',
         badge: 'Parti',
         badgeColor: '#ff9800',
         kisaDesc: 'Doğum günü yaş panosu · Dekota ayaklı',
@@ -284,7 +284,7 @@ const urunler = {
     parti_seti: {
         kategori: 'ozelgun',
         ad: 'Komple Parti Seti',
-        img: 'images/dogum-gunu.svg',
+        img: 'images/dogum-gunu.webp',
         badge: 'Set',
         badgeColor: '#e91e63',
         kisaDesc: 'Afiş + rakam pano + harf flama · 3\'lü set',
@@ -300,7 +300,7 @@ const urunler = {
     harf_flama: {
         kategori: 'ozelgun',
         ad: 'İsim Harf Flaması',
-        img: 'images/dogum-gunu.svg',
+        img: 'images/dogum-gunu.webp',
         badge: 'Flama',
         badgeColor: '#9c27b0',
         kisaDesc: 'Tek tek harfler · İp üzerinde · Parti dekoru',
@@ -334,7 +334,7 @@ const urunler = {
     sevgiliye_pankart: {
         kategori: 'ozelgun',
         ad: 'Sevgiliye Sürpriz Pankart',
-        img: 'images/evlilik-teklifi.svg',
+        img: 'images/evlilik-teklifi.webp',
         badge: '14 Şubat · Sevgililer',
         badgeColor: '#e91e63',
         kisaDesc: 'İsimli sevgi sözleri · Branda / Poster',
@@ -352,7 +352,7 @@ const urunler = {
     cinsiyet_partisi: {
         kategori: 'ozelgun',
         ad: 'Cinsiyet Partisi Arka Fonu',
-        img: 'images/hosgeldin-bebek.svg',
+        img: 'images/hosgeldin-bebek.webp',
         badge: 'Baby Reveal',
         badgeColor: '#ff80ab',
         kisaDesc: 'Pembe/mavi temalı · Branda',
@@ -368,7 +368,7 @@ const urunler = {
     bebek_parti: {
         kategori: 'ozelgun',
         ad: 'Baby Shower / Bebek Parti Seti',
-        img: 'images/hosgeldin-bebek.svg',
+        img: 'images/hosgeldin-bebek.webp',
         badge: 'Baby Shower',
         badgeColor: '#81d4fa',
         kisaDesc: 'Tema bütünleme · Afiş + aksesuar',
@@ -386,7 +386,7 @@ const urunler = {
     sunnet_panosu: {
         kategori: 'ozelgun',
         ad: 'Sünnet Panosu',
-        img: 'images/karsilama-panosu.svg',
+        img: 'images/karsilama-panosu.webp',
         badge: 'Sünnet',
         badgeColor: '#1565c0',
         kisaDesc: 'İsimli · Dekota sıvama · Ayaklı',
@@ -486,7 +486,7 @@ const urunler = {
     bebek_poster: {
         kategori: 'hediye',
         ad: 'Bebek Ay/Doğum Posteri',
-        img: 'images/hosgeldin-bebek.svg',
+        img: 'images/hosgeldin-bebek.webp',
         badge: 'Bebek',
         badgeColor: '#4fc3f7',
         kisaDesc: 'Aylık/yıllık hatıra posteri · İsimli',
@@ -555,7 +555,7 @@ const urunler = {
     kapi_giydirme: {
         kategori: 'okul',
         ad: 'Sınıf Kapı Giydirme',
-        img: 'images/okul-kurum.svg',
+        img: 'images/okul-kurum.webp',
         badge: 'Laminasyonlu',
         badgeColor: '#e65100',
         kisaDesc: 'Sınıf kapıları · Silinebilir laminasyon',
@@ -570,7 +570,7 @@ const urunler = {
     koridor_tablolari: {
         kategori: 'okul',
         ad: 'Koridor Tabloları Serisi',
-        img: 'images/okul-kurum.svg',
+        img: 'images/okul-kurum.webp',
         badge: 'Seri Halinde',
         badgeColor: '#00695c',
         kisaDesc: 'Atatürk sözleri · Motivasyon · Bilim serileri',
@@ -586,7 +586,7 @@ const urunler = {
     tabela_yonlendirme: {
         kategori: 'okul',
         ad: 'Sınıf Tabelası & Yönlendirme Levhası',
-        img: 'images/okul-kurum.svg',
+        img: 'images/okul-kurum.webp',
         badge: 'Pleksi & Alüminyum',
         badgeColor: '#37474f',
         kisaDesc: 'Kapı isimliği · Kat/yön levhaları',
@@ -602,7 +602,7 @@ const urunler = {
     okul_panolari: {
         kategori: 'okul',
         ad: 'Okul Panoları',
-        img: 'images/okul-kurum.svg',
+        img: 'images/okul-kurum.webp',
         badge: 'İlan & Etkinlik',
         badgeColor: '#4e342e',
         kisaDesc: 'İlan, etkinlik ve tören panoları',
@@ -618,7 +618,7 @@ const urunler = {
     is_guvenligi_panolari: {
         kategori: 'okul',
         ad: 'İş Güvenliği Panoları',
-        img: 'images/okul-kurum.svg',
+        img: 'images/okul-kurum.webp',
         badge: 'Fabrika & Şantiye',
         badgeColor: '#e65100',
         kisaDesc: 'Uyarı ve yönlendirme levhaları',
