@@ -216,7 +216,7 @@ const urunler = {
     duvar_tablosu: {
         kategori: 'hediye',
         ad: 'Duvar Tablosu 50×70',
-        img: 'images/duvar-tablosu.svg',
+        img: 'images/duvar-tablosu.jpg',
         badge: 'Hazır Ürün',
         badgeColor: '#6f8f00',
         kisaDesc: 'Folyo kaplı 3mm MDF · Bantla asılır',
@@ -231,7 +231,7 @@ const urunler = {
     ataturk_maketi: {
         kategori: 'hediye',
         ad: 'Atatürk Maketi & Köşesi',
-        img: 'images/atlas-ataturk.svg',
+        img: 'images/ataturk-maket.jpg',
         badge: '10 Kasım · 23 Nisan',
         badgeColor: '#d42a1a',
         kisaDesc: 'Ayaklı maket & pano · Ev, ofis, okul',

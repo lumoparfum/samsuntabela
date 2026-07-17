@@ -84,7 +84,7 @@
                     key, type: 'fason', sayfa: 'fason-baski.html',
                     ad: val.ad,
                     desc: (val.desc || '').slice(0, 100),
-                    img: 'images/fason-baski.svg',
+                    img: 'images/fason/' + key.replace(/_/g, '-') + '.jpg',
                     badge: 'Fason',
                     badgeColor: '#a85d00',
                     fiyat: birimFiyat,
