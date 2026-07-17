@@ -853,9 +853,8 @@ nav {
 
 /* ================= iOS QUALITY — MOBILE OVERRIDES ================= */
 @media (max-width:640px) {
-    body { font-size:100%; }
     .container { padding:0 14px; }
-    .page-body { padding-top:calc(var(--nav-height) + 10px); }
+    .page-body { padding-top:calc(var(--nav-height) + 16px); }
 
     /* section headers */
     .section-title { margin-bottom:14px; }
