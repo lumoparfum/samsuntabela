@@ -686,6 +686,13 @@ nav {
 }
 .btn-share-mini:hover { background:var(--primary); color:#fff; border-color:var(--primary); }
 
+/* ================= FAQ COLLAPSIBLE BODY ================= */
+.faq-body { max-height:0; overflow:hidden; transition:max-height .45s var(--ease-ios); }
+.faq-body.open { max-height:2000px; }
+.faq .section-title { cursor:pointer; user-select:none; }
+.faq .section-title .faq-title-icon { display:inline-block; transition:transform .3s var(--ease-ios); color:var(--accent); margin-left:8px; font-size:0.85rem; }
+.faq.active .faq-title-icon { transform:rotate(180deg); }
+
 /* ================= MOBİL ALT BAR ================= */
 
 /* ================= İLLER ================= */
@@ -843,23 +850,153 @@ nav {
 @media (max-width:600px) {
     .hero .btn-main, .hero .btn-ghost { width:100%; text-align:center; }
 }
+
+/* ================= iOS QUALITY — MOBILE OVERRIDES ================= */
 @media (max-width:640px) {
-    .testimonial-card { padding:14px 16px; font-size:0.82rem; }
-    .testimonial-grid { gap:14px; }
-    .section-title h2 { font-size:1.15rem; }
-    .section-title p { font-size:0.8rem; }
-    .gates { margin:28px 0 16px; }
-    .steps { margin:36px 0; }
-    .season-band { padding:24px 16px; margin:28px 0; }
-    .season-band h2 { font-size:1.1rem; }
-    .faq { margin:32px 0; }
-    .faq-question { padding:14px 16px; font-size:0.85rem; }
-    .faq-answer.open { padding:0 16px 14px; font-size:0.82rem; }
-    .cta-band { padding:32px 20px; margin:32px 0; }
-    .cta-band h2 { font-size:1.2rem; }
-    .compare-wrap { font-size:0.72rem; }
-    .compare th, .compare td { padding:10px 12px; }
-    .hero-trust { border-radius:20px; padding:10px 14px; }
+    body { font-size:100%; }
+    .container { padding:0 14px; }
+    .page-body { padding-top:calc(var(--nav-height) + 10px); }
+
+    /* section headers */
+    .section-title { margin-bottom:14px; }
+    .section-title h2 { font-size:1.05rem; }
+    .section-title p { font-size:0.75rem; margin-top:4px; }
+
+    /* hero */
+    .hero { padding:20px 14px; border-radius:var(--radius-lg); margin:10px 0 18px; }
+    .hero h1 { font-size:clamp(1.25rem,5vw,1.7rem); }
+    .hero p.sub { font-size:0.78rem; margin:8px auto 4px; }
+    .hero-badge { font-size:0.6rem; padding:5px 12px; margin-bottom:12px; }
+    .hero-trust { flex-direction:column; align-items:center; border-radius:20px; padding:10px 14px; gap:6px; font-size:0.72rem; }
+
+    /* gates */
+    .gates { margin:18px 0 10px; }
+    .gates-grid { gap:8px; }
+    .gate { padding:14px 8px; border-radius:var(--radius-md); }
+    .gate i { font-size:1.2rem; margin-bottom:6px; }
+    .gate h3 { font-size:0.7rem; }
+    .gate p { font-size:0.6rem; }
+
+    /* chips */
+    .chips { gap:6px; margin:14px 0 6px; }
+    .chip { padding:8px 12px; font-size:0.65rem; min-height:32px; }
+
+    /* product grid cards */
+    .product-grid { gap:6px; }
+    .card-body { padding:5px 5px 8px; }
+    .card-body h3 { font-size:0.65rem; }
+    .card-body .desc { font-size:0.55rem; margin:2px 0 4px; }
+    .card-body .fiyat { font-size:0.7rem; }
+    .card-img-wrap { height:80px; min-height:80px; }
+    .product-badge { font-size:0.45rem; padding:2px 5px; top:3px; left:3px; }
+    .card-img.contain { padding:6px; }
+
+    /* category header */
+    .category-header { margin:24px 0 12px; }
+    .category-badge { padding:6px 14px; font-size:0.7rem; }
+    .category-desc { font-size:0.75rem; }
+
+    /* stat strip */
+    .stat-strip { gap:8px; margin:14px 0; }
+    .stat-strip .s { padding:10px 8px; }
+    .stat-strip .s b { font-size:1rem; }
+    .stat-strip .s span { font-size:0.65rem; }
+
+    /* steps */
+    .steps { margin:24px 0; }
+    .steps-grid { gap:8px; }
+    .step-box { padding:14px 10px; }
+    .step-num { width:30px; height:30px; font-size:0.8rem; margin-bottom:8px; }
+    .step-box i { font-size:1rem; margin-bottom:4px; }
+    .step-box h4 { font-size:0.72rem; }
+    .step-box p { font-size:0.65rem; }
+
+    /* testimonials */
+    .testimonial-card { padding:12px 14px; font-size:0.78rem; }
+    .testimonial-grid { gap:12px; margin-top:14px; }
+
+    /* trust band */
+    .trust-band { padding:16px 12px; margin:24px 0; gap:10px; }
+    .trust-band .item i { font-size:1.2rem; margin-bottom:4px; }
+    .trust-band .item b { font-size:0.85rem; }
+    .trust-band .item span { font-size:0.65rem; }
+
+    /* FAQ */
+    .faq { margin:20px 0; }
+    .faq-question { padding:10px 12px; font-size:0.8rem; gap:8px; }
+    .faq-question i { font-size:0.75rem; }
+    .faq-answer.open { padding:0 12px 10px; font-size:0.76rem; }
+
+    /* calculator (fason) */
+    .calculator { padding:14px 12px; margin:18px 0; border-radius:var(--radius-lg); }
+    .calculator h2 { font-size:0.95rem; }
+    .calculator .sub { font-size:0.75rem; margin-bottom:12px; }
+    .calc-grid { gap:10px; }
+    .calc-group label { font-size:0.78rem; }
+    .calc-group select, .calc-group input { padding:8px 10px; font-size:14px; border-radius:8px; }
+    .quick-sizes { gap:6px; }
+    .quick-size-btn { padding:5px 10px; font-size:0.65rem; min-height:30px; border-radius:16px; }
+    .preview-wrap { height:60px; padding:10px; margin-top:10px; border-radius:10px; }
+    .preview-box { font-size:0.55rem; }
+    .preview-dimensions { font-size:0.65rem; }
+    .calc-result { padding:12px; margin-top:14px; border-radius:10px; }
+    .calc-result .price { font-size:1.3rem; }
+    .calc-result .price small { font-size:0.8rem; }
+    .calc-result .detail { font-size:0.75rem; margin:6px 0; }
+    .calc-note { font-size:0.65rem; margin-top:8px; }
+
+    /* season */
+    .season-band { padding:16px 12px; margin:18px 0; border-radius:var(--radius-lg); }
+    .season-band h2 { font-size:1rem; }
+    .season-band p { font-size:0.75rem; margin:4px 0 12px; }
+    .season-chips { gap:6px; }
+    .season-chips a { padding:8px 12px; font-size:0.65rem; min-height:30px; }
+
+    /* cta */
+    .cta-band { padding:20px 14px; margin:20px 0; border-radius:var(--radius-lg); }
+    .cta-band h2 { font-size:1rem; }
+    .cta-band p { font-size:0.72rem; margin:0 auto 14px; }
+
+    /* seo block */
+    .seo-block { padding:16px 14px; margin:16px 0; border-radius:var(--radius-lg); }
+    .seo-block h2 { font-size:0.95rem; }
+    .seo-block h3 { font-size:0.88rem; margin:14px 0 6px; }
+    .seo-block p { font-size:0.78rem; }
+    .seo-block li { font-size:0.78rem; }
+
+    /* footer */
+    .dark-band { margin-top:24px; padding:20px 0 12px; }
+    .footer-grid { gap:16px; margin-bottom:20px; }
+    .footer-col h3 { font-size:0.85rem; margin-bottom:10px; }
+    .footer-col p { font-size:0.75rem; }
+    .footer-col a { font-size:0.76rem; }
+    .footer-bottom { font-size:0.68rem; padding-top:14px; }
+
+    /* compare table */
+    .compare-wrap { font-size:0.65rem; }
+    .compare th, .compare td { padding:8px 10px; }
+    .compare th { font-size:0.65rem; }
+
+    /* modal */
+    .modal-box { padding:20px 16px; border-radius:var(--radius-lg); }
+    .modal-box h3 { font-size:1.05rem; }
+    .modal-desc { font-size:0.8rem; }
+    .modal-price { font-size:1.05rem; }
+    .modal-select-group select { padding:10px 12px; font-size:15px; }
+    .btn-wa { padding:10px 20px; font-size:0.82rem; min-height:40px; }
+    .modal-note { font-size:0.68rem; padding:8px 10px; }
+
+    /* marquee */
+    .marquee-band { padding:8px 0; margin:10px 0 0; }
+    .marquee-track { gap:30px; font-size:clamp(0.6rem,0.9vw,0.75rem); }
+
+    /* search overlay */
+    .search-result { padding:10px 14px; gap:10px; }
+    .search-result-img { width:40px; height:40px; }
+    .search-result-body strong { font-size:0.82rem; }
+
+    /* toast */
+    .toast { bottom:70px; padding:10px 16px; font-size:0.78rem; }
 }
 
 /* ================= YARDIMCILAR ================= */

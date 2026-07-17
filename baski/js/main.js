@@ -101,11 +101,12 @@
        ================================================================ */
     const navLinks = document.getElementById('navLinks');
     const navToggle = document.querySelector('.nav-toggle');
+    window.toggleNav = function() {
+        navLinks.classList.toggle('open');
+        navToggle.setAttribute('aria-expanded', navLinks.classList.contains('open'));
+    };
     if (navToggle) {
-        navToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('open');
-            navToggle.setAttribute('aria-expanded', navLinks.classList.contains('open'));
-        });
+        navToggle.addEventListener('click', window.toggleNav);
         document.addEventListener('click', (e) => {
             if (!e.target.closest('nav') && navLinks.classList.contains('open')) {
                 navLinks.classList.remove('open');
@@ -326,6 +327,14 @@
     /* ================================================================
        SSS
        ================================================================ */
+    window.toggleFaqSection = function(el) {
+        const section = el.parentElement;
+        const body = section.querySelector('.faq-body');
+        const isOpen = body.classList.contains('open');
+        body.classList.toggle('open');
+        section.classList.toggle('active');
+        el.querySelector('.faq-title-icon')?.setAttribute('aria-expanded', !isOpen);
+    };
     window.toggleFaq = function(el) {
         const answer = el.querySelector('.faq-answer');
         const isOpen = answer.classList.contains('open');
