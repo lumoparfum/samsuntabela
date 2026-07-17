@@ -856,9 +856,15 @@ nav {
     .section-title h2 { font-size:1.05rem; }
     .section-title p { font-size:0.76rem; }
     .hero-badge { font-size:0.6rem; padding:5px 12px; margin-bottom:12px; }
-    .hero h1 { font-size:clamp(1.35rem,5.2vw,1.85rem); }
-    .hero p.sub { font-size:0.8rem; margin:8px auto 4px; }
+    .hero h1 { font-size:clamp(1.7rem,5.8vw,2.4rem); }
+    .hero p.sub { font-size:0.82rem; margin:8px auto 4px; }
     .hero-trust { font-size:0.74rem; }
+    .hero::before {
+        background:
+            radial-gradient(ellipse 50% 40% at 20% 30%, rgba(201,119,0,0.06) 0%, transparent 70%),
+            radial-gradient(ellipse 40% 30% at 80% 70%, rgba(245,166,35,0.05) 0%, transparent 60%);
+    }
+    .hero::after { background:none; }
     .gate h3 { font-size:0.72rem; }
     .gate p { font-size:0.62rem; }
     .gate i { font-size:1.2rem; margin-bottom:6px; }
