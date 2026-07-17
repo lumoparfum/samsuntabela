@@ -851,132 +851,61 @@ nav {
     .hero .btn-main, .hero .btn-ghost { width:100%; text-align:center; }
 }
 
-/* ================= iOS QUALITY — MOBILE OVERRIDES ================= */
+/* ================= MOBILE COMPACT — SAFE OVERRIDES (font/padding only, no layout break) ================= */
 @media (max-width:640px) {
-    .container { padding:0 14px; }
-    .page-body { padding-top:calc(var(--nav-height) + 16px); }
-
-    /* section headers */
-    .section-title { margin-bottom:14px; }
     .section-title h2 { font-size:1.05rem; }
-    .section-title p { font-size:0.75rem; margin-top:4px; }
-
-    /* hero */
-    .hero { padding:20px 14px; border-radius:var(--radius-lg); margin:10px 0 18px; }
-    .hero h1 { font-size:clamp(1.25rem,5vw,1.7rem); }
-    .hero p.sub { font-size:0.78rem; margin:8px auto 4px; }
+    .section-title p { font-size:0.76rem; }
     .hero-badge { font-size:0.6rem; padding:5px 12px; margin-bottom:12px; }
-    .hero-trust { flex-direction:column; align-items:center; border-radius:20px; padding:10px 14px; gap:6px; font-size:0.72rem; }
-
-    /* gates */
-    .gates { margin:18px 0 10px; }
-    .gates-grid { gap:8px; }
-    .gate { padding:14px 8px; border-radius:var(--radius-md); }
+    .hero h1 { font-size:clamp(1.35rem,5.2vw,1.85rem); }
+    .hero p.sub { font-size:0.8rem; margin:8px auto 4px; }
+    .hero-trust { font-size:0.74rem; }
+    .gate h3 { font-size:0.72rem; }
+    .gate p { font-size:0.62rem; }
     .gate i { font-size:1.2rem; margin-bottom:6px; }
-    .gate h3 { font-size:0.7rem; }
-    .gate p { font-size:0.6rem; }
-
-    /* chips */
-    .chips { gap:6px; margin:14px 0 6px; }
     .chip { padding:8px 12px; font-size:0.65rem; min-height:32px; }
-
-    /* product grid cards */
-    .product-grid { gap:6px; }
-    .card-body { padding:5px 5px 8px; }
-    .card-body h3 { font-size:0.65rem; }
-    .card-body .desc { font-size:0.55rem; margin:2px 0 4px; }
-    .card-body .fiyat { font-size:0.7rem; }
-    .card-img-wrap { height:80px; min-height:80px; }
-    .product-badge { font-size:0.45rem; padding:2px 5px; top:3px; left:3px; }
-    .card-img.contain { padding:6px; }
-
-    /* category header */
-    .category-header { margin:24px 0 12px; }
+    .chips { gap:6px; }
     .category-badge { padding:6px 14px; font-size:0.7rem; }
-    .category-desc { font-size:0.75rem; }
-
-    /* stat strip */
-    .stat-strip { gap:8px; margin:14px 0; }
-    .stat-strip .s { padding:10px 8px; }
+    .category-desc { font-size:0.76rem; }
     .stat-strip .s b { font-size:1rem; }
     .stat-strip .s span { font-size:0.65rem; }
-
-    /* steps */
-    .steps { margin:24px 0; }
-    .steps-grid { gap:8px; }
-    .step-box { padding:14px 10px; }
+    .step-box h4 { font-size:0.74rem; }
+    .step-box p { font-size:0.66rem; }
     .step-num { width:30px; height:30px; font-size:0.8rem; margin-bottom:8px; }
     .step-box i { font-size:1rem; margin-bottom:4px; }
-    .step-box h4 { font-size:0.72rem; }
-    .step-box p { font-size:0.65rem; }
-
-    /* testimonials */
-    .testimonial-card { padding:12px 14px; font-size:0.78rem; }
-    .testimonial-grid { gap:12px; margin-top:14px; }
-
-    /* trust band */
-    .trust-band { padding:16px 12px; margin:24px 0; gap:10px; }
+    .testimonial-card { font-size:0.78rem; }
     .trust-band .item i { font-size:1.2rem; margin-bottom:4px; }
     .trust-band .item b { font-size:0.85rem; }
     .trust-band .item span { font-size:0.65rem; }
-
-    /* FAQ */
-    .faq { margin:20px 0; }
     .faq-question { padding:10px 12px; font-size:0.8rem; gap:8px; }
     .faq-question i { font-size:0.75rem; }
     .faq-answer.open { padding:0 12px 10px; font-size:0.76rem; }
-
-    /* calculator (fason) */
-    .calculator { padding:14px 12px; margin:18px 0; border-radius:var(--radius-lg); }
     .calculator h2 { font-size:0.95rem; }
-    .calculator .sub { font-size:0.75rem; margin-bottom:12px; }
-    .calc-grid { gap:10px; }
+    .calculator .sub { font-size:0.75rem; }
     .calc-group label { font-size:0.78rem; }
     .calc-group select, .calc-group input { padding:8px 10px; font-size:14px; border-radius:8px; }
-    .quick-sizes { gap:6px; }
     .quick-size-btn { padding:5px 10px; font-size:0.65rem; min-height:30px; border-radius:16px; }
-    .preview-wrap { height:60px; padding:10px; margin-top:10px; border-radius:10px; }
+    .preview-wrap { height:60px; padding:10px; border-radius:10px; }
     .preview-box { font-size:0.55rem; }
     .preview-dimensions { font-size:0.65rem; }
-    .calc-result { padding:12px; margin-top:14px; border-radius:10px; }
     .calc-result .price { font-size:1.3rem; }
     .calc-result .price small { font-size:0.8rem; }
-    .calc-result .detail { font-size:0.75rem; margin:6px 0; }
-    .calc-note { font-size:0.65rem; margin-top:8px; }
-
-    /* season */
-    .season-band { padding:16px 12px; margin:18px 0; border-radius:var(--radius-lg); }
+    .calc-result .detail { font-size:0.75rem; }
+    .calc-note { font-size:0.65rem; }
     .season-band h2 { font-size:1rem; }
     .season-band p { font-size:0.75rem; margin:4px 0 12px; }
-    .season-chips { gap:6px; }
     .season-chips a { padding:8px 12px; font-size:0.65rem; min-height:30px; }
-
-    /* cta */
-    .cta-band { padding:20px 14px; margin:20px 0; border-radius:var(--radius-lg); }
     .cta-band h2 { font-size:1rem; }
-    .cta-band p { font-size:0.72rem; margin:0 auto 14px; }
-
-    /* seo block */
-    .seo-block { padding:16px 14px; margin:16px 0; border-radius:var(--radius-lg); }
+    .cta-band p { font-size:0.72rem; }
     .seo-block h2 { font-size:0.95rem; }
-    .seo-block h3 { font-size:0.88rem; margin:14px 0 6px; }
-    .seo-block p { font-size:0.78rem; }
-    .seo-block li { font-size:0.78rem; }
-
-    /* footer */
-    .dark-band { margin-top:24px; padding:20px 0 12px; }
-    .footer-grid { gap:16px; margin-bottom:20px; }
-    .footer-col h3 { font-size:0.85rem; margin-bottom:10px; }
+    .seo-block h3 { font-size:0.88rem; }
+    .seo-block p, .seo-block li { font-size:0.78rem; }
+    .footer-col h3 { font-size:0.85rem; }
     .footer-col p { font-size:0.75rem; }
     .footer-col a { font-size:0.76rem; }
-    .footer-bottom { font-size:0.68rem; padding-top:14px; }
-
-    /* compare table */
+    .footer-bottom { font-size:0.68rem; }
     .compare-wrap { font-size:0.65rem; }
     .compare th, .compare td { padding:8px 10px; }
     .compare th { font-size:0.65rem; }
-
-    /* modal */
     .modal-box { padding:20px 16px; border-radius:var(--radius-lg); }
     .modal-box h3 { font-size:1.05rem; }
     .modal-desc { font-size:0.8rem; }
@@ -984,17 +913,10 @@ nav {
     .modal-select-group select { padding:10px 12px; font-size:15px; }
     .btn-wa { padding:10px 20px; font-size:0.82rem; min-height:40px; }
     .modal-note { font-size:0.68rem; padding:8px 10px; }
-
-    /* marquee */
-    .marquee-band { padding:8px 0; margin:10px 0 0; }
     .marquee-track { gap:30px; font-size:clamp(0.6rem,0.9vw,0.75rem); }
-
-    /* search overlay */
     .search-result { padding:10px 14px; gap:10px; }
     .search-result-img { width:40px; height:40px; }
     .search-result-body strong { font-size:0.82rem; }
-
-    /* toast */
     .toast { bottom:70px; padding:10px 16px; font-size:0.78rem; }
 }
 

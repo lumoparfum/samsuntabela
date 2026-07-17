@@ -766,4 +766,30 @@
         // Örnek: window.__abTest('hero_layout', ['v1', 'v2']);
     })();
 
+    /* ================================================================
+       SERVICE WORKER — auto update
+       ================================================================ */
+    (() => {
+        if (!('serviceWorker' in navigator)) return;
+        let swReg = null;
+        navigator.serviceWorker.register('sw.js').then(reg => {
+            swReg = reg;
+            reg.addEventListener('updatefound', () => {
+                const inst = reg.installing;
+                if (!inst) return;
+                inst.addEventListener('statechange', () => {
+                    if (inst.state === 'activated' && !navigator.serviceWorker.controller) {
+                        // ilk kayıt, sayfayı yenileme
+                    } else if (inst.state === 'activated') {
+                        window.location.reload();
+                    }
+                });
+            });
+            setInterval(() => { reg.update().catch(() => {}); }, 120000);
+        }).catch(() => {});
+        navigator.serviceWorker.addEventListener('controllerchange', () => {
+            window.location.reload();
+        });
+    })();
+
 })();
