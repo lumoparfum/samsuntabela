@@ -1,4 +1,5 @@
-const CACHE = 'uzman-reklam-v1';
+const VERSION = 1;
+const CACHE = 'uzman-reklam-v' + VERSION;
 const urls = [
     '/baski/',
     '/baski/index.html',
