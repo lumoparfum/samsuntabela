@@ -362,6 +362,7 @@
         document.getElementById('umDesc').textContent = u.uzunDesc;
         document.getElementById('umImg').src = u.img;
         document.getElementById('umImg').alt = u.ad;
+        document.getElementById('umImg').style.display = u.img ? '' : 'none';
         document.getElementById('umNot').textContent = u.notlar || '';
         const sel = document.getElementById('umSize');
         sel.innerHTML = u.fiyatlar.map((f, i) =>
@@ -410,6 +411,7 @@
         document.getElementById('tmPrice').textContent = u.fiyat.toLocaleString('tr-TR') + ' TL (KDV Dahil)';
         document.getElementById('tmImg').src = u.img;
         document.getElementById('tmImg').alt = u.takim + ' ' + u.tip + ' ' + u.boy;
+        document.getElementById('tmImg').style.display = u.img ? '' : 'none';
         const msg = 'Merhaba Uzman Reklam 👋\n\n' + u.takim + ' ' + u.tip + ' (' + u.boy + ') sipariş etmek istiyorum.\n💰 Fiyat: ' + u.fiyat.toLocaleString('tr-TR') + ' TL';
         document.getElementById('tmWaBtn').href = 'https://wa.me/' + ILETISIM.wa + '?text=' + encodeURIComponent(msg);
         document.getElementById('takimModal').classList.add('active');
@@ -608,7 +610,9 @@
         let fiyatGoster;
         if (u.birim === 'TL') fiyatGoster = u.fiyat.toLocaleString('tr-TR') + ' TL (KDV Dahil)';
         else { const kur = u.birim === 'EUR' ? KUR_EUR : KUR_USD; fiyatGoster = '~' + (u.fiyat * kur).toFixed(0) + ' TL /m² (KDV Hariç)'; }
-        document.getElementById('mmImg').src = 'images/fason/' + key.replace(/_/g, '-') + '.jpg';
+        const mmImgSrc = 'images/fason/' + key.replace(/_/g, '-') + '.jpg';
+        document.getElementById('mmImg').src = mmImgSrc;
+        document.getElementById('mmImg').style.display = mmImgSrc ? '' : 'none';
         document.getElementById('mmTitle').textContent = u.ad;
         document.getElementById('mmDesc').textContent = u.desc;
         document.getElementById('mmPrice').textContent = fiyatGoster;

@@ -181,7 +181,7 @@ const urunler = {
     foto_maket: {
         kategori: 'hediye',
         ad: 'Kişiye Özel Fotoğraf Maketi',
-        img: 'images/foto-maket.svg',
+        img: '',
         badge: 'Kendi Maketin',
         badgeColor: '#00aeef',
         kisaDesc: 'Kendi fotoğrafından ayaklı maket · 40-175 cm',
@@ -199,7 +199,7 @@ const urunler = {
     kanvas_tablo: {
         kategori: 'hediye',
         ad: 'Fotoğraflı Kanvas Tablo',
-        img: 'images/kanvas-tablo.svg',
+        img: '',
         badge: 'Hediyelik',
         badgeColor: '#8e24aa',
         kisaDesc: 'Kendi fotoğrafın tuvalde · Şaseli teslim',
@@ -268,7 +268,7 @@ const urunler = {
     rakam_pano: {
         kategori: 'ozelgun',
         ad: 'Ayaklı Rakam Pano (Yaş Panosu)',
-        img: 'images/karsilama-panosu.webp',
+        img: '',
         badge: 'Parti',
         badgeColor: '#ff9800',
         kisaDesc: 'Doğum günü yaş panosu · Dekota ayaklı',
@@ -284,7 +284,7 @@ const urunler = {
     parti_seti: {
         kategori: 'ozelgun',
         ad: 'Komple Parti Seti',
-        img: 'images/dogum-gunu.webp',
+        img: '',
         badge: 'Set',
         badgeColor: '#e91e63',
         kisaDesc: 'Afiş + rakam pano + harf flama · 3\'lü set',
@@ -300,7 +300,7 @@ const urunler = {
     harf_flama: {
         kategori: 'ozelgun',
         ad: 'İsim Harf Flaması',
-        img: 'images/dogum-gunu.webp',
+        img: '',
         badge: 'Flama',
         badgeColor: '#9c27b0',
         kisaDesc: 'Tek tek harfler · İp üzerinde · Parti dekoru',
@@ -316,7 +316,7 @@ const urunler = {
     kisiye_magnet: {
         kategori: 'ozelgun',
         ad: 'Kişiye Özel Magnet',
-        img: 'images/foto-maket.svg',
+        img: '',
         badge: 'Hediye',
         badgeColor: '#00bcd4',
         kisaDesc: 'Fotoğraflı magnet · Kişiye özel',
@@ -334,7 +334,7 @@ const urunler = {
     sevgiliye_pankart: {
         kategori: 'ozelgun',
         ad: 'Sevgiliye Sürpriz Pankart',
-        img: 'images/evlilik-teklifi.webp',
+        img: '',
         badge: '14 Şubat · Sevgililer',
         badgeColor: '#e91e63',
         kisaDesc: 'İsimli sevgi sözleri · Branda / Poster',
@@ -352,7 +352,7 @@ const urunler = {
     cinsiyet_partisi: {
         kategori: 'ozelgun',
         ad: 'Cinsiyet Partisi Arka Fonu',
-        img: 'images/hosgeldin-bebek.webp',
+        img: '',
         badge: 'Baby Reveal',
         badgeColor: '#ff80ab',
         kisaDesc: 'Pembe/mavi temalı · Branda',
@@ -368,7 +368,7 @@ const urunler = {
     bebek_parti: {
         kategori: 'ozelgun',
         ad: 'Baby Shower / Bebek Parti Seti',
-        img: 'images/hosgeldin-bebek.webp',
+        img: '',
         badge: 'Baby Shower',
         badgeColor: '#81d4fa',
         kisaDesc: 'Tema bütünleme · Afiş + aksesuar',
@@ -386,7 +386,7 @@ const urunler = {
     sunnet_panosu: {
         kategori: 'ozelgun',
         ad: 'Sünnet Panosu',
-        img: 'images/karsilama-panosu.webp',
+        img: '',
         badge: 'Sünnet',
         badgeColor: '#1565c0',
         kisaDesc: 'İsimli · Dekota sıvama · Ayaklı',
@@ -402,7 +402,7 @@ const urunler = {
     hatira_cercevesi: {
         kategori: 'ozelgun',
         ad: 'Hatıra Çerçevesi / Fotoğraf Duvarı',
-        img: 'images/foto-maket.svg',
+        img: '',
         badge: 'Düğün · Nişan',
         badgeColor: '#ad1457',
         kisaDesc: 'Fotoğraflı çerçeve · İmza alanı',
@@ -420,7 +420,7 @@ const urunler = {
     cift_maket: {
         kategori: 'hediye',
         ad: 'Çift / Düğün Maketi',
-        img: 'images/foto-maket.svg',
+        img: '',
         badge: 'Çift',
         badgeColor: '#ec008c',
         kisaDesc: 'Gelin + damat · Ayaklı · Dekota',
@@ -436,7 +436,7 @@ const urunler = {
     evcil_maket: {
         kategori: 'hediye',
         ad: 'Evcil Hayvan Maketi',
-        img: 'images/foto-maket.svg',
+        img: '',
         badge: 'Patili Dost',
         badgeColor: '#795548',
         kisaDesc: 'Kedi/köpek maketi · Ayaklı',
@@ -454,7 +454,7 @@ const urunler = {
     yildiz_haritasi: {
         kategori: 'hediye',
         ad: 'Yıldız Haritası Posteri',
-        img: 'images/kanvas-tablo.svg',
+        img: '',
         badge: 'Romantik',
         badgeColor: '#4a148c',
         kisaDesc: 'O gecenin gökyüzü · Özel tarih · Poster',
@@ -470,7 +470,7 @@ const urunler = {
     ses_dalgasi: {
         kategori: 'hediye',
         ad: 'Ses Dalgası Posteri',
-        img: 'images/kanvas-tablo.svg',
+        img: '',
         badge: 'Anlamlı Hediye',
         badgeColor: '#00838f',
         kisaDesc: 'Ses kaydının dalga formu · Özel mesaj',
@@ -486,7 +486,7 @@ const urunler = {
     bebek_poster: {
         kategori: 'hediye',
         ad: 'Bebek Ay/Doğum Posteri',
-        img: 'images/hosgeldin-bebek.webp',
+        img: '',
         badge: 'Bebek',
         badgeColor: '#4fc3f7',
         kisaDesc: 'Aylık/yıllık hatıra posteri · İsimli',
@@ -502,7 +502,7 @@ const urunler = {
     kolaj_poster: {
         kategori: 'hediye',
         ad: 'Kolaj Poster / Çoklu Fotoğraf',
-        img: 'images/kanvas-tablo.svg',
+        img: '',
         badge: 'Kolaj',
         badgeColor: '#e65100',
         kisaDesc: 'Birden çok fotoğraf · Aynı posterde',
@@ -520,7 +520,7 @@ const urunler = {
     arac_magnet: {
         kategori: 'vitrin',
         ad: 'Araç Kapı / Servis Magneti',
-        img: 'images/vitrin.svg',
+        img: '',
         badge: 'Araç',
         badgeColor: '#1565c0',
         kisaDesc: 'Mobil reklam · Tak-çıkar',
@@ -536,7 +536,7 @@ const urunler = {
     menu_baski: {
         kategori: 'vitrin',
         ad: 'Laminasyonlu Menü Baskısı',
-        img: 'images/vitrin.svg',
+        img: '',
         badge: 'Menü',
         badgeColor: '#2e7d32',
         kisaDesc: 'Silinebilir · Su geçirmez · Kafe/restoran',
@@ -570,7 +570,7 @@ const urunler = {
     koridor_tablolari: {
         kategori: 'okul',
         ad: 'Koridor Tabloları Serisi',
-        img: 'images/okul-kurum.webp',
+        img: '',
         badge: 'Seri Halinde',
         badgeColor: '#00695c',
         kisaDesc: 'Atatürk sözleri · Motivasyon · Bilim serileri',
@@ -586,7 +586,7 @@ const urunler = {
     tabela_yonlendirme: {
         kategori: 'okul',
         ad: 'Sınıf Tabelası & Yönlendirme Levhası',
-        img: 'images/okul-kurum.webp',
+        img: '',
         badge: 'Pleksi & Alüminyum',
         badgeColor: '#37474f',
         kisaDesc: 'Kapı isimliği · Kat/yön levhaları',
@@ -602,7 +602,7 @@ const urunler = {
     okul_panolari: {
         kategori: 'okul',
         ad: 'Okul Panoları',
-        img: 'images/okul-kurum.webp',
+        img: '',
         badge: 'İlan & Etkinlik',
         badgeColor: '#4e342e',
         kisaDesc: 'İlan, etkinlik ve tören panoları',
@@ -618,7 +618,7 @@ const urunler = {
     is_guvenligi_panolari: {
         kategori: 'okul',
         ad: 'İş Güvenliği Panoları',
-        img: 'images/okul-kurum.webp',
+        img: '',
         badge: 'Fabrika & Şantiye',
         badgeColor: '#e65100',
         kisaDesc: 'Uyarı ve yönlendirme levhaları',
