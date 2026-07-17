@@ -1,0 +1,22 @@
+{
+  "name": "Uzman Reklam — Türkiye'nin Baskı Fabrikası",
+  "short_name": "Uzman Reklam",
+  "description": "Doğum günü afişi, evlilik teklifi pankartı, kişiye özel maket, karşılama panosu, kanvas tablo ve fason dijital baskı. Fabrikadan direkt, aracısız fiyat.",
+  "start_url": "/baski/index.html",
+  "scope": "/baski/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#f7f5f0",
+  "theme_color": "#c97700",
+  "lang": "tr-TR",
+  "icons": [
+    {
+      "src": "images/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["shopping", "business"],
+  "screenshots": []
+}
