@@ -130,8 +130,9 @@ nav {
 .nav-toggle { display:none; background:none; border:none; color:var(--text); font-size:24px; cursor:pointer; padding:8px; min-width:44px; min-height:44px; border-radius:12px; transition:background .2s; }
 .nav-toggle:hover { background:rgba(0,0,0,0.05); }
 @media (max-width:860px) {
-    .nav-toggle { display:block; }
-    .nav-container { position:relative; }
+    .nav-toggle { display:block; position:absolute; right:20px; top:50%; transform:translateY(-50%); z-index:2; }
+    .nav-container { position:relative; justify-content:center; }
+    .logo { position:static; transform:none; }
     .nav-links {
         display:none; position:absolute; top:100%; left:0; width:100%;
         background:rgba(247,245,240,0.98); backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px);
@@ -146,7 +147,6 @@ nav {
     .nav-links a.active { border-bottom:2px solid var(--primary); padding-bottom:2px; }
 }
 .page-body { padding-top:calc(var(--nav-height) + 28px); }
-@media (max-width:860px) { .logo { position:absolute; left:50%; transform:translateX(-50%); } }
 @media (max-width:640px) { .page-body { padding-top:calc(var(--nav-height) + 16px); } .logo a { font-size:19px; } }
 
 /* ================= SCROLL TO TOP ================= */
