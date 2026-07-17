@@ -161,7 +161,7 @@ nav {
 }
 .scroll-top.visible { opacity:1; transform:translateY(0); pointer-events:auto; }
 .scroll-top:hover { background:var(--primary); color:#fff; border-color:var(--primary); transform:translateY(-3px); box-shadow:var(--shadow-lg); }
-@media (max-width:640px) { .scroll-top { bottom:76px; right:14px; } }
+@media (max-width:640px) { .scroll-top { bottom:20px; right:14px; } }
 
 /* ================= HERO (iOS kalitesinde neon/lazer efekt) ================= */
 .hero {
@@ -565,7 +565,7 @@ nav {
     position:fixed; bottom:20px; right:20px; z-index:998;
     display:flex; flex-direction:column; gap:10px; align-items:flex-end;
 }
-@media (max-width:640px) { .wp-float { bottom:70px; right:14px; } }
+@media (max-width:640px) { .wp-float { bottom:20px; right:14px; } }
 .wp-btn {
     width:56px; height:56px; border-radius:50%; display:flex; align-items:center;
     justify-content:center; color:#fff; font-size:26px; text-decoration:none;
@@ -674,30 +674,6 @@ nav {
 .btn-share-mini:hover { background:var(--primary); color:#fff; border-color:var(--primary); }
 
 /* ================= MOBİL ALT BAR ================= */
-.mobile-bar {
-    display:none; position:fixed; bottom:0; left:0; width:100%; z-index:999;
-    background:var(--surface); backdrop-filter:blur(20px) saturate(1.4);
-    -webkit-backdrop-filter:blur(20px) saturate(1.4);
-    border-top:1px solid var(--surface-border);
-    justify-content:space-around; align-items:stretch;
-    padding:4px 0 calc(4px + env(safe-area-inset-bottom,0px));
-}
-.mobile-bar a {
-    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1px;
-    color:var(--text-secondary); text-decoration:none; font-size:0.6rem; font-weight:700;
-    padding:6px 4px; border-radius:0; transition:all .2s; flex:1; min-height:48px;
-    border-top:2px solid transparent;
-}
-.mobile-bar a:active { background:rgba(0,0,0,0.06); }
-.mobile-bar a i { font-size:1.1rem; margin-bottom:1px; }
-.mobile-bar .mb-home { color:var(--text-secondary); }
-.mobile-bar .mb-wa { color:var(--wa); }
-.mobile-bar .mb-tel { color:var(--accent); }
-.mobile-bar .mb-hesap { color:var(--primary); }
-@media (max-width:640px) {
-    .mobile-bar { display:flex; }
-    body { padding-bottom:calc(52px + env(safe-area-inset-bottom,0px)); }
-}
 
 /* ================= İLLER ================= */
 .iller { font-size:0.78rem; color:var(--text-secondary); line-height:2; text-align:center; max-width:780px; margin:0 auto; }
