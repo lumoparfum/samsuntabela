@@ -608,6 +608,7 @@
         let fiyatGoster;
         if (u.birim === 'TL') fiyatGoster = u.fiyat.toLocaleString('tr-TR') + ' TL (KDV Dahil)';
         else { const kur = u.birim === 'EUR' ? KUR_EUR : KUR_USD; fiyatGoster = '~' + (u.fiyat * kur).toFixed(0) + ' TL /m² (KDV Hariç)'; }
+        document.getElementById('mmImg').src = 'images/fason/' + key.replace(/_/g, '-') + '.jpg';
         document.getElementById('mmTitle').textContent = u.ad;
         document.getElementById('mmDesc').textContent = u.desc;
         document.getElementById('mmPrice').textContent = fiyatGoster;
