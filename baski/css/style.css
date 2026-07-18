@@ -419,6 +419,7 @@ nav {
 .modal-img {
     width:100%; max-height:300px; object-fit:contain; border-radius:12px;
     margin-bottom:12px; background:var(--bg); transition:transform .3s;
+    cursor:zoom-in;
 }
 .modal-img:hover { transform:scale(1.02); }
 .modal-gallery { position:relative; margin-bottom:12px; }
@@ -942,6 +943,49 @@ nav {
     .toast { bottom:70px; padding:10px 16px; font-size:0.78rem; }
 }
 
+/* ================= LIGHTBOX ================= */
+#lightbox {
+    display:none; position:fixed; inset:0; z-index:99999;
+    background:rgba(0,0,0,0.92); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+    justify-content:center; align-items:center; padding:20px;
+    -webkit-user-select:none; user-select:none;
+}
+#lightbox.active { display:flex; }
+.lb-img {
+    max-width:95vw; max-height:90vh; object-fit:contain;
+    border-radius:8px; box-shadow:0 8px 40px rgba(0,0,0,0.5);
+    -webkit-user-select:none; user-select:none; pointer-events:none;
+}
+.lb-close {
+    position:fixed; top:12px; right:16px; z-index:100000;
+    background:rgba(255,255,255,0.1); border:none; color:#fff;
+    font-size:36px; width:48px; height:48px; border-radius:50%;
+    cursor:pointer; display:flex; align-items:center; justify-content:center;
+    transition:background .2s; -webkit-tap-highlight-color:transparent;
+}
+.lb-close:hover { background:rgba(255,255,255,0.2); }
+.lb-arrow {
+    position:fixed; top:50%; transform:translateY(-50%); z-index:100000;
+    background:rgba(255,255,255,0.1); border:none; color:#fff;
+    font-size:40px; width:50px; height:50px; border-radius:50%;
+    cursor:pointer; display:flex; align-items:center; justify-content:center;
+    transition:background .2s; -webkit-tap-highlight-color:transparent;
+    box-shadow:0 2px 12px rgba(0,0,0,0.3);
+}
+.lb-arrow:hover { background:rgba(255,255,255,0.25); }
+.lb-prev { left:12px; }
+.lb-next { right:12px; }
+.lb-counter {
+    position:fixed; bottom:20px; left:50%; transform:translateX(-50%);
+    color:rgba(255,255,255,0.7); font-size:14px; letter-spacing:1px;
+    background:rgba(0,0,0,0.4); padding:6px 16px; border-radius:20px;
+}
+@media (max-width:640px) {
+    .lb-arrow { width:40px; height:40px; font-size:30px; }
+    .lb-prev { left:6px; }
+    .lb-next { right:6px; }
+    .lb-close { top:8px; right:8px; width:40px; height:40px; font-size:28px; }
+}
 /* ================= YARDIMCILAR ================= */
 .text-center { text-align:center; }
 .mt-20 { margin-top:20px; }

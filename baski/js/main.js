@@ -797,6 +797,78 @@
     })();
 
     /* ================================================================
+       LIGHTBOX — modal goruntuyu tam ekran goster
+       ================================================================ */
+    const lb = document.createElement('div');
+    lb.id = 'lightbox';
+    lb.innerHTML = '<button class="lb-close" id="lbClose" aria-label="Kapat">&times;</button>'
+        + '<button class="lb-arrow lb-prev" id="lbPrev">&#8249;</button>'
+        + '<img class="lb-img" id="lbImg" alt="">'
+        + '<button class="lb-arrow lb-next" id="lbNext">&#8250;</button>'
+        + '<div class="lb-counter" id="lbCounter"></div>';
+    document.body.appendChild(lb);
+
+    let lbGallery = [];
+    let lbIndex = 0;
+
+    function lbAc(index) {
+        if (!lbGallery.length) return;
+        lbIndex = index;
+        lbGuncelle();
+        lb.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+    function lbKapat() { lb.classList.remove('active'); document.body.style.overflow = ''; }
+    function lbGuncelle() {
+        const src = lbGallery[lbIndex];
+        document.getElementById('lbImg').src = src || '';
+        document.getElementById('lbCounter').textContent = (lbIndex + 1) + ' / ' + lbGallery.length;
+        document.getElementById('lbPrev').style.display = lbGallery.length > 1 ? '' : 'none';
+        document.getElementById('lbNext').style.display = lbGallery.length > 1 ? '' : 'none';
+    }
+    window.lbOnce = function(e) { e.stopPropagation(); if (lbGallery.length > 1) { lbIndex = (lbIndex - 1 + lbGallery.length) % lbGallery.length; lbGuncelle(); } };
+    window.lbIleri = function(e) { e.stopPropagation(); if (lbGallery.length > 1) { lbIndex = (lbIndex + 1) % lbGallery.length; lbGuncelle(); } };
+
+    // modal image tiklayinca lightbox ac
+    document.getElementById('umImg').addEventListener('click', function() {
+        const u = urunler[aktifUrunKey];
+        if (!u) return;
+        const imgs = Array.isArray(u.img) ? u.img.filter(Boolean) : (u.img ? [u.img] : []);
+        const fullPaths = imgs.map(p => p.startsWith('http') ? p : p);
+        if (!fullPaths.length) return;
+        lbGallery = fullPaths;
+        lbAc(galeriIndex);
+    });
+
+    document.getElementById('lbClose').addEventListener('click', lbKapat);
+    document.getElementById('lbPrev').addEventListener('click', window.lbOnce);
+    document.getElementById('lbNext').addEventListener('click', window.lbIleri);
+    lb.addEventListener('click', function(e) { if (e.target === lb) lbKapat(); });
+
+    // klavye
+    document.addEventListener('keydown', function(e) {
+        if (!lb.classList.contains('active')) return;
+        if (e.key === 'Escape') lbKapat();
+        if (e.key === 'ArrowLeft') window.lbOnce(e);
+        if (e.key === 'ArrowRight') window.lbIleri(e);
+    });
+
+    // mobil swipe
+    let lbTouchStartX = 0;
+    lb.addEventListener('touchstart', function(e) {
+        if (e.target.closest('.lb-arrow, .lb-close')) return;
+        lbTouchStartX = e.changedTouches[0].screenX;
+    }, {passive:true});
+    lb.addEventListener('touchend', function(e) {
+        if (e.target.closest('.lb-arrow, .lb-close')) return;
+        const diff = e.changedTouches[0].screenX - lbTouchStartX;
+        if (Math.abs(diff) > 50) {
+            if (diff < 0) window.lbIleri(e);
+            else window.lbOnce(e);
+        }
+    }, {passive:true});
+
+    /* ================================================================
        SERVICE WORKER — auto update
        ================================================================ */
     (() => {
