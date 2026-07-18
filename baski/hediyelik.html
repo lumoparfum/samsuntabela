@@ -265,7 +265,14 @@
 <div class="modal-overlay" id="urunModal" onclick="if(event.target===this) urunModalKapat()">
     <div class="modal-box">
         <button class="modal-close" onclick="urunModalKapat()" aria-label="Kapat">&times;</button>
-        <img class="modal-img" id="umImg" alt="">
+        <div class="modal-gallery">
+            <div class="gallery-main">
+                <button class="gallery-arrow gallery-prev" onclick="galeriOnce(event)" aria-label="Önceki">&#8249;</button>
+                <img class="modal-img" id="umImg" alt="">
+                <button class="gallery-arrow gallery-next" onclick="galeriIleri(event)" aria-label="Sonraki">&#8250;</button>
+            </div>
+            <div class="gallery-dots" id="umDots"></div>
+        </div>
         <h3 id="umTitle"></h3>
         <div class="modal-desc" id="umDesc"></div>
         <div class="modal-select-group">

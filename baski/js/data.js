@@ -56,7 +56,7 @@ const urunler = {
     dogum_gunu_afisi: {
         kategori: 'ozelgun',
         ad: 'Doğum Günü Afişi',
-        img: 'images/dogum-gunu.webp',
+        img: ['images/dogum-gunu.webp'],
         badge: 'Çok Satan',
         badgeColor: '#ff3b30',
         kisaDesc: 'Fotoğraflı & isimli · Branda veya Poster',
@@ -74,7 +74,7 @@ const urunler = {
     evlilik_teklifi: {
         kategori: 'ozelgun',
         ad: 'Evlilik Teklifi Pankartı',
-        img: 'images/evlilik-teklifi.webp',
+        img: ['images/evlilik-teklifi.webp'],
         badge: 'Benimle Evlenir misin?',
         badgeColor: '#ec008c',
         kisaDesc: 'Fotoğraflı & isimli · Kuşgözü + ip dahil',
@@ -92,7 +92,7 @@ const urunler = {
     hosgeldin_bebek: {
         kategori: 'ozelgun',
         ad: 'Hoşgeldin Bebek / Hastane Odası Afişi',
-        img: 'images/hosgeldin-bebek.webp',
+        img: ['images/hosgeldin-bebek.webp'],
         badge: 'Yeni',
         badgeColor: '#00aeef',
         kisaDesc: 'İsimli · Kız/Erkek temalı · Hastane odası boyu',
@@ -109,7 +109,7 @@ const urunler = {
     karsilama_panosu: {
         kategori: 'ozelgun',
         ad: 'Düğün / Nişan / Kına Karşılama Panosu',
-        img: 'images/karsilama-panosu.webp',
+        img: ['images/karsilama-panosu.webp'],
         badge: 'Sezon',
         badgeColor: '#c2185b',
         kisaDesc: 'İsme özel · Dekota sıvama · Ayaklı seçenek',
@@ -127,7 +127,7 @@ const urunler = {
     mezuniyet: {
         kategori: 'ozelgun',
         ad: 'Mezuniyet Pankartı',
-        img: 'images/mezuniyet.webp',
+        img: ['images/mezuniyet.webp'],
         badge: 'Mayıs-Haziran',
         badgeColor: '#7b1fa2',
         kisaDesc: 'Fotoğraflı & isimli · Okul/bölüm yazılı',
@@ -144,7 +144,7 @@ const urunler = {
     asker_ugurlama: {
         kategori: 'ozelgun',
         ad: 'Asker Uğurlama Pankartı',
-        img: 'images/asker-ugurlama.webp',
+        img: ['images/asker-ugurlama.webp'],
         badge: 'Her Celp Dönemi',
         badgeColor: '#33691e',
         kisaDesc: 'Fotoğraflı & isimli · "En Büyük Asker Bizim Asker"',
@@ -162,7 +162,7 @@ const urunler = {
     foto_arka_fon: {
         kategori: 'ozelgun',
         ad: 'Fotoğraf Köşesi Arka Fonu (Backdrop)',
-        img: 'images/backdrop.webp',
+        img: ['images/backdrop.webp'],
         badge: 'Etkinlik',
         badgeColor: '#f7941d',
         kisaDesc: 'Parti & organizasyon · Büyük boy branda',
@@ -181,7 +181,7 @@ const urunler = {
     foto_maket: {
         kategori: 'hediye',
         ad: 'Kişiye Özel Fotoğraf Maketi',
-        img: '',
+        img: ['images/foto-maket.webp', 'images/foto-maket2.webp', 'images/foto-maket3.webp', 'images/foto-maket4.webp'],
         badge: 'Kendi Maketin',
         badgeColor: '#00aeef',
         kisaDesc: 'Kendi fotoğrafından ayaklı maket · 40-175 cm',
@@ -199,7 +199,7 @@ const urunler = {
     kanvas_tablo: {
         kategori: 'hediye',
         ad: 'Fotoğraflı Kanvas Tablo',
-        img: '',
+        img: ['images/kanvas-tablo.webp'],
         badge: 'Hediyelik',
         badgeColor: '#8e24aa',
         kisaDesc: 'Kendi fotoğrafın tuvalde · Şaseli teslim',
@@ -216,7 +216,7 @@ const urunler = {
     duvar_tablosu: {
         kategori: 'hediye',
         ad: 'Duvar Tablosu 50×70',
-        img: 'images/duvar-tablosu.jpg',
+        img: ['images/duvar-tablosu.jpg'],
         badge: 'Hazır Ürün',
         badgeColor: '#6f8f00',
         kisaDesc: 'Folyo kaplı 3mm MDF · Bantla asılır',
@@ -231,7 +231,7 @@ const urunler = {
     ataturk_maketi: {
         kategori: 'hediye',
         ad: 'Atatürk Maketi & Köşesi',
-        img: 'images/ataturk-maket.jpg',
+        img: ['images/ataturk-maket.jpg'],
         badge: '10 Kasım · 23 Nisan',
         badgeColor: '#d42a1a',
         kisaDesc: 'Ayaklı maket & pano · Ev, ofis, okul',
@@ -251,7 +251,7 @@ const urunler = {
     yilbasi_set: {
         kategori: 'hediye',
         ad: 'Yılbaşı Maket Seti',
-        img: 'images/yilbasi.webp',
+        img: ['images/yilbasi.webp'],
         badge: 'Aralık',
         badgeColor: '#c62828',
         kisaDesc: 'Noel baba + ağaç + yıl yazısı · Vitrin & ev',
@@ -268,7 +268,7 @@ const urunler = {
     rakam_pano: {
         kategori: 'ozelgun',
         ad: 'Ayaklı Rakam Pano (Yaş Panosu)',
-        img: '',
+        img: ['images/rakam-pano.webp', 'images/rakam-pano2.webp'],
         badge: 'Parti',
         badgeColor: '#ff9800',
         kisaDesc: 'Doğum günü yaş panosu · Dekota ayaklı',
@@ -284,7 +284,7 @@ const urunler = {
     parti_seti: {
         kategori: 'ozelgun',
         ad: 'Komple Parti Seti',
-        img: '',
+        img: ['images/parti-seti.webp', 'images/parti-seti2.webp'],
         badge: 'Set',
         badgeColor: '#e91e63',
         kisaDesc: 'Afiş + rakam pano + harf flama · 3\'lü set',
@@ -300,7 +300,7 @@ const urunler = {
     harf_flama: {
         kategori: 'ozelgun',
         ad: 'İsim Harf Flaması',
-        img: '',
+        img: ['images/harf-flama.webp'],
         badge: 'Flama',
         badgeColor: '#9c27b0',
         kisaDesc: 'Tek tek harfler · İp üzerinde · Parti dekoru',
@@ -316,7 +316,7 @@ const urunler = {
     kisiye_magnet: {
         kategori: 'ozelgun',
         ad: 'Kişiye Özel Magnet',
-        img: '',
+        img: ['images/ozel-magnet.webp'],
         badge: 'Hediye',
         badgeColor: '#00bcd4',
         kisaDesc: 'Fotoğraflı magnet · Kişiye özel',
@@ -334,7 +334,7 @@ const urunler = {
     sevgiliye_pankart: {
         kategori: 'ozelgun',
         ad: 'Sevgiliye Sürpriz Pankart',
-        img: '',
+        img: ['images/sevgiliye-pankart.webp'],
         badge: '14 Şubat · Sevgililer',
         badgeColor: '#e91e63',
         kisaDesc: 'İsimli sevgi sözleri · Branda / Poster',
@@ -352,7 +352,7 @@ const urunler = {
     cinsiyet_partisi: {
         kategori: 'ozelgun',
         ad: 'Cinsiyet Partisi Arka Fonu',
-        img: '',
+        img: ['images/cinsiyet-partisi.webp', 'images/cinsiyet-partisi2.webp'],
         badge: 'Baby Reveal',
         badgeColor: '#ff80ab',
         kisaDesc: 'Pembe/mavi temalı · Branda',
@@ -368,7 +368,7 @@ const urunler = {
     bebek_parti: {
         kategori: 'ozelgun',
         ad: 'Baby Shower / Bebek Parti Seti',
-        img: '',
+        img: ['images/bebek-parti.webp'],
         badge: 'Baby Shower',
         badgeColor: '#81d4fa',
         kisaDesc: 'Tema bütünleme · Afiş + aksesuar',
@@ -386,7 +386,7 @@ const urunler = {
     sunnet_panosu: {
         kategori: 'ozelgun',
         ad: 'Sünnet Panosu',
-        img: '',
+        img: ['images/sunnet-panosu.webp'],
         badge: 'Sünnet',
         badgeColor: '#1565c0',
         kisaDesc: 'İsimli · Dekota sıvama · Ayaklı',
@@ -402,7 +402,7 @@ const urunler = {
     hatira_cercevesi: {
         kategori: 'ozelgun',
         ad: 'Hatıra Çerçevesi / Fotoğraf Duvarı',
-        img: '',
+        img: ['images/hatira-cercevesi.webp'],
         badge: 'Düğün · Nişan',
         badgeColor: '#ad1457',
         kisaDesc: 'Fotoğraflı çerçeve · İmza alanı',
@@ -420,7 +420,7 @@ const urunler = {
     cift_maket: {
         kategori: 'hediye',
         ad: 'Çift / Düğün Maketi',
-        img: '',
+        img: [],
         badge: 'Çift',
         badgeColor: '#ec008c',
         kisaDesc: 'Gelin + damat · Ayaklı · Dekota',
@@ -436,7 +436,7 @@ const urunler = {
     evcil_maket: {
         kategori: 'hediye',
         ad: 'Evcil Hayvan Maketi',
-        img: '',
+        img: [],
         badge: 'Patili Dost',
         badgeColor: '#795548',
         kisaDesc: 'Kedi/köpek maketi · Ayaklı',
@@ -454,7 +454,7 @@ const urunler = {
     yildiz_haritasi: {
         kategori: 'hediye',
         ad: 'Yıldız Haritası Posteri',
-        img: '',
+        img: [],
         badge: 'Romantik',
         badgeColor: '#4a148c',
         kisaDesc: 'O gecenin gökyüzü · Özel tarih · Poster',
@@ -470,7 +470,7 @@ const urunler = {
     ses_dalgasi: {
         kategori: 'hediye',
         ad: 'Ses Dalgası Posteri',
-        img: '',
+        img: [],
         badge: 'Anlamlı Hediye',
         badgeColor: '#00838f',
         kisaDesc: 'Ses kaydının dalga formu · Özel mesaj',
@@ -486,7 +486,7 @@ const urunler = {
     bebek_poster: {
         kategori: 'hediye',
         ad: 'Bebek Ay/Doğum Posteri',
-        img: '',
+        img: [],
         badge: 'Bebek',
         badgeColor: '#4fc3f7',
         kisaDesc: 'Aylık/yıllık hatıra posteri · İsimli',
@@ -502,7 +502,7 @@ const urunler = {
     kolaj_poster: {
         kategori: 'hediye',
         ad: 'Kolaj Poster / Çoklu Fotoğraf',
-        img: '',
+        img: [],
         badge: 'Kolaj',
         badgeColor: '#e65100',
         kisaDesc: 'Birden çok fotoğraf · Aynı posterde',
@@ -520,7 +520,7 @@ const urunler = {
     arac_magnet: {
         kategori: 'vitrin',
         ad: 'Araç Kapı / Servis Magneti',
-        img: '',
+        img: [],
         badge: 'Araç',
         badgeColor: '#1565c0',
         kisaDesc: 'Mobil reklam · Tak-çıkar',
@@ -536,7 +536,7 @@ const urunler = {
     menu_baski: {
         kategori: 'vitrin',
         ad: 'Laminasyonlu Menü Baskısı',
-        img: '',
+        img: [],
         badge: 'Menü',
         badgeColor: '#2e7d32',
         kisaDesc: 'Silinebilir · Su geçirmez · Kafe/restoran',
@@ -555,7 +555,7 @@ const urunler = {
     kapi_giydirme: {
         kategori: 'okul',
         ad: 'Sınıf Kapı Giydirme',
-        img: 'images/okul-kurum.webp',
+        img: ['images/okul-kurum.webp'],
         badge: 'Laminasyonlu',
         badgeColor: '#e65100',
         kisaDesc: 'Sınıf kapıları · Silinebilir laminasyon',
@@ -570,7 +570,7 @@ const urunler = {
     koridor_tablolari: {
         kategori: 'okul',
         ad: 'Koridor Tabloları Serisi',
-        img: '',
+        img: [],
         badge: 'Seri Halinde',
         badgeColor: '#00695c',
         kisaDesc: 'Atatürk sözleri · Motivasyon · Bilim serileri',
@@ -586,7 +586,7 @@ const urunler = {
     tabela_yonlendirme: {
         kategori: 'okul',
         ad: 'Sınıf Tabelası & Yönlendirme Levhası',
-        img: '',
+        img: [],
         badge: 'Pleksi & Alüminyum',
         badgeColor: '#37474f',
         kisaDesc: 'Kapı isimliği · Kat/yön levhaları',
@@ -602,7 +602,7 @@ const urunler = {
     okul_panolari: {
         kategori: 'okul',
         ad: 'Okul Panoları',
-        img: '',
+        img: [],
         badge: 'İlan & Etkinlik',
         badgeColor: '#4e342e',
         kisaDesc: 'İlan, etkinlik ve tören panoları',
@@ -618,7 +618,7 @@ const urunler = {
     is_guvenligi_panolari: {
         kategori: 'okul',
         ad: 'İş Güvenliği Panoları',
-        img: '',
+        img: [],
         badge: 'Fabrika & Şantiye',
         badgeColor: '#e65100',
         kisaDesc: 'Uyarı ve yönlendirme levhaları',
@@ -636,33 +636,33 @@ const urunler = {
 /* ---------- TARAFTAR MAKETLERİ ---------- */
 const takimMaketleri = {
     samsunspor_yetiskin: { takim: 'Samsunspor', tip: 'Yetişkin Maketi', boy: '175 cm', fiyat: 2899, renk: '#e30613',
-        img: 'images/taraftar/samsunspor-yetiskin.jpg',
+        img: ['images/taraftar/samsunspor-yetiskin.jpg'],
         desc: "Samsunspor taraftarı olmanın gururunu evine taşı! 175 cm'lik gerçek boy maket, kırmızı-beyaz formasıyla odanın en dikkat çeken parçası olacak. Yüksek çözünürlüklü UV baskı, 3mm Dekota malzeme ve ayaklı stand ile kolay kurulum." },
     samsunspor_cocuk: { takim: 'Samsunspor', tip: 'Çocuk Maketi', boy: '140 cm', fiyat: 2899, renk: '#e30613',
-        img: 'images/taraftar/samsunspor-cocuk.jpg',
+        img: ['images/taraftar/samsunspor-cocuk.jpg'],
         desc: "Küçük Samsunsporlu'nun odasına dev bir neşe! 140 cm'lik bu özel maket, doğum günü sürprizleri, çocuk odası dekorasyonu ve fotoğraf çekimleri için mükemmel." },
     trabzonspor_yetiskin: { takim: 'Trabzonspor', tip: 'Yetişkin Maketi', boy: '175 cm', fiyat: 2899, renk: '#7a1f3d',
-        img: 'images/taraftar/trabzonspor-yetiskin.jpg',
+        img: ['images/taraftar/trabzonspor-yetiskin.jpg'],
         desc: "Trabzonspor taraftarı olmanın gururunu evine taşı! 175 cm'lik gerçek boy maket, bordo-mavi formasıyla odanın en dikkat çeken parçası olacak." },
     trabzonspor_cocuk: { takim: 'Trabzonspor', tip: 'Çocuk Maketi', boy: '140 cm', fiyat: 2899, renk: '#7a1f3d',
-        img: 'images/taraftar/trabzonspor-cocuk.jpg',
+        img: ['images/taraftar/trabzonspor-cocuk.jpg'],
         desc: "Küçük Trabzonsporlu'nun odasına dev bir neşe! Doğum günü sürprizleri ve çocuk odası dekorasyonu için mükemmel." },
     galatasaray_yetiskin: { takim: 'Galatasaray', tip: 'Yetişkin Maketi', boy: '175 cm', fiyat: 2899, renk: '#a90432',
-        img: 'images/taraftar/galatasaray-yetiskin.jpg',
+        img: ['images/taraftar/galatasaray-yetiskin.jpg'],
         desc: "Galatasaray taraftarı olmanın gururunu evine taşı! 175 cm'lik gerçek boy maket, sarı-kırmızı formasıyla odanın en dikkat çeken parçası olacak." },
     galatasaray_cocuk: { takim: 'Galatasaray', tip: 'Çocuk Maketi', boy: '140 cm', fiyat: 2899, renk: '#a90432',
-        img: 'images/taraftar/galatasaray-cocuk.jpg',
+        img: ['images/taraftar/galatasaray-cocuk.jpg'],
         desc: "Küçük Galatasaraylı'nın odasına dev bir neşe! Doğum günü sürprizleri ve çocuk odası dekorasyonu için mükemmel." },
     fenerbahce_yetiskin: { takim: 'Fenerbahçe', tip: 'Yetişkin Maketi', boy: '175 cm', fiyat: 2899, renk: '#0a3c73',
-        img: 'images/taraftar/fenerbahce-yetiskin.jpg',
+        img: ['images/taraftar/fenerbahce-yetiskin.jpg'],
         desc: "Fenerbahçe taraftarı olmanın gururunu evine taşı! 175 cm'lik gerçek boy maket, sarı-lacivert formasıyla odanın en dikkat çeken parçası olacak." },
     fenerbahce_cocuk: { takim: 'Fenerbahçe', tip: 'Çocuk Maketi', boy: '140 cm', fiyat: 2899, renk: '#0a3c73',
-        img: 'images/taraftar/fenerbahce-cocuk.jpg',
+        img: ['images/taraftar/fenerbahce-cocuk.jpg'],
         desc: "Küçük Fenerbahçeli'nin odasına dev bir neşe! Doğum günü sürprizleri ve çocuk odası dekorasyonu için mükemmel." },
     besiktas_yetiskin: { takim: 'Beşiktaş', tip: 'Yetişkin Maketi', boy: '175 cm', fiyat: 2899, renk: '#000000',
-        img: 'images/taraftar/besiktas-yetiskin.jpg',
+        img: ['images/taraftar/besiktas-yetiskin.jpg'],
         desc: "Beşiktaş taraftarı olmanın gururunu evine taşı! 175 cm'lik gerçek boy maket, siyah-beyaz formasıyla odanın en dikkat çeken parçası olacak." },
     besiktas_cocuk: { takim: 'Beşiktaş', tip: 'Çocuk Maketi', boy: '140 cm', fiyat: 2899, renk: '#000000',
-        img: 'images/taraftar/besiktas-cocuk.jpg',
+        img: ['images/taraftar/besiktas-cocuk.jpg'],
         desc: "Küçük Beşiktaşlı'nın odasına dev bir neşe! Doğum günü sürprizleri ve çocuk odası dekorasyonu için mükemmel." }
 };

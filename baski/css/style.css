@@ -421,6 +421,28 @@ nav {
     margin-bottom:12px; background:var(--bg); transition:transform .3s;
 }
 .modal-img:hover { transform:scale(1.02); }
+.modal-gallery { position:relative; margin-bottom:12px; }
+.gallery-main { position:relative; display:flex; align-items:center; }
+.gallery-main .modal-img { margin-bottom:0; }
+.gallery-arrow {
+    position:absolute; top:50%; transform:translateY(-50%); z-index:2;
+    width:36px; height:36px; border-radius:50%; border:none;
+    background:rgba(255,255,255,0.85); color:#222; font-size:24px; line-height:1;
+    cursor:pointer; display:flex; align-items:center; justify-content:center;
+    box-shadow:0 2px 8px rgba(0,0,0,0.15); transition:all .2s;
+    -webkit-tap-highlight-color:transparent; user-select:none;
+}
+.gallery-arrow:hover { background:#fff; transform:translateY(-50%) scale(1.1); }
+.gallery-prev { left:6px; }
+.gallery-next { right:6px; }
+.gallery-dots { display:flex; justify-content:center; gap:8px; margin-top:8px; flex-wrap:wrap; }
+.gallery-dot {
+    width:10px; height:10px; border-radius:50%; border:2px solid var(--border);
+    background:transparent; cursor:pointer; padding:0; transition:all .3s;
+    -webkit-tap-highlight-color:transparent;
+}
+.gallery-dot.active { background:var(--accent); border-color:var(--accent); transform:scale(1.2); }
+.gallery-dot:hover { border-color:var(--accent); }
 .modal-box h3 { font-size:1.35rem; text-transform:uppercase; margin-bottom:6px; color:var(--text); }
 .modal-desc { color:var(--text-secondary); font-size:0.93rem; line-height:1.7; margin:10px 0 14px; }
 .modal-price { font-weight:900; color:var(--accent); font-size:1.3rem; margin:10px 0; }
@@ -911,6 +933,8 @@ nav {
     .modal-select-group select { padding:10px 12px; font-size:15px; }
     .btn-wa { padding:10px 20px; font-size:0.82rem; min-height:40px; }
     .modal-note { font-size:0.68rem; padding:8px 10px; }
+    .gallery-arrow { width:30px; height:30px; font-size:20px; }
+    .gallery-dot { width:8px; height:8px; }
     .marquee-track { gap:30px; font-size:clamp(0.6rem,0.9vw,0.75rem); }
     .search-result { padding:10px 14px; gap:10px; }
     .search-result-img { width:40px; height:40px; }

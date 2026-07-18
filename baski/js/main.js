@@ -219,7 +219,7 @@
                 const fiyatStr = u.fiyat > 0 ? u.fiyat.toLocaleString('tr-TR') + ' TL' : '';
                 const aktif = i === 0 ? ' search-result-active' : '';
                 return `<div class="search-result${aktif}" data-index="${i}" tabindex="-1">
-                    <img class="search-result-img" src="${u.img}" alt="${u.ad}" loading="lazy">
+                    <img class="search-result-img" src="${Array.isArray(u.img) ? (u.img[0] || '') : (u.img || '')}" alt="${u.ad}" loading="lazy">
                     <div class="search-result-body">
                         <strong>${u.ad}</strong>
                         <span class="search-result-desc">${u.desc}</span>
@@ -354,15 +354,39 @@
        MODAL SİSTEMİ
        ================================================================ */
     let aktifUrunKey = null;
+    let galeriIndex = 0;
+    function galeriResimleri() {
+        const u = urunler[aktifUrunKey];
+        if (!u) return [];
+        return Array.isArray(u.img) ? u.img.filter(Boolean) : (u.img ? [u.img] : []);
+    }
+    function galeriGuncelle() {
+        const imgs = galeriResimleri();
+        const imgEl = document.getElementById('umImg');
+        const dotsEl = document.getElementById('umDots');
+        if (imgs.length === 0) {
+            imgEl.style.display = 'none';
+            dotsEl.innerHTML = '';
+            return;
+        }
+        imgEl.style.display = '';
+        imgEl.src = imgs[galeriIndex] || '';
+        dotsEl.innerHTML = imgs.map((_, i) =>
+            `<button class="gallery-dot${i === galeriIndex ? ' active' : ''}" onclick="event.stopPropagation();galeriGit(${i})" aria-label="Görsel ${i+1}"></button>`
+        ).join('');
+        document.querySelectorAll('.gallery-arrow').forEach(el => el.style.display = imgs.length > 1 ? '' : 'none');
+    }
+    window.galeriOnce = function(e) { if (e) e.stopPropagation(); const imgs = galeriResimleri(); galeriIndex = (galeriIndex - 1 + imgs.length) % imgs.length; galeriGuncelle(); };
+    window.galeriIleri = function(e) { if (e) e.stopPropagation(); const imgs = galeriResimleri(); galeriIndex = (galeriIndex + 1) % imgs.length; galeriGuncelle(); };
+    window.galeriGit = function(i) { galeriIndex = i; galeriGuncelle(); };
     window.urunModalAc = function(key) {
         if (typeof urunler === 'undefined' || !urunler[key]) return;
         const u = urunler[key];
         aktifUrunKey = key;
+        galeriIndex = 0;
         document.getElementById('umTitle').textContent = u.ad;
         document.getElementById('umDesc').textContent = u.uzunDesc;
-        document.getElementById('umImg').src = u.img;
-        document.getElementById('umImg').alt = u.ad;
-        document.getElementById('umImg').style.display = u.img ? '' : 'none';
+        galeriGuncelle();
         document.getElementById('umNot').textContent = u.notlar || '';
         const sel = document.getElementById('umSize');
         sel.innerHTML = u.fiyatlar.map((f, i) =>
@@ -409,9 +433,10 @@
         document.getElementById('tmTitle').textContent = u.takim + ' ' + u.tip;
         document.getElementById('tmDesc').textContent = u.desc;
         document.getElementById('tmPrice').textContent = u.fiyat.toLocaleString('tr-TR') + ' TL (KDV Dahil)';
-        document.getElementById('tmImg').src = u.img;
+        const tmImgs = Array.isArray(u.img) ? u.img.filter(Boolean) : (u.img ? [u.img] : []);
+        document.getElementById('tmImg').src = tmImgs[0] || '';
         document.getElementById('tmImg').alt = u.takim + ' ' + u.tip + ' ' + u.boy;
-        document.getElementById('tmImg').style.display = u.img ? '' : 'none';
+        document.getElementById('tmImg').style.display = tmImgs.length ? '' : 'none';
         const msg = 'Merhaba Uzman Reklam 👋\n\n' + u.takim + ' ' + u.tip + ' (' + u.boy + ') sipariş etmek istiyorum.\n💰 Fiyat: ' + u.fiyat.toLocaleString('tr-TR') + ' TL';
         document.getElementById('tmWaBtn').href = 'https://wa.me/' + ILETISIM.wa + '?text=' + encodeURIComponent(msg);
         document.getElementById('takimModal').classList.add('active');
