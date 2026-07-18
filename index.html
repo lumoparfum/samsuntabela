@@ -245,14 +245,19 @@
             .feature-box h4 { font-size: 0.7rem; margin-bottom: 3px; }
             .feature-box p { font-size: 0.6rem; line-height: 1.2; }
             .services-preview { padding: 40px 4% 20px; }
-            .services-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+            .services-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
             .section-title { padding: 40px 4% 20px; }
             .section-title h2 { font-size: 1.3rem; }
-            .service-box { padding: 15px 10px; }
-            .service-box i { font-size: 24px; margin-bottom: 8px; }
-            .service-box h3 { font-size: 0.8rem; }
-            .service-box p { font-size: 0.7rem; line-height: 1.3; margin: 8px 0; }
-            .read-more { font-size: 0.7rem; }
+            .service-box { padding: 12px 8px; }
+            .service-box i { font-size: 20px; margin-bottom: 6px; }
+            .service-box h3 { font-size: 0.75rem; }
+            .service-box p { font-size: 0.65rem; line-height: 1.2; margin: 6px 0; }
+            .read-more { font-size: 0.65rem; }
+            .work-grid { grid-template-columns: repeat(3, 1fr); gap: 6px; padding: 0 4% 40px; }
+            .work-card img { height: 120px; }
+            .work-info { padding: 8px; }
+            .work-info h3 { font-size: 0.7rem; }
+            .work-info p { font-size: 0.6rem; }
         }
 
         .services-preview { padding: 80px 5% 40px; background: #050505; }
@@ -686,6 +691,20 @@
         menu.classList.toggle('open');
         hamburger.classList.toggle('active');
     }
+
+    let reviewInterval;
+    function startReviewScroll() {
+        const wrapper = document.querySelector('.reviews-wrapper');
+        if (!wrapper) return;
+        reviewInterval = setInterval(() => {
+            if (wrapper.scrollLeft + wrapper.clientWidth >= wrapper.scrollWidth - 10) {
+                wrapper.scrollTo({ left: 0, behavior: 'smooth' });
+            } else {
+                wrapper.scrollBy({ left: 320, behavior: 'smooth' });
+            }
+        }, 4000);
+    }
+    document.addEventListener('DOMContentLoaded', startReviewScroll);
 </script>
 
 <div class="wp-float">
