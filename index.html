@@ -696,15 +696,27 @@
     function startReviewScroll() {
         const wrapper = document.querySelector('.reviews-wrapper');
         if (!wrapper) return;
+        const card = wrapper.querySelector('.review-card');
+        const step = card ? card.offsetWidth + 20 : 300;
+        wrapper.addEventListener('mouseenter', () => clearInterval(reviewInterval));
+        wrapper.addEventListener('mouseleave', () => {
+            reviewInterval = setInterval(() => {
+                if (wrapper.scrollLeft + wrapper.clientWidth >= wrapper.scrollWidth - 10) {
+                    wrapper.scrollTo({ left: 0, behavior: 'smooth' });
+                } else {
+                    wrapper.scrollBy({ left: step, behavior: 'smooth' });
+                }
+            }, 4000);
+        });
         reviewInterval = setInterval(() => {
             if (wrapper.scrollLeft + wrapper.clientWidth >= wrapper.scrollWidth - 10) {
                 wrapper.scrollTo({ left: 0, behavior: 'smooth' });
             } else {
-                wrapper.scrollBy({ left: 320, behavior: 'smooth' });
+                wrapper.scrollBy({ left: step, behavior: 'smooth' });
             }
         }, 4000);
     }
-    document.addEventListener('DOMContentLoaded', startReviewScroll);
+    startReviewScroll();
 </script>
 
 <div class="wp-float">
