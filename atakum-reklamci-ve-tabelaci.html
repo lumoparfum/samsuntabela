@@ -99,12 +99,22 @@
         .nav-links a:hover { color: var(--neon-sari); }
 
         @media (max-width: 1100px) { .logo-slogan { font-size: 20px; padding-left: 15px; } .logo a { font-size: 30px; } }
+        @media (min-width: 769px) { .hamburger, .mobile-menu { display: none !important; } }
         @media (max-width: 768px) {
-            nav { padding: 15px 4%; justify-content: center; }
-            .logo-area { display: flex !important; flex-direction: row !important; align-items: center !important; gap: 12px; width: 100%; justify-content: center; }
-            .logo a { font-size: 20px; white-space: nowrap; }
-            .logo-slogan { display: block !important; font-size: 14px; padding-left: 12px; border-left: 2px solid var(--neon-sari); white-space: normal; line-height: 1.2; color: #ddd; }
+            nav { padding: 12px 4%; justify-content: space-between; align-items: center; }
+            .logo-area { display: flex !important; flex-direction: row !important; align-items: center !important; gap: 8px; flex: 1; justify-content: flex-start; }
+            .logo a { font-size: 18px; white-space: nowrap; }
+            .logo-slogan { display: block !important; font-size: 11px; padding-left: 10px; border-left: 2px solid var(--neon-sari); white-space: normal; line-height: 1.3; color: #ddd; font-family: 'Inter', sans-serif; font-weight: 400; }
             .nav-links { display: none; }
+            .hamburger { display: flex; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; background: none; border: none; z-index: 1001; }
+            .hamburger span { display: block; width: 22px; height: 2px; background: #fff; border-radius: 2px; transition: 0.3s; }
+            .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+            .hamburger.active span:nth-child(2) { opacity: 0; }
+            .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+            .mobile-menu { display: none; position: fixed; top: 56px; left: 0; width: 100%; background: rgba(0,0,0,0.98); border-bottom: 1px solid #222; border-top: 1px solid #222; z-index: 999; padding: 20px 5%; flex-direction: column; gap: 0; }
+            .mobile-menu.open { display: flex; }
+            .mobile-menu a { color: #fff; text-decoration: none; font-size: 15px; font-weight: 800; text-transform: uppercase; padding: 15px 0; border-bottom: 1px solid #1a1a1a; letter-spacing: 0.5px; }
+            .mobile-menu a:last-child { border-bottom: none; }
         }
 
         .seo-hero { 
@@ -176,6 +186,43 @@
         .region-links span { color: #666; font-size: 0.85rem; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; margin-right: 15px; }
         .region-links a { color: var(--neon-sari); text-decoration: none; font-weight: 800; font-size: 0.9rem; transition: 0.3s; margin: 0 8px; display: inline-block; }
         .region-links a:hover { text-decoration: underline; }
+        @media (max-width: 768px) {
+            .seo-hero { padding: 120px 4% 40px; min-height: 55vh; }
+            .seo-hero h1 { font-size: clamp(1.4rem, 5vw, 2rem); }
+            .seo-hero p { font-size: 0.85rem; }
+            .map-section { padding: 0 4% 20px; margin: -50px auto 0; }
+            .district-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+            .district-card { padding: 12px 8px; font-size: 0.65rem; gap: 6px; }
+            .district-card i { font-size: 1.2rem; }
+            .seo-content-section { padding: 20px 4% 50px; }
+            .district-block { padding: 20px 15px; margin-bottom: 20px; }
+            .district-block h2 { font-size: 1.1rem; gap: 10px; }
+            .district-block h2 i { font-size: 1rem; }
+            .district-block p { font-size: 0.85rem; line-height: 1.5; margin-bottom: 15px; }
+            .block-ref-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+            .ref-item { height: 120px; }
+            .btn-panel { margin-top: 30px; }
+            .btn-panel .btn-main { padding: 14px 30px; font-size: 0.8rem; }
+            .footer-grid { grid-template-columns: 1fr; gap: 16px; padding: 30px 4%; }
+            .footer-box { padding: 0; background: none; border: none; text-align: left; }
+            .footer-box h3 { font-size: 0.9rem; margin-bottom: 12px !important; }
+            .map-container { height: 140px; margin: 12px 0; border-radius: 8px; }
+            .contact-info-list { margin: 0; }
+            .contact-info-list li { font-size: 0.8rem; padding: 8px 0; gap: 10px; align-items: flex-start; }
+            .contact-info-list i { font-size: 0.8rem; width: 18px; }
+            .contact-info-list a { color: #999; }
+            .footer-box [style*="dashed"] { padding: 12px 14px !important; margin-top: 14px !important; }
+            .footer-box [style*="dashed"] h4 { font-size: 0.8rem !important; margin-bottom: 8px !important; }
+            .footer-box [style*="dashed"] p { font-size: 0.75rem !important; line-height: 1.5 !important; margin: 4px 0 !important; }
+            .footer-box hr { margin: 16px 0 !important; }
+            .footer-box [style*="margin:0"] { margin: 0 !important; }
+            .footer-box [style*="margin:0"] li { font-size: 0.75rem !important; border-bottom: none !important; padding: 5px 0 !important; }
+            .footer-bottom { padding: 15px 4%; }
+            .footer-bottom p { font-size: 0.7rem; }
+            .region-links { padding: 12px 4%; }
+            .region-links span { display: block; font-size: 0.65rem; margin: 0 0 5px 0; }
+            .region-links a { font-size: 0.65rem; margin: 0 4px; }
+        }
     </style>
 </head>
 <body>
@@ -187,10 +234,18 @@
     </div>
     <div class="nav-links">
         <a href="index.html">ANASAYFA</a>
-        <a href="#bolgeler">ATAKUM MAHALLELERİ</a>
+        <a href="#bolgeler">MAHALLELER</a>
         <a href="#iletisim">İLETİŞİM</a>
     </div>
+    <button class="hamburger" onclick="toggleMobileMenu()" aria-label="Menü">
+        <span></span><span></span><span></span>
+    </button>
 </nav>
+<div class="mobile-menu" id="mobileMenu">
+    <a href="index.html" onclick="toggleMobileMenu()">ANASAYFA</a>
+    <a href="#bolgeler" onclick="toggleMobileMenu()">MAHALLELER</a>
+    <a href="#iletisim" onclick="toggleMobileMenu()">İLETİŞİM</a>
+</div>
 
 <section class="seo-hero">
     <h1>ATAKUM <span>REKLAMCI & TABELACI</span></h1>
@@ -352,10 +407,10 @@
         } 
     }
     lightbox.onclick = function(e) { if (e.target == lightbox) closeLightbox(); }
+    function toggleMobileMenu() { document.getElementById('mobileMenu').classList.toggle('open'); document.querySelector('.hamburger').classList.toggle('active'); }
 </script>
 
 <div class="wp-float">
-    <div class="mobile-nav-texts"><a href="index.html">ANASAYFA</a><a href="#bolgeler">MAHALLELER</a><a href="#iletisim">İLETİŞİM</a></div>
     <a href="https://www.instagram.com/uzman.reklamm/" class="wp-btn" target="_blank" style="background: #e4405f;"><i class="fab fa-instagram"></i></a>
     <a href="https://wa.me/905079605049" class="wp-btn" target="_blank" style="background: #25d366;" onclick="gtag('event', 'whatsapp_tiklama', {'sayfa': window.location.pathname});"><i class="fab fa-whatsapp"></i></a>
 </div>
