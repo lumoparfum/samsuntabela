@@ -181,7 +181,7 @@ const urunler = {
     foto_maket: {
         kategori: 'hediye',
         ad: 'Kişiye Özel Fotoğraf Maketi',
-        img: ['images/foto-maket.webp', 'images/foto-maket2.webp', 'images/foto-maket3.webp', 'images/foto-maket4.webp'],
+        img: ['images/foto-maket.webp', 'images/foto-maket2.webp', 'images/foto-maket3.webp'],
         badge: 'Kendi Maketin',
         badgeColor: '#00aeef',
         kisaDesc: 'Kendi fotoğrafından ayaklı maket · 40-175 cm',
@@ -352,7 +352,7 @@ const urunler = {
     cinsiyet_partisi: {
         kategori: 'ozelgun',
         ad: 'Cinsiyet Partisi Arka Fonu',
-        img: ['images/cinsiyet-partisi.webp', 'images/cinsiyet-partisi2.webp'],
+        img: ['images/cinsiyet-partisi.webp'],
         badge: 'Baby Reveal',
         badgeColor: '#ff80ab',
         kisaDesc: 'Pembe/mavi temalı · Branda',
