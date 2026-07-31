@@ -13,6 +13,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     
+    <meta name="theme-color" content="#050505">
     <meta name="thumbnail" content="https://samsuntabela.tr/web-app-manifest-512x512.png">
     <link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
@@ -22,8 +23,8 @@
     <link rel="manifest" href="site.webmanifest" />
     
     <title>Samsun Tabela & Reklamcı | Kutu Harf, Totem, Cephe Giydirme | Uzman Reklam</title>
-    <meta name="description" content="1973'ten bugüne Samsun, Bafra, Atakum ve tüm Karadeniz bölgesinde kutu harf, totem tabela, cephe giydirme ve kurumsal reklam çözümleri.">
-    <meta name="keywords" content="Samsun tabela, Samsun reklamcı, Bafra tabelacı, Atakum tabela, kutu harf, totem tabela, araç giydirme, Karadeniz reklam firması">
+    <meta name="description" content="1973'ten bugüne Samsun, Bafra, Atakum ve tüm Karadeniz bölgesinde kutu harf, krom harf, totem tabela, bayi tabelaları, yönlendirme sistemleri, cephe giydirme ve kurumsal reklam çözümleri.">
+    <meta name="keywords" content="Samsun tabela, Samsun reklamcı, Bafra tabelacı, Atakum tabela, kutu harf, krom harf tabela, totem tabela, bayi tabelaları, yönlendirme sistemleri, cam yazısı, hissedilebilir zemin, araç giydirme, Karadeniz reklam firması">
     <meta name="robots" content="index, follow, max-image-preview:large">
     <link rel="canonical" href="https://samsuntabela.tr">
     <meta property="og:type" content="website">
@@ -36,14 +37,14 @@
     <meta name="twitter:title" content="Samsun Tabela & Reklamcı | Uzman Reklam">
     <meta name="twitter:description" content="Samsun tabela, kutu harf ve cephe giydirme hizmetleri. 1973'ten beri Uzman Reklam güvencesiyle.">
     <meta name="twitter:image" content="https://samsuntabela.tr/og-image.jpg">
-    <link rel="preload" as="image" href="mediana.jpg" fetchpriority="high">
+    <link rel="preload" as="image" href="hero-1-m.jpg" fetchpriority="high" media="(max-width: 768px)">
+    <link rel="preload" as="image" href="hero-1.jpg" fetchpriority="high" media="(min-width: 769px)">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet"></noscript>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'">
-    <link rel="preload" as="image" href="mediana.jpg" fetchpriority="high">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"></noscript>
 
     <script type="application/ld+json">
@@ -70,19 +71,42 @@
       "aggregateRating": {
         "@type": "AggregateRating",
         "ratingValue": "4.6",
-        "reviewCount": "19"
+        "reviewCount": "22"
       },
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
         "name": "Tabela Hizmetleri",
         "itemListElement": [
           { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Kutu Harf Tabela" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Krom Harf Tabela" } },
           { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Totem Tabela" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Bayi Tabelaları" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Yönlendirme Sistemleri" } },
           { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Cephe Giydirme" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Araç Giydirme" } }
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Araç Giydirme" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Işıklı Pano Tabela" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Dijital Baskı ve Branda" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Cam Yazısı ve Folyo Uygulamaları" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "CNC ve Lazer Kesim" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Fuar Standı ve İç Mekan Reklam" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Görme Engelli Ürünleri ve Hissedilebilir Zemin" } }
         ]
       }
     }
+    </script>
+
+    <script>
+      /* Tema sayfa boyanmadan seçilir ki açılışta renk sıçraması olmasın.
+         Öncelik: kullanıcının daha önce seçtiği > cihazın kendi ayarı */
+      (function () {
+        try {
+          var kayitli = localStorage.getItem('tema');
+          var cihaz = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+          document.documentElement.setAttribute('data-theme', kayitli || cihaz);
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      })();
     </script>
 
     <style>
@@ -100,14 +124,19 @@
         
         /* NAV - GENEL VE PC TASARIMI */
         nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; background: rgba(0,0,0,0.95); position: fixed; width: 100%; top: 0; left: 0; z-index: 1000; border-bottom: 1px solid #222; }
-        .logo-area { display: flex; align-items: center; gap: 20px; }
+        .logo-area { display: flex; align-items: center; gap: 20px; min-width: 0; flex: 1 1 auto; overflow: hidden; padding-right: 28px; }
+        .logo { flex: 0 0 auto; }
         .logo a { font-weight: 900; font-size: 36px; letter-spacing: -2px; text-transform: uppercase; line-height: 1; white-space: nowrap; text-decoration: none; color: #fff; }
         .logo span { color: var(--neon-sari); }
-        .logo-slogan { font-family: 'Caveat', cursive; color: #fff; font-size: 24px; border-left: 2px solid var(--neon-sari); padding-left: 20px; font-weight: 600; line-height: 1; white-space: nowrap; letter-spacing: 0.5px; }
-        
-        .nav-links { display: flex; align-items: center; gap: 30px; }
-        .nav-links a { color: #fff; text-decoration: none; font-size: 16px; font-weight: 800; text-transform: uppercase; transition: color 0.3s; cursor: pointer; }
+        .logo-slogan { font-family: 'Caveat', cursive; color: #fff; font-size: 24px; border-left: 2px solid var(--neon-sari); padding-left: 20px; font-weight: 600; line-height: 1; white-space: nowrap; letter-spacing: 0.5px; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+
+        .nav-links { display: flex; align-items: center; gap: 28px; }
+        .nav-links a { color: #fff; text-decoration: none; font-size: 16px; font-weight: 800; text-transform: uppercase; transition: color 0.3s; cursor: pointer; white-space: nowrap; }
         .nav-links a:hover { color: var(--neon-sari); }
+        /* Menü tarafı asla sıkışmasın; sıkışan taraf slogan olsun */
+        .nav-sag { flex: 0 0 auto; }
+        /* Slogan yalnızca gerçekten yer olan geniş ekranda görünür; yoksa menüye çarpıyor */
+        @media (max-width: 1650px) and (min-width: 769px) { .logo-slogan { display: none; } }
 
         /* LAPTOP/TABLET SIKIŞMA ÖNLEYİCİ */
         @media (max-width: 1100px) {
@@ -134,16 +163,21 @@
                 font-size: 18px; 
                 white-space: nowrap;
             }
-            .logo-slogan { 
-                display: block !important; 
-                font-size: 11px; 
-                padding-left: 10px; 
-                border-left: 2px solid var(--neon-sari); 
-                white-space: normal; 
-                line-height: 1.3;
-                color: #ddd;
+            .logo-slogan {
+                display: -webkit-box !important;
+                -webkit-line-clamp: 2;          /* 4 satıra bölünüp menüyü şişirmesin */
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                font-size: 10px;
+                padding-left: 9px;
+                border-left: 2px solid var(--neon-sari);
+                white-space: normal;
+                line-height: 1.25;
+                max-height: 25px;
+                color: #b9b9b9;
                 font-family: 'Inter', sans-serif;
                 font-weight: 400;
+                text-overflow: unset;
             }
             .nav-links { 
                 display: none; 
@@ -151,12 +185,18 @@
             .hamburger {
                 display: flex;
                 flex-direction: column;
+                justify-content: center;
+                align-items: center;
                 gap: 5px;
                 cursor: pointer;
-                padding: 8px;
+                width: 44px;
+                height: 44px;
+                flex: 0 0 44px;
+                padding: 0;
                 background: none;
                 border: none;
                 z-index: 1001;
+                -webkit-tap-highlight-color: transparent;
             }
             .hamburger span {
                 display: block;
@@ -178,7 +218,9 @@
             .mobile-menu {
                 display: none;
                 position: fixed;
-                top: 56px;
+                /* Menünün gerçek yüksekliği JS ile ölçülüyor; sabit 56px tutturmak
+                   slogan iki satır olunca boşluk/örtüşme yaratıyordu. */
+                top: var(--nav-h, 56px);
                 left: 0;
                 width: 100%;
                 background: rgba(0,0,0,0.98);
@@ -208,13 +250,24 @@
             }
         }
         
-        .hero { position: relative; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; overflow: hidden; width: 100%; }
+        .hero { position: relative; height: 100vh; height: 100svh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; overflow: hidden; width: 100%; }
         .hero-slider { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background-color: #000; }
-        .slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; filter: brightness(0.3); opacity: 0; animation: fadeSlide 15s infinite; transform: translateZ(0); }
-        .slide:nth-child(1) { background-image: url('mediana.jpg'); animation-delay: 0s; }
-        .slide:nth-child(2) { background-image: url('liwhospitl.jpg'); animation-delay: 5s; } 
-        .slide:nth-child(3) { background-image: url('piazzatorem.jpg'); animation-delay: 10s; }
-        @keyframes fadeSlide { 0%, 100% { opacity: 0; } 10%, 33% { opacity: 1; } 43% { opacity: 0; } }
+        .slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; filter: brightness(0.3); opacity: 0; animation: fadeSlide 20s infinite; transform: translateZ(0); }
+        /* Hero için ayrı dosyalar: galeri kartları küçük kalsın diye.
+           Telefona 900px, masaüstüne büyük sürüm gider.
+           Sıra: Medibafra - Liv Hospital - Piazza AVM - Entek */
+        .slide:nth-child(1) { background-image: url('hero-1-m.jpg'); animation-delay: 0s; }
+        .slide:nth-child(2) { background-image: url('hero-2-m.jpg'); animation-delay: 5s; }
+        .slide:nth-child(3) { background-image: url('hero-3-m.jpg'); animation-delay: 10s; }
+        .slide:nth-child(4) { background-image: url('hero-4-m.jpg'); animation-delay: 15s; }
+        @media (min-width: 769px) {
+            .slide:nth-child(1) { background-image: url('hero-1.jpg'); }
+            .slide:nth-child(2) { background-image: url('hero-2.jpg'); }
+            .slide:nth-child(3) { background-image: url('hero-3.jpg'); }
+            .slide:nth-child(4) { background-image: url('hero-4.jpg'); }
+        }
+        /* 4 slayt x 5 saniye = 20 saniyelik tur */
+        @keyframes fadeSlide { 0%, 100% { opacity: 0; } 7%, 25% { opacity: 1; } 32% { opacity: 0; } }
 
         .hero-content { z-index: 1; padding: 0 5%; display: flex; flex-direction: column; align-items: center; justify-content: center; }
         .hero h1 { font-size: clamp(2.5rem, 7vw, 5rem); font-weight: 900; margin-bottom: 20px; line-height: 1.1; letter-spacing: -1px; color: #fff; text-shadow: 0 2px 10px rgba(0,0,0,0.5); text-align: center; }
@@ -248,18 +301,43 @@
         .section-title { padding: 80px 5% 30px; text-align: center; }
         .section-title h2 { font-size: 2rem; text-transform: uppercase; color: var(--neon-sari); margin: 0 0 10px; }
 
-        .gallery-filters { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 40px; padding: 0 5%; }
-        .filter-btn { background: #111; color: #fff; border: 1px solid #333; padding: 10px 25px; border-radius: 30px; cursor: pointer; transition: 0.3s; font-weight: 600; font-size: 0.9rem; }
+        /* Sabit menü, bağlantıyla atlanan başlığın üstünü kapatmasın.
+           Ölçü JS'ten gelen gerçek menü yüksekliğine bağlı. */
+        #hakkimizda, #hizmetler, #projeler, #iletisim, #gallery { scroll-margin-top: calc(var(--nav-h, 88px) + 22px); }
+
+        /* ---- GALERİ ARAMA KUTUSU ---- */
+        .gallery-search-wrap { max-width: 560px; margin: 0 auto 22px; padding: 0 5%; position: relative; }
+        .gallery-search-box { position: relative; display: flex; align-items: center; }
+        .gallery-search-box i.search-icon { position: absolute; left: 20px; color: var(--neon-sari); font-size: 1.05rem; pointer-events: none; }
+        #gallerySearch { width: 100%; background: #101010; border: 2px solid #2a2a2a; border-radius: 50px; padding: 16px 52px 16px 50px; color: #fff; font-size: 1rem; font-family: 'Inter', sans-serif; outline: none; transition: 0.25s; -webkit-appearance: none; appearance: none; }
+        #gallerySearch::placeholder { color: #777; }
+        #gallerySearch:focus { border-color: var(--neon-sari); background: #0a0a0a; }
+        #searchClear { position: absolute; right: 14px; width: 30px; height: 30px; border-radius: 50%; border: none; background: #2a2a2a; color: #fff; font-size: 1rem; line-height: 1; cursor: pointer; display: none; align-items: center; justify-content: center; }
+        #searchClear.show { display: flex; }
+
+        /* ---- KATEGORİ ŞERİDİ ---- */
+        .gallery-filters { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 30px; padding: 0 5%; }
+        .filter-btn { background: #111; color: #fff; border: 1px solid #333; padding: 10px 22px; min-height: 44px; border-radius: 30px; cursor: pointer; transition: 0.3s; font-weight: 600; font-size: 0.9rem; white-space: nowrap; font-family: 'Inter', sans-serif; }
+        .filter-btn .cnt { color: #777; font-weight: 800; font-size: 0.78rem; margin-left: 6px; }
         .filter-btn.active, .filter-btn:hover { background: var(--neon-sari); color: #000; border-color: var(--neon-sari); }
+        .filter-btn.active .cnt, .filter-btn:hover .cnt { color: #000; opacity: 0.55; }
 
         .work-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; padding: 0 5% 80px; }
-        .work-card { background: var(--card-bg); border-radius: 10px; overflow: hidden; border: 1px solid #222; cursor: pointer; transition: 0.4s; }
+        .work-card { background: var(--card-bg); border-radius: 10px; overflow: hidden; border: 1px solid #222; cursor: pointer; transition: 0.4s; position: relative; }
         .work-card.hide { display: none; }
-        .work-card img { width: 100%; height: 250px; object-fit: cover; transition: 0.4s; }
+        .work-card img { width: 100%; height: 250px; object-fit: cover; transition: 0.4s; display: block; background: #141414; }
         .work-card:hover img { transform: scale(1.05); filter: brightness(1.1); }
+        .cat-badge { position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.78); color: var(--neon-sari); font-size: 0.62rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.4px; padding: 5px 10px; border-radius: 20px; border: 1px solid rgba(204,255,0,0.35); backdrop-filter: blur(4px); pointer-events: none; }
         .work-info { padding: 15px; background: #0c0c0c; border-top: 1px solid #1a1a1a; text-align: center; }
         .work-info h3 { margin: 0; font-size: 0.95rem; color: #fff; text-transform: uppercase; }
-        .work-info p { margin: 5px 0 0; font-size: 0.75rem; color: #666; }
+        .work-info p { margin: 5px 0 0; font-size: 0.75rem; color: #949494; }
+
+        /* ---- SONUÇ YOK ---- */
+        #noResults { display: none; text-align: center; padding: 50px 5% 80px; }
+        #noResults.show { display: block; }
+        #noResults i { font-size: 42px; color: #333; margin-bottom: 18px; }
+        #noResults h3 { color: #fff; font-size: 1.2rem; margin: 0 0 8px; }
+        #noResults p { color: #888; font-size: 0.95rem; margin: 0 0 22px; }
 
         .reviews-section { padding: 60px 5% 80px; background: #050505; border-top: 1px solid #1a1a1a; }
         .google-badge { display: flex; align-items: center; justify-content: center; gap: 15px; background: #111; max-width: 320px; margin: 0 auto 40px; padding: 15px 25px; border-radius: 50px; border: 1px solid #333; }
@@ -310,13 +388,21 @@
         .sub-page-content .btn-main { margin-top: 20px; display: inline-block; }
         @media (max-width: 768px) { .sub-page-content { padding: 30px 20px; } .sub-page-content h2 { font-size: 1.6rem; } .close-sub-page { top: 15px; right: 15px; width: 40px; height: 40px; font-size: 24px; } }
 
-        #lightbox { position: fixed; z-index: 9999; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); display: none; justify-content: center; align-items: center; }
-        #lightbox img { max-width: 90%; max-height: 80%; border: 3px solid #333; border-radius: 5px; }
-        #lb-close, #lb-prev, #lb-next { position: absolute; font-size: 40px; color: #fff; cursor: pointer; background: rgba(0,0,0,0.5); width: 60px; text-align: center; }
-        #lb-close { top: 30px; right: 30px; width: auto; background: none; }
-        #lb-prev { left: 10px; top: 50%; transform: translateY(-50%); }
-        #lb-next { right: 10px; top: 50%; transform: translateY(-50%); }
-        #lb-caption { position: absolute; bottom: 40px; color: #fff; font-size: 1.2rem; text-align: center; width: 80%; background: rgba(0,0,0,0.7); padding: 15px; border-radius: 8px; font-weight: bold; }
+        #lightbox { position: fixed; z-index: 9999; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); display: none; justify-content: center; align-items: center; touch-action: pan-y; }
+        #lightbox img { max-width: 90%; max-height: 78%; border: 3px solid #333; border-radius: 5px; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; }
+        #lb-close, #lb-prev, #lb-next { position: absolute; font-size: 40px; color: #fff; cursor: pointer; background: rgba(0,0,0,0.5); width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; border-radius: 50%; text-align: center; user-select: none; -webkit-user-select: none; }
+        #lb-close { top: 25px; right: 20px; width: 52px; height: 52px; font-size: 34px; background: rgba(255,255,255,0.12); }
+        #lb-prev { left: 12px; top: 50%; transform: translateY(-50%); }
+        #lb-next { right: 12px; top: 50%; transform: translateY(-50%); }
+        #lb-caption { position: absolute; bottom: 30px; color: #fff; font-size: 1.05rem; text-align: center; max-width: 80%; background: rgba(0,0,0,0.75); padding: 12px 18px; border-radius: 10px; font-weight: bold; line-height: 1.4; }
+        #lb-counter { position: absolute; top: 32px; left: 20px; color: #999; font-size: 0.9rem; font-weight: 700; background: rgba(0,0,0,0.5); padding: 8px 14px; border-radius: 20px; }
+        @media (max-width: 768px) {
+            #lightbox img { max-width: 94%; max-height: 68%; }
+            #lb-prev, #lb-next { width: 46px; height: 46px; font-size: 26px; background: rgba(0,0,0,0.45); }
+            #lb-close { top: 14px; right: 12px; width: 46px; height: 46px; font-size: 28px; }
+            #lb-counter { top: 20px; left: 12px; font-size: 0.78rem; padding: 6px 12px; }
+            #lb-caption { bottom: 18px; font-size: 0.85rem; max-width: 92%; padding: 10px 14px; }
+        }
 
         .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; padding: 60px 5%; background: #000; border-top: 1px solid #111; }
         .footer-box { background: #080808; padding: 30px; border-radius: 15px; border: 1px solid #1a1a1a; text-align: center; }
@@ -342,19 +428,43 @@
             .feature-box h4 { font-size: 0.7rem; margin-bottom: 3px; }
             .feature-box p { font-size: 0.6rem; line-height: 1.2; }
             .services-preview { padding: 30px 4% 10px; }
-            .services-grid { grid-template-columns: repeat(4, 1fr); gap: 6px; }
+            /* MOBİLDE 2 SÜTUN: parmak hedefi büyük, yazılar okunur, "incele" görünür */
+            .services-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
             .section-title { padding: 30px 4% 15px; }
             .section-title h2 { font-size: 1.2rem; }
-            .service-box { padding: 10px 4px; border-radius: 8px; }
-            .service-box i { font-size: 18px; margin-bottom: 4px; }
-            .service-box h3 { font-size: 0.65rem; }
-            .service-box p { display: none; }
-            .read-more { display: none; }
-            .work-grid { grid-template-columns: repeat(3, 1fr); gap: 6px; padding: 0 4% 40px; }
-            .work-card img { height: 120px; }
-            .work-info { padding: 8px; }
-            .work-info h3 { font-size: 0.7rem; }
-            .work-info p { font-size: 0.6rem; }
+            .service-box { padding: 15px 11px 12px; border-radius: 12px; min-height: 118px; display: flex; flex-direction: column; justify-content: flex-start; }
+            .service-box i { font-size: 22px; margin-bottom: 8px; opacity: 0.85; }
+            .service-box h3 { font-size: 0.78rem; line-height: 1.22; }
+            .service-box p { display: block; font-size: 0.66rem; line-height: 1.3; margin: 6px 0 0; color: #8a8a8a; }
+            /* Sekiz kartta sekiz kez sarı büyük harf "DETAYLARI İNCELE" göz yoruyordu;
+               sessiz bir ipucuna indirildi. */
+            .read-more { display: block; margin-top: auto; padding-top: 8px; font-size: 0.58rem; color: #9a9a9a; text-transform: none; font-weight: 600; letter-spacing: 0.2px; }
+            .service-box:hover .read-more, .service-box:active .read-more { color: var(--neon-sari); }
+
+            /* ARAMA + KATEGORİ ŞERİDİ */
+            .gallery-search-wrap { padding: 0 4%; margin-bottom: 16px; }
+            #gallerySearch { padding: 14px 48px 14px 46px; font-size: 16px; }
+            .gallery-filters {
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                justify-content: flex-start;
+                padding: 4px 4% 12px;
+                margin-bottom: 18px;
+                gap: 8px;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+                scroll-snap-type: x proximity;
+            }
+            .gallery-filters::-webkit-scrollbar { display: none; }
+            .filter-btn { flex: 0 0 auto; padding: 11px 18px; font-size: 0.82rem; scroll-snap-align: start; }
+
+            /* GALERİ: 2 SÜTUN, tabela yazısı okunacak kadar büyük */
+            .work-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; padding: 0 4% 40px; }
+            .work-card img { height: 150px; }
+            .cat-badge { top: 6px; left: 6px; font-size: 0.55rem; padding: 4px 8px; }
+            .work-info { padding: 9px 7px; }
+            .work-info h3 { font-size: 0.72rem; line-height: 1.2; }
+            .work-info p { font-size: 0.62rem; }
             .seo-footer-section { padding: 40px 4%; }
             .seo-footer-container h2 { font-size: 1.2rem; padding-bottom: 10px; margin-bottom: 20px; }
             .seo-columns { gap: 20px; }
@@ -398,6 +508,203 @@
 .contact-info-list i { color: var(--neon-sari); font-size: 1.2rem; width: 25px; text-align: center; }
 .contact-info-list a { color: #bbb; text-decoration: none; transition: 0.3s; }
 .contact-info-list a:hover { color: var(--neon-sari); }
+
+/* =======================================================================
+   GÜNDÜZ (AÇIK) MOD
+   Koyu tema varsayılan; aşağısı yalnızca data-theme="light" iken devreye girer.
+   Hero ve lightbox bilerek koyu bırakıldı: ikisi de fotoğraf üzerine yazı.
+   ======================================================================= */
+:root[data-theme="light"] {
+    --neon-sari: #4f6b00;     /* yazı/başlık için okunur koyu yeşil */
+    --parlak: #ccff00;        /* düğme zemini için marka sarısı */
+    --koyu-bg: #ffffff;
+    --card-bg: #ffffff;
+}
+:root[data-theme="light"] body { background-color: #ffffff; color: #15170f; }
+:root[data-theme="light"] ::-webkit-scrollbar-track { background: #eef0e8; }
+:root[data-theme="light"] ::-webkit-scrollbar-thumb { background: #c3c9b6; }
+:root[data-theme="light"] * { scrollbar-color: #c3c9b6 #eef0e8; }
+
+/* Düğmeler marka sarısında kalsın (siyah yazı = yüksek okunurluk) */
+:root[data-theme="light"] .btn-main { background: var(--parlak); color: #000; }
+:root[data-theme="light"] .btn-main:hover { background: #d9ff4d; }
+:root[data-theme="light"] .filter-btn.active,
+:root[data-theme="light"] .filter-btn:hover { background: var(--parlak); color: #000; border-color: #b4e300; }
+
+/* Menü */
+:root[data-theme="light"] nav { background: rgba(255,255,255,0.96); border-bottom-color: #e2e6da; }
+:root[data-theme="light"] .logo a { color: #15170f; }
+:root[data-theme="light"] .logo-slogan { color: #4a5040; border-left-color: #9fc400; }
+:root[data-theme="light"] .nav-links a { color: #15170f; }
+:root[data-theme="light"] .hamburger span { background: #15170f; }
+:root[data-theme="light"] .mobile-menu { background: rgba(255,255,255,0.99); border-color: #e2e6da; }
+:root[data-theme="light"] .mobile-menu a { color: #15170f; border-bottom-color: #eceee6; }
+
+/* Hero fotoğraf üzeri: yazılar beyaz kalmalı */
+:root[data-theme="light"] .hero h1 { color: #fff; }
+:root[data-theme="light"] .hero h1 span { color: var(--parlak); }
+:root[data-theme="light"] .hero p { color: #f0f0f0; }
+
+/* Bölümler */
+:root[data-theme="light"] .about-section { background: #f7f8f3; border-color: #e6e9df; }
+:root[data-theme="light"] .about-text p { color: #464c3c; }
+:root[data-theme="light"] .feature-box { background: #fff; border-color: #e2e6da; }
+:root[data-theme="light"] .feature-box h4 { color: #15170f; }
+:root[data-theme="light"] .feature-box p { color: #6a7060; }
+:root[data-theme="light"] .services-preview { background: #fff; }
+:root[data-theme="light"] .service-box { background: #fbfcf8; border-color: #e2e6da; }
+:root[data-theme="light"] .service-box h3 { color: #15170f; }
+:root[data-theme="light"] .service-box p { color: #6a7060 !important; }
+:root[data-theme="light"] .read-more { color: #7b8270; }
+:root[data-theme="light"] .service-box:hover .read-more { color: #3d5400; }
+:root[data-theme="light"] .logo-slogan { color: #4a5040; }
+:root[data-theme="light"] .section-title p { color: #6a7060 !important; }
+
+/* Arama + kategoriler */
+:root[data-theme="light"] #gallerySearch { background: #f4f6ee; border-color: #d9ded0; color: #15170f; }
+:root[data-theme="light"] #gallerySearch:focus { background: #fff; border-color: #9fc400; }
+:root[data-theme="light"] #gallerySearch::placeholder { color: #8b917f; }
+:root[data-theme="light"] #searchClear { background: #d9ded0; color: #333; }
+:root[data-theme="light"] .filter-btn { background: #f2f4ec; color: #262a1c; border-color: #dbe0d1; }
+:root[data-theme="light"] .filter-btn .cnt { color: #7c8370; }
+
+/* Galeri kartları */
+:root[data-theme="light"] .work-card { background: #fff; border-color: #e2e6da; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+:root[data-theme="light"] .work-card img { background: #eef0e8; }
+:root[data-theme="light"] .work-info { background: #fbfcf8; border-top-color: #eceee6; }
+:root[data-theme="light"] .work-info h3 { color: #15170f; }
+:root[data-theme="light"] .work-info p { color: #6a7060; }
+:root[data-theme="light"] .cat-badge { background: rgba(255,255,255,0.92); color: #3d5400; border-color: rgba(0,0,0,0.15); }
+:root[data-theme="light"] #noResults i { color: #c3c9b6; }
+:root[data-theme="light"] #noResults h3 { color: #15170f; }
+:root[data-theme="light"] #noResults p { color: #6a7060; }
+
+/* Yorumlar */
+:root[data-theme="light"] .reviews-section { background: #f7f8f3; border-color: #e6e9df; }
+:root[data-theme="light"] .google-badge { background: #fff; border-color: #dbe0d1; }
+:root[data-theme="light"] .google-badge strong { color: #15170f !important; }
+:root[data-theme="light"] .google-badge span[style*="#aaa"] { color: #6a7060 !important; }
+:root[data-theme="light"] .review-card { background: #fff; border-color: #e2e6da; }
+:root[data-theme="light"] .review-name { color: #15170f; }
+:root[data-theme="light"] .review-text { color: #464c3c; }
+
+/* SSS */
+:root[data-theme="light"] .faq-section { background: #fff; border-color: #e6e9df; }
+:root[data-theme="light"] .faq-toggle { background: #fbfcf8; border-color: #e2e6da; }
+:root[data-theme="light"] .faq-toggle-header { background: #fbfcf8; }
+:root[data-theme="light"] .faq-content { background: #fff; }
+:root[data-theme="light"] .faq-content.open { border-top-color: #e6e9df; }
+:root[data-theme="light"] .faq-item { border-bottom-color: #ececde; }
+:root[data-theme="light"] .faq-question { color: #15170f; }
+:root[data-theme="light"] .faq-answer { color: #464c3c; border-left-color: #9fc400; }
+
+/* SEO bölümü + alt bilgi */
+:root[data-theme="light"] .seo-footer-section { background: #f7f8f3; border-color: #e6e9df; }
+:root[data-theme="light"] .seo-footer-container h2 { border-bottom-color: #dfe3d6; }
+:root[data-theme="light"] .seo-col h3 { color: #15170f; }
+:root[data-theme="light"] .seo-col p { color: #5b6150; }
+:root[data-theme="light"] .footer-grid { background: #eef0e8; border-color: #dfe3d6; }
+:root[data-theme="light"] .footer-box { background: #fff; border-color: #e2e6da; }
+:root[data-theme="light"] .footer-box h4 { color: #15170f !important; }
+:root[data-theme="light"] .contact-info-list li { color: #464c3c; border-bottom-color: #ececde; }
+:root[data-theme="light"] .contact-info-list a { color: #464c3c; }
+:root[data-theme="light"] .footer-box [style*="dashed"] { background: #fafbf5 !important; }
+:root[data-theme="light"] .footer-box [style*="dashed"] p { color: #4f5544 !important; }
+:root[data-theme="light"] .footer-box [style*="dashed"] strong { color: #22261a; }
+:root[data-theme="light"] .footer-box hr { border-top-color: #e6e9df !important; }
+:root[data-theme="light"] .footer-bottom { background: #e7eade; border-color: #dfe3d6; }
+:root[data-theme="light"] .footer-bottom p { color: #5b6150; }
+:root[data-theme="light"] .footer-bottom-links a { color: #5b6150; }
+:root[data-theme="light"] .city-links { background: #e7eade !important; border-color: #dfe3d6 !important; }
+:root[data-theme="light"] .city-links > span:first-child { color: #6a7060 !important; }
+:root[data-theme="light"] .city-links > span { color: #b9bfa9 !important; }
+:root[data-theme="light"] .city-links a { color: #3d5400 !important; }
+
+/* Hizmet detay pencereleri */
+:root[data-theme="light"] .sub-page-overlay { background: #f4f6ee; }
+:root[data-theme="light"] .sub-page-content { background: #fff; border-color: #e2e6da; }
+:root[data-theme="light"] .sub-page-content h3 { color: #15170f; }
+:root[data-theme="light"] .sub-page-content p,
+:root[data-theme="light"] .sub-page-content li { color: #404636; }
+:root[data-theme="light"] .close-sub-page { background: #e7eade; color: #3d5400; border-color: #cdd4bd; }
+:root[data-theme="light"] .close-sub-page:hover { background: var(--parlak); color: #000; }
+
+/* --- HAREKETİ AZALT ---
+   Telefonda/bilgisayarda "hareketi azalt" ayarı açıksa sayfa kendi kendine
+   oynamasın. iOS'ta bu ayar yaygın; sürekli kayan içerik yorucu ve
+   baş dönmesi yapabiliyor. */
+@media (prefers-reduced-motion: reduce) {
+    .slide { animation: none !important; opacity: 0 !important; }
+    .slide:nth-child(1) { opacity: 1 !important; }
+    .hero-content .btn-main { animation: none !important; }
+    .work-card, .service-box, .feature-box, .btn-main, .filter-btn, .tema-btn { transition: none !important; }
+    .work-card:hover img { transform: none !important; }
+    .service-box:hover, .feature-box:hover { transform: none !important; }
+    html { scroll-behavior: auto !important; }
+}
+
+/* --- "DAHA FAZLA" DÜĞMELERİ --- */
+/* Sayfa açılışında her şeyi birden göstermiyoruz; ziyaretçi yorulmasın. */
+.service-box.gizli-hizmet { display: none; }
+/* Açılan kart, o ekrandaki normal kartla AYNI yerleşimi almalı:
+   masaüstünde kartlar block, mobilde flex-column. Burada flex verilince
+   masaüstünde ikon/başlık/yazı yan yana diziliyordu. */
+.services-grid.acik .service-box.gizli-hizmet { display: block; }
+@media (max-width: 768px) {
+    .services-grid.acik .service-box.gizli-hizmet { display: flex; }
+}
+.work-card.sayfa-disi { display: none; }
+
+.dahafazla-sar { text-align: center; padding: 0 5% 70px; }
+.dahafazla {
+    background: transparent;
+    color: var(--neon-sari);
+    border: 2px solid var(--neon-sari);
+    padding: 15px 38px;
+    min-height: 48px;
+    border-radius: 50px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: 0.25s;
+    -webkit-tap-highlight-color: transparent;
+}
+.dahafazla:hover { background: var(--neon-sari); color: #000; }
+:root[data-theme="light"] .dahafazla:hover { background: var(--parlak); color: #000; border-color: #b4e300; }
+.dahafazla .adet { opacity: 0.6; font-weight: 600; }
+.hizmet-dahafazla-sar { text-align: center; padding: 26px 5% 0; }
+@media (max-width: 768px) {
+    .dahafazla { padding: 14px 26px; font-size: 0.8rem; width: 100%; max-width: 340px; }
+    .dahafazla-sar { padding: 0 4% 40px; }
+    .hizmet-dahafazla-sar { padding: 18px 4% 0; }
+}
+
+/* --- TEMA DÜĞMESİ --- */
+.tema-btn {
+    width: 44px; height: 44px; flex: 0 0 44px;
+    border-radius: 50%;
+    border: 1px solid #333;
+    background: #111;
+    color: var(--neon-sari);
+    font-size: 17px; line-height: 1;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; transition: 0.25s; padding: 0;
+    -webkit-tap-highlight-color: transparent;
+}
+.tema-btn:hover { border-color: var(--neon-sari); transform: scale(1.06); }
+:root[data-theme="light"] .tema-btn { background: #f2f4ec; border-color: #cdd4bd; color: #4f6b00; }
+.tema-btn .ay { display: none; }
+.tema-btn .gunes { display: block; }
+:root[data-theme="light"] .tema-btn .ay { display: block; }
+:root[data-theme="light"] .tema-btn .gunes { display: none; }
+.nav-sag { display: flex; align-items: center; gap: 14px; }
+@media (max-width: 768px) {
+    .nav-sag { gap: 2px; }
+    .tema-btn { width: 44px; height: 44px; flex: 0 0 44px; font-size: 15px; }
+}
     </style>
 </head>
 <body>
@@ -407,16 +714,22 @@
         <div class="logo"><a href="/">UZMAN<span>REKLAM</span></a></div>
         <div class="logo-slogan">Karadeniz bayi tabelaları çözüm ortağınız...</div>
     </div>
-    <div class="nav-links">
-        <a href="#hakkimizda">HAKKIMIZDA</a>
-        <a href="#hizmetler">HİZMETLER</a>
-        <a href="#projeler">PROJELER</a>
-        <a href="baski.html">DİJİTAL BASKI</a>
-        <a href="#iletisim">İLETİŞİM</a>
+    <div class="nav-sag">
+        <div class="nav-links">
+            <a href="#hakkimizda">HAKKIMIZDA</a>
+            <a href="#hizmetler">HİZMETLER</a>
+            <a href="#projeler">PROJELER</a>
+            <a href="baski.html">DİJİTAL BASKI</a>
+            <a href="#iletisim">İLETİŞİM</a>
+        </div>
+        <button class="tema-btn" type="button" onclick="temaDegistir()" aria-label="Gece / gündüz modunu değiştir" title="Gece / gündüz modu">
+            <svg class="gunes" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.6v2M12 19.4v2M2.6 12h2M19.4 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4"/></svg>
+            <svg class="ay" width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M20.7 14.6a8.7 8.7 0 0 1-11.3-11 8.8 8.8 0 1 0 11.3 11z"/></svg>
+        </button>
+        <button class="hamburger" onclick="toggleMobileMenu()" aria-label="Menü">
+            <span></span><span></span><span></span>
+        </button>
     </div>
-    <button class="hamburger" onclick="toggleMobileMenu()" aria-label="Menü">
-        <span></span><span></span><span></span>
-    </button>
 </nav>
 <div class="mobile-menu" id="mobileMenu">
     <a href="#hakkimizda" onclick="toggleMobileMenu()">HAKKIMIZDA</a>
@@ -427,7 +740,7 @@
 </div>
 
 <section class="hero">
-    <div class="hero-slider"><div class="slide"></div><div class="slide"></div><div class="slide"></div></div>
+    <div class="hero-slider"><div class="slide"></div><div class="slide"></div><div class="slide"></div><div class="slide"></div></div>
     <div class="hero-content">
         <h1>SAMSUN'DA TABELA<br><span>BİZİM İŞİMİZ.</span></h1>
         <p>Karadeniz genelinde bayi tabelaları ve kurumsal reklam çözümleri sunuyoruz. Yarım asırlık tecrübemizle Samsun'dan tüm bölgeye hizmet taşıyoruz.</p>
@@ -452,61 +765,133 @@
 </section>
 
 <section class="services-preview" id="hizmetler">
-    <div class="section-title" style="padding-top:0;"><h2>Uzmanlık Alanlarımız</h2><p style="color:#666">Hizmetlerimiz hakkında detaylı bilgi için kartlara tıklayın</p></div>
-    <div class="services-grid">
-        <div class="service-box" onclick="openSubPage('modal-kutu-harf')"><i class="fas fa-font"></i><h3>Kutu Harf Tabela</h3><p>Paslanmaz ve pleksi malzemelerden 3D ışıklı lüks harf imalatı.</p><div class="read-more">Detayları İncele ➔</div></div>
-        <div class="service-box" onclick="openSubPage('modal-totem')"><i class="fas fa-sign"></i><h3>Totem Tabela</h3><p>Yol kenarları için rüzgara dayanıklı devasa kurumsal totem projeleri.</p><div class="read-more">Detayları İncele ➔</div></div>
-        <div class="service-box" onclick="openSubPage('modal-arac')"><i class="fas fa-truck"></i><h3>Araç Giydirme</h3><p>Filolarınız için 1. sınıf cast folyo ile kusursuz araç kaplama.</p><div class="read-more">Detayları İncele ➔</div></div>
-        <div class="service-box" onclick="openSubPage('modal-cephe')"><i class="fas fa-building"></i><h3>Cephe & Kompozit</h3><p>Binalarınız için estetik ve dayanıklı kompozit dış cephe kaplama.</p><div class="read-more">Detayları İncele ➔</div></div>
-        <div class="service-box" onclick="openSubPage('modal-pano')"><i class="fas fa-bolt"></i><h3>Işıklı Pano Tabela</h3><p>Esnaf ve ofisler için dikkat çekici klasik ışıklı / ışıksız panolar.</p><div class="read-more">Detayları İncele ➔</div></div>
-        <div class="service-box" onclick="openSubPage('modal-baski')"><i class="fas fa-print"></i><h3>Dijital Baskı & Branda</h3><p>Yüksek çözünürlüklü branda, folyo ve one-way vision uygulamaları.</p><div class="read-more">Detayları İncele ➔</div></div>
-        <div class="service-box" onclick="openSubPage('modal-cnc')"><i class="fas fa-cut"></i><h3>CNC & Lazer Kesim</h3><p>Pleksi, ahşap ve dekota malzemelerde sıfır hata fason kesim işleri.</p><div class="read-more">Detayları İncele ➔</div></div>
-        <div class="service-box" onclick="openSubPage('modal-fuar')"><i class="fas fa-store"></i><h3>Fuar Standı & İç Mekan</h3><p>Kongre ve ofis içi karşılama bankoları için prestijli tasarımlar.</p><div class="read-more">Detayları İncele ➔</div></div>
+    <div class="section-title" style="padding-top:0;"><h2>Uzmanlık Alanlarımız</h2></div>
+    <div class="services-grid" id="servicesGrid">
+        <div class="service-box" onclick="openSubPage('modal-kutu-harf')"><i class="fas fa-font"></i><h3>Kutu Harf Tabela</h3><p>Paslanmaz ve pleksi malzemelerden 3D ışıklı lüks harf imalatı.</p><div class="read-more">İncele ➔</div></div>
+        <div class="service-box" onclick="openSubPage('modal-krom')"><i class="fas fa-gem"></i><h3>Krom Harf Tabela</h3><p>304 kalite paslanmaz krom ve altın renk harflerle prestijli görünüm.</p><div class="read-more">İncele ➔</div></div>
+        <div class="service-box" onclick="openSubPage('modal-totem')"><i class="fas fa-sign"></i><h3>Totem Tabela</h3><p>Yol kenarları için rüzgara dayanıklı devasa kurumsal totem projeleri.</p><div class="read-more">İncele ➔</div></div>
+        <div class="service-box" onclick="openSubPage('modal-cephe')"><i class="fas fa-building"></i><h3>Cephe & Kompozit</h3><p>Binalarınız için estetik ve dayanıklı kompozit dış cephe kaplama.</p><div class="read-more">İncele ➔</div></div>
+        <div class="service-box" onclick="openSubPage('modal-bayi')"><i class="fas fa-handshake"></i><h3>Bayi Tabelaları</h3><p>Marka standardına birebir uygun, tüm Türkiye'ye bayi tabelası imalatı.</p><div class="read-more">İncele ➔</div></div>
+        <div class="service-box" onclick="openSubPage('modal-yonlendirme')"><i class="fas fa-diamond-turn-right"></i><h3>Yönlendirme Sistemleri</h3><p>Hastane, AVM ve fabrikalar için kat planı, zemin şeridi ve yön levhaları.</p><div class="read-more">İncele ➔</div></div>
+        <div class="service-box" onclick="openSubPage('modal-arac')"><i class="fas fa-truck"></i><h3>Araç Giydirme</h3><p>Filolarınız için 1. sınıf cast folyo ile kusursuz araç kaplama.</p><div class="read-more">İncele ➔</div></div>
+        <div class="service-box" onclick="openSubPage('modal-baski')"><i class="fas fa-print"></i><h3>Dijital Baskı & Branda</h3><p>Yüksek çözünürlüklü branda, folyo ve one-way vision uygulamaları.</p><div class="read-more">İncele ➔</div></div>
+        <div class="service-box gizli-hizmet" onclick="openSubPage('modal-pano')"><i class="fas fa-bolt"></i><h3>Işıklı Pano Tabela</h3><p>Esnaf ve ofisler için dikkat çekici klasik ışıklı / ışıksız panolar.</p><div class="read-more">İncele ➔</div></div>
+        <div class="service-box gizli-hizmet" onclick="openSubPage('modal-cnc')"><i class="fas fa-cut"></i><h3>CNC & Lazer Kesim</h3><p>Pleksi, ahşap ve dekota malzemelerde sıfır hata fason kesim işleri.</p><div class="read-more">İncele ➔</div></div>
+        <div class="service-box gizli-hizmet" onclick="openSubPage('modal-fuar')"><i class="fas fa-store"></i><h3>Fuar Standı & İç Mekan</h3><p>Kongre ve ofis içi karşılama bankoları için prestijli tasarımlar.</p><div class="read-more">İncele ➔</div></div>
+        <div class="service-box gizli-hizmet" onclick="openSubPage('modal-cam')"><i class="fas fa-window-maximize"></i><h3>Cam Yazısı & Folyo</h3><p>Vitrin kumlama, one-way vision ve cam giydirme uygulamaları.</p><div class="read-more">İncele ➔</div></div>
+        <div class="service-box gizli-hizmet" onclick="openSubPage('modal-engelli')"><i class="fas fa-wheelchair"></i><h3>Görme Engelli Ürünleri</h3><p>Hissedilebilir yüzey, Braille kabartma levha ve erişilebilirlik çözümleri.</p><div class="read-more">İncele ➔</div></div>
+    </div>
+    <div class="hizmet-dahafazla-sar">
+        <button class="dahafazla" type="button" id="hizmetDahaBtn" onclick="hizmetleriAc()">Tüm Hizmetleri Gör <span class="adet">(5 tane daha)</span></button>
     </div>
 </section>
 
-<div class="section-title" id="projeler"><h2>USTALIK ESERLERİMİZ</h2><p style="color:#666">Karadeniz'in her noktasında profesyonel dokunuşlar</p></div>
-<div class="gallery-filters">
-    <button class="filter-btn active" onclick="filterGallery('all')">Tümü</button>
-    <button class="filter-btn" onclick="filterGallery('kutu-harf')">Kutu Harf</button>
-    <button class="filter-btn" onclick="filterGallery('totem')">Totem</button>
-    <button class="filter-btn" onclick="filterGallery('cephe')">Cephe Giydirme</button>
-    <button class="filter-btn" onclick="filterGallery('arac-dijital')">Araç & Baskı</button>
+<div class="section-title" id="projeler"><h2>Ustalık Eserlerimiz</h2><p style="color:#949494">Karadeniz'in her noktasında yaptığımız işler</p></div>
+
+<div class="gallery-search-wrap">
+    <div class="gallery-search-box">
+        <i class="fas fa-magnifying-glass search-icon"></i>
+        <input type="search" id="gallerySearch" placeholder="Ne arıyorsunuz?" autocomplete="off" aria-label="Galeride ara">
+        <button id="searchClear" type="button" onclick="clearSearch()" aria-label="Aramayı temizle">&times;</button>
+    </div>
+</div>
+
+<div class="gallery-filters" id="galleryFilters">
+    <button class="filter-btn active" data-cat="all" onclick="filterGallery('all', this)">Tümü <span class="cnt"></span></button>
+    <button class="filter-btn" data-cat="kutu-harf" onclick="filterGallery('kutu-harf', this)">Kutu Harf <span class="cnt"></span></button>
+    <button class="filter-btn" data-cat="krom-harf" onclick="filterGallery('krom-harf', this)">Krom Harf <span class="cnt"></span></button>
+    <button class="filter-btn" data-cat="totem" onclick="filterGallery('totem', this)">Totem <span class="cnt"></span></button>
+    <button class="filter-btn" data-cat="yonlendirme" onclick="filterGallery('yonlendirme', this)">Yönlendirme <span class="cnt"></span></button>
+    <button class="filter-btn" data-cat="bayi" onclick="filterGallery('bayi', this)">Bayi Tabelaları <span class="cnt"></span></button>
+    <button class="filter-btn" data-cat="cephe" onclick="filterGallery('cephe', this)">Cephe Giydirme <span class="cnt"></span></button>
+    <button class="filter-btn" data-cat="pano" onclick="filterGallery('pano', this)">Işıklı Pano <span class="cnt"></span></button>
+    <button class="filter-btn" data-cat="baski" onclick="filterGallery('baski', this)">Baskı & Folyo <span class="cnt"></span></button>
+    <button class="filter-btn" data-cat="arac" onclick="filterGallery('arac', this)">Araç Giydirme <span class="cnt"></span></button>
+    <button class="filter-btn" data-cat="fuar" onclick="filterGallery('fuar', this)">Fuar & İç Mekan <span class="cnt"></span></button>
+    <button class="filter-btn" data-cat="engelli" onclick="filterGallery('engelli', this)">Görme Engelli <span class="cnt"></span></button>
+    <button class="filter-btn" data-cat="imalat" onclick="filterGallery('imalat', this)">İmalat & Montaj <span class="cnt"></span></button>
 </div>
 <section class="work-grid" id="gallery">
-    <div class="work-card kutu-harf" onclick="openLightbox(this)"><img src="liwhospitl.jpg" alt="Liv Hospital Samsun Işıklı Tabela ve Kutu Harf"><div class="work-info"><h3>Liv Hospital</h3><p>Paslanmaz Kutu Harf</p></div></div>
-    <div class="work-card cephe" onclick="openLightbox(this)"><img src="mediana.jpg" alt="Medibafra Hastanesi Cephe Giydirme Samsun Tabelacı UzmanReklam"><div class="work-info"><h3>Medibafra Hastanesi</h3><p>Cephe & Tabela</p></div></div>
-    <div class="work-card totem" onclick="openLightbox(this)"><img src="piazzatorem.jpg" alt="Piazza AVM Totem Tabela Karadeniz Reklam Çözümleri"><div class="work-info"><h3>Piazza AVM</h3><p>Dev Totem Tabela</p></div></div>
-    <div class="work-card diger" onclick="openLightbox(this)"><img src="sinopdevlet.jpg" alt="Sinop Devlet Hospital Kurumsal Reklam Tabela İşleri"><div class="work-info"><h3>Sinop Devlet Hastanesi</h3><p>Kurumsal Tabela</p></div></div>
-    <div class="work-card diger" onclick="openLightbox(this)"><img src="asarcıksalon.jpg" alt="Asarcık Spor Salonu Dış Cephe Tabela Uygulaması"><div class="work-info"><h3>Asarcık Spor Salonu</h3><p>Çatı Tabelası</p></div></div>
-    <div class="work-card diger" onclick="openLightbox(this)"><img src="olimpik.jpg" alt="Samsun Olimpik Havuz Işıklı Reklam Panoları Atakum"><div class="work-info"><h3>Olimpik Havuz</h3><p>Işıklı Pano</p></div></div>
-    <div class="work-card totem" onclick="openLightbox(this)"><img src="meditotem.jpg" alt="MediBafra Hastanesi Totem Tabela Yol Kenarı Reklamları"><div class="work-info"><h3>MediBafra Hastanesi Totem</h3><p>Totem Uygulaması</p></div></div>
-    <div class="work-card arac-dijital" onclick="openLightbox(this)"><img src="arac.jpg" alt="Samsun Araç Giydirme ve Ticari Araç Reklam Kaplama"><div class="work-info"><h3>Araç Giydirme</h3><p>Filo Reklamları</p></div></div>
-    <div class="work-card diger" onclick="openLightbox(this)"><img src="cnc.jpg" alt="Samsun CNC Lazer Kesim ve Pleksi Harf İmalatı"><div class="work-info"><h3>CNC Üretim</h3><p>Lazer Kesim İşleri</p></div></div>
-    <div class="work-card arac-dijital" onclick="openLightbox(this)"><img src="arac2.jpg" alt="Samsun İlkadım Araç Kaplama Reklam Uygulaması"><div class="work-info"><h3>Ticari Kaplama</h3><p>Araç Reklamı</p></div></div>
-    <div class="work-card arac-dijital" onclick="openLightbox(this)"><img src="baski.jpg" alt="Samsun Dijital Baskı ve Branda Uygulaması"><div class="work-info"><h3>Dijital Baskı</h3><p>Branda & Folyo</p></div></div>
-    <div class="work-card totem" onclick="openLightbox(this)"><img src="dünyagöztotem.jpg" alt="Dünyagöz Totem Tabela Samsun Reklamcı"><div class="work-info"><h3>Dünyagöz Totem</h3><p>Işıklı Totem</p></div></div>
-    <div class="work-card arac-dijital" onclick="openLightbox(this)"><img src="folyo.jpg" alt="Samsun Açı Okulları Cam Giydirme ve One Way Vision Folyo Uygulama"><div class="work-info"><h3>Cam Giydirme</h3><p>Folyo Uygulama</p></div></div>
-    <div class="work-card diger" onclick="openLightbox(this)"><img src="hoşgeldiniz.jpg" alt="Işıklı Karşılama Tabelası ve Ofis Tabelası Samsun"><div class="work-info"><h3>Ofis Tabelası</h3><p>İç Mekan Reklam</p></div></div>
-    <div class="work-card cephe" onclick="openLightbox(this)"><img src="imalatkompozit.jpg" alt="Samsun Tabela İmalatı ve Kompozit İşçiliği"><div class="work-info"><h3>Kompozit İmalat</h3><p>Atölye Çalışmaları</p></div></div>
-    <div class="work-card cephe" onclick="openLightbox(this)"><img src="kompozitgiydirme.jpg" alt="Samsun Yatırım Finansman Kompozit Cephe Kaplama ve Kutu Harf Tabela Tasarımı"><div class="work-info"><h3>Cephe Tasarımı</h3><p>Bina Giydirme</p></div></div>
-    <div class="work-card diger" onclick="openLightbox(this)"><img src="montaj.jpg" alt="Samsun Tabela NoraPark AVM Çatı Tabelaları Montajı"><div class="work-info"><h3>Montaj Ekibi</h3><p>Profesyonel Kurulum</p></div></div>
-    <div class="work-card totem" onclick="openLightbox(this)"><img src="part totem.jpg" alt="Modern Totem Tabela Ordu Büyükşehir Belediyesi Fatsa'nın simgesi haline gelen Atatürk Parkı Tasarımı Karadeniz Bayi"><div class="work-info"><h3>Modern Totem</h3><p>Özgün Tasarım</p></div></div>
-    <div class="work-card diger" onclick="openLightbox(this)"><img src="piazzakapi.jpg" alt="Piazza AVM Kapı Üstü Reklam ve Yönlendirme"><div class="work-info"><h3>Piazza Giriş</h3><p>Kapı Üstü Tabela</p></div></div>
-    <div class="work-card kutu-harf" onclick="openLightbox(this)"><img src="pleksikompozit.jpg" alt="Pleksi Kutu Harf Tabela & Kompozit Cephe Giydirme Market Samsun Atakum"><div class="work-info"><h3>Pleksi Harf</h3><p>Işıklı Reklam</p></div></div>
-    <div class="work-card diger" onclick="openLightbox(this)"><img src="toki.jpg" alt="Toki İnşaat Tabelası ve Şantiye Levhası Samsun"><div class="work-info"><h3>Şantiye Tabelası</h3><p>Bilgi Levhaları</p></div></div>
-    <div class="work-card kutu-harf" onclick="openLightbox(this)"><img src="tozlutabela.jpg" alt="Tozlu Tabela ve Mağaza Reklamı İlkadım"><div class="work-info"><h3>Mağaza Tabelası</h3><p>Kutu Harf Uygulama</p></div></div>
-    <div class="work-card diger" onclick="openLightbox(this)"><img src="fuarstand.jpg" alt="Yunus Yapı Kurumsal Fuar Standı Tasarım ve Uygulama"><div class="work-info"><h3>Yunus Yapı</h3><p>Fuar Standı Uygulama</p></div></div>
-    <div class="work-card kutu-harf" onclick="openLightbox(this)"><img src="entek.jpg" alt="Entek Elektrik Işıklı Kutu Harf Tabela Samsun"><div class="work-info"><h3>Entek Elektrik</h3><p>Işıklı Kutu Harf</p></div></div>
-    <div class="work-card totem" onclick="openLightbox(this)"><img src="aciltabela.jpg" alt="Hastane Acil Giriş Totem Tabela ve Yönlendirme Sistemleri"><div class="work-info"><h3>Acil Giriş</h3><p>Yönlendirme Totemi</p></div></div>
-    <div class="work-card diger" onclick="openLightbox(this)"><img src="yunusevler.jpg" alt="Yunus Evler Çınar Çatı Tabelası ve Yüksek İrtifa Montaj"><div class="work-info"><h3>Yunus Evler Çınar</h3><p>Çatı Tabelası</p></div></div>
-    <div class="work-card diger" onclick="openLightbox(this)"><img src="özkaymak.jpg" alt="Özlem Kaymak Özel Tasarım Satış Standı Kompozit ve Reklam Kaplama"><div class="work-info"><h3>Özkaymak</h3><p>Özel Tasarım Stand</p></div></div>
-    <div class="work-card diger" onclick="openLightbox(this)"><img src="gerzedevlethastenesi.jpg" alt="Gerze Devlet Hospital Giriş Tabelası Karadeniz Reklam"><div class="work-info"><h3>Gerze Devlet Hastanesi</h3><p>Kurumsal Giriş</p></div></div>
-    <div class="work-card cephe" onclick="openLightbox(this)"><img src="ramsey.jpg" alt="Ramsey Mağaza Cephe Giydirme ve Işıklı Tabela Tasarımı"><div class="work-info"><h3>Ramsey</h3><p>Cephe Tasarımı</p></div></div>
-    <div class="work-card diger" onclick="openLightbox(this)"><img src="recepoglu.jpg" alt="Recepoğlu Tabela İmalatı ve Montaj Süreci Uzman Reklam"><div class="work-info"><h3>Recepoğlu</h3><p>Tabela İmalat</p></div></div>
-    <div class="work-card arac-dijital" onclick="openLightbox(this)"><img src="burgerking.jpg" alt="Burger King İç Mekan Dijital Baskı ve Yönlendirme Samsun"><div class="work-info"><h3>Burger King</h3><p>İç Mekan Baskı</p></div></div>
-    <div class="work-card kutu-harf" onclick="openLightbox(this)"><img src="medicalpark.jpg" alt="Medical Park Çocuk Bölümü Işıklı Tabela ve Dekorasyon"><div class="work-info"><h3>Medical Park</h3><p>Işıklı Logo</p></div></div>
+    <div class="work-card kutu-harf" data-tags="liv hospital hastane paslanmaz kutu harf isikli saglik" onclick="openLightbox(this)"><span class="cat-badge">Kutu Harf</span><img src="liwhospitl.jpg" alt="Liv Hospital Samsun Işıklı Kutu Harf Tabela" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>Liv Hospital</h3><p>Paslanmaz Kutu Harf</p></div></div>
+    <div class="work-card cephe kutu-harf" data-tags="medibafra hastane cephe giydirme kompozit kutu harf bafra" onclick="openLightbox(this)"><span class="cat-badge">Cephe</span><img src="mediana.jpg" alt="Medibafra Hastanesi Cephe Giydirme ve Kutu Harf Uygulaması" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>Medibafra Hastanesi</h3><p>Cephe & Kutu Harf</p></div></div>
+    <div class="work-card totem" data-tags="piazza avm totem tabela dev yol kenari" onclick="openLightbox(this)"><span class="cat-badge">Totem</span><img src="piazzatorem.jpg" alt="Piazza AVM Dev Totem Tabela Samsun" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>Piazza AVM</h3><p>Dev Totem Tabela</p></div></div>
+    <div class="work-card kutu-harf" data-tags="sinop devlet hastanesi isikli kutu harf kirmizi led gece" onclick="openLightbox(this)"><span class="cat-badge">Kutu Harf</span><img src="sinopdevlet.jpg" alt="Sinop Atatürk Devlet Hastanesi Işıklı Kutu Harf Tabela" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>Sinop Devlet Hastanesi</h3><p>Işıklı Kutu Harf</p></div></div>
+    <div class="work-card kutu-harf" data-tags="asarcik spor salonu cati kutu harf kurumsal" onclick="openLightbox(this)"><span class="cat-badge">Kutu Harf</span><img src="asarcıksalon.jpg" alt="Asarcık Spor Salonu Çatı Kutu Harf Tabela Uygulaması" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>Asarcık Spor Salonu</h3><p>Çatı Kutu Harf</p></div></div>
+    <div class="work-card pano" data-tags="olimpik yuzme havuzu atakum ic mekan pano tabela" onclick="openLightbox(this)"><span class="cat-badge">Işıklı Pano</span><img src="olimpik.jpg" alt="Samsun Atakum Olimpik Yüzme Havuzu Pano Tabela" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>Olimpik Yüzme Havuzu</h3><p>İç Mekan Pano</p></div></div>
+    <div class="work-card totem" data-tags="medibafra hastane totem isikli yol kenari bafra" onclick="openLightbox(this)"><span class="cat-badge">Totem</span><img src="meditotem.jpg" alt="MediBafra Hastanesi Işıklı Totem Tabela" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>MediBafra Totem</h3><p>Işıklı Totem</p></div></div>
+    <div class="work-card arac" data-tags="arac giydirme kaplama filo ticari folyo" onclick="openLightbox(this)"><span class="cat-badge">Araç</span><img src="arac.jpg" alt="Samsun Araç Giydirme ve Ticari Filo Kaplama" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>Filo Giydirme</h3><p>Ticari Araç Kaplama</p></div></div>
+    <div class="work-card imalat" data-tags="cnc router lazer kesim pleksi fason imalat atolye makine" onclick="openLightbox(this)"><span class="cat-badge">İmalat</span><img src="cnc.jpg" alt="Samsun CNC Router Lazer Kesim ve Fason Pleksi İmalatı" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>CNC Router</h3><p>Fason Kesim & İmalat</p></div></div>
+    <div class="work-card arac" data-tags="arac kaplama ilkadim cast folyo ticari" onclick="openLightbox(this)"><span class="cat-badge">Araç</span><img src="arac2.jpg" alt="Samsun Ticari Araç Kaplama ve Cast Folyo Uygulaması" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>Ticari Kaplama</h3><p>Cast Folyo Uygulama</p></div></div>
+    <div class="work-card baski" data-tags="dijital baski branda vinil solvent makine afis mesh" onclick="openLightbox(this)"><span class="cat-badge">Baskı & Folyo</span><img src="baski.jpg" alt="Samsun Dijital Baskı Branda ve Vinil Uygulaması" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>Dijital Baskı</h3><p>Branda & Vinil</p></div></div>
+    <div class="work-card totem" data-tags="dunyagoz goz hastanesi totem isikli" onclick="openLightbox(this)"><span class="cat-badge">Totem</span><img src="dünyagöztotem.jpg" alt="Dünyagöz Işıklı Totem Tabela Samsun" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>Dünyagöz</h3><p>Işıklı Totem</p></div></div>
+    <div class="work-card baski" data-tags="aci okullari cam giydirme one way vision folyo vitrin bafra" onclick="openLightbox(this)"><span class="cat-badge">Baskı & Folyo</span><img src="folyo.jpg" alt="Açı Eğitim Kurumları Cam Giydirme ve One Way Vision Folyo" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>Açı Eğitim Kurumları</h3><p>Cam Giydirme & One Way</p></div></div>
+    <div class="work-card kutu-harf" data-tags="hos geldiniz neon efekt el yazisi ic mekan karsilama isikli harf" onclick="openLightbox(this)"><span class="cat-badge">Kutu Harf</span><img src="hoşgeldiniz.jpg" alt="Neon Efektli Hoş Geldiniz Karşılama Kutu Harf Tabelası" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>Hoş Geldiniz Yazısı</h3><p>Neon Efektli Kutu Harf</p></div></div>
+    <div class="work-card imalat" data-tags="atolye imalat kompozit kesim kutu harf uretim bafra fabrika" onclick="openLightbox(this)"><span class="cat-badge">İmalat</span><img src="imalatkompozit.jpg" alt="Atölyede Kutu Harf ve Kompozit Tabela İmalatı" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>Atölye İmalat</h3><p>Kutu Harf & Kompozit</p></div></div>
+    <div class="work-card cephe kutu-harf" data-tags="yatirim finansman kompozit cephe giydirme kutu harf banka" onclick="openLightbox(this)"><span class="cat-badge">Cephe</span><img src="kompozitgiydirme.jpg" alt="Yatırım Finansman Kompozit Cephe Kaplama ve Kutu Harf" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>Yatırım Finansman</h3><p>Kompozit Cephe Giydirme</p></div></div>
+    <div class="work-card imalat" data-tags="montaj ekibi cati tabelasi avm yuksek irtifa vinc kurulum" onclick="openLightbox(this)"><span class="cat-badge">İmalat</span><img src="montaj.jpg" alt="AVM Çatı Tabelaları Montajı ve Yüksek İrtifa Kurulum" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>AVM Çatı Tabelaları</h3><p>Yüksek İrtifa Montaj</p></div></div>
+    <div class="work-card totem" data-tags="fatsa ordu ataturk parki modern totem ozel tasarim belediye" onclick="openLightbox(this)"><span class="cat-badge">Totem</span><img src="part totem.jpg" alt="Ordu Fatsa Atatürk Parkı Özel Tasarım Modern Totem Tabela" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>Fatsa Atatürk Parkı</h3><p>Özel Tasarım Totem</p></div></div>
+    <div class="work-card baski" data-tags="piazza avm giris kapi cam folyo bilgilendirme sosyal mesafe" onclick="openLightbox(this)"><span class="cat-badge">Baskı & Folyo</span><img src="piazzakapi.jpg" alt="Piazza AVM Giriş Kapısı Cam Folyo Bilgilendirme Uygulaması" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>Piazza AVM Girişi</h3><p>Cam Folyo Uygulaması</p></div></div>
+    <div class="work-card kutu-harf cephe" data-tags="ova pilic market pleksi kutu harf kompozit cephe atakum magaza" onclick="openLightbox(this)"><span class="cat-badge">Kutu Harf</span><img src="pleksikompozit.jpg" alt="Ova Piliç Market Pleksi Kutu Harf ve Kompozit Cephe" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>Ova Piliç Market</h3><p>Işıklı Kutu Harf & Kompozit</p></div></div>
+    <div class="work-card yonlendirme" data-tags="toki santiye bilgi levhasi insaat yonlendirme pano direkli" onclick="openLightbox(this)"><span class="cat-badge">Yönlendirme</span><img src="toki.jpg" alt="TOKİ Şantiye Bilgi ve Yönlendirme Levhası" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>TOKİ Şantiyesi</h3><p>Bilgi & Yönlendirme Levhası</p></div></div>
+    <div class="work-card kutu-harf cephe" data-tags="tozlu com mbt tekstil magaza kutu harf kompozit cephe ilkadim" onclick="openLightbox(this)"><span class="cat-badge">Kutu Harf</span><img src="tozlutabela.jpg" alt="Tozlu.com M.B.T Tekstil Mağaza Kutu Harf Tabela" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>Tozlu.com M.B.T</h3><p>Mağaza Kutu Harf</p></div></div>
+    <div class="work-card fuar" data-tags="yunus yapi fuar standi kurumsal stand kongre tasarim" onclick="openLightbox(this)"><span class="cat-badge">İç Mekan</span><img src="fuarstand.jpg" alt="Yunus Yapı Kurumsal Fuar Standı Tasarım ve Uygulama" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>Yunus Yapı</h3><p>Fuar Standı</p></div></div>
+    <div class="work-card kutu-harf cephe" data-tags="entek elektrik hes isikli kutu harf mavi kompozit duvar" onclick="openLightbox(this)"><span class="cat-badge">Kutu Harf</span><img src="entek.jpg" alt="Entek Elektrik Üretim Işıklı Kutu Harf Tabela" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>Entek Elektrik</h3><p>Işıklı Kutu Harf</p></div></div>
+    <div class="work-card yonlendirme totem" data-tags="acil giris hastane yonlendirme totem isikli ok emergency 24 saat" onclick="openLightbox(this)"><span class="cat-badge">Yönlendirme</span><img src="aciltabela.jpg" alt="Hastane Acil Giriş Işıklı Yönlendirme Totemi" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>Hastane Acil Girişi</h3><p>Işıklı Yönlendirme Totemi</p></div></div>
+    <div class="work-card kutu-harf" data-tags="yunus evler cinar cati kutu harf konut site yuksek montaj" onclick="openLightbox(this)"><span class="cat-badge">Kutu Harf</span><img src="yunusevler.jpg" alt="Yunus Evler Çınar Çatı Kutu Harf Tabelası" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>Yunus Evler Çınar</h3><p>Çatı Kutu Harf</p></div></div>
+    <div class="work-card fuar" data-tags="ozlem balli kaymak satis standi buffe isikli pano ozel tasarim" onclick="openLightbox(this)"><span class="cat-badge">İç Mekan</span><img src="özkaymak.jpg" alt="Özlem Ballı Kaymak Özel Tasarım Satış Standı" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>Özlem Ballı Kaymak</h3><p>Özel Tasarım Satış Standı</p></div></div>
+    <div class="work-card kutu-harf" data-tags="gerze devlet hastanesi giris taki kutu harf isikli sinop" onclick="openLightbox(this)"><span class="cat-badge">Kutu Harf</span><img src="gerzedevlethastenesi.jpg" alt="Gerze Devlet Hastanesi Giriş Takı ve Işıklı Kutu Harf" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>Gerze Devlet Hastanesi</h3><p>Giriş Takı & Kutu Harf</p></div></div>
+    <div class="work-card cephe bayi" data-tags="ramsey kip gg store cephe baski giydirme magaza bayi mesh" onclick="openLightbox(this)"><span class="cat-badge">Cephe</span><img src="ramsey.jpg" alt="Ramsey ve Kip Mağaza Cephe Giydirme Bayi Uygulaması" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>Ramsey & Kip</h3><p>Cephe Baskı & Giydirme</p></div></div>
+    <div class="work-card kutu-harf cephe imalat" data-tags="recepoglu kompozit cephe kutu harf cati montaj market" onclick="openLightbox(this)"><span class="cat-badge">Kutu Harf</span><img src="recepoglu.jpg" alt="Recepoğlu Kompozit Cephe ve Kutu Harf Tabela Montajı" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>Recepoğlu</h3><p>Kompozit Cephe & Kutu Harf</p></div></div>
+    <div class="work-card baski fuar" data-tags="burger king ic mekan duvar baski folyo restoran" onclick="openLightbox(this)"><span class="cat-badge">Baskı & Folyo</span><img src="burgerking.jpg" alt="Burger King İç Mekan Duvar Dijital Baskı Uygulaması" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>Burger King</h3><p>İç Mekan Duvar Baskısı</p></div></div>
+    <div class="work-card kutu-harf fuar" data-tags="vm medical park cocuk isikli harf duvar baski hastane ic mekan" onclick="openLightbox(this)"><span class="cat-badge">Kutu Harf</span><img src="medicalpark.jpg" alt="VM Medical Park Çocuk Bölümü Işıklı Harf ve Duvar Baskı" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>VM Medical Park Çocuk</h3><p>Işıklı Harf & Duvar Baskı</p></div></div>
+    <div class="work-card yonlendirme" data-tags="oda kapi levhasi doktor isim noroloji hastane birim yonlendirme" onclick="openLightbox(this)"><span class="cat-badge">Yönlendirme</span><img src="yonlendirme-oda-kapi-levhasi.jpg" alt="Hastane Nöroloji Oda Kapı Levhası ve Birim Yönlendirme" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>Hastane Oda Levhası</h3><p>Kapı & Birim Yönlendirme</p></div></div>
+    <div class="work-card yonlendirme fuar" data-tags="is bankasi menkul degerler kurumsal logo levha ic mekan yonlendirme" onclick="openLightbox(this)"><span class="cat-badge">Yönlendirme</span><img src="yonlendirme-is-bankasi-menkul-degerler.jpg" alt="İş Bankası Menkul Değerler Kurumsal İç Mekan Levhası" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>İş Bankası Menkul Değerler</h3><p>Kurumsal Birim Levhası</p></div></div>
+    <div class="work-card yonlendirme" data-tags="oklu yon levhasi kat plani mudur odasi muhasebe wc yonlendirme tesis" onclick="openLightbox(this)"><span class="cat-badge">Yönlendirme</span><img src="yonlendirme-yon-oklu-kat-levhasi.jpg" alt="Oklu Yön Levhası Kat ve Birim Yönlendirme Panosu" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>Oklu Yön Levhası</h3><p>Kat & Birim Yönlendirme</p></div></div>
+    <div class="work-card engelli yonlendirme" data-tags="hissedilebilir zemin gorme engelli sari yuzey danisma hastane erisilebilirlik kilavuz" onclick="openLightbox(this)"><span class="cat-badge">Erişilebilirlik</span><img src="hissedilebilir-zemin-hastane-danisma.jpg" alt="Hastane Danışma Girişi Hissedilebilir Yüzey Zemin Uygulaması" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>Hastane Danışma Girişi</h3><p>Hissedilebilir Yüzey Zemin</p></div></div>
+    <div class="work-card engelli" data-tags="hissedilebilir yuzey zemin gorme engelli sari kabartma detay kilavuz iz" onclick="openLightbox(this)"><span class="cat-badge">Erişilebilirlik</span><img src="hissedilebilir-yuzey-zemin-detay.jpg" alt="Görme Engelli Hissedilebilir Yüzey Kılavuz Zemin Detayı" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>Hissedilebilir Yüzey</h3><p>Görme Engelli Kılavuz Zemin</p></div></div>
+    <div class="work-card yonlendirme" data-tags="giris cikis uyari levhasi ayakli duba park yasak otopark yonlendirme" onclick="openLightbox(this)"><span class="cat-badge">Yönlendirme</span><img src="giris-cikis-uyari-levhasi-ayakli.jpg" alt="Ayaklı Giriş Çıkış Uyarı Levhası ve Otopark Yönlendirme Panosu" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>Giriş-Çıkış Uyarı Levhası</h3><p>Ayaklı Bilgilendirme Panosu</p></div></div>
+    <div class="work-card yonlendirme" data-tags="is guvenligi uyari levhasi santiye insaat ikaz pano baret" onclick="openLightbox(this)"><span class="cat-badge">Yönlendirme</span><img src="is-guvenligi-uyari-levhasi-santiye.jpg" alt="Şantiye İş Güvenliği Uyarı ve İkaz Levhası" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>İş Güvenliği Levhası</h3><p>Şantiye Uyarı Panosu</p></div></div>
+    <div class="work-card yonlendirme" data-tags="depo zemin yonlendirme ok sari yer isaretleme fabrika lojistik forklift" onclick="openLightbox(this)"><span class="cat-badge">Yönlendirme</span><img src="depo-zemin-yonlendirme-oklari.jpg" alt="Depo ve Fabrika Zemin Yönlendirme Okları Yer İşaretleme" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>Depo Zemin Okları</h3><p>Yer İşaretleme & Yönlendirme</p></div></div>
+    <div class="work-card yonlendirme baski" data-tags="hastane zemin serit renkli yonlendirme bandi folyo kat yol gosterme" onclick="openLightbox(this)"><span class="cat-badge">Yönlendirme</span><img src="yonlendirme-zemin-serit-hastane.jpg" alt="Hastane Zemin Renkli Yönlendirme Şeridi Folyo Uygulaması" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>Hastane Zemin Şeridi</h3><p>Renkli Yönlendirme Bandı</p></div></div>
+    <div class="work-card yonlendirme baski" data-tags="ofis zemin serit renkli yonlendirme bandi folyo kurum" onclick="openLightbox(this)"><span class="cat-badge">Yönlendirme</span><img src="ofis-zemin-yonlendirme-seridi.jpg" alt="Ofis Zemin Renkli Yönlendirme Şeridi Folyo Uygulaması" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>Ofis Zemin Şeridi</h3><p>Renkli Yönlendirme Bandı</p></div></div>
+    <div class="work-card baski" data-tags="cam folyo hastane kapi medical park buzlu kumlama otomatik kapi" onclick="openLightbox(this)"><span class="cat-badge">Baskı & Folyo</span><img src="cam-folyo-hastane-kapi.jpg" alt="Hastane Otomatik Cam Kapı Folyo ve Kumlama Uygulaması" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>Hastane Cam Kapıları</h3><p>Cam Folyo Uygulaması</p></div></div>
+    <div class="work-card baski" data-tags="akyurek insaat cam giydirme folyo vitrin kaplama ofis baskili" onclick="openLightbox(this)"><span class="cat-badge">Baskı & Folyo</span><img src="cam-giydirme-akyurek-insaat.jpg" alt="Akyürek İnşaat Vitrin Cam Giydirme ve Baskılı Folyo" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>Akyürek İnşaat</h3><p>Vitrin Cam Giydirme</p></div></div>
+    <div class="work-card baski" data-tags="model kuafor kumlama folyo buzlu cam kapi kelebek desen" onclick="openLightbox(this)"><span class="cat-badge">Baskı & Folyo</span><img src="kumlama-folyo-model-kuafor-kapi.jpg" alt="Model Kuaför Buzlu Cam Kapı Kumlama Folyo Uygulaması" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>Model Kuaför Kapı</h3><p>Kumlama Folyo</p></div></div>
+    <div class="work-card baski" data-tags="model kuafor vitrin folyo kumlama cam baski magaza" onclick="openLightbox(this)"><span class="cat-badge">Baskı & Folyo</span><img src="vitrin-folyo-model-kuafor.jpg" alt="Model Kuaför Vitrin Folyo ve Kumlama Cam Uygulaması" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>Model Kuaför Vitrini</h3><p>Vitrin Folyo & Kumlama</p></div></div>
+    <div class="work-card baski arac" data-tags="tekne yazisi folyo kaptan deniz kesme yazi arac kaplama" onclick="openLightbox(this)"><span class="cat-badge">Baskı & Folyo</span><img src="tekne-yazisi-folyo-kaptan.jpg" alt="Tekne İsim Yazısı Folyo Kesim Uygulaması" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>Tekne Yazısı</h3><p>Folyo Kesim Uygulama</p></div></div>
+    <div class="work-card baski fuar" data-tags="gergi tavan gokyuzu bulut baski ic mekan dekorasyon" onclick="openLightbox(this)"><span class="cat-badge">Baskı & Folyo</span><img src="gergi-tavan-gokyuzu-baski.jpg" alt="Gergi Tavan Gökyüzü Bulut Baskı İç Mekan Dekorasyon" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>Gökyüzü Tavan</h3><p>Gergi Tavan Baskı</p></div></div>
+    <div class="work-card pano" data-tags="ozlem dondurma fantazi tabela ozel sekil isikli kulah" onclick="openLightbox(this)"><span class="cat-badge">Işıklı Pano</span><img src="fantazi-tabela-ozlem-dondurma.jpg" alt="Özlem Dondurma Fantazi Şekilli Işıklı Tabela" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>Özlem Dondurma</h3><p>Fantazi Şekilli Işıklı Tabela</p></div></div>
+    <div class="work-card kutu-harf" data-tags="daphne neon efekt yesil isikli yazi el yazisi harf" onclick="openLightbox(this)"><span class="cat-badge">Kutu Harf</span><img src="neon-efektli-tabela-daphne.jpg" alt="Daphne Neon Efektli Yeşil Işıklı Yazı Tabelası" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>Daphne</h3><p>Neon Efektli Işıklı Yazı</p></div></div>
+    <div class="work-card pano" data-tags="pinar lokantasi neon efekt kirmizi oval isikli tabela" onclick="openLightbox(this)"><span class="cat-badge">Işıklı Pano</span><img src="neon-tabela-pinar-lokantasi.jpg" alt="Pınar Lokantası Neon Efektli Kırmızı Işıklı Tabela" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>Pınar Lokantası</h3><p>Neon Efektli Işıklı Tabela</p></div></div>
+    <div class="work-card kutu-harf imalat" data-tags="ciftlik pleksi kutu harf 3d imalat atolye kirmizi beyaz" onclick="openLightbox(this)"><span class="cat-badge">Kutu Harf</span><img src="pleksi-kutu-harf-ciftlik-imalat.jpg" alt="Çiftlik 3D Pleksi Kutu Harf Tabela İmalatı" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>Çiftlik</h3><p>3D Pleksi Kutu Harf</p></div></div>
+    <div class="work-card pano" data-tags="kayan led yazi tabelasi programlanabilir elektronik pano bafra samsun atakum" onclick="openLightbox(this)"><span class="cat-badge">Işıklı Pano</span><img src="kayan-led-yazi-tabelasi.jpg" alt="Kayan LED Yazı Tabelası Programlanabilir Elektronik Pano" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>Kayan LED Yazı</h3><p>Programlanabilir LED Pano</p></div></div>
+    <div class="work-card bayi kutu-harf" data-tags="pedo plus bayi tabelasi kutu harf isikli magaza zincir" onclick="openLightbox(this)"><span class="cat-badge">Bayi</span><img src="bayi-tabelasi-pedo.jpg" alt="Pedo Plus Bayi Tabelası Işıklı Kutu Harf" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>Pedo Plus</h3><p>Bayi Kutu Harf</p></div></div>
+    <div class="work-card bayi kutu-harf" data-tags="rodimood bayi tabelasi kutu harf isikli magaza tekstil zincir" onclick="openLightbox(this)"><span class="cat-badge">Bayi</span><img src="bayi-tabelasi-rodimood.jpg" alt="RodiMood Bayi Tabelası Işıklı Kutu Harf Mağaza" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>RodiMood</h3><p>Bayi Kutu Harf</p></div></div>
+    <div class="work-card bayi" data-tags="festival hali bayi tabelasi kurumsal marka standart logo" onclick="openLightbox(this)"><span class="cat-badge">Bayi</span><img src="bayi-tabelasi-festival-hali.jpg" alt="Festival Halı Bayi Tabelası İmalat ve Uygulama" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>Festival Halı</h3><p>Bayi Tabelası</p></div></div>
+    <div class="work-card bayi kutu-harf" data-tags="karaca home bayi tabelasi magaza kutu harf vitrin zincir" onclick="openLightbox(this)"><span class="cat-badge">Bayi</span><img src="bayi-tabelasi-karaca-home.jpg" alt="Karaca Home Mağaza Bayi Tabelası ve Kutu Harf" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>Karaca Home</h3><p>Mağaza Bayi Tabelası</p></div></div>
+    <div class="work-card bayi imalat" data-tags="dilek hali bayi tabelasi kutu harf imalat atolye uretim" onclick="openLightbox(this)"><span class="cat-badge">Bayi</span><img src="bayi-tabelasi-dilek-hali.jpg" alt="Dilek Halı Bayi Tabelası Kutu Harf İmalatı" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>Dilek Halı</h3><p>Bayi Kutu Harf İmalatı</p></div></div>
+    <div class="work-card bayi imalat" data-tags="gumussuyu bayi tabelasi imalat atolye kutu harf uretim" onclick="openLightbox(this)"><span class="cat-badge">Bayi</span><img src="bayi-tabelasi-gumussuyu.jpg" alt="Gümüşsuyu Bayi Tabelası İmalatı ve Atölye Üretimi" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>Gümüşsuyu</h3><p>Bayi Tabelası İmalatı</p></div></div>
+    <div class="work-card bayi cephe" data-tags="husqvarna stihl saglam bayi tabelasi cephe magaza kompozit" onclick="openLightbox(this)"><span class="cat-badge">Bayi</span><img src="bayi-tabelasi-husqvarna-stihl.jpg" alt="Husqvarna ve Stihl Bayi Cephe Tabelaları" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>Husqvarna & Stihl</h3><p>Bayi Cephe Tabelaları</p></div></div>
+    <div class="work-card krom-harf fuar" data-tags="vm fizik tedavi altin krom harf paslanmaz ic mekan hastane prestij" onclick="openLightbox(this)"><span class="cat-badge">Krom Harf</span><img src="krom-harf-vm-fizik-tedavi.jpg" alt="VM Fizik Tedavi Ünitesi Altın Krom Harf İç Mekan Tabela" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>VM Fizik Tedavi</h3><p>Altın Krom Harf</p></div></div>
+    <div class="work-card krom-harf" data-tags="dogan makina krom harf paslanmaz 304 tabela isikli cephe" onclick="openLightbox(this)"><span class="cat-badge">Krom Harf</span><img src="krom-harf-dogan-makina.jpg" alt="Doğan Makina Paslanmaz Krom Harf Tabela" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>Doğan Makina</h3><p>Krom Harf Tabela</p></div></div>
+    <div class="work-card krom-harf" data-tags="jival pirlanta krom harf vitrin magaza kuyumcu paslanmaz" onclick="openLightbox(this)"><span class="cat-badge">Krom Harf</span><img src="krom-harf-jival-pirlanta.jpg" alt="Jival Pırlanta Krom Harf Vitrin Tabelası" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>Jival Pırlanta</h3><p>Krom Harf Vitrin</p></div></div>
+    <div class="work-card krom-harf" data-tags="yasamkent krom harf mavi isikli konut site tabela el yazisi" onclick="openLightbox(this)"><span class="cat-badge">Krom Harf</span><img src="krom-harf-yasamkent.jpg" alt="Yaşamkent Krom Harf Işıklı Tabela" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>Yaşamkent</h3><p>Krom Harf Uygulama</p></div></div>
+    <div class="work-card krom-harf cephe" data-tags="turan usta pidesi bafra krom harf led cephe restoran isikli" onclick="openLightbox(this)"><span class="cat-badge">Krom Harf</span><img src="krom-harf-turan-usta-pidesi.jpg" alt="Turan Usta Bafra Pidesi Krom Harf ve LED Cephe Aydınlatma" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>Turan Usta Pidesi</h3><p>Krom Harf & LED Cephe</p></div></div>
+    <div class="work-card krom-harf" data-tags="gunes krom harf isikli paslanmaz beyaz led tabela" onclick="openLightbox(this)"><span class="cat-badge">Krom Harf</span><img src="krom-harf-gunes-tabela.jpg" alt="Güneş Işıklı Krom Harf Tabela" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>Güneş</h3><p>Işıklı Krom Harf</p></div></div>
+    <div class="work-card fuar imalat" data-tags="akrilik pleksi urun standi teshir vitrin ic mekan ayakkabi" onclick="openLightbox(this)"><span class="cat-badge">İç Mekan</span><img src="akrilik-pleksi-urun-standi.jpg" alt="Akrilik Pleksi Ürün Teşhir Standı İmalatı" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>Pleksi Ürün Standı</h3><p>Akrilik Teşhir Ürünü</p></div></div>
+    <div class="work-card fuar imalat" data-tags="akrilik pleksi brosurluk duvar ic mekan ofis katalogluk" onclick="openLightbox(this)"><span class="cat-badge">İç Mekan</span><img src="akrilik-pleksi-brosurluk.jpg" alt="Akrilik Pleksi Broşürlük ve Katalogluk İç Mekan Ürünü" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>Pleksi Broşürlük</h3><p>Akrilik İç Mekan Ürünü</p></div></div>
 </section>
+
+<div class="dahafazla-sar" id="dahaFazlaSar">
+    <button class="dahafazla" type="button" id="dahaFazlaBtn" onclick="dahaFazlaGoster()">Daha Fazla Göster <span class="adet"></span></button>
+</div>
+
+<div id="noResults">
+    <i class="fas fa-magnifying-glass"></i>
+    <h3>Aradığınızı bulamadık</h3>
+    <p>Yaptığımız iş çeşidi buradakinden çok daha fazla. Ne istediğinizi yazın, hemen dönelim.</p>
+    <a href="https://wa.me/905079605049" class="btn-main" target="_blank" onclick="gtag('event','whatsapp_tiklama',{'sayfa':'galeri_sonuc_yok'});"><i class="fab fa-whatsapp"></i>&nbsp; WHATSAPP'TAN SORUN</a>
+</div>
 
 <section class="reviews-section">
     <div class="google-badge">
@@ -646,54 +1031,245 @@
 <div class="sub-page-overlay" id="modal-cnc"><span class="close-sub-page" onclick="closeSubPage('modal-cnc')">×</span><div class="sub-page-content"><h2>CNC & Lazer Kesim Hizmetleri</h2><p>Bafra'daki geniş makine parkurumuz sayesinde pleksi, ahşap, dekota, MDF ve alüminyum gibi tüm reklam malzemelerini sıfır hata ile kendi bünyemizde kesip işliyoruz.</p><p><strong>Fason Kesim ve İmalat:</strong> Sadece son tüketiciye değil, aynı zamanda sektördeki diğer reklam firmalarına ve tabelacılara da fason CNC ve lazer kesim hizmeti sunarak bölgedeki üretimin bel kemiği olmaya devam ediyoruz.</p><p>Milimetrik hassasiyete sahip makinelerimizle en karmaşık logoları ve 3 boyutlu tasarımları gerçeğe dönüştürüyor, projelerinizi zamanında teslim ediyoruz.</p></div></div>
 <div class="sub-page-overlay" id="modal-fuar"><span class="close-sub-page" onclick="closeSubPage('modal-fuar')">×</span><div class="sub-page-content"><h2>Fuar Standı & İç Mekan Reklam</h2><p>İşletmenizin vizyonunu sadece dışarıda değil, iç mekanda da en güçlü şekilde temsil ediyoruz. Fuar, kongre ve bayi toplantılarında markanızı rakiplerinizden ayıracak özel tasarım standlar inşa ediyoruz.</p><p><strong>İç Mekan Çözümleri:</strong> Hastaneler, oteller ve kurumsal şirketler için yönlendirme levhaları, şık ofis karşılama bankoları ve ışıklı iç mekan logo uygulamaları gerçekleştiriyoruz.</p><p>Ahşap, pleksi ve paslanmaz metallerin kusursuz uyumunu iç mekan tasarımlarımıza yansıtarak, prestijli ortamlar yaratıyoruz.</p></div></div>
 
+<div class="sub-page-overlay" id="modal-yonlendirme"><span class="close-sub-page" onclick="closeSubPage('modal-yonlendirme')">×</span><div class="sub-page-content"><h2>Yönlendirme Sistemleri</h2><p>Büyük bir binada insanın kaybolmaması, o binadaki yönlendirmenin ne kadar iyi kurgulandığına bağlıdır. Hastane, alışveriş merkezi, fabrika, otel ve kamu binaları için giriş kapısından en son odaya kadar kesintisiz bir yönlendirme zinciri kuruyoruz.</p><h3>Neler Yapıyoruz?</h3><ul><li><strong>Kat planı ve bina tanıtım panoları:</strong> Girişte ziyaretçiyi karşılayan, tüm birimleri gösteren panolar.</li><li><strong>Duvar ve tavan yön levhaları:</strong> Alüminyum profil sistemli, içeriği sonradan değiştirilebilen modüler levhalar.</li><li><strong>Zemin yönlendirme şeritleri:</strong> Hastanelerde çok tercih edilen renk kodlu bantlar; hasta rengi takip ederek gideceği bölüme ulaşır.</li><li><strong>Kapı ve oda numaraları:</strong> Braille kabartmalı seçenekleriyle.</li><li><strong>Depo ve fabrika yer işaretlemeleri:</strong> Yürüyüş yolu, forklift güzergâhı ve stok alanı çizgileri.</li><li><strong>Acil çıkış ve iş güvenliği levhaları:</strong> İlgili yönetmeliklere uygun ölçü ve renklerde.</li></ul><p>Yönlendirme projelerinde önce binayı yerinde geziyor, insan akışını izliyoruz. Levhayı nereye asacağınıza karar vermek, levhayı üretmekten daha önemlidir.</p><a href="https://wa.me/905079605049" class="btn-main" target="_blank">PROJENİZİ GÖNDERİN</a></div></div>
+
+<div class="sub-page-overlay" id="modal-bayi"><span class="close-sub-page" onclick="closeSubPage('modal-bayi')">×</span><div class="sub-page-content"><h2>Bayi Tabelaları</h2><p>Bir markanın bayisi olduğunuzda tabelanız artık sadece sizin değil, o markanın da yüzüdür. Renk kodundan harf yüksekliğine, logo oranından malzeme cinsine kadar marka kılavuzunda ne yazıyorsa birebir uygularız.</p><h3>Neden Bizimle Çalışılıyor?</h3><ul><li><strong>Kurumsal kimlik kılavuzuna sadakat:</strong> Pantone/RAL kodları, ölçü toleransları ve montaj detayları dosyada nasılsa öyle üretilir.</li><li><strong>Seri üretim kapasitesi:</strong> Aynı anda onlarca bayinin tabelasını aynı kalitede çıkarabilecek atölye altyapımız var.</li><li><strong>Türkiye geneli montaj:</strong> Karadeniz merkezli olmakla birlikte bayi ağı projelerinde ülke geneline montaj ekibi gönderiyoruz.</li><li><strong>Tek elden takip:</strong> Keşif, üretim, sevkiyat ve montaj tek firmadan; aracı yok.</li></ul><p>Pedo, RodiMood, Karaca Home, Festival Halı, Dilek Halı, Gümüşsuyu, Ramsey, Kip, Husqvarna ve Stihl gibi markaların bayi tabelalarını üstlendik. Referans listemizin tamamı için bize ulaşabilirsiniz.</p><a href="https://wa.me/905079605049" class="btn-main" target="_blank">BAYİ TABELASI TEKLİFİ AL</a></div></div>
+
+<div class="sub-page-overlay" id="modal-krom"><span class="close-sub-page" onclick="closeSubPage('modal-krom')">×</span><div class="sub-page-content"><h2>Krom Harf Tabela</h2><p>Krom harf, tabela işinin en prestijli ucudur. Kuyumcu, klinik, otel, avukatlık bürosu ve kurumsal ofis girişlerinde tercih edilir; ağırbaşlı ve pahalı bir izlenim bırakır.</p><h3>Malzeme ve Kalite</h3><p>Dış mekanda <strong>304 kalite paslanmaz çelik</strong> kullanıyoruz. 304 krom, deniz havası ve nemin yoğun olduğu Karadeniz sahilinde yıllarca paslanmadan durur; daha ucuz kalitesiz kromlar birkaç sezonda noktalanmaya başlar. Fark ilk gün görünmez, üçüncü yıl görünür.</p><h3>Yüzey Seçenekleri</h3><ul><li><strong>Ayna krom:</strong> Parlak, ışığı yansıtan klasik görünüm.</li><li><strong>Fırçalı (saten) krom:</strong> Mat ve modern; parmak izi göstermez.</li><li><strong>Altın / rose renk:</strong> Titanyum kaplama ile sağlanır, sararmaz.</li></ul><h3>Aydınlatma</h3><p>Krom harfler ışıksız kullanılabileceği gibi, arkadan aydınlatmalı (backlight / halo efekt) olarak da üretilir. Halo efektinde ışık harfin arkasından duvara vurur, harfin kendisi karanlıkta silüet olarak durur; en çok beğenilen uygulamalardan biridir.</p><a href="https://wa.me/905079605049" class="btn-main" target="_blank">KROM HARF FİYATI AL</a></div></div>
+
+<div class="sub-page-overlay" id="modal-cam"><span class="close-sub-page" onclick="closeSubPage('modal-cam')">×</span><div class="sub-page-content"><h2>Cam Yazısı & Folyo Uygulamaları</h2><p>Vitrin camınız, dükkanınızın en büyük ve en ucuz reklam alanıdır. Doğru folyo uygulamasıyla hem markanızı duyurur, hem içeriyi güneşten ve meraklı bakışlardan korursunuz.</p><h3>Uygulama Çeşitleri</h3><ul><li><strong>Kesme yazı (kesim folyo):</strong> Tek renk yazı ve logoların cama yapıştırılması. En ekonomik ve en temiz duran çözüm.</li><li><strong>Kumlama (buzlu cam) folyosu:</strong> Camı buzlu cam görünümüne çevirir. Banka, klinik, kuaför ve toplantı odalarında mahremiyet sağlar.</li><li><strong>One-way vision (delikli folyo):</strong> Dışarıdan tam görsel görünür, içeriden dışarısı seçilir. Vitrin ve araç camlarının vazgeçilmezi.</li><li><strong>Cam giydirme (tam kaplama):</strong> Vitrinin tamamının baskılı folyoyla kaplanması.</li><li><strong>Gergi tavan ve tavan baskı:</strong> Gökyüzü, bulut ve özel desenli iç mekan tavan uygulamaları.</li></ul><h3>Malzeme Notu</h3><p>Uygulamalarda 3M, Avery, Oracal ve Frimpeks gibi bilinen markaların folyolarını kullanıyoruz. Ucuz folyolar 1-2 yılda kavlar, sararır ve söküldüğünde cama yapışkan bırakır; bizim kullandığımız folyolar temiz sökülür.</p><a href="https://wa.me/905079605049" class="btn-main" target="_blank">CAM ÖLÇÜNÜZÜ GÖNDERİN</a></div></div>
+
+<div class="sub-page-overlay" id="modal-engelli"><span class="close-sub-page" onclick="closeSubPage('modal-engelli')">×</span><div class="sub-page-content"><h2>Görme Engelli Ürünleri & Erişilebilirlik</h2><p>Kamu binaları, hastaneler, okullar ve belediye tesislerinde erişilebilirlik artık tercih değil, yasal zorunluluktur. Bu alandaki ürünleri üretiyor ve mevzuata uygun şekilde uyguluyoruz.</p><h3>Ürünlerimiz</h3><ul><li><strong>Hissedilebilir yüzey (kılavuz iz) kaplamalar:</strong> Görme engelli bireyin bastonuyla ve ayağıyla algıladığı sarı kabartma zemin. Yönlendirici (çizgili) ve uyarıcı (noktalı) tipleriyle.</li><li><strong>Braille kabartma levhalar:</strong> Oda numarası, kat bilgisi ve WC yönlendirmelerinde kabartma yazı ve Braille alfabesi bir arada.</li><li><strong>Bina tanıtım ve kat planı panoları:</strong> Dokunmatik kabartmalı, görme engelli bireyin elleyerek okuyabileceği planlar.</li><li><strong>Engelli WC ve engelli park yeri levhaları:</strong> Standart ölçü ve sembollerde.</li><li><strong>Merdiven basamak uyarı bantları:</strong> Kaymaz ve fosforlu seçeneklerle.</li></ul><h3>Neden Önemli?</h3><p>Erişilebilirlik denetimlerinde en çok takılan kalemlerden biri hissedilebilir yüzeydir; yanlış tipte veya yanlış güzergâhta döşendiğinde denetimden geçmez. Uygulamadan önce güzergâh planını birlikte çıkarıyoruz.</p><a href="https://wa.me/905079605049" class="btn-main" target="_blank">ERİŞİLEBİLİRLİK PROJESİ SORUN</a></div></div>
+
 <div class="sub-page-overlay" id="modal-kvkk"><span class="close-sub-page" onclick="closeSubPage('modal-kvkk')">×</span><div class="sub-page-content"><h2>6698 Sayılı KVKK Aydınlatma Metni</h2><p><strong>Uzman Reklam</strong> olarak, 6698 sayılı Kişisel Verilerin Korunması Kanunu (“KVKK”) uyarınca, veri sorumlusu sıfatıyla, kişisel verilerinizin güvenliğine ve hukuka uygun olarak işlenmesine azami hassasiyet göstermekteyiz. Sitemizi ziyaret eden ve bizimle iletişime geçen kullanıcılarımızın haklarını korumak amacıyla bu aydınlatma metni hazırlanmıştır.</p><h3>1. İşlenen Kişisel Verileriniz ve İşlenme Amaçları</h3><p>Web sitemizdeki iletişim kanalları, WhatsApp yönlendirmeleri veya telefon hatlarımız aracılığıyla bizimle paylaştığınız adınız, soyadınız, telefon numaranız, e-posta adresiniz ve kurumsal firma bilgileriniz; sadece aşağıdaki amaçlarla sınırlı olarak işlenmektedir:</p><ul><li>Tabela, reklam, açık hava reklamcılığı ve matbaa hizmetlerimize yönelik taleplerinizin alınması,</li><li>İşletmenize özel fiyat tekliflerinin hazırlanması, revize edilmesi ve tarafınıza iletilmesi,</li><li>Açık alan, şantiye veya dükkan üstü keşif süreçlerinin planlanması ve montaj randevularının organize edilmesi,</li><li>Süreç takibi, finansal mutabakat (fatura, havale/EFT kontrolü) ve yasal yükümlülüklerin yerine getirilmesi.</li></ul><h3>2. Kişisel Verilerin Aktarılması</h3><p>Toplanan kişisel verileriniz, KVKK’nın 8. ve 9. maddelerinde belirtilen şartlara uygun olarak, tamamen gizlilik esasıyla korunmaktadır. Verileriniz, yasal bir yargı kararı veya resmi makamların (Vergi Dairesi, Bakanlıklar vb.) zorunlu talepleri haricinde kesinlikle hiçbir üçüncü şahsa, reklam ajansına, veri havuzuna veya ticari kuruluşa satılmamakta, devredilmemekte ve aktarılmamaktadır.</p><h3>3. Kişisel Veri Toplamanın Yöntemi ve Hukuki Sebebi</h3><p>Kişisel verileriniz, sitemizi ziyaretinizle birlikte tarayıcı çerezleri vasıtasıyla otomatik olarak ya da WhatsApp, telefon ve e-posta yoluyla tamamen kendi rızanız doğrultusunda (sözlü veya yazılı olarak) toplanmaktadır. Bu süreç, KVKK md. 5/2-c uyarınca bir sözleşmenin kurulması veya ifasıyla doğrudan doğruya ilgili olması ve hukuki yükümlülüklerimizin yerine getirilmesi hukuki sebebine dayanır.</p><h3>4. Veri Sahibinin (Müşterilerimizin) Hakları</h3><p>Kanun’un 11. maddesi uyarınca dilediğiniz zaman firmamıza başvurarak; kişisel verilerinizin işlenip işlenmediğini öğrenme, işlenmişse buna ilişkin bilgi talep etme, işlenme amacını ve amacına uygun kullanılıp kullanılmadığını öğrenme, eksik veya yanlış işlenmişse düzeltilmesini isteme ve verilerinizin tamamen silinmesini veya yok edilmesini talep etme haklarına sahipsiniz. Başvurularınızı doğrudan atölye adresimize yazılı olarak veya <strong>0532 220 46 49</strong> numaralı kurumsal hattımız üzerinden iletebilirsiniz.</p></div></div>
 
 <div class="sub-page-overlay" id="modal-gizlilik"><span class="close-sub-page" onclick="closeSubPage('modal-gizlilik')">×</span><div class="sub-page-content"><h2>Gizlilik Politikası ve Çerez Beyanı</h2><p>Bu Gizlilik Politikası, <strong>samsuntabela.tr</strong> web sitesini ziyaret eden tüm kullanıcıların gizlilik haklarını korumak ve şeffaflık sağlamak amacıyla hazırlanmıştır. Sitemizde gezinirken ve kurumsal reklam hizmetlerimizden faydalanırken gizliliğiniz tamamen güvence altındadır.</p><h3>1. Veri Güvenliği ve Kredi Kartı İşlemleri</h3><p>Uzman Reklam web sitesi, tamamen bilgilendirme, kurumsal portfolyo gösterimi ve kurumsal iletişim odaklı statik bir web sitesidir. Sitemiz üzerinde herhangi bir e-ticaret altyapısı, doğrudan online ödeme kanalı veya kredi kartı pos entegrasyonu <u>bulunmamaktadır</u>. Bu sebeple sitemiz üzerinden kredi kartı verilerinizin çalınması, kopyalanması veya depolanması gibi bir risk kesinlikle söz konusu değildir. Ödemelerimiz yalnızca resmi kurumsal banka IBAN hesaplarımız üzerinden veya dükkanımızda yüz yüze gerçekleştirilmektedir.</p><h3>2. Çerezler (Cookies) ve Analitik Araçlar</h3><p>Sitemiz, kullanıcı deneyimini artırmak, sayfaların açılış hızını optimize etmek ve ziyaretçi trafiğini analiz etmek amacıyla standart internet çerezleri (cookies) ve Google Analytics gibi güvenilir analitik altyapılar kullanabilir. Çerezler, bilgisayarınıza veya mobil cihazınıza zarar vermeyen, sadece tarayıcınızın siteyi hatırlamasını sağlayan küçük metin dosyalarıdır. Tarayıcı ayarlarından çerezleri dilediğiniz an tamamen kapatabilir veya temizleyebilirsiniz.</p><h3>3. Üçüncü Taraf Bağlantıları ve WhatsApp Yönlendirmeleri</h3><p>Web sitemizde bulunan Instagram ve WhatsApp butonları, doğrudan ilgili platformların resmi, güvenli API altyapılarına yönlendirme yapmaktadır. Bu butonlara tıkladığınızda açılan pencereler ilgili şirketlerin kendi gizlilik sözleşmelerine tabidir. Uzman Reklam, bu harici platformların veri politikalarından sorumlu tutulamaz.</p><h3>4. Politika Güncellemeleri</h3><p>Gelişen teknolojiye, yasal mevzuatlara ve sitemize eklenebilecek yeni özelliklere bağlı olarak bu gizlilik politikası zaman zaman güncellenebilir. Sitemizi kullanmaya devam ederek bu şartları kabul etmiş sayılırsınız. Sorularınız için bizimle her zaman kurumsal kanallarımız üzerinden iletişime geçebilirsiniz.</p></div></div>
 
-<div id="lightbox"><span id="lb-close" onclick="closeLightbox()">×</span><span id="lb-prev" onclick="changeSlide(-1)">❮</span><span id="lb-next" onclick="changeSlide(1)">❯</span><img id="lb-img" src=""><div id="lb-caption"></div></div>
+<div id="lightbox"><div id="lb-counter"></div><span id="lb-close" onclick="closeLightbox()">×</span><span id="lb-prev" onclick="changeSlide(-1)">❮</span><span id="lb-next" onclick="changeSlide(1)">❯</span><img id="lb-img" src="" alt=""><div id="lb-caption"></div></div>
 
 <script>
     let visibleImages = [];
     let currentImgIdx = 0;
+    let activeCat = 'all';
     const lightbox = document.getElementById('lightbox');
     const lbImg = document.getElementById('lb-img');
     const lbCaption = document.getElementById('lb-caption');
+    const lbCounter = document.getElementById('lb-counter');
+    const allCards = Array.from(document.querySelectorAll('.work-card'));
 
-    window.onload = function() { updateVisibleImages(); };
+    /* Türkçe karakterleri sadeleştir: "yönlendirme" ile "yonlendirme" aynı sonucu versin */
+    function norm(s) {
+        return (s || '').toLocaleLowerCase('tr')
+            .replace(/ı/g,'i').replace(/ğ/g,'g').replace(/ü/g,'u')
+            .replace(/ş/g,'s').replace(/ö/g,'o').replace(/ç/g,'c')
+            .replace(/â/g,'a').replace(/î/g,'i').replace(/û/g,'u')
+            .replace(/[^a-z0-9 ]/g,' ').replace(/\s+/g,' ').trim();
+    }
 
-    function filterGallery(category) {
-        const buttons = document.querySelectorAll('.filter-btn');
-        buttons.forEach(btn => btn.classList.remove('active'));
-        event.target.classList.add('active');
-        const cards = document.querySelectorAll('.work-card');
-        cards.forEach(card => {
-            if(category === 'all') card.classList.remove('hide');
-            else if(card.classList.contains(category)) card.classList.remove('hide');
-            else card.classList.add('hide');
+    /* Her kart için aranabilir metin: başlık + alt yazı + alt etiketi + data-tags */
+    allCards.forEach(card => {
+        const img = card.querySelector('img');
+        const h3 = card.querySelector('.work-info h3');
+        const p  = card.querySelector('.work-info p');
+        card.dataset.search = norm([
+            h3 ? h3.textContent : '',
+            p ? p.textContent : '',
+            img ? img.alt : '',
+            card.dataset.tags || '',
+            card.className
+        ].join(' '));
+    });
+
+    /* Sayfa açılışında 12 fotoğraf gösteriyoruz. 68'ini birden basmak
+       ziyaretçiyi yoruyor; gerisi "Daha Fazla Göster" ile geliyor. */
+    const SAYFA_ADEDI = 12;
+    let gosterilen = SAYFA_ADEDI;
+
+    function sayfalamayiUygula() {
+        const eslesenler = allCards.filter(c => !c.classList.contains('hide'));
+        eslesenler.forEach((c, i) => c.classList.toggle('sayfa-disi', i >= gosterilen));
+        const kalan = eslesenler.length - gosterilen;
+        const sar = document.getElementById('dahaFazlaSar');
+        const btn = document.getElementById('dahaFazlaBtn');
+        if (kalan > 0) {
+            sar.style.display = 'block';
+            btn.querySelector('.adet').textContent = '(' + kalan + ' tane daha)';
+        } else {
+            sar.style.display = 'none';
+        }
+    }
+
+    function dahaFazlaGoster() {
+        gosterilen += SAYFA_ADEDI;
+        sayfalamayiUygula();
+    }
+
+    function applyFilters(sayfayiSifirla) {
+        const q = norm(document.getElementById('gallerySearch').value);
+        const terms = q ? q.split(' ') : [];
+        let shown = 0;
+        allCards.forEach(card => {
+            const catOk = (activeCat === 'all') || card.classList.contains(activeCat);
+            const txt = card.dataset.search;
+            const searchOk = terms.every(t => txt.indexOf(t) !== -1);
+            if (catOk && searchOk) { card.classList.remove('hide'); shown++; }
+            else { card.classList.add('hide'); }
         });
-        setTimeout(updateVisibleImages, 100);
+        if (sayfayiSifirla !== false) gosterilen = SAYFA_ADEDI;
+        document.getElementById('noResults').classList.toggle('show', shown === 0);
+        document.getElementById('searchClear').classList.toggle('show', q.length > 0);
+        sayfalamayiUygula();
+        updateVisibleImages();
+    }
+
+    function hizmetleriAc() {
+        document.getElementById('servicesGrid').classList.add('acik');
+        document.getElementById('hizmetDahaBtn').parentElement.style.display = 'none';
+    }
+
+    function filterGallery(category, btn) {
+        activeCat = category;
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        if (btn) {
+            btn.classList.add('active');
+            btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        }
+        applyFilters();
+    }
+
+    function clearSearch() {
+        const el = document.getElementById('gallerySearch');
+        el.value = '';
+        applyFilters();
+        el.focus();
+    }
+
+    /* Kategori düğmelerine gerçek fotoğraf sayılarını yaz */
+    function paintCounts() {
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            const cat = btn.dataset.cat;
+            const n = (cat === 'all') ? allCards.length : allCards.filter(c => c.classList.contains(cat)).length;
+            const span = btn.querySelector('.cnt');
+            if (span) span.textContent = n;
+        });
     }
 
     function updateVisibleImages() {
-        const visibleCards = Array.from(document.querySelectorAll('.work-card:not(.hide)'));
-        visibleImages = visibleCards.map(card => ({ src: card.querySelector('img').src, alt: card.querySelector('img').alt }));
+        visibleImages = allCards.filter(c => !c.classList.contains('hide')).map(card => {
+            const img = card.querySelector('img');
+            const h3 = card.querySelector('.work-info h3');
+            const p  = card.querySelector('.work-info p');
+            return { src: img.src, alt: img.alt, baslik: (h3 ? h3.textContent : '') + (p ? ' — ' + p.textContent : '') };
+        });
+    }
+
+    /* ---- LIGHTBOX ---- */
+    let scrollYBeforeLock = 0;
+    function lockScroll() {
+        scrollYBeforeLock = window.scrollY || window.pageYOffset;
+        document.body.style.position = 'fixed';
+        document.body.style.top = '-' + scrollYBeforeLock + 'px';
+        document.body.style.width = '100%';
+    }
+    function unlockScroll() {
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.width = '';
+        window.scrollTo(0, scrollYBeforeLock);
     }
 
     function openLightbox(element) {
         const clickedSrc = element.querySelector('img').src;
-        currentImgIdx = visibleImages.findIndex(imgObj => imgObj.src === clickedSrc);
-        if(currentImgIdx === -1) currentImgIdx = 0;
+        currentImgIdx = visibleImages.findIndex(o => o.src === clickedSrc);
+        if (currentImgIdx === -1) currentImgIdx = 0;
         lightbox.style.display = 'flex';
+        lockScroll();
         updateLightbox();
     }
 
-    function closeLightbox() { lightbox.style.display = 'none'; }
-    function changeSlide(n) { currentImgIdx = (currentImgIdx + n + visibleImages.length) % visibleImages.length; updateLightbox(); }
-    function updateLightbox() { if(visibleImages.length) { lbImg.src = visibleImages[currentImgIdx].src; lbCaption.innerText = visibleImages[currentImgIdx].alt; } }
-    lightbox.onclick = function(e) { if (e.target == lightbox) closeLightbox(); }
+    function closeLightbox() {
+        lightbox.style.display = 'none';
+        unlockScroll();
+    }
 
-    function openSubPage(pageId) { document.getElementById(pageId).classList.add('active'); document.body.style.overflow = 'hidden'; }
-    function closeSubPage(pageId) { document.getElementById(pageId).classList.remove('active'); document.body.style.overflow = 'auto'; }
+    function changeSlide(n) {
+        if (!visibleImages.length) return;
+        currentImgIdx = (currentImgIdx + n + visibleImages.length) % visibleImages.length;
+        updateLightbox();
+    }
+
+    function updateLightbox() {
+        if (!visibleImages.length) return;
+        const o = visibleImages[currentImgIdx];
+        lbImg.src = o.src;
+        lbImg.alt = o.alt;
+        lbCaption.innerText = o.baslik || o.alt;
+        lbCounter.innerText = (currentImgIdx + 1) + ' / ' + visibleImages.length;
+        const tekFoto = visibleImages.length < 2;
+        document.getElementById('lb-prev').style.display = tekFoto ? 'none' : 'flex';
+        document.getElementById('lb-next').style.display = tekFoto ? 'none' : 'flex';
+    }
+
+    lightbox.onclick = function(e) { if (e.target === lightbox) closeLightbox(); };
+
+    /* Klavye: ESC kapatır, oklar gezinir */
+    document.addEventListener('keydown', function(e) {
+        if (lightbox.style.display !== 'flex') return;
+        if (e.key === 'Escape') closeLightbox();
+        else if (e.key === 'ArrowLeft') changeSlide(-1);
+        else if (e.key === 'ArrowRight') changeSlide(1);
+    });
+
+    /* Telefonda parmakla kaydırarak fotoğraf değiştirme */
+    let touchStartX = 0, touchStartY = 0;
+    lightbox.addEventListener('touchstart', function(e) {
+        touchStartX = e.changedTouches[0].screenX;
+        touchStartY = e.changedTouches[0].screenY;
+    }, { passive: true });
+    lightbox.addEventListener('touchend', function(e) {
+        const dx = e.changedTouches[0].screenX - touchStartX;
+        const dy = e.changedTouches[0].screenY - touchStartY;
+        if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) changeSlide(dx < 0 ? 1 : -1);
+        else if (dy > 90 && Math.abs(dy) > Math.abs(dx)) closeLightbox();
+    }, { passive: true });
+
+    function openSubPage(pageId) { document.getElementById(pageId).classList.add('active'); lockScroll(); }
+    function closeSubPage(pageId) { document.getElementById(pageId).classList.remove('active'); unlockScroll(); }
+
+    /* ---- GECE / GÜNDÜZ MODU ---- */
+    function temaDegistir() {
+        var simdiki = document.documentElement.getAttribute('data-theme');
+        var yeni = (simdiki === 'light') ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', yeni);
+        try { localStorage.setItem('tema', yeni); } catch (e) {}
+        var m = document.querySelector('meta[name="theme-color"]');
+        if (m) m.setAttribute('content', yeni === 'light' ? '#ffffff' : '#050505');
+    }
+
+    /* Kullanıcı kendi seçimini yapmadıysa, telefonun/bilgisayarın modu
+       sonradan değişince site de anında ona uysun */
+    try {
+        window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', function (e) {
+            if (localStorage.getItem('tema')) return;
+            document.documentElement.setAttribute('data-theme', e.matches ? 'light' : 'dark');
+        });
+    } catch (e) {}
+
+    /* Menü yüksekliğini ölç: açılır menü ve bağlantı atlamaları buna göre hizalanır.
+       Sabit 56px vermek, slogan iki satıra düşünce boşluk/örtüşme yaratıyordu. */
+    function navYuksekligiOlc() {
+        var n = document.querySelector('nav');
+        if (n) document.documentElement.style.setProperty('--nav-h', n.offsetHeight + 'px');
+    }
+    navYuksekligiOlc();
+    window.addEventListener('resize', navYuksekligiOlc);
+    window.addEventListener('orientationchange', function () { setTimeout(navYuksekligiOlc, 250); });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(navYuksekligiOlc);
+
+    /* Başlangıç */
+    document.getElementById('gallerySearch').addEventListener('input', applyFilters);
+    paintCounts();
+    applyFilters();
 
     function toggleFaq() {
         const content = document.getElementById('faqContent');
@@ -733,6 +1309,9 @@
     function startReviewScroll() {
         const wrapper = document.querySelector('.reviews-wrapper');
         if (!wrapper) return;
+        /* Cihazda "hareketi azalt" açıksa yorumlar kendi kendine kaymasın;
+           ziyaretçi parmağıyla/fareyle kendi kaydırır. */
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
         const card = wrapper.querySelector('.review-card');
         const step = card ? card.offsetWidth + 20 : 300;
         wrapper.addEventListener('mouseenter', () => clearInterval(reviewInterval));
