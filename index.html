@@ -31,12 +31,12 @@
     <meta property="og:url" content="https://samsuntabela.tr/">
     <meta property="og:title" content="Samsun Tabela & Reklamcı | Uzman Reklam">
     <meta property="og:description" content="Samsun tabela, kutu harf ve cephe giydirme hizmetleri. 1973'ten beri Uzman Reklam güvencesiyle Karadeniz geneline hizmet veriyoruz.">
-    <meta property="og:image" content="https://samsuntabela.tr/og-image.jpg">
+    <meta property="og:image" content="https://samsuntabela.tr/og-kapak.jpg">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Samsun Tabela & Reklamcı | Uzman Reklam">
     <meta name="twitter:description" content="Samsun tabela, kutu harf ve cephe giydirme hizmetleri. 1973'ten beri Uzman Reklam güvencesiyle.">
-    <meta name="twitter:image" content="https://samsuntabela.tr/og-image.jpg">
+    <meta name="twitter:image" content="https://samsuntabela.tr/og-kapak.jpg">
     <link rel="preload" as="image" href="hero-1-m.jpg" fetchpriority="high" media="(max-width: 768px)">
     <link rel="preload" as="image" href="hero-1.jpg" fetchpriority="high" media="(min-width: 769px)">
 
@@ -52,7 +52,13 @@
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
       "name": "Uzman Reklam",
-      "image": "https://samsuntabela.tr/favicon.svg",
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://samsuntabela.tr/og-kapak.jpg",
+        "width": 1200,
+        "height": 630
+      },
+      "logo": "https://samsuntabela.tr/og-image.jpg",
       "url": "https://samsuntabela.tr",
       "telephone": "+905322204649",
       "address": {
@@ -232,18 +238,13 @@
 
         .hero { position: relative; height: 100vh; height: 100svh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; overflow: hidden; width: 100%; }
         .hero-slider { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background-color: #000; }
-        .slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; filter: brightness(0.3); opacity: 0; animation: fadeSlide 20s infinite; transform: translateZ(0); }
+        .slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; filter: brightness(0.3); opacity: 0; animation: fadeSlide 20s infinite; transform: translateZ(0); }
 
-        .slide:nth-child(1) { background-image: url('hero-1-m.jpg'); animation-delay: 0s; }
-        .slide:nth-child(2) { background-image: url('hero-2-m.jpg'); animation-delay: 5s; }
-        .slide:nth-child(3) { background-image: url('hero-3-m.jpg'); animation-delay: 10s; }
-        .slide:nth-child(4) { background-image: url('hero-4-m.jpg'); animation-delay: 15s; }
-        @media (min-width: 769px) {
-            .slide:nth-child(1) { background-image: url('hero-1.jpg'); }
-            .slide:nth-child(2) { background-image: url('hero-2.jpg'); }
-            .slide:nth-child(3) { background-image: url('hero-3.jpg'); }
-            .slide:nth-child(4) { background-image: url('hero-4.jpg'); }
-        }
+        .hero-slider picture { display: contents; }
+        .hero-slider picture:nth-child(1) .slide { animation-delay: 0s; }
+        .hero-slider picture:nth-child(2) .slide { animation-delay: 5s; }
+        .hero-slider picture:nth-child(3) .slide { animation-delay: 10s; }
+        .hero-slider picture:nth-child(4) .slide { animation-delay: 15s; }
 
         @keyframes fadeSlide { 0%, 100% { opacity: 0; } 7%, 25% { opacity: 1; } 32% { opacity: 0; } }
 
@@ -712,7 +713,12 @@
 </div>
 
 <section class="hero">
-    <div class="hero-slider"><div class="slide"></div><div class="slide"></div><div class="slide"></div><div class="slide"></div></div>
+    <div class="hero-slider">
+        <picture><source media="(min-width:769px)" srcset="hero-1.jpg"><img class="slide" src="hero-1-m.jpg" width="1600" height="1600" fetchpriority="high" decoding="async" alt="Medibafra Hastanesi cephe giydirme ve dev tabela uygulaması - Uzman Reklam Bafra Samsun"></picture>
+        <picture><source media="(min-width:769px)" srcset="hero-2.jpg"><img class="slide" src="hero-2-m.jpg" width="800" height="600" decoding="async" alt="Liv Hospital Samsun ışıklı kutu harf tabela uygulaması"></picture>
+        <picture><source media="(min-width:769px)" srcset="hero-3.jpg"><img class="slide" src="hero-3-m.jpg" width="750" height="620" decoding="async" alt="Piazza AVM dev totem tabela - Samsun yol kenarı reklam kulesi"></picture>
+        <picture><source media="(min-width:769px)" srcset="hero-4.jpg"><img class="slide" src="hero-4-m.jpg" width="1600" height="1200" decoding="async" alt="Entek Elektrik ışıklı kutu harf tabela ve kompozit cephe uygulaması"></picture>
+    </div>
     <div class="hero-content">
         <h1>SAMSUN'DA TABELA<br><span>BİZİM İŞİMİZ.</span></h1>
         <p>Karadeniz genelinde bayi tabelaları ve kurumsal reklam çözümleri sunuyoruz. Yarım asırlık tecrübemizle Samsun'dan tüm bölgeye hizmet taşıyoruz.</p>
