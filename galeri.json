@@ -60,6 +60,11 @@
       "id": "imalat",
       "ad": "İmalat & Montaj",
       "kisa": "İmalat"
+    },
+    {
+      "id": "deneme-kategorisi",
+      "ad": "Deneme Kategorisi",
+      "kisa": "Deneme Kategorisi"
     }
   ],
   "fotolar": [
@@ -76,11 +81,10 @@
     {
       "dosya": "panel-test-deneme-karti.webp",
       "baslik": "Panel Test",
-      "altyazi": "Deneme Kartı",
+      "altyazi": "Düzenlenmiş Kart",
       "alt": "Panel Test Samsun Deneme Kartı",
       "kategoriler": [
-        "totem",
-        "imalat"
+        "totem"
       ],
       "etiketler": "panel test deneme karti totem imalat montaj"
     },
