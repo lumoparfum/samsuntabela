@@ -74,6 +74,17 @@
       "etiketler": "espa toz boya sanayi metal kutu harf cephe tabela"
     },
     {
+      "dosya": "panel-test-deneme-karti.webp",
+      "baslik": "Panel Test",
+      "altyazi": "Deneme Kartı",
+      "alt": "Panel Test Samsun Deneme Kartı",
+      "kategoriler": [
+        "totem",
+        "imalat"
+      ],
+      "etiketler": "panel test deneme karti totem imalat montaj"
+    },
+    {
       "dosya": "espa-toz-boya-kutu-harf-tabela-yakin.webp",
       "baslik": "Espa Toz Boya",
       "altyazi": "Kutu Harf Yakın Çekim",
