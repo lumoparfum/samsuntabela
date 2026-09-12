@@ -90,6 +90,30 @@ def webp_uret(veri, kontrol):
     return uretilen, eksik
 
 
+def yetim_temizle(veri, kontrol):
+    """Galeriden cikarilmis ve sitede hicbir dosyanin atifta bulunmadigi WebP'leri (ve kaynak jpg'sini) sil."""
+    kullanilan = set(f["dosya"] for f in veri["fotolar"])
+    metinler = []
+    for dizin, altlar, dosyalar in os.walk(KOK):
+        altlar[:] = [d for d in altlar if d not in (".git", "galeri", "veriler", "node_modules")]
+        for d in dosyalar:
+            if d.endswith((".html", ".css", ".xml", ".json", ".js", ".webmanifest")) and d != "galeri.json":
+                metinler.append(io.open(os.path.join(dizin, d), encoding="utf-8", errors="ignore").read())
+    govde = "\n".join(metinler)
+    silinen = []
+    for d in sorted(os.listdir(KOK)):
+        if not d.endswith(".webp") or d in kullanilan or d in govde:
+            continue
+        # galeri.json'da yok, sitede hicbir dosya kullanmiyor -> yetim
+        hedefler = [os.path.join(KOK, d)] + [os.path.join(KAYNAK_DIZIN, d[:-5] + uz) for uz in (".jpg", ".jpeg", ".png")]
+        for h in hedefler:
+            if os.path.exists(h):
+                if not kontrol:
+                    os.remove(h)
+                silinen.append(os.path.relpath(h, KOK))
+    return silinen
+
+
 def filtre_html(veri):
     satirlar = ['<div class="gallery-filters" id="galleryFilters">',
                 '    <button class="filter-btn active" data-cat="all" onclick="filterGallery(\'all\', this)">Tümü <span class="cnt"></span></button>']
@@ -147,6 +171,9 @@ def main():
     if eksik:
         print("HATA: su fotolarin ne webp'si ne kaynagi var:", ", ".join(eksik))
         sys.exit(1)
+
+    for y in yetim_temizle(veri, kontrol):
+        print("yetim silindi:" if not kontrol else "yetim (silinecek):", y)
 
     index_yolu = os.path.join(KOK, "index.html")
     sitemap_yolu = os.path.join(KOK, "sitemap.xml")
