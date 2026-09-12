@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>Fason Dijital Baskı | Ölçü Gir, Fiyat Gör | Uzman Reklam</title>
     <meta name="description" content="Türkiye geneline fason dijital baskı: folyo, branda, vinil, mesh, canvas, magnet ve maketler. Samsun'dan kargo, WhatsApp'tan anında sipariş." />
+    <link rel="canonical" href="https://samsuntabela.tr/baski.html" />
     <meta property="og:site_name" content="Samsun Tabela" />
     <meta name="keywords" content="fason baskı, dijital baskı, folyo baskı, vinil baskı, mesh baskı, one way vision, canvas baskı, magnet baskı, samsun baskı, bafra reklam, atatürk maketi, çocuk maketi, taraftar maketi" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -991,7 +992,7 @@
         <!-- HERO -->
         <section class="hero">
             <div class="hero-video-wrap">
-                <video class="hero-video" autoplay muted loop playsinline>
+                <video class="hero-video" autoplay muted loop playsinline preload="metadata" poster="images/fason/hero-poster.jpg">
                     <source src="images/fason/hero-fason.mp4" type="video/mp4">
                 </video>
             </div>
@@ -1467,7 +1468,7 @@
                 <div class="product-card" onclick="openModal('rollup_banner')">
                     <div class="product-badge multi-design">🎪 Hazır Kurulum</div>
                     <div class="card-img-wrap">
-                        <img class="card-img" src="data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect x='68' y='24' width='64' height='118' rx='6' fill='none' stroke='%236f8f00' stroke-width='6'/%3E%3Cline x1='100' y1='142' x2='100' y2='172' stroke='%236f8f00' stroke-width='6'/%3E%3Cline x1='72' y1='172' x2='128' y2='172' stroke='%236f8f00' stroke-width='6'/%3E%3Cline x1='100' y1='172' x2='68' y2='188' stroke='%236f8f00' stroke-width='5'/%3E%3Cline x1='100' y1='172' x2='132' y2='188' stroke='%236f8f00' stroke-width='5'/%3E%3C/svg%3E" alt="Roll-Up Banner" loading="lazy">
+                        <img class="card-img" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20200%20200'%3E%3Crect%20x='68'%20y='24'%20width='64'%20height='118'%20rx='6'%20fill='none'%20stroke='%236f8f00'%20stroke-width='6'/%3E%3Cline%20x1='100'%20y1='142'%20x2='100'%20y2='172'%20stroke='%236f8f00'%20stroke-width='6'/%3E%3Cline%20x1='72'%20y1='172'%20x2='128'%20y2='172'%20stroke='%236f8f00'%20stroke-width='6'/%3E%3Cline%20x1='100'%20y1='172'%20x2='68'%20y2='188'%20stroke='%236f8f00'%20stroke-width='5'/%3E%3Cline%20x1='100'%20y1='172'%20x2='132'%20y2='188'%20stroke='%236f8f00'%20stroke-width='5'/%3E%3C/svg%3E" alt="Roll-Up Banner" loading="lazy">
                     </div>
                     <div class="card-body">
                         <h3>Roll-Up Banner</h3>
@@ -1554,7 +1555,7 @@
     <!-- LIGHTBOX -->
     <div class="lightbox-overlay" id="lightboxOverlay" onclick="closeLightbox()">
         <button class="lightbox-close" onclick="closeLightbox(); event.stopPropagation();">&times;</button>
-        <img id="lightboxImg" src="" alt="Büyütülmüş görsel">
+        <img id="lightboxImg" alt="Büyütülmüş görsel">
     </div>
 
     <!-- ===== MODALLAR ===== -->
@@ -1563,7 +1564,7 @@
     <div class="modal-overlay" id="productModal" onclick="if(event.target===this) closeModal()">
         <div class="modal-box">
             <button class="modal-close" onclick="closeModal()">&times;</button>
-            <img class="modal-img" id="modalImg" src="" alt="" onclick="openLightbox(this.src); event.stopPropagation();">
+            <img class="modal-img" id="modalImg" alt="" onclick="openLightbox(this.src); event.stopPropagation();">
             <h3 id="modalTitle">Ürün Adı</h3>
             <div class="modal-desc" id="modalDesc">Ürün açıklaması burada olacak.</div>
             <div class="modal-price" id="modalPrice">Fiyat</div>
@@ -1595,7 +1596,7 @@
     <div class="modal-overlay" id="takimModal" onclick="if(event.target===this) closeTakimModal()">
         <div class="modal-box">
             <button class="modal-close" onclick="closeTakimModal()">&times;</button>
-            <img class="modal-img" id="takimModalImg" src="" alt="" onclick="openLightbox(this.src); event.stopPropagation();">
+            <img class="modal-img" id="takimModalImg" alt="" onclick="openLightbox(this.src); event.stopPropagation();">
             <h3 id="takimModalTitle">Takım Maketi</h3>
             <div class="modal-desc" id="takimModalDesc"></div>
             <div class="modal-thumbs" id="takimModalThumbs"></div>
@@ -1995,7 +1996,7 @@
             document.getElementById('sonuc').innerHTML = `
                 <div class="price">${toplamTL.toFixed(0)} <small>TL</small></div>
                 <div class="detail">📐 ${m2.toFixed(2)} m² · ${urun.ad} · ${en}x${boy} cm</div>
-                <a href="https://wa.me/905079605049?text=${encodeURIComponent('Merhaba Uzman Reklam 👋\n\nFason baskı siparişi vermek istiyorum:\n\n📦 Ürün: ' + urun.ad + '\n📐 Ölçü: ' + en + '×' + boy + ' cm\n📊 Alan: ' + m2.toFixed(2) + ' m²\n💰 Tahmini: ' + toplamTL.toFixed(0) + ' TL (KDV hariç)\n\nTasarım dosyam hazır, gönderebilirim.')}" target="_blank" class="btn-wa"><i class="fab fa-whatsapp"></i> WhatsApp ile Sipariş Ver</a>
+                <a href="https://wa.me/905079605049?text=%24%7BencodeURIComponent%28%27Merhaba%20Uzman%20Reklam%20%F0%9F%91%8B%5Cn%5CnFason%20bask%C4%B1%20sipari%C5%9Fi%20vermek%20istiyorum%3A%5Cn%5Cn%F0%9F%93%A6%20%C3%9Cr%C3%BCn%3A%20%27%20%2B%20urun.ad%20%2B%20%27%5Cn%F0%9F%93%90%20%C3%96l%C3%A7%C3%BC%3A%20%27%20%2B%20en%20%2B%20%27%C3%97%27%20%2B%20boy%20%2B%20%27%20cm%5Cn%F0%9F%93%8A%20Alan%3A%20%27%20%2B%20m2.toFixed%282%29%20%2B%20%27%20m%C2%B2%5Cn%F0%9F%92%B0%20Tahmini%3A%20%27%20%2B%20toplamTL.toFixed%280%29%20%2B%20%27%20TL%20%28KDV%20hari%C3%A7%29%5Cn%5CnTasar%C4%B1m%20dosyam%20haz%C4%B1r%2C%20g%C3%B6nderebilirim.%27%29%7D" target="_blank" class="btn-wa"><i class="fab fa-whatsapp"></i> WhatsApp ile Sipariş Ver</a>
                 <button class="btn-share" onclick="shareProduct('${urun.ad}', '${en}x${boy} cm, ${m2.toFixed(2)} m²', '${toplamTL.toFixed(0)} TL (KDV hariç)', window.location.href + '?product=${malzemeKey}')"><i class="fas fa-share-alt"></i> Paylaş</button>
                 <div class="calc-note">* KDV hariç fiyattır. Kesin tutar WhatsApp'ta teyit edilir.</div>
             `;
