@@ -231,7 +231,7 @@
             font-size:0.85rem;
         }
         .step-box i { font-size:1.3rem; color:var(--accent); margin-bottom:6px; display:block; }
-        .step-box h4 { font-size:0.9rem; margin-bottom:4px; color:var(--text); }
+        .step-box h3 { font-size:0.9rem; margin-bottom:4px; color:var(--text); }
         .step-box p { font-size:0.75rem; color:var(--gray); line-height:1.5; }
 
         .calculator {
@@ -1017,30 +1017,31 @@
         </div>
 
         <!-- STEPS -->
-        <section class="steps">
+        <section class="steps" aria-labelledby="steps-baslik">
+            <h2 id="steps-baslik" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap">Nasıl Çalışır?</h2>
             <div class="steps-grid">
                 <div class="step-box">
                     <div class="step-num">1</div>
                     <i class="fas fa-ruler-combined"></i>
-                    <h4>Ölçünü Gir</h4>
+                    <h3>Ölçünü Gir</h3>
                     <p>Malzeme seç, en-boy ölçünü yaz, fiyatı anında gör.</p>
                 </div>
                 <div class="step-box">
                     <div class="step-num">2</div>
                     <i class="fab fa-whatsapp"></i>
-                    <h4>WhatsApp'tan Onayla</h4>
+                    <h3>WhatsApp'tan Onayla</h3>
                     <p>Tasarımını gönder, ölçü ve fiyatı birlikte teyit edelim.</p>
                 </div>
                 <div class="step-box">
                     <div class="step-num">3</div>
                     <i class="fas fa-print"></i>
-                    <h4>Biz Basalım</h4>
+                    <h3>Biz Basalım</h3>
                     <p>Bafra atölyemizde kaliteli baskı ve özenli paketleme.</p>
                 </div>
                 <div class="step-box">
                     <div class="step-num">4</div>
                     <i class="fas fa-truck"></i>
-                    <h4>Kapına Gelsin</h4>
+                    <h3>Kapına Gelsin</h3>
                     <p>Kargo takip numaranı WhatsApp'tan yollarız.</p>
                 </div>
             </div>
@@ -1555,7 +1556,7 @@
     <!-- LIGHTBOX -->
     <div class="lightbox-overlay" id="lightboxOverlay" onclick="closeLightbox()">
         <button class="lightbox-close" onclick="closeLightbox(); event.stopPropagation();">&times;</button>
-        <img id="lightboxImg" alt="Büyütülmüş görsel">
+        <img id="lightboxImg" src="data:," alt="Büyütülmüş görsel">
     </div>
 
     <!-- ===== MODALLAR ===== -->
@@ -1564,7 +1565,7 @@
     <div class="modal-overlay" id="productModal" onclick="if(event.target===this) closeModal()">
         <div class="modal-box">
             <button class="modal-close" onclick="closeModal()">&times;</button>
-            <img class="modal-img" id="modalImg" alt="" onclick="openLightbox(this.src); event.stopPropagation();">
+            <img class="modal-img" id="modalImg" src="data:," alt="" onclick="openLightbox(this.src); event.stopPropagation();">
             <h3 id="modalTitle">Ürün Adı</h3>
             <div class="modal-desc" id="modalDesc">Ürün açıklaması burada olacak.</div>
             <div class="modal-price" id="modalPrice">Fiyat</div>
@@ -1596,7 +1597,7 @@
     <div class="modal-overlay" id="takimModal" onclick="if(event.target===this) closeTakimModal()">
         <div class="modal-box">
             <button class="modal-close" onclick="closeTakimModal()">&times;</button>
-            <img class="modal-img" id="takimModalImg" alt="" onclick="openLightbox(this.src); event.stopPropagation();">
+            <img class="modal-img" id="takimModalImg" src="data:," alt="" onclick="openLightbox(this.src); event.stopPropagation();">
             <h3 id="takimModalTitle">Takım Maketi</h3>
             <div class="modal-desc" id="takimModalDesc"></div>
             <div class="modal-thumbs" id="takimModalThumbs"></div>
