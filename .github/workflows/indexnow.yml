@@ -1,0 +1,50 @@
+# Her yuklemede (push) degisen HTML sayfalarini:
+#   1) sitemap.xml'de lastmod = bugun yapar (Google bunu okur)
+#   2) IndexNow ile Bing + Yandex'e aninda bildirir
+name: SEO bildirim
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  bildir:
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Degisen HTML sayfalarini bul
+        id: degisen
+        run: |
+          FILES=$(git diff --name-only HEAD~1 HEAD -- '*.html' | grep -v '^baski/' | grep -v -E '^(mucahitkasa|teegarlife|uzmankasa|yandex_)' || true)
+          echo "Degisen sayfalar:"; echo "$FILES"
+          echo "files<<EOF2" >> $GITHUB_OUTPUT
+          echo "$FILES" >> $GITHUB_OUTPUT
+          echo "EOF2" >> $GITHUB_OUTPUT
+
+      - name: Sitemap lastmod guncelle
+        if: steps.degisen.outputs.files != ''
+        env:
+          FILES: ${{ steps.degisen.outputs.files }}
+        run: python scripts/sitemap-guncelle.py $FILES
+
+      - name: Sitemap'i geri commitle
+        if: steps.degisen.outputs.files != ''
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add sitemap.xml
+          git diff --cached --quiet || git commit -m "Sitemap lastmod otomatik guncellendi [skip ci]"
+          git push
+
+      - name: IndexNow (Bing + Yandex)
+        if: steps.degisen.outputs.files != ''
+        env:
+          FILES: ${{ steps.degisen.outputs.files }}
+        run: python scripts/indexnow-bildir.py $FILES
