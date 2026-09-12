@@ -180,6 +180,7 @@ textarea { resize: none; min-height: 72px; }
   </header>
   <div id="grid" class="grid"></div>
   <div id="emptyNote" class="empty-note" hidden>Bu filtrede foto yok.</div>
+  <p style="text-align:center;margin:24px 0 8px"><button id="logoutBtn" style="color:var(--text3);font-size:13px;padding:8px 12px">Çıkış yap</button></p>
   <input type="file" id="fileInput" accept="image/*" multiple hidden>
 </section>
 
@@ -284,7 +285,7 @@ function blobToB64(blob) { return new Promise((res, rej) => { const r = new File
 /* ============ GITHUB API ============ */
 async function gh(path, opts = {}) {
   const r = await fetch(API + path, { ...opts, headers: { 'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28', ...(opts.body ? { 'Content-Type': 'application/json' } : {}), ...(opts.headers || {}) } });
-  if (r.status === 401) { throw new Error('Anahtar geçersiz ya da süresi dolmuş. Çıkış yapıp yeni anahtar gir.'); }
+  if (r.status === 401) { cikis(true); throw new Error('Anahtar geçersiz ya da süresi dolmuş. Yeni anahtar gir.'); }
   if ((r.status === 403 || r.status === 404) && opts.optional) return null;
   if (!r.ok) { let m = ''; try { m = (await r.json()).message; } catch (e) {} throw new Error(`GitHub hatası (${r.status}) ${m}`); }
   if (r.status === 204) return null;
@@ -295,7 +296,13 @@ async function galeriOku() {
   return { sha: j.sha, data: JSON.parse(b64ToUtf8(j.content)) };
 }
 
-/* ============ GİRİŞ ============ */
+/* ============ GİRİŞ / ÇIKIŞ ============ */
+function cikis(otomatik) {
+  token = null; localStorage.removeItem(TOKEN_KEY);
+  $('app').hidden = true; $('login').hidden = false; $('tokenInput').value = '';
+  if (otomatik) { $('loginErr').textContent = 'Anahtarın süresi dolmuş ya da iptal edilmiş. Yeni anahtar gir.'; $('loginErr').hidden = false; }
+}
+$('logoutBtn').onclick = () => { if (base && degisiklikSayisi() > 0 && !confirm('Yayınlanmamış değişiklikler var. Yine de çıkılsın mı?')) return; cikis(false); };
 async function girisDene(t, sessiz) {
   token = t;
   try {
