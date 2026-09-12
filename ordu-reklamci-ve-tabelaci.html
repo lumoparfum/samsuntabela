@@ -279,6 +279,16 @@ background: linear-gradient(to top, rgba(5,5,5,0.75) 0%, rgba(5,5,5,0.15) 100%),
         }
         /* Mobilde bölge kartları hero'nun üstüne biniyor; uzun metin kartların altında kalmasın */
         @media (max-width: 768px) { .seo-hero { padding-bottom: 100px !important; } }
+        /* İletişim bölümü: kutusuz, sade düzen (12 Eyl 2026) */
+        .footer-box, :root[data-theme="light"] .footer-box { background: none !important; border: 0 !important; border-radius: 0 !important; padding: 0 !important; box-shadow: none !important; text-align: left !important; }
+        .footer-box > h3 { text-align: left; }
+        .banka-bilgi { margin-top: 20px; }
+        .banka-bilgi h4 { color: var(--neon-sari); margin: 0 0 8px; font-size: 1rem; text-align: left; }
+        .banka-bilgi p { margin: 4px 0; font-size: 0.9rem; color: #f2f2f2; }
+        .footer-box .contact-info-list li, .footer-box .contact-info-list li div, .footer-box h4, .footer-box p { color: #f2f2f2 !important; }
+        .footer-box .contact-info-list i { color: var(--neon-sari) !important; }
+        :root[data-theme="light"] .banka-bilgi p, :root[data-theme="light"] .footer-box .contact-info-list li, :root[data-theme="light"] .footer-box .contact-info-list li div, :root[data-theme="light"] .footer-box h4, :root[data-theme="light"] .footer-box p { color: #15170f !important; }
+        @media (max-width: 768px) { .banka-bilgi p { font-size: 0.8rem; } .banka-bilgi h4 { font-size: 0.9rem; } }
     </style>
 </head>
 <body>
@@ -480,11 +490,11 @@ background: linear-gradient(to top, rgba(5,5,5,0.75) 0%, rgba(5,5,5,0.15) 100%),
         <h3 style="color:var(--neon-sari); margin-bottom: 20px;">KURUMSAL BİLGİLER</h3>
         <ul class="contact-info-list">
             <li><i class="fas fa-user-tie"></i> <div><strong>Firma Sahibi:</strong> Abdurrahman TORAMAN</div></li>
-            <li><i class="fas fa-file-invoice-dollar"></i> <div><strong>Vergi Dairesi:</strong> BAFRA V.D.  |  <strong>No:</strong> 214 7659 4794</div></li>
+            <li><i class="fas fa-file-invoice-dollar"></i> <div><strong>Vergi Dairesi:</strong> BAFRA V.D.  |  <strong>No:</strong> 8560266150</div></li>
         </ul>
         
-        <div style="background:#111; padding:15px; border-radius:10px; border:1px dashed var(--neon-sari); margin-top:20px; text-align:left;">
-            <h4 style="color:var(--neon-sari); margin-top:0; margin-bottom:10px; font-size:1rem; text-align:center;"><i class="fas fa-university"></i> Banka Hesap Bilgileri</h4>
+        <div class="banka-bilgi">
+            <h4 style="color:var(--neon-sari); margin-top:0; margin-bottom:10px;"><i class="fas fa-university"></i> Banka Hesap Bilgileri</h4>
             <p style="margin:5px 0; font-size:0.9rem; color:#bbb;"><strong>Banka:</strong> Garanti Bankası  |  <strong>Şube Kodu:</strong> 520</p>
             <p style="margin:5px 0; font-size:0.9rem; color:#bbb;"><strong>Hesap No:</strong> 6297473</p>
             <p style="margin:5px 0; font-size:0.9rem; color:#bbb;"><strong>IBAN:</strong> TR12 0006 2000 5200 0006 2974 73</p>
