@@ -598,6 +598,9 @@ $('publishBtn').onclick = async () => {
 
 /* ============ BAŞLAT ============ */
 (async () => {
+  // Kare kod / bağlantı ile kurulum: panel/#token=github_pat_… → kaydet, adres çubuğundan sil
+  const hm = location.hash.match(/^#token=([A-Za-z0-9_]+)$/);
+  if (hm) { history.replaceState(null, '', location.pathname); await girisDene(hm[1]); if (token) toast('Anahtar kaydedildi, hoş geldin 👋'); return; }
   const t = localStorage.getItem(TOKEN_KEY);
   if (t) await girisDene(t, true); else $('login').hidden = false;
 })();
