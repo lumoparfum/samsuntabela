@@ -1,0 +1,70 @@
+# Panel (panel/) galeri.json'u veya galeri/kaynak/ altina foto gonderince calisir:
+#   1) galeri.json'dan index.html galeri blogu + sitemap gorselleri uretilir,
+#      yeni kaynak fotolar WebP'ye cevrilir (scripts/galeri-uret.py)
+#   2) sitemap lastmod = bugun, degisiklikler commitlenir
+#   3) Bing + Yandex'e IndexNow bildirimi, GitHub Pages yeniden yayin
+name: Galeri uret
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - galeri.json
+      - galeri/kaynak/**
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: galeri-uret
+  cancel-in-progress: false
+
+jobs:
+  uret:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Pillow kur
+        run: pip install --quiet pillow
+
+      - name: Galeriyi uret
+        run: python scripts/galeri-uret.py
+
+      - name: Sitemap lastmod guncelle
+        run: python scripts/sitemap-guncelle.py index.html
+
+      - name: Commitle ve gonder
+        id: commit
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add index.html sitemap.xml '*.webp'
+          if git diff --cached --quiet; then
+            echo "degisti=no" >> "$GITHUB_OUTPUT"
+            echo "Uretilecek degisiklik yok."
+          else
+            git commit -m "Galeri otomatik uretildi [skip ci]"
+            for i in 1 2 3; do
+              git push && break
+              echo "push basarisiz, yeniden deneniyor ($i)"; sleep 5
+              git pull --rebase
+            done
+            echo "degisti=yes" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: IndexNow (Bing + Yandex)
+        if: steps.commit.outputs.degisti == 'yes'
+        run: python scripts/indexnow-bildir.py index.html
+
+      - name: GitHub Pages yeniden yayinla
+        if: steps.commit.outputs.degisti == 'yes'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api --method POST "repos/$GITHUB_REPOSITORY/pages/builds"

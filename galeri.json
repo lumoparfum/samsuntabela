@@ -1,0 +1,795 @@
+{
+  "_aciklama": "Ana sayfa galerisinin tek veri kaynagi. Panel (panel/) veya elle duzenlenir; scripts/galeri-uret.py bu dosyadan index.html ve sitemap.xml'i uretir.",
+  "kategoriler": [
+    {
+      "id": "kutu-harf",
+      "ad": "Kutu Harf",
+      "kisa": "Kutu Harf"
+    },
+    {
+      "id": "krom-harf",
+      "ad": "Krom Harf",
+      "kisa": "Krom Harf"
+    },
+    {
+      "id": "totem",
+      "ad": "Totem",
+      "kisa": "Totem"
+    },
+    {
+      "id": "yonlendirme",
+      "ad": "Yönlendirme",
+      "kisa": "Yönlendirme"
+    },
+    {
+      "id": "bayi",
+      "ad": "Bayi Tabelaları",
+      "kisa": "Bayi"
+    },
+    {
+      "id": "cephe",
+      "ad": "Cephe Giydirme",
+      "kisa": "Cephe"
+    },
+    {
+      "id": "pano",
+      "ad": "Işıklı Pano",
+      "kisa": "Işıklı Pano"
+    },
+    {
+      "id": "baski",
+      "ad": "Baskı & Folyo",
+      "kisa": "Baskı & Folyo"
+    },
+    {
+      "id": "arac",
+      "ad": "Araç Giydirme",
+      "kisa": "Araç"
+    },
+    {
+      "id": "fuar",
+      "ad": "Fuar & İç Mekan",
+      "kisa": "İç Mekan"
+    },
+    {
+      "id": "engelli",
+      "ad": "Görme Engelli",
+      "kisa": "Erişilebilirlik"
+    },
+    {
+      "id": "imalat",
+      "ad": "İmalat & Montaj",
+      "kisa": "İmalat"
+    }
+  ],
+  "fotolar": [
+    {
+      "dosya": "espa-toz-boya-kutu-harf-tabela-cephe.webp",
+      "baslik": "Espa Toz Boya",
+      "altyazi": "Kutu Harf Cephe Tabelası",
+      "alt": "Espa Toz Boya Samsun Sanayi Metal Kutu Harf Cephe Tabelası",
+      "kategoriler": [
+        "kutu-harf"
+      ],
+      "etiketler": "espa toz boya sanayi metal kutu harf cephe tabela"
+    },
+    {
+      "dosya": "espa-toz-boya-kutu-harf-tabela-yakin.webp",
+      "baslik": "Espa Toz Boya",
+      "altyazi": "Kutu Harf Yakın Çekim",
+      "alt": "Espa Toz Boya Samsun Metal Kutu Harf Tabela Yakın Çekim",
+      "kategoriler": [
+        "kutu-harf"
+      ],
+      "etiketler": "espa toz boya sanayi metal kutu harf cephe tabela yakin"
+    },
+    {
+      "dosya": "liv-hospital-paslanmaz-kutu-harf.webp",
+      "baslik": "Liv Hospital",
+      "altyazi": "Paslanmaz Kutu Harf",
+      "alt": "Liv Hospital Samsun Işıklı Kutu Harf Tabela",
+      "kategoriler": [
+        "kutu-harf"
+      ],
+      "etiketler": "liv hospital hastane paslanmaz kutu harf isikli saglik"
+    },
+    {
+      "dosya": "medibafra-hastanesi-cephe-giydirme.webp",
+      "baslik": "Medibafra Hastanesi",
+      "altyazi": "Cephe & Kutu Harf",
+      "alt": "Medibafra Hastanesi Cephe Giydirme ve Kutu Harf Uygulaması",
+      "kategoriler": [
+        "cephe",
+        "kutu-harf"
+      ],
+      "etiketler": "medibafra hastane cephe giydirme kompozit kutu harf bafra"
+    },
+    {
+      "dosya": "piazza-avm-dev-totem-tabela.webp",
+      "baslik": "Piazza AVM",
+      "altyazi": "Dev Totem Tabela",
+      "alt": "Piazza AVM Dev Totem Tabela Samsun",
+      "kategoriler": [
+        "totem"
+      ],
+      "etiketler": "piazza avm totem tabela dev yol kenari"
+    },
+    {
+      "dosya": "sinop-devlet-hastanesi-isikli-kutu-harf.webp",
+      "baslik": "Sinop Devlet Hastanesi",
+      "altyazi": "Işıklı Kutu Harf",
+      "alt": "Sinop Atatürk Devlet Hastanesi Işıklı Kutu Harf Tabela",
+      "kategoriler": [
+        "kutu-harf"
+      ],
+      "etiketler": "sinop devlet hastanesi isikli kutu harf kirmizi led gece"
+    },
+    {
+      "dosya": "asarcik-spor-salonu-cati-kutu-harf.webp",
+      "baslik": "Asarcık Spor Salonu",
+      "altyazi": "Çatı Kutu Harf",
+      "alt": "Asarcık Spor Salonu Çatı Kutu Harf Tabela Uygulaması",
+      "kategoriler": [
+        "kutu-harf"
+      ],
+      "etiketler": "asarcik spor salonu cati kutu harf kurumsal"
+    },
+    {
+      "dosya": "olimpik-yuzme-havuzu-pano-tabela.webp",
+      "baslik": "Olimpik Yüzme Havuzu",
+      "altyazi": "İç Mekan Pano",
+      "alt": "Samsun Atakum Olimpik Yüzme Havuzu Pano Tabela",
+      "kategoriler": [
+        "pano"
+      ],
+      "etiketler": "olimpik yuzme havuzu atakum ic mekan pano tabela"
+    },
+    {
+      "dosya": "medibafra-isikli-totem-tabela.webp",
+      "baslik": "MediBafra Totem",
+      "altyazi": "Işıklı Totem",
+      "alt": "MediBafra Hastanesi Işıklı Totem Tabela",
+      "kategoriler": [
+        "totem"
+      ],
+      "etiketler": "medibafra hastane totem isikli yol kenari bafra"
+    },
+    {
+      "dosya": "arac-giydirme-ticari-filo.webp",
+      "baslik": "Filo Giydirme",
+      "altyazi": "Ticari Araç Kaplama",
+      "alt": "Samsun Araç Giydirme ve Ticari Filo Kaplama",
+      "kategoriler": [
+        "arac"
+      ],
+      "etiketler": "arac giydirme kaplama filo ticari folyo"
+    },
+    {
+      "dosya": "cnc-router-lazer-kesim-imalat.webp",
+      "baslik": "CNC Router",
+      "altyazi": "Fason Kesim & İmalat",
+      "alt": "Samsun CNC Router Lazer Kesim ve Fason Pleksi İmalatı",
+      "kategoriler": [
+        "imalat"
+      ],
+      "etiketler": "cnc router lazer kesim pleksi fason imalat atolye makine"
+    },
+    {
+      "dosya": "arac-kaplama-cast-folyo.webp",
+      "baslik": "Ticari Kaplama",
+      "altyazi": "Cast Folyo Uygulama",
+      "alt": "Samsun Ticari Araç Kaplama ve Cast Folyo Uygulaması",
+      "kategoriler": [
+        "arac"
+      ],
+      "etiketler": "arac kaplama ilkadim cast folyo ticari"
+    },
+    {
+      "dosya": "dijital-baski-branda-vinil.webp",
+      "baslik": "Dijital Baskı",
+      "altyazi": "Branda & Vinil",
+      "alt": "Samsun Dijital Baskı Branda ve Vinil Uygulaması",
+      "kategoriler": [
+        "baski"
+      ],
+      "etiketler": "dijital baski branda vinil solvent makine afis mesh"
+    },
+    {
+      "dosya": "dunyagoz-isikli-totem-tabela.webp",
+      "baslik": "Dünyagöz",
+      "altyazi": "Işıklı Totem",
+      "alt": "Dünyagöz Işıklı Totem Tabela Samsun",
+      "kategoriler": [
+        "totem"
+      ],
+      "etiketler": "dunyagoz goz hastanesi totem isikli"
+    },
+    {
+      "dosya": "aci-okullari-cam-giydirme-folyo.webp",
+      "baslik": "Açı Eğitim Kurumları",
+      "altyazi": "Cam Giydirme & One Way",
+      "alt": "Açı Eğitim Kurumları Cam Giydirme ve One Way Vision Folyo",
+      "kategoriler": [
+        "baski"
+      ],
+      "etiketler": "aci okullari cam giydirme one way vision folyo vitrin bafra"
+    },
+    {
+      "dosya": "hos-geldiniz-neon-efektli-kutu-harf.webp",
+      "baslik": "Hoş Geldiniz Yazısı",
+      "altyazi": "Neon Efektli Kutu Harf",
+      "alt": "Neon Efektli Hoş Geldiniz Karşılama Kutu Harf Tabelası",
+      "kategoriler": [
+        "kutu-harf"
+      ],
+      "etiketler": "hos geldiniz neon efekt el yazisi ic mekan karsilama isikli harf"
+    },
+    {
+      "dosya": "atolye-kutu-harf-kompozit-imalat.webp",
+      "baslik": "Atölye İmalat",
+      "altyazi": "Kutu Harf & Kompozit",
+      "alt": "Atölyede Kutu Harf ve Kompozit Tabela İmalatı",
+      "kategoriler": [
+        "imalat"
+      ],
+      "etiketler": "atolye imalat kompozit kesim kutu harf uretim bafra fabrika"
+    },
+    {
+      "dosya": "yatirim-finansman-kompozit-cephe.webp",
+      "baslik": "Yatırım Finansman",
+      "altyazi": "Kompozit Cephe Giydirme",
+      "alt": "Yatırım Finansman Kompozit Cephe Kaplama ve Kutu Harf",
+      "kategoriler": [
+        "cephe",
+        "kutu-harf"
+      ],
+      "etiketler": "yatirim finansman kompozit cephe giydirme kutu harf banka"
+    },
+    {
+      "dosya": "avm-cati-tabelasi-yuksek-irtifa-montaj.webp",
+      "baslik": "AVM Çatı Tabelaları",
+      "altyazi": "Yüksek İrtifa Montaj",
+      "alt": "AVM Çatı Tabelaları Montajı ve Yüksek İrtifa Kurulum",
+      "kategoriler": [
+        "imalat"
+      ],
+      "etiketler": "montaj ekibi cati tabelasi avm yuksek irtifa vinc kurulum"
+    },
+    {
+      "dosya": "fatsa-ataturk-parki-modern-totem.webp",
+      "baslik": "Fatsa Atatürk Parkı",
+      "altyazi": "Özel Tasarım Totem",
+      "alt": "Ordu Fatsa Atatürk Parkı Özel Tasarım Modern Totem Tabela",
+      "kategoriler": [
+        "totem"
+      ],
+      "etiketler": "fatsa ordu ataturk parki modern totem ozel tasarim belediye"
+    },
+    {
+      "dosya": "piazza-avm-cam-folyo-bilgilendirme.webp",
+      "baslik": "Piazza AVM Girişi",
+      "altyazi": "Cam Folyo Uygulaması",
+      "alt": "Piazza AVM Giriş Kapısı Cam Folyo Bilgilendirme Uygulaması",
+      "kategoriler": [
+        "baski"
+      ],
+      "etiketler": "piazza avm giris kapi cam folyo bilgilendirme sosyal mesafe"
+    },
+    {
+      "dosya": "ova-pilic-market-pleksi-kutu-harf.webp",
+      "baslik": "Ova Piliç Market",
+      "altyazi": "Işıklı Kutu Harf & Kompozit",
+      "alt": "Ova Piliç Market Pleksi Kutu Harf ve Kompozit Cephe",
+      "kategoriler": [
+        "kutu-harf",
+        "cephe"
+      ],
+      "etiketler": "ova pilic market pleksi kutu harf kompozit cephe atakum magaza"
+    },
+    {
+      "dosya": "toki-santiye-bilgi-yonlendirme-levhasi.webp",
+      "baslik": "TOKİ Şantiyesi",
+      "altyazi": "Bilgi & Yönlendirme Levhası",
+      "alt": "TOKİ Şantiye Bilgi ve Yönlendirme Levhası",
+      "kategoriler": [
+        "yonlendirme"
+      ],
+      "etiketler": "toki santiye bilgi levhasi insaat yonlendirme pano direkli"
+    },
+    {
+      "dosya": "tozlu-com-magaza-kutu-harf.webp",
+      "baslik": "Tozlu.com M.B.T",
+      "altyazi": "Mağaza Kutu Harf",
+      "alt": "Tozlu.com M.B.T Tekstil Mağaza Kutu Harf Tabela",
+      "kategoriler": [
+        "kutu-harf",
+        "cephe"
+      ],
+      "etiketler": "tozlu com mbt tekstil magaza kutu harf kompozit cephe ilkadim"
+    },
+    {
+      "dosya": "yunus-yapi-fuar-standi.webp",
+      "baslik": "Yunus Yapı",
+      "altyazi": "Fuar Standı",
+      "alt": "Yunus Yapı Kurumsal Fuar Standı Tasarım ve Uygulama",
+      "kategoriler": [
+        "fuar"
+      ],
+      "etiketler": "yunus yapi fuar standi kurumsal stand kongre tasarim"
+    },
+    {
+      "dosya": "entek-elektrik-isikli-kutu-harf.webp",
+      "baslik": "Entek Elektrik",
+      "altyazi": "Işıklı Kutu Harf",
+      "alt": "Entek Elektrik Üretim Işıklı Kutu Harf Tabela",
+      "kategoriler": [
+        "kutu-harf",
+        "cephe"
+      ],
+      "etiketler": "entek elektrik hes isikli kutu harf mavi kompozit duvar"
+    },
+    {
+      "dosya": "acil-giris-yonlendirme-totemi.webp",
+      "baslik": "Hastane Acil Girişi",
+      "altyazi": "Işıklı Yönlendirme Totemi",
+      "alt": "Hastane Acil Giriş Işıklı Yönlendirme Totemi",
+      "kategoriler": [
+        "yonlendirme",
+        "totem"
+      ],
+      "etiketler": "acil giris hastane yonlendirme totem isikli ok emergency 24 saat"
+    },
+    {
+      "dosya": "yunus-evler-cinar-cati-kutu-harf.webp",
+      "baslik": "Yunus Evler Çınar",
+      "altyazi": "Çatı Kutu Harf",
+      "alt": "Yunus Evler Çınar Çatı Kutu Harf Tabelası",
+      "kategoriler": [
+        "kutu-harf"
+      ],
+      "etiketler": "yunus evler cinar cati kutu harf konut site yuksek montaj"
+    },
+    {
+      "dosya": "ozlem-balli-kaymak-satis-standi.webp",
+      "baslik": "Özlem Ballı Kaymak",
+      "altyazi": "Özel Tasarım Satış Standı",
+      "alt": "Özlem Ballı Kaymak Özel Tasarım Satış Standı",
+      "kategoriler": [
+        "fuar"
+      ],
+      "etiketler": "ozlem balli kaymak satis standi buffe isikli pano ozel tasarim"
+    },
+    {
+      "dosya": "gerze-devlet-hastanesi-giris-takisi.webp",
+      "baslik": "Gerze Devlet Hastanesi",
+      "altyazi": "Giriş Takı & Kutu Harf",
+      "alt": "Gerze Devlet Hastanesi Giriş Takı ve Işıklı Kutu Harf",
+      "kategoriler": [
+        "kutu-harf"
+      ],
+      "etiketler": "gerze devlet hastanesi giris taki kutu harf isikli sinop"
+    },
+    {
+      "dosya": "ramsey-kip-magaza-cephe-giydirme.webp",
+      "baslik": "Ramsey & Kip",
+      "altyazi": "Cephe Baskı & Giydirme",
+      "alt": "Ramsey ve Kip Mağaza Cephe Giydirme Bayi Uygulaması",
+      "kategoriler": [
+        "cephe",
+        "bayi"
+      ],
+      "etiketler": "ramsey kip gg store cephe baski giydirme magaza bayi mesh"
+    },
+    {
+      "dosya": "recepoglu-kompozit-cephe-kutu-harf.webp",
+      "baslik": "Recepoğlu",
+      "altyazi": "Kompozit Cephe & Kutu Harf",
+      "alt": "Recepoğlu Kompozit Cephe ve Kutu Harf Tabela Montajı",
+      "kategoriler": [
+        "kutu-harf",
+        "cephe",
+        "imalat"
+      ],
+      "etiketler": "recepoglu kompozit cephe kutu harf cati montaj market"
+    },
+    {
+      "dosya": "burger-king-ic-mekan-duvar-baskisi.webp",
+      "baslik": "Burger King",
+      "altyazi": "İç Mekan Duvar Baskısı",
+      "alt": "Burger King İç Mekan Duvar Dijital Baskı Uygulaması",
+      "kategoriler": [
+        "baski",
+        "fuar"
+      ],
+      "etiketler": "burger king ic mekan duvar baski folyo restoran"
+    },
+    {
+      "dosya": "vm-medical-park-cocuk-isikli-harf.webp",
+      "baslik": "VM Medical Park Çocuk",
+      "altyazi": "Işıklı Harf & Duvar Baskı",
+      "alt": "VM Medical Park Çocuk Bölümü Işıklı Harf ve Duvar Baskı",
+      "kategoriler": [
+        "kutu-harf",
+        "fuar"
+      ],
+      "etiketler": "vm medical park cocuk isikli harf duvar baski hastane ic mekan"
+    },
+    {
+      "dosya": "yonlendirme-oda-kapi-levhasi.webp",
+      "baslik": "Hastane Oda Levhası",
+      "altyazi": "Kapı & Birim Yönlendirme",
+      "alt": "Hastane Nöroloji Oda Kapı Levhası ve Birim Yönlendirme",
+      "kategoriler": [
+        "yonlendirme"
+      ],
+      "etiketler": "oda kapi levhasi doktor isim noroloji hastane birim yonlendirme"
+    },
+    {
+      "dosya": "yonlendirme-is-bankasi-menkul-degerler.webp",
+      "baslik": "İş Bankası Menkul Değerler",
+      "altyazi": "Kurumsal Birim Levhası",
+      "alt": "İş Bankası Menkul Değerler Kurumsal İç Mekan Levhası",
+      "kategoriler": [
+        "yonlendirme",
+        "fuar"
+      ],
+      "etiketler": "is bankasi menkul degerler kurumsal logo levha ic mekan yonlendirme"
+    },
+    {
+      "dosya": "yonlendirme-yon-oklu-kat-levhasi.webp",
+      "baslik": "Oklu Yön Levhası",
+      "altyazi": "Kat & Birim Yönlendirme",
+      "alt": "Oklu Yön Levhası Kat ve Birim Yönlendirme Panosu",
+      "kategoriler": [
+        "yonlendirme"
+      ],
+      "etiketler": "oklu yon levhasi kat plani mudur odasi muhasebe wc yonlendirme tesis"
+    },
+    {
+      "dosya": "hissedilebilir-zemin-hastane-danisma.webp",
+      "baslik": "Hastane Danışma Girişi",
+      "altyazi": "Hissedilebilir Yüzey Zemin",
+      "alt": "Hastane Danışma Girişi Hissedilebilir Yüzey Zemin Uygulaması",
+      "kategoriler": [
+        "engelli",
+        "yonlendirme"
+      ],
+      "etiketler": "hissedilebilir zemin gorme engelli sari yuzey danisma hastane erisilebilirlik kilavuz"
+    },
+    {
+      "dosya": "hissedilebilir-yuzey-zemin-detay.webp",
+      "baslik": "Hissedilebilir Yüzey",
+      "altyazi": "Görme Engelli Kılavuz Zemin",
+      "alt": "Görme Engelli Hissedilebilir Yüzey Kılavuz Zemin Detayı",
+      "kategoriler": [
+        "engelli"
+      ],
+      "etiketler": "hissedilebilir yuzey zemin gorme engelli sari kabartma detay kilavuz iz"
+    },
+    {
+      "dosya": "giris-cikis-uyari-levhasi-ayakli.webp",
+      "baslik": "Giriş-Çıkış Uyarı Levhası",
+      "altyazi": "Ayaklı Bilgilendirme Panosu",
+      "alt": "Ayaklı Giriş Çıkış Uyarı Levhası ve Otopark Yönlendirme Panosu",
+      "kategoriler": [
+        "yonlendirme"
+      ],
+      "etiketler": "giris cikis uyari levhasi ayakli duba park yasak otopark yonlendirme"
+    },
+    {
+      "dosya": "is-guvenligi-uyari-levhasi-santiye.webp",
+      "baslik": "İş Güvenliği Levhası",
+      "altyazi": "Şantiye Uyarı Panosu",
+      "alt": "Şantiye İş Güvenliği Uyarı ve İkaz Levhası",
+      "kategoriler": [
+        "yonlendirme"
+      ],
+      "etiketler": "is guvenligi uyari levhasi santiye insaat ikaz pano baret"
+    },
+    {
+      "dosya": "depo-zemin-yonlendirme-oklari.webp",
+      "baslik": "Depo Zemin Okları",
+      "altyazi": "Yer İşaretleme & Yönlendirme",
+      "alt": "Depo ve Fabrika Zemin Yönlendirme Okları Yer İşaretleme",
+      "kategoriler": [
+        "yonlendirme"
+      ],
+      "etiketler": "depo zemin yonlendirme ok sari yer isaretleme fabrika lojistik forklift"
+    },
+    {
+      "dosya": "yonlendirme-zemin-serit-hastane.webp",
+      "baslik": "Hastane Zemin Şeridi",
+      "altyazi": "Renkli Yönlendirme Bandı",
+      "alt": "Hastane Zemin Renkli Yönlendirme Şeridi Folyo Uygulaması",
+      "kategoriler": [
+        "yonlendirme",
+        "baski"
+      ],
+      "etiketler": "hastane zemin serit renkli yonlendirme bandi folyo kat yol gosterme"
+    },
+    {
+      "dosya": "ofis-zemin-yonlendirme-seridi.webp",
+      "baslik": "Ofis Zemin Şeridi",
+      "altyazi": "Renkli Yönlendirme Bandı",
+      "alt": "Ofis Zemin Renkli Yönlendirme Şeridi Folyo Uygulaması",
+      "kategoriler": [
+        "yonlendirme",
+        "baski"
+      ],
+      "etiketler": "ofis zemin serit renkli yonlendirme bandi folyo kurum"
+    },
+    {
+      "dosya": "cam-folyo-hastane-kapi.webp",
+      "baslik": "Hastane Cam Kapıları",
+      "altyazi": "Cam Folyo Uygulaması",
+      "alt": "Hastane Otomatik Cam Kapı Folyo ve Kumlama Uygulaması",
+      "kategoriler": [
+        "baski"
+      ],
+      "etiketler": "cam folyo hastane kapi medical park buzlu kumlama otomatik kapi"
+    },
+    {
+      "dosya": "cam-giydirme-akyurek-insaat.webp",
+      "baslik": "Akyürek İnşaat",
+      "altyazi": "Vitrin Cam Giydirme",
+      "alt": "Akyürek İnşaat Vitrin Cam Giydirme ve Baskılı Folyo",
+      "kategoriler": [
+        "baski"
+      ],
+      "etiketler": "akyurek insaat cam giydirme folyo vitrin kaplama ofis baskili"
+    },
+    {
+      "dosya": "kumlama-folyo-model-kuafor-kapi.webp",
+      "baslik": "Model Kuaför Kapı",
+      "altyazi": "Kumlama Folyo",
+      "alt": "Model Kuaför Buzlu Cam Kapı Kumlama Folyo Uygulaması",
+      "kategoriler": [
+        "baski"
+      ],
+      "etiketler": "model kuafor kumlama folyo buzlu cam kapi kelebek desen"
+    },
+    {
+      "dosya": "vitrin-folyo-model-kuafor.webp",
+      "baslik": "Model Kuaför Vitrini",
+      "altyazi": "Vitrin Folyo & Kumlama",
+      "alt": "Model Kuaför Vitrin Folyo ve Kumlama Cam Uygulaması",
+      "kategoriler": [
+        "baski"
+      ],
+      "etiketler": "model kuafor vitrin folyo kumlama cam baski magaza"
+    },
+    {
+      "dosya": "tekne-yazisi-folyo-kaptan.webp",
+      "baslik": "Tekne Yazısı",
+      "altyazi": "Folyo Kesim Uygulama",
+      "alt": "Tekne İsim Yazısı Folyo Kesim Uygulaması",
+      "kategoriler": [
+        "baski",
+        "arac"
+      ],
+      "etiketler": "tekne yazisi folyo kaptan deniz kesme yazi arac kaplama"
+    },
+    {
+      "dosya": "gergi-tavan-gokyuzu-baski.webp",
+      "baslik": "Gökyüzü Tavan",
+      "altyazi": "Gergi Tavan Baskı",
+      "alt": "Gergi Tavan Gökyüzü Bulut Baskı İç Mekan Dekorasyon",
+      "kategoriler": [
+        "baski",
+        "fuar"
+      ],
+      "etiketler": "gergi tavan gokyuzu bulut baski ic mekan dekorasyon"
+    },
+    {
+      "dosya": "fantazi-tabela-ozlem-dondurma.webp",
+      "baslik": "Özlem Dondurma",
+      "altyazi": "Fantazi Şekilli Işıklı Tabela",
+      "alt": "Özlem Dondurma Fantazi Şekilli Işıklı Tabela",
+      "kategoriler": [
+        "pano"
+      ],
+      "etiketler": "ozlem dondurma fantazi tabela ozel sekil isikli kulah"
+    },
+    {
+      "dosya": "neon-efektli-tabela-daphne.webp",
+      "baslik": "Daphne",
+      "altyazi": "Neon Efektli Işıklı Yazı",
+      "alt": "Daphne Neon Efektli Yeşil Işıklı Yazı Tabelası",
+      "kategoriler": [
+        "kutu-harf"
+      ],
+      "etiketler": "daphne neon efekt yesil isikli yazi el yazisi harf"
+    },
+    {
+      "dosya": "neon-tabela-pinar-lokantasi.webp",
+      "baslik": "Pınar Lokantası",
+      "altyazi": "Neon Efektli Işıklı Tabela",
+      "alt": "Pınar Lokantası Neon Efektli Kırmızı Işıklı Tabela",
+      "kategoriler": [
+        "pano"
+      ],
+      "etiketler": "pinar lokantasi neon efekt kirmizi oval isikli tabela"
+    },
+    {
+      "dosya": "pleksi-kutu-harf-ciftlik-imalat.webp",
+      "baslik": "Çiftlik",
+      "altyazi": "3D Pleksi Kutu Harf",
+      "alt": "Çiftlik 3D Pleksi Kutu Harf Tabela İmalatı",
+      "kategoriler": [
+        "kutu-harf",
+        "imalat"
+      ],
+      "etiketler": "ciftlik pleksi kutu harf 3d imalat atolye kirmizi beyaz"
+    },
+    {
+      "dosya": "kayan-led-yazi-tabelasi.webp",
+      "baslik": "Kayan LED Yazı",
+      "altyazi": "Programlanabilir LED Pano",
+      "alt": "Kayan LED Yazı Tabelası Programlanabilir Elektronik Pano",
+      "kategoriler": [
+        "pano"
+      ],
+      "etiketler": "kayan led yazi tabelasi programlanabilir elektronik pano bafra samsun atakum"
+    },
+    {
+      "dosya": "bayi-tabelasi-pedo.webp",
+      "baslik": "Pedo Plus",
+      "altyazi": "Bayi Kutu Harf",
+      "alt": "Pedo Plus Bayi Tabelası Işıklı Kutu Harf",
+      "kategoriler": [
+        "bayi",
+        "kutu-harf"
+      ],
+      "etiketler": "pedo plus bayi tabelasi kutu harf isikli magaza zincir"
+    },
+    {
+      "dosya": "bayi-tabelasi-rodimood.webp",
+      "baslik": "RodiMood",
+      "altyazi": "Bayi Kutu Harf",
+      "alt": "RodiMood Bayi Tabelası Işıklı Kutu Harf Mağaza",
+      "kategoriler": [
+        "bayi",
+        "kutu-harf"
+      ],
+      "etiketler": "rodimood bayi tabelasi kutu harf isikli magaza tekstil zincir"
+    },
+    {
+      "dosya": "bayi-tabelasi-festival-hali.webp",
+      "baslik": "Festival Halı",
+      "altyazi": "Bayi Tabelası",
+      "alt": "Festival Halı Bayi Tabelası İmalat ve Uygulama",
+      "kategoriler": [
+        "bayi"
+      ],
+      "etiketler": "festival hali bayi tabelasi kurumsal marka standart logo"
+    },
+    {
+      "dosya": "bayi-tabelasi-karaca-home.webp",
+      "baslik": "Karaca Home",
+      "altyazi": "Mağaza Bayi Tabelası",
+      "alt": "Karaca Home Mağaza Bayi Tabelası ve Kutu Harf",
+      "kategoriler": [
+        "bayi",
+        "kutu-harf"
+      ],
+      "etiketler": "karaca home bayi tabelasi magaza kutu harf vitrin zincir"
+    },
+    {
+      "dosya": "bayi-tabelasi-dilek-hali.webp",
+      "baslik": "Dilek Halı",
+      "altyazi": "Bayi Kutu Harf İmalatı",
+      "alt": "Dilek Halı Bayi Tabelası Kutu Harf İmalatı",
+      "kategoriler": [
+        "bayi",
+        "imalat"
+      ],
+      "etiketler": "dilek hali bayi tabelasi kutu harf imalat atolye uretim"
+    },
+    {
+      "dosya": "bayi-tabelasi-gumussuyu.webp",
+      "baslik": "Gümüşsuyu",
+      "altyazi": "Bayi Tabelası İmalatı",
+      "alt": "Gümüşsuyu Bayi Tabelası İmalatı ve Atölye Üretimi",
+      "kategoriler": [
+        "bayi",
+        "imalat"
+      ],
+      "etiketler": "gumussuyu bayi tabelasi imalat atolye kutu harf uretim"
+    },
+    {
+      "dosya": "bayi-tabelasi-husqvarna-stihl.webp",
+      "baslik": "Husqvarna & Stihl",
+      "altyazi": "Bayi Cephe Tabelaları",
+      "alt": "Husqvarna ve Stihl Bayi Cephe Tabelaları",
+      "kategoriler": [
+        "bayi",
+        "cephe"
+      ],
+      "etiketler": "husqvarna stihl saglam bayi tabelasi cephe magaza kompozit"
+    },
+    {
+      "dosya": "krom-harf-vm-fizik-tedavi.webp",
+      "baslik": "VM Fizik Tedavi",
+      "altyazi": "Altın Krom Harf",
+      "alt": "VM Fizik Tedavi Ünitesi Altın Krom Harf İç Mekan Tabela",
+      "kategoriler": [
+        "krom-harf",
+        "fuar"
+      ],
+      "etiketler": "vm fizik tedavi altin krom harf paslanmaz ic mekan hastane prestij"
+    },
+    {
+      "dosya": "krom-harf-dogan-makina.webp",
+      "baslik": "Doğan Makina",
+      "altyazi": "Krom Harf Tabela",
+      "alt": "Doğan Makina Paslanmaz Krom Harf Tabela",
+      "kategoriler": [
+        "krom-harf"
+      ],
+      "etiketler": "dogan makina krom harf paslanmaz 304 tabela isikli cephe"
+    },
+    {
+      "dosya": "krom-harf-jival-pirlanta.webp",
+      "baslik": "Jival Pırlanta",
+      "altyazi": "Krom Harf Vitrin",
+      "alt": "Jival Pırlanta Krom Harf Vitrin Tabelası",
+      "kategoriler": [
+        "krom-harf"
+      ],
+      "etiketler": "jival pirlanta krom harf vitrin magaza kuyumcu paslanmaz"
+    },
+    {
+      "dosya": "krom-harf-yasamkent.webp",
+      "baslik": "Yaşamkent",
+      "altyazi": "Krom Harf Uygulama",
+      "alt": "Yaşamkent Krom Harf Işıklı Tabela",
+      "kategoriler": [
+        "krom-harf"
+      ],
+      "etiketler": "yasamkent krom harf mavi isikli konut site tabela el yazisi"
+    },
+    {
+      "dosya": "krom-harf-turan-usta-pidesi.webp",
+      "baslik": "Turan Usta Pidesi",
+      "altyazi": "Krom Harf & LED Cephe",
+      "alt": "Turan Usta Bafra Pidesi Krom Harf ve LED Cephe Aydınlatma",
+      "kategoriler": [
+        "krom-harf",
+        "cephe"
+      ],
+      "etiketler": "turan usta pidesi bafra krom harf led cephe restoran isikli"
+    },
+    {
+      "dosya": "krom-harf-gunes-tabela.webp",
+      "baslik": "Güneş",
+      "altyazi": "Işıklı Krom Harf",
+      "alt": "Güneş Işıklı Krom Harf Tabela",
+      "kategoriler": [
+        "krom-harf"
+      ],
+      "etiketler": "gunes krom harf isikli paslanmaz beyaz led tabela"
+    },
+    {
+      "dosya": "akrilik-pleksi-urun-standi.webp",
+      "baslik": "Pleksi Ürün Standı",
+      "altyazi": "Akrilik Teşhir Ürünü",
+      "alt": "Akrilik Pleksi Ürün Teşhir Standı İmalatı",
+      "kategoriler": [
+        "fuar",
+        "imalat"
+      ],
+      "etiketler": "akrilik pleksi urun standi teshir vitrin ic mekan ayakkabi"
+    },
+    {
+      "dosya": "akrilik-pleksi-brosurluk.webp",
+      "baslik": "Pleksi Broşürlük",
+      "altyazi": "Akrilik İç Mekan Ürünü",
+      "alt": "Akrilik Pleksi Broşürlük ve Katalogluk İç Mekan Ürünü",
+      "kategoriler": [
+        "fuar",
+        "imalat"
+      ],
+      "etiketler": "akrilik pleksi brosurluk duvar ic mekan ofis katalogluk"
+    }
+  ]
+}

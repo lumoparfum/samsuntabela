@@ -21,6 +21,7 @@
       <image:loc>https://samsuntabela.tr/hero-4-m.jpg</image:loc>
       <image:title>Entek Elektrik ışıklı kutu harf tabela ve kompozit cephe uygulaması</image:title>
     </image:image>
+    <!-- GALERI-GORSEL:BASLA -->
     <image:image>
       <image:loc>https://samsuntabela.tr/espa-toz-boya-kutu-harf-tabela-cephe.webp</image:loc>
       <image:title>Espa Toz Boya Samsun Sanayi Metal Kutu Harf Cephe Tabelası</image:title>
@@ -301,6 +302,7 @@
       <image:loc>https://samsuntabela.tr/akrilik-pleksi-brosurluk.webp</image:loc>
       <image:title>Akrilik Pleksi Broşürlük ve Katalogluk İç Mekan Ürünü</image:title>
     </image:image>
+    <!-- GALERI-GORSEL:BITIR -->
   </url>
   <url>
     <loc>https://samsuntabela.tr/samsun-reklamci-ve-tabelaci.html</loc>
