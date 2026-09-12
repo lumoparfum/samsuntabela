@@ -1,18 +1,26 @@
-# Her yuklemede (push) degisen HTML sayfalarini:
-#   1) sitemap.xml'de lastmod = bugun yapar (Google bunu okur)
-#   2) IndexNow ile Bing + Yandex'e aninda bildirir
+# Her yuklemede (push) degisen kok HTML sayfalarini:
+#   1) IndexNow ile Bing + Yandex'e aninda bildirir
+#   2) sitemap.xml'de lastmod = bugun yapar, geri commitler (Google bunu okur)
+#   3) GitHub Pages'in yeniden yayinlanmasini ister (token ile atilan commit
+#      Pages'i kendiliginden tetiklemez)
+# Elle calistirmak icin: Actions sekmesi > SEO bildirim > Run workflow
 name: SEO bildirim
 
 on:
   push:
     branches: [main]
+  workflow_dispatch:
+    inputs:
+      sayfalar:
+        description: "Bildirilecek HTML dosyalari (bosluklu): index.html ordu-reklamci-ve-tabelaci.html"
+        required: true
 
 permissions:
   contents: write
+  pages: write
 
 jobs:
   bildir:
-    if: "!contains(github.event.head_commit.message, '[skip ci]')"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -21,12 +29,26 @@ jobs:
 
       - name: Degisen HTML sayfalarini bul
         id: degisen
+        env:
+          ELLE: ${{ github.event.inputs.sayfalar }}
         run: |
-          FILES=$(git diff --name-only HEAD~1 HEAD -- '*.html' | grep -v '^baski/' | grep -v -E '^(mucahitkasa|teegarlife|uzmankasa|yandex_)' || true)
-          echo "Degisen sayfalar:"; echo "$FILES"
-          echo "files<<EOF2" >> $GITHUB_OUTPUT
-          echo "$FILES" >> $GITHUB_OUTPUT
-          echo "EOF2" >> $GITHUB_OUTPUT
+          if [ -n "$ELLE" ]; then
+            FILES="$ELLE"
+          else
+            FILES=$(git diff --name-only HEAD~1 HEAD -- '*.html' \
+              | grep -v '^baski/' \
+              | grep -v -E '^(mucahitkasa|teegarlife|uzmankasa|yandex_)' \
+              | tr '\n' ' ' || true)
+          fi
+          FILES=$(echo $FILES)   # bosluklari sadelestir
+          echo "Degisen sayfalar: [$FILES]"
+          echo "files=$FILES" >> "$GITHUB_OUTPUT"
+
+      - name: IndexNow (Bing + Yandex)
+        if: steps.degisen.outputs.files != ''
+        env:
+          FILES: ${{ steps.degisen.outputs.files }}
+        run: python scripts/indexnow-bildir.py $FILES
 
       - name: Sitemap lastmod guncelle
         if: steps.degisen.outputs.files != ''
@@ -36,15 +58,21 @@ jobs:
 
       - name: Sitemap'i geri commitle
         if: steps.degisen.outputs.files != ''
+        id: sitemap
         run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
           git add sitemap.xml
-          git diff --cached --quiet || git commit -m "Sitemap lastmod otomatik guncellendi [skip ci]"
-          git push
+          if git diff --cached --quiet; then
+            echo "degisti=no" >> "$GITHUB_OUTPUT"
+          else
+            git commit -m "Sitemap lastmod otomatik guncellendi [skip ci]"
+            git push
+            echo "degisti=yes" >> "$GITHUB_OUTPUT"
+          fi
 
-      - name: IndexNow (Bing + Yandex)
-        if: steps.degisen.outputs.files != ''
+      - name: GitHub Pages yeniden yayinla
+        if: steps.sitemap.outputs.degisti == 'yes'
         env:
-          FILES: ${{ steps.degisen.outputs.files }}
-        run: python scripts/indexnow-bildir.py $FILES
+          GH_TOKEN: ${{ github.token }}
+        run: gh api --method POST "repos/$GITHUB_REPOSITORY/pages/builds"
