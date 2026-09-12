@@ -1942,8 +1942,13 @@
             });
         });
 
-        document.getElementById('en').addEventListener('input', function() { onizlemeGuncelle(); fiyatHesapla(); });
-        document.getElementById('boy').addEventListener('input', function() { onizlemeGuncelle(); fiyatHesapla(); });
+        // Elle olcu girilince hizli olcu dugmesi sadece birebir eslesiyorsa secili kalsin
+        function hizliOlcuEsle() {
+            const en = parseInt(document.getElementById('en').value), boy = parseInt(document.getElementById('boy').value);
+            document.querySelectorAll('.quick-size-btn').forEach(b => b.classList.toggle('active', parseInt(b.dataset.en) === en && parseInt(b.dataset.boy) === boy));
+        }
+        document.getElementById('en').addEventListener('input', function() { hizliOlcuEsle(); onizlemeGuncelle(); fiyatHesapla(); });
+        document.getElementById('boy').addEventListener('input', function() { hizliOlcuEsle(); onizlemeGuncelle(); fiyatHesapla(); });
         document.getElementById('malzeme').addEventListener('change', function() { fiyatHesapla(); });
 
         function onizlemeGuncelle() {
@@ -2076,6 +2081,14 @@
         window.closeLightbox = function() {
             document.getElementById('lightboxOverlay').classList.remove('active');
         };
+
+        // Esc: once lightbox, sonra acik olan urun penceresi kapanir (klavye/PC kullanimi)
+        document.addEventListener('keydown', function(e) {
+            if (e.key !== 'Escape') return;
+            if (document.getElementById('lightboxOverlay').classList.contains('active')) { closeLightbox(); return; }
+            const acik = { productModal: closeModal, takimModal: closeTakimModal, duvarModal: closeDuvarModal, ataturkModal: closeAtaturkModal, cocukModal: closeCocukModal };
+            for (const id in acik) { const el = document.getElementById(id); if (el && el.classList.contains('active')) { acik[id](); return; } }
+        });
 
         // ==============================================
         //  TARAFTAR MAKETİ MODALI
