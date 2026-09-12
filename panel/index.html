@@ -201,8 +201,8 @@ textarea { resize: none; min-height: 72px; }
   </div>
   <div class="sheet-body">
     <img class="preview" id="preview" alt="">
-    <div class="field"><label>Başlık <span style="color:var(--red)">*</span></label><input id="fBaslik" placeholder="Örn: Liv Hospital" maxlength="60"><div class="hint">Firma / iş adı. Kartın üstünde büyük görünür.</div></div>
-    <div class="field"><label>Alt yazı <span style="color:var(--red)">*</span></label><input id="fAltyazi" placeholder="Örn: Paslanmaz Kutu Harf" maxlength="60"><div class="hint">İşin türü. Kartta başlığın altında.</div></div>
+    <div class="field"><label>Başlık <span style="color:var(--red)">*</span></label><input id="fBaslik" placeholder="Örn: Liv Hospital" maxlength="40" autocapitalize="words"><div class="hint">Firma / iş adı. Kartın üstünde büyük görünür.</div></div>
+    <div class="field"><label>Alt yazı <span style="color:var(--red)">*</span></label><input id="fAltyazi" placeholder="Örn: Paslanmaz Kutu Harf" maxlength="32" autocapitalize="words"><div class="hint">İşin türü, 2–4 kelime. Kartta başlığın altında küçük yazı.</div></div>
     <div class="field"><label>Kategoriler <span style="color:var(--red)">*</span></label><div class="kats" id="fKats"></div><div class="hint">İlk seçtiğin ★ ana kategori olur; rozet olarak fotoda görünür.</div></div>
     <div class="field"><label>Google açıklaması</label><input id="fAlt" maxlength="120"><div class="hint">Görme engelliler ve Google için. Otomatik dolar, istersen düzelt.</div></div>
     <div class="field"><label>Arama etiketleri</label><input id="fEtiket" autocapitalize="off"><div class="hint">Sitedeki arama kutusu bunlara bakar. Küçük harf, boşlukla ayır.</div></div>
@@ -427,7 +427,7 @@ function katCiz() {
 }
 function otoDoldur() {
   const b = $('fBaslik').value.trim(), a = $('fAltyazi').value.trim();
-  if ($('fAlt').dataset.auto) $('fAlt').value = b || a ? `${b} Samsun ${a}`.replace(/\s+/g, ' ').trim() : '';
+  if ($('fAlt').dataset.auto) $('fAlt').value = b || a ? (trLower(a).includes(trLower(b)) && b ? `${a} Samsun` : `${b} Samsun ${a}`).replace(/\s+/g, ' ').trim() : '';
   if ($('fEtiket').dataset.auto) $('fEtiket').value = etiketUret(b, a, formKats);
 }
 ['fBaslik', 'fAltyazi'].forEach(id => $(id).addEventListener('input', otoDoldur));
@@ -451,7 +451,7 @@ $('photoSave').onclick = () => {
   if (editing) {
     Object.assign(editing, { baslik, altyazi, alt: alt || `${baslik} Samsun ${altyazi}`, etiketler: etiketler || etiketUret(baslik, altyazi, formKats), kategoriler: [...formKats] });
   } else if (draft) {
-    const dosya = benzersizDosya(slug(baslik + ' ' + altyazi));
+    const dosya = benzersizDosya([...new Set(slug(baslik + ' ' + altyazi).split('-'))].join('-').slice(0, 60).replace(/-[^-]*$/, m => m.length > 12 ? '' : m).replace(/-+$/, ''));
     pending.set(dosya, draft);
     fotolar.unshift({ dosya, baslik, altyazi, alt: alt || `${baslik} Samsun ${altyazi}`, kategoriler: [...formKats], etiketler: etiketler || etiketUret(baslik, altyazi, formKats) });
     draft = null;
