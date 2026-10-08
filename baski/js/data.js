@@ -9,7 +9,7 @@
 
 // ---------- İLETİŞİM ----------
 const ILETISIM = {
-    wa: "905079605049",
+    wa: "905322204649",
     tel: "05322204649",
     telHref: "tel:05322204649",
     instagram: "https://www.instagram.com/uzman.reklamm/",

@@ -211,7 +211,7 @@
                     <div class="search-no-result">
                         <i class="fas fa-search"></i>
                         <strong>"${q}" için sonuç bulunamadı</strong>
-                        <span><a href="https://wa.me/${typeof ILETISIM !== 'undefined' ? ILETISIM.wa : '905079605049'}?text=${encodeURIComponent('Merhaba, "' + q + '" ile ilgili bir ürün arıyorum.')}" target="_blank" class="search-wa-link"><i class="fab fa-whatsapp"></i> WhatsApp'tan sor</a></span>
+                        <span><a href="https://wa.me/${typeof ILETISIM !== 'undefined' ? ILETISIM.wa : '905322204649'}?text=${encodeURIComponent('Merhaba, "' + q + '" ile ilgili bir ürün arıyorum.')}" target="_blank" class="search-wa-link"><i class="fab fa-whatsapp"></i> WhatsApp'tan sor</a></span>
                     </div>`;
                 return;
             }
