@@ -263,6 +263,30 @@ nav {
     .hero-trust { font-size:0.78rem; padding:10px 16px; gap:6px; }
 }
 
+/* ================= HERO — VIDEOLU VARYANT (fason-baski.html) ================= */
+.hero.hero--video {
+    padding:0; background:#000; aspect-ratio:16/9; min-height:340px;
+    display:flex; align-items:center; justify-content:center;
+}
+.hero.hero--video::before, .hero.hero--video::after { display:none; }
+.hero-video-wrap { position:absolute; inset:0; z-index:0; overflow:hidden; }
+.hero-video { width:100%; height:100%; object-fit:cover; }
+.hero-overlay {
+    position:absolute; inset:0; z-index:1;
+    background:linear-gradient(180deg, rgba(10,8,4,0.35) 0%, rgba(10,8,4,0.72) 100%);
+}
+.hero-inner { position:relative; z-index:2; padding:40px; max-width:760px; }
+.hero--video .hero-badge { background:rgba(255,255,255,0.12); border-color:rgba(255,255,255,0.28); color:#fff; backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); }
+.hero--video h1 { color:#fff; text-shadow:0 4px 30px rgba(0,0,0,0.8); }
+.hero--video p.sub { color:#f0ede6; text-shadow:0 2px 16px rgba(0,0,0,0.7); }
+.hero--video .hero-trust { background:rgba(0,0,0,0.35); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); }
+.hero--video .hero-trust span { color:#fff; }
+.hero--video .hero-trust i { color:#fff; }
+@media (max-width:560px) {
+    .hero.hero--video { aspect-ratio:16/9; min-height:300px; border-radius:0; margin:0 -20px 20px; width:calc(100% + 40px); }
+    .hero-inner { padding:20px; }
+}
+
 /* ================= KAPILAR ================= */
 .gates { margin:48px 0 24px; position:relative; }
 .gates::after {
