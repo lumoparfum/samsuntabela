@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 Disallow: /panel/
+Disallow: /README.md
 Sitemap: https://samsuntabela.tr/sitemap.xml
