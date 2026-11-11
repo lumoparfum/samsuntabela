@@ -14,7 +14,7 @@ for (const pg of PAGES) {
     const wa = [...document.querySelectorAll('a[href*="wa.me"]')].map(a => a.href.match(/wa\.me\/(\d*)/)[1]);
     const tel = [...document.querySelectorAll('a[href^="tel:"]')].map(a => a.getAttribute('href'));
     const txt = document.body.innerText;
-    return { waSayisi: wa.length, waFarkli: [...new Set(wa)], tel: [...new Set(tel)], eskiGorunuyor: /0507|507 960|0501 667/.test(txt) };
+    return { waSayisi: wa.length, waFarkli: [...new Set(wa)], tel: [...new Set(tel)], eskiGorunuyor: [...(document.documentElement.innerHTML.match(/0?\s?5\d\d[\s.]?\d{3}[\s.]?\d{2}[\s.]?\d{2}|90\s?5\d{9}/g) || [])].some(n => !/^(0?\s?532[\s.]?220[\s.]?46[\s.]?49|90\s?5322204649)$/.test(n.trim())) };
   });
   const bad = r.waFarkli.some(x => x !== '905322204649') || r.eskiGorunuyor || errs.length || fails.some(f => !/google|gtag|analytics|mp4/.test(f));
   if (bad) sorun++;

@@ -992,9 +992,16 @@
         <!-- HERO -->
         <section class="hero">
             <div class="hero-video-wrap">
-                <video class="hero-video" autoplay muted loop playsinline preload="metadata" poster="images/fason/hero-poster.jpg">
-                    <source src="images/fason/hero-fason.mp4" type="video/mp4">
-                </video>
+                <video class="hero-video" muted loop playsinline preload="none" poster="images/fason/hero-poster.jpg" aria-hidden="true" data-src="images/fason/hero-fason.mp4"></video>
+                <script>
+                    // 3,5 MB video yalniz genis ekranda iner; telefonda poster gorunur (mobil hiz)
+                    (function () {
+                        var v = document.currentScript.previousElementSibling;
+                        if (!window.matchMedia('(min-width: 769px)').matches) return;
+                        v.src = v.dataset.src; v.preload = 'auto';
+                        var p = v.play(); if (p && p.catch) p.catch(function () {});
+                    })();
+                </script>
             </div>
             <div class="hero-overlay"></div>
             <div class="hero-content">

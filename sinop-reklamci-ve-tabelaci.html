@@ -40,9 +40,11 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet"></noscript>
     <link rel="preload" as="image" href="sinop-bg.jpg" fetchpriority="high">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"></noscript>
 
     <script type="application/ld+json">
     {
@@ -328,6 +330,12 @@ background: linear-gradient(to top, rgba(5,5,5,0.8) 0%, rgba(5,5,5,0.15) 100%), 
         .footer-box .contact-info-list i { color: var(--neon-sari) !important; }
         :root[data-theme="light"] .banka-bilgi p, :root[data-theme="light"] .footer-box .contact-info-list li, :root[data-theme="light"] .footer-box .contact-info-list li div, :root[data-theme="light"] .footer-box h4, :root[data-theme="light"] .footer-box p { color: #15170f !important; }
         @media (max-width: 768px) { .banka-bilgi p { font-size: 0.8rem; } .banka-bilgi h4 { font-size: 0.9rem; } }
+        /* --- 11 Kas 2026 denetim duzeltmeleri --- */
+        .wp-ara { display: none; }
+        @media (max-width: 768px) { .wp-insta { display: none !important; } .wp-ara { display: flex; } }
+        .contact-info-list a[href^="tel:"] { color: inherit; text-decoration: none; border-bottom: 1px dashed currentColor; }
+        #merkez-bag a { color: var(--neon-sari, var(--neon, #ccff00)); text-decoration: underline; text-underline-offset: 3px; }
+        :root[data-theme="light"] #merkez-bag a { color: #3d5400; }
     </style>
 </head>
 <body>
@@ -374,8 +382,8 @@ background: linear-gradient(to top, rgba(5,5,5,0.8) 0%, rgba(5,5,5,0.15) 100%), 
         <h2><i class="fas fa-city"></i> Sinop Merkez Tabela ve Kurumsal Cephe</h2>
         <p>Karadeniz'in incisi Sinop'ta kurumsal firmaların ve devlet kurumlarının bir numaralı reklam çözüm ortağıyız. <strong>Sinop tabelacı firmaları</strong> arasında, Sinop Devlet Hastanesi gibi dev projelere imza atmanın gururunu yaşıyoruz. Merkezdeki işletmeleriniz için paslanmaz kutu harf imalatı, LED aydınlatmalı panolar ve kompozit bina giydirme işlemlerini profesyonel usta ekibimizle hızlıca tamamlıyoruz.</p>
         <div class="block-ref-grid">
-            <div class="ref-item" onclick="openLightbox(this)"><img src="sinop-devlet-hastanesi-isikli-kutu-harf.webp" alt="Sinop Sinop Atatürk Devlet Hastanesi ışıklı kutu harf tabela uygulaması"><span>Kurumsal Devlet Projeleri</span></div>
-            <div class="ref-item" onclick="openLightbox(this)"><img src="yatirim-finansman-kompozit-cephe.webp" alt="Sinop Yatırım Finansman kompozit cephe kaplama ve kutu harf tabela"><span>Dış Cephe Tasarımı</span></div>
+            <div class="ref-item" onclick="openLightbox(this)"><img loading="lazy" decoding="async" src="sinop-devlet-hastanesi-isikli-kutu-harf.webp" alt="Sinop Sinop Atatürk Devlet Hastanesi ışıklı kutu harf tabela uygulaması"><span>Kurumsal Devlet Projeleri</span></div>
+            <div class="ref-item" onclick="openLightbox(this)"><img loading="lazy" decoding="async" src="yatirim-finansman-kompozit-cephe.webp" alt="Sinop Yatırım Finansman kompozit cephe kaplama ve kutu harf tabela"><span>Dış Cephe Tasarımı</span></div>
         </div>
     </div>
 
@@ -383,8 +391,8 @@ background: linear-gradient(to top, rgba(5,5,5,0.8) 0%, rgba(5,5,5,0.15) 100%), 
         <h2><i class="fas fa-hospital"></i> Gerze Tabelacı & Hastane Projelerimiz</h2>
         <p>Sinop'un parlayan yıldızı Gerze'de imza attığımız büyük projelerle gurur duyuyoruz. <strong>Gerze Devlet Hastanesi</strong> için kendi atölyemizde imal edip yerinde montajını gerçekleştirdiğimiz kurumsal giriş tabelası ve komple kompozit giydirme çalışmaları, kalite standartlarımızın en büyük kanıtıdır. <strong>Gerze reklamcı</strong> arayışınızda eczane, market ve ofisler için garantili kutu harf üretimimiz aralıksız devam etmektedir.</p>
         <div class="block-ref-grid">
-            <div class="ref-item" onclick="openLightbox(this)"><img src="gerze-devlet-hastanesi-giris-takisi.webp" alt="Sinop Gerze Devlet Hastanesi giriş takı ve ışıklı kutu harf tabela uygulaması"><span>Gerze Hastane Projemiz</span></div>
-            <div class="ref-item" onclick="openLightbox(this)"><img src="atolye-kutu-harf-kompozit-imalat.webp" alt="Sinop atölyede kutu harf ve kompozit tabela imalatı"><span>Kendi Atölyemizden Halka</span></div>
+            <div class="ref-item" onclick="openLightbox(this)"><img loading="lazy" decoding="async" src="gerze-devlet-hastanesi-giris-takisi.webp" alt="Sinop Gerze Devlet Hastanesi giriş takı ve ışıklı kutu harf tabela uygulaması"><span>Gerze Hastane Projemiz</span></div>
+            <div class="ref-item" onclick="openLightbox(this)"><img loading="lazy" decoding="async" src="atolye-kutu-harf-kompozit-imalat.webp" alt="Sinop atölyede kutu harf ve kompozit tabela imalatı"><span>Kendi Atölyemizden Halka</span></div>
         </div>
     </div>
 
@@ -392,8 +400,8 @@ background: linear-gradient(to top, rgba(5,5,5,0.8) 0%, rgba(5,5,5,0.15) 100%), 
         <h2><i class="fas fa-industry"></i> Boyabat Reklamcı & Sanayi Totemleri</h2>
         <p>Ticaretin ve sanayinin güçlü olduğu Boyabat ilçesindeki fabrikalar, petrol istasyonları ve büyük tesisler için devasa karayolu totemleri inşa ediyoruz. <strong>Boyabat tabelacı</strong> hizmetlerimiz kapsamında rüzgara ve zorlu iklim şartlarına dayanıklı devasa pilon tabelalar ve CNC lazer kesim yönlendirme levhaları üretiyoruz. Tüm çelik konstrüksiyon üretimlerimiz mühendislik hesaplamalarıyla yapılmaktadır.</p>
         <div class="block-ref-grid">
-            <div class="ref-item" onclick="openLightbox(this)"><img src="medibafra-isikli-totem-tabela.webp" alt="Sinop Medibafra Hastanesi ışıklı totem tabela uygulaması"><span>Sanayi ve Yol Totemleri</span></div>
-            <div class="ref-item" onclick="openLightbox(this)"><img src="cnc-router-lazer-kesim-imalat.webp" alt="Sinop CNC router ile pleksi ve dekota fason lazer kesim imalatı"><span>Endüstriyel Lazer Kesim</span></div>
+            <div class="ref-item" onclick="openLightbox(this)"><img loading="lazy" decoding="async" src="medibafra-isikli-totem-tabela.webp" alt="Sinop Medibafra Hastanesi ışıklı totem tabela uygulaması"><span>Sanayi ve Yol Totemleri</span></div>
+            <div class="ref-item" onclick="openLightbox(this)"><img loading="lazy" decoding="async" src="cnc-router-lazer-kesim-imalat.webp" alt="Sinop CNC router ile pleksi ve dekota fason lazer kesim imalatı"><span>Endüstriyel Lazer Kesim</span></div>
         </div>
     </div>
 
@@ -401,8 +409,8 @@ background: linear-gradient(to top, rgba(5,5,5,0.8) 0%, rgba(5,5,5,0.15) 100%), 
         <h2><i class="fas fa-store"></i> Ayancık Tabela ve Esnaf Çözümleri</h2>
         <p>Ayancık ilçesindeki mağazalar, butikler ve yerel esnafımız için dikkat çekici, uzun ömürlü ve ekonomik ışıklı pano sistemleri hazırlıyoruz. Sadece tabela değil, ticari araç filoları için 1. sınıf araç giydirme ve mağaza vitrinleri için dijital baskı uygulamalarımızla <strong>Ayancık reklam şirketleri</strong> arasında en kapsamlı hizmeti kapınıza kadar getiriyoruz.</p>
         <div class="block-ref-grid">
-            <div class="ref-item" onclick="openLightbox(this)"><img src="tozlu-com-magaza-kutu-harf.webp" alt="Sinop Tozlu.com mağaza kutu harf tabela uygulaması"><span>Mağaza Kutu Harf Tasarımı</span></div>
-            <div class="ref-item" onclick="openLightbox(this)"><img src="arac-giydirme-ticari-filo.webp" alt="Sinop ticari filo araç giydirme ve reklam kaplama uygulaması"><span>Filo ve Araç Reklamları</span></div>
+            <div class="ref-item" onclick="openLightbox(this)"><img loading="lazy" decoding="async" src="tozlu-com-magaza-kutu-harf.webp" alt="Sinop Tozlu.com mağaza kutu harf tabela uygulaması"><span>Mağaza Kutu Harf Tasarımı</span></div>
+            <div class="ref-item" onclick="openLightbox(this)"><img loading="lazy" decoding="async" src="arac-giydirme-ticari-filo.webp" alt="Sinop ticari filo araç giydirme ve reklam kaplama uygulaması"><span>Filo ve Araç Reklamları</span></div>
         </div>
     </div>
 
@@ -691,7 +699,7 @@ background: linear-gradient(to top, rgba(5,5,5,0.8) 0%, rgba(5,5,5,0.15) 100%), 
       Gerze, Boyabat ve Sinop merkez dahil olmak üzere Sinop genelinde tabela imalatı, montajı ve bakımı yapıyoruz.
       Üretimin tamamı Bafra'daki kendi fabrikamızda gerçekleşiyor; bu sayede Sinop için ürettiğimiz
       işlerde de aynı malzeme ve işçilik standardını koruyoruz.
-      Tüm hizmetlerimizi, fiyat aralıklarını ve 68 proje fotoğrafımızı
+      Tüm hizmetlerimizi, fiyat aralıklarını ve 70'ten fazla proje fotoğrafımızı
       <a href="/"><strong>Samsun tabela</strong></a> sayfamızda inceleyebilir;
       ışıklı kutu harf, krom harf, totem tabela, bayi tabelaları ve yönlendirme sistemleri
       hakkında detaylı bilgi alabilirsiniz.
@@ -703,11 +711,11 @@ background: linear-gradient(to top, rgba(5,5,5,0.8) 0%, rgba(5,5,5,0.15) 100%), 
         <h3 style="color:var(--neon-sari); margin-bottom: 20px;">FABRİKA & ATÖLYE</h3>
         <ul class="contact-info-list">
             <li><i class="fas fa-map-marker-alt"></i> <div><strong>Bafra Merkez:</strong> Emirefendi Mh. Çizmeli 2.Sk. No:33</div></li>
-            <li><i class="fas fa-phone-alt"></i> <div>0532 220 46 49</div></li>
+            <li><i class="fas fa-phone-alt"></i> <div><a href="tel:+905322204649" onclick="gtag('event','telefon_tiklama',{'sayfa':'footer'});">0532 220 46 49</a></div></li>
             <li><i class="fas fa-envelope"></i> <div><a href="mailto:uzmandosya@hotmail.com">uzmandosya@hotmail.com</a><br><a href="mailto:rmtoraman@icloud.com">rmtoraman@icloud.com</a></div></li>
         </ul>
         <div class="map-container">
-            <iframe src="https://maps.google.com/maps?q=Uzman%20Reklam%20Bafra&t=&z=15&ie=UTF8&iwloc=&output=embed" style="border:0;width:100%;height:100%;" allowfullscreen="" loading="lazy"></iframe>
+            <iframe title="Uzman Reklam Bafra konumu" src="https://maps.google.com/maps?q=Uzman%20Reklam%20Bafra&t=&z=15&ie=UTF8&iwloc=&output=embed" style="border:0;width:100%;height:100%;" allowfullscreen="" loading="lazy"></iframe>
         </div>
         <a href="https://www.google.com/maps/dir//Uzman+Reklam,+Emirefendi,+%C3%87izmeli+2.+Sk.+No:33,+55400+Bafra%2FSamsun/" target="_blank" class="btn-main" style="width:100%; text-align:center; padding:15px 0;">YOL TARİFİ AL</a>
     </div>
@@ -787,8 +795,9 @@ background: linear-gradient(to top, rgba(5,5,5,0.8) 0%, rgba(5,5,5,0.15) 100%), 
 </script>
 
 <div class="wp-float">
-    <a href="https://www.instagram.com/uzman.reklamm/" class="wp-btn" target="_blank" style="background: #e4405f;"><i class="fab fa-instagram"></i></a>
-    <a href="https://wa.me/905322204649" class="wp-btn" target="_blank" style="background: #25d366;" onclick="gtag('event', 'whatsapp_tiklama', {'sayfa': window.location.pathname});"><i class="fab fa-whatsapp"></i></a>
+    <a href="https://www.instagram.com/uzman.reklamm/" class="wp-btn wp-insta" target="_blank" rel="noopener" style="background: #e4405f;" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+    <a href="tel:+905322204649" class="wp-btn wp-ara" style="background: #0a84ff;" aria-label="Hemen ara: 0532 220 46 49" onclick="gtag('event','telefon_tiklama',{'sayfa':'sabit_dugme'});"><i class="fas fa-phone-alt"></i></a>
+    <a href="https://wa.me/905322204649" class="wp-btn" target="_blank" style="background: #25d366;" aria-label="WhatsApp ile yaz" onclick="gtag('event', 'whatsapp_tiklama', {'sayfa': window.location.pathname});"><i class="fab fa-whatsapp"></i></a>
 </div>
 
 </body>

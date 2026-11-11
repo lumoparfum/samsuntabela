@@ -45,7 +45,7 @@ jobs:
         run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
-          git add -A -- index.html sitemap.xml '*.webp' galeri/kaynak
+          git add -A -- index.html sitemap.xml '*.webp' galeri/kaynak galeri/k
           if git diff --cached --quiet; then
             echo "degisti=no" >> "$GITHUB_OUTPUT"
             echo "Uretilecek degisiklik yok."

@@ -40,9 +40,11 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet"></noscript>
     <link rel="preload" as="image" href="samsun-bg.webp" fetchpriority="high">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"></noscript>
 
     <script type="application/ld+json">
     {
@@ -448,6 +450,12 @@
         .footer-box .contact-info-list i { color: var(--neon) !important; }
         :root[data-theme="light"] .banka-bilgi p, :root[data-theme="light"] .footer-box .contact-info-list li, :root[data-theme="light"] .footer-box .contact-info-list li div, :root[data-theme="light"] .footer-box h4, :root[data-theme="light"] .footer-box p { color: #15170f !important; }
         @media (max-width: 768px) { .banka-bilgi p { font-size: 0.8rem; } .banka-bilgi h4 { font-size: 0.9rem; } }
+        /* --- 11 Kas 2026 denetim duzeltmeleri --- */
+        .wp-ara { display: none; }
+        @media (max-width: 768px) { .wp-insta { display: none !important; } .wp-ara { display: flex; } }
+        .contact-info-list a[href^="tel:"] { color: inherit; text-decoration: none; border-bottom: 1px dashed currentColor; }
+        #merkez-bag a { color: var(--neon-sari, var(--neon, #ccff00)); text-decoration: underline; text-underline-offset: 3px; }
+        :root[data-theme="light"] #merkez-bag a { color: #3d5400; }
     </style>
 </head>
 <body>
@@ -495,48 +503,48 @@
         <h2><i class="fas fa-star"></i> Atakum Tabela & Kutu Harf İmalatı</h2>
         <p>Samsun'un en modern ve ticari hacmi en yüksek ilçesi olan Atakum'da kurumsal kimliğinizi zirveye taşıyoruz. <strong>Atakum tabela firmaları</strong> arasında yarım asırlık tecrübemizle öne çıkıyor, eczaneler, lüks kafeler, butikler ve kurumsal plazalar için yüksek kalitede reklam çözümleri sunuyoruz. Paslanmaz krom kutu harf, pleksi aydınlatma ve dış cephe kompozit kaplama imalatımızla Atakum sahil şeridinde ve merkezinde dükkanınızın fener gibi parlamasını sağlıyoruz.</p>
         <div class="block-ref-grid">
-            <div class="ref-item" onclick="openLightbox(this)"><img src="liv-hospital-paslanmaz-kutu-harf.webp" alt="Samsun Liv Hospital paslanmaz ışıklı kutu harf reklam tabelası uygulaması"><span>Lüks Kutu Harf Üretimi</span></div>
-            <div class="ref-item" onclick="openLightbox(this)"><img src="olimpik-yuzme-havuzu-pano-tabela.webp" alt="Samsun Olimpik Yüzme Havuzu iç mekan reklam panosu tabela uygulaması"><span>Işıklı Pano Çözümleri</span></div>
+            <div class="ref-item" onclick="openLightbox(this)"><img loading="lazy" decoding="async" src="liv-hospital-paslanmaz-kutu-harf.webp" alt="Samsun Liv Hospital paslanmaz ışıklı kutu harf reklam tabelası uygulaması"><span>Lüks Kutu Harf Üretimi</span></div>
+            <div class="ref-item" onclick="openLightbox(this)"><img loading="lazy" decoding="async" src="olimpik-yuzme-havuzu-pano-tabela.webp" alt="Samsun Olimpik Yüzme Havuzu iç mekan reklam panosu tabela uygulaması"><span>Işıklı Pano Çözümleri</span></div>
         </div>
     </div>
     <div class="district-block" id="ilkadim">
         <h2><i class="fas fa-building"></i> İlkadım Tabela & Cephe Giydirme çözümleri</h2>
         <p>Samsun ticaretinin kalbi olan İlkadım ilçesinde esnafımızın ve büyük markaların bölgesel tabelacısıyız. <strong>Samsun İlkadım reklamcı</strong> arayışlarınızda, dükkan üstü klasik ışıklı panolardan devasa cephe kompozit giydirme projelerine kadar her ölçekteki işi kendi atölyemizde imal ediyoruz. Mecidiye, Çiftlik ve bulvar üzerindeki yüzlerce mağazanın referansına sahip olan ekibimiz, İlkadım bölgesinde hızlı keşif ve montaj garantisi vermektedir.</p>
         <div class="block-ref-grid">
-            <div class="ref-item" onclick="openLightbox(this)"><img src="tozlu-com-magaza-kutu-harf.webp" alt="Samsun Tozlu.com mağaza kutu harf reklam tabelası uygulaması"><span>Mağaza Cephe Tasarımı</span></div>
-            <div class="ref-item" onclick="openLightbox(this)"><img src="yatirim-finansman-kompozit-cephe.webp" alt="Samsun Yatırım Finansman kompozit cephe kaplama ve kutu harf reklam tabelası"><span>Kompozit Bina Kaplama</span></div>
+            <div class="ref-item" onclick="openLightbox(this)"><img loading="lazy" decoding="async" src="tozlu-com-magaza-kutu-harf.webp" alt="Samsun Tozlu.com mağaza kutu harf reklam tabelası uygulaması"><span>Mağaza Cephe Tasarımı</span></div>
+            <div class="ref-item" onclick="openLightbox(this)"><img loading="lazy" decoding="async" src="yatirim-finansman-kompozit-cephe.webp" alt="Samsun Yatırım Finansman kompozit cephe kaplama ve kutu harf reklam tabelası"><span>Kompozit Bina Kaplama</span></div>
         </div>
     </div>
     <div class="district-block" id="bafra">
         <h2><i class="fas fa-industry"></i> Bafra Tabelacı & CNC Lazer Kesim Fabrikamız</h2>
         <p>Uzman Reklam'ın kalbi ve üretim üssü Bafra'dadır! Emirefendi Mahallesi'nde bulunan yüksek kapasiteli imalat tesisimizde, 3 adet CNC router ve son teknoloji fiber lazer makinelerimizle tüm Karadeniz'e fason üretim yapıyoruz. <strong>Bafra tabelacı</strong> denildiğinde akla ilk gelen marka olmanın gururuyla, yol kenarı dev totem tabelalardan, kurumsal fabrika çatı tabelalarına kadar tüm ağır sanayi reklam işlerini anahtar teslim projelendiriyoruz.</p>
         <div class="block-ref-grid">
-            <div class="ref-item" onclick="openLightbox(this)"><img src="medibafra-hastanesi-cephe-giydirme.webp" alt="Samsun Bafra Medibafra Hastanesi cephe giydirme ve dev reklam tabelası uygulaması"><span>Medibafra Büyük Cephe Projemiz</span></div>
-            <div class="ref-item" onclick="openLightbox(this)"><img src="cnc-router-lazer-kesim-imalat.webp" alt="Samsun Bafra fabrikamızda CNC router ile pleksi ve dekota fason lazer kesim imalatı"><span>CNC & Lazer Parkurumuz</span></div>
+            <div class="ref-item" onclick="openLightbox(this)"><img loading="lazy" decoding="async" src="medibafra-hastanesi-cephe-giydirme.webp" alt="Samsun Bafra Medibafra Hastanesi cephe giydirme ve dev reklam tabelası uygulaması"><span>Medibafra Büyük Cephe Projemiz</span></div>
+            <div class="ref-item" onclick="openLightbox(this)"><img loading="lazy" decoding="async" src="cnc-router-lazer-kesim-imalat.webp" alt="Samsun Bafra fabrikamızda CNC router ile pleksi ve dekota fason lazer kesim imalatı"><span>CNC & Lazer Parkurumuz</span></div>
         </div>
     </div>
     <div class="district-block" id="tekkekoy">
         <h2><i class="fas fa-print"></i> Tekkeköy & Dijital Baskı Çözümleri</h2>
         <p>Tekkeköy ve Samsun Organize Sanayi Bölgesi'ndeki fabrikalar, lojistik depoları ve firmalar için dev totem tabelalar ve yüksek çözünürlüklü dijital baskı üretiyoruz. İç mekan dijital baskı (folyo, branda, one-way vision) ve dış mekan kurumsal baskı kaplamalarımızla markanızı öne çıkarıyoruz. En zorlu hava şartlarına dayanıklı baskılarımız UV ve solvent boya teknolojileri ile kendi tesisimizde basılmaktadır.</p>
         <div class="block-ref-grid">
-            <div class="ref-item" onclick="openLightbox(this)"><img src="dijital-baski-branda-vinil.webp" alt="Samsun dijital baskı makinesinde branda ve vinil reklam baskısı üretimi"><span>Dış Mekan Dijital Baskı</span></div>
-            <div class="ref-item" onclick="openLightbox(this)"><img src="burger-king-ic-mekan-duvar-baskisi.webp" alt="Samsun Burger King iç mekan duvar dijital reklam baskısı uygulaması"><span>İç Mekan Kurumsal Baskı</span></div>
+            <div class="ref-item" onclick="openLightbox(this)"><img loading="lazy" decoding="async" src="dijital-baski-branda-vinil.webp" alt="Samsun dijital baskı makinesinde branda ve vinil reklam baskısı üretimi"><span>Dış Mekan Dijital Baskı</span></div>
+            <div class="ref-item" onclick="openLightbox(this)"><img loading="lazy" decoding="async" src="burger-king-ic-mekan-duvar-baskisi.webp" alt="Samsun Burger King iç mekan duvar dijital reklam baskısı uygulaması"><span>İç Mekan Kurumsal Baskı</span></div>
         </div>
     </div>
     <div class="district-block" id="canik">
         <h2><i class="fas fa-store"></i> Canik Tabela & Araç Giydirme Firmaları</h2>
         <p>Canik ilçesindeki sanayi siteleri, dev alışveriş merkezleri ve ticari filolar için jilet gibi reklam kaplamaları hazırlıyoruz. <strong>Samsun Canik reklam şirketleri</strong> arasında ticari araç kaplama (cast folyo) alanında lideriz. Şirket araçlarınızı trafikte gezen bedava birer reklam panosuna dönüştürüyor, AVM ve çevre yollarındaki kurumsal yönlendirme tabelalarını kuruyoruz.</p>
         <div class="block-ref-grid">
-            <div class="ref-item" onclick="openLightbox(this)"><img src="piazza-avm-dev-totem-tabela.webp" alt="Samsun Piazza AVM dev totem reklam tabelası ve yol kenarı reklam kulesi"><span>Piazza Dev Totem Projemiz</span></div>
-            <div class="ref-item" onclick="openLightbox(this)"><img src="arac-giydirme-ticari-filo.webp" alt="Samsun ticari filo araç giydirme ve reklam kaplama uygulaması"><span>Profesyonel Araç Kaplama</span></div>
+            <div class="ref-item" onclick="openLightbox(this)"><img loading="lazy" decoding="async" src="piazza-avm-dev-totem-tabela.webp" alt="Samsun Piazza AVM dev totem reklam tabelası ve yol kenarı reklam kulesi"><span>Piazza Dev Totem Projemiz</span></div>
+            <div class="ref-item" onclick="openLightbox(this)"><img loading="lazy" decoding="async" src="arac-giydirme-ticari-filo.webp" alt="Samsun ticari filo araç giydirme ve reklam kaplama uygulaması"><span>Profesyonel Araç Kaplama</span></div>
         </div>
     </div>
     <div class="district-block" id="carsamba">
         <h2><i class="fas fa-truck"></i> Çarşamba & Terme Kurumsal Tabela Hizmet Ağı</h2>
         <p>Samsun'un doğu yakasındaki dev ilçeleri Çarşamba ve Terme'de bayilik ağları, akaryakıt istasyonları ve kurumsal gıda firmaları için kesintisiz montaj desteği sağlıyoruz. Ağır kış şartlarına ve Karadeniz fırtınalarına dayanıklı statik hesaplamalı reklam panoları ve tabelacı çözümleri sunuyoruz.</p>
         <div class="block-ref-grid">
-            <div class="ref-item" onclick="openLightbox(this)"><img src="atolye-kutu-harf-kompozit-imalat.webp" alt="Samsun atölyede kutu harf ve kompozit reklam tabelası imalatı"><span>Atölye Harf İmalatı</span></div>
-            <div class="ref-item" onclick="openLightbox(this)"><img src="fatsa-ataturk-parki-modern-totem.webp" alt="Samsun Fatsa Atatürk Parkı özel tasarım modern totem tabela"><span>Modern Totem Uygulamaları</span></div>
+            <div class="ref-item" onclick="openLightbox(this)"><img loading="lazy" decoding="async" src="atolye-kutu-harf-kompozit-imalat.webp" alt="Samsun atölyede kutu harf ve kompozit reklam tabelası imalatı"><span>Atölye Harf İmalatı</span></div>
+            <div class="ref-item" onclick="openLightbox(this)"><img loading="lazy" decoding="async" src="fatsa-ataturk-parki-modern-totem.webp" alt="Samsun Fatsa Atatürk Parkı özel tasarım modern totem tabela"><span>Modern Totem Uygulamaları</span></div>
         </div>
     </div>
     <div class="btn-panel">
@@ -553,7 +561,7 @@
       İlkadım, Canik ve Tekkeköy dahil olmak üzere Samsun genelinde tabela imalatı, montajı ve bakımı yapıyoruz.
       Üretimin tamamı Bafra'daki kendi fabrikamızda gerçekleşiyor; bu sayede Samsun için ürettiğimiz
       işlerde de aynı malzeme ve işçilik standardını koruyoruz.
-      Tüm hizmetlerimizi, fiyat aralıklarını ve 68 proje fotoğrafımızı
+      Tüm hizmetlerimizi, fiyat aralıklarını ve 70'ten fazla proje fotoğrafımızı
       <a href="/"><strong>Samsun tabela</strong></a> sayfamızda inceleyebilir;
       ışıklı kutu harf, krom harf, totem tabela, bayi tabelaları ve yönlendirme sistemleri
       hakkında detaylı bilgi alabilirsiniz.
@@ -565,11 +573,11 @@
         <h3 style="color:var(--neon); margin-bottom: 20px;">FABRİKA & ATÖLYE</h3>
         <ul class="contact-info-list">
             <li><i class="fas fa-map-marker-alt"></i> <div><strong>Bafra Merkez:</strong> Emirefendi Mh. Çizmeli 2.Sk. No:33</div></li>
-            <li><i class="fas fa-phone-alt"></i> <div>0532 220 46 49</div></li>
+            <li><i class="fas fa-phone-alt"></i> <div><a href="tel:+905322204649" onclick="gtag('event','telefon_tiklama',{'sayfa':'footer'});">0532 220 46 49</a></div></li>
             <li><i class="fas fa-envelope"></i> <div><a href="mailto:uzmandosya@hotmail.com">uzmandosya@hotmail.com</a><br><a href="mailto:rmtoraman@icloud.com">rmtoraman@icloud.com</a></div></li>
         </ul>
         <div class="map-container">
-            <iframe src="https://maps.google.com/maps?q=Uzman%20Reklam%20Bafra&t=&z=15&ie=UTF8&iwloc=&output=embed" style="border:0;width:100%;height:100%;" allowfullscreen="" loading="lazy"></iframe>
+            <iframe title="Uzman Reklam Bafra konumu" src="https://maps.google.com/maps?q=Uzman%20Reklam%20Bafra&t=&z=15&ie=UTF8&iwloc=&output=embed" style="border:0;width:100%;height:100%;" allowfullscreen="" loading="lazy"></iframe>
         </div>
         <a href="https://www.google.com/maps/dir//Uzman+Reklam,+Emirefendi,+%C3%87izmeli+2.+Sk.+No:33,+55400+Bafra%2FSamsun/" target="_blank" class="btn-main" style="width:100%; text-align:center; padding:15px 0; margin-top:15px;">YOL TARİFİ AL</a>
     </div>
@@ -661,8 +669,9 @@
 </script>
 
 <div class="wp-float">
-    <a href="https://www.instagram.com/uzman.reklamm/" class="wp-btn" target="_blank" style="background: #e4405f;"><i class="fab fa-instagram"></i></a>
-    <a href="https://wa.me/905322204649" class="wp-btn" target="_blank" style="background: #25d366;" onclick="gtag('event', 'whatsapp_tiklama', {'sayfa': window.location.pathname});"><i class="fab fa-whatsapp"></i></a>
+    <a href="https://www.instagram.com/uzman.reklamm/" class="wp-btn wp-insta" target="_blank" rel="noopener" style="background: #e4405f;" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+    <a href="tel:+905322204649" class="wp-btn wp-ara" style="background: #0a84ff;" aria-label="Hemen ara: 0532 220 46 49" onclick="gtag('event','telefon_tiklama',{'sayfa':'sabit_dugme'});"><i class="fas fa-phone-alt"></i></a>
+    <a href="https://wa.me/905322204649" class="wp-btn" target="_blank" style="background: #25d366;" aria-label="WhatsApp ile yaz" onclick="gtag('event', 'whatsapp_tiklama', {'sayfa': window.location.pathname});"><i class="fab fa-whatsapp"></i></a>
 </div>
 
 </body>

@@ -13,6 +13,8 @@ import io, json, os, re, sys, html
 KOK = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = "https://samsuntabela.tr/"
 KAYNAK_DIZIN = os.path.join(KOK, "galeri", "kaynak")
+KUCUK_DIZIN = os.path.join(KOK, "galeri", "k")   # kartlarda gosterilen hafif kopyalar (asil foto lightbox'ta)
+KUCUK_EN, KUCUK_BOY, KUCUK_KALITE = 640, 500, 76  # kart: PC ~280x250, mobil ~175x150 css px; 2-3x ekran icin yeterli
 WEBP_MAX_KB = 160      # mevcut galeri fotolari 60-160 KB araliginda
 WEBP_MIN_KALITE = 60   # boyut icin kaliteden bunun altina inilmez
 WEBP_UZUN_KENAR = 1200
@@ -90,6 +92,26 @@ def webp_uret(veri, kontrol):
     return uretilen, eksik
 
 
+def kucuk_uret(veri, kontrol):
+    """Her galeri fotosu icin galeri/k/<ad>.webp hafif kopyasini uret (yoksa ya da asil foto daha yeniyse)."""
+    uretilen = []
+    for f in veri["fotolar"]:
+        asil = os.path.join(KOK, f["dosya"]); hedef = os.path.join(KUCUK_DIZIN, f["dosya"])
+        if os.path.exists(hedef):   # yalniz eksikleri uret (CI'da mtime guvenilmez; dosya adlari degismez)
+            continue
+        if kontrol:
+            uretilen.append(f["dosya"]); continue
+        from PIL import Image
+        os.makedirs(KUCUK_DIZIN, exist_ok=True)
+        im = Image.open(asil).convert("RGB")
+        olcek = min(1.0, max(KUCUK_EN / im.width, KUCUK_BOY / im.height))
+        if olcek < 1.0:
+            im = im.resize((round(im.width * olcek), round(im.height * olcek)), Image.LANCZOS)
+        im.save(hedef, "WEBP", quality=KUCUK_KALITE, method=6)
+        uretilen.append(f"{f['dosya']} ({im.width}x{im.height}, {os.path.getsize(hedef)//1024} KB)")
+    return uretilen
+
+
 def yetim_temizle(veri, kontrol):
     """Galeriden cikarilmis ve sitede hicbir dosyanin atifta bulunmadigi WebP'leri (ve kaynak jpg'sini) sil."""
     kullanilan = set(f["dosya"] for f in veri["fotolar"])
@@ -111,6 +133,12 @@ def yetim_temizle(veri, kontrol):
                 if not kontrol:
                     os.remove(h)
                 silinen.append(os.path.relpath(h, KOK))
+    if os.path.isdir(KUCUK_DIZIN):
+        for d in sorted(os.listdir(KUCUK_DIZIN)):
+            if d.endswith(".webp") and d not in kullanilan:
+                if not kontrol:
+                    os.remove(os.path.join(KUCUK_DIZIN, d))
+                silinen.append(os.path.relpath(os.path.join(KUCUK_DIZIN, d), KOK))
     return silinen
 
 
@@ -131,7 +159,7 @@ def kart_html(veri):
         satirlar.append(
             f'    <div class="work-card {" ".join(f["kategoriler"])}" data-tags="{html.escape(f["etiketler"], quote=True)}" onclick="openLightbox(this)">'
             f'<span class="cat-badge">{html.escape(rozet, quote=False)}</span>'
-            f'<img src="{f["dosya"]}" alt="{html.escape(f["alt"], quote=True)}" loading="lazy" decoding="async" width="400" height="250">'
+            f'<img src="galeri/k/{f["dosya"]}" data-full="{f["dosya"]}" alt="{html.escape(f["alt"], quote=True)}" loading="lazy" decoding="async" width="400" height="250">'
             f'<div class="work-info"><h3>{html.escape(f["baslik"], quote=False)}</h3><p>{html.escape(f["altyazi"], quote=False)}</p></div></div>')
     return "\n".join(satirlar) + "\n"
 
@@ -171,6 +199,9 @@ def main():
     if eksik:
         print("HATA: su fotolarin ne webp'si ne kaynagi var:", ", ".join(eksik))
         sys.exit(1)
+
+    for k in kucuk_uret(veri, kontrol):
+        print("kucuk kopya:", k)
 
     for y in yetim_temizle(veri, kontrol):
         print("yetim silindi:" if not kontrol else "yetim (silinecek):", y)
