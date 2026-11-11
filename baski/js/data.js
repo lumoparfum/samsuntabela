@@ -9,7 +9,7 @@
 
 // ---------- İLETİŞİM ----------
 const ILETISIM = {
-    wa: "905322204649",
+    wa: "905079605049",
     tel: "05322204649",
     telHref: "tel:05322204649",
     instagram: "https://www.instagram.com/uzman.reklamm/",
@@ -17,9 +17,9 @@ const ILETISIM = {
 };
 
 // ---------- DÖVİZ KURLARI (fason hesaplayıcı için) ----------
-// Kurlar değiştikçe buradan güncelle
-const KUR_USD = 46.98;
-const KUR_EUR = 53.72;
+// Kur ../kur.js'ten gelir (TCMB, .github/workflows/kur.yml gunluk kontrol eder)
+const KUR_USD = (window.KUR && window.KUR.USD) || 50.23;
+const KUR_EUR = (window.KUR && window.KUR.EUR) || 55.98;
 
 // ---------- FASON MALZEME FİYATLARI (m² bazlı) ----------
 const fasonMalzemeler = {

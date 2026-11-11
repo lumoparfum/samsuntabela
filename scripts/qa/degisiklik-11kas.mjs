@@ -16,7 +16,7 @@ for (const [dev, opts, beklenen] of [['mobil', devices['iPhone 14'], 8], ['pc', 
     const y = s => Math.round(document.querySelector(s).getBoundingClientRect().top + scrollY);
     return { hakkimizda: y('#hakkimizda'), galeri: y('#projeler'), ilkFoto: y('.work-card'), hizmetler: y('#hizmetler'), yorum: y('.reviews-section'), gorunen: [...document.querySelectorAll('.work-card')].filter(c => getComputedStyle(c).display !== 'none').length, src: document.querySelector('.work-card img').getAttribute('src') };
   });
-  k(`${dev}: sira Hakkimizda < Galeri < Hizmetler < Yorumlar`, r.hakkimizda < r.galeri && r.galeri < r.hizmetler && r.hizmetler < r.yorum, `ilk foto ${(r.ilkFoto / vh).toFixed(2)}. ekranda`);
+  k(`${dev}: sira Galeri < Hakkimizda < Hizmetler < Yorumlar (11 Kas: galeri hero'nun hemen alti)`, r.galeri < r.hakkimizda && r.hakkimizda < r.hizmetler && r.hizmetler < r.yorum, `ilk foto ${(r.ilkFoto / vh).toFixed(2)}. ekranda`);
   k(`${dev}: ilk acik kart sayisi ${beklenen}`, r.gorunen === beklenen, r.gorunen);
   k(`${dev}: kartta kucuk kopya`, r.src.startsWith('galeri/k/'), r.src);
   await p.locator('.work-card:visible').first().scrollIntoViewIfNeeded(); await p.waitForTimeout(1500);
@@ -34,14 +34,13 @@ for (const [dev, opts, beklenen] of [['mobil', devices['iPhone 14'], 8], ['pc', 
   k(`${dev}: galeri gorsel indirmesi`, true, `${Math.round(galeriBayt / 1024)} KB`);
   k(`${dev}: JS hatasi yok`, js.length === 0, js.join('|'));
 }
-// 2) 7 sayfa: Ara dugmesi mobilde gorunur/PC'de gizli, Instagram tersi, footer tel: baglantisi
+// 2) 7 sayfa (11 Kas hafif duzen sonrasi): yuzen Ara/Instagram yok, yalniz WhatsApp; tel 0532, WhatsApp 0507
 for (const [dev, opts] of [['mobil', devices['iPhone 14']], ['pc', { viewport: { width: 1440, height: 900 } }]]) {
   const p = await (await b.newContext({ ...opts, locale: 'tr-TR' })).newPage();
   for (const pg of PAGES) {
     await p.goto(BASE + pg + '?t=' + Date.now(), { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(300);
-    const r = await p.evaluate(() => ({ ara: getComputedStyle(document.querySelector('.wp-ara')).display !== 'none', insta: getComputedStyle(document.querySelector('.wp-insta')).display !== 'none', tel: document.querySelectorAll('a[href="tel:+905322204649"]').length }));
-    const ok = dev === 'mobil' ? (r.ara && !r.insta) : (!r.ara && r.insta);
-    k(`${dev} ${(pg || 'index').slice(0, 10)}: Ara/Instagram dugmesi + tel`, ok && r.tel >= 2, JSON.stringify(r));
+    const r = await p.evaluate(() => ({ yuzenFazla: !!document.querySelector('.wp-ara, .wp-insta'), tel: document.querySelectorAll('a[href="tel:+905322204649"]').length, wa: [...new Set([...document.querySelectorAll('a[href*="wa.me/"]')].map(a => a.href.match(/wa\.me\/(\d+)/)[1]))] }));
+    k(`${dev} ${(pg || 'index').slice(0, 10)}: tek WhatsApp dugmesi, tel 0532, wa 0507`, !r.yuzenFazla && r.tel >= 1 && r.wa.length === 1 && r.wa[0] === '905079605049', JSON.stringify(r));
   }
 }
 // 3) iPad / kucuk laptop: logo menunun altinda kalmasin

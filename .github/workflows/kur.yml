@@ -1,0 +1,38 @@
+# Doviz kuru: her gun TCMB'den dolar/euro satis kurunu alir.
+# kur.js'teki kurdan %1'den fazla farkliysa kur.js'i gunceller, commitler ve siteyi yeniden yayinlar.
+# Kur az oynadiysa hicbir sey yapmaz (gereksiz commit/yayin yok). Elle: Actions > Kur guncelle > Run workflow
+name: Kur guncelle
+
+on:
+  schedule:
+    - cron: "30 13 * * 1-5"   # hafta ici 16:30 (TR); TCMB kurlari 15:30'da aciklanir
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+
+jobs:
+  kur:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: TCMB kurunu al, gerekirse kur.js'i guncelle
+        id: kur
+        run: python scripts/kur-guncelle.py
+
+      - name: Commitle
+        if: steps.kur.outputs.degisti == 'yes'
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add kur.js
+          git commit -m "Kur guncellendi (TCMB) [skip ci]"
+          git push
+
+      - name: GitHub Pages yeniden yayinla
+        if: steps.kur.outputs.degisti == 'yes'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api --method POST "repos/$GITHUB_REPOSITORY/pages/builds"

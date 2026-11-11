@@ -17,7 +17,7 @@ for (const [dev, opts] of [['mobil', devices['iPhone 14']], ['se', devices['iPho
       kirikImg: [...document.images].filter(i => i.src && !i.src.startsWith('data:') && i.complete && i.naturalWidth === 0 && getComputedStyle(i).display !== 'none').map(i => i.getAttribute('src')),
       yatay: document.documentElement.scrollWidth - window.innerWidth,
       h1: document.querySelectorAll('h1').length,
-      eski: [...(document.documentElement.innerHTML.match(/0?\s?5\d\d[\s.]?\d{3}[\s.]?\d{2}[\s.]?\d{2}|90\s?5\d{9}/g) || [])].some(n => !/^(0?\s?532[\s.]?220[\s.]?46[\s.]?49|90\s?5322204649)$/.test(n.trim())),
+      eski: [...(document.documentElement.innerHTML.match(/0?\s?5\d\d[\s.]?\d{3}[\s.]?\d{2}[\s.]?\d{2}|90\s?5\d{9}/g) || [])].some(n => !/^(0?\s?532[\s.]?220[\s.]?46[\s.]?49|90\s?5322204649|0?\s?507[\s.]?960[\s.]?50[\s.]?49|90\s?5079605049)$/.test(n.trim())),
       tcKimlik: /214\s?7659\s?4794/.test(document.documentElement.innerHTML),
     }));
     const sorun = [];
