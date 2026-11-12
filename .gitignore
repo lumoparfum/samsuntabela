@@ -3,3 +3,4 @@ scripts/qa/node_modules/
 scripts/qa/audit/
 scripts/qa/package-lock.json
 .playwright-mcp/
+__pycache__/
