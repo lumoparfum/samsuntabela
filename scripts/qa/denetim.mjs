@@ -1,7 +1,7 @@
 // Tum sayfalar x 3 ekran (iPhone 14, iPhone SE, PC): JS hatasi, 4xx istek, kirik gorsel, yatay tasma, h1, eski numara, TC kimlik.
 import { chromium, devices } from 'playwright';
 const BASE = process.argv[2] || 'https://samsuntabela.tr/';   // yerelde: node denetim.mjs http://127.0.0.1:8765/
-const PAGES = ['', 'samsun-reklamci-ve-tabelaci.html', 'atakum-reklamci-ve-tabelaci.html', 'bafra-reklamci-ve-tabelaci.html', 'sinop-reklamci-ve-tabelaci.html', 'ordu-reklamci-ve-tabelaci.html', 'trabzon-reklamci-ve-tabelaci.html', 'referanslar.html', 'baski.html', 'baski/index.html', 'baski/fason-baski.html', 'baski/hediyelik.html', 'baski/okul-kurum.html', 'baski/ozel-gun.html', 'baski/taraftar.html', 'baski/vitrin.html'];
+const PAGES = ['', 'samsun-reklamci-ve-tabelaci.html', 'atakum-reklamci-ve-tabelaci.html', 'bafra-reklamci-ve-tabelaci.html', 'sinop-reklamci-ve-tabelaci.html', 'ordu-reklamci-ve-tabelaci.html', 'trabzon-reklamci-ve-tabelaci.html', 'referanslar.html', 'hakkimizda.html', 'hastane-tabela-ve-yonlendirme.html', 'baski.html', 'baski/index.html', 'baski/fason-baski.html', 'baski/hediyelik.html', 'baski/okul-kurum.html', 'baski/ozel-gun.html', 'baski/taraftar.html', 'baski/vitrin.html'];
 const b = await chromium.launch(); let toplam = 0;
 for (const [dev, opts] of [['mobil', devices['iPhone 14']], ['se', devices['iPhone SE']], ['pc', { viewport: { width: 1440, height: 900 } }]]) {
   const page = await (await b.newContext({ ...opts, locale: 'tr-TR' })).newPage();

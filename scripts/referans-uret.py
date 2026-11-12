@@ -28,7 +28,7 @@ GRUPLAR = [
       "Fatsa Atatürk Parkı — özel tasarım totem", "Asarcık Spor Salonu — çatı kutu harf",
       "Atakum Olimpik Yüzme Havuzu — iç mekan panoları"]),
     ("Hastaneler ve sağlık kuruluşları",
-     "Giriş takıları, ışıklı kutu harf, totem, poliklinik ve kat yönlendirmeleri, hissedilebilir zemin.",
+     "Giriş takıları, ışıklı kutu harf, totem, poliklinik ve kat yönlendirmeleri, hissedilebilir zemin. Ayrıntı: hastane tabelası ve yönlendirme sayfamız.",
      ["Sinop Atatürk Devlet Hastanesi — ışıklı kutu harf", "Gerze Devlet Hastanesi — giriş takı, pilon ve kompozit cephe",
       "Boyabat 75. Yıl Devlet Hastanesi", "Bafra Ağız ve Diş Sağlığı Merkezi",
       "Medical Park (Atakum, Ordu, VM Medical Park) — bina giydirme, billboard, totem, yol yönlendirme, ışıklı ve krom harf",
@@ -138,36 +138,81 @@ def isim_li(s):
     return f"<li>{e(s)}</li>"
 
 
-def main():
+def sayfa_yaz(dosya, baslik, aciklama, sema, icerik, kisa_baslik, css_ek=""):
+    """index.html sablonuyla (head stili, menu, iletisim blogu, WhatsApp) bir alt sayfa yazar.
+    Diger uretec scriptleri de kullanir (scripts/kurumsal-sayfalar.py)."""
+    assert '"' not in aciklama and len(aciklama) <= 160 and len(baslik) <= 60, (baslik, len(aciklama))
+    url = SITE + dosya
     idx = io.open(os.path.join(KOK, "index.html"), encoding="utf-8").read()
-    galeri = {f["dosya"]: f for f in json.load(io.open(os.path.join(KOK, "galeri.json"), encoding="utf-8"))["fotolar"]}
-
-    # --- head: index'in head'i, meta ve semalar degisir
     head = idx[: idx.index("</head>")]
     head = re.sub(r'\s*<script type="application/ld\+json">.*?</script>', "", head, flags=re.S)
-    head = re.sub(r"<title>.*?</title>", f"<title>{e(BASLIK)}</title>", head, count=1)
-    head = re.sub(r'<meta name="description" content="[^"]*">', f'<meta name="description" content="{ACIKLAMA}">', head, count=1)
+    head = re.sub(r'\s*<!-- ISLETME-SEMA:BASLA.*?ISLETME-SEMA:BITIR -->', "", head, flags=re.S)
+    head = re.sub(r"<title>.*?</title>", f"<title>{e(baslik)}</title>", head, count=1)
+    head = re.sub(r'<meta name="description" content="[^"]*">', f'<meta name="description" content="{aciklama}">', head, count=1)
     head = re.sub(r'\s*<meta name="keywords"[^>]*>', "", head, count=1)
-    head = re.sub(r'<link rel="canonical" href="[^"]*">', f'<link rel="canonical" href="{URL}">', head, count=1)
-    head = re.sub(r'<meta property="og:url" content="[^"]*">', f'<meta property="og:url" content="{URL}">', head, count=1)
+    head = re.sub(r'<link rel="canonical" href="[^"]*">', f'<link rel="canonical" href="{url}">', head, count=1)
+    head = re.sub(r'<meta property="og:url" content="[^"]*">', f'<meta property="og:url" content="{url}">', head, count=1)
     for k in ("og:title", "twitter:title"):
         attr = "property" if k.startswith("og") else "name"
-        head = re.sub(rf'<meta {attr}="{k}" content="[^"]*">', f'<meta {attr}="{k}" content="Referanslarımız | Uzman Reklam">', head, count=1)
+        head = re.sub(rf'<meta {attr}="{k}" content="[^"]*">', f'<meta {attr}="{k}" content="{kisa_baslik} | Uzman Reklam">', head, count=1)
     for k in ("og:description", "twitter:description"):
         attr = "property" if k.startswith("og") else "name"
-        head = re.sub(rf'<meta {attr}="{k}" content="[^"]*">', f'<meta {attr}="{k}" content="{ACIKLAMA}">', head, count=1)
+        head = re.sub(rf'<meta {attr}="{k}" content="[^"]*">', f'<meta {attr}="{k}" content="{aciklama}">', head, count=1)
     head = re.sub(r'\s*<link rel="preload" as="image" href="hero-[^"]*"[^>]*>', "", head)
+    head += ("\n    <script type=\"application/ld+json\">\n" + json.dumps(sema, ensure_ascii=False, indent=2) + "\n    </script>\n" + CSS + css_ek + "\n")
+    b0 = idx.index("<nav>"); b1 = idx.index('<section class="hero">')
+    menu = idx[b0:b1].replace('href="#', 'href="/#')
+    i0 = idx.index("<!-- ILETISIM:BASLA"); i1 = idx.index("<!-- ILETISIM:BITIR -->") + len("<!-- ILETISIM:BITIR -->")
+    iletisim = idx[i0:i1]
+    alt = ('<div class="footer-bottom"><p>© 2026 Uzman Reklam. Tüm Hakları Saklıdır.</p><div class="footer-bottom-links">'
+           '<a href="/">Ana sayfa</a><a href="hakkimizda.html">Hakkımızda</a><a href="referanslar.html">Referanslar</a><a href="baski.html">Dijital baskı</a>'
+           '<a href="https://www.instagram.com/uzman.reklamm/" target="_blank" rel="noopener">Instagram</a></div></div>')
+    js = """<script>
+    function toggleMobileMenu() {
+        document.getElementById('mobileMenu').classList.toggle('open');
+        document.querySelector('.hamburger').classList.toggle('active');
+    }
+    function navYuksekligiOlc() {
+        var n = document.querySelector('nav');
+        if (n) document.documentElement.style.setProperty('--nav-h', n.offsetHeight + 'px');
+    }
+    navYuksekligiOlc();
+    window.addEventListener('resize', navYuksekligiOlc);
+</script>"""
+    w0 = idx.index('<div class="wp-float">'); w1 = idx.index("</div>", w0) + len("</div>")
+    sayfa = f"{head}</head>\n<body>\n\n{menu}{icerik}\n{iletisim}\n{alt}\n\n{js}\n\n{idx[w0:w1]}\n\n</body>\n</html>\n"
+    io.open(os.path.join(KOK, dosya), "w", encoding="utf-8", newline="\n").write(sayfa)
 
+
+def galeri_oku():
+    return {f["dosya"]: f for f in json.load(io.open(os.path.join(KOK, "galeri.json"), encoding="utf-8"))["fotolar"]}
+
+
+def kart(galeri, dosya):
+    g = galeri.get(dosya)
+    if not g:
+        raise SystemExit(f"galeride yok: {dosya}")
+    return (f'<figure><img src="galeri/k/{dosya}" alt="{html.escape(g["alt"])}" '
+            f'width="640" height="480" loading="lazy" decoding="async"><figcaption><strong>{e(g["baslik"])}</strong>'
+            f'<span>{e(g["altyazi"])}</span></figcaption></figure>')
+
+
+def isletme_ref():
+    return {"@id": SITE + "#isletme", "@type": "LocalBusiness", "name": "Uzman Reklam", "url": SITE, "telephone": "+905322204649",
+            "foundingDate": "1973",
+            "address": {"@type": "PostalAddress", "streetAddress": "Emirefendi Mh. Çizmeli 2. Sk. No:33",
+                        "addressLocality": "Bafra", "addressRegion": "Samsun", "postalCode": "55400", "addressCountry": "TR"}}
+
+
+def main():
+    galeri = galeri_oku()
     tum = [ad.split(" — ")[0] for _, _, liste in GRUPLAR for ad in liste]
     sema = {
         "@context": "https://schema.org",
         "@graph": [
             {"@type": "CollectionPage", "@id": URL, "url": URL, "name": "Referanslarımız", "description": ACIKLAMA,
              "inLanguage": "tr", "isPartOf": {"@id": SITE + "#site", "@type": "WebSite", "name": "Uzman Reklam", "url": SITE},
-             "about": {"@id": SITE + "#isletme", "@type": "LocalBusiness", "name": "Uzman Reklam", "url": SITE, "telephone": "+905322204649",
-                       "foundingDate": "1973",
-                       "address": {"@type": "PostalAddress", "streetAddress": "Emirefendi Mh. Çizmeli 2.Sk. No:33",
-                                   "addressLocality": "Bafra", "addressRegion": "Samsun", "addressCountry": "TR"}},
+             "about": isletme_ref(),
              "mainEntity": {"@type": "ItemList", "name": "Tabela yaptığımız kurum ve markalar", "numberOfItems": len(tum),
                             "itemListElement": [{"@type": "ListItem", "position": i + 1, "name": ad} for i, ad in enumerate(tum)]}},
             {"@type": "BreadcrumbList", "itemListElement": [
@@ -175,28 +220,14 @@ def main():
                 {"@type": "ListItem", "position": 2, "name": "Referanslarımız", "item": URL}]},
         ],
     }
-    head += ("\n    <script type=\"application/ld+json\">\n" + json.dumps(sema, ensure_ascii=False, indent=2) + "\n    </script>\n" + CSS + "\n")
-
-    # --- ust menu: index'teki, baglantilar ana sayfaya gider
-    b0 = idx.index("<nav>"); b1 = idx.index('<section class="hero">')
-    menu = idx[b0:b1].replace('href="#', 'href="/#')
-
-    # --- icerik
-    def kart(dosya):
-        g = galeri.get(dosya)
-        if not g:
-            raise SystemExit(f"galeride yok: {dosya}")
-        return (f'<figure><img src="galeri/k/{dosya}" alt="{html.escape(g["alt"])}" '
-                f'width="640" height="480" loading="lazy" decoding="async"><figcaption><strong>{e(g["baslik"])}</strong>'
-                f'<span>{e(g["altyazi"])}</span></figcaption></figure>')
     assert len(GRUP_FOTO) == len(GRUPLAR)
     foto_say = sum(len(x) for x in GRUP_FOTO)
     gruplar = "\n".join(
         f'<section class="ref-grup" aria-labelledby="g{i}"><div class="ust"><h2 id="g{i}">{e(b)} <span class="adet" aria-hidden="true">· {len(liste)}</span></h2><p class="not">{e(n)}</p></div>'
-        f'<div class="ref-isler">{"".join(kart(d) for d in GRUP_FOTO[i])}</div>'
+        f'<div class="ref-isler">{"".join(kart(galeri, d) for d in GRUP_FOTO[i])}</div>'
         f'<ul>{"".join(isim_li(x) for x in liste)}</ul></section>'
         for i, (b, n, liste) in ((k, GRUPLAR[k]) for k in SIRA))
-    hastane = sum(1 for x in GRUPLAR[1][2])
+    hastane = len(GRUPLAR[1][2])
     icerik = f"""<main class="ref-sayfa">
   <header class="ref-ust">
     <p class="yol"><a href="/">Ana sayfa</a> › Referanslarımız</p>
@@ -220,27 +251,7 @@ def main():
   <p class="ref-dipnot">Adı geçen kurum ve marka adları ile logolar sahiplerine aittir; yalnızca yaptığımız işleri belirtmek için kullanılmıştır. Fotoğrafların tamamı: <a href="/#projeler">ana sayfa galerisi</a>.</p>
 </main>
 """
-    i0 = idx.index("<!-- ILETISIM:BASLA"); i1 = idx.index("<!-- ILETISIM:BITIR -->") + len("<!-- ILETISIM:BITIR -->")
-    iletisim = idx[i0:i1]
-    alt = ('<div class="footer-bottom"><p>© 2026 Uzman Reklam. Tüm Hakları Saklıdır.</p><div class="footer-bottom-links">'
-           '<a href="/">Ana sayfa</a><a href="/#projeler">Projeler</a><a href="baski.html">Dijital baskı</a>'
-           '<a href="https://www.instagram.com/uzman.reklamm/" target="_blank" rel="noopener">Instagram</a></div></div>')
-    js = """<script>
-    function toggleMobileMenu() {
-        document.getElementById('mobileMenu').classList.toggle('open');
-        document.querySelector('.hamburger').classList.toggle('active');
-    }
-    function navYuksekligiOlc() {
-        var n = document.querySelector('nav');
-        if (n) document.documentElement.style.setProperty('--nav-h', n.offsetHeight + 'px');
-    }
-    navYuksekligiOlc();
-    window.addEventListener('resize', navYuksekligiOlc);
-</script>"""
-    w0 = idx.index('<div class="wp-float">'); w1 = idx.index("</div>", w0) + len("</div>")
-    wp = idx[w0:w1]
-    sayfa = f"{head}</head>\n<body>\n\n{menu}{icerik}\n{iletisim}\n{alt}\n\n{js}\n\n{wp}\n\n</body>\n</html>\n"
-    io.open(os.path.join(KOK, "referanslar.html"), "w", encoding="utf-8", newline="\n").write(sayfa)
+    sayfa_yaz("referanslar.html", BASLIK, ACIKLAMA, sema, icerik, "Referanslarımız")
     print("referanslar.html:", len(tum), "kurum/marka,", foto_say, "foto")
 
 

@@ -17,6 +17,8 @@
 ## Sayfalar
 
 - [Ana sayfa: Samsun tabela](https://samsuntabela.tr/): hizmetler, 80'den fazla proje fotoğrafı, sık sorulan sorular
+- [Hakkımızda](https://samsuntabela.tr/hakkimizda.html): 1973'ten bugüne tarihçe, kurucu ve bugünkü sahip, atölye, künye ve çalışma saatleri
+- [Hastane tabelası ve yönlendirme](https://samsuntabela.tr/hastane-tabela-ve-yonlendirme.html): hastaneler için giriş takı, kutu harf, totem, kat ve poliklinik yönlendirme, hissedilebilir yüzey, Braille; çalıştığımız hastaneler
 - [Referanslarımız](https://samsuntabela.tr/referanslar.html): tabela yaptığımız kamu kurumları, hastaneler, AVM'ler ve markalar (80+), seçili iş fotoğrafları
 - [Samsun reklamcı ve tabelacı](https://samsuntabela.tr/samsun-reklamci-ve-tabelaci.html)
 - [Atakum reklamcı ve tabelacı](https://samsuntabela.tr/atakum-reklamci-ve-tabelaci.html)
