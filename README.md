@@ -13,6 +13,7 @@ Repo: `lumoparfum/samsuntabela`, dal: `main`. `main`'e push = canlıya çıkar (
 | `index.html` | Ana sayfa (galeri, hizmetler, SSS, iletişim) |
 | `samsun-`, `atakum-`, `bafra-`, `sinop-`, `ordu-`, `trabzon-reklamci-ve-tabelaci.html` | İlçe/bölge sayfaları (SEO) |
 | `baski.html` | Fason dijital baskı: fiyat hesaplayıcı + ürünler |
+| `referanslar.html` | Referanslarımız: kurum ve marka listesi (yazı olarak, Google ve yapay zekâ okusun) + seçili iş fotoğrafları. **`scripts/referans-uret.py` üretir, elle düzenlenmez**; liste ve fotoğraflar script'in içinde. `index.html` stili, menüsü ve iletişim bloğu kullanılır: index ya da iletişim bloğu değişince script'i yeniden çalıştır. |
 | `kur.js` | Döviz kuru (TCMB). Baskı m² fiyatları dolar/euro × bu kur; `data-m2="1.80 USD"` taşıyan her fiyat ve hesaplayıcı buradan okur (`baski.html`, Sinop sayfası, `baski/`). |
 | `llms.txt` | Yapay zekâ arama botları için firma özeti (adres, numaralar, hizmetler, sayfalar). |
 | `baski/` | Ayrı alt site ("Türkiye'nin baskı fabrikası"): `index`, `fason-baski`, `hediyelik`, `okul-kurum`, `ozel-gun`, `taraftar`, `vitrin` + `css/`, `js/` (`data.js` = iletişim bilgisi), `images/` (JPG). Ana siteden bağlantı yok, `sitemap.xml`'de yok; doğrudan adresle paylaşılır. |
@@ -49,6 +50,7 @@ Git Data API üzerinden tek commit atar; token cihazın `localStorage`'ında dur
 | Blok | Üreten | Nerede |
 |---|---|---|
 | İletişim bölümü + "Hizmet ağımız" şeridi + stili (`ILETISIM:BASLA/BITIR`) | `scripts/iletisim-ortak.py` | `index.html` + 6 ilçe |
+| "Referanslarımız" bağlantısı iletişim bloğunda (Kurumsal Bilgiler altı) | `scripts/iletisim-ortak.py` | 7 sayfa + referanslar |
 | İlçe "sık sorulan sorular" + FAQPage şeması (`SSS:BASLA/BITIR`, `SSS-SEMA:BASLA/BITIR`) | `scripts/ilce-sss.py` | 6 ilçe |
 
 Adres, numara, banka bilgisi ya da SSS metni değişecekse script'teki metni değiştir, script'i çalıştır (tekrar çalıştırmak güvenli).

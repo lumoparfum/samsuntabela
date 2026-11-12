@@ -823,6 +823,100 @@
         "imalat"
       ],
       "etiketler": "akrilik pleksi brosurluk duvar ic mekan ofis katalogluk"
+    },
+    {
+      "dosya": "medical-park-atakum-bina-cephe-giydirme.webp",
+      "baslik": "Medical Park Atakum",
+      "altyazi": "Bina Cephe Giydirme",
+      "alt": "Medical Park Atakum hastane binası dijital baskı cephe giydirme uygulaması",
+      "kategoriler": [
+        "cephe",
+        "baski"
+      ],
+      "etiketler": "medical park atakum hastane bina cephe giydirme vinil baski"
+    },
+    {
+      "dosya": "medical-park-billboard-reklam-panosu.webp",
+      "baslik": "Medical Park",
+      "altyazi": "Billboard Reklam Panosu",
+      "alt": "Medical Park Herkes için sağlık billboard reklam panosu baskı ve montajı",
+      "kategoriler": [
+        "baski",
+        "pano"
+      ],
+      "etiketler": "medical park billboard reklam panosu baski hastane"
+    },
+    {
+      "dosya": "medical-park-ordu-billboard-montaj.webp",
+      "baslik": "Medical Park Ordu",
+      "altyazi": "Billboard Montajı",
+      "alt": "Medical Park Ordu yol kenarı billboard reklam panosu vinçle montajı",
+      "kategoriler": [
+        "imalat",
+        "baski"
+      ],
+      "etiketler": "medical park ordu billboard montaj vinc yol kenari reklam"
+    },
+    {
+      "dosya": "modasen-bina-giydirme.webp",
+      "baslik": "Modasen",
+      "altyazi": "Bina Giydirme",
+      "alt": "Modasen mağaza binası dijital baskı bina giydirme ve kutu harf uygulaması",
+      "kategoriler": [
+        "cephe",
+        "baski"
+      ],
+      "etiketler": "modasen magaza bina giydirme cephe baski"
+    },
+    {
+      "dosya": "plan-yapi-isikli-kutu-harf.webp",
+      "baslik": "Plan Yapı",
+      "altyazi": "Işıklı Kutu Harf",
+      "alt": "Plan Yapı mavi ışıklı pleksi kutu harf tabela gece görünümü",
+      "kategoriler": [
+        "kutu-harf"
+      ],
+      "etiketler": "plan yapi isikli kutu harf pleksi led tabela"
+    },
+    {
+      "dosya": "medibafra-hastanesi-isikli-kutu-harf.webp",
+      "baslik": "Medibafra Hastanesi",
+      "altyazi": "Işıklı Kutu Harf",
+      "alt": "Medibafra Hastanesi renkli ışıklı pleksi kutu harf tabela",
+      "kategoriler": [
+        "kutu-harf"
+      ],
+      "etiketler": "medibafra hastane isikli kutu harf pleksi led bafra"
+    },
+    {
+      "dosya": "saski-asfalt-calismasi-bilgi-levhasi.webp",
+      "baslik": "SASKİ Genel Müdürlüğü",
+      "altyazi": "Şantiye Bilgi Levhaları",
+      "alt": "Samsun Büyükşehir Belediyesi SASKİ asfalt çalışması şantiye bilgi levhalarının montajı",
+      "kategoriler": [
+        "yonlendirme"
+      ],
+      "etiketler": "saski samsun buyuksehir belediyesi santiye bilgi levhasi asfalt calismasi kamu"
+    },
+    {
+      "dosya": "hastane-ic-mekan-isikli-pano.webp",
+      "baslik": "Hastane Bekleme Salonu",
+      "altyazi": "İç Mekan Işıklı Pano",
+      "alt": "Hastane bekleme salonu duvarına özel kesim çerçeveli iç mekan ışıklı pano",
+      "kategoriler": [
+        "pano"
+      ],
+      "etiketler": "hastane ic mekan isikli pano bekleme salonu dogum"
+    },
+    {
+      "dosya": "comert-mobilya-arac-giydirme.webp",
+      "baslik": "Cömert Mobilya",
+      "altyazi": "Ticari Araç Giydirme",
+      "alt": "Cömert Mobilya kamyonet araç giydirme folyo kaplama uygulaması",
+      "kategoriler": [
+        "arac"
+      ],
+      "etiketler": "comert mobilya arac giydirme kamyonet folyo kaplama"
     }
   ]
 }

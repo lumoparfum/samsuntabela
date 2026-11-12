@@ -729,6 +729,7 @@
         html body .logo span { color: #7aa300; }
         @media (max-width: 768px) { html body .hero-content .btn-main { padding: 11px 20px !important; font-size: 14.5px !important; } }
         html body .section-title h2, html body .about-text h2, html body .faq-toggle-header h2, html body .seo-footer-container h2, html body .services-preview h2 { color: #1d1d1f; }
+        html body .about-text .ref-bag a { color: #1d1d1f; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
 /* ===== ILETISIM ORTAK (scripts/iletisim-ortak.py) ===== */
         html body #iletisim.iletisim-ortak { background: #ffffff !important; border-top: 1px solid #e5e5ea !important; display: grid; grid-template-columns: 1fr 1fr; gap: 64px; max-width: 1200px; margin: 0 auto; padding: 72px 40px 64px; }
         html body #iletisim .footer-box { background: none !important; border: 0 !important; padding: 0 !important; box-shadow: none !important; text-align: left !important; }
@@ -748,6 +749,7 @@
         html body #iletisim .yol-tarifi { display: inline-flex; align-items: center; height: 44px; padding: 0 20px; margin-top: 16px; border-radius: 999px; border: 1px solid #d2d2d7; color: #1d1d1f; font-weight: 600; font-size: 15px; text-decoration: none; transition: background .15s; }
         html body #iletisim .yol-tarifi::after { content: " ›"; margin-left: 4px; }
         html body #iletisim .yol-tarifi:hover { background: #f5f5f7; }
+        html body #iletisim .ref-link { margin-top: 20px; }
         html body #iletisim dl.kunye { margin: 0; }
         html body #iletisim dl.kunye div { display: grid; grid-template-columns: 120px 1fr; gap: 12px; padding: 12px 0; border-bottom: 1px solid #e5e5ea; }
         html body #iletisim dl.kunye dt { color: #6e6e73; font-size: 14px; }
@@ -875,7 +877,7 @@
           "name": "Referanslarınızı nerede görebilirim?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Web sitemizin \"Ustalık Eserlerimiz\" bölümünde 70'ten fazla proje fotoğrafı bulunuyor. Ayrıca Google haritalar üzerinde müşteri yorumlarımızı inceleyebilirsiniz."
+            "text": "Sağlık Bakanlığı, TOKİ, Devlet Opera ve Balesi, Sinop ve Gerze devlet hastaneleri, Medical Park, Liv Hospital, Piazza AVM ve onlarca marka dahil kurum ve marka listemiz Referanslarımız sayfasında (samsuntabela.tr/referanslar.html). Ana sayfadaki galeride 80'den fazla proje fotoğrafı, Google Haritalar'da müşteri yorumlarımız var."
           }
         },
         {
@@ -1082,6 +1084,15 @@
     <div class="work-card krom-harf" data-tags="gunes krom harf isikli paslanmaz beyaz led tabela" onclick="openLightbox(this)"><span class="cat-badge">Krom Harf</span><img src="galeri/k/krom-harf-gunes-tabela.webp" data-full="krom-harf-gunes-tabela.webp" alt="Güneş Işıklı Krom Harf Tabela" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>Güneş</h3><p>Işıklı Krom Harf</p></div></div>
     <div class="work-card fuar imalat" data-tags="akrilik pleksi urun standi teshir vitrin ic mekan ayakkabi" onclick="openLightbox(this)"><span class="cat-badge">İç Mekan</span><img src="galeri/k/akrilik-pleksi-urun-standi.webp" data-full="akrilik-pleksi-urun-standi.webp" alt="Akrilik Pleksi Ürün Teşhir Standı İmalatı" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>Pleksi Ürün Standı</h3><p>Akrilik Teşhir Ürünü</p></div></div>
     <div class="work-card fuar imalat" data-tags="akrilik pleksi brosurluk duvar ic mekan ofis katalogluk" onclick="openLightbox(this)"><span class="cat-badge">İç Mekan</span><img src="galeri/k/akrilik-pleksi-brosurluk.webp" data-full="akrilik-pleksi-brosurluk.webp" alt="Akrilik Pleksi Broşürlük ve Katalogluk İç Mekan Ürünü" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>Pleksi Broşürlük</h3><p>Akrilik İç Mekan Ürünü</p></div></div>
+    <div class="work-card cephe baski" data-tags="medical park atakum hastane bina cephe giydirme vinil baski" onclick="openLightbox(this)"><span class="cat-badge">Cephe</span><img src="galeri/k/medical-park-atakum-bina-cephe-giydirme.webp" data-full="medical-park-atakum-bina-cephe-giydirme.webp" alt="Medical Park Atakum hastane binası dijital baskı cephe giydirme uygulaması" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>Medical Park Atakum</h3><p>Bina Cephe Giydirme</p></div></div>
+    <div class="work-card baski pano" data-tags="medical park billboard reklam panosu baski hastane" onclick="openLightbox(this)"><span class="cat-badge">Baskı &amp; Folyo</span><img src="galeri/k/medical-park-billboard-reklam-panosu.webp" data-full="medical-park-billboard-reklam-panosu.webp" alt="Medical Park Herkes için sağlık billboard reklam panosu baskı ve montajı" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>Medical Park</h3><p>Billboard Reklam Panosu</p></div></div>
+    <div class="work-card imalat baski" data-tags="medical park ordu billboard montaj vinc yol kenari reklam" onclick="openLightbox(this)"><span class="cat-badge">İmalat</span><img src="galeri/k/medical-park-ordu-billboard-montaj.webp" data-full="medical-park-ordu-billboard-montaj.webp" alt="Medical Park Ordu yol kenarı billboard reklam panosu vinçle montajı" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>Medical Park Ordu</h3><p>Billboard Montajı</p></div></div>
+    <div class="work-card cephe baski" data-tags="modasen magaza bina giydirme cephe baski" onclick="openLightbox(this)"><span class="cat-badge">Cephe</span><img src="galeri/k/modasen-bina-giydirme.webp" data-full="modasen-bina-giydirme.webp" alt="Modasen mağaza binası dijital baskı bina giydirme ve kutu harf uygulaması" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>Modasen</h3><p>Bina Giydirme</p></div></div>
+    <div class="work-card kutu-harf" data-tags="plan yapi isikli kutu harf pleksi led tabela" onclick="openLightbox(this)"><span class="cat-badge">Kutu Harf</span><img src="galeri/k/plan-yapi-isikli-kutu-harf.webp" data-full="plan-yapi-isikli-kutu-harf.webp" alt="Plan Yapı mavi ışıklı pleksi kutu harf tabela gece görünümü" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>Plan Yapı</h3><p>Işıklı Kutu Harf</p></div></div>
+    <div class="work-card kutu-harf" data-tags="medibafra hastane isikli kutu harf pleksi led bafra" onclick="openLightbox(this)"><span class="cat-badge">Kutu Harf</span><img src="galeri/k/medibafra-hastanesi-isikli-kutu-harf.webp" data-full="medibafra-hastanesi-isikli-kutu-harf.webp" alt="Medibafra Hastanesi renkli ışıklı pleksi kutu harf tabela" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>Medibafra Hastanesi</h3><p>Işıklı Kutu Harf</p></div></div>
+    <div class="work-card yonlendirme" data-tags="saski samsun buyuksehir belediyesi santiye bilgi levhasi asfalt calismasi kamu" onclick="openLightbox(this)"><span class="cat-badge">Yönlendirme</span><img src="galeri/k/saski-asfalt-calismasi-bilgi-levhasi.webp" data-full="saski-asfalt-calismasi-bilgi-levhasi.webp" alt="Samsun Büyükşehir Belediyesi SASKİ asfalt çalışması şantiye bilgi levhalarının montajı" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>SASKİ Genel Müdürlüğü</h3><p>Şantiye Bilgi Levhaları</p></div></div>
+    <div class="work-card pano" data-tags="hastane ic mekan isikli pano bekleme salonu dogum" onclick="openLightbox(this)"><span class="cat-badge">Işıklı Pano</span><img src="galeri/k/hastane-ic-mekan-isikli-pano.webp" data-full="hastane-ic-mekan-isikli-pano.webp" alt="Hastane bekleme salonu duvarına özel kesim çerçeveli iç mekan ışıklı pano" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>Hastane Bekleme Salonu</h3><p>İç Mekan Işıklı Pano</p></div></div>
+    <div class="work-card arac" data-tags="comert mobilya arac giydirme kamyonet folyo kaplama" onclick="openLightbox(this)"><span class="cat-badge">Araç</span><img src="galeri/k/comert-mobilya-arac-giydirme.webp" data-full="comert-mobilya-arac-giydirme.webp" alt="Cömert Mobilya kamyonet araç giydirme folyo kaplama uygulaması" loading="lazy" decoding="async" width="400" height="250"><div class="work-info"><h3>Cömert Mobilya</h3><p>Ticari Araç Giydirme</p></div></div>
 <!-- GALERI:BITIR -->
 </section>
 
@@ -1102,6 +1113,7 @@
             <h2>Samsun Tabela İmalatında Bölgenin En Güçlü Üreticisi</h2>
             <p>1973 yılında kurucumuz <strong>Remzi Toraman</strong> tarafından temelleri atılan Uzman Reklam, yarım asrı aşan tecrübesiyle Samsun ve tüm Karadeniz bölgesine hizmet veren kurumsal bir reklam çözüm ortağıdır.</p>
             <p>Biz sadece tabela üretmiyoruz; markanızın Karadeniz'deki vizyonunu kendi fabrikamızda, sıfır aracı ile inşa ediyoruz. Samsun tabela işini fason vermeden, tasarımdan montaja kadar tek elden yürütüyoruz. Kalite ve esnaf ahlakı birinci önceliğimizdir.</p>
+            <p class="ref-bag"><a href="referanslar.html">Sağlık Bakanlığı, TOKİ, devlet hastaneleri, Medical Park, Liv Hospital ve onlarca markayla yaptığımız işler: Referanslarımız ›</a></p>
         </div>
         <div class="features-grid">
             <div class="feature-box"><i class="fas fa-hammer"></i><h3>Yarım Asırlık Tecrübe</h3><p>1973'ten bugüne, kaliteden asla ödün vermeyen ustalık.</p></div>
@@ -1172,7 +1184,7 @@
                     <div class="faq-item"><div class="faq-question" onclick="toggleAnswer(this)"><span>Cephe giydirme işlemi ne kadar sürer?</span><span class="faq-q-icon">+</span></div><div class="faq-answer"><p>Orta büyüklükte bir mağaza cephesi ortalama 3-5 iş gününde tamamlanır. Proje büyüklüğüne göre planlama yapılır.</p></div></div>
                     <div class="faq-item"><div class="faq-question" onclick="toggleAnswer(this)"><span>Fuar standı tasarımı ve kurulumu yapıyor musunuz?</span><span class="faq-q-icon">+</span></div><div class="faq-answer"><p>Evet, fuar standınızı konseptinden montajına kadar anahtar teslim yapıyoruz. Modüler sistemler ile sökülüp takılabilir standlar üretiyoruz.</p></div></div>
                     <div class="faq-item"><div class="faq-question" onclick="toggleAnswer(this)"><span>Ödeme seçenekleriniz nelerdir?</span><span class="faq-q-icon">+</span></div><div class="faq-answer"><p>Nakit, banka havalesi ve kredi kartına taksit imkanı. Büyük projelerde peşinatlı ve montaj sonrası ödeme planı yapılabilir.</p></div></div>
-                    <div class="faq-item"><div class="faq-question" onclick="toggleAnswer(this)"><span>Referanslarınızı nerede görebilirim?</span><span class="faq-q-icon">+</span></div><div class="faq-answer"><p>Web sitemizin "Ustalık Eserlerimiz" bölümünde 70'ten fazla proje fotoğrafı bulunuyor. Ayrıca Google haritalar üzerinde müşteri yorumlarımızı inceleyebilirsiniz.</p></div></div>
+                    <div class="faq-item"><div class="faq-question" onclick="toggleAnswer(this)"><span>Referanslarınızı nerede görebilirim?</span><span class="faq-q-icon">+</span></div><div class="faq-answer"><p>Sağlık Bakanlığı, TOKİ, Devlet Opera ve Balesi, Sinop ve Gerze devlet hastaneleri, Medical Park, Liv Hospital, Piazza AVM ve onlarca marka dahil kurum ve marka listemiz <a href="referanslar.html">Referanslarımız</a> sayfasında. Ana sayfadaki galeride 80'den fazla proje fotoğrafı, Google Haritalar'da müşteri yorumlarımız var.</p></div></div>
                     <div class="faq-item"><div class="faq-question" onclick="toggleAnswer(this)"><span>Samsun'da işletmem için hangi tabela daha uygun?</span><span class="faq-q-icon">+</span></div><div class="faq-answer"><p>Konum, bütçe ve marka kimliğine göre size en uygun çözümü ücretsiz olarak belirliyoruz. WhatsApp'tan ulaşın.</p></div></div>
                     <div class="faq-item"><div class="faq-question" onclick="toggleAnswer(this)"><span>LED aydınlatmalar ne kadar elektrik harcar?</span><span class="faq-q-icon">+</span></div><div class="faq-answer"><p>Çok düşük enerji tüketimi. 1 metrekarelik bir tabela ayda yaklaşık 5-10 TL elektrik harcar. Enerji tasarruflu Samsung LED kullanıyoruz.</p></div></div>
                     <div class="faq-item"><div class="faq-question" onclick="toggleAnswer(this)"><span>Sipariş teslim süreniz ne kadar?</span><span class="faq-q-icon">+</span></div><div class="faq-answer"><p>Standart tabelalarda 5-7 iş günü, özel projelerde proje büyüklüğüne göre değişir. Acil işler için stok malzemelerle hızlı üretim yapabiliyoruz.</p></div></div>
@@ -1220,6 +1232,7 @@
       <div><dt>Hesap no</dt><dd class="rakam">6297473</dd></div>
       <div><dt>IBAN</dt><dd class="rakam">TR12 0006 2000 5200 0006 2974 73</dd></div>
     </dl>
+    <a class="yol-tarifi ref-link" href="referanslar.html">Referanslarımız</a>
     <h3 class="ikinci">Toraman Matbaa · İstanbul</h3>
     <ul class="contact-info-list">
       <li><i class="fas fa-map-marker-alt" aria-hidden="true"></i><div><span>Topkapı 2. Matbaacılar Sitesi 5. Kat E Blok 3NE19, Topkapı / İstanbul</span></div></li>

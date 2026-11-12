@@ -314,6 +314,42 @@
       <image:loc>https://samsuntabela.tr/akrilik-pleksi-brosurluk.webp</image:loc>
       <image:title>Akrilik Pleksi Broşürlük ve Katalogluk İç Mekan Ürünü</image:title>
     </image:image>
+    <image:image>
+      <image:loc>https://samsuntabela.tr/medical-park-atakum-bina-cephe-giydirme.webp</image:loc>
+      <image:title>Medical Park Atakum hastane binası dijital baskı cephe giydirme uygulaması</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://samsuntabela.tr/medical-park-billboard-reklam-panosu.webp</image:loc>
+      <image:title>Medical Park Herkes için sağlık billboard reklam panosu baskı ve montajı</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://samsuntabela.tr/medical-park-ordu-billboard-montaj.webp</image:loc>
+      <image:title>Medical Park Ordu yol kenarı billboard reklam panosu vinçle montajı</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://samsuntabela.tr/modasen-bina-giydirme.webp</image:loc>
+      <image:title>Modasen mağaza binası dijital baskı bina giydirme ve kutu harf uygulaması</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://samsuntabela.tr/plan-yapi-isikli-kutu-harf.webp</image:loc>
+      <image:title>Plan Yapı mavi ışıklı pleksi kutu harf tabela gece görünümü</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://samsuntabela.tr/medibafra-hastanesi-isikli-kutu-harf.webp</image:loc>
+      <image:title>Medibafra Hastanesi renkli ışıklı pleksi kutu harf tabela</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://samsuntabela.tr/saski-asfalt-calismasi-bilgi-levhasi.webp</image:loc>
+      <image:title>Samsun Büyükşehir Belediyesi SASKİ asfalt çalışması şantiye bilgi levhalarının montajı</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://samsuntabela.tr/hastane-ic-mekan-isikli-pano.webp</image:loc>
+      <image:title>Hastane bekleme salonu duvarına özel kesim çerçeveli iç mekan ışıklı pano</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://samsuntabela.tr/comert-mobilya-arac-giydirme.webp</image:loc>
+      <image:title>Cömert Mobilya kamyonet araç giydirme folyo kaplama uygulaması</image:title>
+    </image:image>
     <!-- GALERI-GORSEL:BITIR -->
   </url>
   <url>
@@ -663,6 +699,12 @@
       <image:loc>https://samsuntabela.tr/atolye-kutu-harf-kompozit-imalat.webp</image:loc>
       <image:title>Trabzon atölyede kutu harf ve kompozit tabela imalatı</image:title>
     </image:image>
+  </url>
+  <url>
+    <loc>https://samsuntabela.tr/referanslar.html</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://samsuntabela.tr/baski.html</loc>

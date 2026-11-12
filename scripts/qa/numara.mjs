@@ -1,7 +1,7 @@
 // Her sayfada wa.me baglantilari yalniz 905079605049 (WhatsApp, 11 Kas 2026) mi; telefon 0532 220 46 49, eski numara gorunuyor mu. Kullanim: node numara.mjs https://samsuntabela.tr/
 import { chromium, devices } from 'playwright';
 const BASE = process.argv[2];
-const PAGES = ['', 'samsun-reklamci-ve-tabelaci.html', 'atakum-reklamci-ve-tabelaci.html', 'bafra-reklamci-ve-tabelaci.html', 'sinop-reklamci-ve-tabelaci.html', 'ordu-reklamci-ve-tabelaci.html', 'trabzon-reklamci-ve-tabelaci.html', 'baski.html', 'baski/index.html', 'baski/fason-baski.html', 'baski/hediyelik.html', 'baski/okul-kurum.html', 'baski/ozel-gun.html', 'baski/taraftar.html', 'baski/vitrin.html'];
+const PAGES = ['', 'samsun-reklamci-ve-tabelaci.html', 'atakum-reklamci-ve-tabelaci.html', 'bafra-reklamci-ve-tabelaci.html', 'sinop-reklamci-ve-tabelaci.html', 'ordu-reklamci-ve-tabelaci.html', 'trabzon-reklamci-ve-tabelaci.html', 'referanslar.html', 'baski.html', 'baski/index.html', 'baski/fason-baski.html', 'baski/hediyelik.html', 'baski/okul-kurum.html', 'baski/ozel-gun.html', 'baski/taraftar.html', 'baski/vitrin.html'];
 const b = await chromium.launch();
 const p = await (await b.newContext({ ...devices['iPhone 14'], locale: 'tr-TR' })).newPage();
 let sorun = 0;

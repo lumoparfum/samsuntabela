@@ -1,0 +1,238 @@
+"""referanslar.html sayfasini uretir (Referanslarimiz: kurum ve marka listesi + secili isler).
+
+Tek kaynak bu dosyadaki GRUPLAR ve ONE_CIKAN listeleri. Kurum adlari YAZI olarak sayfada durur ki
+Google ve yapay zeka aramalari okuyabilsin (eski sitede yalniz resim icindeydi).
+Kaynak: eski site uzmantabela.com "Referanslarimiz" logo gorselleri + galeri.json + site metinleri (12 Kas 2026).
+
+Sablon: index.html'in <head> stili, ust menusu, ortak iletisim blogu (ILETISIM) ve WhatsApp dugmesi.
+Tekrar calistirilinca sayfayi bastan uretir. Kullanim: python scripts/referans-uret.py
+"""
+import io, os, re, json, html
+
+KOK = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+SITE = "https://samsuntabela.tr/"
+URL = SITE + "referanslar.html"
+BASLIK = "Referanslar: Hastane, Kamu, Marka Tabelaları | Uzman Reklam"
+ACIKLAMA = ("1973'ten beri Bafra'daki atölyemizde ürettiğimiz tabelalar: Sağlık Bakanlığı, TOKİ, "
+            "devlet hastaneleri, Medical Park, Liv Hospital, Piazza AVM ve onlarca marka.")
+assert '"' not in ACIKLAMA and len(ACIKLAMA) <= 160
+
+# (baslik, aciklama, [isimler]) — isim yaninda kisa is notu varsa "Ad — not"
+GRUPLAR = [
+    ("Kamu kurumları ve üniversiteler",
+     "Resmi kurumların bina, birim ve yönlendirme tabelaları.",
+     ["T.C. Sağlık Bakanlığı", "TOKİ (Toplu Konut İdaresi) — şantiye bilgi ve yönlendirme levhaları",
+      "Devlet Opera ve Balesi Genel Müdürlüğü", "Sinop Üniversitesi",
+      "Samsun Büyükşehir Belediyesi SASKİ — şantiye bilgi levhaları",
+      "Fatsa Atatürk Parkı — özel tasarım totem", "Asarcık Spor Salonu — çatı kutu harf",
+      "Atakum Olimpik Yüzme Havuzu — iç mekan panoları"]),
+    ("Hastaneler ve sağlık kuruluşları",
+     "Giriş takıları, ışıklı kutu harf, totem, poliklinik ve kat yönlendirmeleri, hissedilebilir zemin.",
+     ["Sinop Atatürk Devlet Hastanesi — ışıklı kutu harf", "Gerze Devlet Hastanesi — giriş takı, pilon ve kompozit cephe",
+      "Boyabat 75. Yıl Devlet Hastanesi", "Bafra Ağız ve Diş Sağlığı Merkezi",
+      "Medical Park (Atakum, Ordu) — bina giydirme, billboard, totem ve yol yönlendirme", "VM Medical Park Çocuk — ışıklı harf ve duvar baskı",
+      "Liv Hospital Samsun — paslanmaz kutu harf", "Medibafra Hastanesi — cephe giydirme, totem, resepsiyon yönlendirme",
+      "Dünyagöz — ışıklı totem", "FBM Tıp Merkezi", "VM Fizik Tedavi — altın krom harf"]),
+    ("AVM, holding ve kurumsal firmalar",
+     "Büyük ölçekli cephe, çatı ve totem işleri.",
+     ["Piazza AVM — dev totem ve cam folyo", "Metro Holding", "Yatırım Finansman — kompozit cephe",
+      "İş Bankası Menkul Değerler — birim levhaları", "Güneş Sigorta", "Borsan Kablo", "Rönesans (Renaissance Construction)",
+      "Sarp Group", "Planyapı", "Borkonut", "Yaşamkent — krom harf", "Burger King — iç mekan duvar baskısı",
+      "Entek Elektrik — ışıklı kutu harf", "ESPA İnşaat ve Toz Boya — fabrika cephesi kutu harf",
+      "Recepoğlu — kompozit cephe ve kutu harf", "Toros", "Gruma (Semolina Azteca)", "Akyürek İnşaat", "Yunus Yapı — fuar standı"]),
+    ("Bayi ve mağaza tabelaları",
+     "Marka kurumsal kimlik kılavuzuna birebir uygun, seri üretim bayi tabelaları.",
+     ["Karaca / Karaca Home", "Pedo", "RodiMood", "Penti", "Baymak", "Husqvarna", "Stihl", "Ramsey", "Kip",
+      "Festival Halı", "Sanat Halı", "Dilek Halı", "Gümüşsuyu Halı", "Modasen", "Decofree", "Daphne", "Peri",
+      "Lovelet", "Bebito", "Mad Wolf", "Mobilya Kent", "Simpa", "Erpen", "Dekorraf", "Araz", "CP",
+      "Tozlu.com ve M.B.T Tekstil", "BTM Mağazaları", "Jival Pırlanta — krom harf vitrin"]),
+    ("Bafra ve Samsun'daki işletmeler",
+     "Esnafın tabelası, vitrini ve aracı.",
+     ["Turan Usta Pidesi — krom harf ve LED cephe", "Balkaymak", "Özlem Ballı Kaymak — satış standı",
+      "Özlem Dondurma — fantazi ışıklı tabela", "Neva Restaurant", "Pınar Lokantası", "Bafra Bakliyat Pirinç",
+      "Kardağ Karadeniz Gıda", "Ova Piliç Market", "Doğan Makina — krom harf", "Erdem Süzen Tarım — cephe tabelası",
+      "Açı Eğitim Kurumları — cam giydirme", "Cömert Mobilya — araç giydirme", "Model Kuaför", "Ayıntap Grafik", "Sonkart"]),
+]
+
+# secili isler: galeri.json'daki dosya adi + kisa aciklama
+ONE_CIKAN = [
+    ("sinop-devlet-hastanesi-isikli-kutu-harf.webp", "Sinop Atatürk Devlet Hastanesi", "Işıklı kutu harf"),
+    ("gerze-devlet-hastanesi-giris-takisi.webp", "Gerze Devlet Hastanesi", "Giriş takı ve kutu harf"),
+    ("liv-hospital-paslanmaz-kutu-harf.webp", "Liv Hospital Samsun", "Paslanmaz kutu harf"),
+    ("vm-medical-park-cocuk-isikli-harf.webp", "VM Medical Park Çocuk", "Işıklı harf ve duvar baskı"),
+    ("medibafra-hastanesi-cephe-giydirme.webp", "Medibafra Hastanesi", "Cephe giydirme"),
+    ("medical-park-atakum-bina-cephe-giydirme.webp", "Medical Park Atakum", "Bina cephe giydirme"),
+    ("saski-asfalt-calismasi-bilgi-levhasi.webp", "SASKİ", "Şantiye bilgi levhaları"),
+    ("dunyagoz-isikli-totem-tabela.webp", "Dünyagöz", "Işıklı totem"),
+    ("piazza-avm-dev-totem-tabela.webp", "Piazza AVM", "Dev totem"),
+    ("toki-santiye-bilgi-yonlendirme-levhasi.webp", "TOKİ", "Şantiye bilgi ve yönlendirme"),
+    ("yatirim-finansman-kompozit-cephe.webp", "Yatırım Finansman", "Kompozit cephe"),
+    ("bayi-tabelasi-karaca-home.webp", "Karaca Home", "Bayi tabelası"),
+    ("bayi-tabelasi-husqvarna-stihl.webp", "Husqvarna ve Stihl", "Bayi cephe tabelaları"),
+    ("bayi-tabelasi-pedo.webp", "Pedo", "Bayi kutu harf"),
+    ("asarcik-spor-salonu-cati-kutu-harf.webp", "Asarcık Spor Salonu", "Çatı kutu harf"),
+    ("fatsa-ataturk-parki-modern-totem.webp", "Fatsa Atatürk Parkı", "Özel tasarım totem"),
+]
+
+CSS = """
+    <style>
+        /* ===== REFERANSLAR (scripts/referans-uret.py) ===== */
+        html body .ref-sayfa { max-width: 1100px; margin: 0 auto; padding: calc(var(--nav-h, 90px) + 40px) 20px 56px; color: #1d1d1f; }
+        html body .ref-ust { max-width: 760px; margin: 0 0 40px; }
+        html body .ref-ust .yol { font-size: 14px; color: #6e6e73; margin: 0 0 12px; }
+        html body .ref-ust .yol a { color: #6e6e73; text-decoration: none; }
+        html body .ref-ust h1 { font-size: clamp(2rem, 5vw, 2.8rem); font-weight: 800; letter-spacing: -.02em; line-height: 1.1; margin: 0 0 16px; color: #1d1d1f; text-transform: none; text-align: left; text-shadow: none; }
+        html body .ref-ust p { font-size: 18px; line-height: 1.6; color: #3a3a3c; margin: 0; }
+        html body .ref-sayilar { display: flex; flex-wrap: wrap; gap: 12px 40px; margin: 28px 0 0; padding: 0; list-style: none; }
+        html body .ref-sayilar li { font-size: 15px; color: #6e6e73; }
+        html body .ref-sayilar strong { display: block; font-size: 28px; font-weight: 800; color: #1d1d1f; letter-spacing: -.02em; }
+        html body .ref-isler { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; margin: 0 0 56px; }
+        html body .ref-isler figure { margin: 0; background: #f5f5f7; border-radius: 14px; overflow: hidden; }
+        html body .ref-isler a { display: block; color: inherit; text-decoration: none; }
+        html body .ref-isler img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; display: block; }
+        html body .ref-isler figcaption { padding: 12px 14px 14px; font-size: 15px; line-height: 1.35; }
+        html body .ref-isler figcaption strong { display: block; color: #1d1d1f; font-weight: 700; }
+        html body .ref-isler figcaption span { color: #6e6e73; font-size: 14px; }
+        html body .ref-grup { border-top: 1px solid #e5e5ea; padding: 32px 0; display: grid; grid-template-columns: 280px 1fr; gap: 24px 48px; }
+        html body .ref-grup h2 { font-size: 1.3rem; font-weight: 700; color: #1d1d1f; margin: 0 0 8px; text-transform: none; letter-spacing: -.01em; border: 0; padding: 0; text-align: left; }
+        html body .ref-grup .not { font-size: 15px; line-height: 1.5; color: #6e6e73; margin: 0; }
+        html body .ref-grup ul { list-style: none; margin: 0; padding: 0; columns: 2; column-gap: 32px; }
+        html body .ref-grup li { break-inside: avoid; padding: 7px 0; font-size: 16px; line-height: 1.4; color: #1d1d1f; border-bottom: 1px solid #f0f0f2; }
+        html body .ref-grup li small { color: #6e6e73; font-size: 14px; }
+        html body .ref-alt { margin: 40px 0 0; padding: 28px; background: #f5f5f7; border-radius: 14px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; }
+        html body .ref-alt p { margin: 0; font-size: 17px; color: #1d1d1f; max-width: 620px; line-height: 1.5; }
+        html body .ref-alt a.wa { display: inline-flex; align-items: center; gap: 9px; height: 46px; padding: 0 22px; border-radius: 999px; background: #ccff00; color: #000; font-weight: 600; text-decoration: none; }
+        html body .ref-dipnot { font-size: 13px; color: #8e8e93; margin: 20px 0 0; }
+        @media (max-width: 768px) {
+            html body .ref-sayfa { padding-top: calc(var(--nav-h, 70px) + 24px); }
+            html body .ref-ust p { font-size: 16px; }
+            html body .ref-isler { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+            html body .ref-isler figcaption { padding: 10px; font-size: 14px; }
+            html body .ref-isler figcaption span { font-size: 13px; }
+            html body .ref-grup { grid-template-columns: 1fr; gap: 12px; padding: 26px 0; }
+            html body .ref-grup ul { columns: 1; }
+        }
+    </style>"""
+
+
+def e(t):
+    return html.escape(t, quote=False)
+
+
+def isim_li(s):
+    if " — " in s:
+        ad, not_ = s.split(" — ", 1)
+        return f"<li>{e(ad)} <small>· {e(not_)}</small></li>"
+    return f"<li>{e(s)}</li>"
+
+
+def main():
+    idx = io.open(os.path.join(KOK, "index.html"), encoding="utf-8").read()
+    galeri = {f["dosya"]: f for f in json.load(io.open(os.path.join(KOK, "galeri.json"), encoding="utf-8"))["fotolar"]}
+
+    # --- head: index'in head'i, meta ve semalar degisir
+    head = idx[: idx.index("</head>")]
+    head = re.sub(r'\s*<script type="application/ld\+json">.*?</script>', "", head, flags=re.S)
+    head = re.sub(r"<title>.*?</title>", f"<title>{e(BASLIK)}</title>", head, count=1)
+    head = re.sub(r'<meta name="description" content="[^"]*">', f'<meta name="description" content="{ACIKLAMA}">', head, count=1)
+    head = re.sub(r'\s*<meta name="keywords"[^>]*>', "", head, count=1)
+    head = re.sub(r'<link rel="canonical" href="[^"]*">', f'<link rel="canonical" href="{URL}">', head, count=1)
+    head = re.sub(r'<meta property="og:url" content="[^"]*">', f'<meta property="og:url" content="{URL}">', head, count=1)
+    for k in ("og:title", "twitter:title"):
+        attr = "property" if k.startswith("og") else "name"
+        head = re.sub(rf'<meta {attr}="{k}" content="[^"]*">', f'<meta {attr}="{k}" content="Referanslarımız | Uzman Reklam">', head, count=1)
+    for k in ("og:description", "twitter:description"):
+        attr = "property" if k.startswith("og") else "name"
+        head = re.sub(rf'<meta {attr}="{k}" content="[^"]*">', f'<meta {attr}="{k}" content="{ACIKLAMA}">', head, count=1)
+    head = re.sub(r'\s*<link rel="preload" as="image" href="hero-[^"]*"[^>]*>', "", head)
+
+    tum = [ad.split(" — ")[0] for _, _, liste in GRUPLAR for ad in liste]
+    sema = {
+        "@context": "https://schema.org",
+        "@graph": [
+            {"@type": "CollectionPage", "@id": URL, "url": URL, "name": "Referanslarımız", "description": ACIKLAMA,
+             "inLanguage": "tr", "isPartOf": {"@type": "WebSite", "name": "Uzman Reklam", "url": SITE},
+             "about": {"@type": "LocalBusiness", "name": "Uzman Reklam", "url": SITE, "telephone": "+905322204649",
+                       "foundingDate": "1973",
+                       "address": {"@type": "PostalAddress", "streetAddress": "Emirefendi Mh. Çizmeli 2.Sk. No:33",
+                                   "addressLocality": "Bafra", "addressRegion": "Samsun", "addressCountry": "TR"}},
+             "mainEntity": {"@type": "ItemList", "name": "Tabela yaptığımız kurum ve markalar", "numberOfItems": len(tum),
+                            "itemListElement": [{"@type": "ListItem", "position": i + 1, "name": ad} for i, ad in enumerate(tum)]}},
+            {"@type": "BreadcrumbList", "itemListElement": [
+                {"@type": "ListItem", "position": 1, "name": "Ana sayfa", "item": SITE},
+                {"@type": "ListItem", "position": 2, "name": "Referanslarımız", "item": URL}]},
+        ],
+    }
+    head += ("\n    <script type=\"application/ld+json\">\n" + json.dumps(sema, ensure_ascii=False, indent=2) + "\n    </script>\n" + CSS + "\n")
+
+    # --- ust menu: index'teki, baglantilar ana sayfaya gider
+    b0 = idx.index("<nav>"); b1 = idx.index('<section class="hero">')
+    menu = idx[b0:b1].replace('href="#', 'href="/#')
+
+    # --- icerik
+    kartlar = []
+    for dosya, ad, is_ in ONE_CIKAN:
+        g = galeri.get(dosya)
+        if not g:
+            raise SystemExit(f"galeride yok: {dosya}")
+        kartlar.append(
+            f'<figure><a href="{dosya}" target="_blank" rel="noopener"><img src="galeri/k/{dosya}" alt="{html.escape(g["alt"])}" '
+            f'width="640" height="480" loading="lazy" decoding="async"></a><figcaption><strong>{e(ad)}</strong><span>{e(is_)}</span></figcaption></figure>')
+    gruplar = "\n".join(
+        f'<section class="ref-grup" aria-labelledby="g{i}"><div><h2 id="g{i}">{e(b)}</h2><p class="not">{e(n)}</p></div>'
+        f'<ul>{"".join(isim_li(x) for x in liste)}</ul></section>'
+        for i, (b, n, liste) in enumerate(GRUPLAR))
+    hastane = sum(1 for x in GRUPLAR[1][2])
+    icerik = f"""<main class="ref-sayfa">
+  <header class="ref-ust">
+    <p class="yol"><a href="/">Ana sayfa</a> › Referanslarımız</p>
+    <h1>Referanslarımız</h1>
+    <p>1973'ten bu yana Bafra'daki kendi atölyemizde ürettiğimiz ve kendi ekibimizle monte ettiğimiz tabelaların sahiplerinden bazıları: kamu kurumları, devlet ve özel hastaneler, AVM'ler, ulusal markaların bayileri ve Karadeniz'in esnafı.</p>
+    <ul class="ref-sayilar">
+      <li><strong>1973</strong>Kuruluş, Bafra</li>
+      <li><strong>{len(tum)}+</strong>Kurum ve marka</li>
+      <li><strong>{hastane}</strong>Hastane ve sağlık kuruluşu</li>
+      <li><strong>{len(galeri)}</strong>Fotoğraflı proje</li>
+    </ul>
+  </header>
+
+  <h2 class="ref-baslik-gizli" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Seçili işler</h2>
+  <div class="ref-isler">
+    {chr(10).join("    " + k for k in kartlar).strip()}
+  </div>
+
+{gruplar}
+
+  <div class="ref-alt">
+    <p>Kurumunuz ya da markanız için tabela, totem, yönlendirme veya bayi tabelası mı gerekiyor? Proje dosyanızı ya da fotoğrafı gönderin, keşif ve teklifle dönelim.</p>
+    <a class="wa" href="https://wa.me/905079605049" target="_blank" rel="noopener" onclick="gtag('event','whatsapp_tiklama',{{'sayfa':'referanslar'}});"><i class="fab fa-whatsapp" aria-hidden="true"></i>WhatsApp'tan yazın</a>
+  </div>
+  <p class="ref-dipnot">Adı geçen kurum ve marka adları ile logolar sahiplerine aittir; yalnızca yaptığımız işleri belirtmek için kullanılmıştır. Fotoğrafların tamamı: <a href="/#projeler">ana sayfa galerisi</a>.</p>
+</main>
+"""
+    i0 = idx.index("<!-- ILETISIM:BASLA"); i1 = idx.index("<!-- ILETISIM:BITIR -->") + len("<!-- ILETISIM:BITIR -->")
+    iletisim = idx[i0:i1]
+    alt = ('<div class="footer-bottom"><p>© 2026 Uzman Reklam. Tüm Hakları Saklıdır.</p><div class="footer-bottom-links">'
+           '<a href="/">Ana sayfa</a><a href="/#projeler">Projeler</a><a href="baski.html">Dijital baskı</a>'
+           '<a href="https://www.instagram.com/uzman.reklamm/" target="_blank" rel="noopener">Instagram</a></div></div>')
+    js = """<script>
+    function toggleMobileMenu() {
+        document.getElementById('mobileMenu').classList.toggle('open');
+        document.querySelector('.hamburger').classList.toggle('active');
+    }
+    function navYuksekligiOlc() {
+        var n = document.querySelector('nav');
+        if (n) document.documentElement.style.setProperty('--nav-h', n.offsetHeight + 'px');
+    }
+    navYuksekligiOlc();
+    window.addEventListener('resize', navYuksekligiOlc);
+</script>"""
+    w0 = idx.index('<div class="wp-float">'); w1 = idx.index("</div>", w0) + len("</div>")
+    wp = idx[w0:w1]
+    sayfa = f"{head}</head>\n<body>\n\n{menu}{icerik}\n{iletisim}\n{alt}\n\n{js}\n\n{wp}\n\n</body>\n</html>\n"
+    io.open(os.path.join(KOK, "referanslar.html"), "w", encoding="utf-8", newline="\n").write(sayfa)
+    print("referanslar.html:", len(tum), "kurum/marka,", len(kartlar), "foto")
+
+
+if __name__ == "__main__":
+    main()
