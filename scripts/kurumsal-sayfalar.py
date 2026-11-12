@@ -91,11 +91,11 @@ def hakkimizda(galeri):
     <h2>Bugün ne yapıyoruz?</h2>
     <p>Tasarımı, üretimi ve montajı kendi bünyemizde yapıyoruz; işi aracıya ya da fasona vermiyoruz.</p>
     <ul class="madde">
-      <li><strong>Kutu harf ve krom harf tabela</strong> · ışıklı ve ışıksız, paslanmaz ve pleksi</li>
-      <li><strong>Totem ve cephe</strong> · totem tabela, kompozit cephe kaplama, bina giydirme</li>
-      <li><strong>Yönlendirme sistemleri</strong> · hastane, kamu binası, AVM ve fabrika için kat, birim ve zemin yönlendirme</li>
+      <li><strong><a href="kutu-harf-tabela.html">Kutu harf ve krom harf tabela</a></strong> · ışıklı ve ışıksız, paslanmaz ve pleksi</li>
+      <li><strong><a href="totem-tabela.html">Totem</a> ve cephe</strong> · totem tabela, kompozit cephe kaplama, bina giydirme</li>
+      <li><strong><a href="hastane-tabela-ve-yonlendirme.html">Yönlendirme sistemleri</a></strong> · hastane, kamu binası, AVM ve fabrika için kat, birim ve zemin yönlendirme</li>
       <li><strong>Erişilebilirlik</strong> · hissedilebilir yüzey ve Braille kabartma levha</li>
-      <li><strong>Bayi tabelaları</strong> · marka kurumsal kimlik kılavuzuna uygun seri üretim</li>
+      <li><strong><a href="bayi-tabelasi.html">Bayi tabelaları</a></strong> · marka kurumsal kimlik kılavuzuna uygun seri üretim</li>
       <li><strong>Baskı ve kesim</strong> · dijital baskı, araç giydirme, CNC ve lazer kesim</li>
     </ul>
     <h2>Kimler için çalışıyoruz?</h2>
@@ -215,7 +215,135 @@ def hastane(galeri):
     print(dosya)
 
 
+# ---------------- Hizmet sayfalari (12 Kas 2026) ----------------
+# Metinler ana sayfadaki hizmet pencerelerinden ve SSS'den (kullanici teyitli bilgiler: garanti, LED, TS EN, ekip).
+HIZMETLER = [
+    {
+        "dosya": "kutu-harf-tabela.html", "kisa": "Kutu harf ve krom harf tabela",
+        "baslik": "Kutu Harf ve Krom Harf Tabela | Samsun | Uzman Reklam",
+        "aciklama": "Işıklı ve ışıksız kutu harf, 304 paslanmaz krom harf, pleksi ve alüminyum harf tabela. Bafra atölyemizde üretim, Samsun ve Karadeniz'e montaj.",
+        "h1": "Kutu harf ve krom harf tabela",
+        "giris": "İşletmenizin adını ve logosunu üç boyutlu harflerle cepheye taşıyoruz. Harfleri Bafra'daki atölyemizde kesiyor, büküyor, LED'liyor ve kendi ekibimizle monte ediyoruz.",
+        "bolumler": [
+            ("Malzeme seçenekleri", '<ul class="madde"><li><strong>Pleksi kutu harf</strong> · önden ışıklı, renkli yüzeyli, en çok tercih edilen</li><li><strong>Paslanmaz krom harf</strong> · dış mekanda 304 kalite; deniz havasında yıllarca paslanmaz</li><li><strong>Fırçalı alüminyum ve fileli sistemler</strong> · bütçeye ve cepheye göre</li><li><strong>Yüzey</strong> · ayna krom, fırçalı (saten) krom, altın veya rose (titanyum kaplama, sararmaz)</li></ul>'),
+            ("Işık", "<p>Kutu harflerin içinde dış mekana dayanıklı, enerji tasarruflu Samsung LED modüller kullanıyoruz. Krom harfler ışıksız ya da arkadan aydınlatmalı (halo efekt) olabilir: ışık harfin arkasından duvara vurur, harf karanlıkta silüet olarak durur.</p>"),
+            ("Garanti", "<p>Tabelalarımız malzeme ve işçilik hatasına karşı 2 yıl, LED aydınlatmalar 3 yıl garantilidir.</p>"),
+        ],
+        "kategoriler": ["kutu-harf", "krom-harf"], "foto_sayisi": 16,
+        "referans": ["Liv Hospital Samsun", "Sinop Atatürk Devlet Hastanesi", "Medibafra Hastanesi", "ESPA Toz Boya", "Entek Elektrik", "Plan Yapı", "Recepoğlu", "Turan Usta Pidesi", "Jival Pırlanta", "Yaşamkent", "VM Medical Park"],
+        "sss": [
+            ("Kutu harf ile ışıklı pano arasındaki fark nedir?", "Kutu harf üç boyutludur ve her harf ayrı ayrı ışıklıdır, daha prestijli durur. Işıklı pano ise tek bir kasa içinde aydınlatılır, daha ekonomiktir."),
+            ("Kutu harf tabela ne kadar dayanır?", "Paslanmaz çelik ve kaliteli pleksiyle üretilen tabelalarımız dış hava koşullarında 5-7 yıl ilk günkü parlaklığını korur. LED aydınlatmalarımız 50.000 saat ömürlüdür."),
+            ("Fiyat neye göre değişir?", "Malzemeye (pleksi, krom, alüminyum), harf yüksekliğine, harf sayısına ve ışıklı olup olmamasına göre değişir. Cephenizin fotoğrafını ve yaklaşık ölçüyü WhatsApp'tan (0507 960 50 49) gönderirseniz fiyat çıkarıyoruz."),
+            ("Garanti veriyor musunuz?", "Evet. Malzeme ve işçilik hatasına karşı 2 yıl, LED aydınlatmalar için 3 yıl garanti veriyoruz."),
+        ],
+    },
+    {
+        "dosya": "totem-tabela.html", "kisa": "Totem tabela",
+        "baslik": "Totem Tabela İmalatı ve Montajı | Uzman Reklam",
+        "aciklama": "Işıklı totem, pilon ve yol kenarı totem tabela: statik hesap, çelik konstrüksiyon, beton temel ve vinçli montaj. Samsun ve Karadeniz geneli.",
+        "h1": "Totem tabela imalatı ve montajı",
+        "giris": "AVM, hastane, fabrika, akaryakıt istasyonu ve okullar için uzaktan görünen totem tabelaları tasarlıyor, çelik konstrüksiyonundan kaplamasına kadar kendimiz üretiyor ve vinçle monte ediyoruz.",
+        "bolumler": [
+            ("Mühendislik ve güvenlik", "<p>Totem imalatı sıradan bir demir doğrama işi değildir. Karadeniz'in sert rüzgarlarına dayanması için statik hesap yapılır; galvanizli çelik konstrüksiyon ve derin beton temel üzerine kurulur, TS EN standartlarına uygundur.</p>"),
+            ("Kaplama ve ışık", '<ul class="madde"><li><strong>Gövde</strong> · alüminyum kompozit kaplama, istenen renk ve kurumsal kimlik</li><li><strong>Yazı ve logo</strong> · ışıklı kutu harf, oyma ve arkadan aydınlatma</li><li><strong>Yönlendirme totemleri</strong> · hastane, kampüs ve otopark için çok yönlü bilgi totemleri</li></ul>'),
+            ("Tek elden", "<p>Tasarım, çelik konstrüksiyon, kaplama, sevkiyat ve vinçli montaj kendi ekiplerimizle yürür; arada aracı yoktur.</p>"),
+        ],
+        "kategoriler": ["totem"], "foto_sayisi": 12,
+        "referans": ["Piazza AVM", "Medibafra Hastanesi", "Dünyagöz", "Medical Park", "Fatsa Atatürk Parkı", "Anzel Eğitim Kurumları"],
+        "sss": [
+            ("Totem tabelalar rüzgara dayanıklı mı?", "Evet. Karadeniz'in şiddetli rüzgarlarına göre statik hesap yapılır, galvanizli çelik konstrüksiyon ve derin beton temel ile üretilir. TS EN standartlarına uygundur."),
+            ("Montajı kim yapıyor?", "Sevkiyatı ve vinçli montajı kendi aracımız ve kendi ekibimizle yapıyoruz. Montaj ekiplerimiz yüksekte çalışma belgeli ve sigortalıdır."),
+            ("Totem fiyatı neye göre değişir?", "Yüksekliğe, genişliğe, ışıklı alan ve kutu harf miktarına, temel ve zemin durumuna göre değişir. Yerin fotoğrafını ve istediğiniz yüksekliği WhatsApp'tan (0507 960 50 49) gönderin, keşifle birlikte fiyat verelim."),
+        ],
+    },
+    {
+        "dosya": "bayi-tabelasi.html", "kisa": "Bayi tabelası",
+        "baslik": "Bayi Tabelası İmalatı ve Montajı | Uzman Reklam",
+        "aciklama": "Marka kurumsal kimlik kılavuzuna birebir uygun bayi tabelası: Pantone/RAL, ölçü ve montaj detayı. Seri üretim, Karadeniz ve Türkiye geneli montaj.",
+        "h1": "Bayi tabelası imalatı",
+        "giris": "Bir markanın bayisi olduğunuzda tabelanız markanın da yüzüdür. Renk kodundan harf yüksekliğine, logo oranından malzemeye kadar marka kılavuzunda ne yazıyorsa birebir üretiyoruz.",
+        "bolumler": [
+            ("Neden bizimle çalışılıyor?", '<ul class="madde"><li><strong>Kılavuza sadakat</strong> · Pantone/RAL kodları, ölçü toleransları ve montaj detayları dosyada nasılsa öyle üretilir</li><li><strong>Seri üretim</strong> · aynı anda onlarca bayinin tabelasını aynı kalitede çıkarabilecek atölye</li><li><strong>Türkiye geneli montaj</strong> · Karadeniz merkezli, bayi ağı projelerinde ülke geneline montaj ekibi</li><li><strong>Tek elden takip</strong> · keşif, üretim, sevkiyat ve montaj tek firmadan</li></ul>'),
+        ],
+        "kategoriler": ["bayi"], "foto_sayisi": 12,
+        "referans": ["Karaca / Karaca Home", "Pedo", "RodiMood", "Penti", "Baymak", "Husqvarna", "Stihl", "Ramsey", "Kip", "Festival Halı", "Sanat Halı", "Dilek Halı", "Gümüşsuyu Halı", "Modasen", "BTM Mağazaları"],
+        "ek_foto": ["ramsey-kip-magaza-cephe-giydirme.webp", "modasen-bina-giydirme.webp", "btm-magazalari-isikli-pano-kutu-harf.webp"],
+        "sss": [
+            ("Markanın kurumsal kimlik kılavuzuna uyuyor musunuz?", "Evet. Pantone/RAL renk kodları, harf yükseklikleri, logo oranları ve montaj detayları kılavuzda nasılsa öyle üretilir."),
+            ("Birden çok bayiye aynı anda tabela yapabilir misiniz?", "Evet. Atölyemiz aynı anda onlarca bayinin tabelasını aynı kalitede üretebilir; keşif, üretim, sevkiyat ve montajı tek elden takip ederiz."),
+            ("Karadeniz dışına montaj yapıyor musunuz?", "Bayi ağı projelerinde Türkiye geneline montaj ekibi gönderiyoruz."),
+        ],
+    },
+    {
+        "dosya": "kamu-kurumu-tabela.html", "kisa": "Kamu kurumu tabelası",
+        "baslik": "Kamu Kurumu, Belediye ve Şantiye Tabelaları | Uzman Reklam",
+        "aciklama": "Kamu binası tabelası, birim ve kat yönlendirme, şantiye bilgi levhaları, erişilebilirlik ürünleri. TOKİ, SASKİ, Sağlık Bakanlığı ve devlet hastaneleri.",
+        "h1": "Kamu kurumu, belediye ve şantiye tabelaları",
+        "giris": "Kamu binaları, belediye tesisleri, üniversiteler ve şantiyeler için bina tabelası, yönlendirme, bilgi levhası ve erişilebilirlik ürünlerini üretiyor, kendi ekibimizle uyguluyoruz.",
+        "bolumler": [
+            ("Neler yapıyoruz?", '<ul class="madde"><li><strong>Bina ve giriş tabelaları</strong> · kutu harf, totem, kompozit cephe</li><li><strong>Birim ve kat yönlendirme</strong> · kat planı panoları, modüler yön levhaları, kapı ve oda levhaları</li><li><strong>Şantiye bilgi levhaları</strong> · proje bilgi panoları, iş güvenliği ve uyarı levhaları</li><li><strong>Erişilebilirlik</strong> · hissedilebilir yüzey, Braille kabartma levha, engelli WC ve otopark levhaları</li><li><strong>Acil çıkış ve iş güvenliği</strong> · ilgili yönetmeliklere uygun ölçü ve renklerde</li></ul>'),
+            ("Erişilebilirlik neden önemli?", "<p>Kamu binalarında erişilebilirlik yasal zorunluluktur. Denetimlerde en çok takılan kalem hissedilebilir yüzeydir; yanlış tipte ya da yanlış güzergahta döşendiğinde denetimden geçmez. Uygulamadan önce güzergah planını kurumla birlikte çıkarıyoruz.</p>"),
+        ],
+        "foto": ["toki-santiye-bilgi-yonlendirme-levhasi.webp", "saski-asfalt-calismasi-bilgi-levhasi.webp", "fatsa-ataturk-parki-modern-totem.webp",
+                 "asarcik-spor-salonu-cati-kutu-harf.webp", "olimpik-yuzme-havuzu-pano-tabela.webp", "is-guvenligi-uyari-levhasi-santiye.webp",
+                 "giris-cikis-uyari-levhasi-ayakli.webp", "hissedilebilir-yuzey-zemin-detay.webp", "yonlendirme-yon-oklu-kat-levhasi.webp"],
+        "referans": ["T.C. Sağlık Bakanlığı", "TOKİ (Toplu Konut İdaresi)", "Devlet Opera ve Balesi Genel Müdürlüğü", "Sinop Üniversitesi",
+                     "Samsun Büyükşehir Belediyesi SASKİ", "Sinop Atatürk, Gerze ve Boyabat 75. Yıl devlet hastaneleri", "Bafra Ağız ve Diş Sağlığı Merkezi",
+                     "Fatsa Atatürk Parkı", "Asarcık Spor Salonu", "Atakum Olimpik Yüzme Havuzu"],
+        "sss": [
+            ("Hangi kamu kurumlarıyla çalıştınız?", "T.C. Sağlık Bakanlığı, TOKİ, Devlet Opera ve Balesi Genel Müdürlüğü, Sinop Üniversitesi, Samsun Büyükşehir Belediyesi SASKİ, Sinop Atatürk, Gerze ve Boyabat 75. Yıl devlet hastaneleri bunlardan bazıları."),
+            ("Hissedilebilir yüzey ve Braille levha yapıyor musunuz?", "Evet. Yönlendirici ve uyarıcı tip hissedilebilir yüzey, Braille kabartma levha ve dokunmatik kat planlarını üretip uyguluyoruz; güzergah planını kurumla birlikte çıkarıyoruz."),
+            ("Şantiye bilgi levhası yapıyor musunuz?", "Evet. TOKİ ve SASKİ gibi kurumların projelerinde şantiye bilgi ve yönlendirme levhaları ile iş güvenliği levhaları ürettik ve monte ettik."),
+        ],
+    },
+]
+
+
+def hizmet_sayfasi(galeri, h):
+    dosya = h["dosya"]; url = SITE + dosya
+    if "foto" in h:
+        fotolar = h["foto"]
+    else:
+        fotolar = [f for f, g in galeri.items() if set(g["kategoriler"]) & set(h["kategoriler"])][:h["foto_sayisi"]]
+        fotolar += [d for d in h.get("ek_foto", []) if d not in fotolar]
+    kartlar = "".join(ref.kart(galeri, d) for d in fotolar)
+    bolumler = "".join(f"<h2>{e(b)}</h2>{icerik}" for b, icerik in h["bolumler"])
+    sss_html = "".join(f"<details><summary>{e(s)}</summary><p>{e(c)}</p></details>" for s, c in h["sss"])
+    diger = " · ".join(f'<a href="{x["dosya"]}">{e(x["kisa"])}</a>' for x in HIZMETLER if x["dosya"] != dosya)
+    icerik = f"""<main class="ref-sayfa">
+  <header class="ref-ust">
+    {yol(h["kisa"])}
+    <h1>{e(h["h1"])}</h1>
+    <p>{e(h["giris"])}</p>
+  </header>
+  <div class="kur-metin"><h2>Yaptığımız işlerden</h2></div>
+  <div class="ref-isler kur-isler">{kartlar}</div>
+  <div class="kur-metin">
+    {bolumler}
+    <h2>Bu işi yaptığımız kurum ve markalardan</h2>
+    <ul class="madde">{"".join(f"<li>{e(x)}</li>" for x in h["referans"])}</ul>
+    <p>Tam liste: <a href="referanslar.html">Referanslarımız</a>. Diğer hizmetlerimiz: {diger} · <a href="hastane-tabela-ve-yonlendirme.html">Hastane tabelası ve yönlendirme</a></p>
+    <h2>Sık sorulan sorular</h2>
+  </div>
+  <div class="kur-sss">{sss_html}</div>
+  {WA.format(metin="Fotoğraf ve yaklaşık ölçü gönderin; keşif ve teklifle dönelim.", sayfa=dosya.replace(".html", ""))}
+</main>
+"""
+    sema = {"@context": "https://schema.org", "@graph": [
+        {"@type": "Service", "@id": url + "#hizmet", "name": h["h1"], "url": url, "description": h["aciklama"],
+         "provider": ref.isletme_ref(), "areaServed": [{"@type": "AdministrativeArea", "name": "Karadeniz Bölgesi"},
+                                                        {"@type": "City", "name": "Samsun"}, {"@type": "City", "name": "Sinop"},
+                                                        {"@type": "City", "name": "Ordu"}, {"@type": "City", "name": "Trabzon"}]},
+        {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": s, "acceptedAnswer": {"@type": "Answer", "text": c}} for s, c in h["sss"]]},
+        kirinti(h["kisa"], url)]}
+    ref.sayfa_yaz(dosya, h["baslik"], h["aciklama"], sema, icerik, h["kisa"], CSS_EK)
+    print(dosya, len(fotolar), "foto")
+
+
 if __name__ == "__main__":
     g = ref.galeri_oku()
     hakkimizda(g)
     hastane(g)
+    for h in HIZMETLER:
+        hizmet_sayfasi(g, h)

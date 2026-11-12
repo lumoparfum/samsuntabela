@@ -21,7 +21,7 @@ assert '"' not in ACIKLAMA and len(ACIKLAMA) <= 160
 # (baslik, aciklama, [isimler]) — isim yaninda kisa is notu varsa "Ad — not"
 GRUPLAR = [
     ("Kamu kurumları ve üniversiteler",
-     "Resmi kurumların bina, birim ve yönlendirme tabelaları.",
+     "Resmi kurumların bina, birim ve yönlendirme tabelaları. Ayrıntı: kamu kurumu tabelaları sayfamız.",
      ["T.C. Sağlık Bakanlığı", "TOKİ (Toplu Konut İdaresi) — şantiye bilgi ve yönlendirme levhaları",
       "Devlet Opera ve Balesi Genel Müdürlüğü", "Sinop Üniversitesi",
       "Samsun Büyükşehir Belediyesi SASKİ — şantiye bilgi levhaları",
@@ -42,7 +42,7 @@ GRUPLAR = [
       "Entek Elektrik — ışıklı kutu harf", "ESPA Toz Boya — fabrika cephesi kutu harf",
       "Recepoğlu — kompozit cephe ve kutu harf", "Toros", "Gruma", "Akyürek İnşaat", "Yunus Yapı — fuar standı", "Anzel Eğitim Kurumları — ışıklı totem"]),
     ("Bayi ve mağaza tabelaları",
-     "Marka kurumsal kimlik kılavuzuna birebir uygun, seri üretim bayi tabelaları.",
+     "Marka kurumsal kimlik kılavuzuna birebir uygun, seri üretim bayi tabelaları. Ayrıntı: bayi tabelası sayfamız.",
      ["Karaca / Karaca Home", "Pedo", "RodiMood", "Penti", "Baymak", "Husqvarna", "Stihl", "Ramsey", "Kip",
       "Festival Halı", "Sanat Halı", "Dilek Halı", "Gümüşsuyu Halı", "Modasen", "Decofree", "Daphne", "Peri",
       "Lovelet", "Bebito", "Mad Wolf", "Mobilya Kent", "Simpa", "Erpen", "Dekorraf", "Araz",
