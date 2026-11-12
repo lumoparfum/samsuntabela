@@ -372,7 +372,7 @@
         .sub-page-content .btn-main { margin-top: 20px; display: inline-block; }
         @media (max-width: 768px) { .sub-page-content { padding: 30px 20px; } .sub-page-content h2 { font-size: 1.6rem; } .close-sub-page { top: 15px; right: 15px; width: 40px; height: 40px; font-size: 24px; } }
 
-        #lightbox { position: fixed; z-index: 9999; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); display: none; justify-content: center; align-items: center; touch-action: pan-y; }
+        #lightbox { position: fixed; z-index: 9999; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); display: none; justify-content: center; align-items: center; touch-action: pan-y pinch-zoom; }
         #lightbox img { max-width: 90%; max-height: 78%; border: 3px solid #333; border-radius: 5px; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; }
         #lb-close, #lb-prev, #lb-next { position: absolute; font-size: 40px; color: #fff; cursor: pointer; background: rgba(0,0,0,0.5); width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; border-radius: 50%; text-align: center; user-select: none; -webkit-user-select: none; }
         #lb-close { top: 25px; right: 20px; width: 52px; height: 52px; font-size: 34px; background: rgba(255,255,255,0.12); }
@@ -1435,12 +1435,18 @@
         else if (e.key === 'ArrowRight') changeSlide(1);
     });
 
-    let touchStartX = 0, touchStartY = 0;
+    // Kaydirma: tek parmakla sag/sol = onceki/sonraki, asagi = kapat.
+    // Iki parmakla yakinlastirma serbest (12 Kas 2026); yakinlastirilmisken kaydirma foto degistirmez.
+    let touchStartX = 0, touchStartY = 0, cokParmak = false;
     lightbox.addEventListener('touchstart', function(e) {
+        if (e.touches.length > 1) { cokParmak = true; return; }
+        cokParmak = false;
         touchStartX = e.changedTouches[0].screenX;
         touchStartY = e.changedTouches[0].screenY;
     }, { passive: true });
     lightbox.addEventListener('touchend', function(e) {
+        if (cokParmak || e.touches.length > 0) return;
+        if (window.visualViewport && window.visualViewport.scale > 1.05) return;
         const dx = e.changedTouches[0].screenX - touchStartX;
         const dy = e.changedTouches[0].screenY - touchStartY;
         if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) changeSlide(dx < 0 ? 1 : -1);
