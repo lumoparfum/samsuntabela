@@ -4,6 +4,7 @@ Tek kaynak bu dosyadaki GRUPLAR ve ONE_CIKAN listeleri. Kurum adlari YAZI olarak
 Google ve yapay zeka aramalari okuyabilsin (eski sitede yalniz resim icindeydi).
 Kaynak: eski site uzmantabela.com "Referanslarimiz" logo gorselleri + galeri.json + site metinleri (12 Kas 2026).
 
+Her grubun altinda o gruba ait galeri fotograflari (GRUP_FOTO); mobilde yana kaydirilir.
 Sablon: index.html'in <head> stili, ust menusu, ortak iletisim blogu (ILETISIM) ve WhatsApp dugmesi.
 Tekrar calistirilinca sayfayi bastan uretir. Kullanim: python scripts/referans-uret.py
 """
@@ -54,24 +55,28 @@ GRUPLAR = [
       "Açı Eğitim Kurumları — cam giydirme", "Cömert Mobilya — araç giydirme", "Model Kuaför", "Ayıntap Grafik", "Sonkart"]),
 ]
 
-# secili isler: galeri.json'daki dosya adi + kisa aciklama
-ONE_CIKAN = [
-    ("sinop-devlet-hastanesi-isikli-kutu-harf.webp", "Sinop Atatürk Devlet Hastanesi", "Işıklı kutu harf"),
-    ("gerze-devlet-hastanesi-giris-takisi.webp", "Gerze Devlet Hastanesi", "Giriş takı ve kutu harf"),
-    ("liv-hospital-paslanmaz-kutu-harf.webp", "Liv Hospital Samsun", "Paslanmaz kutu harf"),
-    ("vm-medical-park-cocuk-isikli-harf.webp", "VM Medical Park Çocuk", "Işıklı harf ve duvar baskı"),
-    ("medibafra-hastanesi-cephe-giydirme.webp", "Medibafra Hastanesi", "Cephe giydirme"),
-    ("medical-park-atakum-bina-cephe-giydirme.webp", "Medical Park Atakum", "Bina cephe giydirme"),
-    ("saski-asfalt-calismasi-bilgi-levhasi.webp", "SASKİ", "Şantiye bilgi levhaları"),
-    ("dunyagoz-isikli-totem-tabela.webp", "Dünyagöz", "Işıklı totem"),
-    ("piazza-avm-dev-totem-tabela.webp", "Piazza AVM", "Dev totem"),
-    ("toki-santiye-bilgi-yonlendirme-levhasi.webp", "TOKİ", "Şantiye bilgi ve yönlendirme"),
-    ("yatirim-finansman-kompozit-cephe.webp", "Yatırım Finansman", "Kompozit cephe"),
-    ("bayi-tabelasi-karaca-home.webp", "Karaca Home", "Bayi tabelası"),
-    ("bayi-tabelasi-husqvarna-stihl.webp", "Husqvarna ve Stihl", "Bayi cephe tabelaları"),
-    ("bayi-tabelasi-pedo.webp", "Pedo", "Bayi kutu harf"),
-    ("asarcik-spor-salonu-cati-kutu-harf.webp", "Asarcık Spor Salonu", "Çatı kutu harf"),
-    ("fatsa-ataturk-parki-modern-totem.webp", "Fatsa Atatürk Parkı", "Özel tasarım totem"),
+# her grubun fotograflari (galeri.json dosya adlari; baslik ve alt yazi galeriden gelir), GRUPLAR ile ayni sirada
+GRUP_FOTO = [
+    ["toki-santiye-bilgi-yonlendirme-levhasi.webp", "saski-asfalt-calismasi-bilgi-levhasi.webp", "fatsa-ataturk-parki-modern-totem.webp",
+     "asarcik-spor-salonu-cati-kutu-harf.webp", "olimpik-yuzme-havuzu-pano-tabela.webp"],
+    ["sinop-devlet-hastanesi-isikli-kutu-harf.webp", "gerze-devlet-hastanesi-giris-takisi.webp", "liv-hospital-paslanmaz-kutu-harf.webp",
+     "vm-medical-park-cocuk-isikli-harf.webp", "medical-park-atakum-bina-cephe-giydirme.webp", "medical-park-ordu-billboard-montaj.webp",
+     "medical-park-billboard-reklam-panosu.webp", "medibafra-hastanesi-cephe-giydirme.webp", "medibafra-isikli-totem-tabela.webp",
+     "medibafra-hastanesi-isikli-kutu-harf.webp", "medibafra-hastanesi-resepsiyon-yonlendirme.webp", "dunyagoz-isikli-totem-tabela.webp",
+     "krom-harf-vm-fizik-tedavi.webp", "acil-giris-yonlendirme-totemi.webp", "hissedilebilir-zemin-hastane-danisma.webp",
+     "yonlendirme-zemin-serit-hastane.webp", "yonlendirme-oda-kapi-levhasi.webp", "cam-folyo-hastane-kapi.webp", "hastane-ic-mekan-isikli-pano.webp"],
+    ["piazza-avm-dev-totem-tabela.webp", "piazza-avm-cam-folyo-bilgilendirme.webp", "avm-cati-tabelasi-yuksek-irtifa-montaj.webp",
+     "yatirim-finansman-kompozit-cephe.webp", "yonlendirme-is-bankasi-menkul-degerler.webp", "plan-yapi-isikli-kutu-harf.webp",
+     "krom-harf-yasamkent.webp", "burger-king-ic-mekan-duvar-baskisi.webp", "entek-elektrik-isikli-kutu-harf.webp",
+     "espa-toz-boya-kutu-harf-tabela-cephe.webp", "recepoglu-kompozit-cephe-kutu-harf.webp", "cam-giydirme-akyurek-insaat.webp", "yunus-yapi-fuar-standi.webp"],
+    ["bayi-tabelasi-karaca-home.webp", "bayi-tabelasi-pedo.webp", "bayi-tabelasi-rodimood.webp", "bayi-tabelasi-husqvarna-stihl.webp",
+     "ramsey-kip-magaza-cephe-giydirme.webp", "bayi-tabelasi-festival-hali.webp", "bayi-tabelasi-dilek-hali.webp", "bayi-tabelasi-gumussuyu.webp",
+     "modasen-bina-giydirme.webp", "neon-efektli-tabela-daphne.webp", "tozlu-com-magaza-kutu-harf.webp", "btm-magazalari-isikli-pano-kutu-harf.webp",
+     "krom-harf-jival-pirlanta.webp"],
+    ["krom-harf-turan-usta-pidesi.webp", "erdem-suzen-tarim-cephe-tabelasi.webp", "ozlem-balli-kaymak-satis-standi.webp",
+     "fantazi-tabela-ozlem-dondurma.webp", "neon-tabela-pinar-lokantasi.webp", "ova-pilic-market-pleksi-kutu-harf.webp",
+     "krom-harf-dogan-makina.webp", "aci-okullari-cam-giydirme-folyo.webp", "comert-mobilya-arac-giydirme.webp",
+     "vitrin-folyo-model-kuafor.webp"],
 ]
 
 CSS = """
@@ -86,17 +91,19 @@ CSS = """
         html body .ref-sayilar { display: flex; flex-wrap: wrap; gap: 12px 40px; margin: 28px 0 0; padding: 0; list-style: none; }
         html body .ref-sayilar li { font-size: 15px; color: #6e6e73; }
         html body .ref-sayilar strong { display: block; font-size: 28px; font-weight: 800; color: #1d1d1f; letter-spacing: -.02em; }
-        html body .ref-isler { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; margin: 0 0 56px; }
+        html body .ref-isler { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; margin: 0 0 24px; }
         html body .ref-isler figure { margin: 0; background: #f5f5f7; border-radius: 14px; overflow: hidden; }
         html body .ref-isler a { display: block; color: inherit; text-decoration: none; }
         html body .ref-isler img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; display: block; }
         html body .ref-isler figcaption { padding: 12px 14px 14px; font-size: 15px; line-height: 1.35; }
         html body .ref-isler figcaption strong { display: block; color: #1d1d1f; font-weight: 700; }
         html body .ref-isler figcaption span { color: #6e6e73; font-size: 14px; }
-        html body .ref-grup { border-top: 1px solid #e5e5ea; padding: 32px 0; display: grid; grid-template-columns: 280px 1fr; gap: 24px 48px; }
+        html body .ref-grup { border-top: 1px solid #e5e5ea; padding: 40px 0 32px; }
+        html body .ref-grup .ust { margin: 0 0 18px; max-width: 700px; }
+        html body .ref-grup .ust .adet { color: #6e6e73; font-weight: 400; }
         html body .ref-grup h2 { font-size: 1.3rem; font-weight: 700; color: #1d1d1f; margin: 0 0 8px; text-transform: none; letter-spacing: -.01em; border: 0; padding: 0; text-align: left; }
         html body .ref-grup .not { font-size: 15px; line-height: 1.5; color: #6e6e73; margin: 0; }
-        html body .ref-grup ul { list-style: none; margin: 0; padding: 0; columns: 2; column-gap: 32px; }
+        html body .ref-grup ul { list-style: none; margin: 0; padding: 0; columns: 3; column-gap: 32px; }
         html body .ref-grup li { break-inside: avoid; padding: 7px 0; font-size: 16px; line-height: 1.4; color: #1d1d1f; border-bottom: 1px solid #f0f0f2; }
         html body .ref-grup li small { color: #6e6e73; font-size: 14px; }
         html body .ref-alt { margin: 40px 0 0; padding: 28px; background: #f5f5f7; border-radius: 14px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; }
@@ -106,10 +113,12 @@ CSS = """
         @media (max-width: 768px) {
             html body .ref-sayfa { padding-top: calc(var(--nav-h, 70px) + 24px); }
             html body .ref-ust p { font-size: 16px; }
-            html body .ref-isler { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+            html body .ref-isler { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 10px; margin: 0 -20px 20px; padding: 0 20px 4px; scrollbar-width: none; }
+            html body .ref-isler::-webkit-scrollbar { display: none; }
+            html body .ref-isler figure { flex: 0 0 72%; scroll-snap-align: start; }
             html body .ref-isler figcaption { padding: 10px; font-size: 14px; }
             html body .ref-isler figcaption span { font-size: 13px; }
-            html body .ref-grup { grid-template-columns: 1fr; gap: 12px; padding: 26px 0; }
+            html body .ref-grup { padding: 32px 0 24px; }
             html body .ref-grup ul { columns: 1; }
         }
     </style>"""
@@ -170,16 +179,18 @@ def main():
     menu = idx[b0:b1].replace('href="#', 'href="/#')
 
     # --- icerik
-    kartlar = []
-    for dosya, ad, is_ in ONE_CIKAN:
+    def kart(dosya):
         g = galeri.get(dosya)
         if not g:
             raise SystemExit(f"galeride yok: {dosya}")
-        kartlar.append(
-            f'<figure><a href="{dosya}" target="_blank" rel="noopener"><img src="galeri/k/{dosya}" alt="{html.escape(g["alt"])}" '
-            f'width="640" height="480" loading="lazy" decoding="async"></a><figcaption><strong>{e(ad)}</strong><span>{e(is_)}</span></figcaption></figure>')
+        return (f'<figure><a href="{dosya}" target="_blank" rel="noopener"><img src="galeri/k/{dosya}" alt="{html.escape(g["alt"])}" '
+                f'width="640" height="480" loading="lazy" decoding="async"></a><figcaption><strong>{e(g["baslik"])}</strong>'
+                f'<span>{e(g["altyazi"])}</span></figcaption></figure>')
+    assert len(GRUP_FOTO) == len(GRUPLAR)
+    foto_say = sum(len(x) for x in GRUP_FOTO)
     gruplar = "\n".join(
-        f'<section class="ref-grup" aria-labelledby="g{i}"><div><h2 id="g{i}">{e(b)}</h2><p class="not">{e(n)}</p></div>'
+        f'<section class="ref-grup" aria-labelledby="g{i}"><div class="ust"><h2 id="g{i}">{e(b)} <span class="adet">· {len(liste)}</span></h2><p class="not">{e(n)}</p></div>'
+        f'<div class="ref-isler">{"".join(kart(d) for d in GRUP_FOTO[i])}</div>'
         f'<ul>{"".join(isim_li(x) for x in liste)}</ul></section>'
         for i, (b, n, liste) in enumerate(GRUPLAR))
     hastane = sum(1 for x in GRUPLAR[1][2])
@@ -196,10 +207,6 @@ def main():
     </ul>
   </header>
 
-  <h2 class="ref-baslik-gizli" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Seçili işler</h2>
-  <div class="ref-isler">
-    {chr(10).join("    " + k for k in kartlar).strip()}
-  </div>
 
 {gruplar}
 
@@ -231,7 +238,7 @@ def main():
     wp = idx[w0:w1]
     sayfa = f"{head}</head>\n<body>\n\n{menu}{icerik}\n{iletisim}\n{alt}\n\n{js}\n\n{wp}\n\n</body>\n</html>\n"
     io.open(os.path.join(KOK, "referanslar.html"), "w", encoding="utf-8", newline="\n").write(sayfa)
-    print("referanslar.html:", len(tum), "kurum/marka,", len(kartlar), "foto")
+    print("referanslar.html:", len(tum), "kurum/marka,", foto_say, "foto")
 
 
 if __name__ == "__main__":
