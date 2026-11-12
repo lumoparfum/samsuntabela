@@ -15,6 +15,7 @@ Repo: `lumoparfum/samsuntabela`, dal: `main`. `main`'e push = canlıya çıkar (
 | `baski.html` | Fason dijital baskı: fiyat hesaplayıcı + ürünler |
 | `referanslar.html` | Referanslarımız: kurum ve marka listesi (yazı olarak, Google ve yapay zekâ okusun) + seçili iş fotoğrafları. **`scripts/referans-uret.py` üretir, elle düzenlenmez**; liste ve fotoğraflar script'in içinde. `index.html` stili, menüsü ve iletişim bloğu kullanılır: index ya da iletişim bloğu değişince script'i yeniden çalıştır. |
 | `hakkimizda.html`, `hastane-tabela-ve-yonlendirme.html` | Hakkımızda (tarihçe, atölye, künye) ve hastane hizmet sayfası (işler, hastaneler, SSS + FAQPage/Service şeması). **`scripts/kurumsal-sayfalar.py` üretir**, şablonu `referans-uret.py`'deki `sayfa_yaz()`'dan alır. |
+| `alt-lightbox.js` | Alt sayfalardaki (referanslar, hakkımızda, hastane, ilçe "yaptığımız işler") fotoğrafları dokununca büyütür; küçük kopyadan asıl fotoğrafı bulur. `referans-uret.py` ve `ilce-sss.py` sayfaya ekler. |
 | `kur.js` | Döviz kuru (TCMB). Baskı m² fiyatları dolar/euro × bu kur; `data-m2="1.80 USD"` taşıyan her fiyat ve hesaplayıcı buradan okur (`baski.html`, Sinop sayfası, `baski/`). |
 | `llms.txt` | Yapay zekâ arama botları için firma özeti (adres, numaralar, hizmetler, sayfalar). |
 | `baski/` | Ayrı alt site ("Türkiye'nin baskı fabrikası"): `index`, `fason-baski`, `hediyelik`, `okul-kurum`, `ozel-gun`, `taraftar`, `vitrin` + `css/`, `js/` (`data.js` = iletişim bilgisi), `images/` (JPG). Ana siteden bağlantı yok, `sitemap.xml`'de yok; doğrudan adresle paylaşılır. |
