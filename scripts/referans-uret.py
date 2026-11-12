@@ -147,6 +147,25 @@ def sayfa_yaz(dosya, baslik, aciklama, sema, icerik, kisa_baslik, css_ek="", ust
     if ust_gorsel:
         icerik = icerik.replace(' loading="lazy" decoding="async"', ' decoding="async" fetchpriority="high"', 1)
         icerik = icerik.replace(' loading="lazy" decoding="async"', ' decoding="async"', 1)
+    # Kalan gorseller: tarayicinin yerlesik "lazy"si yana kaydirilan seritlerdeki gorselleri de hemen indiriyor
+    # (mobilde ilk boyamayi geciktiriyordu). data-src + IntersectionObserver ile ekrana yaklasinca iner;
+    # <noscript> kopyasi JS calistirmayan tarayici ve botlar icin.
+    def _ertele(m):
+        tam = m.group(0)
+        return (tam.replace(' src="', ' src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" data-src="', 1)
+                + "<noscript>" + tam + "</noscript>")
+    icerik = re.sub(r'<img src="galeri/k/[^"]+"[^>]*loading="lazy"[^>]*>', _ertele, icerik)
+    icerik += """<script>
+(function () {
+  var g = document.querySelectorAll('img[data-src]');
+  if (!('IntersectionObserver' in window)) { g.forEach(function (i) { i.src = i.dataset.src; }); return; }
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) { e.target.src = e.target.dataset.src; e.target.removeAttribute('data-src'); io.unobserve(e.target); } });
+  }, { rootMargin: '300px 300px' });
+  g.forEach(function (i) { io.observe(i); });
+})();
+</script>
+"""
     idx = io.open(os.path.join(KOK, "index.html"), encoding="utf-8").read()
     head = idx[: idx.index("</head>")]
     head = re.sub(r'\s*<script type="application/ld\+json">.*?</script>', "", head, flags=re.S)

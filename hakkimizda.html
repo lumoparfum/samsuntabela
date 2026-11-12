@@ -912,7 +912,7 @@
     <h2>Atölyemiz</h2>
     <p>Bafra Emirefendi Mahallesi'ndeki atölyemizde harf kesiminden kaynağa, boyadan LED montajına kadar bütün işler yapılıyor; sahadaki montajı da kendi ekibimiz yapıyor.</p>
   </div>
-  <div class="ref-isler kur-isler"><figure><img src="galeri/k/atolye-kutu-harf-kompozit-imalat.webp" alt="Atölyede Kutu Harf ve Kompozit Tabela İmalatı" width="640" height="480" loading="lazy" decoding="async"><figcaption><strong>Harf ve kompozit imalatı</strong><span>Bafra atölyemiz</span></figcaption></figure><figure><img src="galeri/k/cnc-router-lazer-kesim-imalat.webp" alt="Samsun CNC Router Lazer Kesim ve Fason Pleksi İmalatı" width="640" height="480" loading="lazy" decoding="async"><figcaption><strong>CNC router ile kesim</strong><span>Bafra atölyemiz</span></figcaption></figure><figure><img src="galeri/k/pleksi-kutu-harf-ciftlik-imalat.webp" alt="Çiftlik 3D Pleksi Kutu Harf Tabela İmalatı" width="640" height="480" loading="lazy" decoding="async"><figcaption><strong>Pleksi kutu harf üretimi</strong><span>Bafra atölyemiz</span></figcaption></figure><figure><img src="galeri/k/avm-cati-tabelasi-yuksek-irtifa-montaj.webp" alt="AVM Çatı Tabelaları Montajı ve Yüksekte Kurulum" width="640" height="480" loading="lazy" decoding="async"><figcaption><strong>Kendi ekibimizle montaj</strong><span>Bafra atölyemiz</span></figcaption></figure></div>
+  <div class="ref-isler kur-isler"><figure><img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" data-src="galeri/k/atolye-kutu-harf-kompozit-imalat.webp" alt="Atölyede Kutu Harf ve Kompozit Tabela İmalatı" width="640" height="480" loading="lazy" decoding="async"><noscript><img src="galeri/k/atolye-kutu-harf-kompozit-imalat.webp" alt="Atölyede Kutu Harf ve Kompozit Tabela İmalatı" width="640" height="480" loading="lazy" decoding="async"></noscript><figcaption><strong>Harf ve kompozit imalatı</strong><span>Bafra atölyemiz</span></figcaption></figure><figure><img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" data-src="galeri/k/cnc-router-lazer-kesim-imalat.webp" alt="Samsun CNC Router Lazer Kesim ve Fason Pleksi İmalatı" width="640" height="480" loading="lazy" decoding="async"><noscript><img src="galeri/k/cnc-router-lazer-kesim-imalat.webp" alt="Samsun CNC Router Lazer Kesim ve Fason Pleksi İmalatı" width="640" height="480" loading="lazy" decoding="async"></noscript><figcaption><strong>CNC router ile kesim</strong><span>Bafra atölyemiz</span></figcaption></figure><figure><img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" data-src="galeri/k/pleksi-kutu-harf-ciftlik-imalat.webp" alt="Çiftlik 3D Pleksi Kutu Harf Tabela İmalatı" width="640" height="480" loading="lazy" decoding="async"><noscript><img src="galeri/k/pleksi-kutu-harf-ciftlik-imalat.webp" alt="Çiftlik 3D Pleksi Kutu Harf Tabela İmalatı" width="640" height="480" loading="lazy" decoding="async"></noscript><figcaption><strong>Pleksi kutu harf üretimi</strong><span>Bafra atölyemiz</span></figcaption></figure><figure><img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" data-src="galeri/k/avm-cati-tabelasi-yuksek-irtifa-montaj.webp" alt="AVM Çatı Tabelaları Montajı ve Yüksekte Kurulum" width="640" height="480" loading="lazy" decoding="async"><noscript><img src="galeri/k/avm-cati-tabelasi-yuksek-irtifa-montaj.webp" alt="AVM Çatı Tabelaları Montajı ve Yüksekte Kurulum" width="640" height="480" loading="lazy" decoding="async"></noscript><figcaption><strong>Kendi ekibimizle montaj</strong><span>Bafra atölyemiz</span></figcaption></figure></div>
   <div class="kur-metin">
     <h2>Aile şirketimiz: Toraman Matbaa</h2>
     <p>Ailemizin ikinci üretim kolu Toraman Matbaa, İstanbul Topkapı'da endüstriyel baskı tesisidir. Türkiye genelindeki matbaalar, ajanslar ve kurumsal firmalar için etiket, ambalaj, karton kutu, katalog ve broşür üretir; yurt dışına da ihracat yapar. <a href="https://toramanmatbaa.com" target="_blank" rel="noopener">toramanmatbaa.com</a></p>
@@ -930,6 +930,16 @@
   </dl>
   <div class="ref-alt"><p>İşiniz için fotoğraf ya da ölçü gönderin; keşif ve teklifle dönelim.</p><a class="wa" href="https://wa.me/905079605049" target="_blank" rel="noopener" onclick="gtag('event','whatsapp_tiklama',{'sayfa':'hakkimizda'});"><i class="fab fa-whatsapp" aria-hidden="true"></i>WhatsApp'tan yazın</a></div>
 </main>
+<script>
+(function () {
+  var g = document.querySelectorAll('img[data-src]');
+  if (!('IntersectionObserver' in window)) { g.forEach(function (i) { i.src = i.dataset.src; }); return; }
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) { e.target.src = e.target.dataset.src; e.target.removeAttribute('data-src'); io.unobserve(e.target); } });
+  }, { rootMargin: '300px 300px' });
+  g.forEach(function (i) { io.observe(i); });
+})();
+</script>
 
 <!-- ILETISIM:BASLA (scripts/iletisim-ortak.py) -->
 <section class="footer-grid iletisim-ortak" id="iletisim">
