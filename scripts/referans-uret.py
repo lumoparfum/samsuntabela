@@ -167,6 +167,7 @@ def sayfa_yaz(dosya, baslik, aciklama, sema, icerik, kisa_baslik, css_ek="", ust
   g.forEach(function (i) { io.observe(i); });
 })();
 </script>
+<script src="alt-lightbox.js" defer></script>
 """
     idx = io.open(os.path.join(KOK, "index.html"), encoding="utf-8").read()
     head = idx[: idx.index("</head>")]

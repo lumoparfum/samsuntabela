@@ -101,7 +101,8 @@ def isler_html(dosya, ad):
         f'<figcaption><strong>{html.escape(g[d]["baslik"], quote=False)}</strong><span>{html.escape(g[d]["altyazi"], quote=False)}</span></figcaption></figure>'
         for d in liste)
     return (f'<section class="ilce-isler" aria-labelledby="isler-baslik"><div class="sss-ic"><h2 id="isler-baslik">{ad} ve çevresinde yaptığımız işler</h2>'
-            f'<div class="ilce-isler-izgara">{kartlar}</div><p class="ilce-isler-bag"><a href="referanslar.html">Tüm referanslarımız ›</a></p></div></section>' + chr(10))
+            f'<div class="ilce-isler-izgara">{kartlar}</div><p class="ilce-isler-bag"><a href="referanslar.html">Tüm referanslarımız ›</a></p></div></section>' + chr(10)
+            + '<script src="alt-lightbox.js" defer></script>' + chr(10))
 
 
 def bolum(ad, liste, dosya=""):
