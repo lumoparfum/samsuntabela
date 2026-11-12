@@ -31,21 +31,21 @@ GRUPLAR = [
      "Giriş takıları, ışıklı kutu harf, totem, poliklinik ve kat yönlendirmeleri, hissedilebilir zemin.",
      ["Sinop Atatürk Devlet Hastanesi — ışıklı kutu harf", "Gerze Devlet Hastanesi — giriş takı, pilon ve kompozit cephe",
       "Boyabat 75. Yıl Devlet Hastanesi", "Bafra Ağız ve Diş Sağlığı Merkezi",
-      "Medical Park (Atakum, Ordu) — bina giydirme, billboard, totem ve yol yönlendirme", "VM Medical Park Çocuk — ışıklı harf ve duvar baskı",
+      "Medical Park (Atakum, Ordu, VM Medical Park) — bina giydirme, billboard, totem, yol yönlendirme, ışıklı ve krom harf",
       "Liv Hospital Samsun — paslanmaz kutu harf", "Medibafra Hastanesi — cephe giydirme, totem, resepsiyon yönlendirme",
-      "Dünyagöz — ışıklı totem", "FBM Tıp Merkezi", "VM Fizik Tedavi — altın krom harf"]),
+      "Dünyagöz — ışıklı totem", "FBM Tıp Merkezi"]),
     ("AVM, holding ve kurumsal firmalar",
      "Büyük ölçekli cephe, çatı ve totem işleri.",
      ["Piazza AVM — dev totem ve cam folyo", "Metro Holding", "Yatırım Finansman — kompozit cephe",
-      "İş Bankası Menkul Değerler — birim levhaları", "Güneş Sigorta", "Borsan Kablo", "Rönesans (Renaissance Construction)",
-      "Sarp Group", "Planyapı", "Borkonut", "Yaşamkent — krom harf", "Burger King — iç mekan duvar baskısı",
-      "Entek Elektrik — ışıklı kutu harf", "ESPA İnşaat ve Toz Boya — fabrika cephesi kutu harf",
-      "Recepoğlu — kompozit cephe ve kutu harf", "Toros", "Gruma (Semolina Azteca)", "Akyürek İnşaat", "Yunus Yapı — fuar standı"]),
+      "İş Bankası Menkul Değerler — birim levhaları", "Güneş Sigorta", "Borsan Kablo", "Renaissance Construction",
+      "Sarp Group", "Plan Yapı", "Borkonut", "Yaşamkent — krom harf", "Burger King — iç mekan duvar baskısı",
+      "Entek Elektrik — ışıklı kutu harf", "ESPA Toz Boya — fabrika cephesi kutu harf",
+      "Recepoğlu — kompozit cephe ve kutu harf", "Toros", "Gruma", "Akyürek İnşaat", "Yunus Yapı — fuar standı"]),
     ("Bayi ve mağaza tabelaları",
      "Marka kurumsal kimlik kılavuzuna birebir uygun, seri üretim bayi tabelaları.",
      ["Karaca / Karaca Home", "Pedo", "RodiMood", "Penti", "Baymak", "Husqvarna", "Stihl", "Ramsey", "Kip",
       "Festival Halı", "Sanat Halı", "Dilek Halı", "Gümüşsuyu Halı", "Modasen", "Decofree", "Daphne", "Peri",
-      "Lovelet", "Bebito", "Mad Wolf", "Mobilya Kent", "Simpa", "Erpen", "Dekorraf", "Araz", "CP",
+      "Lovelet", "Bebito", "Mad Wolf", "Mobilya Kent", "Simpa", "Erpen", "Dekorraf", "Araz",
       "Tozlu.com ve M.B.T Tekstil", "BTM Mağazaları", "Jival Pırlanta — krom harf vitrin"]),
     ("Bafra ve Samsun'daki işletmeler",
      "Esnafın tabelası, vitrini ve aracı.",
@@ -54,6 +54,9 @@ GRUPLAR = [
       "Kardağ Karadeniz Gıda", "Ova Piliç Market", "Doğan Makina — krom harf", "Erdem Süzen Tarım — cephe tabelası",
       "Açı Eğitim Kurumları — cam giydirme", "Cömert Mobilya — araç giydirme", "Model Kuaför", "Ayıntap Grafik", "Sonkart"]),
 ]
+
+# sayfadaki gosterim sirasi (GRUPLAR indeksleri): once hastaneler, sonra kamu (ChatGPT denetimi onerisi, 12 Kas 2026)
+SIRA = [1, 0, 2, 3, 4]
 
 # her grubun fotograflari (galeri.json dosya adlari; baslik ve alt yazi galeriden gelir), GRUPLAR ile ayni sirada
 GRUP_FOTO = [
@@ -160,8 +163,8 @@ def main():
         "@context": "https://schema.org",
         "@graph": [
             {"@type": "CollectionPage", "@id": URL, "url": URL, "name": "Referanslarımız", "description": ACIKLAMA,
-             "inLanguage": "tr", "isPartOf": {"@type": "WebSite", "name": "Uzman Reklam", "url": SITE},
-             "about": {"@type": "LocalBusiness", "name": "Uzman Reklam", "url": SITE, "telephone": "+905322204649",
+             "inLanguage": "tr", "isPartOf": {"@id": SITE + "#site", "@type": "WebSite", "name": "Uzman Reklam", "url": SITE},
+             "about": {"@id": SITE + "#isletme", "@type": "LocalBusiness", "name": "Uzman Reklam", "url": SITE, "telephone": "+905322204649",
                        "foundingDate": "1973",
                        "address": {"@type": "PostalAddress", "streetAddress": "Emirefendi Mh. Çizmeli 2.Sk. No:33",
                                    "addressLocality": "Bafra", "addressRegion": "Samsun", "addressCountry": "TR"}},
@@ -183,27 +186,27 @@ def main():
         g = galeri.get(dosya)
         if not g:
             raise SystemExit(f"galeride yok: {dosya}")
-        return (f'<figure><a href="{dosya}" target="_blank" rel="noopener"><img src="galeri/k/{dosya}" alt="{html.escape(g["alt"])}" '
-                f'width="640" height="480" loading="lazy" decoding="async"></a><figcaption><strong>{e(g["baslik"])}</strong>'
+        return (f'<figure><img src="galeri/k/{dosya}" alt="{html.escape(g["alt"])}" '
+                f'width="640" height="480" loading="lazy" decoding="async"><figcaption><strong>{e(g["baslik"])}</strong>'
                 f'<span>{e(g["altyazi"])}</span></figcaption></figure>')
     assert len(GRUP_FOTO) == len(GRUPLAR)
     foto_say = sum(len(x) for x in GRUP_FOTO)
     gruplar = "\n".join(
-        f'<section class="ref-grup" aria-labelledby="g{i}"><div class="ust"><h2 id="g{i}">{e(b)} <span class="adet">· {len(liste)}</span></h2><p class="not">{e(n)}</p></div>'
+        f'<section class="ref-grup" aria-labelledby="g{i}"><div class="ust"><h2 id="g{i}">{e(b)} <span class="adet" aria-hidden="true">· {len(liste)}</span></h2><p class="not">{e(n)}</p></div>'
         f'<div class="ref-isler">{"".join(kart(d) for d in GRUP_FOTO[i])}</div>'
         f'<ul>{"".join(isim_li(x) for x in liste)}</ul></section>'
-        for i, (b, n, liste) in enumerate(GRUPLAR))
+        for i, (b, n, liste) in ((k, GRUPLAR[k]) for k in SIRA))
     hastane = sum(1 for x in GRUPLAR[1][2])
     icerik = f"""<main class="ref-sayfa">
   <header class="ref-ust">
     <p class="yol"><a href="/">Ana sayfa</a> › Referanslarımız</p>
     <h1>Referanslarımız</h1>
-    <p>1973'ten bu yana Bafra'daki kendi atölyemizde ürettiğimiz ve kendi ekibimizle monte ettiğimiz tabelaların sahiplerinden bazıları: kamu kurumları, devlet ve özel hastaneler, AVM'ler, ulusal markaların bayileri ve Karadeniz'in esnafı.</p>
+    <p>1973'te Remzi Toraman'ın kurduğu, bugün ikinci kuşaktan Abdurrahman Toraman'ın yönettiği Bafra'daki atölyemizde üretip kendi ekibimizle monte ettiğimiz işlerden, tabela yaptığımız kurum ve markaların bir kısmı: devlet ve özel hastaneler, kamu kurumları, AVM'ler, ulusal markaların bayileri ve Karadeniz'in esnafı.</p>
     <ul class="ref-sayilar">
       <li><strong>1973</strong>Kuruluş, Bafra</li>
       <li><strong>{len(tum)}+</strong>Kurum ve marka</li>
-      <li><strong>{hastane}</strong>Hastane ve sağlık kuruluşu</li>
-      <li><strong>{len(galeri)}</strong>Fotoğraflı proje</li>
+      <li><strong>{hastane}</strong>Hastane ve sağlık kurumu</li>
+      <li><strong>{len(galeri)}</strong>İş fotoğrafı</li>
     </ul>
   </header>
 

@@ -51,6 +51,8 @@ Git Data API üzerinden tek commit atar; token cihazın `localStorage`'ında dur
 |---|---|---|
 | İletişim bölümü + "Hizmet ağımız" şeridi + stili (`ILETISIM:BASLA/BITIR`) | `scripts/iletisim-ortak.py` | `index.html` + 6 ilçe |
 | "Referanslarımız" bağlantısı iletişim bloğunda (Kurumsal Bilgiler altı) | `scripts/iletisim-ortak.py` | 7 sayfa + referanslar |
+| İşletme kimliği (schema.org): ana sayfada LocalBusiness `@id https://samsuntabela.tr/#isletme` (ad, Google İşletme adı, adres, koordinat, saat, kurucu, iller); ilçe sayfaları ve baski.html'de ona bağlı Service (`ISLETME-SEMA:BASLA/BITIR`) | `scripts/isletme-sema.py` | index + 6 ilçe + baski.html |
+| İlçe "bu bölgede yaptığımız işler" fotoğrafları (Trabzon'da iş yok, çıkmaz) | `scripts/ilce-sss.py` (`ISLER`) | 5 ilçe |
 | İlçe "sık sorulan sorular" + FAQPage şeması (`SSS:BASLA/BITIR`, `SSS-SEMA:BASLA/BITIR`) | `scripts/ilce-sss.py` | 6 ilçe |
 
 Adres, numara, banka bilgisi ya da SSS metni değişecekse script'teki metni değiştir, script'i çalıştır (tekrar çalıştırmak güvenli).

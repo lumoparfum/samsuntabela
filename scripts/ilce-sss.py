@@ -10,6 +10,20 @@
 import io, os, re, json, html
 
 KOK = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+# O bolgede gercekten yapilmis isler (galeri.json dosyalari). Sayfanin "sablon ilce sayfasi" gibi durmamasi icin
+# SSS'nin ustunde fotografli gosterilir. Is yoksa bolum cikmaz (Trabzon). Yeni is eklenince buraya yaz, calistir.
+ISLER = {
+    "samsun-reklamci-ve-tabelaci.html": ["liv-hospital-paslanmaz-kutu-harf.webp", "piazza-avm-dev-totem-tabela.webp",
+        "piazza-avm-cam-folyo-bilgilendirme.webp", "saski-asfalt-calismasi-bilgi-levhasi.webp",
+        "espa-toz-boya-kutu-harf-tabela-cephe.webp", "asarcik-spor-salonu-cati-kutu-harf.webp"],
+    "atakum-reklamci-ve-tabelaci.html": ["medical-park-atakum-bina-cephe-giydirme.webp", "olimpik-yuzme-havuzu-pano-tabela.webp"],
+    "bafra-reklamci-ve-tabelaci.html": ["medibafra-hastanesi-cephe-giydirme.webp", "medibafra-isikli-totem-tabela.webp",
+        "medibafra-hastanesi-isikli-kutu-harf.webp", "medibafra-hastanesi-resepsiyon-yonlendirme.webp", "krom-harf-turan-usta-pidesi.webp"],
+    "sinop-reklamci-ve-tabelaci.html": ["sinop-devlet-hastanesi-isikli-kutu-harf.webp", "gerze-devlet-hastanesi-giris-takisi.webp",
+        "hissedilebilir-zemin-hastane-danisma.webp"],
+    "ordu-reklamci-ve-tabelaci.html": ["medical-park-ordu-billboard-montaj.webp", "fatsa-ataturk-parki-modern-totem.webp"],
+}
 BAS, BIT = "<!-- SSS:BASLA (scripts/ilce-sss.py) -->", "<!-- SSS:BITIR -->"
 SBAS, SBIT = "<!-- SSS-SEMA:BASLA (scripts/ilce-sss.py) -->", "<!-- SSS-SEMA:BITIR -->"
 CSS_ISARET = "/* ===== SSS (scripts/ilce-sss.py) ===== */"
@@ -36,6 +50,18 @@ CSS = f"""
         html body .sss-madde summary::after {{ content: "+"; color: #6e6e73; font-weight: 400; font-size: 22px; line-height: 1; flex: 0 0 auto; transition: transform .2s; }}
         html body .sss-madde[open] summary::after {{ transform: rotate(45deg); }}
         html body .sss-madde p {{ color: #3a3a3c; font-size: 16px; line-height: 1.65; margin: 0 0 18px; max-width: 65ch; }}
+        html body .ilce-isler {{ background: #ffffff; padding: 56px 20px 8px; border-top: 1px solid #e5e5ea; }}
+        html body .ilce-isler .sss-ic {{ max-width: 1100px; }}
+        html body .ilce-isler h2 {{ color: #1d1d1f; font-size: 1.6rem; font-weight: 800; letter-spacing: -.01em; margin: 0 0 20px; text-transform: none; border: 0; padding: 0; text-align: left; }}
+        html body .ilce-isler-izgara {{ display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px; }}
+        html body .ilce-isler figure {{ margin: 0; background: #f5f5f7; border-radius: 14px; overflow: hidden; }}
+        html body .ilce-isler img {{ width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; display: block; border: 0; }}
+        html body .ilce-isler figcaption {{ padding: 12px 14px 14px; font-size: 15px; line-height: 1.35; }}
+        html body .ilce-isler figcaption strong {{ display: block; color: #1d1d1f; font-weight: 700; }}
+        html body .ilce-isler figcaption span {{ color: #6e6e73; font-size: 14px; }}
+        html body .ilce-isler-bag {{ margin: 18px 0 0; }}
+        html body .ilce-isler-bag a {{ color: #1d1d1f; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }}
+        @media (max-width: 768px) {{ html body .ilce-isler {{ padding: 44px 20px 4px; }} html body .ilce-isler h2 {{ font-size: 1.35rem; }} html body .ilce-isler-izgara {{ grid-template-columns: repeat(2, 1fr); gap: 10px; }} html body .ilce-isler figcaption {{ padding: 10px; font-size: 14px; }} }}
         @media (max-width: 768px) {{ html body .sss-bolum {{ padding: 44px 20px; }} html body .sss-bolum h2 {{ font-size: 1.35rem; }} html body .sss-madde summary {{ font-size: 16px; }} }}
     </style>"""
 
@@ -64,12 +90,25 @@ def sorular(ad, de, a, ilceler):
     ]
 
 
-def bolum(ad, liste):
+def isler_html(dosya, ad):
+    liste = ISLER.get(dosya)
+    if not liste:
+        return ""
+    g = {f["dosya"]: f for f in json.load(io.open(os.path.join(KOK, "galeri.json"), encoding="utf-8"))["fotolar"]}
+    kartlar = "".join(
+        f'<figure><img src="galeri/k/{d}" alt="{html.escape(g[d]["alt"])}" width="640" height="480" loading="lazy" decoding="async">'
+        f'<figcaption><strong>{html.escape(g[d]["baslik"], quote=False)}</strong><span>{html.escape(g[d]["altyazi"], quote=False)}</span></figcaption></figure>'
+        for d in liste)
+    return (f'<section class="ilce-isler" aria-labelledby="isler-baslik"><div class="sss-ic"><h2 id="isler-baslik">{ad} ve çevresinde yaptığımız işler</h2>'
+            f'<div class="ilce-isler-izgara">{kartlar}</div><p class="ilce-isler-bag"><a href="referanslar.html">Tüm referanslarımız ›</a></p></div></section>' + chr(10))
+
+
+def bolum(ad, liste, dosya=""):
     maddeler = "\n".join(
         f'    <details class="sss-madde"><summary>{html.escape(s, quote=False)}</summary><p>{html.escape(c, quote=False)}</p></details>'
         for s, c in liste)
     return f"""{BAS}
-<section class="sss-bolum" id="sss" aria-labelledby="sss-baslik">
+{isler_html(dosya, ad)}<section class="sss-bolum" id="sss" aria-labelledby="sss-baslik">
   <div class="sss-ic">
     <h2 id="sss-baslik">{ad} tabela: sık sorulan sorular</h2>
 {maddeler}
@@ -94,10 +133,10 @@ def isle(dosya, bilgi):
     # gorunen bolum
     if BAS in s:
         i = s.index(BAS); j = s.index(BIT, i) + len(BIT) + 1
-        s = s[:i] + bolum(bilgi[0], liste) + s[j:]
+        s = s[:i] + bolum(bilgi[0], liste, dosya) + s[j:]
     else:
         i = s.index('<section class="seo-content-section" id="merkez-bag">')
-        s = s[:i] + bolum(bilgi[0], liste) + "\n" + s[i:]
+        s = s[:i] + bolum(bilgi[0], liste, dosya) + "\n" + s[i:]
     # sema
     if SBAS in s:
         i = s.index(SBAS); j = s.index(SBIT, i) + len(SBIT)

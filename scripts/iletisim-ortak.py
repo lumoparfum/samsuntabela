@@ -24,8 +24,9 @@ HTML = f"""{BAS}
     <ul class="contact-info-list">
       <li><i class="fas fa-map-marker-alt" aria-hidden="true"></i><div><strong>Bafra Merkez</strong><span>Emirefendi Mh. Çizmeli 2.Sk. No:33, Bafra / Samsun</span></div></li>
       <li><i class="fas fa-phone-alt" aria-hidden="true"></i><div><strong>Telefon</strong><a href="tel:+905322204649" onclick="gtag('event','telefon_tiklama',{{'sayfa':'footer'}});">0532 220 46 49</a></div></li>
-      <li><i class="fab fa-whatsapp" aria-hidden="true"></i><div><strong>WhatsApp</strong><a href="https://wa.me/905079605049" target="_blank" rel="noopener" onclick="gtag('event','whatsapp_tiklama',{{'sayfa':'footer'}});">0507 960 50 49</a></div></li>
-      <li><i class="fas fa-envelope" aria-hidden="true"></i><div><strong>E-posta</strong><a href="mailto:uzmandosya@hotmail.com">uzmandosya@hotmail.com</a><a href="mailto:rmtoraman@icloud.com">rmtoraman@icloud.com</a></div></li>
+      <li><i class="fab fa-whatsapp" aria-hidden="true"></i><div><strong>WhatsApp (fotoğraf ve teklif)</strong><a href="https://wa.me/905079605049" target="_blank" rel="noopener" onclick="gtag('event','whatsapp_tiklama',{{'sayfa':'footer'}});">0507 960 50 49</a></div></li>
+      <li><i class="fas fa-envelope" aria-hidden="true"></i><div><strong>E-posta</strong><a href="mailto:uzmandosya@hotmail.com">uzmandosya@hotmail.com</a>
+        <a href="mailto:rmtoraman@icloud.com">rmtoraman@icloud.com</a></div></li>
     </ul>
     <div class="map-container"><iframe title="Uzman Reklam Bafra konumu" src="{HARITA}" loading="lazy" allowfullscreen=""></iframe></div>
     <a class="yol-tarifi" href="{TARIF}" target="_blank" rel="noopener">Yol tarifi al</a>
@@ -41,7 +42,7 @@ HTML = f"""{BAS}
       <div><dt>IBAN</dt><dd class="rakam">TR12 0006 2000 5200 0006 2974 73</dd></div>
     </dl>
     <a class="yol-tarifi ref-link" href="referanslar.html">Referanslarımız</a>
-    <h3 class="ikinci">Toraman Matbaa · İstanbul</h3>
+    <h3 class="ikinci">Aile şirketimiz: Toraman Matbaa (İstanbul)</h3>
     <ul class="contact-info-list">
       <li><i class="fas fa-map-marker-alt" aria-hidden="true"></i><div><span>Topkapı 2. Matbaacılar Sitesi 5. Kat E Blok 3NE19, Topkapı / İstanbul</span></div></li>
       <li><i class="fas fa-phone-alt" aria-hidden="true"></i><div><a href="tel:4445340">444 5 340</a></div></li>

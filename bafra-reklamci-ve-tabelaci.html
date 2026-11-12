@@ -46,39 +46,27 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"></noscript>
 
+    <!-- ISLETME-SEMA:BASLA (scripts/isletme-sema.py) -->
     <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "name": "Uzman Reklam",
-      "image": "https://samsuntabela.tr/favicon.svg",
-      "url": "https://samsuntabela.tr/bafra-reklamci-ve-tabelaci.html",
-      "telephone": "+905322204649",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Emirefendi Mh. Çizmeli 2.Sk. No:33",
-        "addressLocality": "Bafra",
-        "addressRegion": "Samsun",
-        "addressCountry": "TR"
-      },
-      "priceRange": "$$",
-      "areaServed": {
-        "@type": "City",
-        "name": "Bafra"
-      },
-      "hasOfferCatalog": {
-        "@type": "OfferCatalog",
-        "name": "Bafra Tabela Hizmetleri",
-        "itemListElement": [
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Kutu Harf Tabela" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Totem Tabela" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Cephe Giydirme" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Araç Giydirme" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "CNC & Lazer Kesim" } }
-        ]
-      }
-    }
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Bafra tabela ve reklam hizmetleri",
+  "url": "https://samsuntabela.tr/bafra-reklamci-ve-tabelaci.html",
+  "provider": {
+    "@id": "https://samsuntabela.tr/#isletme",
+    "@type": "LocalBusiness",
+    "name": "Uzman Reklam",
+    "telephone": "+905322204649"
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": "Bafra"
+  },
+  "serviceType": "Tabela imalatı ve montajı"
+}
     </script>
+    <!-- ISLETME-SEMA:BITIR -->
 
     <style>
         :root {
@@ -600,6 +588,18 @@
         html body .sss-madde summary::after { content: "+"; color: #6e6e73; font-weight: 400; font-size: 22px; line-height: 1; flex: 0 0 auto; transition: transform .2s; }
         html body .sss-madde[open] summary::after { transform: rotate(45deg); }
         html body .sss-madde p { color: #3a3a3c; font-size: 16px; line-height: 1.65; margin: 0 0 18px; max-width: 65ch; }
+        html body .ilce-isler { background: #ffffff; padding: 56px 20px 8px; border-top: 1px solid #e5e5ea; }
+        html body .ilce-isler .sss-ic { max-width: 1100px; }
+        html body .ilce-isler h2 { color: #1d1d1f; font-size: 1.6rem; font-weight: 800; letter-spacing: -.01em; margin: 0 0 20px; text-transform: none; border: 0; padding: 0; text-align: left; }
+        html body .ilce-isler-izgara { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px; }
+        html body .ilce-isler figure { margin: 0; background: #f5f5f7; border-radius: 14px; overflow: hidden; }
+        html body .ilce-isler img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; display: block; border: 0; }
+        html body .ilce-isler figcaption { padding: 12px 14px 14px; font-size: 15px; line-height: 1.35; }
+        html body .ilce-isler figcaption strong { display: block; color: #1d1d1f; font-weight: 700; }
+        html body .ilce-isler figcaption span { color: #6e6e73; font-size: 14px; }
+        html body .ilce-isler-bag { margin: 18px 0 0; }
+        html body .ilce-isler-bag a { color: #1d1d1f; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+        @media (max-width: 768px) { html body .ilce-isler { padding: 44px 20px 4px; } html body .ilce-isler h2 { font-size: 1.35rem; } html body .ilce-isler-izgara { grid-template-columns: repeat(2, 1fr); gap: 10px; } html body .ilce-isler figcaption { padding: 10px; font-size: 14px; } }
         @media (max-width: 768px) { html body .sss-bolum { padding: 44px 20px; } html body .sss-bolum h2 { font-size: 1.35rem; } html body .sss-madde summary { font-size: 16px; } }
     </style>
     <!-- SSS-SEMA:BITIR -->
@@ -709,6 +709,7 @@
 
 
 <!-- SSS:BASLA (scripts/ilce-sss.py) -->
+<section class="ilce-isler" aria-labelledby="isler-baslik"><div class="sss-ic"><h2 id="isler-baslik">Bafra ve çevresinde yaptığımız işler</h2><div class="ilce-isler-izgara"><figure><img src="galeri/k/medibafra-hastanesi-cephe-giydirme.webp" alt="Medibafra Hastanesi Cephe Giydirme ve Kutu Harf Uygulaması" width="640" height="480" loading="lazy" decoding="async"><figcaption><strong>Medibafra Hastanesi</strong><span>Cephe &amp; Kutu Harf</span></figcaption></figure><figure><img src="galeri/k/medibafra-isikli-totem-tabela.webp" alt="MediBafra Hastanesi Işıklı Totem Tabela" width="640" height="480" loading="lazy" decoding="async"><figcaption><strong>Medibafra Hastanesi</strong><span>Işıklı Totem</span></figcaption></figure><figure><img src="galeri/k/medibafra-hastanesi-isikli-kutu-harf.webp" alt="Medibafra Hastanesi renkli ışıklı pleksi kutu harf tabela" width="640" height="480" loading="lazy" decoding="async"><figcaption><strong>Medibafra Hastanesi</strong><span>Işıklı Kutu Harf</span></figcaption></figure><figure><img src="galeri/k/medibafra-hastanesi-resepsiyon-yonlendirme.webp" alt="Medibafra Hastanesi resepsiyon zemin yönlendirme ve hasta kabul akışı uygulaması" width="640" height="480" loading="lazy" decoding="async"><figcaption><strong>Medibafra Hastanesi</strong><span>Resepsiyon Yönlendirme</span></figcaption></figure><figure><img src="galeri/k/krom-harf-turan-usta-pidesi.webp" alt="Turan Usta Bafra Pidesi Krom Harf ve LED Cephe Aydınlatma" width="640" height="480" loading="lazy" decoding="async"><figcaption><strong>Turan Usta Pidesi</strong><span>Krom Harf &amp; LED Cephe</span></figcaption></figure></div><p class="ilce-isler-bag"><a href="referanslar.html">Tüm referanslarımız ›</a></p></div></section>
 <section class="sss-bolum" id="sss" aria-labelledby="sss-baslik">
   <div class="sss-ic">
     <h2 id="sss-baslik">Bafra tabela: sık sorulan sorular</h2>
@@ -741,8 +742,9 @@
     <ul class="contact-info-list">
       <li><i class="fas fa-map-marker-alt" aria-hidden="true"></i><div><strong>Bafra Merkez</strong><span>Emirefendi Mh. Çizmeli 2.Sk. No:33, Bafra / Samsun</span></div></li>
       <li><i class="fas fa-phone-alt" aria-hidden="true"></i><div><strong>Telefon</strong><a href="tel:+905322204649" onclick="gtag('event','telefon_tiklama',{'sayfa':'footer'});">0532 220 46 49</a></div></li>
-      <li><i class="fab fa-whatsapp" aria-hidden="true"></i><div><strong>WhatsApp</strong><a href="https://wa.me/905079605049" target="_blank" rel="noopener" onclick="gtag('event','whatsapp_tiklama',{'sayfa':'footer'});">0507 960 50 49</a></div></li>
-      <li><i class="fas fa-envelope" aria-hidden="true"></i><div><strong>E-posta</strong><a href="mailto:uzmandosya@hotmail.com">uzmandosya@hotmail.com</a><a href="mailto:rmtoraman@icloud.com">rmtoraman@icloud.com</a></div></li>
+      <li><i class="fab fa-whatsapp" aria-hidden="true"></i><div><strong>WhatsApp (fotoğraf ve teklif)</strong><a href="https://wa.me/905079605049" target="_blank" rel="noopener" onclick="gtag('event','whatsapp_tiklama',{'sayfa':'footer'});">0507 960 50 49</a></div></li>
+      <li><i class="fas fa-envelope" aria-hidden="true"></i><div><strong>E-posta</strong><a href="mailto:uzmandosya@hotmail.com">uzmandosya@hotmail.com</a>
+        <a href="mailto:rmtoraman@icloud.com">rmtoraman@icloud.com</a></div></li>
     </ul>
     <div class="map-container"><iframe title="Uzman Reklam Bafra konumu" src="https://maps.google.com/maps?q=Uzman%20Reklam%20Bafra&t=&z=15&ie=UTF8&iwloc=&output=embed" loading="lazy" allowfullscreen=""></iframe></div>
     <a class="yol-tarifi" href="https://www.google.com/maps/dir//Uzman+Reklam,+Emirefendi,+%C3%87izmeli+2.+Sk.+No:33,+55400+Bafra%2FSamsun/" target="_blank" rel="noopener">Yol tarifi al</a>
@@ -758,7 +760,7 @@
       <div><dt>IBAN</dt><dd class="rakam">TR12 0006 2000 5200 0006 2974 73</dd></div>
     </dl>
     <a class="yol-tarifi ref-link" href="referanslar.html">Referanslarımız</a>
-    <h3 class="ikinci">Toraman Matbaa · İstanbul</h3>
+    <h3 class="ikinci">Aile şirketimiz: Toraman Matbaa (İstanbul)</h3>
     <ul class="contact-info-list">
       <li><i class="fas fa-map-marker-alt" aria-hidden="true"></i><div><span>Topkapı 2. Matbaacılar Sitesi 5. Kat E Blok 3NE19, Topkapı / İstanbul</span></div></li>
       <li><i class="fas fa-phone-alt" aria-hidden="true"></i><div><a href="tel:4445340">444 5 340</a></div></li>
