@@ -120,7 +120,7 @@ def hakkimizda(galeri):
         {"@type": "AboutPage", "@id": url, "url": url, "name": "Hakkımızda", "description": aciklama, "inLanguage": "tr",
          "isPartOf": {"@id": SITE + "#site"}, "about": ref.isletme_ref(), "mainEntity": {"@id": SITE + "#isletme"}},
         kirinti("Hakkımızda", url)]}
-    ref.sayfa_yaz(dosya, baslik, aciklama, sema, icerik, "Hakkımızda", CSS_EK)
+    ref.sayfa_yaz(dosya, baslik, aciklama, sema, icerik, "Hakkımızda", CSS_EK, ust_gorsel=False)
     print(dosya)
 
 

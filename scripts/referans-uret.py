@@ -138,11 +138,15 @@ def isim_li(s):
     return f"<li>{e(s)}</li>"
 
 
-def sayfa_yaz(dosya, baslik, aciklama, sema, icerik, kisa_baslik, css_ek=""):
+def sayfa_yaz(dosya, baslik, aciklama, sema, icerik, kisa_baslik, css_ek="", ust_gorsel=True):
     """index.html sablonuyla (head stili, menu, iletisim blogu, WhatsApp) bir alt sayfa yazar.
     Diger uretec scriptleri de kullanir (scripts/kurumsal-sayfalar.py)."""
     assert '"' not in aciklama and len(aciklama) <= 160 and len(baslik) <= 60, (baslik, len(aciklama))
     url = SITE + dosya
+    # mobil hiz: ilk ekrandaki iki gorsel tembel yuklenmesin (Lighthouse LCP ogesi bunlar)
+    if ust_gorsel:
+        icerik = icerik.replace(' loading="lazy" decoding="async"', ' decoding="async" fetchpriority="high"', 1)
+        icerik = icerik.replace(' loading="lazy" decoding="async"', ' decoding="async"', 1)
     idx = io.open(os.path.join(KOK, "index.html"), encoding="utf-8").read()
     head = idx[: idx.index("</head>")]
     head = re.sub(r'\s*<script type="application/ld\+json">.*?</script>', "", head, flags=re.S)

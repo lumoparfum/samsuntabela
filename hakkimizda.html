@@ -691,6 +691,12 @@
         html body #iletisim .contact-info-list a:hover { color: #4f6b00 !important; }
         html body #iletisim .map-container { margin-top: 20px; height: 240px; border-radius: 14px; overflow: hidden; border: 1px solid #e5e5ea !important; background: #f5f5f7; }
         html body #iletisim .map-container iframe { width: 100%; height: 100%; border: 0; display: block; }
+        /* Harita dokununca yuklenir (12 Kas 2026): mobilde ~400 KB Google Maps kodu sayfa acilisinda inmesin */
+        html body #iletisim .harita-ac { width: 100%; height: 100%; border: 0; background: #f5f5f7; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; cursor: pointer; font: inherit; color: #1d1d1f; }
+        html body #iletisim .harita-ac i { font-size: 26px; color: #6e6e73; }
+        html body #iletisim .harita-ac span { font-weight: 600; font-size: 16px; }
+        html body #iletisim .harita-ac small { color: #6e6e73; font-size: 13px; }
+        html body #iletisim .harita-ac:hover { background: #ececf0; }
         html body #iletisim .yol-tarifi { display: inline-flex; align-items: center; height: 44px; padding: 0 20px; margin-top: 16px; border-radius: 999px; border: 1px solid #d2d2d7; color: #1d1d1f; font-weight: 600; font-size: 15px; text-decoration: none; transition: background .15s; }
         html body #iletisim .yol-tarifi::after { content: " ›"; margin-left: 4px; }
         html body #iletisim .yol-tarifi:hover { background: #f5f5f7; }
@@ -933,7 +939,8 @@
       <li><i class="fas fa-envelope" aria-hidden="true"></i><div><strong>E-posta</strong><a href="mailto:uzmandosya@hotmail.com">uzmandosya@hotmail.com</a>
         <a href="mailto:rmtoraman@icloud.com">rmtoraman@icloud.com</a></div></li>
     </ul>
-    <div class="map-container"><iframe title="Uzman Reklam Bafra konumu" src="https://maps.google.com/maps?q=Uzman%20Reklam%20Bafra&t=&z=15&ie=UTF8&iwloc=&output=embed" loading="lazy" allowfullscreen=""></iframe></div>
+    <div class="map-container" data-src="https://maps.google.com/maps?q=Uzman%20Reklam%20Bafra&t=&z=15&ie=UTF8&iwloc=&output=embed"><button type="button" class="harita-ac" onclick="haritaAc(this)"><i class="fas fa-map-marker-alt" aria-hidden="true"></i><span>Haritayı göster</span><small>Emirefendi Mh. Çizmeli 2. Sk. No:33, Bafra</small></button></div>
+    <script>function haritaAc(b){var k=b.parentNode;k.innerHTML='<iframe title="Uzman Reklam Bafra konumu" src="'+k.dataset.src+'" allowfullscreen></iframe>';}</script>
     <a class="yol-tarifi" href="https://www.google.com/maps/dir//Uzman+Reklam,+Emirefendi,+%C3%87izmeli+2.+Sk.+No:33,+55400+Bafra%2FSamsun/" target="_blank" rel="noopener">Yol tarifi al</a>
   </div>
   <div class="footer-box">
