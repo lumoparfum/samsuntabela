@@ -37,7 +37,7 @@ jobs:
           else
             FILES=$(git diff --name-only HEAD~1 HEAD -- '*.html' \
               | grep -v '^baski/' \
-              | grep -v -E '^(mucahitkasa|teegarlife|uzmankasa|yandex_)' \
+              | grep -v -E '^yandex_' \
               | tr '\n' ' ' || true)
           fi
           FILES=$(echo $FILES)   # bosluklari sadelestir

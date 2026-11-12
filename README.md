@@ -19,7 +19,6 @@ Repo: `lumoparfum/samsuntabela`, dal: `main`. `main`'e push = canlıya çıkar (
 | `llms.txt` | Yapay zekâ arama botları için firma özeti (adres, numaralar, hizmetler, sayfalar). |
 | `baski/` | Ayrı alt site ("Türkiye'nin baskı fabrikası"): `index`, `fason-baski`, `hediyelik`, `okul-kurum`, `ozel-gun`, `taraftar`, `vitrin` + `css/`, `js/` (`data.js` = iletişim bilgisi), `images/` (JPG). Ana siteden bağlantı yok, `sitemap.xml`'de yok; doğrudan adresle paylaşılır. |
 | `panel/` | Galeri yönetim paneli (`/panel/`, gizli, `noindex`) |
-| `mucahitkasa.html`, `teegarlife.html`, `uzmankasa.html` | Bu siteyle ilgisi olmayan eski sayfalar. Sitemap'te ve menüde yok. Dokunulmadı. |
 
 ## Galeri (ana sayfa) — tek veri kaynağı `galeri.json`
 
@@ -42,7 +41,7 @@ Git Data API üzerinden tek commit atar; token cihazın `localStorage`'ında dur
 
 | Workflow | Ne zaman | Ne yapar |
 |---|---|---|
-| `indexnow.yml` ("SEO bildirim") | Her push, ya da elle | Değişen **kök** `.html` sayfaları için `sitemap.xml` `lastmod` günceller (geri commit, `[skip ci]`), Bing + Yandex'e IndexNow gönderir, Pages'i yeniden yayınlatır. `baski/` ve ilgisiz 3 sayfa hariç. |
+| `indexnow.yml` ("SEO bildirim") | Her push, ya da elle | Değişen **kök** `.html` sayfaları için `sitemap.xml` `lastmod` günceller (geri commit, `[skip ci]`), Bing + Yandex'e IndexNow gönderir, Pages'i yeniden yayınlatır. `baski/` hariç. |
 | `galeri.yml` ("Galeri uret") | `galeri.json` veya `galeri/kaynak/**` değişince | `galeri-uret.py` çalıştırır, WebP üretir, commit, IndexNow, Pages. |
 | `kur.yml` ("Kur guncelle") | Hafta içi 16:30, ya da elle | `scripts/kur-guncelle.py`: TCMB döviz satış kuru `kur.js`'ten %1'den fazla farklıysa `kur.js`'i günceller, commit (`[skip ci]`), Pages. Az oynadıysa hiçbir şey yapmaz. |
 
