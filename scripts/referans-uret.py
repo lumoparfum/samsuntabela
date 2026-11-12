@@ -32,7 +32,7 @@ GRUPLAR = [
      ["Sinop Atatürk Devlet Hastanesi — ışıklı kutu harf", "Gerze Devlet Hastanesi — giriş takı, pilon ve kompozit cephe",
       "Boyabat 75. Yıl Devlet Hastanesi", "Bafra Ağız ve Diş Sağlığı Merkezi",
       "Medical Park (Atakum, Ordu, VM Medical Park) — bina giydirme, billboard, totem, yol yönlendirme, ışıklı ve krom harf",
-      "Liv Hospital Samsun — paslanmaz kutu harf", "Medibafra Hastanesi — cephe giydirme, totem, resepsiyon yönlendirme",
+      "Liv Hospital Samsun — paslanmaz kutu harf", "Medibafra Hastanesi — cephe giydirme, totem, resepsiyon yönlendirme, baskılı silindir pano",
       "Dünyagöz — ışıklı totem", "FBM Tıp Merkezi"]),
     ("AVM, holding ve kurumsal firmalar",
      "Büyük ölçekli cephe, çatı ve totem işleri.",
@@ -40,7 +40,7 @@ GRUPLAR = [
       "İş Bankası Menkul Değerler — birim levhaları", "Güneş Sigorta", "Borsan Kablo", "Renaissance Construction",
       "Sarp Group", "Plan Yapı", "Borkonut", "Yaşamkent — krom harf", "Burger King — iç mekan duvar baskısı",
       "Entek Elektrik — ışıklı kutu harf", "ESPA Toz Boya — fabrika cephesi kutu harf",
-      "Recepoğlu — kompozit cephe ve kutu harf", "Toros", "Gruma", "Akyürek İnşaat", "Yunus Yapı — fuar standı"]),
+      "Recepoğlu — kompozit cephe ve kutu harf", "Toros", "Gruma", "Akyürek İnşaat", "Yunus Yapı — fuar standı", "Anzel Eğitim Kurumları — ışıklı totem"]),
     ("Bayi ve mağaza tabelaları",
      "Marka kurumsal kimlik kılavuzuna birebir uygun, seri üretim bayi tabelaları.",
      ["Karaca / Karaca Home", "Pedo", "RodiMood", "Penti", "Baymak", "Husqvarna", "Stihl", "Ramsey", "Kip",
@@ -63,6 +63,7 @@ GRUP_FOTO = [
     ["toki-santiye-bilgi-yonlendirme-levhasi.webp", "saski-asfalt-calismasi-bilgi-levhasi.webp", "fatsa-ataturk-parki-modern-totem.webp",
      "asarcik-spor-salonu-cati-kutu-harf.webp", "olimpik-yuzme-havuzu-pano-tabela.webp"],
     ["sinop-devlet-hastanesi-isikli-kutu-harf.webp", "gerze-devlet-hastanesi-giris-takisi.webp", "liv-hospital-paslanmaz-kutu-harf.webp",
+     "medibafra-hastanesi-baskili-silindir-pano.webp",
      "vm-medical-park-cocuk-isikli-harf.webp", "medical-park-atakum-bina-cephe-giydirme.webp", "medical-park-ordu-billboard-montaj.webp",
      "medical-park-billboard-reklam-panosu.webp", "medibafra-hastanesi-cephe-giydirme.webp", "medibafra-isikli-totem-tabela.webp",
      "medibafra-hastanesi-isikli-kutu-harf.webp", "medibafra-hastanesi-resepsiyon-yonlendirme.webp", "dunyagoz-isikli-totem-tabela.webp",
@@ -71,7 +72,8 @@ GRUP_FOTO = [
     ["piazza-avm-dev-totem-tabela.webp", "piazza-avm-cam-folyo-bilgilendirme.webp", "avm-cati-tabelasi-yuksek-irtifa-montaj.webp",
      "yatirim-finansman-kompozit-cephe.webp", "yonlendirme-is-bankasi-menkul-degerler.webp", "plan-yapi-isikli-kutu-harf.webp",
      "krom-harf-yasamkent.webp", "burger-king-ic-mekan-duvar-baskisi.webp", "entek-elektrik-isikli-kutu-harf.webp",
-     "espa-toz-boya-kutu-harf-tabela-cephe.webp", "recepoglu-kompozit-cephe-kutu-harf.webp", "cam-giydirme-akyurek-insaat.webp", "yunus-yapi-fuar-standi.webp"],
+     "espa-toz-boya-kutu-harf-tabela-cephe.webp", "recepoglu-kompozit-cephe-kutu-harf.webp", "cam-giydirme-akyurek-insaat.webp", "yunus-yapi-fuar-standi.webp",
+     "anzel-egitim-kurumlari-isikli-totem-imalati.webp"],
     ["bayi-tabelasi-karaca-home.webp", "bayi-tabelasi-pedo.webp", "bayi-tabelasi-rodimood.webp", "bayi-tabelasi-husqvarna-stihl.webp",
      "ramsey-kip-magaza-cephe-giydirme.webp", "bayi-tabelasi-festival-hali.webp", "bayi-tabelasi-dilek-hali.webp", "bayi-tabelasi-gumussuyu.webp",
      "modasen-bina-giydirme.webp", "neon-efektli-tabela-daphne.webp", "tozlu-com-magaza-kutu-harf.webp", "btm-magazalari-isikli-pano-kutu-harf.webp",
@@ -154,7 +156,7 @@ def sayfa_yaz(dosya, baslik, aciklama, sema, icerik, kisa_baslik, css_ek="", ust
         tam = m.group(0)
         return (tam.replace(' src="', ' src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" data-src="', 1)
                 + "<noscript>" + tam + "</noscript>")
-    icerik = re.sub(r'<img src="galeri/k/[^"]+"[^>]*loading="lazy"[^>]*>', _ertele, icerik)
+    icerik = re.sub(r'<img src="(?:galeri/k|images/atolye)/[^"]+"[^>]*loading="lazy"[^>]*>', _ertele, icerik)
     icerik += """<script>
 (function () {
   var g = document.querySelectorAll('img[data-src]');

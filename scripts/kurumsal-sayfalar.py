@@ -63,10 +63,16 @@ def hakkimizda(galeri):
     aciklama = ("1973'te Remzi Toraman'ın kurduğu atölye, bugün Abdurrahman Toraman yönetiminde "
                 "Bafra'da tasarım, üretim ve montajı tek elden yapan tabela imalat merkezi.")
     atolye = [("Harf ve kompozit imalatı", "atolye-kutu-harf-kompozit-imalat.webp"), ("CNC router ile kesim", "cnc-router-lazer-kesim-imalat.webp"),
-              ("Pleksi kutu harf üretimi", "pleksi-kutu-harf-ciftlik-imalat.webp"), ("Kendi ekibimizle montaj", "avm-cati-tabelasi-yuksek-irtifa-montaj.webp")]
+              ("Işıklı totem imalatı", "anzel-egitim-kurumlari-isikli-totem-imalati.webp"), ("Kendi ekibimizle montaj", "atakum-kompozit-totem-montaji.webp")]
     atolye_html = "".join(
         f'<figure><img src="galeri/k/{d}" alt="{html.escape(galeri[d]["alt"])}" width="640" height="480" loading="lazy" decoding="async">'
         f'<figcaption><strong>{e(ad)}</strong><span>Bafra atölyemiz</span></figcaption></figure>' for ad, d in atolye)
+    stok = [("Kesim folyosu renk stoğu", "folyo-renk-stogu"), ("Orafol ve Frimpeks folyolar", "orafol-frimpeks-folyo-stogu"),
+            ("Branda ve vinil ruloları", "branda-vinil-rulo-deposu"), ("Alüminyum kompozit paneller", "aluminyum-kompozit-panel-stogu"),
+            ("Pleksi ve forex levhalar", "pleksi-forex-levha-stogu")]
+    stok_html = "".join(
+        f'<figure><img src="images/atolye/{d}-k.webp" alt="Uzman Reklam Bafra atölyesi: {e(ad).lower()}" width="640" height="480" loading="lazy" decoding="async">'
+        f'<figcaption><strong>{e(ad)}</strong><span>Bafra deposu</span></figcaption></figure>' for ad, d in stok)
     icerik = f"""<main class="ref-sayfa">
   <header class="ref-ust">
     {yol("Hakkımızda")}
@@ -98,6 +104,11 @@ def hakkimizda(galeri):
     <p>Bafra Emirefendi Mahallesi'ndeki atölyemizde harf kesiminden kaynağa, boyadan LED montajına kadar bütün işler yapılıyor; sahadaki montajı da kendi ekibimiz yapıyor.</p>
   </div>
   <div class="ref-isler kur-isler">{atolye_html}</div>
+  <div class="kur-metin">
+    <h2>Malzeme stoğumuz</h2>
+    <p>İşi bekletmemek için malzemeyi stokta tutuyoruz: Orafol, Frimpeks ve Softmark folyolar, dijital baskı branda ve vinil ruloları, alüminyum kompozit paneller, pleksi ve forex levhalar.</p>
+  </div>
+  <div class="ref-isler kur-isler">{stok_html}</div>
   <div class="kur-metin">
     <h2>Aile şirketimiz: Toraman Matbaa</h2>
     <p>Ailemizin ikinci üretim kolu Toraman Matbaa, İstanbul Topkapı'da endüstriyel baskı tesisidir. Türkiye genelindeki matbaalar, ajanslar ve kurumsal firmalar için etiket, ambalaj, karton kutu, katalog ve broşür üretir; yurt dışına da ihracat yapar. <a href="https://toramanmatbaa.com" target="_blank" rel="noopener">toramanmatbaa.com</a></p>
