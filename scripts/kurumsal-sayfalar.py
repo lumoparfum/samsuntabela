@@ -69,7 +69,7 @@ def hakkimizda(galeri):
         f'<figcaption><strong>{e(ad)}</strong><span>Bafra atölyemiz</span></figcaption></figure>' for ad, d in atolye)
     stok = [("Kesim folyosu renk stoğu", "folyo-renk-stogu"), ("Orafol ve Frimpeks folyolar", "orafol-frimpeks-folyo-stogu"),
             ("Branda ve vinil ruloları", "branda-vinil-rulo-deposu"), ("Alüminyum kompozit paneller", "aluminyum-kompozit-panel-stogu"),
-            ("Pleksi ve forex levhalar", "pleksi-forex-levha-stogu")]
+            ("Pleksi ve forex levhalar", "pleksi-forex-levha-stogu"), ("Depoya malzeme girişi", "depoya-malzeme-girisi")]
     stok_html = "".join(
         f'<figure><img src="images/atolye/{d}-k.webp" alt="Uzman Reklam Bafra atölyesi: {e(ad).lower()}" width="640" height="480" loading="lazy" decoding="async">'
         f'<figcaption><strong>{e(ad)}</strong><span>Bafra deposu</span></figcaption></figure>' for ad, d in stok)
