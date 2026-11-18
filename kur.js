@@ -5,9 +5,9 @@
  * Hesaplayici ve urun pencereleri window.KUR.USD / window.KUR.EUR okur.
  */
 window.KUR = {
-  USD: 50.2282, // KUR-USD
-  EUR: 55.9810, // KUR-EUR
-  tarih: '11.11.2026' // KUR-TARIH
+  USD: 50.4444, // KUR-USD
+  EUR: 55.3446, // KUR-EUR
+  tarih: '18.11.2026' // KUR-TARIH
 };
 (function () {
   function uygula() {
