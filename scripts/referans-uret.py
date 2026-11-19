@@ -23,7 +23,7 @@ GRUPLAR = [
     ("Kamu kurumları ve üniversiteler",
      "Resmi kurumların bina, birim ve yönlendirme tabelaları. Ayrıntı: kamu kurumu tabelaları sayfamız.",
      ["T.C. Sağlık Bakanlığı", "TOKİ (Toplu Konut İdaresi) — şantiye bilgi ve yönlendirme levhaları",
-      "Devlet Opera ve Balesi Genel Müdürlüğü", "Sinop Üniversitesi",
+      "Devlet Opera ve Balesi Genel Müdürlüğü — Samsun opera binası engelli yönlendirme (hissedilebilir yüzey) zemini", "Sinop Üniversitesi",
       "Samsun Büyükşehir Belediyesi SASKİ — şantiye bilgi levhaları",
       "Fatsa Atatürk Parkı — özel tasarım totem", "Asarcık Spor Salonu — çatı kutu harf",
       "Atakum Olimpik Yüzme Havuzu — iç mekan panoları"]),
@@ -60,7 +60,7 @@ SIRA = [1, 0, 2, 3, 4]
 
 # her grubun fotograflari (galeri.json dosya adlari; baslik ve alt yazi galeriden gelir), GRUPLAR ile ayni sirada
 GRUP_FOTO = [
-    ["toki-santiye-bilgi-yonlendirme-levhasi.webp", "saski-asfalt-calismasi-bilgi-levhasi.webp", "fatsa-ataturk-parki-modern-totem.webp",
+    ["samsun-devlet-opera-hissedilebilir-yuzey-giris.webp", "toki-santiye-bilgi-yonlendirme-levhasi.webp", "saski-asfalt-calismasi-bilgi-levhasi.webp", "fatsa-ataturk-parki-modern-totem.webp",
      "asarcik-spor-salonu-cati-kutu-harf.webp", "olimpik-yuzme-havuzu-pano-tabela.webp"],
     ["sinop-devlet-hastanesi-isikli-kutu-harf.webp", "gerze-devlet-hastanesi-giris-takisi.webp", "liv-hospital-paslanmaz-kutu-harf.webp",
      "medibafra-hastanesi-baskili-silindir-pano.webp",
