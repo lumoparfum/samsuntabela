@@ -1,10 +1,10 @@
-"""Iletisim bolumunu (fabrika, kurumsal bilgiler, banka, Toraman Matbaa, hizmet agi) 7 sayfada TEK ve AYNI hale getirir.
+"""Iletisim bolumunu (fabrika, kurumsal bilgiler, banka, aile sirketleri, hizmet agi) blogu tasiyan tum sayfalarda TEK ve AYNI hale getirir.
 
 - index.html ve 6 ilce sayfasinda <section class="footer-grid" id="iletisim"> ... + "hizmet agi" seridi
   <!-- ILETISIM:BASLA --> ... <!-- ILETISIM:BITIR --> arasina alinir ve asagidaki ortak HTML ile degistirilir.
 - Ortak stil <style> sonuna "ILETISIM ORTAK" blogu olarak eklenir (iOS olcusu: beyaz zemin, notr gri, kutu yok).
 - Tekrar calistirilinca isaretler arasini yeniler (idempotent).
-Icerik (adres, telefon, VKN, IBAN, Toraman Matbaa) degistirilecekse BURADA degistir, sonra calistir.
+Icerik (adres, telefon, VKN, IBAN, aile sirketleri: Toraman Matbaa + Organize Matbaa) degistirilecekse BURADA degistir, sonra calistir.
 """
 import io, os, re, glob
 
@@ -43,11 +43,13 @@ HTML = f"""{BAS}
       <div><dt>IBAN</dt><dd class="rakam">TR12 0006 2000 5200 0006 2974 73</dd></div>
     </dl>
     <a class="yol-tarifi ref-link" href="referanslar.html">Referanslarımız</a>
-    <h3 class="ikinci">Aile şirketimiz: Toraman Matbaa (İstanbul)</h3>
-    <ul class="contact-info-list">
-      <li><i class="fas fa-map-marker-alt" aria-hidden="true"></i><div><span>Topkapı 2. Matbaacılar Sitesi 5. Kat E Blok 3NE19, Topkapı / İstanbul</span></div></li>
-      <li><i class="fas fa-phone-alt" aria-hidden="true"></i><div><a href="tel:4445340">444 5 340</a></div></li>
-      <li><i class="fas fa-globe" aria-hidden="true"></i><div><a href="https://toramanmatbaa.com" target="_blank" rel="noopener">toramanmatbaa.com</a></div></li>
+    <h3 class="ikinci">Aile şirketlerimiz</h3>
+    <ul class="aile-firmalar">
+      <li><a class="aile-logo" href="https://toramanmatbaa.com" target="_blank" rel="noopener"><img src="images/aile/toraman-matbaa-logo.png" alt="Toraman Matbaa logosu" width="464" height="120" loading="lazy" decoding="async"></a>
+        <div><strong>Toraman Matbaa</strong><span>Endüstriyel baskı: etiket, ambalaj, karton kutu, katalog · Topkapı 2. Matbaacılar Sitesi 5. Kat E Blok 3NE19, Topkapı / İstanbul</span><span><a href="tel:4445340">444 5 340</a> · <a href="https://toramanmatbaa.com" target="_blank" rel="noopener">toramanmatbaa.com</a></span></div></li>
+      <li><a class="aile-logo" href="https://www.organizematbaa.com" target="_blank" rel="noopener"><img src="images/aile/organize-matbaa-logo.png" alt="Organize Matbaa logosu" width="817" height="120" loading="lazy" decoding="async"></a>
+        <div><strong>Organize Matbaa</strong><span>Organize Matbaa Basım San. ve Tic. Ltd. Şti.</span><span>Online baskı: kartvizit, magnet, etiket, broşür, katalog · Zeytinburnu / İstanbul</span><span><a href="tel:+908504419780">0850 441 97 80</a> · <a href="https://www.organizematbaa.com" target="_blank" rel="noopener">organizematbaa.com</a></span></div></li>
+      <li><div><strong>Karadeniz Matbaa</strong><span>Dijital ve ofset baskı, fason baskı (ajans, tabelacı, matbaa) · Bafra / Samsun</span><span><a href="tel:+905321394659">0532 139 46 59</a> · <a href="https://karadenizmatbaa.com" target="_blank" rel="noopener">karadenizmatbaa.com</a></span></div></li>
     </ul>
   </div>
 </section>
@@ -60,6 +62,16 @@ CSS = f"""
         html body #iletisim .footer-box {{ background: none !important; border: 0 !important; padding: 0 !important; box-shadow: none !important; text-align: left !important; }}
         html body #iletisim h3 {{ color: #1d1d1f !important; font-size: 1.25rem !important; font-weight: 700 !important; text-transform: none !important; letter-spacing: -.01em; margin: 0 0 16px !important; }}
         html body #iletisim h3.ikinci {{ margin-top: 40px !important; font-size: 1.05rem !important; }}
+        html body #iletisim .aile-firmalar {{ list-style: none; padding: 0; margin: 0; }}
+        html body #iletisim .aile-firmalar li {{ display: flex; flex-direction: column; gap: 10px; padding: 16px 0; border-bottom: 1px solid #e5e5ea; }}
+        html body #iletisim .aile-firmalar li:last-child {{ border-bottom: 0; }}
+        html body #iletisim .aile-logo {{ display: inline-block; align-self: flex-start; border: 0 !important; }}
+        html body #iletisim .aile-logo img {{ display: block; height: 34px; width: auto; max-width: 100%; }}
+        html body #iletisim .aile-firmalar div {{ display: flex; flex-direction: column; gap: 4px; }}
+        html body #iletisim .aile-firmalar strong {{ color: #1d1d1f; font-size: 15px; font-weight: 600; }}
+        html body #iletisim .aile-firmalar span {{ color: #6e6e73; font-size: 14px; line-height: 1.45; }}
+        html body #iletisim .aile-firmalar span a {{ color: #1d1d1f; font-weight: 600; text-decoration: none; }}
+        html body #iletisim .aile-firmalar span a:hover {{ color: #4f6b00; }}
         html body #iletisim .contact-info-list {{ list-style: none; padding: 0; margin: 0; }}
         html body #iletisim .contact-info-list li {{ display: flex; align-items: flex-start; gap: 14px; padding: 14px 0 !important; border-bottom: 1px solid #e5e5ea !important; color: #1d1d1f !important; font-size: 16px !important; line-height: 1.45; }}
         html body #iletisim .contact-info-list li:last-child {{ border-bottom: 0 !important; }}
@@ -127,5 +139,7 @@ def isle(yol, ilce):
 
 
 if __name__ == "__main__":
-    for y in [os.path.join(KOK, "index.html")] + sorted(glob.glob(os.path.join(KOK, "*-reklamci-ve-tabelaci.html"))):
+    # 19 Kas 2026: blogu tasiyan TUM kok sayfalar (kurumsal + hizmet sayfalari index'ten kopyaliyordu, ayri kalmasin)
+    hepsi = [y for y in sorted(glob.glob(os.path.join(KOK, "*.html"))) if BAS in io.open(y, encoding="utf-8").read()]
+    for y in hepsi:
         isle(y, "index" not in y); print("ok", os.path.basename(y))

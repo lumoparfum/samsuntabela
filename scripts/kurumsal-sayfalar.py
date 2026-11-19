@@ -110,8 +110,8 @@ def hakkimizda(galeri):
   </div>
   <div class="ref-isler kur-isler">{stok_html}</div>
   <div class="kur-metin">
-    <h2>Aile şirketimiz: Toraman Matbaa</h2>
-    <p>Ailemizin ikinci üretim kolu Toraman Matbaa, İstanbul Topkapı'da endüstriyel baskı tesisidir. Türkiye genelindeki matbaalar, ajanslar ve kurumsal firmalar için etiket, ambalaj, karton kutu, katalog ve broşür üretir; yurt dışına da ihracat yapar. <a href="https://toramanmatbaa.com" target="_blank" rel="noopener">toramanmatbaa.com</a></p>
+    <h2>Aile şirketlerimiz: Toraman Matbaa, Organize Matbaa ve Karadeniz Matbaa</h2>
+    <p>Tabela atölyemizin yanında ailemizin üç baskı şirketi daha var. <strong>Toraman Matbaa</strong>, İstanbul Topkapı'da endüstriyel baskı tesisidir; Türkiye genelindeki matbaalar, ajanslar ve kurumsal firmalar için etiket, ambalaj, karton kutu, katalog ve broşür üretir, yurt dışına da ihracat yapar (<a href="https://toramanmatbaa.com" target="_blank" rel="noopener">toramanmatbaa.com</a>). <strong>Organize Matbaa</strong>, İstanbul Zeytinburnu'ndaki online baskı markamızdır; kartvizit, magnet, etiket, broşür ve katalog siparişlerini Türkiye'nin her yerine gönderir (<a href="https://www.organizematbaa.com" target="_blank" rel="noopener">organizematbaa.com</a>). Bafra'daki <strong>Karadeniz Matbaa</strong> ise dijital ve ofset baskıyla ajanslara, tabelacılara ve matbaalara fason üretim yapar (<a href="https://karadenizmatbaa.com" target="_blank" rel="noopener">karadenizmatbaa.com</a>). Böylece tabela, baskı ve kurumsal kimlik işlerini tek aileden karşılıyoruz.</p>
     <h2>Künye</h2>
   </div>
   <dl class="kur-kunye">

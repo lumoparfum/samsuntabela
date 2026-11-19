@@ -1,4 +1,4 @@
-// Her sayfada wa.me baglantilari yalniz 905079605049 (WhatsApp, 11 Kas 2026) mi; telefon 0532 220 46 49, eski numara gorunuyor mu. Kullanim: node numara.mjs https://samsuntabela.tr/
+// Her sayfada wa.me baglantilari yalniz 905079605049 (WhatsApp, 11 Kas 2026) mi; telefon 0532 220 46 49, eski numara gorunuyor mu (0532 139 46 59 = Karadeniz Matbaa/Semih, izinli, 19 Kas 2026). Kullanim: node numara.mjs https://samsuntabela.tr/
 import { chromium, devices } from 'playwright';
 const BASE = process.argv[2];
 const PAGES = ['', 'samsun-reklamci-ve-tabelaci.html', 'atakum-reklamci-ve-tabelaci.html', 'bafra-reklamci-ve-tabelaci.html', 'sinop-reklamci-ve-tabelaci.html', 'ordu-reklamci-ve-tabelaci.html', 'trabzon-reklamci-ve-tabelaci.html', 'referanslar.html', 'hakkimizda.html', 'hastane-tabela-ve-yonlendirme.html', 'kutu-harf-tabela.html', 'totem-tabela.html', 'bayi-tabelasi.html', 'kamu-kurumu-tabela.html', 'baski.html', 'baski/index.html', 'baski/fason-baski.html', 'baski/hediyelik.html', 'baski/okul-kurum.html', 'baski/ozel-gun.html', 'baski/taraftar.html', 'baski/vitrin.html'];
@@ -14,7 +14,7 @@ for (const pg of PAGES) {
     const wa = [...document.querySelectorAll('a[href*="wa.me"]')].map(a => a.href.match(/wa\.me\/(\d*)/)[1]);
     const tel = [...document.querySelectorAll('a[href^="tel:"]')].map(a => a.getAttribute('href'));
     const txt = document.body.innerText;
-    return { waSayisi: wa.length, waFarkli: [...new Set(wa)], tel: [...new Set(tel)], eskiGorunuyor: [...(document.documentElement.innerHTML.match(/0?\s?5\d\d[\s.]?\d{3}[\s.]?\d{2}[\s.]?\d{2}|90\s?5\d{9}/g) || [])].some(n => !/^(0?\s?532[\s.]?220[\s.]?46[\s.]?49|90\s?5322204649|0?\s?507[\s.]?960[\s.]?50[\s.]?49|90\s?5079605049)$/.test(n.trim())) };
+    return { waSayisi: wa.length, waFarkli: [...new Set(wa)], tel: [...new Set(tel)], eskiGorunuyor: [...(document.documentElement.innerHTML.match(/0?\s?5\d\d[\s.]?\d{3}[\s.]?\d{2}[\s.]?\d{2}|90\s?5\d{9}/g) || [])].some(n => !/^(0?\s?532[\s.]?220[\s.]?46[\s.]?49|90\s?5322204649|0?\s?507[\s.]?960[\s.]?50[\s.]?49|90\s?5079605049|0?\s?532[\s.]?139[\s.]?46[\s.]?59|90\s?5321394659)$/.test(n.trim())) };
   });
   const bad = r.waFarkli.some(x => x !== '905079605049') || r.eskiGorunuyor || errs.length || fails.some(f => !/google|gtag|analytics|mp4/.test(f));
   if (bad) sorun++;
